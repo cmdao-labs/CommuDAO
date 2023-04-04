@@ -23,13 +23,13 @@ contract COMMUDAO_MKP is ERC721Holder, ReentrancyGuard {
     mapping(uint256=>address) public nftOwner;
 
 	struct Item {
-	    address seller;
-	    address buyer;
-        uint256 nftIndex;
-        uint256 nftId;
-        uint256 currencyIndex;
-	    uint256 price;
-	    bool sold;
+		address seller;
+		address buyer;
+		uint256 nftIndex;
+		uint256 nftId;
+		uint256 currencyIndex;
+		uint256 price;
+		bool sold;
 	}
 
 	mapping(uint256=>Item) public items;
