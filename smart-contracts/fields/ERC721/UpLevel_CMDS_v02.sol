@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./StarterRouter_CMDS.sol";
 
-contract Uplevel_CMDS is Ownable {
+contract Uplevel_CMDS_v02 is Ownable {
     address public cmdsNft;
 
     address public cmdsData;
@@ -40,6 +40,7 @@ contract Uplevel_CMDS is Ownable {
     }
 
     function uplevelServant(uint256 _index, uint256 _tokenId) external {
+        require(StarterRouter_CMDS(cmdsData).mynft(msg.sender) == (1000000 * 1e13) + (_tokenId % 1e13) ,"You are not owner");
         (, uint256 exp) = StarterRouter_CMDS(cmdsData).nftData((1000000 * 1e13) + (_tokenId % 1e13));
         require(evolution[_index].oldclassId != 0, "Invalid evolution");
         require(evolution[_index].oldclassId == (_tokenId / 1e13), "Invalid classId");
