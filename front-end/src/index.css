@@ -1,0 +1,30 @@
+@font-face {
+  font-family: Inter-Regular;
+  src: url(./fonts/Inter-Regular.ttf);
+}
+
+@font-face {
+  font-family: Inter-Light;
+  src: url(./fonts/Inter-Light.ttf);
+}
+
+@font-face {
+  font-family: Inter-ExtraBold;
+  src: url(./fonts/Inter-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: ZFTERMIN;
+  src: url(./fonts/ZFTERMIN__.ttf);
+}
+
+body {
+  margin: 0;
+  font-family: "Inter-Regular";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Inter-Regular";
+}
