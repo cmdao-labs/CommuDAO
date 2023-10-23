@@ -1,0 +1,402 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_wood",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_jasp",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_jdao",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_cmj",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_bbq",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "bbq",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cmj",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "craft",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "craftUpgrade",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "newLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "woodReq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "jaspReq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "jdaoReq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cmjReq",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "jasp",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "jdao",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "machine",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "level",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duration",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "woodCost",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "jbcCost",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bbqReward",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "obtain",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_level",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_durationInMin",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_woodCost",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_jbcCost",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_bbqReward",
+				"type": "uint256"
+			}
+		],
+		"name": "setMachine",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_newLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_woodReq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_jaspReq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_jdaoReq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_cmjReq",
+				"type": "uint256"
+			}
+		],
+		"name": "setUpgrade",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "supplier",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "craftLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "machineRun",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "laststamp",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "upgrade",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "withdrawCmj",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "withdrawJbc",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "wood",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
