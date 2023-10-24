@@ -340,11 +340,11 @@ const Main = () => {
         <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
             <div className="inFooterLeft">
                 <div style={{marginBottom: "10px"}}>© CommuDAO 2023 - Alpha</div>
-                <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://demontocoshi.gitbook.io/commudao/" target="_blank" rel="noreferrer">Whitepaper</a>
-                <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/demontocoshi/CommuDAO" target="_blank" rel="noreferrer">Github</a>
+                <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
+                <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
             </div>
             <div className="inFooterRight">
-                <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">CommuDAO Quests [Powerd by Zealy]</a>
+                <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">Quests on Zealy</a>
                 <a style={{color: "#5f6476", textDecoration: "none"}} href="https://discord.gg/k92ReT5EYy" target="_blank" rel="noreferrer">Discord</a>
             </div>
         </footer>
