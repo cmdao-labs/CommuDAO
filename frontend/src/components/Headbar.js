@@ -71,7 +71,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <div className="funcList" onClick={() => {callMode(5); navigate('/mall');}}>Mall</div>
             <div className="funcList" onClick={() => {callMode(6); navigate('/marketplace');}}>Marketplace</div>
             <div className="funcList" onClick={() => {callMode(7); navigate('/gameswap');}}>GameSwap</div>
-            <a style={{textDecoration: "none", color: "#5f6476"}} href="https://commudao.cmhexa.com/tbridge-jusdt" target="_blank" rel="noreferrer"><div className="funcList">tBridge</div></a>
+            <a style={{textDecoration: "none", color: "#5f6476"}} href="https://commudao.xyz/tbridge-jusdt" target="_blank" rel="noreferrer"><div className="funcList">tBridge</div></a>
           </div>
           <div style={{fontSize: "16px"}} className="navButton pixel">
             {address !== null && address !== undefined ?
