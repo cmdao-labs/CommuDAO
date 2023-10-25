@@ -1012,7 +1012,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             [Next] {dataCraftBBQ_G_Next.addr.slice(0, 4) + "..." + dataCraftBBQ_G_Next.addr.slice(-4)}
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="./elements/Large_BBQ_factory.png" width="290" alt="Large_BBQ_Factory"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreidgivpl6pkbnimqngnyq7ovwnzrzbqnjwkclvcpzr4ypcfyxirwbu" width="290" alt="Large_BBQ_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
