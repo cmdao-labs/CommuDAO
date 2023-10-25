@@ -327,14 +327,14 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
 
     return (
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", background: "rgb(232, 236, 251)", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-            <img src="../tokens/meow.png" height="160" alt="NPC_Ammy"/>
+            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" height="160" alt="NPC_Ammy"/>
             {mode === 1 ?
                 <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                     <div style={{maxHeight: "75px"}}>
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">NPC DEGENO THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"BUY/SELL ${gasselected} - 5% TAX"</div>
                         <div style={{fontSize: "14px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
-                            <img src="./tokens/meow.png" width="12" alt="$MEOW"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="12" alt="$MEOW"/>
                             <div style={{marginLeft: "5px"}}>{gasselected === "MEOW" ? Number(meowBalance).toFixed(4) : ""}</div>
                         </div>
                         <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -424,7 +424,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">NPC DEGENO THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"BUY/SELL ${gasselected} - 5% TAX"</div>
                         <div style={{fontSize: "14px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
-                            <img src="./tokens/meow.png" width="12" alt="$MEOW"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="12" alt="$MEOW"/>
                             <div style={{marginLeft: "5px"}}>{gasselected === "MEOW" ? Number(meowBalance).toFixed(4) : ""}</div>
                         </div>
                         <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
