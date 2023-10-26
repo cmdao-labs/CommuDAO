@@ -53,11 +53,11 @@ const Dungeon = ({ callMode, navigate }) => {
             <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFTs Upgrade</div>
             <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{justifyContent: "flex-start", margin: "20px"}}>
-                    <div style={{width: "345px", height: "230px", overflow: "hidden"}}>
-                        <img src="../elements/blacksmith.png" height="220" alt="Blacksmith" />
+                    <div style={{width: "345px", height: "230px", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", overflow: "hidden"}}>
+                        <img src="https://nftstorage.link/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="230" alt="Blacksmith" />
                     </div>
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Looking to upgrade your equipment? I've got you covered! Let's get started on taking your setup to the next level - no time to waste!"</div>
-                    <div style={{width: "fit-content", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(32); navigate('/dungeon/blacksmith-house');}}>Enter NPC Blacksmith House</div>
+                    <div style={{width: "fit-content", margin: "40px 130px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(32); navigate('/dungeon/blacksmith-house');}}>Enter Blacksmith House</div>
                 </div>
 
                 <div className="nftCard pixel" style={{justifyContent: "flex-start", margin: "20px"}}>

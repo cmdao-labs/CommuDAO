@@ -20,7 +20,10 @@
   font-style:  normal;
   font-weight: 300;
 }
-.pixel { font-family: "ZFTERMIN"; }
+.pixel { 
+  font-family: "ZFTERMIN";
+  font-weight: 100;
+}
 
 body {
   margin: 0;

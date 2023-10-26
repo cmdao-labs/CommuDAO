@@ -582,7 +582,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
     return (
     <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('/../background/dungeonbg.png')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Dungeon Arena</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
@@ -604,12 +604,12 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                                         <div style={{width: "700px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                             <div>Block.{item.blockNum}</div>
                                             <div style={{width: "240px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                                <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.cmhexa.com/dungeon/jasper-cave/" + item.cha1} target="_blank" rel="noreferrer"><div className="bold">{(item.cmpow1 * item.rand1) > (item.cmpow2 * item.rand2) ? <>👑</> : <></>} {item.cha1.slice(0, 4) + "..." + item.cha1.slice(-4)}</div></a>
+                                                <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.cha1} target="_blank" rel="noreferrer"><div className="bold">{(item.cmpow1 * item.rand1) > (item.cmpow2 * item.rand2) ? <>👑</> : <></>} {item.cha1.slice(0, 4) + "..." + item.cha1.slice(-4)}</div></a>
                                                 <div className="emp bold">{item.cmpow1 * item.rand1} (X{item.rand1})</div>
                                             </div>
                                             <div>VS.</div>
                                             <div style={{width: "240px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                                <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.cmhexa.com/dungeon/jasper-cave/" + item.cha2} target="_blank" rel="noreferrer"><div className="bold">{(item.cmpow2 * item.rand2) > (item.cmpow1 * item.rand1) ? <>👑</> : <></>} {item.cha2.slice(0, 4) + "..." + item.cha2.slice(-4)}</div></a>
+                                                <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.cha2} target="_blank" rel="noreferrer"><div className="bold">{(item.cmpow2 * item.rand2) > (item.cmpow1 * item.rand1) ? <>👑</> : <></>} {item.cha2.slice(0, 4) + "..." + item.cha2.slice(-4)}</div></a>
                                                 <div className="emp bold">{item.cmpow2 * item.rand2} (X{item.rand2})</div>
                                             </div>
                                         </div>

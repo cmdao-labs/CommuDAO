@@ -326,12 +326,14 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     }, [address, erc20ABI, ammyStdABI])
 
     return (
-        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", background: "rgb(232, 236, 251)", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" height="160" alt="NPC_Ammy"/>
+        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+            <div style={{marginTop: "10px", height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                <img src="https://nftstorage.link/ipfs/bafkreiewvtce4l7hqx5aivvwdjpl2hbka7i2vpfwpa73idiqzckmum4mxq" width="260" alt="NPC_Degeno" />
+            </div>
             {mode === 1 ?
-                <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                     <div style={{maxHeight: "75px"}}>
-                        <div style={{fontSize: "20px", width: "380px"}} className="pixel">NPC DEGENO THE CRYPTO TRADER</div>
+                        <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"BUY/SELL ${gasselected} - 5% TAX"</div>
                         <div style={{fontSize: "14px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
                             <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="12" alt="$MEOW"/>
@@ -346,7 +348,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                                 {gasselected === "MEOW" ? <>&nbsp;$MEOW &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div></> : ''}
                                 &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
                             </div>
-                            <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
+                            <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "transparent", color: "#ff007a", border: "1px solid #ff007a", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
                         </div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
@@ -419,10 +421,10 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                 <></>
             }
             {mode === 2 ?
-                <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                     <div style={{maxHeight: "75px"}}>
-                        <div style={{fontSize: "20px", width: "380px"}} className="pixel">NPC DEGENO THE CRYPTO TRADER</div>
-                        <div style={{fontSize: "10px"}} className="light">"BUY/SELL ${gasselected} - 5% TAX"</div>
+                        <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
+                        <div style={{fontSize: "10px"}} className="light">"ADD/REMOVE CMJ-{gasselected} LP"</div>
                         <div style={{fontSize: "14px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
                             <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="12" alt="$MEOW"/>
                             <div style={{marginLeft: "5px"}}>{gasselected === "MEOW" ? Number(meowBalance).toFixed(4) : ""}</div>
@@ -434,7 +436,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center"}} className="pixel">
                                 {gasselected === "MEOW" ? <>&nbsp;LP&nbsp;:&nbsp; <div className="emp">{Number(meowLpBalance).toFixed(4)}</div></> : ''}
                             </div>
-                            <div style={{width: "40px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP</div>
+                            <div style={{width: "40px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "transparent", color: "#ff007a", border: "1px solid #ff007a", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP</div>
                         </div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>

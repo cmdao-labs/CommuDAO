@@ -486,115 +486,117 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     }, [address, erc20ABI, ammyStdABI])
 
     return (
-        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", background: "rgb(232, 236, 251)", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-            <img src="../items/jasper.png" height="160" alt="NPC_Ammy"/>
-                <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
-                    <div style={{maxHeight: "75px"}}>
-                        <div style={{fontSize: "20px", width: "380px"}} className="pixel">NPC JAZZI THE LUXURY COLLECTOR</div>
-                        <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BUY/SELL ${gasselected}</div>
-                        <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
-                        <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                <option value="JDAO">JDAO</option>
-                                <option value="CU">CU</option>
-                                <option value="JASP">JASP</option>
-                            </select>
-                            <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
-                                &nbsp;1
-                                {gasselected === "JDAO" ? <>&nbsp;<img src="./tokens/jdao.png" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></> : ''}
-                                {gasselected === "CU" ? <>&nbsp;<img src="./items/copper.png" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></> : ''}
-                                {gasselected === "JASP" ? <>&nbsp;GWEI&nbsp;<img src="./items/jasper.png" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></> : ''}
-                                &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder={"$" + gasselected + " Amount to Sell"}
-                        onChange={(event) => {
-                            if (gasselected === "JDAO") {
-                                handleSwapJDAO(event)
-                            } else if (gasselected === "CU") {
-                                handleSwapCU(event)
-                            } else if (gasselected === "JASP") {
-                                handleSwapJASP(event)
-                            }
-                        }}
-                        value={inputSwap}
-                    ></input>
-                    <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
-                            <div style={{width: "30px"}} className="pixel button" onClick={
-                                () => {
-                                    if (gasselected === "JDAO") {
-                                        swapTokenHandleJDAO(true)
-                                    } else if (gasselected === "CU") {
-                                        swapTokenHandleCU(true)
-                                    } else if (gasselected === "JASP") {
-                                        swapTokenHandleJASP(true)
-                                    }
-                                }
-                            }>SELL</div> :
-                            <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
-                        }
-                        <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
-                            <div className="emp">
-                                {gasselected === "JDAO" ? cmjBoughtJDAO : ''}
-                                {gasselected === "CU" ? cmjBoughtCU : ''}
-                                {gasselected === "JASP" ? cmjBoughtJASP : ''}
-                            </div>
-                            $CMJ
-                        </div>
-                    </div>
-                    <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder="$CMJ Amount to Buy"
-                        onChange={(event) => {
-                            if (gasselected === "JDAO") {
-                                handleSwapJDAO_2(event)
-                            } else if (gasselected === "CU") {
-                                handleSwapCU_2(event)
-                            } else if (gasselected === "JASP") {
-                                handleSwapJASP_2(event)
-                            }
-                        }}
-                        value={inputSwap2}
-                    ></input>
-                    <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
-                            <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
-                                () => {
-                                    if (gasselected === "JDAO") {
-                                        swapTokenHandleJDAO(false)
-                                    } else if (gasselected === "CU") {
-                                        swapTokenHandleCU(false)
-                                    } else if (gasselected === "JASP") {
-                                        swapTokenHandleJASP(false)
-                                    }
-                                }
-                            }>BUY</div> :
-                            <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
-                        }
-                        <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
-                            <div style={{color: "#67BAA7"}}>
-                                {gasselected === "JDAO" ? tokenBoughtJDAO : ''}
-                                {gasselected === "CU" ? tokenBoughtCU : ''}
-                                {gasselected === "JASP" ? tokenBoughtJASP : ''}
-                            </div>
-                            ${gasselected}
+        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+            <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                    <img src="https://nftstorage.link/ipfs/bafybeifwrprsashfhjrlbwnyvw4cb6pquyokfs3xm3wl6rt6bdzynpzhkm" width="260" alt="NPC_Jazzi" />
+                </div>
+                <div style={{maxHeight: "75px"}}>
+                    <div style={{fontSize: "20px", width: "380px"}} className="pixel">JAZZI, THE LUXURY COLLECTOR</div>
+                    <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BUY/SELL ${gasselected}</div>
+                    <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
+                    <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                            <option value="JDAO">JDAO</option>
+                            <option value="CU">CU</option>
+                            <option value="JASP">JASP</option>
+                        </select>
+                        <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
+                            &nbsp;1
+                            {gasselected === "JDAO" ? <>&nbsp;<img src="./tokens/jdao.png" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></> : ''}
+                            {gasselected === "CU" ? <>&nbsp;<img src="./items/copper.png" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></> : ''}
+                            {gasselected === "JASP" ? <>&nbsp;GWEI&nbsp;<img src="./items/jasper.png" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></> : ''}
+                            &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
                         </div>
                     </div>
                 </div>
+                <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
+                <input
+                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                    className="bold"
+                    type="number"
+                    step="1"
+                    min="1"
+                    placeholder={"$" + gasselected + " Amount to Sell"}
+                    onChange={(event) => {
+                        if (gasselected === "JDAO") {
+                            handleSwapJDAO(event)
+                        } else if (gasselected === "CU") {
+                            handleSwapCU(event)
+                        } else if (gasselected === "JASP") {
+                            handleSwapJASP(event)
+                        }
+                    }}
+                    value={inputSwap}
+                ></input>
+                <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                    {address !== null && address !== undefined ?
+                        <div style={{width: "30px"}} className="pixel button" onClick={
+                            () => {
+                                if (gasselected === "JDAO") {
+                                    swapTokenHandleJDAO(true)
+                                } else if (gasselected === "CU") {
+                                    swapTokenHandleCU(true)
+                                } else if (gasselected === "JASP") {
+                                    swapTokenHandleJASP(true)
+                                }
+                            }
+                        }>SELL</div> :
+                        <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
+                    }
+                    <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
+                        <div className="emp">
+                            {gasselected === "JDAO" ? cmjBoughtJDAO : ''}
+                            {gasselected === "CU" ? cmjBoughtCU : ''}
+                            {gasselected === "JASP" ? cmjBoughtJASP : ''}
+                        </div>
+                        $CMJ
+                    </div>
+                </div>
+                <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
+                <input
+                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                    className="bold"
+                    type="number"
+                    step="1"
+                    min="1"
+                    placeholder="$CMJ Amount to Buy"
+                    onChange={(event) => {
+                        if (gasselected === "JDAO") {
+                            handleSwapJDAO_2(event)
+                        } else if (gasselected === "CU") {
+                            handleSwapCU_2(event)
+                        } else if (gasselected === "JASP") {
+                            handleSwapJASP_2(event)
+                        }
+                    }}
+                    value={inputSwap2}
+                ></input>
+                <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                    {address !== null && address !== undefined ?
+                        <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
+                            () => {
+                                if (gasselected === "JDAO") {
+                                    swapTokenHandleJDAO(false)
+                                } else if (gasselected === "CU") {
+                                    swapTokenHandleCU(false)
+                                } else if (gasselected === "JASP") {
+                                    swapTokenHandleJASP(false)
+                                }
+                            }
+                        }>BUY</div> :
+                        <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
+                    }
+                    <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
+                        <div style={{color: "#67BAA7"}}>
+                            {gasselected === "JDAO" ? tokenBoughtJDAO : ''}
+                            {gasselected === "CU" ? tokenBoughtCU : ''}
+                            {gasselected === "JASP" ? tokenBoughtJASP : ''}
+                        </div>
+                        ${gasselected}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

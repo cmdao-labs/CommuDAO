@@ -641,127 +641,129 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
     }, [address, erc20ABI, ammyABI, ammyStdABI])
 
     return (
-        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", background: "rgb(232, 236, 251)", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-            <img src="../elements/ammy.png" height="160" alt="NPC_Ammy"/>
-                <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
-                    <div style={{maxHeight: "75px"}}>
-                        <div style={{fontSize: "20px", width: "380px"}} className="pixel">NPC AMMY THE GAS MERCHANT</div>
-                        <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"YO! DO YOU HAVE SOME ${gasselected} FOR ME ?</div>
-                        <div style={{fontSize: "10px"}} className="light">AHHH, I WILL GET [5% MERCHANT FEE] FOR ANY TRADE."</div>
-                        <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                <option value="CTUNA">CTUNA</option>
-                                <option value="SX31">SX31</option>
-                                <option value="BBQ">BBQ</option>
-                                <option value="PZA">PZA</option>
-                            </select>
-                            <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
-                                &nbsp;1
-                                {gasselected === "CTUNA" ? <>&nbsp;<img src="./items/cannedtuna.png" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
-                                {gasselected === "SX31" ? <>&nbsp;<img src="./items/sx31.png" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
-                                {gasselected === "BBQ" ? <>&nbsp;<img src="./items/bbq.png" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
-                                {gasselected === "PZA" ? <>&nbsp;<img src="./items/pizza.png" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
-                                &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder={"$" + gasselected + " Amount to Sell"}
-                        onChange={(event) => {
-                            if (gasselected === "CTUNA") {
-                                handleSwap(event)
-                            } else if (gasselected === "SX31") {
-                                handleSwapSX31(event)
-                            } else if (gasselected === "BBQ") {
-                                handleSwapBBQ(event)
-                            } else if (gasselected === "PZA") {
-                                handleSwapPZA(event)
-                            }
-                        }}
-                        value={inputSwap}
-                    ></input>
-                    <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
-                            <div style={{width: "30px"}} className="pixel button" onClick={
-                                () => {
-                                    if (gasselected === "CTUNA") {
-                                        swapTokenHandle(true)
-                                    } else if (gasselected === "SX31") {
-                                        swapTokenHandle2(true)
-                                    } else if (gasselected === "BBQ") {
-                                        swapTokenHandle3(true)
-                                    } else if (gasselected === "PZA") {
-                                        swapTokenHandlePZA(true)
-                                    }
-                                }
-                            }>SELL</div> :
-                            <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
-                        }
-                        <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel">Will get 
-                            <div className="emp">
-                                {gasselected === "CTUNA" ? cmjBought : ''}
-                                {gasselected === "SX31" ? cmjBought2 : ''}
-                                {gasselected === "BBQ" ? cmjBought3 : ''}
-                                {gasselected === "PZA" ? cmjBoughtPZA : ''}
-                            </div>
-                            $CMJ
-                        </div>
-                    </div>
-                    <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder="$CMJ Amount to Buy"
-                        onChange={(event) => {
-                            if (gasselected === "CTUNA") {
-                                handleSwap2(event)
-                            } else if (gasselected === "SX31") {
-                                handleSwapSX31_2(event)
-                            } else if (gasselected === "BBQ") {
-                                handleSwapBBQ_2(event)
-                            } else if (gasselected === "PZA") {
-                                handleSwapPZA_2(event)
-                            }
-                        }}
-                        value={inputSwap2}
-                    ></input>
-                    <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
-                            <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
-                                () => {
-                                    if (gasselected === "CTUNA") {
-                                        swapTokenHandle(false)
-                                    } else if (gasselected === "SX31") {
-                                        swapTokenHandle2(false)
-                                    } else if (gasselected === "BBQ") {
-                                        swapTokenHandle3(false)
-                                    } else if (gasselected === "PZA") {
-                                        swapTokenHandlePZA(false)
-                                    }
-                                }
-                            }>BUY</div> :
-                            <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
-                        }
-                        <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel">Will get 
-                            <div style={{color: "#67BAA7"}}>
-                                {gasselected === "CTUNA" ? ctunaBought : ''}
-                                {gasselected === "SX31" ? tokenBought : ''}
-                                {gasselected === "BBQ" ? tokenBought3 : ''}
-                                {gasselected === "PZA" ? tokenBoughtPZA : ''}
-                            </div>
-                            ${gasselected}
+        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+            <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                    <img src="https://nftstorage.link/ipfs/bafybeihcyrsclfqjwflnaf4jtaylpvevgzhe5wwf2bqrih4vm3r2kyhmh4" width="260" alt="NPC_Ammy" />
+                </div>
+                <div style={{maxHeight: "75px"}}>
+                    <div style={{fontSize: "20px", width: "380px"}} className="pixel">AMMY, THE GAS MERCHANT</div>
+                    <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"HI! DO YOU HAVE SOME ${gasselected} FOR ME ?</div>
+                    <div style={{fontSize: "10px"}} className="light">AHHH, I WILL GET [5% MERCHANT FEE] FOR ANY TRADE."</div>
+                    <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                            <option value="CTUNA">CTUNA</option>
+                            <option value="SX31">SX31</option>
+                            <option value="BBQ">BBQ</option>
+                            <option value="PZA">PZA</option>
+                        </select>
+                        <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
+                            &nbsp;1
+                            {gasselected === "CTUNA" ? <>&nbsp;<img src="./items/cannedtuna.png" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
+                            {gasselected === "SX31" ? <>&nbsp;<img src="./items/sx31.png" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
+                            {gasselected === "BBQ" ? <>&nbsp;<img src="./items/bbq.png" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
+                            {gasselected === "PZA" ? <>&nbsp;<img src="./items/pizza.png" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
+                            &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
                         </div>
                     </div>
                 </div>
+                <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
+                <input
+                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                    className="bold"
+                    type="number"
+                    step="1"
+                    min="1"
+                    placeholder={"$" + gasselected + " Amount to Sell"}
+                    onChange={(event) => {
+                        if (gasselected === "CTUNA") {
+                            handleSwap(event)
+                        } else if (gasselected === "SX31") {
+                            handleSwapSX31(event)
+                        } else if (gasselected === "BBQ") {
+                            handleSwapBBQ(event)
+                        } else if (gasselected === "PZA") {
+                            handleSwapPZA(event)
+                        }
+                    }}
+                    value={inputSwap}
+                ></input>
+                <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                    {address !== null && address !== undefined ?
+                        <div style={{width: "30px"}} className="pixel button" onClick={
+                            () => {
+                                if (gasselected === "CTUNA") {
+                                    swapTokenHandle(true)
+                                } else if (gasselected === "SX31") {
+                                    swapTokenHandle2(true)
+                                } else if (gasselected === "BBQ") {
+                                    swapTokenHandle3(true)
+                                } else if (gasselected === "PZA") {
+                                    swapTokenHandlePZA(true)
+                                }
+                            }
+                        }>SELL</div> :
+                        <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
+                    }
+                    <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel">Will get 
+                        <div className="emp">
+                            {gasselected === "CTUNA" ? cmjBought : ''}
+                            {gasselected === "SX31" ? cmjBought2 : ''}
+                            {gasselected === "BBQ" ? cmjBought3 : ''}
+                            {gasselected === "PZA" ? cmjBoughtPZA : ''}
+                        </div>
+                        $CMJ
+                    </div>
+                </div>
+                <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
+                <input
+                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                    className="bold"
+                    type="number"
+                    step="1"
+                    min="1"
+                    placeholder="$CMJ Amount to Buy"
+                    onChange={(event) => {
+                        if (gasselected === "CTUNA") {
+                            handleSwap2(event)
+                        } else if (gasselected === "SX31") {
+                            handleSwapSX31_2(event)
+                        } else if (gasselected === "BBQ") {
+                            handleSwapBBQ_2(event)
+                        } else if (gasselected === "PZA") {
+                            handleSwapPZA_2(event)
+                        }
+                    }}
+                    value={inputSwap2}
+                ></input>
+                <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                    {address !== null && address !== undefined ?
+                        <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
+                            () => {
+                                if (gasselected === "CTUNA") {
+                                    swapTokenHandle(false)
+                                } else if (gasselected === "SX31") {
+                                    swapTokenHandle2(false)
+                                } else if (gasselected === "BBQ") {
+                                    swapTokenHandle3(false)
+                                } else if (gasselected === "PZA") {
+                                    swapTokenHandlePZA(false)
+                                }
+                            }
+                        }>BUY</div> :
+                        <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
+                    }
+                    <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel">Will get 
+                        <div style={{color: "#67BAA7"}}>
+                            {gasselected === "CTUNA" ? ctunaBought : ''}
+                            {gasselected === "SX31" ? tokenBought : ''}
+                            {gasselected === "BBQ" ? tokenBought3 : ''}
+                            {gasselected === "PZA" ? tokenBoughtPZA : ''}
+                        </div>
+                        ${gasselected}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

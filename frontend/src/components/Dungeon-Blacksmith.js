@@ -556,7 +556,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="../elements/blacksmith.png" height="150" alt="Blacksmith" />
+                    <img src="https://nftstorage.link/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="200" alt="Blacksmith" />
                 </div>
             </div>
 

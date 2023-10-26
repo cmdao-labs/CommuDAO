@@ -398,7 +398,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                 <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.cmhexa.com/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
                                                 </div>
                                                 <div>{item.cmxp} CMXP</div>
                                             </div>
@@ -421,7 +421,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                 <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.cmhexa.com/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
                                                 </div>
                                                 <div>{item.cmpow} CMPOW</div>
                                             </div>
@@ -444,7 +444,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                 <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.cmhexa.com/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.from.slice(0, 4) + "..." + item.from.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.from.slice(0, 4) + "..." + item.from.slice(-4)}</div></a>
                                                 </div>
                                                 <div>{Number(item.value).toFixed(2)} USDT</div>
                                             </div>
@@ -467,7 +467,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                 <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.cmhexa.com/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
                                                 </div>
                                                 <div>{Number(item.value).toFixed(2)} USDT</div>
                                             </div>
