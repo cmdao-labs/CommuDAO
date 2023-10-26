@@ -64,7 +64,7 @@ const inputStyle = {
         ...styles,
         overflow: 'visible',
         fontFamily: 'Inter',
-        fontStyle:  normal,
+        fontStyle: 'normal',
         fontWeight: 800,
     }),
     menu: (styles) => ({
