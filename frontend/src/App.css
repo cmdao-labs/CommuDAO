@@ -39,8 +39,16 @@ body::-webkit-scrollbar { display: none; }
 
 /* Font Style */
 .emp { color: #ff007a; }
-.bold { font-family: 'Inter-ExtraBold'; }
-.light { font-family: 'Inter-Light'; }
+.bold { 
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 800;
+}
+.light { 
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 300;
+}
 .pixel { font-family: "ZFTERMIN"; }
 
 header {
