@@ -8,15 +8,32 @@
   src: url(./fonts/ZFTERMIN__.ttf);
 }
 
+/* Font Style */
+.emp { color: #ff007a; }
+.bold { 
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 800;
+}
+.light { 
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 300;
+}
+.pixel { font-family: "ZFTERMIN"; }
+
 body {
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: 'Inter';
   font-style:  normal;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+  background: #fff;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+body::-webkit-scrollbar { display: none; }
 
 code {
   font-family: 'Inter';

@@ -1,10 +1,3 @@
-body { 
-  background: #fff;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-body::-webkit-scrollbar { display: none; }
-
 .App {
   background: #fff;
   min-height: 100vh;
@@ -36,20 +29,6 @@ body::-webkit-scrollbar { display: none; }
   justify-content: center;
   align-items: center;
 }
-
-/* Font Style */
-.emp { color: #ff007a; }
-.bold { 
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: 800;
-}
-.light { 
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: 300;
-}
-.pixel { font-family: "ZFTERMIN"; }
 
 header {
   height: 60px;
