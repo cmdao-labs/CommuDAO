@@ -39,20 +39,8 @@ body::-webkit-scrollbar { display: none; }
 
 /* Font Style */
 .emp { color: #ff007a; }
-.bold {
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("font-files/Inter-ExtraBold.woff2?v=3.19") format("woff2");
-}
-.light { 
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("font-files/Inter-Light.woff2?v=3.19") format("woff2");
-}
+.bold { font-family: 'Inter-ExtraBold'; }
+.light { font-family: 'Inter-Light'; }
 .pixel { font-family: "ZFTERMIN"; }
 
 header {

@@ -4,26 +4,42 @@
 }
 
 @font-face {
+  font-family: 'Inter-Regular';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("font-files/Inter-Regular.woff2?v=3.19") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter-ExtraBold';
+  font-style:  normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("font-files/Inter-ExtraBold.woff2?v=3.19") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter-Light';
+  font-style:  normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("font-files/Inter-Light.woff2?v=3.19") format("woff2");
+}
+
+@font-face {
   font-family: ZFTERMIN;
   src: url(./fonts/ZFTERMIN__.ttf);
 }
 
 body {
   margin: 0;
+  font-family: "Inter-Regular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("font-files/Inter-Regular.woff2?v=3.19") format("woff2");
+  
 }
 
 code {
   font-family: "Inter-Regular";
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("font-files/Inter-Regular.woff2?v=3.19") format("woff2");
 }
