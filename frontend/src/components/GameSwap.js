@@ -63,7 +63,9 @@ const inputStyle = {
     singleValue: (styles) => ({
         ...styles,
         overflow: 'visible',
-        fontFamily: 'Inter-ExtraBold',
+        fontFamily: 'Inter',
+        fontStyle:  normal,
+        fontWeight: 800,
     }),
     menu: (styles) => ({
         ...styles,
