@@ -1,5 +1,3 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-
 body { 
   background: #fff;
   -ms-overflow-style: none;
@@ -41,8 +39,20 @@ body::-webkit-scrollbar { display: none; }
 
 /* Font Style */
 .emp { color: #ff007a; }
-.bold { font-family: "Inter-ExtraBold"; }
-.light { font-family: "Inter-Light"; }
+.bold {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("font-files/Inter-ExtraBold.woff2?v=3.19") format("woff2");
+}
+.light { 
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("font-files/Inter-Light.woff2?v=3.19") format("woff2");
+}
 .pixel { font-family: "ZFTERMIN"; }
 
 header {

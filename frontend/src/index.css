@@ -1,16 +1,6 @@
-@font-face {
-  font-family: Inter-Regular;
-  src: url(./fonts/Inter-Regular.ttf);
-}
-
-@font-face {
-  font-family: Inter-Light;
-  src: url(./fonts/Inter-Light.ttf);
-}
-
-@font-face {
-  font-family: Inter-ExtraBold;
-  src: url(./fonts/Inter-ExtraBold.ttf);
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
 }
 
 @font-face {
@@ -20,11 +10,20 @@
 
 body {
   margin: 0;
-  font-family: "Inter-Regular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("font-files/Inter-Regular.woff2?v=3.19") format("woff2");
 }
 
 code {
   font-family: "Inter-Regular";
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("font-files/Inter-Regular.woff2?v=3.19") format("woff2");
 }
