@@ -426,7 +426,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             </div> :
             <></>
         }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('/../background/dungeon2bg.png')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "https://nftstorage.link/ipfs/bafybeiebkzeoydzwinuqixopu4atccmlttr7abpuyfrpjrdvqyzc55lpxi", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                 <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Copper Mine</div>
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring mine to collect $Copper.</div>

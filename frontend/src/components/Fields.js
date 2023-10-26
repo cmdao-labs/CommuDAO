@@ -14,7 +14,7 @@ const Fields = ({ callMode, navigate }) => {
         <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                 <div style={{position: "absolute", top: -15, right: -15, padding: "10px 20px", background: "#67BAA7", color: "#fff", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">FREE MINT</div>
-                <img src="../background/ancientforest.png" height="230" alt="Field_AncientForest" />
+                <img src="https://nftstorage.link/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -37,7 +37,7 @@ const Fields = ({ callMode, navigate }) => {
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>Go to Ancient Forest</div>
             </div>
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="../background/tunalake.png" height="230" alt="Field_TunaLake" />
+                <img src="https://nftstorage.link/ipfs/bafkreicoxmgbobc6eockaevaqmk2f7pwnfmtll2wze2npd2nyrxii2dblu" height="230" alt="Field_TunaLake" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -55,7 +55,7 @@ const Fields = ({ callMode, navigate }) => {
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>Go to Tuna Lake</div>
             </div>
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="../background/oldwarehouse.png" height="230" alt="Fields_OldWarehouse" />
+                <img src="https://nftstorage.link/ipfs/bafkreiaplfqhpcall6mr7swyaqyatfri7p4z56i7ttfvhjmootnett3f3m" height="230" alt="Fields_OldWarehouse" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>

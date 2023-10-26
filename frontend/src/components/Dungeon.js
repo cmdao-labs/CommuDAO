@@ -15,7 +15,7 @@ const Dungeon = ({ callMode, navigate }) => {
         <div style={{width: "95%", flexDirection: "column", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
-                    <img src="../background/coppermine.png" height="230" alt="Copper_Mine" />
+                    <img src="https://nftstorage.link/ipfs/bafkreig5qnhdcfhtk54gmc6grtce5islfq7xfkyx4l6utr3ckwol4xj4iu" height="230" alt="Copper_Mine" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
                         <div className="emp">Beginner</div>
@@ -32,7 +32,7 @@ const Dungeon = ({ callMode, navigate }) => {
                 </div>
 
                 <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
-                    <img src="../background/jaspercave.png" height="230" alt="Jasper_Cave" />
+                    <img src="https://nftstorage.link/ipfs/bafkreify5cxbaerycclmyyjnrxkt3abrtdjftxvqucuxac4kovhuan4cei" height="230" alt="Jasper_Cave" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
                         <div className="emp">Intermediate</div>
