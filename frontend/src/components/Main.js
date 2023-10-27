@@ -34,6 +34,7 @@ import sx31LabABI from './jsons/sx31LabABI.json'
 import bbqLab01ABI from './jsons/bbqLab01ABI.json'
 import bbqLab02ABI from './jsons/bbqLab02ABI.json'
 import pzaLabABI from './jsons/pzaLabABI.json'
+import goldMineABI from './jsons/goldMineABI.json'
 
 import dunJasperABI from './jsons/dunJasperABI.json'
 import dunJasperL2ABI from './jsons/dunJasperL2ABI.json'
@@ -272,7 +273,7 @@ const Main = () => {
                 <></>
             }
             {mode === 2 ?
-                <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
+                <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                 <></>
             }
             {mode === 3 ?
