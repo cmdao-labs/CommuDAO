@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useContractEvent, useAccount } from 'wagmi'
+import { Oval, ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
@@ -582,19 +583,18 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
     return (
     <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{background: "#2b2268", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Dungeon Arena</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="../background/dungeonlogo.png" width="150" alt="Dungeon_Logo" />
             </div>
         </div>
 
-        <div style={{background: "linear-gradient(259.16deg, rgb(123, 214, 243) 0%, rgb(161, 235, 213) 100%)", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{background: "rgb(39, 56, 82)", marginBottom: "50px", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "400px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                <div style={{fontSize: "22.5px", color: "#fff", marginBottom: "30px"}} className="pixel">Battle Logs 🤺</div>
+        <div style={{background: "rgb(0, 19, 33)", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
+            <div style={{background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", marginBottom: "50px", padding: "25px 50px", border: "none", minWidth: "880px", width: "55%", height: "400px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                <div style={{fontSize: "22.5px", color: "#fff", marginBottom: "30px"}} className="pixel">Battle Logs</div>
                 {battleHx.length > 0 ?
                     <>
                         {battleHx[0] !== null ?
@@ -619,17 +619,17 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                             <></>
                         }
                     </> :
-                    <></>
+                    <Oval stroke="#ff007a" strokeWidth="5px" />
                 }
             </div>
 
             <div style={{width: "40%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
-                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", marginBottom: "20px"}}>Challengers In Dungeon [Display only KYC address]</div>
-                <div style={{backgroundColor: "rgb(39, 56, 82)", justifyContent: "space-around", padding: "20px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">                    
+                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", marginBottom: "20px"}}>KYC Challengers In Dungeon</div>
+                <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", justifyContent: "space-around", padding: "20px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">                    
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlotC !== null ?
                             <img src={hatSlotC} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot"></img>
                         }
                         {hatSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevelC}</div> :
@@ -637,7 +637,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {clothSlotC !== null ?
                             <img src={clothSlotC} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot"></img>
                         }
                         {clothSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevelC}</div> :
@@ -645,7 +645,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {shoesSlotC !== null ?
                             <img src={shoesSlotC} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/shoes.png" width="100px" alt="Shoes_slot"></img>
                         }
                         {shoesSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevelC}</div> :
@@ -655,33 +655,45 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", color: "#fff", width: "300px", height: "fit-content", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "100%", marginBottom: "10px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>{challenger[0] !== undefined ? challenger[challengerSlot].slice(0, 4) + "..." + challenger[challengerSlot].slice(-4) : ""}</div>
-                            {isStakeNowC ?
-                                <div style={{display: "flex", flexDirection: "row"}} >
-                                    <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                    <div>Ready to Fight</div>
-                                </div> :
-                                <div style={{display: "flex", flexDirection: "row"}} className="emp">
-                                    <div style={{backgroundColor: "red", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                    <div>Sleeping zZZ</div>
-                                </div>
+                            {isStakeNowC !== null ?
+                                <>
+                                    {isStakeNowC ?
+                                        <div style={{display: "flex", flexDirection: "row"}} >
+                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                            <div>Ready to Fight</div>
+                                        </div> :
+                                        <div style={{display: "flex", flexDirection: "row"}} className="emp">
+                                            <div style={{backgroundColor: "red", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                            <div>Sleeping zZZ</div>
+                                        </div>
+                                    }
+                                </> :
+                                <div style={{width: "130px"}}></div>
                             }
                         </div>
-                        {characterSlotC !== null ?
+                        {isStakeNowC !== null ?
                             <>
-                                {Number(skinSlot1C) === 0 || (characterSlotC !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlotC !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
-                                    <img src={characterSlotC} width="250px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlotC === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
-                                    <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlotC === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
-                                    <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="250px" alt="Can not load metadata."></img> :
-                                    <></>
+                                {characterSlotC !== null ?
+                                    <>
+                                        {Number(skinSlot1C) === 0 || (characterSlotC !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlotC !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
+                                            <img src={characterSlotC} width="250px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlotC === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
+                                            <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlotC === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
+                                            <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="250px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                    </> :
+                                    <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 }
                             </> :
-                            <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
                         }
                         {charSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "40px", padding: "2px", fontSize: "25px"}} className="emp">Lv.{charSlotLevelC}</div> :
@@ -699,7 +711,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlotC !== null ?
                             <img src={accSlotC} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/accessories.png" width="100px" alt="Accessories_slot"></img>
                         }
                         {accSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevelC}</div> :
@@ -707,7 +719,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {backSlotC !== null ?
                             <img src={backSlotC} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/back.png" width="100px" alt="Back_slot"></img>
                         }
                         {backSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{backSlotLevelC}</div> :
@@ -715,7 +727,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {weaponSlotC !== null ?
                             <img src={weaponSlotC} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/weapon.png" width="100px" alt="Weapon_slot"></img>
                         }
                         {wpSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevelC}</div> :
@@ -723,7 +735,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                     </div>
                 </div>
-                <div style={{justifyContent: "space-around", padding: "10px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                <div style={{backgroundColor: "#1C2024", border: "none", color: "#fff", justifyContent: "space-around", padding: "10px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div className="emp">Lasted Battle</div>
                     <div style={{display: "flex", flexDirection: "column"}}>
                         <div>Your Damage</div>
@@ -739,19 +751,18 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     </div>
                 </div>
                 <div style={{width: "400px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                    <div style={{alignSelf: "flex-start", marginTop: "20px", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "#fff", color: "#000"}} className="button" onClick={() => {challengerSlot !== 0 ? setChallengerSlot(challengerSlot - 1) : setChallengerSlot(15)}}>BACK</div>
-                    <div style={{alignSelf: "flex-start", marginTop: "20px", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "#fff", color: "#000"}} className="button" onClick={() => {challengerSlot !== challenger.length - 1 ? setChallengerSlot(challengerSlot + 1) : setChallengerSlot(0)}}>NEXT</div>
+                    <div style={{alignSelf: "flex-start", marginTop: "20px", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "#1C2024", border: "none", color: "#fff"}} className="button" onClick={() => {challengerSlot !== 0 ? setChallengerSlot(challengerSlot - 1) : setChallengerSlot(15)}}>BACK</div>
+                    <div style={{alignSelf: "flex-start", marginTop: "20px", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "#1C2024", border: "none", color: "#fff"}} className="button" onClick={() => {challengerSlot !== challenger.length - 1 ? setChallengerSlot(challengerSlot + 1) : setChallengerSlot(0)}}>NEXT</div>
                     <div style={{alignSelf: "flex-start", marginTop: "20px", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}} className="button" onClick={() => {challengerSlot !== challenger.length - 1 ? nextChallenger(challengerSlot + 1) : nextChallenger(0)}}>SEARCH-to-FIGHT</div>
                 </div>
             </div>
             
             <div style={{width: "40%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
-                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", marginBottom: "20px"}}>Your Challenger</div>
-                <div style={{justifyContent: "space-around", padding: "20px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">                    
+                <div style={{marginTop: "65px", backgroundColor: "#1C2024", border: "none", color: "#fff", justifyContent: "space-around", padding: "20px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">                    
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlot !== null ?
                             <img src={hatSlot} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot"></img>
                         }
                         {hatSlotLevel !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
@@ -759,7 +770,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {clothSlot !== null ?
                             <img src={clothSlot} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot"></img>
                         }
                         {clothSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
@@ -767,7 +778,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {shoesSlot !== null ?
                             <img src={shoesSlot} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/shoes.png" width="100px" alt="Shoes_slot"></img>
                         }
                         {shoesSlotLevel !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div> :
@@ -777,33 +788,45 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", width: "300px", height: "fit-content", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "100%", marginBottom: "10px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>{address !== null && address !== undefined ? address.slice(0, 4) + "..." + address.slice(-4) : ""}</div>
-                            {isStakeNow ?
-                                <div style={{display: "flex", flexDirection: "row"}} >
-                                    <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                    <div>Ready to Fight</div>
-                                </div> :
-                                <div style={{display: "flex", flexDirection: "row"}} className="emp">
-                                    <div style={{backgroundColor: "red", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                    <div>Sleeping zZZ</div>
-                                </div>
+                            {isStakeNow !== null ?
+                                <>
+                                    {isStakeNow ?
+                                        <div style={{display: "flex", flexDirection: "row"}} >
+                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                            <div>Ready to Fight</div>
+                                        </div> :
+                                        <div style={{display: "flex", flexDirection: "row"}} className="emp">
+                                            <div style={{backgroundColor: "red", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                            <div>Sleeping zZZ</div>
+                                        </div>
+                                    }
+                                </> :
+                                <div style={{width: "130px"}}></div>
                             }
                         </div>
-                        {characterSlot !== null ?
+                        {isStakeNow !== null ?
                             <>
-                                {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
-                                    <img src={characterSlot} width="250px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                    <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                    <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="250px" alt="Can not load metadata."></img> :
-                                    <></>
+                                {characterSlot !== null ?
+                                    <>
+                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
+                                            <img src={characterSlot} width="250px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="250px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                    </> :
+                                    <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 }
                             </> :
-                            <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
                         }
                         {charSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "40px", padding: "2px", fontSize: "25px"}} className="emp">Lv.{charSlotLevel}</div> :
@@ -814,13 +837,13 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="../tokens/jdao.png" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bounty}</div></div>
                         {isStakeNow && challenger.indexOf(address) > -1 ?
-                            <div style={{alignSelf: "center", background: "#007aff"}} className="button" onClick={addBounty}>ADD 1 BOUNTY (10 JDAO)</div> :
+                            <div style={{alignSelf: "center"}} className="button" onClick={addBounty}>ADD 1 BOUNTY (10 JDAO)</div> :
                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">ADD 1 BOUNTY (10 JDAO)</div>
                         }                    </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
                             <img src={accSlot} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/accessories.png" width="100px" alt="Accessories_slot"></img>
                         }
                         {accSlotLevel !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div> :
@@ -828,7 +851,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {backSlot !== null ?
                             <img src={backSlot} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/back.png" width="100px" alt="Back_slot"></img>
                         }
                         {backSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div> :
@@ -836,7 +859,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {weaponSlot !== null ?
                             <img src={weaponSlot} width="100px" alt="Can not load metadata."></img> :
-                            <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <img src="/../elements/weapon.png" width="100px" alt="Weapon_slot"></img>
                         }
                         {wpSlotLevel !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div> :

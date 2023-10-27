@@ -340,7 +340,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
     return (
         <>
-            <div className="fieldBanner" style={{background: "rgb(0, 19, 33", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px"}}>
                     <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Quester Oasis</div>
                     <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">QUEST BOARD IS NOW LIVE ON CMDAO CITY!</div>
@@ -349,8 +349,8 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 </div>
             </div>
 
-            <div style={{background: "rgb(0, 19, 33", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
-                <div style={{padding: "25px 50px", background: "rgb(0, 227, 180)", minWidth: "880px", width: "85%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
+            <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
+                <div style={{padding: "25px 50px", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "880px", width: "85%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
                     <div style={{fontSize: "40px", color: "#fff"}}>October 2023 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>

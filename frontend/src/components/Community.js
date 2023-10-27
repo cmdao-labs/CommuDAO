@@ -1,18 +1,18 @@
 const Community = ({ callMode, navigate }) => {
     return (
     <>
-        <div className="fieldBanner" style={{background: "rgb(0, 19, 33", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
-                <div style={{fontSize: "75px", width: "fit-content"}} className="pixel">Community</div>
-                <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Build our decentralized community with DAO token.</div>
+        <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+            <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}} className="pixel">
+                <div style={{fontSize: "75px", width: "fit-content"}}>Community</div>
+                <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}}>Build our decentralized community with DAO token.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img src="../background/commulogo.png" width="150" alt="Community_Logo" />
             </div>
         </div>
 
-        <div style={{background: "rgb(0, 19, 33", margin: "0", padding: "75px 0", minHeight: "inherit"}} className="collection pixel">
-            <div style={{width: "1216px", maxWidth: "78%", marginBottom: "30px", textAlign: "left", fontSize: "22.5px", color: "rgb(0, 227, 180)"}} className="emp">CM CITY - Urban District 8x8 tiles [Under Construction]</div>
+        <div style={{background: "rgb(0, 19, 33)", margin: "0", padding: "75px 0", minHeight: "inherit"}} className="collection pixel">
+            <div style={{width: "1216px", maxWidth: "78%", marginBottom: "30px", textAlign: "left", fontSize: "22.5px", color: "#fff"}}>CM CITY - Urban District 8x8 tiles [Under Construction]</div>
             <div style={{padding: 0, borderRadius: 0, border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", width: "1216px", maxWidth: "78%", height: "1216px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
                 <div id="tile1" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                     <i style={{fontSize: "65px"}} className="fas fa-map-marker-alt"></i>
