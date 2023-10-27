@@ -2,6 +2,7 @@ import React from 'react'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
+import { ThreeDots } from 'react-loading-icons'
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
@@ -1460,7 +1461,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                 }
                             </> :
                             <div style={{width: "300px", padding: "20px", margin: "20px"}}>
-                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                                <ThreeDots fill="#5f6476" />
                             </div>
                         }
 
@@ -1525,7 +1526,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                 }
                             </> :
                             <div style={{width: "300px", padding: "20px", margin: "20px"}}>
-                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                                <ThreeDots fill="#5f6476" />
                             </div>
                         }
 
@@ -1581,7 +1582,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                 }
                             </> :
                             <div style={{width: "300px", padding: "20px", margin: "20px"}}>
-                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                                <ThreeDots fill="#5f6476" />
                             </div>
                         }
                     </div>

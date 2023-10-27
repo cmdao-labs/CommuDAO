@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { fetchBalance, readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const beasts = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
@@ -1045,22 +1046,29 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
-                        {characterSlot !== null ?
+                        {nft.length > 0 ?
                             <>
-                                {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
-                                    <img src={characterSlot} width="300px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                    <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                    <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="300px" alt="Can not load metadata."></img> :
-                                    <></>
+                                {characterSlot !== null ?
+                                    <>
+                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
+                                            <img src={characterSlot} width="300px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="300px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                    </> :
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 }
                             </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
                         }
                         {characterSlotLevel !== null ?
                             <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div> :
@@ -1181,11 +1189,18 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     </div>
                     <div style={{margin: "0 20px", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Follower NFT</div>
-                        {l2FollowerSlot !== null ?
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                <img src={l2FollowerSlot} height="100%" alt="Can not load metadata."></img>
-                            </div> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                        {nft.length > 0 ?
+                            <>
+                                {l2FollowerSlot !== null ?
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                        <img src={l2FollowerSlot} height="100%" alt="Can not load metadata."></img>
+                                    </div> :
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                }
+                            </> :
+                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
                         }
                     </div>
                     <div style={{margin: "0 20px", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
@@ -1266,8 +1281,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 </div> :
                 <div style={{width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
-                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
-                        <div className="bold">Loading NFTs...</div>
+                        <ThreeDots fill="#fff" />
+                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
             }

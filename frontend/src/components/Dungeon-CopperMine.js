@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 
@@ -176,7 +177,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             const isStaked = nftEQ.isStaked
             const refuelAt = Number(nftEQ.refuelAt)
 
-            const rewardPending = data[3]
+            const rewardPending = isStaked ? data[3] : 0
             const stOPTClaim = isStaked === true ? data[4] : 0
             const bbqBal = data[5]
             const cuBal = data[6]
@@ -484,7 +485,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER PENDING
-                            <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null ? "#ff007a" : "rgb(221, 218, 222)"}}>
+                            <div style={{display: "flex", flexDirection: "row", color: isStakeNow ? "#ff007a" : "#5f6476"}}>
                                 <img src="/../items/copper.png" height="20" alt="$COPPER"/>
                                 <div style={{marginLeft: "5px"}}>{cuPending.toLocaleString()}</div>
                             </div>
@@ -505,7 +506,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 <div style={{marginLeft: "5px"}}>/500</div>
                             </div>
                         </div>
-                        {timeToRunout !== null ?
+                        {isStakeNow !== null ?
                             <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
                             : <></>
                         }
@@ -545,22 +546,29 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
-                        {characterSlot !== null ?
+                        {nft.length > 0 ?
                             <>
-                                {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
-                                    <img src={characterSlot} width="300px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                    <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata."></img> :
-                                    <></>
-                                }
-                                {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                    <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="300px" alt="Can not load metadata."></img> :
-                                    <></>
+                                {characterSlot !== null ?
+                                    <>
+                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
+                                            <img src={characterSlot} width="300px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                        {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="300px" alt="Can not load metadata."></img> :
+                                            <></>
+                                        }
+                                    </> :
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 }
                             </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
                         }
                         {characterSlotLevel !== null ?
                             <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px"}}>Lv.{characterSlotLevel}</div> :
@@ -635,8 +643,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 </div> :
                 <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{background: "#ffeceb", border: "none", justifyContent: "center"}}>
-                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
-                        <div className="bold">Loading NFTs...</div>
+                        <ThreeDots fill="#5f6476" />
+                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
             }

@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { Oval } from 'react-loading-icons'
 
 const cmdaomkp = "0xb8Cc909AD8245eD551bC359b721f3748dA814A33"
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
@@ -945,142 +946,130 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                             <option value="CM_KNIGHT">Cat Man Knight Justice</option>
                         </select>
                     </div>
-                </> :
-                <></>
-            }
-            <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "20px 0"}}></div>
-            {mkpnft !== undefined && mkpnft.length > 0 ?
-            <>
-                {mkpnft[0] !== null && selectedCol[0] !== null ?
-                    <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                        {selectedCol[0] === undefined ?
-                            <>
-                                {mkpnft.map((item, index) => (
-                                    <div style={{justifyContent: "space-between", padding: "20px", margin: "10px 28px 15px 0", width: "300px"}} className="nftCard" key={index}>
-                                        <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
-                                            <img src={item.Image} height="250" alt="Can not load metadata." />
-                                        </div>
-                                        <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
-                                        <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                            <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
-                                                <div className="pixel emp">{item.Name}</div>
-                                                <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
-                                                <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                    {item.Currencyindex === 1 ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
-                                                    <div style={{marginLeft: "5px"}}>{item.Price}</div>
-                                                </div>
-                                                <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
-                                            </div>
-                                            {address !== null && address !== undefined ?
-                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#67BAA7"}} className="pixel button" onClick={() => {buyHandle(item.Count, item.Currencyindex, item.Price)}}>BUY</div> :
-                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
-                                            }
-                                        </div>
-                                    </div>
-                                ))}
-                            </> :
-                            <>
-                                {selectedCol.map((item, index) => (
-                                    <div style={{justifyContent: "space-between", padding: "20px", margin: "10px 28px 15px 0", width: "300px"}} className="nftCard" key={index}>
-                                        <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
-                                            <img src={item.Image} height="250" alt="Can not load metadata." />
-                                        </div>
-                                        <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
-                                        <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                            <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
-                                                <div className="pixel emp">{item.Name}</div>
-                                                <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
-                                                <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                    {item.Currencyindex === 1 ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
-                                                    <div style={{marginLeft: "5px"}}>{item.Price}</div>
-                                                </div>
-                                                <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
-                                            </div>
-                                            {address !== null && address !== undefined ?
-                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#67BAA7"}} className="pixel button" onClick={() => {buyHandle(item.Count, item.Currencyindex, item.Price)}}>BUY</div> :
-                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
-                                            }
-                                        </div>
-                                    </div>
-                                ))}
-                            </>
-                        }
-                    </div> :
-                    <>
-                        <div style={{padding: "20px", width: "300px", justifyContent: "center"}} className="nftCard">
-                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                            <div style={{marginTop: "30px"}} className="bold">No items in Marketplace.</div>
-                        </div>
-                    </>
-                }
-            </> :
-            <div style={{padding: "20px", width: "500px"}} className="emp">
-                <i style={{fontSize: "250px", marginBottom: "30px"}} className="fa fa-spinner"></i>
-                <div style={{fontSize: "20px"}} className="pixel">{loadingText}</div>
-            </div>
-        }
-        </div>
-        <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
-            <div style={{textAlign: "left", marginTop: "50px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
-                <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
-                <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
-                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./tokens/cmj.png" width="20" alt="$CMJ"/>
-                        <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
-                    </div>
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>
-                        <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
-                    </div>
-                </div>
-            </div>
-            <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
-                <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
-                <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFTs</div>
-                {nft !== undefined && nft.length > 0 ?
-                    <>
-                    {nft[0] !== null ?
+                    <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "20px 0"}}></div>
+                    {mkpnft[0] !== null && selectedCol[0] !== null ?
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                            {nft.map((item, index) => (
-                                <div style={{justifyContent: "space-around", padding: "20px", width: "300px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
-                                    <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
-                                        <img src={item.Image} height="250" alt="Can not load metadata." />
-                                    </div>
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                        <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
-                                            <div style={{fontSize: "14px"}} className="emp bold">{item.Name}</div>
-                                            <div style={{fontSize: "16px", margin: "5px 0 12px 0"}} className="pixel">
-                                                {item.Col === 1 || item.Col === 3 ? <>{item.RewardPerSec} cmpow per sec</> : <>{item.RewardPerSec} bonus per sec</>}   
+                            {selectedCol[0] === undefined ?
+                                <>
+                                    {mkpnft.map((item, index) => (
+                                        <div style={{justifyContent: "space-between", padding: "20px", margin: "10px 28px 15px 0", width: "300px"}} className="nftCard" key={index}>
+                                            <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
+                                                <img src={item.Image} height="250" alt="Can not load metadata." />
                                             </div>
-                                            {!item.Onsell ?
-                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}} className="pixel button" onClick={() => {sell(item.Col, item.Id, item.Name, item.Image)}}>SELL NFT</div> :
-                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "120px", background: "gray"}} className="pixel button" onClick={() => {remove(item.Count)}}>REMOVE SELL</div>
-                                            }
+                                            <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                                                    <div className="pixel emp">{item.Name}</div>
+                                                    <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
+                                                    <div style={{display: "flex", flexDirection: "row"}} className="pixel">
+                                                        {item.Currencyindex === 1 ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
+                                                        <div style={{marginLeft: "5px"}}>{item.Price}</div>
+                                                    </div>
+                                                    <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
+                                                </div>
+                                                {address !== null && address !== undefined ?
+                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#67BAA7"}} className="pixel button" onClick={() => {buyHandle(item.Count, item.Currencyindex, item.Price)}}>BUY</div> :
+                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            ))}
+                                    ))}
+                                </> :
+                                <>
+                                    {selectedCol.map((item, index) => (
+                                        <div style={{justifyContent: "space-between", padding: "20px", margin: "10px 28px 15px 0", width: "300px"}} className="nftCard" key={index}>
+                                            <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
+                                                <img src={item.Image} height="250" alt="Can not load metadata." />
+                                            </div>
+                                            <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                                                    <div className="pixel emp">{item.Name}</div>
+                                                    <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
+                                                    <div style={{display: "flex", flexDirection: "row"}} className="pixel">
+                                                        {item.Currencyindex === 1 ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
+                                                        <div style={{marginLeft: "5px"}}>{item.Price}</div>
+                                                    </div>
+                                                    <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
+                                                </div>
+                                                {address !== null && address !== undefined ?
+                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#67BAA7"}} className="pixel button" onClick={() => {buyHandle(item.Count, item.Currencyindex, item.Price)}}>BUY</div> :
+                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "fit-content", height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                            }
                         </div> :
                         <>
-                        {address !== undefined ?
-                            <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
+                            <div style={{padding: "20px", width: "300px", justifyContent: "center"}} className="nftCard">
                                 <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                            </div> :
-                            <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
-                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                <div className="bold">Please connect wallet to view your NFTs.</div>
+                                <div style={{marginTop: "30px"}} className="bold">No items in Marketplace.</div>
                             </div>
-                        }
                         </>
                     }
-                    </> :
-                    <div style={{padding: "20px", margin: "20px", width: "300px"}}>
-                        <i style={{fontSize: "200px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                    <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
+                    <div style={{textAlign: "left", marginTop: "50px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
+                        <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img src="./tokens/cmj.png" width="20" alt="$CMJ"/>
+                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>
+                                <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
+                            </div>
+                        </div>
                     </div>
-                }
-            </div>
+                    <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
+                        <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFTs</div>
+                        {nft[0] !== null ?
+                            <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                                {nft.map((item, index) => (
+                                    <div style={{justifyContent: "space-around", padding: "20px", width: "300px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
+                                        <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
+                                            <img src={item.Image} height="250" alt="Can not load metadata." />
+                                        </div>
+                                        <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                            <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                                                <div style={{fontSize: "14px"}} className="emp bold">{item.Name}</div>
+                                                <div style={{fontSize: "16px", margin: "5px 0 12px 0"}} className="pixel">
+                                                    {item.Col === 1 || item.Col === 3 ? <>{item.RewardPerSec} cmpow per sec</> : <>{item.RewardPerSec} bonus per sec</>}   
+                                                </div>
+                                                {!item.Onsell ?
+                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}} className="pixel button" onClick={() => {sell(item.Col, item.Id, item.Name, item.Image)}}>SELL NFT</div> :
+                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "120px", background: "gray"}} className="pixel button" onClick={() => {remove(item.Count)}}>REMOVE SELL</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div> :
+                            <>
+                            {address !== undefined ?
+                                <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
+                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                </div> :
+                                <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
+                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                    <div className="bold">Please connect wallet to view your NFTs.</div>
+                                </div>
+                            }
+                            </>
+                        }
+                    </div>
+                </div>
+                </> :
+                <div style={{padding: "20px", width: "600px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="emp pixel">
+                    <Oval stroke="#ff007a" strokeWidth="5px" />
+                    <div style={{marginLeft: "25px", fontSize: "20px"}}>{loadingText}</div>
+                </div>
+            }
         </div>
     </>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
 const CMDS = '0xAF17Dc881204488d929a5D377eBCF3256130b335'
 const starterCMDS = '0x936322111e1c9dCa38a721C1E07b9ec553BF2f04'
@@ -339,7 +340,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
     return (
     <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "https://nftstorage.link/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                 <div className="pixel" style={{fontSize: "65px", width: "fit-content", padding: "0 10px"}}>Ancient Forest</div>
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake CommuDAO Servant to earn $WOOD & $CMJ.</div>
@@ -431,8 +432,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     }
                 </> :
                 <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
-                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
-                    <div className="bold">Loading Servant...</div>
+                    <ThreeDots fill="#5f6476" />
+                    <div className="bold" style={{marginTop: "80px"}}>Loading Servant...</div>
                 </div>
             }
         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
 const ory = '0xD492E20Ecf3Ae85Fe3E3159BB064442b86D6DC02'
 const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
@@ -268,7 +269,7 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
             <></>
         }
 
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "https://nftstorage.link/ipfs/bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "65px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Old Warehouse</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw ORY to earn $MICE.</div>
@@ -369,8 +370,8 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
                     }
                     </> :
                     <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
-                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
-                        <div className="bold">Loading NFTs...</div>
+                        <ThreeDots fill="#5f6476" />
+                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 }
             </div>

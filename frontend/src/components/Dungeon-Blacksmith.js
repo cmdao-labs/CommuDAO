@@ -2,6 +2,7 @@ import React from 'react'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
+import { ThreeDots } from 'react-loading-icons'
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
@@ -3190,7 +3191,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                             }
                         </> :
                         <div style={{width: "300px", padding: "20px", margin: "20px"}}>
-                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                            <ThreeDots fill="#5f6476" />
                         </div>
                     }
                     <div style={{marginTop: "40px", width: "100%", borderBottom: "1px solid #dddade"}}></div>
@@ -3244,7 +3245,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                             }
                         </> :
                         <div style={{width: "300px", padding: "20px", margin: "20px"}}>
-                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                            <ThreeDots fill="#5f6476" />
                         </div>
                     }
                 </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
 const jibjib = '0xb6aaD2B2f9fD5eA0356F49c60Ee599De56206251'
 const tunaField = '0x09676315DC0c85F6bd5e866C5f1363A00Eec4381'
@@ -181,7 +182,7 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
 
     return (
     <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "https://nftstorage.link/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Tuna Lake</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw JIB JIB to earn $TUNA.</div>
@@ -259,8 +260,8 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                 }
                 </> :
                 <div className="nftCard" style={{justifyContent: "center"}}>
-                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-spinner"></i>
-                    <div className="bold">Loading NFTs...</div>
+                    <ThreeDots fill="#5f6476" />
+                    <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                 </div>
             }
         </div>
