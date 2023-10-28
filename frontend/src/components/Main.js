@@ -219,39 +219,39 @@ const Main = () => {
             {mode === 0 ?
                 <div style={{width: "95%", overflow: "scroll", padding: "50px 0", textAlign: "left", fontSize: "16px"}} className="collection noscroll welcome pixel">
                     <div className="welcomeText">
-                        <div style={{letterSpacing: "1px", color: "#000"}} className="motto">Collect, Play, Build<br></br>on <span className="emp">CommuDAO</span></div>
+                        <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect, Play, Build<br></br><span className="emp">CommuDAO</span></div>
                         <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA on JBC L1!</div>
-                        <div style={{minWidth: "500px", height: "80px", marginTop: "30px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", flexDirection: "column"}} className="items">
-                            <div style={{fontSize: "28px", color: "#4637a9", letterSpacing: "1px"}} className="bold">{tvl}</div>
-                            <div style={{fontSize: "12px", marginTop: "5px"}}>Total Value Locked on Ecosystem</div>
+                        <div style={{minWidth: "500px", height: "100px", marginTop: "30px", flexDirection: "column"}} className="items">
+                            <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">20M+</div>
+                            <div style={{fontSize: "12px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
                         </div>
-                        <div style={{marginTop: "20px"}}>Explore the world of CommuDAO</div>
+                        <div>Explore the world of CommuDAO</div>
                         <div style={{margin: "20px 0", width: "500px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                            <div className="emp hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
+                            <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
                                 <img src="/../items/wood.png" height="20" alt="$WOOD"/>
                                 &nbsp;Ancient Forest
                             </div>
-                            <div className="emp pixel hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
+                            <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
                                 <img src="/../items/tuna.png" height="20" alt="$TUNA"/>
                                 &nbsp;Tuna Lake
                             </div>
-                            <div className="emp pixel hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
+                            <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
                                 <img src="/../items/mice.png" height="20" alt="$MICE"/>
                                 &nbsp;Old Warehouse
                             </div>
-                            <div className="emp pixel hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
+                            <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
                                 <img src="/../items/copper.png" height="20" alt="$COPPER"/>
                                 &nbsp;Copper Mine
                             </div>
-                            <div className="emp pixel hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
+                            <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
                                 <img src="/../items/jasper.png" height="20" alt="$JASPER"/>
                                 &nbsp;Jasper Cave
                             </div>
                         </div>
                     </div>
-                    <div style={{background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", width: "500px", height: "fit-content", margin: 0, padding: 0, overflow: "hidden"}} className="nftCard">
+                    <div style={{width: "500px", height: "fit-content", background: "transparent", margin: 0, padding: 0, overflow: "hidden"}} className="nftCard">
                         <img src="https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/23.png" width="100%" alt="NFT_GENESIS" />
-                        <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>The Genesis NFT -- "CM Hexa Cat Meaw JIB JIB"</div>
+                        <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CM Hexa Cat Meaw JIB JIB, The OG NFT</div>
                     </div>
                 </div> :
                 <></>
