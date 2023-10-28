@@ -453,7 +453,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
-                if (pzaAllow < (41211 * 10**18)) {
+                if (pzaAllow < (49453 * 10**18)) {
                     const config = await prepareWriteContract({
                         address: pzaToken,
                         abi: erc20ABI,
@@ -469,7 +469,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
-                if (goldAllow < (328050 * 10**18)) {
+                if (goldAllow < (492075 * 10**18)) {
                     const config2 = await prepareWriteContract({
                         address: goldToken,
                         abi: erc20ABI,
@@ -1003,7 +1003,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                 ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝  ╚██╔═██╔══╝╚█████╔╝███████╗
                                                 ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░  ░╚═╝░╚═╝░░░░╚════╝░╚══════╝
                                                 */}
-                                                {Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100 && Number(item.Id) % 100000 !== 8900 ?
+                                                {Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100 && Number(item.Id) % 100000 !== 9500 ?
                                                     <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                         <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                             <div>
@@ -1044,6 +1044,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7260 ? <>{item.Name.slice(0, -3)}26]</> : <></>}
                                                                     {Number(item.Id) % 100000 === 7780 ? <>{item.Name.slice(0, -3)}27]</> : <></>}
                                                                     {Number(item.Id) % 100000 === 8340 ? <>{item.Name.slice(0, -3)}28]</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 8900 ? <>{item.Name.slice(0, -3)}29]</> : <></>}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1079,6 +1080,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7260 ? <>25</> : <></>}
                                                                     {Number(item.Id) % 100000 === 7780 ? <>26</> : <></>}
                                                                     {Number(item.Id) % 100000 === 8340 ? <>27</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 8900 ? <>28</> : <></>}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                             </div>
@@ -1113,6 +1115,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7260 ? <>26</> : <></>}
                                                                     {Number(item.Id) % 100000 === 7780 ? <>27</> : <></>}
                                                                     {Number(item.Id) % 100000 === 8340 ? <>28</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 8900 ? <>29</> : <></>}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>
                                                                     {Number(item.Id) % 100000 <= 540 ? item.RewardPerSec + 40 : <></>}
@@ -1129,6 +1132,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 5780 || Number(item.Id) % 100000 === 6260 ? item.RewardPerSec + 480 : <></>}
                                                                     {Number(item.Id) % 100000 === 6740 || Number(item.Id) % 100000 === 7260 ? item.RewardPerSec + 520 : <></>}
                                                                     {Number(item.Id) % 100000 === 7780 || Number(item.Id) % 100000 === 8340 ? item.RewardPerSec + 560 : <></>}
+                                                                    {Number(item.Id) % 100000 === 8900 ? item.RewardPerSec + 600 : <></>}
                                                                     &nbsp;cmpow per sec
                                                                 </div>
                                                             </div>
@@ -1170,6 +1174,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7260 ? <>28,618</> : <></>}
                                                                     {Number(item.Id) % 100000 === 7780 ? <>34,342</> : <></>}
                                                                     {Number(item.Id) % 100000 === 8340 ? <>41,211</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 8900 ? <>49,453</> : <></>}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                 {Number(item.Id) % 100000 <= 1300 ? <img src="../items/copper.png" height="18" alt="$CU"/> : <></>}
@@ -1205,6 +1210,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7260 ? <>145,800</> : <></>}
                                                                     {Number(item.Id) % 100000 === 7780 ? <>218,700</> : <></>}
                                                                     {Number(item.Id) % 100000 === 8340 ? <>328,050</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 8900 ? <>492,075</> : <></>}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1268,6 +1274,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     evolutionV2Handle(item.Id, 1027)
                                                                 } else if (Number(item.Id) % 100000 === 8340) {
                                                                     evolutionV2Handle(item.Id, 1028)
+                                                                } else if (Number(item.Id) % 100000 === 8900) {
+                                                                    evolutionV2Handle(item.Id, 1029)
                                                                 }
                                                             }}
                                                         >
