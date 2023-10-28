@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
 const stOPT = '0x435BeAF4B83A6dc57927E9dB194a3Ccf54100F7a'
 
@@ -223,12 +224,12 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
         <div style={{background: "rgb(0, 19, 33", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll bold">
-                    <div style={{backgroundColor: "rgb(39, 56, 82)", color: "#fff", minWidth: "300px", height: "75px", margin: 0, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="items">
+                    <div style={{backgroundColor: "rgb(39, 56, 82)", color: "#fff", minWidth: "300px", height: "75px", margin: 0, border: "none", boxShadow: "3px 3px 0 #0d0a1f"}} className="items">
                         <img src="../items/stOPT.png" width="22" alt="$stOPT"/>
                         <div style={{marginLeft: "10px"}}>{Number(stOPTBalance).toFixed(5)}</div>
                     </div>
                 </div>
-                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", margin: "60px 0 20px 0"}}>Your Recyclable ERC-20</div>
+                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", margin: "60px 0 20px 0"}}>Recyclable ERC-20</div>
                 <div style={{display: "flex", flexDirection: "row"}}>
                     <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "40px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                         <div>
@@ -277,7 +278,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             </div>
 
             <div style={{width: "90%", marginTop: "60px", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
-                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", marginBottom: "20px"}}>Your Recyclable NFTs</div>
+                <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", marginBottom: "20px"}}>Recyclable NFTs</div>
                 {nft !== undefined && nft.length > 0 ?
                     <>
                     {nft[0] !== null ?
@@ -310,8 +311,8 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         </>
                     }
                     </> :
-                    <div style={{padding: "20px", margin: "20px", width: "300px"}}>
-                        <i style={{fontSize: "200px", marginBottom: "30px"}} className="fa fa-spinner"></i>
+                    <div style={{marginTop: "20px", width: "fit-content"}}>
+                        <ThreeDots fill="#5f6476" />
                     </div>
                 }
             </div>

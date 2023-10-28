@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { Oval } from 'react-loading-icons'
 
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const quest01 = '0x3eB35884e8811188CCe3653fc67A3876d810E582'
@@ -407,7 +408,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <></>
                                 }
                             </> :
-                            <></>
+                            <div style={{width: "100%", height: "inherit"}}>
+                                <Oval stroke="#ff007a" strokeWidth="5px" />
+                            </div>
                         }
                     </div>
 
@@ -430,7 +433,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <></>
                                 }
                             </> :
-                            <></>
+                            <div style={{width: "100%", height: "inherit"}}>
+                                <Oval stroke="#ff007a" strokeWidth="5px" />
+                            </div>
                         }
                     </div>
 
@@ -453,7 +458,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <></>
                                 }
                             </> :
-                            <></>
+                            <div style={{width: "100%", height: "inherit"}}>
+                                <Oval stroke="#ff007a" strokeWidth="5px" />
+                            </div>
                         }
                     </div>
 
@@ -476,7 +483,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <></>
                                 }
                             </> :
-                            <></>
+                            <div style={{width: "100%", height: "inherit"}}>
+                                <Oval stroke="#ff007a" strokeWidth="5px" />
+                            </div>
                         }
                     </div>
                 </div>
