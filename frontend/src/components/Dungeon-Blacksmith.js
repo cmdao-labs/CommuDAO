@@ -443,7 +443,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
-            if (cmjAllow < (550 * 10**18)) {
+            if (cmjAllow < (600 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: cmjToken,
                     abi: erc20ABI,
@@ -459,7 +459,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
-            if (jdaoAllow < (35 * 10**18)) {
+            if (jdaoAllow < (40 * 10**18)) {
                 const config2 = await prepareWriteContract({
                     address: jdaoToken,
                     abi: erc20ABI,
@@ -475,7 +475,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
-            if (osAllow < (650 * 10**18)) {
+            if (osAllow < (970 * 10**18)) {
                 const config3 = await prepareWriteContract({
                     address: osToken,
                     abi: erc20ABI,
@@ -1352,7 +1352,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ██████╦╝██████╔╝  ╚█████╔╝███████╗██║░░██║░░░██║░░░██║░╚═╝░██║╚█████╔╝██║░░██║███████╗
                                             ╚═════╝░╚═════╝░  ░╚════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝
                                             */}
-                                            {String(item.Id).slice(0, 3) === "710" && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 6800 && Number(item.Id) % 100000 !== 3450 ?
+                                            {String(item.Id).slice(0, 3) === "710" && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 8850 && Number(item.Id) % 100000 !== 3450 ?
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -1360,100 +1360,88 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             <div style={{width: "150px"}}>{item.Name}</div>
                                                         </div>
                                                         <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px", color: "#5f6476"}} className="fa fa-caret-right"></i>
-                                                        {Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550 ?
+                                                        {(Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550) &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name} +1</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 500 ?
+                                                        {Number(item.Id) % 100000 === 500 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 750 ?
+                                                        {Number(item.Id) % 100000 === 750 &&
                                                             <div>
                                                                 <img src="https://bafybeihlewrgj25x3p6nvqa7rrxh54j66c7lc3azkda2tds6wshhsslipu.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1000 ?
+                                                        {Number(item.Id) % 100000 === 1000 &&
                                                             <div>
                                                                 <img src={"https://nftstorage.link/ipfs/bafybeia7eeifiowqnq6tkm37u6wk4lm7jizlxb2i6sndggdathomvbezoy"} width="120" alt="Can not load metadata." />
-                                                                {item.Name.slice(-4, -1) === "N +" ?
-                                                                    <div style={{width: "150px"}}>{item.Name.slice(0, -4)}R +2</div> :
-                                                                    <></>
-                                                                }
-                                                                {item.Name.slice(-4, -1) === "R +" ?
-                                                                    <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div> :
-                                                                    <></>
-                                                                }
-                                                            </div> :
-                                                            <></>
+                                                                {item.Name.slice(-4, -1) === "N +" && <div style={{width: "150px"}}>{item.Name.slice(0, -4)}R +2</div>}
+                                                                {item.Name.slice(-4, -1) === "R +" && <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>}
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1450 ?
+                                                        {Number(item.Id) % 100000 === 1450 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2000 ?
+                                                        {Number(item.Id) % 100000 === 2000 &&
                                                             <div>
                                                                 <img src="https://bafybeia6v737yn3r7knak2yxwqz3yhj4idldhstpen5qavsy7lk3zze3d4.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2650 ?
+                                                        {Number(item.Id) % 100000 === 2650 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 3400 ?
+                                                        {Number(item.Id) % 100000 === 3400 &&
                                                             <div>
                                                                 <img src="https://bafybeibvhkaneonaxrnhbc7zbpxjrezjkp4xszrugtpq6cs2dwouizzwt4.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1800 ?
+                                                        {Number(item.Id) % 100000 === 1800 &&
                                                             <div>
                                                                 <img src="https://bafybeid6ov5ip3oqbmgo7jzbpii42u67kqlhlm33jdfntokt5hgalsynzq.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2750 ?
+                                                        {Number(item.Id) % 100000 === 2750 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 3900 ?
+                                                        {Number(item.Id) % 100000 === 3900 &&
                                                             <div>
                                                                 <img src="https://nftstorage.link/ipfs/bafybeig4snhfyunadwnppx6uvfcqevwhfqqkddjcxd64txmnbbh3sdtjpm" width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 5250 ?
+                                                        {Number(item.Id) % 100000 === 5250 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
-                                                            </div> :
-                                                            <></>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 6800 &&
+                                                            <div>
+                                                                <img src="https://nftstorage.link/ipfs/bafybeihv5zwkzxpopuhxhzriwq72alnt7epssujj4tzom22y6iwltfomke" width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
+                                                            </div>
                                                         }
                                                     </div>
                                                     <div className="pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                                        {Number(item.Id) % 100000 === 250 ?
+                                                        {Number(item.Id) % 100000 === 250 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 0</div>
@@ -1463,10 +1451,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 1</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 250} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 500 ?
+                                                        {Number(item.Id) % 100000 === 500 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 1</div>
@@ -1476,10 +1463,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 2</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 250} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 750 ?
+                                                        {Number(item.Id) % 100000 === 750 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 2</div>
@@ -1489,10 +1475,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 3</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 250} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 550 ?
+                                                        {Number(item.Id) % 100000 === 550 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 0</div>
@@ -1502,12 +1487,11 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 1</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 450} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1000 ?
+                                                        {Number(item.Id) % 100000 === 1000 &&
                                                             <>
-                                                                {item.Name.slice(-4, -1) === "N +" ?
+                                                                {item.Name.slice(-4, -1) === "N +" &&
                                                                     <>
                                                                         <div>
                                                                             <div>Level 3</div>
@@ -1517,10 +1501,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                             <div>Level 2</div>
                                                                             <div style={{width: "150px"}}>{item.RewardPerSec + 450} cmpow per sec</div>
                                                                         </div>
-                                                                    </> :
-                                                                    <></>
+                                                                    </>
                                                                 }
-                                                                {item.Name.slice(-4, -1) === "R +" ?
+                                                                {item.Name.slice(-4, -1) === "R +" &&
                                                                     <>
                                                                         <div>
                                                                             <div>Level 1</div>
@@ -1530,13 +1513,11 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                             <div>Level 2</div>
                                                                             <div style={{width: "150px"}}>{item.RewardPerSec + 450} cmpow per sec</div>
                                                                         </div>
-                                                                    </> :
-                                                                    <></>
+                                                                    </>
                                                                 }
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1450 ?
+                                                        {Number(item.Id) % 100000 === 1450 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 2</div>
@@ -1546,10 +1527,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 3</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 550} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2000 ?
+                                                        {Number(item.Id) % 100000 === 2000 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 3</div>
@@ -1559,10 +1539,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 4</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 650} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2650 ?
+                                                        {Number(item.Id) % 100000 === 2650 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 4</div>
@@ -1572,10 +1551,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 5</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 750} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 3400 ?
+                                                        {Number(item.Id) % 100000 === 3400 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 5</div>
@@ -1585,10 +1563,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 6</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 850} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1050 ?
+                                                        {Number(item.Id) % 100000 === 1050 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 0</div>
@@ -1598,10 +1575,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 1</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 750} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1800 ?
+                                                        {Number(item.Id) % 100000 === 1800 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 1</div>
@@ -1611,10 +1587,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 2</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 950} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2750 ?
+                                                        {Number(item.Id) % 100000 === 2750 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 2</div>
@@ -1624,10 +1599,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 3</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 1150} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 3900 ?
+                                                        {Number(item.Id) % 100000 === 3900 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 3</div>
@@ -1637,10 +1611,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 4</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 1350} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 5250 ?
+                                                        {Number(item.Id) % 100000 === 5250 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 4</div>
@@ -1650,10 +1623,21 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 5</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 1550} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2550 ?
+                                                        {Number(item.Id) % 100000 === 6800 &&
+                                                            <>
+                                                                <div>
+                                                                    <div>Level 5</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>Level 6</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 1750} cmpow per sec</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 2550 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 0</div>
@@ -1663,8 +1647,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div>Level 1</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 900} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
                                                     </div>
                                                     <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
@@ -1674,37 +1657,34 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}}>
-                                                            {Number(item.Id) % 100000 === 250 ?
+                                                            {Number(item.Id) % 100000 === 250 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 500 ?
+                                                            {Number(item.Id) % 100000 === 500 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 750 ?
+                                                            {Number(item.Id) % 100000 === 750 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 550 ?
+                                                            {Number(item.Id) % 100000 === 550 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
@@ -1714,10 +1694,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1000 ?
+                                                            {Number(item.Id) % 100000 === 1000 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
@@ -1727,10 +1706,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1450 ?
+                                                            {Number(item.Id) % 100000 === 1450 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.0 GWEI</div>
@@ -1740,10 +1718,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2000 ?
+                                                            {Number(item.Id) % 100000 === 2000 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
@@ -1753,10 +1730,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2650 ?
+                                                            {Number(item.Id) % 100000 === 2650 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.0 GWEI</div>
@@ -1766,10 +1742,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 3400 ?
+                                                            {Number(item.Id) % 100000 === 3400 &&
                                                                 <>
                                                                     <img src="../items/jasper.png" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.5 GWEI</div>
@@ -1779,10 +1754,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1050 ?
+                                                            {Number(item.Id) % 100000 === 1050 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>130</div>
@@ -1792,10 +1766,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1800 ?
+                                                            {Number(item.Id) % 100000 === 1800 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>200</div>
@@ -1805,10 +1778,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2750 ?
+                                                            {Number(item.Id) % 100000 === 2750 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>290</div>
@@ -1818,10 +1790,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 3900 ?
+                                                            {Number(item.Id) % 100000 === 3900 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>440</div>
@@ -1831,10 +1802,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 5250 ?
+                                                            {Number(item.Id) % 100000 === 5250 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>650</div>
@@ -1844,10 +1814,21 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2550 ?
+                                                            {Number(item.Id) % 100000 === 6800 &&
+                                                                <>
+                                                                    <img src="../items/oversoul.png" height="18" alt="$OS"/>
+                                                                    <div style={{margin: "0 5px"}}>970</div>
+                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <div style={{margin: "0 5px"}}>40</div>
+                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <div style={{margin: "0 5px"}}>600</div>
+                                                                </>
+                                                            }
+                                                            {Number(item.Id) % 100000 === 2550 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>180</div>
@@ -1857,30 +1838,27 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
                                                         </div>
                                                     </div>
-                                                    {Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2750 || Number(item.Id) % 100000 === 5250 || Number(item.Id) % 100000 === 2550 ?
-                                                        <div style={{margin: "10px 0", width: "350px"}}>
-                                                            <div className="emp pixel">
+                                                    {(Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2750 || Number(item.Id) % 100000 === 5250 || Number(item.Id) % 100000 === 2550) &&
+                                                        <div style={{margin: "10px 0", width: "350px"}} className="pixel">
+                                                            <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
                                                                 Success rate : 1/2
                                                             </div>
-                                                            <div className="pixel">(depend on parent blockhash calculation)</div>
-                                                        </div> :
-                                                        <></>
+                                                            <div>(depend on parent blockhash calculation)</div>
+                                                        </div>
                                                     }
-                                                    {Number(item.Id) % 100000 === 1000 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 || Number(item.Id) % 100000 === 3900?
-                                                        <div style={{margin: "10px 0", width: "350px"}}>
-                                                            <div className="emp pixel">
+                                                    {(Number(item.Id) % 100000 === 1000 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 || Number(item.Id) % 100000 === 3900 || Number(item.Id) % 100000 === 6800) &&
+                                                        <div style={{margin: "10px 0", width: "350px"}} className="pixel">
+                                                            <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
                                                                 Success rate : 1/3
                                                             </div>
-                                                            <div className="pixel">(depend on parent blockhash calculation)</div>
-                                                        </div> :
-                                                        <></>
+                                                            <div>(depend on parent blockhash calculation)</div>
+                                                        </div>
                                                     }
                                                     <div
                                                         style={{background: "#67BAA7", textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
@@ -1914,6 +1892,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 enchantRHandle3(item.Id, 11)
                                                             } else if (Number(item.Id) % 100000 === 5250) {
                                                                 enchantRHandle3(item.Id, 110)
+                                                            } else if (Number(item.Id) % 100000 === 6800) {
+                                                                enchantRHandle3(item.Id, 111)  
                                                             } else if (Number(item.Id) % 100000 === 2550) {
                                                                 enchantRHandle3(item.Id, 18)
                                                             }
