@@ -141,7 +141,7 @@ header::-webkit-scrollbar { display: none; }
 }
 
 .tile:hover {
-  background-color: rgba(0, 227, 180, 0.24);
+  background-color: rgba(0, 227, 180, 0.24) !important;
   transform: scale(1.02);
 }
 
