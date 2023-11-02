@@ -61,6 +61,8 @@ import faucetABI from './jsons/faucetABI.json'
 import pvp01ABI from './jsons/pvp01ABI.json'
 import quest01ABI from './jsons/quest01ABI.json'
 import questAmbassABI from './jsons/questAmbassABI.json'
+import enderPotteryABI from './jsons/enderPotteryABI.json'
+
 import questBBQABI from './jsons/questBBQABI.json'
 import dumpster1ABI from './jsons/dumpster1ABI.json'
 import dumpster2ABI from './jsons/dumpster2ABI.json'
@@ -313,7 +315,7 @@ const Main = () => {
                 <></>
             }
             {mode === 44 ?
-                <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} /> :
+                <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} /> :
                 <></>
             }
             {mode === 5 ?

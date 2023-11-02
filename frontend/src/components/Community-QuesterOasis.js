@@ -12,12 +12,14 @@ const pvp01 = '0x11af8eD1783Be1a0Eb6Da5C3Bc11Fb5Cc29C9463'
 const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
 const questBBQ = '0x26504b691f702a2CB4D5Df89243eB5fccf76B982'
 const bbqLab = '0x9D73C97edC9489935B2dF250a097917d4860C60e'
+const ender = '0x44C846780E6c36bA26a33D121F9069AF967937e4'
+
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, dunCopperABI, dunJasperABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI }) => {
     const { address } = useAccount()
 
     const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -40,6 +42,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     React.useEffect(() => {      
         console.log("Connected to " + address)
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
+        const enderSC = new ethers.Contract(ender, enderPotteryABI, providerJBC)
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
@@ -194,7 +197,26 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
-            const data2 = ranker.map((item, i) => {return {addr: item, cmxp: (data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5)}})
+            const enderFilter = await enderSC.filters.Participants(null, null, null)
+            const enderEvent = await enderSC.queryFilter(enderFilter, 200737, 'latest')
+            const enderMap = await Promise.all(enderEvent.map(async (obj, index) => {return {from: String(obj.args.participant), value: 1}}))
+            const enderAllMerged = spend1Map.concat(enderMap).reduce((prev, curr) => {
+                if (prev[curr.from.toUpperCase()]) {
+                   prev[curr.from.toUpperCase()].value += curr.value
+                } else {
+                   prev[curr.from.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+            const enderRemoveDup = ranker.map((item) => ({from: item, value: 0}))
+            for (let i = 0; i <= enderRemoveDup.length -1; i++) {
+                for (let i2 = 0; i2 <= Object.values(enderAllMerged).length -1; i2++) {
+                    if (enderRemoveDup[i].from.toUpperCase() === Object.values(enderAllMerged)[i2].from.toUpperCase()) {
+                        enderRemoveDup[i] = Object.values(enderAllMerged)[i2]
+                    }
+                }
+            }
+            const data2 = ranker.map((item, i) => {return {addr: item, cmxp: (data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5) +  (enderRemoveDup[i].value * 5)}})
 
             const data3_1 = await readContracts({
                 contracts: ranker.map((item) => (
@@ -274,7 +296,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setRank4(result[11])
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, dunCopperABI, dunJasperABI])
+    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI])
 
     const claimSILHandle = async () => {
         setisLoading(true)
@@ -351,22 +373,22 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             </div>
 
             <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
-                <div style={{padding: "25px 50px", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "880px", width: "85%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
+                <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "880px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
                     <div style={{fontSize: "40px", color: "#fff"}}>October 2023 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Questers</div>
-                            <div>6,610 CMJ</div>
+                            <div>4,727 CMJ</div>
                         </div>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Strongest</div>
-                            <div>6,610 CMJ</div>
+                            <div>4,727 CMJ</div>
                         </div>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Spender</div>
                             <div>10,000 JBC</div>
                         </div>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Money Mover</div>
                             <div>10,000 JBC</div>
                         </div>
@@ -517,6 +539,28 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={gmHandle}>GM</div> :
                                 <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Next to say GM in {nextClaimBBQ !== null ? nextClaimBBQ.toLocaleString('es-CL') : "..."}</div>
                             }
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", marginTop: "50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "450px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "190px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
+                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
+                    </div>
+                    <div style={{width: "100%", paddingBottom: "10px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                        <div style={{height: "320px", marginRight: "40px", fontSize: "280px"}}>
+                            ⛩️
+                        </div>
+                        <div style={{width: "65%", height: "300px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                            <div>
+                            </div>
+                            <div>
+                                <div className="bold">QUEST DETAIL</div>
+                                <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">Insert 1 JBC to be a participants of each epoch on <a style={{textDecoration: "none", color: "red"}} href="https://enderapp.vercel.app/" target="_blank" rel="noreferrer">Ender Pottery</a></div>
+                            </div>
+                            <div style={{color: "rgb(0, 227, 180)"}} className="bold emp"></div>
                         </div>
                     </div>
                 </div>
