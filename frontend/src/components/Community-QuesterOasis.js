@@ -550,8 +550,8 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     </div>
                     <div style={{width: "100%", paddingBottom: "10px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div style={{height: "320px", marginRight: "40px", fontSize: "280px"}}>
-                            ⛩️
+                        <div style={{height: "320px", marginRight: "40px"}}>
+                            <img src="https://nftstorage.link/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
                         </div>
                         <div style={{width: "65%", height: "300px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                             <div>
