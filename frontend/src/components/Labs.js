@@ -1395,8 +1395,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
-                        <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://nftstorage.link/ipfs/bafkreigmahuzsj6upile5uemc2jt3hagfa5w2zuxh4a53hd2lkwdcnxkom" width="330" alt="$GOLD_Factory"/>
+                        <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreicrxd4ah7pmi2gaemx73rd6msspxyzg5aglqf3iez4mkyocdh3nta" width="330" alt="$GOLD_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -1447,7 +1447,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="./items/gold.png" width="330" alt="$GOLD_Mine"/>
+                            <img src="https://nftstorage.link/ipfs/bafybeidn2yecujkgvkuroqg6oh2nirgbd7xyhj3nfgqda7zas7hc5qmchy" width="300" alt="$GOLD_Mine"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
