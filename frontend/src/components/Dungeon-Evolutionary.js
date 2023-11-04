@@ -796,6 +796,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
+                    <img src="https://nftstorage.link/ipfs/bafybeibb6sv46fa4as36s5pvb5lihvgdhry7jlsifnzca4qbgbvkej3cae" height="200" alt="Evo_Planet" />
                 </div>
             </div>
 
