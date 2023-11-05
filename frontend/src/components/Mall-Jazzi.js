@@ -503,10 +503,10 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         </select>
                         <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                             &nbsp;1
-                            {gasselected === "JDAO" ? <>&nbsp;<img src="./tokens/jdao.png" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></> : ''}
-                            {gasselected === "CU" ? <>&nbsp;<img src="./items/copper.png" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></> : ''}
-                            {gasselected === "JASP" ? <>&nbsp;GWEI&nbsp;<img src="./items/jasper.png" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></> : ''}
-                            &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
+                            {gasselected === "JDAO" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></> : ''}
+                            {gasselected === "CU" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></> : ''}
+                            {gasselected === "JASP" ? <>&nbsp;GWEI&nbsp;<img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></> : ''}
+                            &nbsp;<img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
                         </div>
                     </div>
                 </div>

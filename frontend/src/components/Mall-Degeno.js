@@ -346,7 +346,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                 &nbsp;1
                                 {gasselected === "MEOW" ? <>&nbsp;$MEOW &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div></> : ''}
-                                &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
+                                &nbsp;<img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
                             </div>
                             <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "transparent", color: "#ff007a", border: "1px solid #ff007a", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
                         </div>

@@ -566,15 +566,15 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     <div style={{width: "250px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Tokens</div>
                     <div className="pixel">
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../tokens/cmj.png" width="22" alt="$CMJ"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
                             <div style={{marginLeft: "10px"}}>{Number(cmjBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/copper.png" width="22" alt="$CU"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
                             <div style={{marginLeft: "10px"}}>{Number(cuBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/jasper.png" width="22" alt="$JASP"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
                             <div style={{marginLeft: "10px"}}>{Number(jaspBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -800,12 +800,12 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="../items/copper.png" height="18" alt="$CU"/>
+                                                            <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
                                                             {Number(item.Id) % 100000 === 250 ?
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                 </> :
                                                                 <></>
@@ -814,7 +814,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>1000</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                 </> :
                                                                 <></>
@@ -823,7 +823,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>1500</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                 </> :
                                                                 <></>
@@ -832,10 +832,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>2500</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>5</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
                                                                 </> :
                                                                 <></>
@@ -844,10 +844,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>3000</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>6</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -856,10 +856,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>4000</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>8</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -868,10 +868,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>5000</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>10</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -880,10 +880,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>7500</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -892,10 +892,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>10000</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -904,10 +904,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>12500</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1178,12 +1178,12 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                            <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                             {Number(item.Id) % 100000 === 150 ?
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>0.1 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                 </> :
                                                                 <></>
@@ -1192,7 +1192,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>0.2 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                 </> :
                                                                 <></>
@@ -1201,7 +1201,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>0.3 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                 </> :
                                                                 <></>
@@ -1210,10 +1210,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>5</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
                                                                 </> :
                                                                 <></>
@@ -1222,10 +1222,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>0.6 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>6</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1234,10 +1234,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>0.8 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>8</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1246,10 +1246,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>1 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>10</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1258,10 +1258,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1270,10 +1270,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>2 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1282,10 +1282,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>100</div>
                                                                 </> :
                                                                 <></>
@@ -1767,100 +1767,100 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}}>
                                                             {Number(item.Id) % 100000 === 250 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 500 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 550 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>10</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 1000 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 1450 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 2650 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>30</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                 </>
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>35</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
                                                                 </>
                                                             }
@@ -1869,10 +1869,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>130</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </>
                                                             }
@@ -1881,10 +1881,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>200</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </>
                                                             }
@@ -1893,10 +1893,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>290</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </>
                                                             }
@@ -1905,10 +1905,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>440</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>30</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                 </>
                                                             }
@@ -1917,10 +1917,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>650</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>35</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
                                                                 </>
                                                             }
@@ -1929,10 +1929,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>970</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>40</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>600</div>
                                                                 </>
                                                             }
@@ -1941,10 +1941,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>1450</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>45</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>650</div>
                                                                 </>
                                                             }
@@ -1953,10 +1953,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>2170</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>50</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>700</div>
                                                                 </>
                                                             }
@@ -1965,10 +1965,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>180</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </>
                                                             }
@@ -1977,10 +1977,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>260</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </>
                                                             }
@@ -1989,10 +1989,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>380</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>30</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                 </>
                                                             }
@@ -2001,10 +2001,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>560</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>35</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
                                                                 </>
                                                             }
@@ -2013,10 +2013,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>830</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>40</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>600</div>
                                                                 </>
                                                             }
@@ -2341,108 +2341,108 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                             {Number(item.Id) % 100000 === 250 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
                                                                 </> :
                                                                 <></>
                                                             } 
                                                             {Number(item.Id) % 100000 === 500 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 750 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 550 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>10</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 1000 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 1450 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 2650 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>30</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>35</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
                                                                 </> :
                                                                 <></>
@@ -2452,10 +2452,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>130</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </> :
                                                                 <></>
@@ -2465,10 +2465,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>180</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </> :
                                                                 <></>
@@ -2749,108 +2749,108 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                             {Number(item.Id) % 100000 === 250 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 500 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 750 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 550 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>10</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 1450 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 2650 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>30</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>35</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
                                                                 </> :
                                                                 <></>
@@ -2860,10 +2860,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>130</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </> :
                                                                 <></>
@@ -2873,10 +2873,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>180</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </> :
                                                                 <></>
@@ -3157,108 +3157,108 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                             {Number(item.Id) % 100000 === 250 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 500 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 750 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 550 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>10</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 1450 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>25</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 2650 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>30</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
                                                                 </> :
                                                                 <></>
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 ?
                                                                 <>
-                                                                    <img src="../items/jasper.png" height="18" alt="$JASP"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>35</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
                                                                 </> :
                                                                 <></>
@@ -3268,10 +3268,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>130</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>15</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
                                                                 </> :
                                                                 <></>
@@ -3281,10 +3281,10 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>180</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                     <div style={{margin: "0 5px"}}>20</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </> :
                                                                 <></>

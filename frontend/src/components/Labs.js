@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { fetchBalance, readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+const { ethereum } = window
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
@@ -933,7 +934,26 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./tokens/cmj.png" width="20" alt="$CMJ"/>
+                        <img 
+                            src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi"
+                            width="20"
+                            alt="$CMJ"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cmjToken,
+                                            symbol: 'CMJ',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
                     </div>
                 </div>
@@ -941,23 +961,118 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Resources</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/wood.png" width="20" alt="$WOOD"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                            width="20"
+                            alt="$WOOD"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: woodField,
+                                            symbol: 'WOOD',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(woodBalance).toFixed(0)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/stOPT.png" width="20" alt="$stOPT"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"
+                            width="20"
+                            alt="$stOPT"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: stOPT,
+                                            symbol: 'stOPT',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(stOPTBalance).toFixed(2)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/tuna.png" width="20" alt="$TUNA"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
+                            width="20"
+                            alt="$TUNA"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: tunaField,
+                                            symbol: 'TUNA',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(tunaBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/mice.png" width="20" alt="$MICE"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"
+                            width="20"
+                            alt="$MICE"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: fieldMice,
+                                            symbol: 'MICE',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(miceBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/copper.png" width="20" alt="$CU"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                            width="20"
+                            alt="$CU"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cuToken,
+                                            symbol: 'CU',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(copperBalance).toFixed(3)}</div>
                     </div>
                 </div>
@@ -965,27 +1080,141 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Craft Products</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/bbq.png" width="20" alt="$BBQ"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                            width="20"
+                            alt="$BBQ"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: bbqToken,
+                                            symbol: 'BBQ',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toFixed(0)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/pizza.png" width="20" alt="$PZA"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                            width="20"
+                            alt="$PZA"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: pzaLab,
+                                            symbol: 'PZA',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/cannedtuna.png" width="20" alt="$CTUNA"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
+                            width="20"
+                            alt="$CTUNA"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: ctunaLab,
+                                            symbol: 'CTUNA',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/sx31.png" width="20" alt="$SX31"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
+                            width="20"
+                            alt="$SX31"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: sx31Lab,
+                                            symbol: 'SX31',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/silver.png" width="20" alt="$SIL"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
+                            width="20"
+                            alt="$SIL"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: silToken,
+                                            symbol: 'SIL',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(silverBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./items/gold.png" width="20" alt="$GOLD"/>
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                            width="20"
+                            alt="$GOLD"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: goldToken,
+                                            symbol: 'GOLD',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(goldBalance).toFixed(3)}</div>
                     </div>
                 </div>
@@ -1001,13 +1230,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/wood.png" height="18" alt="$WOOD"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>100</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="./tokens/jbc.png" height="18" alt="$JBC"/>
                                 <div style={{margin: "0 5px"}}>0.01</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/bbq.png" height="18" alt="$BBQ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>
                                     {isCraftBBQ !== null ?
                                         <>
@@ -1042,7 +1271,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="./items/wood.png" height="18" alt="$WOOD"/>
+                                                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                                 <div style={{margin: "0 5px"}}>
                                                     {isCraftBBQ !== null ?
                                                         <>
@@ -1087,13 +1316,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/wood.png" height="18" alt="$WOOD"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>600k</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/jdao.png" height="18" alt="$JDAO"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/bbq.png" height="18" alt="$BBQ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>6,000</div>
                             </div>
                         </div>
@@ -1107,7 +1336,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     {Number(dataCraftBBQ_G.totalQuota) !== 0 ?
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src="./tokens/cmj.png" height="18" alt="$CMJ"/> 1)</> : timetoClaimBBQ_G}</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/> 1)</> : timetoClaimBBQ_G}</div>
                                         </> :
                                         <>
                                             <div style={{width: "100px"}}></div>
@@ -1142,13 +1371,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/bbq.png" height="18" alt="$BBQ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>10,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./items/stOPT.png" height="18" alt="$stOPT"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/pizza.png" height="18" alt="$PZA"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
@@ -1195,13 +1424,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/tuna.png" height="18" alt="$TUNA"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="18" alt="$TUNA"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/cmj.png" height="18" alt="$CMJ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/cannedtuna.png" height="18" alt="$CTUNA"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                             </div>
                         </div>
@@ -1246,13 +1475,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/mice.png" height="18" alt="$MICE"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/cmj.png" height="18" alt="$CMJ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>9</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/sx31.png" height="18" alt="$SX31"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                             </div>
                         </div>
@@ -1297,13 +1526,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/mice.png" height="18" alt="$MICE"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/cmj.png" height="18" alt="$CMJ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>90</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/sx31.png" height="18" alt="$SX31"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
@@ -1350,13 +1579,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/copper.png" height="18" alt="$CU"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
                                 <div style={{margin: "0 5px"}}>50,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/cmj.png" height="18" alt="$CMJ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/silver.png" height="18" alt="$SIL"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
                                 <div style={{margin: "0 5px"}}>5,000</div>
                             </div>
                         </div>
@@ -1401,13 +1630,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/silver.png" height="18" alt="$SIL"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
                                 <div style={{margin: "0 5px"}}>2,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./items/sx31.png" height="18" alt="$SX31"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
                                 <div style={{margin: "0 5px"}}>200</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/gold.png" height="18" alt="$GOLD"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
@@ -1452,13 +1681,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="./items/bbq.png" height="18" alt="$BBQ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>200</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="./tokens/jbc.png" height="18" alt="$JBC"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="./items/gold.png" height="18" alt="$GOLD"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>6.25</div>
                             </div>
                         </div>

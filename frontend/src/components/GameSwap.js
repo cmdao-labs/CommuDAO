@@ -594,8 +594,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         <div className="fa fa-plus"></div>
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <div style={{display: "flex"}}>
-                                {liquidMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/cmj.png" alt="$CMJ"></img> : <></>}
-                                {liquidMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jusdt.png" alt="$JUSDT"></img> : <></>}
+                                {liquidMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img> : <></>}
+                                {liquidMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img> : <></>}
                                 {liquidMode === 0 ?
                                     <>
                                         <Select
@@ -672,7 +672,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 </div>
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex"}}>
-                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/cmj.png" alt="$CMJ"></img>
+                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img>
                                         <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOLED CMJ:</div>
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
@@ -695,7 +695,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 </div>
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex"}}>
-                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jusdt.png" alt="$JUSDT"></img>
+                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img>
                                         <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOLED JUSDT:</div>
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>

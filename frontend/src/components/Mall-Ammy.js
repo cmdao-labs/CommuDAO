@@ -659,11 +659,11 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                         </select>
                         <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                             &nbsp;1
-                            {gasselected === "CTUNA" ? <>&nbsp;<img src="./items/cannedtuna.png" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
-                            {gasselected === "SX31" ? <>&nbsp;<img src="./items/sx31.png" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
-                            {gasselected === "BBQ" ? <>&nbsp;<img src="./items/bbq.png" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
-                            {gasselected === "PZA" ? <>&nbsp;<img src="./items/pizza.png" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
-                            &nbsp;<img src="./tokens/cmj.png" width="22" alt="$CMJ"/>
+                            {gasselected === "CTUNA" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
+                            {gasselected === "SX31" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
+                            {gasselected === "BBQ" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
+                            {gasselected === "PZA" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
+                            &nbsp;<img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
                         </div>
                     </div>
                 </div>

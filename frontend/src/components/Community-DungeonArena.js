@@ -701,7 +701,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         <div style={{width: "80%", margin: "10px 0 5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>WIN: <div>{peerWin}</div></div>
                         <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>ATK: <div>{allPowerC * 1} - {allPowerC * 9}</div></div>
-                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="../tokens/jdao.png" height="18" alt="$JDAO"/> {bountyC * 10}</div></div>
+                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bountyC * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bountyC}</div></div>
                         {isStakeNow && isStakeNowC && bountyC !== 0 && Number(jdaoBalance) >= 10 && challenger[challengerSlot].toUpperCase() !== address.toUpperCase() ?
                             <div style={{alignSelf: "center", background: "#007aff"}} className="button" onClick={oneHit}>ONE-HIT CHALLENGE!</div> :
@@ -834,7 +834,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         <div style={{width: "80%", margin: "10px 0 5px 0", display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "space-between"}}>WIN: <div>{yourWin}</div></div>
                         <div style={{width: "80%", marginTop: "5px 0 10px 0", display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "space-between"}}>ATK: <div>{allPower * 1} - {allPower * 9}</div></div>
-                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="../tokens/jdao.png" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
+                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bounty}</div></div>
                         {isStakeNow && challenger.indexOf(address) > -1 ?
                             <div style={{alignSelf: "center"}} className="button" onClick={addBounty}>ADD 1 BOUNTY (10 JDAO)</div> :

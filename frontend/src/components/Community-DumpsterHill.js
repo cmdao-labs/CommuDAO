@@ -225,7 +225,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll bold">
                     <div style={{backgroundColor: "rgb(39, 56, 82)", color: "#fff", minWidth: "300px", height: "75px", margin: 0, border: "none", boxShadow: "3px 3px 0 #0d0a1f"}} className="items">
-                        <img src="../items/stOPT.png" width="22" alt="$stOPT"/>
+                        <img src="https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" width="22" alt="$stOPT"/>
                         <div style={{marginLeft: "10px"}}>{Number(stOPTBalance).toFixed(5)}</div>
                     </div>
                 </div>
@@ -233,7 +233,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 <div style={{display: "flex", flexDirection: "row"}}>
                     <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "40px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                         <div>
-                            <img src="../items/wood.png" height="100" alt="$WOOD"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="100" alt="$WOOD"/>
                         </div>
                         <div style={{fontSize: "28px", marginTop: "40px"}} className="pixel">{Number(woodBalance).toFixed(0)}</div>
                         <input
@@ -255,7 +255,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
                     <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "40px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                         <div>
-                            <img src="../items/mice.png" height="100" alt="$MICE"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="100" alt="$MICE"/>
                         </div>
                         <div style={{fontSize: "28px", marginTop: "40px"}} className="pixel">{Number(miceBalance).toFixed(0)}</div>
                         <input

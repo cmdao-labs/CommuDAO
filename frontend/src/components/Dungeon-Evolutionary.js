@@ -805,27 +805,27 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     <div style={{width: "250px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Tokens</div>
                     <div className="pixel">
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../tokens/cmj.png" width="22" alt="$CMJ"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
                             <div style={{marginLeft: "10px"}}>{Number(cmjBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/bbq.png" width="22" alt="$BBQ"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/>
                             <div style={{marginLeft: "10px"}}>{Number(bbqBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/pizza.png" width="22" alt="$PZA"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/>
                             <div style={{marginLeft: "10px"}}>{Number(pzaBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/copper.png" width="22" alt="$CU"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
                             <div style={{marginLeft: "10px"}}>{Number(cuBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/silver.png" width="22" alt="$SIL"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" width="22" alt="$SIL"/>
                             <div style={{marginLeft: "10px"}}>{Number(silBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/gold.png" width="22" alt="$GOLD"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="22" alt="$GOLD"/>
                             <div style={{marginLeft: "10px"}}>{Number(goldBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -915,7 +915,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 Evolution resource
                                                             </div>
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                                <img src="../items/bbq.png" height="18" alt="$BBQ"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {Number(item.Id) % 100000 === 100 ? <>10,000</> : <></>}
                                                                     {Number(item.Id) % 100000 === 200 ? <>10,000</> : <></>}
@@ -938,9 +938,9 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 2800 ? <>1,310,720,000</> : <></>}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                {Number(item.Id) % 100000 <= 900 ? <img src="../items/copper.png" height="18" alt="$CU"/> : <></>}
-                                                                {Number(item.Id) % 100000 >= 1200 ? <img src="../items/silver.png" height="18" alt="$SIL"/> : <></>}
-                                                                {Number(item.Id) % 100000 === 1000 ? <img src="../tokens/jdao.png" height="18" alt="$JDAO"/> : <></>}
+                                                                {Number(item.Id) % 100000 <= 900 ? <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/> : <></>}
+                                                                {Number(item.Id) % 100000 >= 1200 ? <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/> : <></>}
+                                                                {Number(item.Id) % 100000 === 1000 ? <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> : <></>}
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {Number(item.Id) % 100000 === 100 ? <>0</> : <></>}
                                                                     {Number(item.Id) % 100000 === 200 ? <>1,000</> : <></>}
@@ -1145,7 +1145,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 Evolution resource
                                                             </div>
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                                <img src="../items/pizza.png" height="18" alt="$PZA"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {Number(item.Id) % 100000 === 500 ? <>250</> : <></>}
                                                                     {Number(item.Id) % 100000 === 540 ? <>300</> : <></>}
@@ -1178,10 +1178,10 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 8900 ? <>49,453</> : <></>}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                {Number(item.Id) % 100000 <= 1300 ? <img src="../items/copper.png" height="18" alt="$CU"/> : <></>}
-                                                                {Number(item.Id) % 100000 >= 1700 && Number(item.Id) % 100000 <= 4100 ? <img src="../items/silver.png" height="18" alt="$SIL"/> : <></>}
-                                                                {Number(item.Id) % 100000 >= 4900 ? <img src="../items/gold.png" height="18" alt="$GOLD"/> : <></>}
-                                                                {Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 4500 ? <img src="../tokens/jdao.png" height="18" alt="$JDAO"/> : <></>}
+                                                                {Number(item.Id) % 100000 <= 1300 ? <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/> : <></>}
+                                                                {Number(item.Id) % 100000 >= 1700 && Number(item.Id) % 100000 <= 4100 ? <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/> : <></>}
+                                                                {Number(item.Id) % 100000 >= 4900 ? <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/> : <></>}
+                                                                {Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 4500 ? <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> : <></>}
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {Number(item.Id) % 100000 === 500 ? <>0</> : <></>}
                                                                     {Number(item.Id) % 100000 === 540 ? <>500</> : <></>}
@@ -1329,21 +1329,21 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 Evolution resource
                                                             </div>
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                                <img src="../items/bbq.png" height="18" alt="$BBQ"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {String(item.Id).slice(0, 4) === "1001" ? <>10,000</> : <></>}
                                                                     {String(item.Id).slice(0, 4) === "1002" ? <>15,000</> : <></>}
                                                                     {String(item.Id).slice(0, 4) === "1003" ? <>25,000</> : <></>}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {String(item.Id).slice(0, 4) === "1001" ? <>1</> : <></>}
                                                                     {String(item.Id).slice(0, 4) === "1002" ? <>2</> : <></>}
                                                                     {String(item.Id).slice(0, 4) === "1003" ? <>3</> : <></>}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {String(item.Id).slice(0, 4) === "1001" ? <>10</> : <></>}
                                                                     {String(item.Id).slice(0, 4) === "1002" ? <>20</> : <></>}
@@ -1428,10 +1428,10 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 <div style={{margin: "0 5px"}}>PEPE JA Vol.1 - 4 [Lv.3]</div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                <img src="../tokens/jdao.png" height="18" alt="$JDAO"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                 <div style={{margin: "0 5px"}}>15</div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                 <div style={{margin: "0 5px"}}>150</div>
                                                             </div>
                                                         </div>
@@ -1503,7 +1503,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 Salon resource
                                                             </div>
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                                <img src="../tokens/cmj.png" height="18" alt="$CMJ"/>
+                                                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                 <div style={{margin: "0 5px"}}>10</div>
                                                             </div>
                                                         </div>

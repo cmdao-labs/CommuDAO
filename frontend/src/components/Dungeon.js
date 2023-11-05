@@ -26,7 +26,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
-                        <div className="emp"><img style={{marginRight: "5px"}} src="/../items/copper.png" width="12" alt="$COPPER"/>COPPER</div>
+                        <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="12" alt="$COPPER"/>COPPER</div>
                     </div>
                     <div style={{width: "fit-content", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(33); navigate('/dungeon/copper-mine');}}>Go to Copper Mine</div>
                 </div>
@@ -43,7 +43,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
-                        <div className="emp"><img style={{marginRight: "2px"}} src="../items/jasper.png" width="12" alt="$JASP"/>JASPER</div>
+                        <div className="emp"><img style={{marginRight: "2px"}} src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="12" alt="$JASP"/>JASPER</div>
                     </div>
                     <div style={{width: "fit-content", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(31); navigate('/dungeon/jasper-cave');}}>Go to Jasper Cave</div>
                 </div>

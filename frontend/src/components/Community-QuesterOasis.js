@@ -527,7 +527,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 <div className="bold">REWARDS</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                     <div style={{marginRight: "10px", color: "#fff"}}>500</div>
-                                    <img src="../items/bbq.png" height="30px" alt="$BBQ"/>
+                                    <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
                                 </div>
                             </div>
                             <div>
@@ -580,7 +580,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 <div className="bold">REWARDS</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                     <div style={{marginRight: "10px", color: "#fff"}}>1,500</div>
-                                    <img src="../items/silver.png" height="30px" alt="$SILL"/>
+                                    <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SILL"/>
                                 </div>
                             </div>
                             <div>

@@ -230,23 +230,23 @@ const Main = () => {
                         <div>Explore the world of CommuDAO</div>
                         <div style={{margin: "20px 0", width: "500px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                             <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
-                                <img src="/../items/wood.png" height="20" alt="$WOOD"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
                                 &nbsp;Ancient Forest
                             </div>
                             <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
-                                <img src="/../items/tuna.png" height="20" alt="$TUNA"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
                                 &nbsp;Tuna Lake
                             </div>
                             <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
-                                <img src="/../items/mice.png" height="20" alt="$MICE"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
                                 &nbsp;Old Warehouse
                             </div>
                             <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
-                                <img src="/../items/copper.png" height="20" alt="$COPPER"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
                                 &nbsp;Copper Mine
                             </div>
                             <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
-                                <img src="/../items/jasper.png" height="20" alt="$JASPER"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
                                 &nbsp;Jasper Cave
                             </div>
                         </div>

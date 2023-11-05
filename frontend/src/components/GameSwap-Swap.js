@@ -302,8 +302,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
                             {swapMode === 0 || swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img> : <></>}
-                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/cmj.png" alt="$CMJ"></img> : <></>}
-                            {swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jusdt.png" alt="$JUSDT"></img> : <></>}
+                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img> : <></>}
+                            {swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img> : <></>}
                             {swapMode === 0 || swapMode === 3 ?
                                 <Select
                                     options={[]}
@@ -360,9 +360,9 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     <div style={{cursor: "pointer"}} className="fa fa-arrow-down" onClick={swapModeChange}></div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/cmj.png" alt="$CMJ"></img> : <></>}
+                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img> : <></>}
                             {swapMode === 1 || swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img> : <></>}
-                            {swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jusdt.png" alt="$JUSDT"></img> : <></>}
+                            {swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img> : <></>}
                             {swapMode === 0 ?
                                 <>
                                     <Select

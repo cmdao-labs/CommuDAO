@@ -189,7 +189,7 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img
-                    src="../items/tuna.png"
+                    src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
                     width="150"
                     alt="tunapic"
                 />
@@ -224,13 +224,13 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                             <div>
                                 Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                 &nbsp;
-                                <img src="../items/tuna.png" width="12" alt="tunapic"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="tunapic"/>
                                 TUNA/DAY
                             </div>
                             <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                 <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
                                     Pending Rewards<br></br>
-                                    <img src="../items/tuna.png" width="12" alt="tunapic"/>
+                                    <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="tunapic"/>
                                     {ethers.utils.formatEther(String(item.Reward))}
                                 </div>
                                 {item.Reward > 0 ?

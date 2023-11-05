@@ -346,7 +346,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake CommuDAO Servant to earn $WOOD & $CMJ.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="../items/wood.png" width="150" alt="$WOOD" />
+                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
             </div>
         </div>
 
@@ -397,8 +397,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                                         <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
                                             Pending Rewards
                                             <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
-                                            <div style={{fontSize: "10px"}} className="emp"><img src="../items/wood.png" width="12" alt="$WOOD"/> {item.RewardWood}</div>
-                                            <div style={{fontSize: "10px"}} className="emp"><img src="../tokens/cmj.png" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
+                                            <div style={{fontSize: "10px"}} className="emp"><img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
+                                            <div style={{fontSize: "10px"}} className="emp"><img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
                                         </div>
                                         {item.RewardWood > 0 ?
                                             <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :

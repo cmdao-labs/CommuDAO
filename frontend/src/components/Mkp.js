@@ -831,7 +831,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{height: "30px", padding: "0 5px", marginRight: "10px", lineHeight: "32px"}} className="bold">SELL AS</div>
                                 <div style={{width: "fit-content", height: "30px", margin: 0, padding: "5px", border: "1px solid", borderRadius: "10px", fontSize: "12px"}} className="items bold">
-                                    {currencyselected === "CMJ" ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
+                                    {currencyselected === "CMJ" ? <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="20" alt="$CMJ"/> : <img src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" width="20" alt="$JUSDT"/>}
                                     <select style={{padding: "5px", margin: "5px", fontSize: "16px", letterSpacing: "1px", border: "none"}} className="pixel" value={currencyselected} onChange={(event) => {setCurrencyselected(event.target.value)}}>
                                         <option value="CMJ">CMJ</option>
                                         <option value="JUSDT">JUSDT</option>
@@ -962,7 +962,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                                                     <div className="pixel emp">{item.Name}</div>
                                                     <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
                                                     <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                        {item.Currencyindex === 1 ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
+                                                        {item.Currencyindex === 1 ? <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="20" alt="$CMJ"/> : <img src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" width="20" alt="$JUSDT"/>}
                                                         <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                     </div>
                                                     <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
@@ -987,7 +987,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                                                     <div className="pixel emp">{item.Name}</div>
                                                     <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
                                                     <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                        {item.Currencyindex === 1 ? <img src="./tokens/cmj.png" width="20" alt="$CMJ"/> : <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>}
+                                                        {item.Currencyindex === 1 ? <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="20" alt="$CMJ"/> : <img src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" width="20" alt="$JUSDT"/>}
                                                         <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                     </div>
                                                     <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
@@ -1015,11 +1015,11 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                         <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="./tokens/cmj.png" width="20" alt="$CMJ"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="20" alt="$CMJ"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="./tokens/jusdt.png" width="20" alt="$JUSDT"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" width="20" alt="$JUSDT"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
                             </div>
                         </div>

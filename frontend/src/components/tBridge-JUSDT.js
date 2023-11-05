@@ -126,7 +126,7 @@ const Jusdt = () => {
                 }
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
                     <div style={{width: "100%", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        <img style={{marginRight: "20px"}} height="45px" src="../tokens/jusdt.png" alt="$JUSDT"></img>
+                        <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img>
                         JUSDT, #1 wrapped stablecoin on JBC.
                     </div>
                     <div style={{width: "100%", margin: "35px 0", fontSize: "16px", letterSpacing: "1px"}}>[JUSDT : KUSDT] Cross-chain bridging now on service 24/7!</div>

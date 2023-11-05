@@ -275,7 +275,7 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw ORY to earn $MICE.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="../items/mice.png" width="150" alt="$MICE" />
+                <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="150" alt="$MICE" />
             </div>
         </div>
 
@@ -289,21 +289,21 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
                     <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                     <div style={{fontSize: "24px"}} className="emp">
                         {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                        <img style={{marginLeft: "10px"}} src="../items/mice.png" width="24" alt="$MICE"/>
+                        <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
                     </div>
                 </div>
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                     <div style={{fontSize: "24px"}}>
                         {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                        <img style={{marginLeft: "10px"}} src="../items/mice.png" width="24" alt="$MICE"/>
+                        <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
                     </div>
                 </div>
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>MICE BALANCE</div>
                     <div style={{fontSize: "24px"}}>
                         {nft.length > 0 && nft[0] !== null ? Number(miceBalance).toFixed(3) : 0}
-                        <img style={{marginLeft: "10px"}} src="../items/mice.png" width="24" alt="$MICE"/>
+                        <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
                     </div>
                 </div>
             </div>
@@ -331,13 +331,13 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
                                 <div>
                                     Earn: {item.Bonus * 86400}
                                     &nbsp;
-                                    <img src="../items/mice.png" width="12" alt="micepic"/>
+                                    <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
                                     &nbsp;MICE/DAY
                                 </div>
                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 2, textAlign: "left"}}>
                                         Pending Rewards<br></br>
-                                        <img src="../items/mice.png" width="12" alt="$MICE"/>
+                                        <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
                                         &nbsp;{item.Reward}
                                     </div>
                                     {item.Reward > 0 ?

@@ -433,7 +433,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring mine to collect $Copper.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="/../items/copper.png" width="150" alt="$CU" />
+                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="150" alt="$CU" />
             </div>
         </div>
 
@@ -479,14 +479,14 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="/../items/copper.png" height="20" alt="$COPPER"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cuBalance).toFixed(3).toLocaleString()}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER PENDING
                             <div style={{display: "flex", flexDirection: "row", color: isStakeNow ? "#ff007a" : "#5f6476"}}>
-                                <img src="/../items/copper.png" height="20" alt="$COPPER"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
                                 <div style={{marginLeft: "5px"}}>{cuPending.toLocaleString()}</div>
                             </div>
                         </div>
@@ -498,7 +498,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "BBQ" ?
                                     <>
-                                        <img src="/../items/bbq.png" height="20" alt="$BBQ"/>
+                                        <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
                                         <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toFixed(0)}</div>
                                     </> :
                                     <></>
@@ -575,7 +575,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <></>
                         }
                         {isOp && isStakeNow && !lastedSTOPT ?
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)", display: "flex", alignItems: "center"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="/../items/stOPT.png" height="18" alt="$stOPT"/></div> :
+                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)", display: "flex", alignItems: "center"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
                             <></>
                         }
                     </div>

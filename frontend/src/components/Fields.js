@@ -28,9 +28,9 @@ const Fields = ({ callMode, navigate }) => {
                         Earn
                     </div>
                     <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
-                        <img src="./items/wood.png" height="18" alt="$WOOD"/>
+                        <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                         <div style={{margin: "0 5px"}}>WOOD & </div>
-                        <img src="./tokens/cmj.png" height="18" alt="$CMJ"/>
+                        <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                         <div style={{margin: "0 5px"}}>CMJ</div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const Fields = ({ callMode, navigate }) => {
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
                         Earn
                     </div>
-                    <div className="emp pixel"><img src="../items/tuna.png" width="12" alt="$TUNA"/>TUNA</div>
+                    <div className="emp pixel"><img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>TUNA</div>
                 </div>
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>Go to Tuna Lake</div>
             </div>
@@ -68,7 +68,7 @@ const Fields = ({ callMode, navigate }) => {
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
                         Earn
                     </div>
-                    <div className="emp pixel"><img src="../items/mice.png" width="12" alt="$MICE"/> MICE</div>
+                    <div className="emp pixel"><img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/> MICE</div>
                 </div>
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>Go to Old Warehouse</div>
             </div>

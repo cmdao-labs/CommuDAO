@@ -901,7 +901,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $Jasper.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="/../items/jasper.png" width="150" alt="$JASP" />
+                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="150" alt="$JASP" />
             </div>
         </div>
 
@@ -947,14 +947,14 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP BALANCE (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="/../items/jasper.png" height="20" alt="$JASP"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toFixed(3).toLocaleString()}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP PENDING (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="/../items/jasper.png" height="20" alt="$JASP"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
                                 <div style={{marginLeft: "5px"}}>{jasperPending.toLocaleString()}</div>
                             </div>
                         </div>
@@ -968,21 +968,21 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "CTUNA" ?
                                     <>
-                                        <img src="/../items/cannedtuna.png" height="20" alt="$CTUNA"/>
+                                        <img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
                                         <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toFixed(0)}</div>
                                     </> :
                                     <></>
                                 }
                                 {gasselected === "SX31" ?
                                     <>
-                                        <img src="/../items/sx31.png" height="20" alt="$SX31"/>
+                                        <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
                                         <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toFixed(0)}</div>
                                     </> :
                                     <></>
                                 }
                                 {gasselected === "PIZZA" ?
                                     <>
-                                        <img src="/../items/pizza.png" height="20" alt="$PZA"/>
+                                        <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
                                         <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toFixed(0)}</div>
                                     </> :
                                     <></>
@@ -1075,7 +1075,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <></>
                         }
                         {isOp && isStakeNow && !lastedSTOPT ?
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="/../items/stOPT.png" height="18" alt="$stOPT"/></div> :
+                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
                             <></>
                         }
                     </div>
