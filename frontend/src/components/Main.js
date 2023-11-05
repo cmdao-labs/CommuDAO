@@ -23,6 +23,7 @@ import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
 
 import { jbcL1 } from './chains/jbcL1.ts'
+import { bkc } from './chains/bkc.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
 import aurora721ABI from './jsons/aurora721ABI.json'
 import tunaFieldABI from './jsons/tunaFieldABI.json'
@@ -74,7 +75,7 @@ import swapJulpABI from './jsons/swapcallJulpABI.json'
 import farmJdaoABI from './jsons/masterchefJdaoABI.json'
 import bkcOracleABI from './jsons/bkcOracleABI.json'
 
-import { WagmiConfig, createClient, configureChains } from 'wagmi'
+import { WagmiConfig, createClient, configureChains, useNetwork } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
@@ -82,7 +83,7 @@ const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
 const Main = () => {
     const { chains, provider } = configureChains(
-        [jbcL1],
+        [jbcL1, bkc],
         [publicProvider()]
     )
 
@@ -93,6 +94,8 @@ const Main = () => {
         ],
         provider
     })
+
+    const { chain } = useNetwork()
 
     const navigate = useNavigate()
     const { modeText, subModeText, intrasubModetext } = useParams()
@@ -206,153 +209,157 @@ const Main = () => {
         })
     }, [])
 
-  return (
-    <>
-        {isLoading === true ?
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{fontSize: "40px", letterSpacing: "3px"}}>LOADING...</div>
+    return (
+        <>
+            {isLoading === true ?
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{fontSize: "40px", letterSpacing: "3px"}}>LOADING...</div>
+                    </div>
+                </div> :
+                <></>
+            }
+            <WagmiConfig client={client}>
+                <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
+                {mode === 0 ?
+                    <div style={{width: "95%", overflow: "scroll", padding: "50px 0", textAlign: "left", fontSize: "16px"}} className="collection noscroll welcome pixel">
+                        <div className="welcomeText">
+                            <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect, Play, Build<br></br><span className="emp">CommuDAO</span></div>
+                            <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA on JBC L1!</div>
+                            <div style={{minWidth: "500px", height: "100px", marginTop: "30px", flexDirection: "column"}} className="items">
+                                <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">20M+</div>
+                                <div style={{fontSize: "12px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
+                            </div>
+                            {chain !== undefined && chain.id === 8899 &&
+                                <>
+                                    <div>Explore the world of CommuDAO</div>
+                                    <div style={{margin: "20px 0", width: "500px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                                        <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
+                                            &nbsp;Ancient Forest
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
+                                            &nbsp;Tuna Lake
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
+                                            &nbsp;Old Warehouse
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
+                                            &nbsp;Copper Mine
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
+                                            &nbsp;Jasper Cave
+                                        </div>
+                                    </div>
+                                </>
+                            }
+                        </div>
+                        <div style={{width: "500px", height: "fit-content", background: "transparent", margin: 0, padding: 0, overflow: "hidden"}} className="nftCard">
+                            <img src="https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/23.png" width="100%" alt="NFT_GENESIS" />
+                            <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CM Hexa Cat Meaw JIB JIB, The OG NFT</div>
+                        </div>
+                    </div> :
+                    <></>
+                }
+                {mode === 1 ?
+                    <Fields callMode={callMode} navigate={navigate} /> :
+                    <></>
+                }
+                {mode === 11 ?
+                    <FishingField setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} /> :
+                    <></>
+                }
+                {mode === 12 ?
+                    <RatHuntingField setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} /> :
+                    <></>
+                }
+                {mode === 13 ?
+                    <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} /> :
+                    <></>
+                }
+                {mode === 2 ?
+                    <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
+                    <></>
+                }
+                {mode === 3 ?
+                    <Dungeon callMode={callMode} navigate={navigate} /> :
+                    <></>
+                }
+                {mode === 33 ?
+                    <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} /> :
+                    <></>
+                }
+                {mode === 31 ?
+                    <Jaspercave intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} /> :
+                    <></>
+                }
+                {mode === 32 ?
+                    <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
+                    <></>
+                }
+                {mode === 34 ?
+                    <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
+                    <></>
+                }
+                {mode === 4 ?
+                    <Community callMode={callMode} navigate={navigate} /> :
+                    <></>
+                }
+                {mode === 41 ?
+                    <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} /> :
+                    <></>
+                }
+                {mode === 42 ?
+                    <DungeonArena navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} questAmbassABI={questAmbassABI} dunJasperABI={dunJasperABI} pvp01ABI={pvp01ABI} salonABI={salonABI} /> :
+                    <></>
+                }
+                {mode === 43 ?
+                    <DumpsterHill navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} dumpster1ABI={dumpster1ABI} dumpster2ABI={dumpster2ABI} /> :
+                    <></>
+                }
+                {mode === 44 ?
+                    <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} /> :
+                    <></>
+                }
+                {mode === 5 ?
+                    <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyABI={ammyABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} /> :
+                    <></>
+                }
+                {mode === 6 ?
+                    <Mkp setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} cmdaoMkpABI={cmdaoMkpABI} /> :
+                    <></>
+                }
+                {mode === 7 ?
+                    <GameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} exchangeABI={exchangeABI} exchangeJulpABI={exchangeJulpABI} farmJdaoABI={farmJdaoABI} swapABI={swapABI} swapJulpABI={swapJulpABI} bkcOracleABI={bkcOracleABI} /> :
+                    <></>
+                }
+                {mode === null ?
+                    <div style={{paddingTop: "100px"}} className="collection">
+                        <div className="nftCard" style={{justifyContent: "center"}}>
+                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-database"></i>
+                            <div className="emp bold">404 not found</div>
+                        </div>
+                    </div> :
+                    <></>
+                }
+            </WagmiConfig>
+            <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <div className="inFooterLeft">
+                    <div style={{marginBottom: "10px"}}>© CommuDAO 2023 - Alpha</div>
+                    <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
+                    <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>
-            </div> :
-            <></>
-        }
-        <WagmiConfig client={client}>
-            <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
-            {mode === 0 ?
-                <div style={{width: "95%", overflow: "scroll", padding: "50px 0", textAlign: "left", fontSize: "16px"}} className="collection noscroll welcome pixel">
-                    <div className="welcomeText">
-                        <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect, Play, Build<br></br><span className="emp">CommuDAO</span></div>
-                        <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA on JBC L1!</div>
-                        <div style={{minWidth: "500px", height: "100px", marginTop: "30px", flexDirection: "column"}} className="items">
-                            <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">20M+</div>
-                            <div style={{fontSize: "12px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
-                        </div>
-                        <div>Explore the world of CommuDAO</div>
-                        <div style={{margin: "20px 0", width: "500px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                            <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
-                                &nbsp;Ancient Forest
-                            </div>
-                            <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
-                                &nbsp;Tuna Lake
-                            </div>
-                            <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
-                                &nbsp;Old Warehouse
-                            </div>
-                            <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
-                                &nbsp;Copper Mine
-                            </div>
-                            <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
-                                &nbsp;Jasper Cave
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{width: "500px", height: "fit-content", background: "transparent", margin: 0, padding: 0, overflow: "hidden"}} className="nftCard">
-                        <img src="https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/23.png" width="100%" alt="NFT_GENESIS" />
-                        <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CM Hexa Cat Meaw JIB JIB, The OG NFT</div>
-                    </div>
-                </div> :
-                <></>
-            }
-            {mode === 1 ?
-                <Fields callMode={callMode} navigate={navigate} /> :
-                <></>
-            }
-            {mode === 11 ?
-                <FishingField setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} /> :
-                <></>
-            }
-            {mode === 12 ?
-                <RatHuntingField setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} /> :
-                <></>
-            }
-            {mode === 13 ?
-                <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} /> :
-                <></>
-            }
-            {mode === 2 ?
-                <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
-                <></>
-            }
-            {mode === 3 ?
-                <Dungeon callMode={callMode} navigate={navigate} /> :
-                <></>
-            }
-            {mode === 33 ?
-                <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} /> :
-                <></>
-            }
-            {mode === 31 ?
-                <Jaspercave intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} /> :
-                <></>
-            }
-            {mode === 32 ?
-                <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
-                <></>
-            }
-            {mode === 34 ?
-                <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
-                <></>
-            }
-            {mode === 4 ?
-                <Community callMode={callMode} navigate={navigate} /> :
-                <></>
-            }
-            {mode === 41 ?
-                <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} /> :
-                <></>
-            }
-            {mode === 42 ?
-                <DungeonArena navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} questAmbassABI={questAmbassABI} dunJasperABI={dunJasperABI} pvp01ABI={pvp01ABI} salonABI={salonABI} /> :
-                <></>
-            }
-            {mode === 43 ?
-                <DumpsterHill navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} dumpster1ABI={dumpster1ABI} dumpster2ABI={dumpster2ABI} /> :
-                <></>
-            }
-            {mode === 44 ?
-                <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} /> :
-                <></>
-            }
-            {mode === 5 ?
-                <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyABI={ammyABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} /> :
-                <></>
-            }
-            {mode === 6 ?
-                <Mkp setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} cmdaoMkpABI={cmdaoMkpABI} /> :
-                <></>
-            }
-            {mode === 7 ?
-                <GameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} exchangeABI={exchangeABI} exchangeJulpABI={exchangeJulpABI} farmJdaoABI={farmJdaoABI} swapABI={swapABI} swapJulpABI={swapJulpABI} bkcOracleABI={bkcOracleABI} /> :
-                <></>
-            }
-            {mode === null ?
-                <div style={{paddingTop: "100px"}} className="collection">
-                    <div className="nftCard" style={{justifyContent: "center"}}>
-                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-database"></i>
-                        <div className="emp bold">404 not found</div>
-                    </div>
-                </div> :
-                <></>
-            }
-        </WagmiConfig>
-        <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-            <div className="inFooterLeft">
-                <div style={{marginBottom: "10px"}}>© CommuDAO 2023 - Alpha</div>
-                <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
-                <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
-            </div>
-            <div className="inFooterRight">
-                <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">Quests on Zealy</a>
-                <a style={{color: "#5f6476", textDecoration: "none"}} href="https://discord.gg/k92ReT5EYy" target="_blank" rel="noreferrer">Discord</a>
-            </div>
-        </footer>
-    </>
-  )
+                <div className="inFooterRight">
+                    <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">Quests on Zealy</a>
+                    <a style={{color: "#5f6476", textDecoration: "none"}} href="https://discord.gg/k92ReT5EYy" target="_blank" rel="noreferrer">Discord</a>
+                </div>
+            </footer>
+        </>
+    )
 }
 
 export default Main
