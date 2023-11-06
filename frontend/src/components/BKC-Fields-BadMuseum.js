@@ -5,10 +5,10 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const bkga = '0x99a763eCBd64fdcCfE06143D405D5DFaf5828ce2'
-const badField = ''
+const badField = '0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
+const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -19,37 +19,47 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
         setNft([])
         
         const thefetch = async () => {
-            /*
-            const balanceofstake = await readContract({
-                address: jibjib,
-                abi: aurora721ABI,
-                functionName: 'walletOfOwner',
-                args: [tunaField],
-            })
-            const data = address !== null && address !== undefined ? await readContracts({
-                contracts: balanceofstake.map((item) => (
+            const balanceofstake = []
+            let nfts = []
+
+            const stakeFilter = await bkgaSC.filters.Transfer(address, badField, null)
+            const stakeEvent = await bkgaSC.queryFilter(stakeFilter, 15619908, "latest")
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const data0 = address !== null && address !== undefined ? await readContracts({
+                contracts: stakeRemoveDup.map((item) => (
                     {
-                        address: tunaField,
+                        address: badField,
                         abi: tunaFieldABI,
                         functionName: 'nftStake',
                         args: [String(item)],
                     }
                 ))
-            }) : [Array(balanceofstake.length).fill('')]
+            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: ''})]
 
             let yournftstake = []
-
-            for (let i = 0; i <= balanceofstake.length - 1; i++) {
-                if (data[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
-                    yournftstake.push({Id: String(balanceofstake[i])})
+            for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data0[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                    yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
             console.log(yournftstake)
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: tunaField,
+                        address: bkga,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftstake.length).fill('')]
+
+            const data11 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftstake.map((item) => (
+                    {
+                        address: badField,
                         abi: tunaFieldABI,
                         functionName: 'calculateRewards',
                         args: [String(item.Id)],
@@ -58,33 +68,21 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
             }) : [Array(yournftstake.length).fill(0)]
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const response = await fetch("https://bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy.ipfs.nftstorage.link/" + yournftstake[i].Id + ".json/")
-                const _nft = await response.json()
-
-                let bonus;
-                if (Number(yournftstake[i].Id) >= 61) {
-                    bonus = 2;
-                } else if (Number(yournftstake[i].Id) >= 31 && Number(yournftstake[i].Id) <= 59) {
-                    bonus = 5;
-                } else if (Number(yournftstake[i].Id) >= 11 && Number(yournftstake[i].Id) <= 29) {
-                    bonus = 10;
-                } else if (Number(yournftstake[i].Id) <= 10) {
-                    bonus = 25;
-                }
+                const nftipfs = data1[i]
+                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const nft = await response.json()
 
                 nfts.push({
-                    Id: Number(yournftstake[i].Id),
-                    Name: _nft.name,
-                    Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + yournftstake[i].Id + ".png/",
-                    Attribute: _nft.attributes,
-                    RewardPerSec: bonus,
+                    Id: yournftstake[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: 1,
                     isStaked: true,
-                    Reward: String(data2[i])
+                    Reward: String(data11[i])
                 })
             }
-            */           
-            const balanceofstake = []
-            let nfts = []
 
             const walletFilter = await bkgaSC.filters.Transfer(null, address, null)
             const walletEvent = await bkgaSC.queryFilter(walletFilter, 12767368, "latest")
@@ -156,28 +154,28 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
         })
 
     }, [address, txupdate, erc721ABI])
-    /*
+    
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
             const nftAllow = await readContract({
-                address: jibjib,
-                abi: aurora721ABI,
+                address: bkga,
+                abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
-            if (nftAllow.toUpperCase() !== tunaField.toUpperCase()) {
+            if (nftAllow.toUpperCase() !== badField.toUpperCase()) {
                 const config = await prepareWriteContract({
-                    address: jibjib,
-                    abi: aurora721ABI,
+                    address: bkga,
+                    abi: erc721ABI,
                     functionName: 'approve',
-                    args: [tunaField, _nftid],
+                    args: [badField, _nftid],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
             }        
             const config2 = await prepareWriteContract({
-                address: tunaField,
+                address: badField,
                 abi: tunaFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
@@ -188,12 +186,12 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
         } catch {}
         setisLoading(false)
     }
-
+    
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: tunaField,
+                address: badField,
                 abi: tunaFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
@@ -204,7 +202,6 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
         } catch {}
         setisLoading(false)
     }
-    */
 
     return (
         <>
@@ -262,13 +259,13 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {/*unstakeNft(item.Id, false)*/}}>HARVEST</div> :
+                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                     }
                                 </div>
                                 {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {/*unstakeNft(item.Id, true)*/}}>UNSTAKE</div> :
-                                    <div style={{background: "gray"}} className="button" onClick={() => {/*stakeNft(item.Id)*/}}>STAKE</div>
+                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                    <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
                                 }
                             </div>
                         ))}

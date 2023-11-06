@@ -287,7 +287,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 14 ?
-                    <BadMuseum setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} /> :
+                    <BadMuseum setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
                     <></>
                 }
                 {mode === 2 ?
