@@ -19,7 +19,6 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
         setNft([])
         
         const thefetch = async () => {
-            const balanceofstake = []
             let nfts = []
 
             const stakeFilter = await bkgaSC.filters.Transfer(address, badField, null)
@@ -120,8 +119,11 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    nft = await response.json()
+                } catch {}
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
@@ -137,7 +139,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, balanceofstake.length, ]
+            return [nfts, ]
         }
 
         const promise = thefetch()
@@ -150,10 +152,10 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
             )
 
         getAsync().then(result => {
-            (result[1] > 0 || true) && result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
+            result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
         })
 
-    }, [address, txupdate, erc721ABI])
+    }, [address, txupdate, erc721ABI, tunaFieldABI])
     
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -219,17 +221,17 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 </div>
             </div>
 
-            <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", fontSize: "14px"}} className="collection pixel">
+            <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
                 {nft.length > 0 ?
                     <>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
-                            <div className="nftCard" key={index}>
+                            <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
                                 <img
                                     src={item.Image}
                                     width="150"
-                                    alt="nftpic"
+                                    alt="Can not load metadata."
                                 />
                                 <div>{item.Name}</div>
                                 <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
