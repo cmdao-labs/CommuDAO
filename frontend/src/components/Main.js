@@ -22,6 +22,8 @@ import Mall from './Mall'
 import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
 
+import BadMuseum from './BKC-Fields-BadMuseum'
+
 import { jbcL1 } from './chains/jbcL1.ts'
 import { bkc } from './chains/bkc.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
@@ -112,6 +114,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "ANCIENT-FORREST") {
                     preset = 13
                     document.title = "Ancient Forrest | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BAD-MUSEUM") {
+                    preset = 14
+                    document.title = "Bad Museum | CommuDAO"
                 }
             } else {
                 preset = 1
@@ -279,6 +284,10 @@ const Main = () => {
                 }
                 {mode === 13 ?
                     <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} /> :
+                    <></>
+                }
+                {mode === 14 ?
+                    <BadMuseum setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} /> :
                     <></>
                 }
                 {mode === 2 ?
