@@ -23,6 +23,7 @@ import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
 
 import BadMuseum from './BKC-Fields-BadMuseum'
+import BKCLabs from './BKC-Labs'
 
 import { jbcL1 } from './chains/jbcL1.ts'
 import { bkc } from './chains/bkc.ts'
@@ -116,15 +117,22 @@ const Main = () => {
                     document.title = "Ancient Forrest | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BAD-MUSEUM") {
                     preset = 14
-                    document.title = "Bad Museum | CommuDAO"
+                    document.title = "Bad Museum [BKC] | CommuDAO"
                 }
             } else {
                 preset = 1
                 document.title = "Fields | CommuDAO"
             }
         } else if (modeText.toUpperCase() === "LABS") {
-            preset = 2
-            document.title = "Labs | CommuDAO"
+            if (subModeText !== undefined) {
+                if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "BKC") {
+                    preset = 200
+                    document.title = "Labs [BKC] | CommuDAO"
+                }
+            } else {
+                preset = 2
+                document.title = "Labs | CommuDAO"
+            }
         } else if (modeText.toUpperCase() === "DUNGEON") {
             if (subModeText !== undefined) {
                 if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "JASPER-CAVE") {
@@ -230,7 +238,7 @@ const Main = () => {
                     <div style={{width: "95%", overflow: "scroll", padding: "50px 0", textAlign: "left", fontSize: "16px"}} className="collection noscroll welcome pixel">
                         <div className="welcomeText">
                             <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect, Play, Build<br></br><span className="emp">CommuDAO</span></div>
-                            <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA on JBC L1!</div>
+                            <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
                             <div style={{minWidth: "500px", height: "100px", marginTop: "30px", flexDirection: "column"}} className="items">
                                 <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">20M+</div>
                                 <div style={{fontSize: "12px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
@@ -292,6 +300,10 @@ const Main = () => {
                 }
                 {mode === 2 ?
                     <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
+                    <></>
+                }
+                {mode === 200 ?
+                    <BKCLabs setisLoading={setisLoading} erc20ABI={erc20ABI} /> :
                     <></>
                 }
                 {mode === 3 ?
