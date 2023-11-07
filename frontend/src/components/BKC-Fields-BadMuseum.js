@@ -68,8 +68,11 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    nft = await response.json()
+                } catch {}
 
                 nfts.push({
                     Id: yournftstake[i].Id,
