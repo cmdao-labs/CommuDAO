@@ -1,11 +1,15 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { useAccount, useBalance, useContractReads } from 'wagmi'
+import { readContract, prepareWriteContract, writeContract } from '@wagmi/core'
 const { ethereum } = window
 
 const bstToken = "0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e"
+const trashToken = '0x7AfaA40E9421F69D6F3fb927Cf50fc0Bc6d6AF59'
+const bstMachine = '0x5d9FF795Eef8A6b31a4fe634bFf9807CDeb4eb00'
+const tierToken = '0x6d01445CB38F252516C0F0cFf43F2bF490ccD702'
 
-const BKCLabs = ({ setisLoading, erc20ABI }) => {
+const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
     const { address } = useAccount()
 
     const { data: data_KUB, isLoading: isLoading_KUB } = useBalance({
@@ -14,7 +18,7 @@ const BKCLabs = ({ setisLoading, erc20ABI }) => {
         watch: true,
     })
 
-    const { data: data_Token, isLoading: isLoading_Token } = useContractReads({
+    const { data: data_Token, isLoading: isLoading_Token, refetch } = useContractReads({
         contracts: [
             {
                 address: bstToken,
@@ -22,10 +26,131 @@ const BKCLabs = ({ setisLoading, erc20ABI }) => {
                 functionName: 'balanceOf',
                 args: [address],
             },
+            {
+                address: trashToken,
+                abi: erc20ABI,
+                functionName: 'balanceOf',
+                args: [address],
+            },
+            {
+                address: bstMachine,
+                abi: stakerMachineABI,
+                functionName: 'staker',
+                args: [address],
+            },
+            {
+                address: bstMachine,
+                abi: stakerMachineABI,
+                functionName: 'supplier',
+                args: [address],
+            },
+            {
+                address: tierToken,
+                abi: erc20ABI,
+                functionName: 'balanceOf',
+                args: [address],
+            },
         ],
         chainId: 96,
-        watch: true,
     })
+
+    const [inputTrash, setInputTrash] = React.useState('')
+    const [inputStakedTrash, setInputStakeTrash] = React.useState('')
+
+    const stakeTrash = async () => {
+        setisLoading(true)
+        try {
+            const allowed = await readContract({
+                address: trashToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, bstMachine],
+            })
+            if (Number(ethers.utils.parseEther(String(inputTrash))) > Number(allowed)) {
+                const config = await prepareWriteContract({
+                    address: trashToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [bstMachine, ethers.constants.MaxUint256],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: bstMachine,
+                abi: stakerMachineABI,
+                functionName: 'stake',
+                args: [ethers.utils.parseEther(String(inputTrash))],
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+        } catch (e) {console.log(e)}
+        refetch()
+        setisLoading(false)
+    }
+
+    const unstakeTrash = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: bstMachine,
+                abi: stakerMachineABI,
+                functionName: 'unstake',
+                args: [ethers.utils.parseEther(String(inputStakedTrash))],
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+        } catch (e) {console.log(e)}
+        refetch()
+        setisLoading(false)
+    }
+
+    const craftfromBST = async (_index) => {
+        setisLoading(true)
+        try {
+            const allowed = await readContract({
+                address: bstToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, bstMachine],
+            })
+            if (Number(ethers.utils.parseEther('10')) > Number(allowed)) {
+                const config = await prepareWriteContract({
+                    address: bstToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [bstMachine, ethers.constants.MaxUint256],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: bstMachine,
+                abi: stakerMachineABI,
+                functionName: 'craft',
+                args: [_index],
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+        } catch (e) {console.log(e)}
+        refetch()
+        setisLoading(false)
+    }
+
+    const obtainfromBST = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: bstMachine,
+                abi: stakerMachineABI,
+                functionName: 'obtain',
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+        } catch (e) {console.log(e)}
+        refetch()
+        setisLoading(false)
+    }
 
     return (
     <>
@@ -74,10 +199,133 @@ const BKCLabs = ({ setisLoading, erc20ABI }) => {
                         />
                         <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[0])).toFixed(3)}</div>
                     </div>
+
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy"
+                            width="20"
+                            alt="$TIER"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: tierToken,
+                                            symbol: 'TIER',
+                                            decimals: 0,
+                                            image: 'https://nftstorage.link/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : data_Token[4] + ' Wei'}</div>
+                    </div>
                 </div>
 
                 <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
                 <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Labs & Factories</div>
+                <div style={{width: "100%", margin: "10px 0 80px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div className="nftCard" style={{position: "relative", justifyContent: "space-around", margin: "20px", paddingTop: "60px"}}>
+                        <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
+                            <div>Total Staking Power:</div>
+                            <div className="bold">{isLoading_Token ? "..." : 1 * ethers.utils.formatEther(data_Token[2])}</div>
+                        </div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
+                                <div>$TRASH STAKED</div>
+                                <div className="bold">{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[2])).toFixed(3)}</div>
+                            </div>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                                <input
+                                    placeholder="0.0"
+                                    style={{width: "150px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                    value={inputStakedTrash}
+                                    onChange={(event) => setInputStakeTrash(event.target.value)}
+                                />
+                                <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setInputStakeTrash(Number(ethers.utils.formatEther(data_Token[2])))}>Max</div>
+                                <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={unstakeTrash}>Unstake</div>
+                            </div>
+                        </div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
+                                <div>$TRASH BALANCE</div>
+                                <div className="bold">{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[1])).toFixed(3)}</div>
+                            </div>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                                <input
+                                    placeholder="0.0"
+                                    style={{width: "150px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                    value={inputTrash}
+                                    onChange={(event) => setInputTrash(event.target.value)}
+                                />
+                                <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setInputTrash(Number(ethers.utils.formatEther(data_Token[1])))}>Max</div>
+                                <div style={{letterSpacing: "1px", width: "50px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={stakeTrash}>Stake</div>
+                            </div>
+                        </div>
+                        <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                            <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" height="18" alt="$BST"/>
+                                <div style={{margin: "0 5px"}}>10</div>
+                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                <img src="https://nftstorage.link/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
+                                <div style={{margin: "0 5px"}}>{isLoading_Token ? "..." : (1 * ethers.utils.formatEther(data_Token[2])) + ' Wei'}</div>
+                            </div>
+                        </div>
+                        <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                            <div>1 hour</div>
+                        </div>
+                        <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            {!isLoading_Token &&
+                                <>
+                                    {Number(data_Token[3].machineRun) === 0 &&
+                                        <>
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                $CMJ.b
+                                                <div style={{margin: "0 5px"}}>Upgradable soon!</div>
+                                            </div>
+                                        </>
+                                    }
+                                    {Number(data_Token[3].machineRun) !== 0 && 
+                                        <>
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{Date.now() - (data_Token[3].laststamp * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[3].laststamp) + 3600) * 1000).toLocaleString('es-CL'))}</div>
+                                        </>
+                                    }
+                                </>
+                            }
+                        </div>
+                        <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            {!isLoading_Token &&
+                                <>
+                                    {Number(data_Token[3].machineRun) === 0 && 
+                                        <>
+                                            {Number(data_Token[2]) > 0 && Number(ethers.utils.formatEther(data_Token[0])) > 10 ?
+                                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromBST(1)}>Craft TIERRA</div> :
+                                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TIERRA</div>
+                                            }
+                                        </>
+                                    }
+                                    {Number(data_Token[3].machineRun) !== 0 && 
+                                        <>
+                                            {Date.now() - (data_Token[3].laststamp * 1000) > (3600 * 1000) ?
+                                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromBST}>Obtain TIERRA</div> :
+                                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain TIERRA</div>
+                                            }
+                                        </>
+                                    }
+                                </>
+                            }
+                            <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </>

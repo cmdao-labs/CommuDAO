@@ -24,6 +24,7 @@ import GameSwap from  './GameSwap'
 
 import BadMuseum from './BKC-Fields-BadMuseum'
 import BKCLabs from './BKC-Labs'
+import stakerMachineABI from './jsons/stakerMachineABI.json'
 
 import { jbcL1 } from './chains/jbcL1.ts'
 import { bkc } from './chains/bkc.ts'
@@ -303,7 +304,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 200 ?
-                    <BKCLabs setisLoading={setisLoading} erc20ABI={erc20ABI} /> :
+                    <BKCLabs setisLoading={setisLoading} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
                     <></>
                 }
                 {mode === 3 ?
