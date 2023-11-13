@@ -22,8 +22,11 @@ import Mall from './Mall'
 import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
 
+import BKCFields from './BKC-Fields'
 import BadMuseum from './BKC-Fields-BadMuseum'
+import FraserRiver from './BKC-Fields-FraserRiver'
 import BKCLabs from './BKC-Labs'
+import salmFieldABI from './jsons/salmFieldABI.json'
 import stakerMachineABI from './jsons/stakerMachineABI.json'
 
 import { jbcL1 } from './chains/jbcL1.ts'
@@ -116,9 +119,15 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "ANCIENT-FORREST") {
                     preset = 13
                     document.title = "Ancient Forrest | CommuDAO"
-                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BAD-MUSEUM") {
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
+                    document.title = "Fields [BKC] | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC-BAD-MUSEUM") {
+                    preset = 15
                     document.title = "Bad Museum [BKC] | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC-FRASER-RIVER") {
+                    preset = 16
+                    document.title = "Fraser River [BKC] | CommuDAO"
                 }
             } else {
                 preset = 1
@@ -296,7 +305,15 @@ const Main = () => {
                     <></>
                 }
                 {mode === 14 ?
+                    <BKCFields callMode={callMode} navigate={navigate} /> :
+                    <></>
+                }
+                {mode === 15 ?
                     <BadMuseum setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
+                    <></>
+                }
+                {mode === 16 ?
+                    <FraserRiver setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} /> :
                     <></>
                 }
                 {mode === 2 ?
