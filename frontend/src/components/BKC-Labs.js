@@ -359,7 +359,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://nftstorage.link/ipfs/bafkreihc6zd3fgs44n6rhpleyi3j344rqcmh2qwizjf26q2j7l2ylpyjlu"
+                            src="https://nftstorage.link/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
                             width="20"
                             alt="$AGUA"
                             style={{cursor: "crosshair"}}
@@ -372,7 +372,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
                                             address: aguaToken,
                                             symbol: 'AGUA',
                                             decimals: 0,
-                                            image: 'https://nftstorage.link/ipfs/bafkreihc6zd3fgs44n6rhpleyi3j344rqcmh2qwizjf26q2j7l2ylpyjlu',
+                                            image: 'https://nftstorage.link/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq',
                                         },
                                     },
                                 })
@@ -527,7 +527,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
                                 <img src="https://nftstorage.link/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" height="18" alt="$SALM"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://nftstorage.link/ipfs/bafkreihc6zd3fgs44n6rhpleyi3j344rqcmh2qwizjf26q2j7l2ylpyjlu" height="18" alt="$AGUA"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq" height="18" alt="$AGUA"/>
                                 <div style={{margin: "0 5px"}}>{isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0) + ' Wei'}</div>
                             </div>
                         </div>
