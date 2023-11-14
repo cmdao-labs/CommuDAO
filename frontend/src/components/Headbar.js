@@ -27,6 +27,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
           abi: erc20ABI,
           functionName: 'balanceOf',
           args: [address],
+          chainId: 8899,
       }) : 0
 
       return [jdaoBal]

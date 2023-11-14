@@ -13,7 +13,7 @@ const BKCFields = ({ callMode, navigate }) => {
 
         <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <div style={{height: "230px"}}></div>
+                <img src="https://nftstorage.link/ipfs/bafybeih6l2qo7pi2iulbi26wovgaq4dbilhncoyzweapznqzhbfqzgf7ji" height="230" alt="Field_BadMuseum" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -31,7 +31,7 @@ const BKCFields = ({ callMode, navigate }) => {
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(15); navigate('/fields/bkc-bad-museum');}}>Go to Bad Musuem</div>
             </div>
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <div style={{height: "230px"}}></div>
+                <img src="https://nftstorage.link/ipfs/bafybeieu6tyeea3bgzvvcxrylckaf674lqplpioghqvi2hudtfe4ux2fty" height="230" alt="Field_FraserRiver" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
