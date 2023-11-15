@@ -335,6 +335,30 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
+                            src="https://nftstorage.link/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
+                            width="20"
+                            alt="$SALM"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: bstToken,
+                                            symbol: 'SALM',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[5])).toFixed(3)}</div>
+                    </div>
+
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
                             src="https://nftstorage.link/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy"
                             width="20"
                             alt="$TIER"

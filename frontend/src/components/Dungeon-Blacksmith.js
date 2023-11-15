@@ -2248,7 +2248,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             <div style={{width: "150px"}}>{item.Name}</div>
                                                         </div>
                                                         <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                                        {Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550 &&
+                                                        {(Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550) &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name} +1</div>
