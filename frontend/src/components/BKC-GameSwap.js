@@ -99,7 +99,7 @@ const BKCGameSwap = ({ setisLoading, erc20ABI, diamonLpABI, farmCmosABI, bkcOrac
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'deposit',
-                args: [1, ethers.utils.parseEther(lp1Stake)],
+                args: [1, ethers.utils.parseEther(String(lp1Stake))],
             })
             const tx = await writeContract(config2)
             await tx.wait()
@@ -115,7 +115,7 @@ const BKCGameSwap = ({ setisLoading, erc20ABI, diamonLpABI, farmCmosABI, bkcOrac
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'withdraw',
-                args: [1, ethers.utils.parseEther(lp1Withdraw)],
+                args: [1, ethers.utils.parseEther(String(lp1Withdraw))],
             })
             const tx = await writeContract(config)
             await tx.wait()
