@@ -26,8 +26,11 @@ import BKCFields from './BKC-Fields'
 import BadMuseum from './BKC-Fields-BadMuseum'
 import FraserRiver from './BKC-Fields-FraserRiver'
 import BKCLabs from './BKC-Labs'
+import BKCGameSwap from  './BKC-GameSwap'
 import salmFieldABI from './jsons/salmFieldABI.json'
 import stakerMachineABI from './jsons/stakerMachineABI.json'
+import diamonLpABI from './jsons/diamonlpABI.json'
+import farmCmosABI from './jsons/farmcmosABI.json'
 
 import { jbcL1 } from './chains/jbcL1.ts'
 import { bkc } from './chains/bkc.ts'
@@ -188,8 +191,15 @@ const Main = () => {
             preset = 6
             document.title = "Marketplace | CommuDAO"
         } else if (modeText.toUpperCase() === "GAMESWAP") {
-            preset = 7
-            document.title = "GameSwap | CommuDAO"
+            if (subModeText !== undefined) {
+                if (modeText.toUpperCase() === "GAMESWAP" && subModeText.toUpperCase() === "BKC") {
+                    preset = 700
+                    document.title = "Gameswap [BKC] | CommuDAO"
+                }
+            } else {
+                preset = 7
+                document.title = "GameSwap | CommuDAO"
+            }
         } else {
             preset = null
             document.title = "404 | CommuDAO"
@@ -374,6 +384,10 @@ const Main = () => {
                 }
                 {mode === 7 ?
                     <GameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} exchangeABI={exchangeABI} exchangeJulpABI={exchangeJulpABI} farmJdaoABI={farmJdaoABI} swapABI={swapABI} swapJulpABI={swapJulpABI} bkcOracleABI={bkcOracleABI} /> :
+                    <></>
+                }
+                {mode === 700 ?
+                    <BKCGameSwap setisLoading={setisLoading} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
                     <></>
                 }
                 {mode === null ?

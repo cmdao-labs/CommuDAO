@@ -80,6 +80,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <> 
               <div className="funcList" onClick={() => {callMode(14); navigate('/fields/bkc');}}>Fields</div>
               <div className="funcList" onClick={() => {callMode(200); navigate('/labs/bkc');}}>Labs</div>
+              <div className="funcList" onClick={() => {callMode(700); navigate('/gameswap/bkc');}}>GameSwap</div>
             </>
           }
           <a style={{textDecoration: "none", color: "#5f6476"}} href="https://commudao.xyz/tbridge-jusdt" target="_blank" rel="noreferrer"><div className="funcList">tBridge</div></a>
