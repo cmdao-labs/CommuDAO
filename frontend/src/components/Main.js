@@ -331,7 +331,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 200 ?
-                    <BKCLabs setisLoading={setisLoading} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
+                    <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
                     <></>
                 }
                 {mode === 3 ?
@@ -387,7 +387,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 700 ?
-                    <BKCGameSwap setisLoading={setisLoading} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
+                    <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
                     <></>
                 }
                 {mode === null ?

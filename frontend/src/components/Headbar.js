@@ -5,6 +5,7 @@ import { useAccount, useConnect, useDisconnect, useNetwork, useSwitchNetwork } f
 const { ethereum } = window
 
 const jdao = "0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88"
+const cmos = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 
 const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
   const { address, isConnected } = useAccount()
@@ -15,6 +16,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
 
   const [isChainInvalid, setIsChainInvalid] = React.useState(false)
   const [jdaoBalance, setJdaoBalance] = React.useState(0)
+  const [cmosBalance, setCmosBalance] = React.useState(0)
 
   React.useEffect(() => {
     if (chain !== undefined) {
@@ -23,27 +25,35 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
 
     const thefetch = async () => {
       const jdaoBal = address !== null && address !== undefined ? await readContract({
-          address: jdao,
-          abi: erc20ABI,
-          functionName: 'balanceOf',
-          args: [address],
-          chainId: 8899,
+        address: jdao,
+        abi: erc20ABI,
+        functionName: 'balanceOf',
+        args: [address],
+        chainId: 8899,
+      }) : 0
+      const cmosBal = address !== null && address !== undefined ? await readContract({
+        address: cmos,
+        abi: erc20ABI,
+        functionName: 'balanceOf',
+        args: [address],
+        chainId: 96,
       }) : 0
 
-      return [jdaoBal]
+      return [jdaoBal, cmosBal]
   }
 
   const promise = thefetch()
 
   const getAsync = () =>
-      new Promise((resolve) => 
-          setTimeout(
-              () => resolve(promise), 1000
-          )
+    new Promise((resolve) => 
+      setTimeout(
+        () => resolve(promise), 1000
       )
+    )
 
   getAsync().then(result => {
-      setJdaoBalance(ethers.utils.formatEther(String(result[0])))
+    setJdaoBalance(ethers.utils.formatEther(String(result[0])))
+    setCmosBalance(ethers.utils.formatEther(String(result[1])))
   })
   }, [chain, address, txupdate, erc20ABI])
 
@@ -110,6 +120,33 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
                   }}
                 />
                 <div style={{marginLeft: "7.5px"}}>{Number(jdaoBalance).toFixed(3)}</div>
+              </div>
+            </div>
+          }
+          {address !== null && address !== undefined && chain.id === 96 &&
+            <div id="jdaoBal" style={{width: "fit-content", height: "18px", border: "1px solid #5f6476", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
+              <div style={{display: "flex", flexDirection: "row"}}>
+                <img
+                  src="https://nftstorage.link/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
+                  height="18"
+                  alt="$CMOS"
+                  style={{cursor: "crosshair"}}
+                  onClick={async () => {
+                      await ethereum.request({
+                          method: 'wallet_watchAsset',
+                          params: {
+                              type: 'ERC20',
+                              options: {
+                                  address: cmos,
+                                  symbol: 'CMOS',
+                                  decimals: 18,
+                                  image: 'https://nftstorage.link/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                              },
+                          },
+                      })
+                  }}
+                />
+                <div style={{marginLeft: "7.5px"}}>{Number(cmosBalance).toFixed(3)}</div>
               </div>
             </div>
           }

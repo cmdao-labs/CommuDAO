@@ -15,7 +15,7 @@ const salmMachine = '0x43e4550A5c8E690511A5503eE030B552C582B74F'
 const tierToken = '0x6d01445CB38F252516C0F0cFf43F2bF490ccD702'
 const aguaToken = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 
-const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
+const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
     const { address } = useAccount()
 
     const { data: data_KUB, isLoading: isLoading_KUB } = useBalance({
@@ -122,6 +122,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config2)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -138,6 +139,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -170,6 +172,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config2)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -185,6 +188,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -217,6 +221,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config2)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -233,6 +238,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -265,6 +271,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config2)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
@@ -280,6 +287,7 @@ const BKCLabs = ({ setisLoading, erc20ABI, stakerMachineABI }) => {
             })
             const tx = await writeContract(config)
             await tx.wait()
+            setTxupdate(tx)
             refetch()
         } catch (e) {console.log(e)}
         setisLoading(false)
