@@ -311,7 +311,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img src="https://storage.googleapis.com/static.bitkubnext.com/bitkub-next/token-icons/kub.png" width="20" alt="$KUB"/>
-                        <div style={{marginLeft: "5px"}}>{isLoading_KUB ? "..." : Number(data_KUB.formatted).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_KUB ? "..." : Number(data_KUB.formatted).toFixed(3)}</div>
                     </div>
                 </div>
 
@@ -338,7 +338,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[0])).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[0])).toFixed(3)}</div>
                     </div>
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -362,7 +362,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[5])).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[5])).toFixed(3)}</div>
                     </div>
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -386,7 +386,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : data_Token[4] + ' Wei'}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : data_Token[4] + ' Wei'}</div>
                     </div>
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -410,7 +410,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{isLoading_Token ? "..." : data_Token[9] + ' Wei'}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : data_Token[9] + ' Wei'}</div>
                     </div>
                 </div>
 
@@ -421,12 +421,12 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <div>Total Staking Power:</div>
-                            <div className="bold">{isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2])).toFixed(0)}</div>
+                            <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2])).toFixed(0)}</div>
                         </div>
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$TRASH STAKED</div>
-                                <div className="bold">{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[2])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[2])).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -442,7 +442,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$TRASH BALANCE</div>
-                                <div className="bold">{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[1])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[1])).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -462,7 +462,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
-                                <div style={{margin: "0 5px"}}>{isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2])).toFixed(0) + ' Wei'}</div>
+                                <div style={{margin: "0 5px"}}>{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2])).toFixed(0) + ' Wei'}</div>
                             </div>
                         </div>
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
@@ -470,7 +470,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                             <div>1 hour</div>
                         </div>
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                            {!isLoading_Token &&
+                            {address !== undefined && !isLoading_Token &&
                                 <>
                                     {Number(data_Token[3].machineRun) === 0 &&
                                         <>
@@ -491,7 +491,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                             }
                         </div>
                         <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            {!isLoading_Token &&
+                            {address !== undefined && !isLoading_Token &&
                                 <>
                                     {Number(data_Token[3].machineRun) === 0 && 
                                         <>
@@ -519,12 +519,12 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <div>Total Staking Power:</div>
-                            <div className="bold">{isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0)}</div>
+                            <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0)}</div>
                         </div>
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$CMM STAKED</div>
-                                <div className="bold">{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[7])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[7])).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -540,7 +540,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$CMM BALANCE</div>
-                                <div className="bold">{isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[6])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[6])).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -560,7 +560,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq" height="18" alt="$AGUA"/>
-                                <div style={{margin: "0 5px"}}>{isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0) + ' Wei'}</div>
+                                <div style={{margin: "0 5px"}}>{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0) + ' Wei'}</div>
                             </div>
                         </div>
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
@@ -568,7 +568,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                             <div>1 hour</div>
                         </div>
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                            {!isLoading_Token &&
+                            {address !== undefined && !isLoading_Token &&
                                 <>
                                     {Number(data_Token[8].machineRun) === 0 &&
                                         <>
@@ -589,7 +589,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                             }
                         </div>
                         <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            {!isLoading_Token &&
+                            {address !== undefined && !isLoading_Token &&
                                 <>
                                     {Number(data_Token[8].machineRun) === 0 && 
                                         <>

@@ -18,59 +18,68 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmo
                 abi: erc20ABI,
                 functionName: 'balanceOf',
                 args: [address],
+                chainId: 96,
             },
             {
                 address: cmmkkubToken,
                 abi: diamonLpABI,
                 functionName: 'getReserves',
+                chainId: 96,
             },
             {
                 address: '0x4A6947323A1c14Cf69Dd128A2cf854364239d044',
                 abi: bkcOracleABI,
                 functionName: 'latestAnswer',
+                chainId: 96,
             },
             {
                 address: '0x775eeFF3f80f110C2f7ac9127041915489c275f4',
                 abi: bkcOracleABI,
                 functionName: 'latestAnswer',
+                chainId: 96,
             },
             {
                 address: '0x67ebd850304c70d983b2d1b93ea79c7cd6c3f6b5',
                 abi: erc20ABI,
                 functionName: 'balanceOf',
                 args: [cmmkkubToken],
+                chainId: 96,
             },
             {
                 address: '0x9b005000a10ac871947d99001345b01c1cef2790',
                 abi: erc20ABI,
                 functionName: 'balanceOf',
                 args: [cmmkkubToken],
+                chainId: 96,
             },
             {
                 address: cmmkkubToken,
                 abi: erc20ABI,
                 functionName: 'totalSupply',
+                chainId: 96,
             },
             {
                 address: cmmkkubToken,
                 abi: erc20ABI,
                 functionName: 'balanceOf',
                 args: [farmCMOS],
+                chainId: 96,
             },
             {
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'userInfo',
                 args: [1, address],
+                chainId: 96,
             },
             {
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'pendingReward',
                 args: [1, address],
+                chainId: 96,
             },
         ],
-        chainId: 96,
     })
 
     const [lp1Stake, setLp1Stake] = React.useState("")
@@ -201,14 +210,14 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmo
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>CMOS EARNED:</div>
-                            <div className="bold">{!isLoading_Token ? Number(ethers.utils.formatEther(data_Token[9])).toFixed(3) : <>0.0</>}</div>
+                            <div className="bold">{address !== undefined && !isLoading_Token ? Number(ethers.utils.formatEther(data_Token[9])).toFixed(3) : <>0.0</>}</div>
                         </div>
                         <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle}>Harvest</div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <div style={{textAlign: "left", fontSize: "14px"}}>LP STAKED</div>
-                            {!isLoading_Token ? <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[8].amount) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[8].amount) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                            {address !== undefined && !isLoading_Token ? <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[8].amount) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[8].amount) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <input
@@ -224,7 +233,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmo
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <div style={{textAlign: "left", fontSize: "14px"}}>LP BALANCE</div>
-                            {!isLoading_Token ? <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[0]) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[0]) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                            {address !== undefined && !isLoading_Token ? <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[0]) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[0]) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <input
