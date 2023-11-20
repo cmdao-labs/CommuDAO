@@ -93,7 +93,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(700); navigate('/gameswap/bkc');}}>GameSwap</div>
             </>
           }
-          <a style={{textDecoration: "none", color: "#5f6476"}} href="https://commudao.xyz/tbridge-jusdt" target="_blank" rel="noreferrer"><div className="funcList">tBridge</div></a>
+          <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
         </div>
         <div style={{fontSize: "16px"}} className="navButton pixel">
           {address !== null && address !== undefined && chain.id === 8899 &&
@@ -137,10 +137,10 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
                           params: {
                               type: 'ERC20',
                               options: {
-                                  address: cmos,
-                                  symbol: 'CMOS',
-                                  decimals: 18,
-                                  image: 'https://nftstorage.link/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                                address: cmos,
+                                symbol: 'CMOS',
+                                decimals: 18,
+                                image: 'https://nftstorage.link/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
                               },
                           },
                       })
@@ -160,22 +160,22 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <>
               {connectors.map((connector) => (
                   <div 
-                      id="walletDiv"
-                      className="button wallet"
-                      key={connector.id}
-                      onClick={() => connect({chainId: 8899, connector})}
+                    id="walletDiv"
+                    className="button wallet"
+                    key={connector.id}
+                    onClick={() => connect({chainId: 8899, connector})}
                   >
-                      <div style={{letterSpacing: 0}} className="pixel">
-                        {error ?
-                          <div style={{width: "115px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
-                            {error.message === "Connector not found" ?
-                              <div>No Metamask</div> :
-                              <div>{error.message}</div>
-                            }
-                          </div> :
-                          <div>CONNECT WALLET</div>
-                        }
-                      </div>
+                    <div style={{letterSpacing: 0}} className="pixel">
+                      {error ?
+                        <div style={{width: "115px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
+                          {error.message === "Connector not found" ?
+                            <div>No Metamask</div> :
+                            <div>{error.message}</div>
+                          }
+                        </div> :
+                        <div>CONNECT WALLET</div>
+                      }
+                    </div>
                   </div>
               ))}
             </>

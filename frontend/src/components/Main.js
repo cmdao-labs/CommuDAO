@@ -85,6 +85,8 @@ import swapJulpABI from './jsons/swapcallJulpABI.json'
 import farmJdaoABI from './jsons/masterchefJdaoABI.json'
 import bkcOracleABI from './jsons/bkcOracleABI.json'
 
+import TBridge from './tBridge'
+
 import { WagmiConfig, createClient, configureChains, useNetwork } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -200,6 +202,9 @@ const Main = () => {
                 preset = 7
                 document.title = "GameSwap | CommuDAO"
             }
+        } else if (modeText.toUpperCase() === "TBRIDGE") {
+            preset = 8
+            document.title = "tBridge | CommuDAO"
         } else {
             preset = null
             document.title = "404 | CommuDAO"
@@ -388,6 +393,10 @@ const Main = () => {
                 }
                 {mode === 700 ?
                     <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
+                    <></>
+                }
+                {mode === 8 ?
+                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} /> :
                     <></>
                 }
                 {mode === null ?
