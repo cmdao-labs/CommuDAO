@@ -476,7 +476,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                $CMJ.b
+                                                <img src="https://nftstorage.link/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$bCMJ"/>
                                                 <div style={{margin: "0 5px"}}>Upgradable soon!</div>
                                             </div>
                                         </>
@@ -574,7 +574,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                $CMJ.b
+                                                <img src="https://nftstorage.link/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$bCMJ"/>
                                                 <div style={{margin: "0 5px"}}>Upgradable soon!</div>
                                             </div>
                                         </>

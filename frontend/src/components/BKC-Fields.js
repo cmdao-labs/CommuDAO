@@ -47,7 +47,7 @@ const BKCFields = ({ callMode, navigate }) => {
                     <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
                         <img src="https://nftstorage.link/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" alt="$SALM"/>
                         <div style={{margin: "0 5px"}}>SALMON &</div>
-                        <img src="https://nftstorage.link/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="12" alt="$CMM"/>
+                        <img src="https://nftstorage.link/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="16" alt="$CMM"/>
                         <div style={{marginLeft: "5px"}}>CMM</div>
                     </div>
                 </div>
