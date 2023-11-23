@@ -160,6 +160,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
         }
         setisLoading(false)
     }
+    console.log(lp1Stake)
 
     return (
         <div style={{flexDirection: "column", alignItems: "center", justifyContent: "flex-start", background: "#e6e4f6"}} className="collection">
@@ -235,7 +236,13 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                                 onChange={(event) => setLp1Withdraw(event.target.value)}
                                 value={lp1Withdraw}
                             />
-                            <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setLp1Withdraw(Number(ethers.utils.formatEther(data_Token[8].amount)))}>Max</div>
+                            <div
+                                style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                className="bold"
+                                onClick={() => setLp1Withdraw(String(ethers.utils.formatEther(data_Token[8].amount)))}
+                            >
+                                Max
+                            </div>
                             <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle}>Withdraw</div>
                         </div>
                     </div>
@@ -251,7 +258,13 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                                 onChange={(event) => setLp1Stake(event.target.value)}
                                 value={lp1Stake}
                             />
-                            <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setLp1Stake(Number(ethers.utils.formatEther(data_Token[0])))}>Max</div>
+                            <div
+                                style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                className="bold"
+                                onClick={() => setLp1Stake(ethers.utils.formatEther(String(data_Token[0])))}
+                            >
+                                Max
+                            </div>
                             <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle}>Stake</div>
                         </div>
                     </div>
