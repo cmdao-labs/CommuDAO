@@ -160,7 +160,6 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
         }
         setisLoading(false)
     }
-    console.log(lp1Stake)
 
     return (
         <div style={{flexDirection: "column", alignItems: "center", justifyContent: "flex-start", background: "#e6e4f6"}} className="collection">
@@ -239,7 +238,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                             <div
                                 style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                 className="bold"
-                                onClick={() => setLp1Withdraw(String(ethers.utils.formatEther(data_Token[8].amount)))}
+                                onClick={() => setLp1Withdraw(ethers.utils.formatEther(data_Token[8].amount))}
                             >
                                 Max
                             </div>
@@ -261,7 +260,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                             <div
                                 style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                 className="bold"
-                                onClick={() => setLp1Stake(ethers.utils.formatEther(String(data_Token[0])))}
+                                onClick={() => setLp1Stake(ethers.utils.formatEther(data_Token[0]))}
                             >
                                 Max
                             </div>

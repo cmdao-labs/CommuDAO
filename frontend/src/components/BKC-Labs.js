@@ -459,7 +459,13 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     value={inputStakedTrash}
                                     onChange={(event) => setInputStakeTrash(event.target.value)}
                                 />
-                                <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setInputStakeTrash(Number(ethers.utils.formatEther(data_Token[2])))}>Max</div>
+                                <div
+                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                    className="bold"
+                                    onClick={() => setInputStakeTrash(ethers.utils.formatEther(data_Token[2]))}
+                                >
+                                    Max
+                                </div>
                                 <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={unstakeTrash}>Unstake</div>
                             </div>
                         </div>
@@ -475,7 +481,13 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     value={inputTrash}
                                     onChange={(event) => setInputTrash(event.target.value)}
                                 />
-                                <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setInputTrash(Number(ethers.utils.formatEther(data_Token[1])))}>Max</div>
+                                <div
+                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                    className="bold"
+                                    onClick={() => setInputTrash(ethers.utils.formatEther(data_Token[1]))}
+                                >
+                                    Max
+                                </div>
                                 <div style={{letterSpacing: "1px", width: "50px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={stakeTrash}>Stake</div>
                             </div>
                         </div>
@@ -557,7 +569,13 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     value={inputStakedCMM}
                                     onChange={(event) => setInputStakeCMM(event.target.value)}
                                 />
-                                <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setInputStakeCMM(Number(ethers.utils.formatEther(data_Token[7])))}>Max</div>
+                                <div
+                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                    className="bold"
+                                    onClick={() => setInputStakeCMM(ethers.utils.formatEther(data_Token[7]))}
+                                >
+                                    Max
+                                </div>
                                 <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={unstakeCMM}>Unstake</div>
                             </div>
                         </div>
@@ -573,7 +591,13 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     value={inputCMM}
                                     onChange={(event) => setInputCMM(event.target.value)}
                                 />
-                                <div style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => setInputCMM(Number(ethers.utils.formatEther(data_Token[6])))}>Max</div>
+                                <div
+                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                    className="bold"
+                                    onClick={() => setInputCMM(ethers.utils.formatEther(data_Token[6]))}
+                                >
+                                    Max
+                                </div>
                                 <div style={{letterSpacing: "1px", width: "50px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={stakeCMM}>Stake</div>
                             </div>
                         </div>
