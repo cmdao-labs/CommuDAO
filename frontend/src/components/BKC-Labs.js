@@ -15,7 +15,7 @@ const salmMachine = '0x43e4550A5c8E690511A5503eE030B552C582B74F'
 const tierToken = '0x6d01445CB38F252516C0F0cFf43F2bF490ccD702'
 const aguaToken = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 
-const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
+const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, stakerMachineABI }) => {
     const { address } = useAccount()
 
     const { data: data_KUB, isLoading: isLoading_KUB } = useBalance({
@@ -124,7 +124,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -141,7 +144,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -174,7 +180,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -190,7 +199,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -223,7 +235,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -240,7 +255,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -273,7 +291,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -289,7 +310,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -476,7 +500,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://nftstorage.link/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$bCMJ"/>
+                                                <img src="https://nftstorage.link/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
                                                 <div style={{margin: "0 5px"}}>Upgradable soon!</div>
                                             </div>
                                         </>
@@ -574,7 +598,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, erc20ABI, stakerMachineABI }) => {
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://nftstorage.link/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$bCMJ"/>
+                                                <img src="https://nftstorage.link/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
                                                 <div style={{margin: "0 5px"}}>Upgradable soon!</div>
                                             </div>
                                         </>

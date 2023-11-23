@@ -217,6 +217,8 @@ const Main = () => {
     const callMode = (_mode) => { setMode(_mode) }
 
     const [isLoading, setisLoading] = React.useState(false)
+    const [isError, setisError] = React.useState(false)
+    const [errMsg, setErrMsg] = React.useState('')
     const [txupdate, setTxupdate] = React.useState(null)
 
     const [tvl, setTVL] = React.useState(0)
@@ -249,13 +251,23 @@ const Main = () => {
 
     return (
         <>
-            {isLoading === true ?
+            {isLoading &&
                 <div className="centermodal">
                     <div className="wrapper">
                         <div className="bold" style={{fontSize: "40px", letterSpacing: "3px"}}>LOADING...</div>
                     </div>
-                </div> :
-                <></>
+                </div>
+            }
+            {isError &&
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                    <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "300px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">ERROR!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>{errMsg}</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => setisError(false)}>CLOSE</div>
+                    </div>
+                    </div>
+                </div>
             }
             <WagmiConfig client={client}>
                 <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
@@ -336,7 +348,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 200 ?
-                    <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
+                    <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
                     <></>
                 }
                 {mode === 3 ?
@@ -392,11 +404,11 @@ const Main = () => {
                     <></>
                 }
                 {mode === 700 ?
-                    <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
+                    <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
                     <></>
                 }
                 {mode === 8 ?
-                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} /> :
+                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} /> :
                     <></>
                 }
                 {mode === null ?

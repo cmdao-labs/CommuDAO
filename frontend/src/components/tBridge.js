@@ -5,8 +5,10 @@ import { useAccount, useNetwork } from 'wagmi'
 
 const jusdt = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
+const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
+const cmjb = '0xb62c20B63b47e48EFb2e67e951C0A5E4Bd36E7e3'
 
-const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
+const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI }) => {
     const { address } = useAccount()
     const { chain } = useNetwork()
     const [mode, setMode] = React.useState(1)
@@ -16,9 +18,14 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
 
     const [kusdtBalance, setKusdtBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
+    const [cmjBalance, setCmjBalance] = React.useState(0)
+    const [cmjbBalance, setCmjbBalance] = React.useState(0)
 
     const [depositValue, setDepositValue] = React.useState(null)
     const [withdrawValue, setWithdrawValue] = React.useState(null)
+
+    const [depositCMJ, setDepositCMJ] = React.useState('')
+    const [withdrawCMJ, setWithdrawCMJ] = React.useState('')
 
     React.useEffect(() => {
         const fetch = async () => {
@@ -57,16 +64,32 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
                         args: [address],
                         chainId: 8899,
                     },
+                    {
+                        address: cmj,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: cmjb,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 96,
+                    },
                 ],
-            }) : [0, 0]
+            }) : [0, 0, 0, 0]
 
             const Balance = data1[0]
             const Balance2 = data1[1]
 
             const kusdtBal = data2[0]
             const jusdtBal = data2[1]
+            const cmjBal = data2[2]
+            const cmjbBal = data2[3]
 
-            return [Balance, Balance2, kusdtBal, jusdtBal]
+            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmjbBal]
         }
 
         const promise = fetch()
@@ -88,6 +111,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
             setKusdtBalance(Math.floor(kusdtbalance * 10000) / 10000)
             const jusdtbalance = ethers.utils.formatEther(result[3])
             setJusdtBalance(Math.floor(jusdtbalance * 10000) / 10000)
+
+            const cmjbalance = ethers.utils.formatEther(result[4])
+            setCmjBalance(Math.floor(cmjbalance * 10000) / 10000)
+            const cmjbbalance = ethers.utils.formatEther(result[5])
+            setCmjbBalance(Math.floor(cmjbbalance * 10000) / 10000)
         })
     }, [address, txupdate, erc20ABI])
 
@@ -135,6 +163,46 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
         setisLoading(false)
     }
 
+    const depositCmjHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: kusdt,
+                abi: erc20ABI,
+                functionName: 'transfer',
+                args: ["", ethers.utils.parseEther(String(depositCMJ))],
+                chainId: 8899,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(e)
+        }
+        setisLoading(false)
+    }
+    const withdrawCmjHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: jusdt,
+                abi: erc20ABI,
+                functionName: 'transfer',
+                args: ["", ethers.utils.parseEther(String(withdrawCMJ))],
+                chainId: 96,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            console.log(e)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
     return (
         <div style={{position: "relative", background: "rgb(0, 19, 33)", width: "100%", height: "100%", minHeight: "100vh"}}>
             <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexWrap: "wrap", color: "#fff", overflow: "scroll"}} className="noscroll pixel">
@@ -159,7 +227,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
                                 <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
                                 CMJ, the currency token of CommuDAO.
                             </div>
-                            <div style={{width: "100%", marginTop: "35px", fontSize: "16px", letterSpacing: "1px"}}>[JUSDT : KUSDT] Cross-chain bridging is coming soon!</div>
+                            <div style={{width: "100%", marginTop: "35px", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is coming soon!</div>
                         </>
                     }
                 </div>
@@ -215,6 +283,50 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, erc20ABI }) => {
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
+                            </div>
+                        </div>
+                    </>
+                }
+                {mode === 0 &&
+                    <>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>Bridging Fee</div>
+                                <div style={{fontSize: "30px"}}>100 CMJ/TX</div>
+                            </div>
+                        </div>
+                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 CMJ"
+                                    value={depositCMJ}
+                                    onChange={(event) => setDepositCMJ(event.target.value)}
+                                ></input>
+                                {chain.id === 8899 && address !== undefined ? 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                }
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
+                            </div>
+                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 CMJ.b"
+                                    value={withdrawCMJ}
+                                    onChange={(event) => setWithdrawCMJ(event.target.value)}
+                                ></input>
+                                {chain.id === 96 && address !== undefined ?
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                }
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(cmjbBalance).toFixed(4)} CMJ.b</div>
                             </div>
                         </div>
                     </>

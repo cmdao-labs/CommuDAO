@@ -8,7 +8,7 @@ const cmmkkubToken = "0x5Cced24E580586841f326d5088D288e6Ddd201dA"
 const cmosToken = "0x8b062b96Bb689833D7870a0133650FA22302496d"
 const farmCMOS = "0xe5B764566CB5b26fE7568e59370368ACf9c7c5c3"
 
-const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
+const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
     const { address } = useAccount()
 
     const { data: data_Token, isLoading: isLoading_Token, refetch } = useContractReads({
@@ -114,7 +114,10 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmo
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -131,7 +134,10 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmo
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -148,7 +154,10 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, erc20ABI, diamonLpABI, farmCmo
             await tx.wait()
             setTxupdate(tx)
             refetch()
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
