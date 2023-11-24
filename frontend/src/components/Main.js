@@ -264,7 +264,7 @@ const Main = () => {
                 <div style={{zIndex: "999"}} className="centermodal">
                     <div className="wrapper">
                     <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "300px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">ERROR! ({'CommuDAO V. ' + v})</div>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "24px"}} className="emp">ERROR! [{'Alpha V. ' + v}]</div>
                         <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px", height: "350px", overflow: "hidden", textOverflow: "ellipsis"}}>{errMsg}</div>
                         <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => setisError(false)}>CLOSE</div>
                     </div>
