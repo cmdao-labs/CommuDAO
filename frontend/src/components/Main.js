@@ -93,6 +93,8 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
+const v = '0.1.1'
+
 const Main = () => {
     const { chains, provider } = configureChains(
         [jbcL1, bkc],
@@ -262,7 +264,7 @@ const Main = () => {
                 <div style={{zIndex: "999"}} className="centermodal">
                     <div className="wrapper">
                     <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "300px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">ERROR!</div>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">ERROR! ({'CommuDAO V. ' + v})</div>
                         <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px", height: "350px", overflow: "hidden", textOverflow: "ellipsis"}}>{errMsg}</div>
                         <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => setisError(false)}>CLOSE</div>
                     </div>
@@ -423,7 +425,7 @@ const Main = () => {
             </WagmiConfig>
             <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div className="inFooterLeft">
-                    <div style={{marginBottom: "10px"}}>© CommuDAO 2023 - Alpha</div>
+                    <div style={{marginBottom: "10px"}}>{'© CommuDAO 2023 - Alpha V. ' + v}</div>
                     <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
                     <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>
