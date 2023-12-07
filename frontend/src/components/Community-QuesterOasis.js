@@ -46,19 +46,19 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
-            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 2021846, 'latest')
+            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 2214578, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
-            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 2021846, 'latest')
+            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 2214578, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
-            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 2021846, 'latest')
+            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 2214578, 'latest')
             const spend3Map = await Promise.all(spend3Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
-            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 2021846, 'latest')
+            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 2214578, 'latest')
             const spend4Map = await Promise.all(spend4Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
 
             const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map).reduce((prev, curr) => {
@@ -374,15 +374,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
             <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
                 <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "880px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
-                    <div style={{fontSize: "40px", color: "#fff"}}>October 2023 Prize Pool 🎁</div>
+                    <div style={{fontSize: "40px", color: "#fff"}}>December 2023 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Questers</div>
-                            <div>4,727 CMJ</div>
+                            <div>10,235 CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Strongest</div>
-                            <div>4,727 CMJ</div>
+                            <div>10,235 CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Spender</div>
