@@ -5,10 +5,10 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
-const fraserField = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
+const thlField = '0xa043438BB23DaB01e0d8a8eB346cD67ED92eAc06'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFieldABI }) => {
+const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -21,18 +21,17 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
         const thefetch = async () => {
             let nfts = []
 
-            /*
-            const stakeFilter = await mgnftSC.filters.Transfer(address, fraserField, null)
-            const stakeEvent = await mgnftSC.queryFilter(stakeFilter, 15727711, "latest")
+            const stakeFilter = await mgnftSC.filters.Transfer(address, thlField, null)
+            const stakeEvent = await mgnftSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
                     {
-                        address: fraserField,
-                        abi: salmFieldABI,
+                        address: thlField,
+                        abi: thlFieldABI,
                         functionName: 'nftStake',
-                        args: [1, String(item)],
+                        args: [String(item)],
                     }
                 ))
             }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: ''})]
@@ -59,10 +58,10 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
             const data11 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: fraserField,
-                        abi: salmFieldABI,
-                        functionName: 'calculateRewards',
-                        args: [1, String(item.Id)],
+                        address: thlField,
+                        abi: thlFieldABI,
+                        functionName: 'calculateRewards1',
+                        args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill(0)]
@@ -70,10 +69,10 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
             const data12 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: fraserField,
-                        abi: salmFieldABI,
-                        functionName: 'pendingReward',
-                        args: [1, String(item.Id)],
+                        address: thlField,
+                        abi: thlFieldABI,
+                        functionName: 'calculateRewards2',
+                        args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill(0)]
@@ -82,14 +81,14 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
                 const nftipfs = data1[i]
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs)
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                     nft = await response.json()
                 } catch {}
 
                 nfts.push({
                     Id: yournftstake[i].Id,
-                    Name: nft.name,
-                    Image: nft.image,
+                    Name: nft.name + " [" + yournftstake[i].Id + "]",
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
@@ -98,7 +97,6 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
                     Reward2: String(data12[i])
                 })
             }
-            */
 
             const walletFilter = await mgnftSC.filters.Transfer(null, address, null)
             const walletEvent = await mgnftSC.queryFilter(walletFilter, 2260250, "latest")
@@ -173,7 +171,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
             result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
         })
 
-    }, [address, txupdate, erc721ABI, salmFieldABI])
+    }, [address, txupdate, erc721ABI, thlFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -184,21 +182,21 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
                 functionName: 'getApproved',
                 args: [_nftid],
             })
-            if (nftAllow.toUpperCase() !== fraserField.toUpperCase()) {
+            if (nftAllow.toUpperCase() !== thlField.toUpperCase()) {
                 const config = await prepareWriteContract({
                     address: mgnft,
                     abi: erc721ABI,
                     functionName: 'approve',
-                    args: [fraserField, _nftid],
+                    args: [thlField, _nftid],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
             }        
             const config2 = await prepareWriteContract({
-                address: fraserField,
-                abi: salmFieldABI,
+                address: thlField,
+                abi: thlFieldABI,
                 functionName: 'stake',
-                args: [1, _nftid],
+                args: [_nftid],
             })
             const tx = await writeContract(config2)
             await tx.wait()
@@ -207,18 +205,30 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
         setisLoading(false)
     }
     
-    const unstakeNft = async (_nftid, _unstake) => {
+    const unstakeNft = async (_nftid, jbcTime, _unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
-                address: fraserField,
-                abi: salmFieldABI,
+            console.log(Number(jbcTime))
+            if (Number(jbcTime) >= 86400) {
+                const config1 = await prepareWriteContract({
+                    address: thlField,
+                    abi: thlFieldABI,
+                    functionName: 'claimJBC',
+                    args: [_nftid],
+                })
+                const tx1 = await writeContract(config1)
+                await tx1.wait()
+                setTxupdate(tx1)
+            }
+            const config2 = await prepareWriteContract({
+                address: thlField,
+                abi: thlFieldABI,
                 functionName: 'unstake',
-                args: [1, _nftid, _unstake],
+                args: [_nftid, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const tx2 = await writeContract(config2)
+            await tx2.wait()
+            setTxupdate(tx2)
         } catch {}
         setisLoading(false)
     }
@@ -270,6 +280,12 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
                                         </>
                                     }
                                 </div>
+                                <div>
+                                    Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
+                                    &nbsp;
+                                    <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
+                                    GOLD/DAY
+                                </div>
                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                         Pending Rewards<br></br>
@@ -279,18 +295,18 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, salmFie
                                         </div>
                                         <div style={{display: "flex", alignItems: "center"}}>
                                             <img src="../tokens/jbc.png" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
-                                            {ethers.utils.formatEther(String(item.Reward2))}
+                                            {(500 * Number(item.Reward2)) / 86400}
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, false)}}>HARVEST</div> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                     }
                                 </div>
-                                {/*item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                {item.isStaked ?
+                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true)}}>UNSTAKE</div> :
                                     <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                */}
+                                }
                             </div>
                         ))}
                         </> :
