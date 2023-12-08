@@ -7,6 +7,7 @@ import Fields from './Fields'
 import FieldsAncientForrest from './Fields-AncientForrest'
 import FishingField from './Fields-TunaLake'
 import RatHuntingField from './Fields-OldWarehouse'
+import TheHeavenLand from './Fields-TheHeavenLand'
 import Labs from './Labs'
 import Dungeon from './Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
@@ -93,7 +94,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.1.3'
+const v = '0.1.4'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -126,6 +127,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "ANCIENT-FORREST") {
                     preset = 13
                     document.title = "Ancient Forrest | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "THE-HEAVEN-LAND") {
+                    preset = 17
+                    document.title = "The Heaven Land | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
                     document.title = "Fields [BKC] | CommuDAO"
@@ -343,6 +347,10 @@ const Main = () => {
                 }
                 {mode === 16 ?
                     <FraserRiver setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} /> :
+                    <></>
+                }
+                {mode === 17 ?
+                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} /> :
                     <></>
                 }
                 {mode === 2 ?

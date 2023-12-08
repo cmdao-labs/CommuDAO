@@ -11,7 +11,7 @@ const Fields = ({ callMode, navigate }) => {
             </div>
         </div>
 
-        <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                 <div style={{position: "absolute", top: -15, right: -15, padding: "10px 20px", background: "#67BAA7", color: "#fff", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">FREE MINT</div>
                 <img src="https://nftstorage.link/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
@@ -71,6 +71,32 @@ const Fields = ({ callMode, navigate }) => {
                     <div className="emp pixel"><img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/> MICE</div>
                 </div>
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>Go to Old Warehouse</div>
+            </div>
+        </div>
+
+        <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+            <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
+                <div style={{height: 230}}></div>
+                <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                    <div className="pixel">
+                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                        Eligible NFT Collection
+                    </div>
+                    <div className="emp pixel">The Mythical Guardians</div>
+                </div>
+                <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                    <div className="pixel">
+                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                        Earn
+                    </div>
+                    <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
+                        <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                        <div style={{margin: "0 5px"}}>GOLD & </div>
+                        <img src="./tokens/jbc.png" height="18" alt="$JBC"/>
+                        <div style={{margin: "0 5px"}}>JBC (LIMITED)</div>
+                    </div>                    
+                </div>
+                <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(17); navigate('/fields/the-heaven-land');}}>Go to The Heaven Land</div>
             </div>
         </div>
     </>
