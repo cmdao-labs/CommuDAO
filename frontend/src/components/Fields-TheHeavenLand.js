@@ -94,7 +94,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
                     RewardPerSec: 1,
                     isStaked: true,
                     Reward: String(data11[i]),
-                    Reward2: String(data12[i])
+                    Reward2: String(data12[i]),
+                    isJbcOut: data0[i].isJbcOut
                 })
             }
 
@@ -295,7 +296,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
                                         </div>
                                         <div style={{display: "flex", alignItems: "center"}}>
                                             <img src="../tokens/jbc.png" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
-                                            {(500 * Number(item.Reward2)) / 86400}
+                                            {!item.isJbcOut || Number(item.Reward2) < 86400 ? (500 * Number(item.Reward2)) / 86400 : "0.000"}
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?
