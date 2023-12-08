@@ -44,6 +44,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [roll2Remain, setRoll2Remain] = React.useState(107)
     const [roll3Remain, setRoll3Remain] = React.useState(107)
     const [roll4Remain, setRoll4Remain] = React.useState(107)
+    const [canroll2, setCanRoll2] = React.useState(false)
+    const [roll5Remain, setRoll5Remain] = React.useState(1000)
 
     const [ctunaBalance, setCTunaBalance] = React.useState(0)
     const [sx31Balance, setSx31Balance] = React.useState(0)
@@ -196,6 +198,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'colList',
                         args: [4],
                     },
+                    {
+                        address: cmdaoGasha02,
+                        abi: cmdaoGasha02ABI,
+                        functionName: 'colList',
+                        args: [5],
+                    },
                 ],
             })
             
@@ -209,6 +217,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll2 = data2[7]
             const roll3 = data2[8]
             const roll4 = data2[9]
+            const roll5 = data2[10]
 
             const sell1remain = (410003800000 - (Number(sell1Id.sellId) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
@@ -226,11 +235,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll2remain = Number(roll2.nftCount)
             const roll3remain = Number(roll3.nftCount)
             const roll4remain = Number(roll4.nftCount)
+            const roll5remain = Number(roll5.nftCount)
 
             const _canRoll1 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
+            const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
 
             return [
-                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain,
+                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, 
             ]
         }
@@ -262,15 +273,17 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setRoll2Remain(result[13])
             setRoll3Remain(result[14])
             setRoll4Remain(result[15])
+            setRoll5Remain(result[16])
+            setCanRoll2(result[17])
 
-            setCTunaBalance(ethers.utils.formatEther(String(result[16])))
-            setSx31Balance(ethers.utils.formatEther(String(result[17])))
-            setJusdtBalance(ethers.utils.formatEther(String(result[18])))
-            setCmjBalance(ethers.utils.formatEther(String(result[19])))
-            setBbqBalance(ethers.utils.formatEther(String(result[20])))
-            setPzaBalance(ethers.utils.formatEther(String(result[21])))
-            setCuBalance(ethers.utils.formatEther(String(result[22])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[23]), "gwei"))
+            setCTunaBalance(ethers.utils.formatEther(String(result[18])))
+            setSx31Balance(ethers.utils.formatEther(String(result[19])))
+            setJusdtBalance(ethers.utils.formatEther(String(result[20])))
+            setCmjBalance(ethers.utils.formatEther(String(result[21])))
+            setBbqBalance(ethers.utils.formatEther(String(result[22])))
+            setPzaBalance(ethers.utils.formatEther(String(result[23])))
+            setCuBalance(ethers.utils.formatEther(String(result[24])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[25]), "gwei"))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -447,6 +460,38 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 args: [address, cmdaoGasha02],
             })
             if (jusdtAllow < (10 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: jusdtToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: cmdaoGasha02,
+                abi: cmdaoGasha02ABI,
+                functionName: 'roll',
+                args: [_colIndex]
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const rollHandle3 = async (_colIndex) => {
+        setisLoading(true)
+        try {
+            const jusdtAllow = await readContract({
+                address: jusdtToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, cmdaoGasha02],
+            })
+            if (jusdtAllow < (20 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: jusdtToken,
                     abi: erc20ABI,
@@ -686,6 +731,46 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">The Mythical Guardians</div>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafybeihwqqsf4hfcdxyrqlepn6mwxzkxfiv2tkzhzl663asp4lz4ebvfda" height="150" alt="MG"/>
+                        <div style={{alignSelf: "flex-start", height: "200px", fontSize: "15px", marginTop: "10px"}} className="pixel">
+                            <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Limited</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <div className="emp">{roll5Remain}</div>
+                                    <div>/1000 EA</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Status</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>Staking in Fields: The Heaven Land</div>
+                            </div>
+                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Price</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" height="18" alt="jusdt"/>
+                                    <div style={{marginLeft: "7.5px"}}>20</div>
+                                </div>
+                            </div>
+                        </div>
+                        {address !== null && address !== undefined ?
+                            <>
+                                {roll5Remain > 0 ?
+                                    <>
+                                        {canroll2 ?
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => rollHandle3(5)}>ROLL</div> :
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
+                                        }
+                                    </> :
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">OUT OF STOCK</div>
+                                }
+                            </> :
+                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                        }
+                    </div>
+
+                    <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                        <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Treasure Tide Flintlock</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://bafkreia45343q6jrvbfd6bjwam7de53w7utdth6ljnt2izpia4uthvzfke.ipfs.nftstorage.link" height="150" alt="TT_FLINTLOCK"/>
                         <div style={{alignSelf: "flex-start", height: "200px", fontSize: "15px", marginTop: "10px"}} className="pixel">
@@ -786,8 +871,10 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             </> :
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                         }
-                    </div>
+                    </div>                    
+                </div>
 
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">MVT's Backpack</div>
@@ -839,9 +926,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                         }
                     </div>
-                </div>
 
-                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Bloodstaned Boots</div>
@@ -932,7 +1017,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                         }
                     </div>
+                </div>
 
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">SAPIENS #01</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" height="150" alt="Sapiens_01"/>
@@ -971,9 +1058,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                         }
                     </div>
-                </div>
 
-                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Chō-Senjiryakketsu Vol.1</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafkreifgwtom3va2wm4wdur4eupbnoxjfvxr3765ebkpisron73ydmq3sa" height="150" alt="CS"/>
