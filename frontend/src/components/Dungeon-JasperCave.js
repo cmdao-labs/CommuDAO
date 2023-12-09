@@ -211,7 +211,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_1,
                     Description: nft1.description,
                     Attribute: nft1.attributes,
-                    RewardPerSec: Number(String(nftEQ.characterId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.characterId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -228,7 +228,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_2_Img,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(String(nftEQ.accessoriesId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.accessoriesId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -245,7 +245,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_3,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(String(nftEQ.backId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.backId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -262,7 +262,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_4,
                     Description: nft4.description,
                     Attribute: nft4.attributes,
-                    RewardPerSec: Number(String(nftEQ.shoesId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.shoesId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -279,7 +279,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_5,
                     Description: nft5.description,
                     Attribute: nft5.attributes,
-                    RewardPerSec: Number(String(nftEQ.weaponId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.weaponId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -296,7 +296,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_6,
                     Description: nft6.description,
                     Attribute: nft6.attributes,
-                    RewardPerSec: Number(String(nftEQ.clothId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.clothId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -313,7 +313,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nftEQ_7,
                     Description: nft7.description,
                     Attribute: nft7.attributes,
-                    RewardPerSec: Number(String(nftEQ.hatId).slice(-4)),
+                    RewardPerSec: Number(String(nftEQ.hatId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -376,7 +376,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(yournftwallet[i].Id.slice(-4)),
+                    RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
                     isStaked: false
                 })
             }

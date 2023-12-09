@@ -125,7 +125,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(yournftwallet[i].Id.slice(-4)),
+                    RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
                     Onsell: false,
                     Count: null
                 })
@@ -358,7 +358,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(mkpwallet[i].Id.slice(-4)),
+                    RewardPerSec: Number(mkpwallet[i].Id.slice(-5)),
                     Count: count,
                     Currencyindex: currencyindex,
                     Price: price,
@@ -380,7 +380,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, cmdaoMk
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(String(yournftsell1[i].Id).slice(-4)),
+                    RewardPerSec: Number(String(yournftsell1[i].Id).slice(-5)),
                     Onsell: true,
                     Count: yournftsell1[i].Count
                 })

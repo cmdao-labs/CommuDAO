@@ -165,7 +165,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 const response = await fetch(data3[i].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
 
-                const bonus = Number(String(yournft[i].Id).slice(-4))
+                const bonus = Number(String(yournft[i].Id).slice(-5))
 
                 nfts.push({Id: Number(yournft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"), Description: nft.description, Attribute: nft.attributes, RewardPerSec: bonus, Onsell: false, Count: null})
             }
@@ -212,7 +212,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 const response = await fetch(data5[i].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
 
-                const bonus = Number(String(yoursalonnft[i].Id).slice(-4))
+                const bonus = Number(String(yoursalonnft[i].Id).slice(-5))
 
                 salonNfts.push({Id: Number(yoursalonnft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"), Description: nft.description, Attribute: nft.attributes, RewardPerSec: bonus, Onsell: false, Count: null})
             }
