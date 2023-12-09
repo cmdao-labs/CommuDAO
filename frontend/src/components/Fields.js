@@ -76,7 +76,7 @@ const Fields = ({ callMode, navigate }) => {
 
         <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <div style={{height: 230}}></div>
+                <img src="https://nftstorage.link/ipfs/bafybeih2ikujv3rpu4rumh2kugeah3wyxa37dgqq6cnwkonkrublj2j5hi" height="230" alt="Field_TheHeavenLand" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>

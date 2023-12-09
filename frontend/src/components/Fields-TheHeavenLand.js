@@ -236,8 +236,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px"}}>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://nftstorage.link/ipfs/bafybeife7qt3dj7usydykw657jm6dabtgjfsyvkblb3h3be4rh5gr2sqga')", overflow: "scroll"}}>
+                <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>The Heaven Land</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake The Mythical Guardians to earn $GOLD & $JBC (LIMITED).</div>
                 </div>
