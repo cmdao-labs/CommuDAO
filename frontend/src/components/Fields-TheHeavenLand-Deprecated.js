@@ -209,16 +209,6 @@ const TheHeavenLandDeprecated = ({ setisLoading, txupdate, setTxupdate, erc721AB
     const unstakeNft = async (_nftid, jbcTime, _unstake) => {
         setisLoading(true)
         try {
-            if (Number(jbcTime) >= 86400) {
-                const config1 = await prepareWriteContract({
-                    address: thlField,
-                    abi: thlFieldABI,
-                    functionName: 'claimJBC',
-                    args: [_nftid],
-                })
-                const tx1 = await writeContract(config1)
-                await tx1.wait()
-            }
             const config2 = await prepareWriteContract({
                 address: thlField,
                 abi: thlFieldABI,
