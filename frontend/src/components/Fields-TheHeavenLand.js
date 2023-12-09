@@ -6,9 +6,10 @@ import { ThreeDots } from 'react-loading-icons'
 
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
 const thlField = '0xa043438BB23DaB01e0d8a8eB346cD67ED92eAc06'
+const thlFieldMinter = '0x743B525F3F160a7518Ce57f4e4E91BCE032A6277'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI }) => {
+const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI, fieldTHLMinterABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -209,7 +210,6 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
     const unstakeNft = async (_nftid, jbcTime, _unstake) => {
         setisLoading(true)
         try {
-            console.log(Number(jbcTime))
             if (Number(jbcTime) >= 86400) {
                 const config1 = await prepareWriteContract({
                     address: thlField,
@@ -219,8 +219,18 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
                 })
                 const tx1 = await writeContract(config1)
                 await tx1.wait()
-                setTxupdate(tx1)
             }
+            const config3 = await prepareWriteContract({
+                address: thlFieldMinter,
+                abi: fieldTHLMinterABI,
+                functionName: 'obtain',
+                args: [_nftid],
+            })
+            const tx3 = await writeContract(config3)
+            await tx3.wait()
+            setTxupdate(tx3)
+        } catch {}
+        try {
             const config2 = await prepareWriteContract({
                 address: thlField,
                 abi: thlFieldABI,

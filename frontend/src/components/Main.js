@@ -40,6 +40,7 @@ import aurora721ABI from './jsons/aurora721ABI.json'
 import tunaFieldABI from './jsons/tunaFieldABI.json'
 import woodFieldABI from './jsons/woodFieldABI.json'
 import thlFieldABI from './jsons/thlFieldABI.json'
+import fieldTHLMinterABI from './jsons/fieldTHLMinterABI.json'
 
 import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
@@ -95,7 +96,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.1.8'
+const v = '0.1.9'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -351,7 +352,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 17 ?
-                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
+                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} fieldTHLMinterABI={fieldTHLMinterABI} /> :
                     <></>
                 }
                 {mode === 2 ?
