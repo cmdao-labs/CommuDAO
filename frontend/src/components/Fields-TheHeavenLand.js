@@ -5,7 +5,7 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
-const thlField = '0xd9145CCE52D386f254917e481eB44e9943F39138'
+const thlField = '0xdBC6e0928e49f22Ca448fEF2fEb9de526d6A65B9'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI }) => {
