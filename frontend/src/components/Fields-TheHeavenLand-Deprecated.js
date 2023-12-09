@@ -5,10 +5,10 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
-const thlField = '0xd9145CCE52D386f254917e481eB44e9943F39138'
+const thlField = '0xa043438BB23DaB01e0d8a8eB346cD67ED92eAc06'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI }) => {
+const TheHeavenLandDeprecated = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -338,4 +338,4 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
     )
 }
 
-export default TheHeavenLand
+export default TheHeavenLandDeprecated

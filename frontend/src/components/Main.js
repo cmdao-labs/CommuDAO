@@ -8,6 +8,7 @@ import FieldsAncientForrest from './Fields-AncientForrest'
 import FishingField from './Fields-TunaLake'
 import RatHuntingField from './Fields-OldWarehouse'
 import TheHeavenLand from './Fields-TheHeavenLand'
+import TheHeavenLandDeprecated from './Fields-TheHeavenLand-Deprecated'
 import Labs from './Labs'
 import Dungeon from './Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
@@ -40,7 +41,6 @@ import aurora721ABI from './jsons/aurora721ABI.json'
 import tunaFieldABI from './jsons/tunaFieldABI.json'
 import woodFieldABI from './jsons/woodFieldABI.json'
 import thlFieldABI from './jsons/thlFieldABI.json'
-import fieldTHLMinterABI from './jsons/fieldTHLMinterABI.json'
 
 import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
@@ -96,7 +96,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.1.9'
+const v = '0.1.10'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -132,6 +132,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "THE-HEAVEN-LAND") {
                     preset = 17
                     document.title = "The Heaven Land | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "THE-HEAVEN-LAND-DEPRECATED") {
+                    preset = 18
+                    document.title = "[DEPRECATED] The Heaven Land | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
                     document.title = "Fields [BKC] | CommuDAO"
@@ -352,7 +355,11 @@ const Main = () => {
                     <></>
                 }
                 {mode === 17 ?
-                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} fieldTHLMinterABI={fieldTHLMinterABI} /> :
+                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
+                    <></>
+                }
+                {mode === 18 ?
+                    <TheHeavenLandDeprecated setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
                     <></>
                 }
                 {mode === 2 ?
