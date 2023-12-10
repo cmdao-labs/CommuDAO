@@ -341,7 +341,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                                             <img src="../tokens/jbc.png" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
                                             {!item.isJbcOut ?
                                                 <>
-                                                    {!item.isJbcOut && Number(item.Reward2) < 86400 ? (500 * Number(item.Reward2)) / 86400 : "500.000 [MAX]"}
+                                                    {!item.isJbcOut && Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}
                                                 </> :
                                                 <>OUT</>
                                             } 
