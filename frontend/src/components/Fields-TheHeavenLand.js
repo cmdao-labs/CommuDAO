@@ -6,12 +6,16 @@ import { ThreeDots } from 'react-loading-icons'
 
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
 const thlField = '0xdBC6e0928e49f22Ca448fEF2fEb9de526d6A65B9'
+const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFieldABI }) => {
+const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, thlFieldABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
+    const [allDaily, setAllDaily] = React.useState("0.000")
+    const [allReward, setAllReward] = React.useState("0.000")
+    const [goldBalance, setGoldBalance] = React.useState("0.000")
 
     React.useEffect(() => {
         console.log("Connected to " + address)
@@ -77,6 +81,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
+            let _allDaily = 0
+            let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i]
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -84,6 +90,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                     nft = await response.json()
                 } catch {}
+                _allDaily += Number(ethers.utils.formatEther(String(1 * 10**14)))
+                _allReward += Number(ethers.utils.formatEther(String(data11[i])))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -156,7 +164,14 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, ]
+            const goldBal = address !== null && address !== undefined ? await readContract({
+                address: gold,
+                abi: erc20ABI,
+                functionName: 'balanceOf',
+                args: [address],
+            }) : 0
+
+            return [nfts, _allDaily, _allReward, goldBal]
         }
 
         const promise = thefetch()
@@ -170,6 +185,9 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
 
         getAsync().then(result => {
             result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
+            setAllDaily(result[1] * 86400)
+            setAllReward(result[2])
+            setGoldBalance(ethers.utils.formatEther(String(result[3])))
         })
 
     }, [address, txupdate, erc721ABI, thlFieldABI])
@@ -255,6 +273,33 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc721ABI, thlFiel
             </div>
 
             <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+                <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>MG ON STAKING</div>
+                        <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
+                    </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
+                        <div style={{fontSize: "24px"}} className="emp">
+                            {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                        </div>
+                    </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
+                        <div style={{fontSize: "24px"}}>
+                            {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                        </div>
+                    </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>GOLD BALANCE</div>
+                        <div style={{fontSize: "24px"}}>
+                            {nft.length > 0 && nft[0] !== null ? Number(goldBalance).toFixed(3) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$MOLD"/>
+                        </div>
+                    </div>
+                </div>
                 {nft.length > 0 ?
                     <>
                     {nft[0] !== null ?

@@ -96,7 +96,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.1.12'
+const v = '0.1.13'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -355,7 +355,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 17 ?
-                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
+                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
                     <></>
                 }
                 {mode === 18 ?
