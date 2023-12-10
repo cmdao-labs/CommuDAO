@@ -190,7 +190,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
             setGoldBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc721ABI, thlFieldABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, thlFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
