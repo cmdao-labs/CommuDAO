@@ -48,6 +48,17 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
             }
             console.log(yournftstake)
 
+            const data01 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftstake.map((item) => (
+                    {
+                        address: thlField,
+                        abi: thlFieldABI,
+                        functionName: 'nftStake',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftstake.length).fill({tokenOwnerOf: '', isJbcOut: false})]
+
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
@@ -103,7 +114,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     isStaked: true,
                     Reward: String(data11[i]),
                     Reward2: String(data12[i]),
-                    isJbcOut: data0[i].isJbcOut
+                    isJbcOut: data01[i].isJbcOut
                 })
             }
 
@@ -121,16 +132,6 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     }
                 ))
             }) : [Array(walletRemoveDup.length).fill('')]
-            const data00 = address !== null && address !== undefined ? await readContracts({
-                contracts: walletRemoveDup.map((item) => (
-                    {
-                        address: thlField,
-                        abi: thlFieldABI,
-                        functionName: 'nftStake',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(walletRemoveDup.length).fill({tokenOwnerOf: '', isJbcOut: false})]
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
@@ -140,6 +141,16 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
             }
             console.log(yournftwallet)
 
+            const data00 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet.map((item) => (
+                    {
+                        address: thlField,
+                        abi: thlFieldABI,
+                        functionName: 'nftStake',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet.length).fill({tokenOwnerOf: '', isJbcOut: false})]
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
                     {
@@ -174,6 +185,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
             }
 
             if (nfts.length === 0) { nfts.push(null) }
+
+            console.log(nfts)
 
             const goldBal = address !== null && address !== undefined ? await readContract({
                 address: gold,

@@ -96,7 +96,7 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.1.15'
+const v = '0.1.16'
 
 const Main = () => {
     const { chains, provider } = configureChains(
