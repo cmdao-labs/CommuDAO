@@ -38,7 +38,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                         args: [String(item)],
                     }
                 ))
-            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: ''})]
+            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: '', isJbcOut: false})]
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
@@ -121,6 +121,16 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     }
                 ))
             }) : [Array(walletRemoveDup.length).fill('')]
+            const data00 = address !== null && address !== undefined ? await readContracts({
+                contracts: walletRemoveDup.map((item) => (
+                    {
+                        address: thlField,
+                        abi: thlFieldABI,
+                        functionName: 'nftStake',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(walletRemoveDup.length).fill({tokenOwnerOf: '', isJbcOut: false})]
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
@@ -158,7 +168,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     RewardPerSec: 1,
                     isStaked: false,
                     Reward: 0,
-                    Reward2: 0
+                    Reward2: 0,
+                    isJbcOut: data00[i].isJbcOut
                 })
             }
 
@@ -224,10 +235,10 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
         setisLoading(false)
     }
     
-    const unstakeNft = async (_nftid, jbcTime, _unstake) => {
+    const unstakeNft = async (_nftid, jbcTime, _unstake, _isjbcout) => {
         setisLoading(true)
         try {
-            if (Number(jbcTime) >= 86400) {
+            if (Number(jbcTime) >= 86400 && !_isjbcout) {
                 const config1 = await prepareWriteContract({
                     address: thlField,
                     abi: thlFieldABI,
@@ -341,19 +352,19 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                                             <img src="../tokens/jbc.png" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
                                             {!item.isJbcOut ?
                                                 <>
-                                                    {!item.isJbcOut && Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}
+                                                    {Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}
                                                 </> :
                                                 <>OUT</>
                                             } 
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, false)}}>HARVEST</div> :
+                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, false, item.isJbcOut)}}>HARVEST</div> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                     }
                                 </div>
                                 {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true)}}>UNSTAKE</div> :
+                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true, item.isJbcOut)}}>UNSTAKE</div> :
                                     <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
                                 }
                             </div>
