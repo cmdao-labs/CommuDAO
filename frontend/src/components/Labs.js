@@ -17,6 +17,8 @@ const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const silLab = '0xfEe9af37FBee37DbA1A830080b20Caa99b41741A'
 const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const goldLab = '0xc69F46334a86F4617Fa17432F430c641c2e10139'
+const mtToken = '0x169816800f1eA9C5735937388aeb9C2A3bAca11F'
+const goldLab2 = '0x47FA364aDafa7d78c0e4A4bF66D389d2D01A6b05'
 const goldMine = '0x28d8c3c2C0199Ff6E73eb7c4321F43E0e7F80ad8'
 
 const tunaField = "0x09676315DC0c85F6bd5e866C5f1363A00Eec4381"
@@ -43,6 +45,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [silverBalance, setSilverBalance] = React.useState(0)
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
+    const [mtBalance, setMtBalance] = React.useState(0)
 
     const [levelCraftBBQ, setLevelCraftBBQ] = React.useState(0)
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
@@ -65,6 +68,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isCraftGOLD, setIsCraftGOLD] = React.useState(null)
     const [timetoClaimGOLD, setTimeToClaimGOLD] = React.useState(0)
     const [canCraftGOLD, setCanCraftGOLD] = React.useState(false)
+
+    const [isCraftGOLD2, setIsCraftGOLD2] = React.useState(null)
+    const [timetoClaimGOLD2, setTimeToClaimGOLD2] = React.useState(0)
+    const [canCraftGOLD2, setCanCraftGOLD2] = React.useState(false)
 
     const [isCraft1, setIsCraft1] = React.useState(null)
     const [timetoClaim1, setTimeToClaim1] = React.useState(0)
@@ -212,8 +219,20 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         functionName: 'supplier',
                         args: [address],
                     },
+                    {
+                        address: goldLab2,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
+                    {
+                        address: mtToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, ]
             
             const cmjBal = data[0]
             const woodBal = data[1]
@@ -235,6 +254,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const labLogSIL = data[17]
             const labLogGOLD = data[18]
             const mineGold = data[19]
+            const labLogGOLD2 = data[20]
+            const mtBal = data[21]
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -244,6 +265,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftPZA = Number(ethers.utils.formatEther(String(stOPTBal))) >= 1 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 10 && Number(ethers.utils.formatEther(String(cuBal))) >= 50000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 200 && Number(ethers.utils.formatEther(String(silBal))) >= 2000 ? true : false
+            const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 500 ? true : false
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 200 && Number(jbcBal.formatted) >= 10 ? true : false
 
             const currentQueue = await readContract({
@@ -276,6 +298,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
                 labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
+                mtBal, labLogGOLD2, _canCraftGOLD2, 
             ]
         }
 
@@ -371,6 +394,14 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimMineGold(nextMineGOLD.toLocaleString('es-CL')) :
                 setTimeToClaimMineGold(0)
             setCanMineGold(result[31])
+
+            setMtBalance(ethers.utils.formatEther(result[32]))
+            setIsCraftGOLD2(Number(result[33].machineRun) > 0)
+            const nextHourGOLD2 = new Date((result[33].laststamp * 1000) + (3600 * 1 * 1000))
+            Date.now() - (result[33].laststamp * 1000) <= (3600 * 1 * 1000) ?
+                setTimeToClaimGOLD2(nextHourGOLD2.toLocaleString('es-CL')) :
+                setTimeToClaimGOLD2(0)
+            setCanCraftGOLD2(result[34])
         })
 
     }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, goldMineABI, kycABI])
@@ -863,6 +894,69 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
         setisLoading(false)
     }
 
+    const craftGOLDHandle2 = async (_machine) => {
+        setisLoading(true)
+        try {
+            const woodAllow = await readContract({
+                address: woodField,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, goldLab2],
+            })
+            if (woodAllow < (100000000 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: woodField,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [goldLab2, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const mtAllow = await readContract({
+                address: mtToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, goldLab2],
+            })
+            if (mtAllow < (500 * 10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: mtToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [goldLab2, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            const config3 = await prepareWriteContract({
+                address: goldLab2,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const obtainGOLDHandle2 = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: goldLab2,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     const mineGOLDHandle = async (_machine) => {
         setisLoading(true)
         try {
@@ -1074,6 +1168,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             }}
                         />
                         <div style={{marginLeft: "5px"}}>{Number(copperBalance).toFixed(3)}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <div style={{marginLeft: "5px"}}>$MT {Number(mtBalance).toFixed(3)}</div>
                     </div>
                 </div>
 
@@ -1747,24 +1844,24 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
                             <div>1 hour</div>
                         </div>
-                        {false && isCraftGOLD ?
+                        {isCraftGOLD2 ?
                             <>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                    <div>{timetoClaimGOLD === 0 ? "now" : timetoClaimGOLD}</div>
+                                    <div>{timetoClaimGOLD2 === 0 ? "now" : timetoClaimGOLD2}</div>
                                 </div>
-                                {timetoClaimGOLD === 0 ?
-                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainGOLDHandle}>Obtain</div> :
+                                {timetoClaimGOLD2 === 0 ?
+                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainGOLDHandle2}>Obtain</div> :
                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
                                 }
                             </> :
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {false && isCraftGOLD !== null ?
+                                        {isCraftGOLD2 !== null ?
                                             <>
-                                                {canCraftGOLD ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftGOLDHandle(1)}>Craft Gold</div> :
+                                                {canCraftGOLD2 ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftGOLDHandle2(1)}>Craft Gold</div> :
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
                                                 }
                                             </> :
