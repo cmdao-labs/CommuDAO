@@ -377,7 +377,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     params: {
                                         type: 'ERC20',
                                         options: {
-                                            address: bstToken,
+                                            address: salmToken,
                                             symbol: 'SALM',
                                             decimals: 18,
                                             image: 'https://nftstorage.link/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
