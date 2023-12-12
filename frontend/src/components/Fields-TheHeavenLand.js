@@ -320,7 +320,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                         <div style={{marginBottom: "20px"}}>GOLD BALANCE</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(goldBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$MOLD"/>
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
                         </div>
                     </div>
                 </div>
