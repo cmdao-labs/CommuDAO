@@ -6,7 +6,7 @@ import { useAccount, useNetwork } from 'wagmi'
 const jusdt = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
-const cmjb = '0xb62c20B63b47e48EFb2e67e951C0A5E4Bd36E7e3'
+const cmjb = '0xc5815d3ECA0AFBecB6687ffA9E6040D977a76F6D'
 
 const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI }) => {
     const { address } = useAccount()
@@ -167,10 +167,10 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: kusdt,
+                address: cmj,
                 abi: erc20ABI,
                 functionName: 'transfer',
-                args: ["", ethers.utils.parseEther(String(depositCMJ))],
+                args: ["0x553819505D984EeE91aDD1DdCD60C82618d0CD5d", ethers.utils.parseEther(String(depositCMJ))],
                 chainId: 8899,
             })
             const tx = await writeContract(config)
@@ -186,10 +186,10 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: jusdt,
+                address: cmjb,
                 abi: erc20ABI,
                 functionName: 'transfer',
-                args: ["", ethers.utils.parseEther(String(withdrawCMJ))],
+                args: ["0xF2a87528be1222A930D99f5f6ed94Aae72f40769", ethers.utils.parseEther(String(withdrawCMJ))],
                 chainId: 96,
             })
             const tx = await writeContract(config)
@@ -287,12 +287,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         </div>
                     </>
                 }
-                {mode === 0 &&
+                {mode === 2 &&
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>Bridging Fee</div>
-                                <div style={{fontSize: "30px"}}>100 CMJ/TX</div>
+                                <div style={{fontSize: "30px"}}>10 CMJ/TX</div>
                             </div>
                         </div>
                         <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
