@@ -5,6 +5,7 @@ import { useAccount, useNetwork } from 'wagmi'
 
 const jusdt = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
+const usdtBsc = '0x55d398326f99059ff775485246999027b3197955' 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const cmjb = '0xc5815d3ECA0AFBecB6687ffA9E6040D977a76F6D'
 
@@ -15,9 +16,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
     const [reserve, setReserve] = React.useState(0)
     const [supply, setSupply] = React.useState(0)
+    const [reserve2, setReserve2] = React.useState(0)
+    const [supply2, setSupply2] = React.useState(0)
 
     const [kusdtBalance, setKusdtBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
+    const [usdtBscBalance, setUsdtBscBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [cmjbBalance, setCmjbBalance] = React.useState(0)
 
@@ -26,6 +30,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
     const [depositCMJ, setDepositCMJ] = React.useState('')
     const [withdrawCMJ, setWithdrawCMJ] = React.useState('')
+
+    const [depositValue2, setDepositValue2] = React.useState('')
+    const [withdrawValue2, setWithdrawValue2] = React.useState('')
 
     React.useEffect(() => {
         const fetch = async () => {
@@ -43,6 +50,20 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xBb7A653509CDd8C4Ccd34D5834c817Ed3DFD6Fc7'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: usdtBsc,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3'],
+                        chainId: 56,
+                    },
+                    {
+                        address: jusdt,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063'],
                         chainId: 8899,
                     },
                 ],
@@ -78,18 +99,28 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         args: [address],
                         chainId: 96,
                     },
+                    {
+                        address: usdtBsc,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 56,
+                    },
                 ],
-            }) : [0, 0, 0, 0]
+            }) : [0, 0, 0, 0, 0, ]
 
             const Balance = data1[0]
             const Balance2 = data1[1]
+            const Balance_2 = data1[2]
+            const Balance2_2 = data1[3]
 
             const kusdtBal = data2[0]
             const jusdtBal = data2[1]
             const cmjBal = data2[2]
             const cmjbBal = data2[3]
+            const usdtBscBal = data2[4]
 
-            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmjbBal]
+            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmjbBal, usdtBscBal, Balance_2, Balance2_2, ]
         }
 
         const promise = fetch()
@@ -116,6 +147,14 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             setCmjBalance(Math.floor(cmjbalance * 10000) / 10000)
             const cmjbbalance = ethers.utils.formatEther(result[5])
             setCmjbBalance(Math.floor(cmjbbalance * 10000) / 10000)
+
+            const usdtBscbalance = ethers.utils.formatEther(result[6])
+            setUsdtBscBalance(Math.floor(usdtBscbalance * 10000) / 10000)
+
+            const balance_2 = result[7] / 10**18
+            setReserve2(balance_2)
+            const balance2_2 = ethers.utils.formatEther(result[8])
+            setSupply2(balance2_2)
         })
     }, [address, txupdate, erc20ABI])
 
@@ -197,8 +236,48 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             setTxupdate(tx)
         } catch (e) {
             setisError(true)
-            console.log(e)
             setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const depositHandle2 = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: usdtBsc,
+                abi: erc20ABI,
+                functionName: 'transfer',
+                args: ["0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3", ethers.utils.parseEther(String(depositValue2))],
+                chainId: 56,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(e)
+        }
+        setisLoading(false)
+    }
+    const withdrawHandle2 = async () => {
+        setisLoading(true)
+        if (Number(withdrawValue2) <= Number(reserve2)) {
+            try {
+                const config = await prepareWriteContract({
+                    address: jusdt,
+                    abi: erc20ABI,
+                    functionName: 'transfer',
+                    args: ["0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063", ethers.utils.parseEther(String(withdrawValue2))],
+                    chainId: 8899,
+                })
+                const tx = await writeContract(config)
+                await tx.wait()
+                setTxupdate(tx)
+            } catch (e) {
+                setisError(true)
+                setErrMsg(String(e))
+            }
         }
         setisLoading(false)
     }
@@ -253,7 +332,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>0.10 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "140px", marginBottom: "100px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
@@ -281,6 +360,61 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 {chain.id === 8899 && address !== undefined ?
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                }
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
+                            </div>
+                        </div>
+
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial"}}>
+                                    JBC Bridge Contract
+                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href="https://exp-l1.jibchain.net/address/0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063" target="_blank" rel="noreferrer"><div className="fa fa-external-link"></div></a>
+                                </div>
+                                <div style={{fontSize: "30px"}}>{Number(supply2).toLocaleString('en-US', {maximumFractionDigits:2})} JUSDT</div>
+                            </div>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>
+                                    BSC Bridge Contract
+                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href="https://bscscan.com/address/0x92e2fb6b899e715b6d392b7b1b851a9f7aae2dc3" target="_blank" rel="noreferrer"><div className="fa fa-external-link"></div></a>
+                                </div>
+                                <div style={{fontSize: "30px"}}>{Number(reserve2).toLocaleString('en-US', {maximumFractionDigits:2})} USDT</div>
+                            </div>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>Bridging Fee</div>
+                                <div style={{fontSize: "30px"}}>0.50 USDT/TX</div>
+                            </div>
+                        </div>
+                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 USDT [BSC]"
+                                    value={depositValue2}
+                                    onChange={(event) => setDepositValue2(event.target.value)}
+                                ></input>
+                                {chain.id === 56 && address !== undefined ? 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                }
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(usdtBscBalance).toFixed(4)} USDT [BSC]</div>
+                            </div>
+                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 JUSDT"
+                                    value={withdrawValue2}
+                                    onChange={(event) => setWithdrawValue2(event.target.value)}
+                                ></input>
+                                {chain.id === 8899 && address !== undefined ?
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
                             </div>

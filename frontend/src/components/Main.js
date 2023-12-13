@@ -93,14 +93,15 @@ import TBridge from './tBridge'
 import { WagmiConfig, createClient, configureChains, useNetwork } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { bsc } from 'wagmi/chains'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.1.19'
+const v = '0.2.0'
 
 const Main = () => {
     const { chains, provider } = configureChains(
-        [jbcL1, bkc],
+        [jbcL1, bkc, bsc],
         [publicProvider()]
     )
 

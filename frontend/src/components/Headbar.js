@@ -20,7 +20,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
 
   React.useEffect(() => {
     if (chain !== undefined) {
-      chain.id !== 8899 && chain.id !== 96 ? setIsChainInvalid(true) : setIsChainInvalid(false)
+      chain.id !== 8899 && chain.id !== 96 && chain.id !== 56 ? setIsChainInvalid(true) : setIsChainInvalid(false)
     }
 
     const thefetch = async () => {
@@ -40,21 +40,21 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
       }) : 0
 
       return [jdaoBal, cmosBal]
-  }
+    }
 
-  const promise = thefetch()
+    const promise = thefetch()
 
-  const getAsync = () =>
-    new Promise((resolve) => 
-      setTimeout(
-        () => resolve(promise), 1000
+    const getAsync = () =>
+      new Promise((resolve) => 
+        setTimeout(
+          () => resolve(promise), 1000
+        )
       )
-    )
 
-  getAsync().then(result => {
-    setJdaoBalance(ethers.utils.formatEther(String(result[0])))
-    setCmosBalance(ethers.utils.formatEther(String(result[1])))
-  })
+    getAsync().then(result => {
+      setJdaoBalance(ethers.utils.formatEther(String(result[0])))
+      setCmosBalance(ethers.utils.formatEther(String(result[1])))
+    })
   }, [chain, address, txupdate, erc20ABI])
 
   return (
@@ -154,6 +154,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <div id="walletDiv" style={{border: "1px solid", display: "flex", justifyContent: "center", alignItems: "center"}} className="wallet">
               {chain.id === 8899 && <img src="https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu" style={{marginRight: "15px"}} width="25" alt="JBCL1" />}
               {chain.id === 96 && <img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" style={{marginRight: "15px"}} width="25" alt="BKC" />}
+              {chain.id === 56 && <img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" style={{marginRight: "15px"}} width="25" alt="BSC" />}
               {address.slice(0, 4) + "..." + address.slice(-4)}
               <i style={{fontSize: "16px", marginLeft: "15px", color: "#ff007a", cursor: "pointer"}} className="fa fa-sign-out" onClick={disconnect}></i>
             </div> :
