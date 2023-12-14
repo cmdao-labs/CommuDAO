@@ -243,20 +243,22 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
     const depositHandle2 = async () => {
         setisLoading(true)
-        try {
-            const config = await prepareWriteContract({
-                address: usdtBsc,
-                abi: erc20ABI,
-                functionName: 'transfer',
-                args: ["0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3", ethers.utils.parseEther(String(depositValue2))],
-                chainId: 56,
-            })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(e)
+        if (Number(depositValue2) <= Number(supply2)) {
+            try {
+                const config = await prepareWriteContract({
+                    address: usdtBsc,
+                    abi: erc20ABI,
+                    functionName: 'transfer',
+                    args: ["0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3", ethers.utils.parseEther(String(depositValue2))],
+                    chainId: 56,
+                })
+                const tx = await writeContract(config)
+                await tx.wait()
+                setTxupdate(tx)
+            } catch (e) {
+                setisError(true)
+                setErrMsg(e)
+            }
         }
         setisLoading(false)
     }
@@ -291,13 +293,17 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         <div className='hashtag' onClick={() => setMode(1)}>USDT</div>
                         <div className='hashtag' style={{marginLeft: "20px"}} onClick={() => setMode(2)}>CMJ</div>
                     </div>
-                    {mode === 1 &&
+                    {(mode === 1 || mode === 12) &&
                         <>
                             <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
                                 JUSDT, #1 wrapped stablecoin on JBC.
                             </div>
-                            <div style={{width: "100%", marginTop: "35px", fontSize: "16px", letterSpacing: "1px"}}>[JUSDT : KUSDT] Cross-chain bridging is now on service 24/7!</div>
+                            <div style={{width: "100%", marginTop: "35px", fontSize: "16px", letterSpacing: "1px"}}>[USDT : JUSDT] Cross-chain bridging is now on service 24/7!</div>
+                            <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
+                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(1)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                                <div className='hashtag' style={{marginLeft: "10px", padding: "10px"}} onClick={() => setMode(12)}><img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" width="25" alt="BSC" /></div>
+                            </div>
                         </>
                     }
                     {mode === 2 &&
@@ -310,7 +316,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         </>
                     }
                 </div>
-                {mode === 1 &&
+                {mode === 1 && chain !== undefined &&
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
@@ -342,7 +348,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     placeholder="0.0 KUSDT"
                                     onChange={handleDeposit}
                                 ></input>
-                                {chain.id === 96 && address !== undefined ? 
+                                {chain.id === 96 && address !== null && address !== undefined ? 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositHandle}>BRIDGE TO JBC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
@@ -357,14 +363,17 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     placeholder="0.0 JUSDT"
                                     onChange={handleWithdraw}
                                 ></input>
-                                {chain.id === 8899 && address !== undefined ?
+                                {chain.id === 8899 && address !== null && address !== undefined ?
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
                             </div>
                         </div>
-
+                    </>
+                }
+                {mode === 12 && chain !== undefined &&
+                    <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "15px", textAlign: "initial"}}>
@@ -396,7 +405,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={depositValue2}
                                     onChange={(event) => setDepositValue2(event.target.value)}
                                 ></input>
-                                {chain.id === 56 && address !== undefined ? 
+                                {chain.id === 56 && address !== null && address !== undefined ? 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
@@ -412,7 +421,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={withdrawValue2}
                                     onChange={(event) => setWithdrawValue2(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== undefined ?
+                                {chain.id === 8899 && address !== null && address !== undefined ?
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
                                 }
@@ -421,7 +430,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         </div>
                     </>
                 }
-                {mode === 2 &&
+                {mode === 2 && chain !== undefined &&
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
@@ -440,7 +449,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={depositCMJ}
                                     onChange={(event) => setDepositCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== undefined ? 
+                                {chain.id === 8899 && address !== null  && address !== undefined ? 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
@@ -456,7 +465,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={withdrawCMJ}
                                     onChange={(event) => setWithdrawCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 96 && address !== undefined ?
+                                {chain.id === 96 && address !== null   && address !== undefined ?
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
@@ -464,6 +473,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                         </div>
                     </>
+                }
+                {chain === undefined && 
+                    <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>
+                        Please connect wallet!
+                    </div>
                 }
             </div>
         </div>
