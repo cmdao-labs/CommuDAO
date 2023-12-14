@@ -12,10 +12,41 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, thlFieldABI }) => {
     const { address } = useAccount()
 
+    const [isTransferModal, setIsTransferModal] = React.useState(false)
+    const [transferNftid, setTransferNftid] = React.useState(null)
+    const [transferName, setTransferName] = React.useState("")
+    const [transferTo, setTransferTo] = React.useState("")
+
     const [nft, setNft] = React.useState([])
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
     const [goldBalance, setGoldBalance] = React.useState("0.000")
+
+    const transferToHandle = (event) => { setTransferTo(event.target.value) }
+    const transferNFT = (_nftid) => {
+        setIsTransferModal(true)
+        setTransferNftid(_nftid)
+        for (let i = 0; i <= nft.length - 1; i++) {
+            if (nft[i].Id === Number(_nftid)) {
+                setTransferName(nft[i].Name)
+            }
+        }
+    }
+    const transferNFTConfirm = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: mgnft,
+                abi: erc721ABI,
+                functionName: 'transferFrom',
+                args: [address, transferTo, transferNftid],
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
 
     React.useEffect(() => {
         console.log("Connected to " + address)
@@ -276,6 +307,19 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
 
     return (
         <>
+            {isTransferModal ?
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
+                        </div>
+                    </div>
+                </div> :
+                <></>
+            }
             <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://nftstorage.link/ipfs/bafybeife7qt3dj7usydykw657jm6dabtgjfsyvkblb3h3be4rh5gr2sqga')", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>The Heaven Land</div>
@@ -378,7 +422,10 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                                 </div>
                                 {item.isStaked ?
                                     <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true, item.isJbcOut)}}>UNSTAKE</div> :
-                                    <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                        <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                        <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                    </div>
                                 }
                             </div>
                         ))}
