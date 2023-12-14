@@ -285,21 +285,21 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     }
 
     return (
-        <div style={{position: "relative", background: "rgb(0, 19, 33)", width: "100%", height: "100%", minHeight: "100vh"}}>
+        <div style={{position: "relative", background: "#1a1919", width: "100%", height: "100%", minHeight: "100vh"}}>
             <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexWrap: "wrap", color: "#fff", overflow: "scroll"}} className="noscroll pixel">
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
-                    <div>CHOOSE TOKEN TO BRIDGE</div>
+                    <div style={{color: "#bdc2c4"}}>CHOOSE TOKEN TO BRIDGE</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
                         <div className='hashtag' onClick={() => setMode(1)}>USDT</div>
-                        <div className='hashtag' style={{marginLeft: "20px"}} onClick={() => setMode(2)}>CMJ</div>
+                        <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(2)}>CMJ</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
                             <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
-                                JUSDT, #1 wrapped stablecoin on JBC.
+                                JUSDT, #1 stablecoin on JBC.
                             </div>
-                            <div style={{width: "100%", marginTop: "35px", fontSize: "16px", letterSpacing: "1px"}}>[USDT : JUSDT] Cross-chain bridging is now on service 24/7!</div>
+                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[USDT : JUSDT] Cross-chain bridging is now on service 24/7!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
                                 <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(1)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
                                 <div className='hashtag' style={{marginLeft: "10px", padding: "10px"}} onClick={() => setMode(12)}><img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" width="25" alt="BSC" /></div>
@@ -312,7 +312,10 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
                                 CMJ, the currency token of CommuDAO.
                             </div>
-                            <div style={{width: "100%", marginTop: "35px", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is coming soon!</div>
+                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is coming soon!</div>
+                            <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
+                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(2)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                            </div>
                         </>
                     }
                 </div>
@@ -320,28 +323,28 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial"}}>
+                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
                                     JBC Bridge Contract
                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href="https://exp-l1.jibchain.net/address/0xBb7A653509CDd8C4Ccd34D5834c817Ed3DFD6Fc7" target="_blank" rel="noreferrer"><div className="fa fa-external-link"></div></a>
                                 </div>
                                 <div style={{fontSize: "30px"}}>{Number(supply).toLocaleString('en-US', {maximumFractionDigits:2})} JUSDT</div>
                             </div>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>
                                     BKC Bridge Contract
                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href="https://www.bkcscan.com/address/0x8622049edEcC20ADA5aDEeaf2Caa53447e68Ae63" target="_blank" rel="noreferrer"><div className="fa fa-external-link"></div></a>
                                 </div>
                                 <div style={{fontSize: "30px"}}>{Number(reserve).toLocaleString('en-US', {maximumFractionDigits:2})} KUSDT</div>
                             </div>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>Bridging Fee</div>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                                 <div style={{fontSize: "30px"}}>0.10 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "100px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "140px", marginBottom: "100px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px", background: "rgb(29 28 28)"}}>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
                                     type="number"
                                     step="1"
                                     min="1"
@@ -349,14 +352,14 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     onChange={handleDeposit}
                                 ></input>
                                 {chain.id === 96 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositHandle}>BRIDGE TO JBC</div> : 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositHandle}>BRIDGE TO JBC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(kusdtBalance).toFixed(4)} KUSDT</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
                                     type="number"
                                     step="1"
                                     min="1"
@@ -364,8 +367,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     onChange={handleWithdraw}
                                 ></input>
                                 {chain.id === 8899 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
                             </div>
@@ -376,28 +379,28 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial"}}>
+                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
                                     JBC Bridge Contract
                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href="https://exp-l1.jibchain.net/address/0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063" target="_blank" rel="noreferrer"><div className="fa fa-external-link"></div></a>
                                 </div>
                                 <div style={{fontSize: "30px"}}>{Number(supply2).toLocaleString('en-US', {maximumFractionDigits:2})} JUSDT</div>
                             </div>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>
                                     BSC Bridge Contract
                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href="https://bscscan.com/address/0x92e2fb6b899e715b6d392b7b1b851a9f7aae2dc3" target="_blank" rel="noreferrer"><div className="fa fa-external-link"></div></a>
                                 </div>
                                 <div style={{fontSize: "30px"}}>{Number(reserve2).toLocaleString('en-US', {maximumFractionDigits:2})} USDT</div>
                             </div>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>Bridging Fee</div>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                                 <div style={{fontSize: "30px"}}>0.50 USDT/TX</div>
                             </div>
                         </div>
                         <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
                                     type="number"
                                     step="1"
                                     min="1"
@@ -406,14 +409,14 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     onChange={(event) => setDepositValue2(event.target.value)}
                                 ></input>
                                 {chain.id === 56 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(usdtBscBalance).toFixed(4)} USDT [BSC]</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
                                     type="number"
                                     step="1"
                                     min="1"
@@ -422,8 +425,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     onChange={(event) => setWithdrawValue2(event.target.value)}
                                 ></input>
                                 {chain.id === 8899 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
                             </div>
@@ -434,14 +437,14 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial"}}>Bridging Fee</div>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                                 <div style={{fontSize: "30px"}}>10 CMJ/TX</div>
                             </div>
                         </div>
                         <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
                                     type="number"
                                     step="1"
                                     min="1"
@@ -450,14 +453,14 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     onChange={(event) => setDepositCMJ(event.target.value)}
                                 ></input>
                                 {chain.id === 8899 && address !== null  && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#000", color: "#fff", border: "1px solid #2e2c35"}}
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
                                     type="number"
                                     step="1"
                                     min="1"
@@ -466,8 +469,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     onChange={(event) => setWithdrawCMJ(event.target.value)}
                                 ></input>
                                 {chain.id === 96 && address !== null   && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#ff007a"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(cmjbBalance).toFixed(4)} CMJ.b</div>
                             </div>
