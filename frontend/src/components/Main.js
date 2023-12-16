@@ -97,7 +97,7 @@ import { bsc } from 'wagmi/chains'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.2.2'
+const v = '0.2.3'
 
 const Main = () => {
     const { chains, provider } = configureChains(

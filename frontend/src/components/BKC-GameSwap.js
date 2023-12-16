@@ -83,6 +83,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
     })
 
     const [lp1Stake, setLp1Stake] = React.useState("")
+    const [lp1StakeWei, setLp1StakeWei] = React.useState(0)
     const [lp1Withdraw, setLp1Withdraw] = React.useState("")
 
     const addstakeHandle = async () => {
@@ -108,7 +109,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'deposit',
-                args: [1, ethers.utils.parseEther(String(lp1Stake))],
+                args: [1, lp1StakeWei],
             })
             const tx = await writeContract(config2)
             await tx.wait()
@@ -254,13 +255,13 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                             <input
                                 placeholder="0.0"
                                 style={{width: "60px", padding: "5px 20px", border: "1px solid #dddade"}}
-                                onChange={(event) => setLp1Stake(event.target.value)}
+                                onChange={(event) => {setLp1Stake(event.target.value); event.target.value !== "" ? setLp1StakeWei(ethers.utils.parseEther(event.target.value)) : setLp1StakeWei(0);}}
                                 value={lp1Stake}
                             />
                             <div
                                 style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                 className="bold"
-                                onClick={() => setLp1Stake(ethers.utils.formatEther(data_Token[0]))}
+                                onClick={() => {setLp1Stake(ethers.utils.formatEther(data_Token[0])); setLp1StakeWei(data_Token[0]);}}
                             >
                                 Max
                             </div>
