@@ -97,7 +97,7 @@ import { bsc } from 'wagmi/chains'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.2.3'
+const v = '0.2.4'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -408,7 +408,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 44 ?
-                    <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} /> :
+                    <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} farmJdaoABI={farmJdaoABI} /> :
                     <></>
                 }
                 {mode === 5 ?

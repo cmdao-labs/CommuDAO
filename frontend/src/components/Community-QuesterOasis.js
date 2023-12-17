@@ -13,13 +13,14 @@ const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
 const questBBQ = '0x26504b691f702a2CB4D5Df89243eB5fccf76B982'
 const bbqLab = '0x9D73C97edC9489935B2dF250a097917d4860C60e'
 const ender = '0x44C846780E6c36bA26a33D121F9069AF967937e4'
+const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
 
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI }) => {
     const { address } = useAccount()
 
     const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -167,6 +168,26 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 mover.push(data2_00[i].ambassador)
             }
 
+            const data2_01 = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'userInfo',
+                        args: [1, item],
+                    }
+                )),
+            })
+            const data2_02 = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'userInfo',
+                        args: [3, item],
+                    }
+                )),
+            })
             const data2_1 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -177,6 +198,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            console.log(data2_1)
             const data2_2 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -216,7 +238,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 }
             }
-            const data2 = ranker.map((item, i) => {return {addr: item, cmxp: (data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5) +  (enderRemoveDup[i].value * 5)}})
+            const data2 = ranker.map((item, i) => {return {addr: item, cmxp: ((data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5) + (enderRemoveDup[i].value * 5) + (Number(ethers.utils.formatEther(data2_01[i].amount)).toFixed(0) * 500) + (Number(ethers.utils.formatEther(data2_02[i].amount)).toFixed(0) * 1000))}})
 
             const data3_1 = await readContracts({
                 contracts: ranker.map((item) => (
@@ -296,7 +318,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setRank4(result[11])
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI])
+    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI])
 
     const claimSILHandle = async () => {
         setisLoading(true)
