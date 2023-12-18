@@ -198,7 +198,6 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
-            console.log(data2_1)
             const data2_2 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
