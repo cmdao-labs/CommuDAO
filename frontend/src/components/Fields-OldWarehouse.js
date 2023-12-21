@@ -282,7 +282,7 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
         <div style={{margin: "0", paddingTop: "30px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start"}} className="collection">
             <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                    <div style={{marginBottom: "20px"}}>ORY ON STAKING</div>
+                    <div style={{marginBottom: "20px"}}>ORY ON WALLET</div>
                     <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
                 </div>
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
