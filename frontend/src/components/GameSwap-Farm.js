@@ -2,6 +2,10 @@ import React from 'react'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
 
+const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+
+const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
+const jusdtToken = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
    
 const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20ABI, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB }) => {
@@ -22,6 +26,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [yourjusdtJdao3Staked, setYourJusdtJdao3Staked] = React.useState(0)
     const [farmJdao3Balance, setFarmJdao3Balance] = React.useState(null)
     const [jdao3Pending, setJdao3Pending] = React.useState(<>0.000</>)
+
+    const [swapfee24hour1, setSwapfee24hour1] = React.useState("")
+    const [swapfee24hour2, setSwapfee24hour2] = React.useState("")
 
     const harvestHandle = async () => {
         setisLoading(true)
@@ -294,8 +301,31 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
     React.useEffect(() => {
         console.log("Connected to " + address)
+        const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
+        const cmjSC = new ethers.Contract(cmjToken, erc20ABI, providerJBC)
 
         const thefetch = async () => {
+            const blockNumber = await providerJBC.getBlockNumber();
+            const fee1Filter = await jusdtSC.filters.Transfer(null, "0x280608DD7712a5675041b95d0000B9089903B569", null)
+            const fee1Event = await jusdtSC.queryFilter(fee1Filter, blockNumber - 7200, 'latest')
+            const fee1Map = await Promise.all(fee1Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+
+            const fee2Filter = await jusdtSC.filters.Transfer("0x280608DD7712a5675041b95d0000B9089903B569", null, null)
+            const fee2Event = await jusdtSC.queryFilter(fee2Filter, blockNumber - 7200, 'latest')
+            const fee2Map = await Promise.all(fee2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+
+            const sumFee = fee1Map.concat(fee2Map).reduce((partialSum, a) => partialSum + a, 0)
+
+            const fee3Filter = await cmjSC.filters.Transfer(null, "0x472d0e2E9839c140786D38110b3251d5ED08DF41", null)
+            const fee3Event = await cmjSC.queryFilter(fee3Filter, blockNumber - 7200, 'latest')
+            const fee3Map = await Promise.all(fee3Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+
+            const fee4Filter = await cmjSC.filters.Transfer("0x472d0e2E9839c140786D38110b3251d5ED08DF41", null, null)
+            const fee4Event = await cmjSC.queryFilter(fee4Filter, blockNumber - 7200, 'latest')
+            const fee4Map = await Promise.all(fee4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+
+            const sumFee2 = fee3Map.concat(fee4Map).reduce((partialSum, a) => partialSum + a, 0);
+
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: [
                     {
@@ -385,6 +415,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             
             return [
                 jclpTotalSup, julpTotalSup, farmJdaoBal, farmJdaoTotalStake, jdaoPend, farmJdao202Bal, farmJdao202TotalStake, jdao202Pend, farmJdao3Bal, farmJdao3TotalStake, jdao3Pend,
+                sumFee, sumFee2, 
             ]
         }
 
@@ -426,6 +457,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             setYourJusdtJdao3Staked((Number(jusdtJuReserv) * Number(_farmjdao3balance)) / Number(_julptotalsupply))
 
             setJdao3Pending(Number(ethers.utils.formatEther(result[10])).toFixed(4))
+
+            setSwapfee24hour1(Number(result[11]).toFixed(0))
+            setSwapfee24hour2(Number(result[12]).toFixed(0))
         })
     }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20ABI])
 
@@ -442,7 +476,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Daily Yield:</div>
-                    <div className="bold">{Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO + 1% SWAP REVENUE</div>
+                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "blue"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Liquidity:</div>
@@ -559,7 +593,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Daily Yield:</div>
-                    <div className="bold">{Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO + 1% SWAP REVENUE</div>
+                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "blue"}}>~฿{Number(swapfee24hour1 * priceTHB).toFixed(0)} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Liquidity:</div>
