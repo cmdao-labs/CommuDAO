@@ -312,7 +312,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
             const fee2Filter = await jusdtSC.filters.Transfer("0x280608DD7712a5675041b95d0000B9089903B569", null, null)
             const fee2Event = await jusdtSC.queryFilter(fee2Filter, blockNumber - 7200, 'latest')
-            const fee2Map = await Promise.all(fee2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+            const fee2Map = await Promise.all(fee2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
 
             const sumFee = fee1Map.concat(fee2Map).reduce((partialSum, a) => partialSum + a, 0)
 
@@ -322,7 +322,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
             const fee4Filter = await cmjSC.filters.Transfer("0x472d0e2E9839c140786D38110b3251d5ED08DF41", null, null)
             const fee4Event = await cmjSC.queryFilter(fee4Filter, blockNumber - 7200, 'latest')
-            const fee4Map = await Promise.all(fee4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+            const fee4Map = await Promise.all(fee4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
 
             const sumFee2 = fee3Map.concat(fee4Map).reduce((partialSum, a) => partialSum + a, 0);
 
