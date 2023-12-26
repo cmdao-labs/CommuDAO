@@ -10,6 +10,7 @@ const { ethereum } = window
 
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
+const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
@@ -120,13 +121,19 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         args: [address],
                     },
                     {
+                        address: jdaoToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
                         address: cmdaoMerchantKYC,
                         abi: cmdaoMerchantKYCABI,
                         functionName: 'bought',
                         args: [address, 1],
                     },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, true, ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, ]
             
             const _isKYC = data[0]
             const cmjBal = data[1]
@@ -137,7 +144,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const cuBal = data[6]
             const jaspBal = data[7]
             const pzaBal = data[8]
-            const isBought5 = data[9]
+            const jdaoBal = data[9]
+            const isBought5 = data[10]
 
             const data2 = await readContracts({
                 contracts: [
@@ -213,6 +221,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'sellList',
                         args: [2],
                     },
+                    {
+                        address: cmdaoMerchant,
+                        abi: cmdaoMerchantABI,
+                        functionName: 'sellList',
+                        args: [6],
+                    },
                 ],
             })
             
@@ -223,6 +237,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell5Id = data2[4]
             const sell6Id = data2[5]
             const sell7Id = data2[11]
+            const sell8Id = data2[12]
             const roll1 = data2[6]
             const roll2 = data2[7]
             const roll3 = data2[8]
@@ -242,6 +257,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy6 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 1 ? true : false
             const sell7remain = 101000200 - Number(sell7Id.sellId)
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
+            const sell8remain = (102033400000 - (Number(sell8Id.sellId) - 8000)) / 100000
+            const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
 
             const roll1remain = Number(roll1.nftCount)
             const roll2remain = Number(roll2.nftCount)
@@ -253,7 +270,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
 
             return [
-                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7,
+                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, 
             ]
         }
@@ -281,6 +298,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy6(result[10])
             setSell7Remain(result[18])
             setCanBuy7(result[19])
+            setSell8Remain(result[20])
+            setCanBuy8(result[21])
 
             setRoll1Remain(result[11])
             setCanRoll1(result[12])
@@ -290,14 +309,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setRoll5Remain(result[16])
             setCanRoll2(result[17])
 
-            setCTunaBalance(ethers.utils.formatEther(String(result[20])))
-            setSx31Balance(ethers.utils.formatEther(String(result[21])))
-            setJusdtBalance(ethers.utils.formatEther(String(result[22])))
-            setCmjBalance(ethers.utils.formatEther(String(result[23])))
-            setBbqBalance(ethers.utils.formatEther(String(result[24])))
-            setPzaBalance(ethers.utils.formatEther(String(result[25])))
-            setCuBalance(ethers.utils.formatEther(String(result[26])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[27]), "gwei"))
+            setCTunaBalance(ethers.utils.formatEther(String(result[22])))
+            setSx31Balance(ethers.utils.formatEther(String(result[23])))
+            setJusdtBalance(ethers.utils.formatEther(String(result[24])))
+            setCmjBalance(ethers.utils.formatEther(String(result[25])))
+            setBbqBalance(ethers.utils.formatEther(String(result[26])))
+            setPzaBalance(ethers.utils.formatEther(String(result[27])))
+            setCuBalance(ethers.utils.formatEther(String(result[28])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[29]), "gwei"))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -489,6 +508,38 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [5]
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const buyHandle8 = async () => {
+        setisLoading(true)
+        try {
+            const jdaoAllow = await readContract({
+                address: jdaoToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, cmdaoMerchant],
+            })
+            if (jdaoAllow < (1000 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: jdaoToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: cmdaoMerchant,
+                abi: cmdaoMerchantABI,
+                functionName: 'buy',
+                args: [6]
             })
             const tx = await writeContract(config2)
             await tx.wait()
@@ -1339,14 +1390,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         </div>
                         {address !== null && address !== undefined ?
                             <>
-                                {false && sell8Remain > 0 ?
+                                {sell8Remain > 0 ?
                                     <>
                                         {canbuy8 ?
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle2}>REDEEM</div> :
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle8}>REDEEM</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ON STOCK AT 10PM, 26.12</div>
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
