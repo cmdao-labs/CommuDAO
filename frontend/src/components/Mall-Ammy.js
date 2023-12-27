@@ -26,18 +26,26 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
     const [cmjBought, setCmjBought] = React.useState("0.000")
     const [ctunaBought, setCtunaBought] = React.useState("0.000")
     const [priceCTUNA, setPriceCTUNA] = React.useState("0.000")
+    const [reserveCmjCTUNA, setReserveCmjCTUNA] = React.useState("")
+    const [reserveCTUNA, setReserveCTUNA] = React.useState("")
 
     const [cmjBought2, setCmjBought2] = React.useState("0.000")
     const [tokenBought, setTokenBought] = React.useState("0.000")
     const [priceSX31, setPriceSX31] = React.useState("0.000")
+    const [reserveCmjSX31, setReserveCmjSX31] = React.useState("")
+    const [reserveSX31, setReserveSX31] = React.useState("")
 
     const [cmjBought3, setCmjBought3] = React.useState("0.000")
     const [tokenBought3, setTokenBought3] = React.useState("0.000")
     const [priceBBQ, setPriceBBQ] = React.useState("0.000")
+    const [reserveCmjBBQ, setReserveCmjBBQ] = React.useState("")
+    const [reserveBBQ, setReserveBBQ] = React.useState("")
 
     const [cmjBoughtPZA, setCmjBoughtPZA] = React.useState("0.000")
     const [tokenBoughtPZA, setTokenBoughtPZA] = React.useState("0.000")
     const [pricePZA, setPricePZA] = React.useState("0.000")
+    const [reserveCmjPZA, setReserveCmjPZA] = React.useState("")
+    const [reservePZA, setReservePZA] = React.useState("")
 
     const handleSwap = async (event) => {
         setInputSwap(event.target.value)
@@ -619,7 +627,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
             const tokensBoughtbbqTOcmj = data2[2]
             const tokensBoughtpzaTOcmj = data2[3]
 
-            return [tokensBoughtctunaTOcmj, tokensBoughtsx31TOcmj, tokensBoughtbbqTOcmj, tokensBoughtpzaTOcmj,]
+            return [tokensBoughtctunaTOcmj, tokensBoughtsx31TOcmj, tokensBoughtbbqTOcmj, tokensBoughtpzaTOcmj, _reserveCmj, _reserveCtuna, _reserveCmj2, _reserveSX31, _reserveCmj3, _reserveBBQ, _reserveCmj4, _reservePZA, ]
         }
 
         const promise = thefetch()
@@ -636,6 +644,15 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
             setPriceSX31(Number(ethers.utils.formatEther(result[1])).toFixed(3))
             setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(5))
             setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(3))
+
+            setReserveCmjCTUNA(ethers.utils.formatEther(result[4]))
+            setReserveCTUNA(ethers.utils.formatEther(result[5]))
+            setReserveCmjSX31(ethers.utils.formatEther(result[6]))
+            setReserveSX31(ethers.utils.formatEther(result[7]))
+            setReserveCmjBBQ(ethers.utils.formatEther(result[8]))
+            setReserveBBQ(ethers.utils.formatEther(result[9]))
+            setReserveCmjPZA(ethers.utils.formatEther(result[10]))
+            setReservePZA(ethers.utils.formatEther(result[11]))
         })
 
     }, [address, erc20ABI, ammyABI, ammyStdABI])
@@ -712,7 +729,25 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                             {gasselected === "BBQ" ? cmjBought3 : ''}
                             {gasselected === "PZA" ? cmjBoughtPZA : ''}
                         </div>
-                        $CMJ
+                        $CMJ [PI: 
+                            {gasselected === "CTUNA" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjCTUNA) - ((Number(reserveCmjCTUNA) * Number(reserveCTUNA)) / (Number(reserveCTUNA) + Number(inputSwap))))) - (Number(reserveCTUNA/reserveCmjCTUNA))) / (Number(reserveCTUNA/reserveCmjCTUNA))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "SX31" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjSX31) - ((Number(reserveCmjSX31) * Number(reserveSX31)) / (Number(reserveSX31) + Number(inputSwap))))) - (Number(reserveSX31/reserveCmjSX31))) / (Number(reserveSX31/reserveCmjSX31))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "BBQ" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjBBQ) - ((Number(reserveCmjBBQ) * Number(reserveBBQ)) / (Number(reserveBBQ) + Number(inputSwap))))) - (Number(reserveBBQ/reserveCmjBBQ))) / (Number(reserveBBQ/reserveCmjBBQ))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "PZA" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjPZA) - ((Number(reserveCmjPZA) * Number(reservePZA)) / (Number(reservePZA) + Number(inputSwap))))) - (Number(reservePZA/reserveCmjPZA))) / (Number(reservePZA/reserveCmjPZA))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {Number(inputSwap) === 0 ? <> 0.00%</> : <></>}
+                        ]
                     </div>
                 </div>
                 <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
@@ -760,7 +795,25 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                             {gasselected === "BBQ" ? tokenBought3 : ''}
                             {gasselected === "PZA" ? tokenBoughtPZA : ''}
                         </div>
-                        ${gasselected}
+                        ${gasselected} [PI: 
+                            {gasselected === "CTUNA" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reserveCTUNA) - ((Number(reserveCTUNA) * Number(reserveCmjCTUNA)) / (Number(reserveCmjCTUNA) + Number(inputSwap2))))) - (Number(reserveCmjCTUNA/reserveCTUNA))) / (Number(reserveCmjCTUNA/reserveCTUNA))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "SX31" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reserveSX31) - ((Number(reserveSX31) * Number(reserveCmjSX31)) / (Number(reserveCmjSX31) + Number(inputSwap2))))) - (Number(reserveCmjSX31/reserveSX31))) / (Number(reserveCmjSX31/reserveSX31))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "BBQ" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reserveBBQ) - ((Number(reserveBBQ) * Number(reserveCmjBBQ)) / (Number(reserveCmjBBQ) + Number(inputSwap2))))) - (Number(reserveCmjBBQ/reserveBBQ))) / (Number(reserveCmjBBQ/reserveBBQ))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "PZA" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reservePZA) - ((Number(reservePZA) * Number(reserveCmjPZA)) / (Number(reserveCmjPZA) + Number(inputSwap2))))) - (Number(reserveCmjPZA/reservePZA))) / (Number(reserveCmjPZA/reservePZA))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {Number(inputSwap2) === 0 ? <> 0.00%</> : <></>}
+                        ]
                     </div>
                 </div>
             </div>

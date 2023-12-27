@@ -22,14 +22,22 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     const [cmjBoughtJDAO, setCmjBoughtJDAO] = React.useState("0.000")
     const [tokenBoughtJDAO, setTokenBoughtJDAO] = React.useState("0.000")
     const [priceJDAO, setPriceJDAO] = React.useState("0.000")
+    const [reserveCmjJdao, setReserveCmjJdao] = React.useState("")
+    const [reserveJdao, setReserveJdao] = React.useState("")
 
     const [cmjBoughtCU, setCmjBoughtCU] = React.useState("0.000")
     const [tokenBoughtCU, setTokenBoughtCU] = React.useState("0.000")
     const [priceCU, setPriceCU] = React.useState("0.000")
+    const [reserveCmjCU, setReserveCmjCU] = React.useState("")
+    const [reserveCU, setReserveCU] = React.useState("")
+
 
     const [cmjBoughtJASP, setCmjBoughtJASP] = React.useState("0.000")
     const [tokenBoughtJASP, setTokenBoughtJASP] = React.useState("0.000")
     const [priceJASP, setPriceJASP] = React.useState("0.000")
+    const [reserveCmjJASP, setReserveCmjJASP] = React.useState("")
+    const [reserveJASP, setReserveJASP] = React.useState("")
+
 
     const handleSwapJDAO = async (event) => {
         setInputSwap(event.target.value)
@@ -465,7 +473,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
             const tokensBoughtcuTOcmj = data2[1]
             const tokensBoughtjaspTOcmj = data2[2]
 
-            return [tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj]
+            return [tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, _reserveCmjJDAO, _reserveJDAO, _reserveCmjCU, _reserveCU, _reserveCmjJASP, _reserveJASP, ]
         }
 
         const promise = thefetch()
@@ -481,6 +489,13 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
             setPriceJDAO(Number(ethers.utils.formatEther(result[0])).toFixed(3))
             setPriceCU(Number(ethers.utils.formatEther(result[1])).toFixed(5))
             setPriceJASP(Number(ethers.utils.formatEther(result[2])).toFixed(3))
+
+            setReserveCmjJdao(ethers.utils.formatEther(result[3]))
+            setReserveJdao(ethers.utils.formatEther(result[4]))
+            setReserveCmjCU(ethers.utils.formatEther(result[5]))
+            setReserveCU(ethers.utils.formatEther(result[6]))
+            setReserveCmjJASP(ethers.utils.formatEther(result[7]))
+            setReserveJASP(ethers.utils.formatEther(result[8]))
         })
 
     }, [address, erc20ABI, ammyStdABI])
@@ -550,7 +565,21 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             {gasselected === "CU" ? cmjBoughtCU : ''}
                             {gasselected === "JASP" ? cmjBoughtJASP : ''}
                         </div>
-                        $CMJ
+                        $CMJ [PI: 
+                            {gasselected === "JDAO" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "CU" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjCU) - ((Number(reserveCmjCU) * Number(reserveCU)) / (Number(reserveCU) + Number(inputSwap))))) - (Number(reserveCU/reserveCmjCU))) / (Number(reserveCU/reserveCmjCU))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "JASP" && Number(inputSwap) !== 0 ?
+                                <> {Number(((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {Number(inputSwap) === 0 ? <> 0.00%</> : <></>}
+                        ]
                     </div>
                 </div>
                 <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
@@ -593,7 +622,21 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             {gasselected === "CU" ? tokenBoughtCU : ''}
                             {gasselected === "JASP" ? tokenBoughtJASP : ''}
                         </div>
-                        ${gasselected}
+                        ${gasselected} [PI: 
+                            {gasselected === "JDAO" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "CU" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reserveCU) - ((Number(reserveCU) * Number(reserveCmjCU)) / (Number(reserveCmjCU) + Number(inputSwap2))))) - (Number(reserveCmjCU/reserveCU))) / (Number(reserveCmjCU/reserveCU))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {gasselected === "JASP" && Number(inputSwap2) !== 0 ?
+                                <> {Number(((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100)).toFixed(2)}%</> :
+                                <></>
+                            }
+                            {Number(inputSwap2) === 0 ? <> 0.00%</> : <></>}
+                        ]
                     </div>
                 </div>
             </div>

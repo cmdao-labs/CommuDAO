@@ -476,7 +476,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Daily Yield:</div>
-                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "blue"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "#5c92ff"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Liquidity:</div>
@@ -593,7 +593,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Daily Yield:</div>
-                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "blue"}}>~฿{Number(swapfee24hour1 * priceTHB).toFixed(0)} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "#5c92ff"}}>~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Liquidity:</div>

@@ -22,6 +22,10 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     const [meowBalance, setMeowBalance] = React.useState("0")
     const [meowLpBalance, setMeowLpBalance] = React.useState("0")
 
+    const [reserveCmjMeow, setReserveCmjMeow] = React.useState("")
+    const [reserveMeow, setReserveMeow] = React.useState("")
+
+
     const [meowLpSell, setMeowLpSell] = React.useState("")
     const [meowAdd, setMeowAdd] = React.useState("")
     const [cmjAdd, setCmjAdd] = React.useState("")
@@ -303,7 +307,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
             const meowBal = data3[0]
             const meowlpBal = data3[1]
 
-            return [tokensBoughtbbqTOcmj, meowBal, meowlpBal, ]
+            return [tokensBoughtbbqTOcmj, meowBal, meowlpBal, _reserveCmjMEOW, _reserveMEOW]
         }
 
         const promise = thefetch()
@@ -321,6 +325,9 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
             setMeowBalance(Math.floor(_meowbalance * 100000) / 100000)
             const _meowlpbalance = ethers.utils.formatEther(result[2])
             setMeowLpBalance(Math.floor(_meowlpbalance * 100000) / 100000)
+
+            setReserveCmjMeow(ethers.utils.formatEther(result[3]))
+            setReserveMeow(ethers.utils.formatEther(result[4]))
         })
 
     }, [address, erc20ABI, ammyStdABI])
@@ -381,7 +388,13 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             <div className="emp">
                                 {gasselected === "MEOW" ? cmjBoughtMEOW : ''}
                             </div>
-                            $CMJ
+                            $CMJ [PI: 
+                                {gasselected === "MEOW" && Number(inputSwap) !== 0 ?
+                                    <> {Number(((((Number(inputSwap) / (Number(reserveCmjMeow) - ((Number(reserveCmjMeow) * Number(reserveMeow)) / (Number(reserveMeow) + Number(inputSwap))))) - (Number(reserveMeow/reserveCmjMeow))) / (Number(reserveMeow/reserveCmjMeow))) * 100)).toFixed(2)}%</> :
+                                    <></>
+                                }
+                                {Number(inputSwap) === 0 ? <> 0.00%</> : <></>}
+                            ]
                         </div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
@@ -410,11 +423,17 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             }>BUY</div> :
                             <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
                         }
-                        <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
+                        <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel">Will get 
                             <div style={{color: "#67BAA7"}}>
                                 {gasselected === "MEOW" ? tokenBoughtMEOW : ''}
                             </div>
-                            ${gasselected}
+                            ${gasselected} [PI: 
+                                {gasselected === "MEOW" && Number(inputSwap2) !== 0 ?
+                                    <> {Number(((((Number(inputSwap2) / (Number(reserveMeow) - ((Number(reserveMeow) * Number(reserveCmjMeow)) / (Number(reserveCmjMeow) + Number(inputSwap2))))) - (Number(reserveCmjMeow/reserveMeow))) / (Number(reserveCmjMeow/reserveMeow))) * 100)).toFixed(2)}%</> :
+                                    <></>
+                                }
+                                {Number(inputSwap2) === 0 ? <> 0.00%</> : <></>}
+                            ]
                         </div>
                     </div>
                 </div> :
