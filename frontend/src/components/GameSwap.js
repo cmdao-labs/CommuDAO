@@ -553,7 +553,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 }
             </div>
             {mode === 0 && 
-                <div>
+                <>
                     <Swap
                         address={address}
                         setisLoading={setisLoading}
@@ -580,12 +580,12 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         jusdtJuReserv={jusdtJuReserv}
                         priceTHB={priceTHB}
                     />
-                    <div style={{margin: "20px 0", height: "25px", width: "750px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
+                    <div style={{margin: "20px 0", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                         <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px"}}>
                             Daily volume: {jbcReserv !== 0 ? <>~฿{(Number(Math.floor(swapvol24USDT * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>}
                         </div>
                     </div>
-                </div>
+                </>
             }
             {mode === 1 ?
                 <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
