@@ -16,15 +16,14 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
 
+    const [reserveCmjMeow, setReserveCmjMeow] = React.useState("")
+    const [reserveMeow, setReserveMeow] = React.useState("")
+
     const [cmjBoughtMEOW, setCmjBoughtMEOW] = React.useState("0.000")
     const [tokenBoughtMEOW, setTokenBoughtMEOW] = React.useState("0.000")
     const [priceMEOW, setPriceMEOW] = React.useState("0.000")
     const [meowBalance, setMeowBalance] = React.useState("0")
     const [meowLpBalance, setMeowLpBalance] = React.useState("0")
-
-    const [reserveCmjMeow, setReserveCmjMeow] = React.useState("")
-    const [reserveMeow, setReserveMeow] = React.useState("")
-
 
     const [meowLpSell, setMeowLpSell] = React.useState("")
     const [meowAdd, setMeowAdd] = React.useState("")

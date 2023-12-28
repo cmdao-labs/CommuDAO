@@ -14,6 +14,7 @@ const jazziJasp = '0xe5Dc4040f94f10AE0107AC25034d489fb588cC5F'
 const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     const { address } = useAccount()
 
+    const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("JDAO");
 
     const [inputSwap, setInputSwap] = React.useState("")
@@ -25,12 +26,17 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
     const [reserveCmjJdao, setReserveCmjJdao] = React.useState("")
     const [reserveJdao, setReserveJdao] = React.useState("")
 
+    const [jdaoLpBalance, setJdaoLpBalance] = React.useState("0")
+
+    const [jdaoLpSell, setJdaoLpSell] = React.useState("")
+    const [jdaoAdd, setJdaoAdd] = React.useState("")
+    const [cmjAdd, setCmjAdd] = React.useState("")
+
     const [cmjBoughtCU, setCmjBoughtCU] = React.useState("0.000")
     const [tokenBoughtCU, setTokenBoughtCU] = React.useState("0.000")
     const [priceCU, setPriceCU] = React.useState("0.000")
     const [reserveCmjCU, setReserveCmjCU] = React.useState("")
     const [reserveCU, setReserveCU] = React.useState("")
-
 
     const [cmjBoughtJASP, setCmjBoughtJASP] = React.useState("0.000")
     const [tokenBoughtJASP, setTokenBoughtJASP] = React.useState("0.000")
@@ -402,6 +408,109 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
         setisLoading(false)
     }
 
+    const removeJdaoLp = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: jazziJDAO,
+                abi: ammyStdABI,
+                functionName: 'removeLiquidity',
+                args: [ethers.utils.parseEther(jdaoLpSell)],
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const handleAddJdao = async (event) => {
+        setJdaoAdd(event.target.value)
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        const bigValue = ethers.BigNumber.from(_value)
+        const _reserveJdao = await readContract({
+            address: jazziJDAO,
+            abi: ammyStdABI,
+            functionName: 'getReserveToken',
+        })
+        const bigJdaoReserv = ethers.BigNumber.from(_reserveJdao)
+        const _reserveCmj = await readContract({
+            address: jazziJDAO,
+            abi: ammyStdABI,
+            functionName: 'getReserveCMJ',
+        })
+        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
+        event.target.value !== "" ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigJdaoReserv)))) : setCmjAdd("")
+    }
+    const handleAddJdao2 = async (event) => {
+        setCmjAdd(event.target.value)
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        const bigValue = ethers.BigNumber.from(_value)
+        const _reserveJdao = await readContract({
+            address: jazziJDAO,
+            abi: ammyStdABI,
+            functionName: 'getReserveToken',
+        })
+        const bigJdaoReserv = ethers.BigNumber.from(_reserveJdao)
+        const _reserveCmj = await readContract({
+            address: jazziJDAO,
+            abi: ammyStdABI,
+            functionName: 'getReserveCMJ',
+        })
+        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
+        event.target.value !== "" ? setJdaoAdd(ethers.utils.formatEther(((bigValue.mul(bigJdaoReserv)).div(bigCmjReserv)))) : setJdaoAdd("")
+    }
+    const addJdaoLpHandle = async () => {
+        setisLoading(true)
+        try {
+            const cmjAllow = await readContract({
+                address: cmjToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, jazziJDAO],
+            })
+            const bigValue = cmjAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(cmjAdd)) : ethers.BigNumber.from(0)
+            const Hex = ethers.BigNumber.from(10**8)
+            const bigApprove = bigValue.mul(Hex)
+            if (Number(cmjAdd) > Number(cmjAllow) / (10**18)) {
+                const config = await prepareWriteContract({
+                    address: cmjToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [jazziJDAO, bigApprove],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const jdaoAllow = await readContract({
+                address: jdaoToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, jazziJDAO],
+            })
+            if (Number(jdaoAdd) > Number(jdaoAllow) / (10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: jdaoToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [jazziJDAO, bigApprove],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            const config3 = await prepareWriteContract({
+                address: jazziJDAO,
+                abi: ammyStdABI,
+                functionName: 'addLiquidity',
+                args: [ethers.utils.parseEther(jdaoAdd), ethers.utils.parseEther(cmjAdd)],
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     React.useEffect(() => {        
         const thefetch = async () => {
             const data = await readContracts({
@@ -473,7 +582,23 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
             const tokensBoughtcuTOcmj = data2[1]
             const tokensBoughtjaspTOcmj = data2[2]
 
-            return [tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, _reserveCmjJDAO, _reserveJDAO, _reserveCmjCU, _reserveCU, _reserveCmjJASP, _reserveJASP, ]
+            const data3 = address !== null && address !== undefined ? await readContracts({
+                contracts: [
+                    {
+                        address: jazziJDAO,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },                 
+                ],
+            }) : [0]
+
+            const jdaolpBal = data3[0]
+
+            return [
+                tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, _reserveCmjJDAO, _reserveJDAO, _reserveCmjCU, _reserveCU, _reserveCmjJASP, _reserveJASP, 
+                jdaolpBal, 
+            ]
         }
 
         const promise = thefetch()
@@ -496,6 +621,9 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
             setReserveCU(ethers.utils.formatEther(result[6]))
             setReserveCmjJASP(ethers.utils.formatEther(result[7]))
             setReserveJASP(ethers.utils.formatEther(result[8]))
+
+            const _jdaolpbalance = ethers.utils.formatEther(result[9])
+            setJdaoLpBalance(Math.floor(_jdaolpbalance * 100000) / 100000)
         })
 
     }, [address, erc20ABI, ammyStdABI])
@@ -506,139 +634,211 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                     <img src="https://nftstorage.link/ipfs/bafybeifwrprsashfhjrlbwnyvw4cb6pquyokfs3xm3wl6rt6bdzynpzhkm" width="260" alt="NPC_Jazzi" />
                 </div>
-                <div style={{maxHeight: "75px"}}>
-                    <div style={{fontSize: "20px", width: "380px"}} className="pixel">JAZZI, THE LUXURY COLLECTOR</div>
-                    <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BUY/SELL ${gasselected}</div>
-                    <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
-                    <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                            <option value="JDAO">JDAO</option>
-                            <option value="CU">CU</option>
-                            <option value="JASP">JASP</option>
-                        </select>
-                        <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
-                            &nbsp;1
-                            {gasselected === "JDAO" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></> : ''}
-                            {gasselected === "CU" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></> : ''}
-                            {gasselected === "JASP" ? <>&nbsp;GWEI&nbsp;<img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></> : ''}
-                            &nbsp;<img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
+                {mode === 1 &&
+                    <>
+                        <div style={{maxHeight: "75px"}}>
+                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">JAZZI, THE LUXURY COLLECTOR</div>
+                            <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BUY/SELL ${gasselected}</div>
+                            <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
+                            <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                    <option value="JDAO">JDAO</option>
+                                    <option value="CU">CU</option>
+                                    <option value="JASP">JASP</option>
+                                </select>
+                                <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
+                                    &nbsp;1
+                                    {gasselected === "JDAO" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></> : ''}
+                                    {gasselected === "CU" ? <>&nbsp;<img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></> : ''}
+                                    {gasselected === "JASP" ? <>&nbsp;GWEI&nbsp;<img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></> : ''}
+                                    &nbsp;<img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" width="22" alt="$CMJ"/>
+                                </div>
+                                {gasselected === "JDAO" && <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "transparent", color: "#ff007a", border: "1px solid #ff007a", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>}
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                <input
-                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                    className="bold"
-                    type="number"
-                    step="1"
-                    min="1"
-                    placeholder={"$" + gasselected + " Amount to Sell"}
-                    onChange={(event) => {
-                        if (gasselected === "JDAO") {
-                            handleSwapJDAO(event)
-                        } else if (gasselected === "CU") {
-                            handleSwapCU(event)
-                        } else if (gasselected === "JASP") {
-                            handleSwapJASP(event)
-                        }
-                    }}
-                    value={inputSwap}
-                ></input>
-                <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                    {address !== null && address !== undefined ?
-                        <div style={{width: "30px"}} className="pixel button" onClick={
-                            () => {
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
+                        <input
+                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder={"$" + gasselected + " Amount to Sell"}
+                            onChange={(event) => {
                                 if (gasselected === "JDAO") {
-                                    swapTokenHandleJDAO(true)
+                                    handleSwapJDAO(event)
                                 } else if (gasselected === "CU") {
-                                    swapTokenHandleCU(true)
+                                    handleSwapCU(event)
                                 } else if (gasselected === "JASP") {
-                                    swapTokenHandleJASP(true)
+                                    handleSwapJASP(event)
                                 }
+                            }}
+                            value={inputSwap}
+                        ></input>
+                        <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                            {address !== null && address !== undefined ?
+                                <div style={{width: "30px"}} className="pixel button" onClick={
+                                    () => {
+                                        if (gasselected === "JDAO") {
+                                            swapTokenHandleJDAO(true)
+                                        } else if (gasselected === "CU") {
+                                            swapTokenHandleCU(true)
+                                        } else if (gasselected === "JASP") {
+                                            swapTokenHandleJASP(true)
+                                        }
+                                    }
+                                }>SELL</div> :
+                                <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
                             }
-                        }>SELL</div> :
-                        <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
-                    }
-                    <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
-                        <div className="emp">
-                            {gasselected === "JDAO" ? cmjBoughtJDAO : ''}
-                            {gasselected === "CU" ? cmjBoughtCU : ''}
-                            {gasselected === "JASP" ? cmjBoughtJASP : ''}
+                            <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
+                                <div className="emp">
+                                    {gasselected === "JDAO" ? cmjBoughtJDAO : ''}
+                                    {gasselected === "CU" ? cmjBoughtCU : ''}
+                                    {gasselected === "JASP" ? cmjBoughtJASP : ''}
+                                </div>
+                                $CMJ [PI: 
+                                    {gasselected === "JDAO" && Number(inputSwap) !== 0 ?
+                                        <> {Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</> :
+                                        <></>
+                                    }
+                                    {gasselected === "CU" && Number(inputSwap) !== 0 ?
+                                        <> {Number(((((Number(inputSwap) / (Number(reserveCmjCU) - ((Number(reserveCmjCU) * Number(reserveCU)) / (Number(reserveCU) + Number(inputSwap))))) - (Number(reserveCU/reserveCmjCU))) / (Number(reserveCU/reserveCmjCU))) * 100)).toFixed(2)}%</> :
+                                        <></>
+                                    }
+                                    {gasselected === "JASP" && Number(inputSwap) !== 0 ?
+                                        <> {Number(((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100)).toFixed(2)}%</> :
+                                        <></>
+                                    }
+                                    {Number(inputSwap) === 0 ? <> 0.00%</> : <></>}
+                                ]
+                            </div>
                         </div>
-                        $CMJ [PI: 
-                            {gasselected === "JDAO" && Number(inputSwap) !== 0 ?
-                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</> :
-                                <></>
-                            }
-                            {gasselected === "CU" && Number(inputSwap) !== 0 ?
-                                <> {Number(((((Number(inputSwap) / (Number(reserveCmjCU) - ((Number(reserveCmjCU) * Number(reserveCU)) / (Number(reserveCU) + Number(inputSwap))))) - (Number(reserveCU/reserveCmjCU))) / (Number(reserveCU/reserveCmjCU))) * 100)).toFixed(2)}%</> :
-                                <></>
-                            }
-                            {gasselected === "JASP" && Number(inputSwap) !== 0 ?
-                                <> {Number(((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100)).toFixed(2)}%</> :
-                                <></>
-                            }
-                            {Number(inputSwap) === 0 ? <> 0.00%</> : <></>}
-                        ]
-                    </div>
-                </div>
-                <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                <input
-                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                    className="bold"
-                    type="number"
-                    step="1"
-                    min="1"
-                    placeholder="$CMJ Amount to Buy"
-                    onChange={(event) => {
-                        if (gasselected === "JDAO") {
-                            handleSwapJDAO_2(event)
-                        } else if (gasselected === "CU") {
-                            handleSwapCU_2(event)
-                        } else if (gasselected === "JASP") {
-                            handleSwapJASP_2(event)
-                        }
-                    }}
-                    value={inputSwap2}
-                ></input>
-                <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                    {address !== null && address !== undefined ?
-                        <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
-                            () => {
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
+                        <input
+                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder="$CMJ Amount to Buy"
+                            onChange={(event) => {
                                 if (gasselected === "JDAO") {
-                                    swapTokenHandleJDAO(false)
+                                    handleSwapJDAO_2(event)
                                 } else if (gasselected === "CU") {
-                                    swapTokenHandleCU(false)
+                                    handleSwapCU_2(event)
                                 } else if (gasselected === "JASP") {
-                                    swapTokenHandleJASP(false)
+                                    handleSwapJASP_2(event)
                                 }
+                            }}
+                            value={inputSwap2}
+                        ></input>
+                        <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                            {address !== null && address !== undefined ?
+                                <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
+                                    () => {
+                                        if (gasselected === "JDAO") {
+                                            swapTokenHandleJDAO(false)
+                                        } else if (gasselected === "CU") {
+                                            swapTokenHandleCU(false)
+                                        } else if (gasselected === "JASP") {
+                                            swapTokenHandleJASP(false)
+                                        }
+                                    }
+                                }>BUY</div> :
+                                <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
                             }
-                        }>BUY</div> :
-                        <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
-                    }
-                    <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
-                        <div style={{color: "#67BAA7"}}>
-                            {gasselected === "JDAO" ? tokenBoughtJDAO : ''}
-                            {gasselected === "CU" ? tokenBoughtCU : ''}
-                            {gasselected === "JASP" ? tokenBoughtJASP : ''}
+                            <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">Will get 
+                                <div style={{color: "#67BAA7"}}>
+                                    {gasselected === "JDAO" ? tokenBoughtJDAO : ''}
+                                    {gasselected === "CU" ? tokenBoughtCU : ''}
+                                    {gasselected === "JASP" ? tokenBoughtJASP : ''}
+                                </div>
+                                ${gasselected} [PI: 
+                                    {gasselected === "JDAO" && Number(inputSwap2) !== 0 ?
+                                        <> {Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</> :
+                                        <></>
+                                    }
+                                    {gasselected === "CU" && Number(inputSwap2) !== 0 ?
+                                        <> {Number(((((Number(inputSwap2) / (Number(reserveCU) - ((Number(reserveCU) * Number(reserveCmjCU)) / (Number(reserveCmjCU) + Number(inputSwap2))))) - (Number(reserveCmjCU/reserveCU))) / (Number(reserveCmjCU/reserveCU))) * 100)).toFixed(2)}%</> :
+                                        <></>
+                                    }
+                                    {gasselected === "JASP" && Number(inputSwap2) !== 0 ?
+                                        <> {Number(((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100)).toFixed(2)}%</> :
+                                        <></>
+                                    }
+                                    {Number(inputSwap2) === 0 ? <> 0.00%</> : <></>}
+                                ]
+                            </div>
                         </div>
-                        ${gasselected} [PI: 
-                            {gasselected === "JDAO" && Number(inputSwap2) !== 0 ?
-                                <> {Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</> :
-                                <></>
+                    </>
+                }
+                {mode === 2 ?
+                    <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                        <div style={{maxHeight: "75px"}}>
+                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">JAZZI, THE LUXURY COLLECTOR</div>
+                            <div style={{fontSize: "10px"}} className="light">"ADD/REMOVE CMJ-{gasselected} LP"</div>
+                            <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                <select style={{padding: "1px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                    <option value="JDAO">JDAO</option>
+                                </select>
+                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center"}} className="pixel">
+                                    {gasselected === "JDAO" ? <>&nbsp;LP&nbsp;:&nbsp; <div className="emp">{Number(jdaoLpBalance).toFixed(4)}</div></> : ''}
+                                </div>
+                                <div style={{width: "40px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "transparent", color: "#ff007a", border: "1px solid #ff007a", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP</div>
+                            </div>
+                        </div>
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
+                        <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                            <input style={{width: "180px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder="LP Amount to Add" className="bold" onChange={(event) => setJdaoLpSell(event.target.value)} value={jdaoLpSell}></input>
+                            <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", borderRadius: 0, boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={removeJdaoLp}>REMOVE</div>
+                        </div>
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
+                        <input
+                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder={"$" + gasselected + " Amount to Add"}
+                            onChange={(event) => {
+                                if (gasselected === "JDAO") {
+                                    handleAddJdao(event)
+                                }
+                            }}
+                            value={jdaoAdd}
+                        ></input>
+                        <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
+                        <input
+                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder="$CMJ Amount to Add"
+                            onChange={(event) => {
+                                if (gasselected === "JDAO") {
+                                    handleAddJdao2(event)
+                                }
+                            }}
+                            value={cmjAdd}
+                        ></input>
+                        <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                            {address !== null && address !== undefined ?
+                                <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
+                                    () => {
+                                        if (gasselected === "JDAO") {
+                                            addJdaoLpHandle()
+                                        }
+                                    }
+                                }>ADD</div> :
+                                <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ADD</div>
                             }
-                            {gasselected === "CU" && Number(inputSwap2) !== 0 ?
-                                <> {Number(((((Number(inputSwap2) / (Number(reserveCU) - ((Number(reserveCU) * Number(reserveCmjCU)) / (Number(reserveCmjCU) + Number(inputSwap2))))) - (Number(reserveCmjCU/reserveCU))) / (Number(reserveCmjCU/reserveCU))) * 100)).toFixed(2)}%</> :
-                                <></>
-                            }
-                            {gasselected === "JASP" && Number(inputSwap2) !== 0 ?
-                                <> {Number(((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100)).toFixed(2)}%</> :
-                                <></>
-                            }
-                            {Number(inputSwap2) === 0 ? <> 0.00%</> : <></>}
-                        ]
-                    </div>
-                </div>
+                            <div style={{height: "55px", textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">
+                            </div>
+                        </div>
+                    </div> :
+                    <></>
+                }
             </div>
         </div>
     )

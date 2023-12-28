@@ -98,7 +98,7 @@ import { bsc } from 'wagmi/chains'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const v = '0.2.9'
+const v = '0.2.10'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -270,7 +270,7 @@ const Main = () => {
             {isLoading &&
                 <div className="centermodal">
                     <div className="wrapper">
-                        <div className="bold" style={{fontSize: "40px", letterSpacing: "3px"}}>LOADING...</div>
+                        <div className="bold" style={{fontSize: "40px", letterSpacing: "3px"}}>Waiting for confirmation...</div>
                     </div>
                 </div>
             }
