@@ -475,10 +475,10 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Daily Yield:</div>
-                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "#5c92ff"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "rgb(102, 204, 172)"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                    <div>Total Liquidity:</div>
+                    <div>Total Liquidity Locked:</div>
                     {jbcReserv !== 0 ? <div className="bold">~฿{Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                 </div>
                 <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
@@ -532,7 +532,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div className="bold">{Number(((231481480 * 100000000) / 10**18) * (86400/10) * (400/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                    <div>Total Liquidity:</div>
+                    <div>Total Liquidity Locked:</div>
                     {jbcJuReserv !== 0 ? <div className="bold">~฿{Number((cmjJdao202Staked * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                 </div>
                 <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
@@ -592,10 +592,10 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                     <div>Total Daily Yield:</div>
-                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "#5c92ff"}}>~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                    <div className="bold" style={{textAlign: "right"}}><div style={{color: "rgb(102, 204, 172)"}}>~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {minimumFractionDigits:0})} (24 HR Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                 </div>
                 <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                    <div>Total Liquidity:</div>
+                    <div>Total Liquidity Locked:</div>
                     {jbcJuReserv !== 0 ? <div className="bold">~฿{((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                 </div>
                 <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>

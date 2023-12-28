@@ -1,5 +1,4 @@
 import React from 'react'
-import { ethers } from 'ethers'
 import { useParams, useNavigate } from 'react-router-dom'
 import Headbar from './Headbar'
 
@@ -96,9 +95,7 @@ import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { bsc } from 'wagmi/chains'
 
-const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
-
-const v = '0.2.10'
+const v = '0.2.11'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -236,34 +233,6 @@ const Main = () => {
     const [isError, setisError] = React.useState(false)
     const [errMsg, setErrMsg] = React.useState('')
     const [txupdate, setTxupdate] = React.useState(null)
-
-    const [tvl, setTVL] = React.useState(0)
-
-    React.useEffect(() => {
-        const thefetch = async () => {
-            const oracleTHB = new ethers.Contract("0x4A6947323A1c14Cf69Dd128A2cf854364239d044", bkcOracleABI, providerBKC)
-            const usdtToTHB = await oracleTHB.latestAnswer()
-            const kusdt = new ethers.Contract("0x7d984C24d2499D840eB3b7016077164e15E5faA6", erc20ABI, providerBKC)
-            const Balance = await kusdt.balanceOf("0x8622049edEcC20ADA5aDEeaf2Caa53447e68Ae63")
-            
-            return [
-                ((ethers.utils.formatEther(usdtToTHB) * (10**10) * ethers.utils.formatEther(Balance)).toFixed(0))
-            ]
-        }
-
-        const promise = thefetch()
-
-        const getAsync = () =>
-            new Promise((resolve) => 
-                setTimeout(
-                    () => resolve(promise), 1000
-                )
-            )
-
-        getAsync().then(result => {
-            setTVL("฿ " + Number(result[0]).toLocaleString())
-        })
-    }, [])
 
     return (
         <>

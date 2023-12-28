@@ -22,6 +22,7 @@ const juExchange = "0x280608DD7712a5675041b95d0000B9089903B569"
 const jcSwap = "0x6784f834EE171C7fB824b2866dD58b6EcF0f2654"
 const juSwap = "0x8003b4d3fb5B42AE10A1D8aBE2385dBa7fE978f6"
 
+const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
 const inputStyle = {
@@ -77,6 +78,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
+    const [swapvol24USDT, setSwapvol24USDT] = React.useState("")
+    const [swapvol24CMJ, setSwapvol24CMJ] = React.useState("")
 
     const [jbcBalance, setJbcBalance] = React.useState(<>0.000</>)
     const [cmjBalance, setCmjBalance] = React.useState(<>0.000</>)
@@ -373,8 +376,30 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
 
     React.useEffect(() => {
         console.log("Connected to " + address)
+        const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
+        const cmjSC = new ethers.Contract(cmjToken, erc20ABI, providerJBC)
 
         const thefetch = async () => {
+            const blockNumber = await providerJBC.getBlockNumber();
+            const vol1Filter = await jusdtSC.filters.Transfer(null, "0x280608DD7712a5675041b95d0000B9089903B569", null)
+            const vol1Event = await jusdtSC.queryFilter(vol1Filter, blockNumber - 7200, 'latest')
+            const vol1Map = await Promise.all(vol1Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const vol2Filter = await jusdtSC.filters.Transfer("0x280608DD7712a5675041b95d0000B9089903B569", null, null)
+            const vol2Event = await jusdtSC.queryFilter(vol2Filter, blockNumber - 7200, 'latest')
+            const vol2Map = await Promise.all(vol2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const vol3Filter = await cmjSC.filters.Transfer(null, "0x472d0e2E9839c140786D38110b3251d5ED08DF41", null)
+            const vol3Event = await cmjSC.queryFilter(vol3Filter, blockNumber - 7200, 'latest')
+            const vol3Map = await Promise.all(vol3Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const vol4Filter = await cmjSC.filters.Transfer("0x472d0e2E9839c140786D38110b3251d5ED08DF41", null, null)
+            const vol4Event = await cmjSC.queryFilter(vol4Filter, blockNumber - 7200, 'latest')
+            const vol4Map = await Promise.all(vol4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const sumVolUsdt = vol1Map.concat(vol2Map).reduce((partialSum, a) => partialSum + a, 0);
+            const sumVolCmj = vol3Map.concat(vol4Map).reduce((partialSum, a) => partialSum + a, 0);
+
             const jbcBal = address !== null && address !== undefined ?
                 await fetchBalance({ address: address, }) :
                 {formatted: 0}
@@ -456,7 +481,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 jbcBal, cmjBal, jusdtBal,
                 JbcJcReserv, CmjJcReserv, JbcJuReserv, JusdtJuReserv,
                 jclpBal, jclpTotalSup, julpBal, julpTotalSup,
-                usdtToTHB
+                usdtToTHB, sumVolUsdt, sumVolCmj, 
             ]
         }
 
@@ -506,6 +531,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             setJusdtjuPooled((Number(_jusdtjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
 
             setPriceTHB(ethers.utils.formatEther(result[11]) * (10**10))
+            setSwapvol24USDT((Number(result[12]).toFixed(0)))
+            setSwapvol24CMJ(Number(result[13]).toFixed(0))
         })
     }, [address, txupdate, exchangeABI, exchangeJulpABI, erc20ABI, bkcOracleABI])
 
@@ -525,32 +552,41 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(2)}}>Farms</div>
                 }
             </div>
-            {mode === 0 ? <Swap
-                address={address}
-                setisLoading={setisLoading}
-                setTxupdate={setTxupdate}
-                options={options}
-                inputStyle={inputStyle}
-                jcExchange={jcExchange}
-                exchangeABI={exchangeABI}
-                juExchange={juExchange}
-                exchangeJulpABI={exchangeJulpABI}
-                jcSwap={jcSwap}
-                swapABI={swapABI}
-                juSwap={juSwap}
-                swapJulpABI={swapJulpABI}
-                cmjToken={cmjToken}
-                jusdtToken={jusdtToken}
-                erc20ABI={erc20ABI}
-                jbcBalance={jbcBalance}
-                cmjBalance={cmjBalance}
-                jusdtBalance={jusdtBalance}
-                jbcReserv={jbcReserv}
-                cmjReserv={cmjReserv}
-                jbcJuReserv={jbcJuReserv}
-                jusdtJuReserv={jusdtJuReserv}
-                priceTHB={priceTHB}
-            /> : <></>}
+            {mode === 0 && 
+                <div>
+                    <Swap
+                        address={address}
+                        setisLoading={setisLoading}
+                        setTxupdate={setTxupdate}
+                        options={options}
+                        inputStyle={inputStyle}
+                        jcExchange={jcExchange}
+                        exchangeABI={exchangeABI}
+                        juExchange={juExchange}
+                        exchangeJulpABI={exchangeJulpABI}
+                        jcSwap={jcSwap}
+                        swapABI={swapABI}
+                        juSwap={juSwap}
+                        swapJulpABI={swapJulpABI}
+                        cmjToken={cmjToken}
+                        jusdtToken={jusdtToken}
+                        erc20ABI={erc20ABI}
+                        jbcBalance={jbcBalance}
+                        cmjBalance={cmjBalance}
+                        jusdtBalance={jusdtBalance}
+                        jbcReserv={jbcReserv}
+                        cmjReserv={cmjReserv}
+                        jbcJuReserv={jbcJuReserv}
+                        jusdtJuReserv={jusdtJuReserv}
+                        priceTHB={priceTHB}
+                    />
+                    <div style={{margin: "20px 0", height: "25px", width: "750px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
+                        <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px"}}>
+                            Daily volume: {jbcReserv !== 0 ? <>~฿{(Number(Math.floor(swapvol24USDT * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>}
+                        </div>
+                    </div>
+                </div>
+            }
             {mode === 1 ?
                 <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                     <div style={{margin: "20px", padding: "20px 0", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
