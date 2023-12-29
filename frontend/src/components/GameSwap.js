@@ -538,7 +538,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
 
     return (
         <div style={{flexDirection: "column", alignItems: "center", justifyContent: "flex-start", background: "#e6e4f6"}} className="collection">
-            <div style={{marginTop: "80px", height: "25px", width: "300px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", background: "#fff", padding: "7.5px 10px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}}>
+            <div style={{marginTop: "80px", height: "25px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", background: "#fff", padding: "7.5px 10px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}}>
                 {mode === 0 ? 
                     <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", borderBottom: "5px solid #61dafb", cursor: "pointer"}} className="bold">Swap</div> :
                     <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(0)}}>Swap</div>
@@ -550,6 +550,10 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 {mode === 2 ?
                     <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", borderBottom: "5px solid #61dafb", cursor: "pointer"}} className="bold">Farms</div> :
                     <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(2)}}>Farms</div>
+                }
+                {mode === 3 ?
+                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", borderBottom: "5px solid #61dafb", cursor: "pointer"}} className="bold">Pools</div> :
+                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(3)}}>Pools</div>
                 }
             </div>
             {mode === 0 && 
@@ -587,7 +591,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     </div>
                 </>
             }
-            {mode === 1 ?
+            {mode === 1 &&
                 <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                     <div style={{margin: "20px", padding: "20px 0", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                         <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Add LP</div>
@@ -814,10 +818,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             <></>
                         }
                     </div>
-                </div> :
-                <></>
+                </div>
             }
-            {mode === 2 ? <GameSwapFarm
+            {mode === 2 && <GameSwapFarm
                 address={address}
                 setisLoading={setisLoading}
                 setTxupdate={setTxupdate}
@@ -842,7 +845,38 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 cmjBalanceFull={cmjBalanceFull}
                 farmJdaoABI={farmJdaoABI}
                 priceTHB={priceTHB}
-            /> : <></>}
+            />}
+            {mode === 3 &&
+                <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
+                    <div style={{margin: "20px", padding: "20px 0", height: "300px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                        <div style={{width: "85%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <div style={{textAlign: "left"}}>
+                                <div style={{fontSize: "20px"}} className="bold">EARN $MEOW</div>
+                                <div style={{fontSize: "10px", color: "rgb(126, 128, 145)", marginTop: "5px"}}>Stake CommuDAO Tokens/LP</div>
+                                <div style={{fontSize: "10px", color: "rgb(126, 128, 145)"}}>(⚡️ Powered by Meow Neon)</div>
+                            </div>
+                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="50" alt="$MEOW"/>
+                        </div>
+                        <div style={{width: "85%", display: "flex", justifyContent: "space-between", fontSize: "8px"}}>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>ELIGIBLE TOKENS:</div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
+                                JDAO, CMJ
+                            </div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", justifyContent: "space-between", fontSize: "8px", marginBottom: "70px"}}>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>ELIGIBLE LP:</div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>
+                                <div>Jazzi-JDAO, Jazzi-CU, Jazzi-JASP,</div>
+                                <div>Ammy-CTUNA, Ammy-SX31, Ammy-BBQ, Ammy-PZA,</div>
+                                <div>GameSwap-JBC-JUSDT, Degeno-MEOW,</div>
+                                <div>Meow-SIL, Meow-GOLD, Meow-MT</div>
+                                <div>Meow-TUNA, Meow-MICE, Meow-WOOD</div>
+                            </div>
+                        </div>
+                        <a href="https://meowneon.app/pools" target="_blank" rel="noreferrer" style={{textDecoration: "none"}}><div style={{letterSpacing: "1px", width: "240px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "12px"}} className="bold">Explore Pool on Meowneon.app</div></a>
+                    </div>
+                </div>
+            }
         </div>
     )
 }
