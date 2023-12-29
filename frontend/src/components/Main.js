@@ -420,7 +420,7 @@ const Main = () => {
             </WagmiConfig>
             <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div className="inFooterLeft">
-                    <div style={{marginBottom: "10px"}}>{'© CommuDAO 2023 - Alpha V. ' + v}</div>
+                    <div style={{marginBottom: "10px"}}><img src="https://flagcdn.com/16x12/sg.png" srcset="https://flagcdn.com/32x24/sg.png 2x, https://flagcdn.com/48x36/sg.png 3x" width="16" height="12" alt="Singapore" /> {'© CommuDAO 2023 - Alpha V. ' + v}</div>
                     <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
                     <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>
