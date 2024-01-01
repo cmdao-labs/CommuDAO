@@ -47,19 +47,19 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
-            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 2214578, 'latest')
+            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 2428268, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
-            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 2214578, 'latest')
+            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 2428268, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
-            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 2214578, 'latest')
+            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 2428268, 'latest')
             const spend3Map = await Promise.all(spend3Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
-            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 2214578, 'latest')
+            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 2428268, 'latest')
             const spend4Map = await Promise.all(spend4Event.map(async (obj, index) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
 
             const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map).reduce((prev, curr) => {
