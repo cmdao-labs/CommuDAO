@@ -7,7 +7,6 @@ import FieldsAncientForrest from './Fields-AncientForrest'
 import FishingField from './Fields-TunaLake'
 import RatHuntingField from './Fields-OldWarehouse'
 import TheHeavenLand from './Fields-TheHeavenLand'
-import TheHeavenLandDeprecated from './Fields-TheHeavenLand-Deprecated'
 import EasternFront from './Fields-EasternFront'
 import Labs from './Labs'
 import Dungeon from './Dungeon'
@@ -131,9 +130,6 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "THE-HEAVEN-LAND") {
                     preset = 17
                     document.title = "The Heaven Land | CommuDAO"
-                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "THE-HEAVEN-LAND-DEPRECATED") {
-                    preset = 18
-                    document.title = "[DEPRECATED] The Heaven Land | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "EASTERN-FRONT") {
                     preset = 19
                     document.title = "Eastern Front | CommuDAO"
@@ -330,10 +326,6 @@ const Main = () => {
                 }
                 {mode === 17 ?
                     <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
-                    <></>
-                }
-                {mode === 18 ?
-                    <TheHeavenLandDeprecated setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
                     <></>
                 }
                 {mode === 19 ?
