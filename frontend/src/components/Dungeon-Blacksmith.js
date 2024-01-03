@@ -3120,255 +3120,258 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                     </div>
                                                 </div>
                                             }
-
-                                            {String(item.Id).slice(0, 3) === "511" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 1800 && Number(item.Id) % 100000 !== 3450 ?
+                                            {/*
+                                            ███╗░░░███╗██╗░░░██╗████████╗  ██████╗░░█████╗░░█████╗░██╗░░██╗██████╗░░█████╗░░█████╗░██╗░░██╗
+                                            ████╗░████║██║░░░██║╚══██╔══╝  ██╔══██╗██╔══██╗██╔══██╗██║░██╔╝██╔══██╗██╔══██╗██╔══██╗██║░██╔╝
+                                            ██╔████╔██║╚██╗░██╔╝░░░██║░░░  ██████╦╝███████║██║░░╚═╝█████═╝░██████╔╝███████║██║░░╚═╝█████═╝░
+                                            ██║╚██╔╝██║░╚████╔╝░░░░██║░░░  ██╔══██╗██╔══██║██║░░██╗██╔═██╗░██╔═══╝░██╔══██║██║░░██╗██╔═██╗░
+                                            ██║░╚═╝░██║░░╚██╔╝░░░░░██║░░░  ██████╦╝██║░░██║╚█████╔╝██║░╚██╗██║░░░░░██║░░██║╚█████╔╝██║░╚██╗
+                                            ╚═╝░░░░░╚═╝░░░╚═╝░░░░░░╚═╝░░░  ╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝
+                                            */}
+                                            {String(item.Id).slice(0, 3) === "511" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 2750 && Number(item.Id) % 100000 !== 3450 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
-                                                    <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                    <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
                                                             <img src={item.Image} width="120" alt="Can not load metadata." />
-                                                            <div style={{width: "150px"}} className="emp pixel">{item.Name}</div>
+                                                            <div style={{width: "150px"}}>{item.Name}</div>
                                                         </div>
                                                         <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                                        {Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550 ?
+                                                        {Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name} +1</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name} +1</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 500 ?
+                                                        {Number(item.Id) % 100000 === 500 &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}2</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 750 ?
+                                                        {Number(item.Id) % 100000 === 750 &&
                                                             <div>
                                                                 <img src="https://bafybeigfjtubf2bkbtfux4frxakg2lhldh466vgqdsqokfmna4s4ny5plu.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}3</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 950 ?
+                                                        {Number(item.Id) % 100000 === 950 &&
                                                             <div>
                                                                 <img src="https://bafybeia3g7in5n7qfdutd7ans4rdutljxyvo4o4wvbnwsoau6szulovw44.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}2</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1450 ?
+                                                        {Number(item.Id) % 100000 === 1450 &&
                                                             <div>
                                                                 <img src="https://bafybeia3g7in5n7qfdutd7ans4rdutljxyvo4o4wvbnwsoau6szulovw44.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}3</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2000 ?
+                                                        {Number(item.Id) % 100000 === 2000 &&
                                                             <div>
                                                                 <img src="https://bafybeigtwkpxh4n4ubs53xczlqkoyu5tbgfst2coolbiypdodhxotyp4iu.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}4</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2650 ?
+                                                        {Number(item.Id) % 100000 === 2650 &&
                                                             <div>
                                                                 <img src="https://bafybeigtwkpxh4n4ubs53xczlqkoyu5tbgfst2coolbiypdodhxotyp4iu.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}5</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
+                                                            </div>
                                                         }
-                                                        {Number(item.Id) % 100000 === 3400 ?
+                                                        {Number(item.Id) % 100000 === 3400 &&
                                                             <div>
                                                                 <img src="https://bafybeierwfw25hyasoyujef67avzoqu7zhhlj72jlk4gzekhscrmzj2ax4.ipfs.nftstorage.link/" width="120" alt="Can not load metadata." />
-                                                                <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}6</div>
-                                                            </div> :
-                                                            <></>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 1800 &&
+                                                            <div>
+                                                                <img src="https://bafybeibglvexzr4rrslgzeeyyc4oanfyyudijupwwchcx2bqtyitjt7qxe.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
                                                         }
                                                     </div>
-                                                    <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                                        {Number(item.Id) % 100000 === 250 ?
+                                                    <div className="pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                        {Number(item.Id) % 100000 === 250 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 0</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 0</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 1</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 250} cmpow per sec</div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 250} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 500 ?
+                                                        {Number(item.Id) % 100000 === 500 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 1</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 2</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 250} cmpow per sec</div>
+                                                                    <div>Level 2</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 250} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 750 ?
+                                                        {Number(item.Id) % 100000 === 750 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 2</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 2</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 3</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 250} cmpow per sec</div>
+                                                                    <div>Level 3</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 250} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 550 ?
+                                                        {Number(item.Id) % 100000 === 550 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 0</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 0</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 1</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 400} cmpow per sec</div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 400} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 950 ?
+                                                        {Number(item.Id) % 100000 === 950 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 1</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 2</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 500} cmpow per sec</div>
+                                                                    <div>Level 2</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 500} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1450 ?
+                                                        {Number(item.Id) % 100000 === 1450 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 2</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 2</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 3</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 550} cmpow per sec</div>
+                                                                    <div>Level 3</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 550} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2000 ?
+                                                        {Number(item.Id) % 100000 === 2000 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 3</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 3</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 4</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 650} cmpow per sec</div>
+                                                                    <div>Level 4</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 650} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2650 ?
+                                                        {Number(item.Id) % 100000 === 2650 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 4</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 4</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 5</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 750} cmpow per sec</div>
+                                                                    <div>Level 5</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 750} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 3400 ?
+                                                        {Number(item.Id) % 100000 === 3400 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 5</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 5</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 6</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 850} cmpow per sec</div>
+                                                                    <div>Level 6</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 850} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 1050 ?
+                                                        {Number(item.Id) % 100000 === 1050 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 0</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 0</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 1</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 750} cmpow per sec</div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 750} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 2550 ?
+                                                        {Number(item.Id) % 100000 === 1800 &&
                                                             <>
                                                                 <div>
-                                                                    <div className="pixel">Level 0</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec} cmpow per sec</div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div className="pixel">Level 1</div>
-                                                                    <div style={{width: "150px"}} className="pixel">{item.RewardPerSec + 900} cmpow per sec</div>
+                                                                    <div>Level 2</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 950} cmpow per sec</div>
                                                                 </div>
-                                                            </> :
-                                                            <></>
+                                                            </>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 2550 &&
+                                                            <>
+                                                                <div>
+                                                                    <div>Level 0</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>Level 1</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 900} cmpow per sec</div>
+                                                                </div>
+                                                            </>
                                                         }
                                                     </div>
                                                     <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
-                                                    <div style={{marginTop: "10px", width: "350px"}}>
-                                                        <div className="pixel">
+                                                    <div className="pixel" style={{marginTop: "10px", width: "350px"}}>
+                                                        <div>
                                                             <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i>
                                                             Enchanted resource
                                                         </div>
-                                                        <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            {Number(item.Id) % 100000 === 250 ?
+                                                        <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}}>
+                                                            {Number(item.Id) % 100000 === 250 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>150</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 500 ?
+                                                            {Number(item.Id) % 100000 === 500 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 750 ?
+                                                            {Number(item.Id) % 100000 === 750 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 550 ?
+                                                            {Number(item.Id) % 100000 === 550 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.0 GWEI</div>
@@ -3378,10 +3381,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>300</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 950 ?
+                                                            {Number(item.Id) % 100000 === 950 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>1.5 GWEI</div>
@@ -3391,10 +3393,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1450 ?
+                                                            {Number(item.Id) % 100000 === 1450 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.0 GWEI</div>
@@ -3404,10 +3405,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2000 ?
+                                                            {Number(item.Id) % 100000 === 2000 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>2.5 GWEI</div>
@@ -3417,10 +3417,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>450</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2650 ?
+                                                            {Number(item.Id) % 100000 === 2650 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.0 GWEI</div>
@@ -3430,10 +3429,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>500</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 3400 ?
+                                                            {Number(item.Id) % 100000 === 3400 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                     <div style={{margin: "0 5px"}}>3.5 GWEI</div>
@@ -3443,10 +3441,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>550</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1050 ?
+                                                            {Number(item.Id) % 100000 === 1050 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>130</div>
@@ -3456,10 +3453,21 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>350</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 2550 ?
+                                                            {Number(item.Id) % 100000 === 1800 &&
+                                                                <>
+                                                                    <img src="../items/oversoul.png" height="18" alt="$OS"/>
+                                                                    <div style={{margin: "0 5px"}}>200</div>
+                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                    <div style={{margin: "0 5px"}}>20</div>
+                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
+                                                                    <div style={{margin: "0 5px"}}>400</div>
+                                                                </>
+                                                            }
+                                                            {Number(item.Id) % 100000 === 2550 &&
                                                                 <>
                                                                     <img src="../items/oversoul.png" height="18" alt="$OS"/>
                                                                     <div style={{margin: "0 5px"}}>180</div>
@@ -3469,30 +3477,27 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" height="18" alt="$CMJ"/>
                                                                     <div style={{margin: "0 5px"}}>400</div>
-                                                                </> :
-                                                                <></>
+                                                                </>
                                                             }
                                                         </div>
                                                     </div>
-                                                    {Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 2550 ?
-                                                        <div style={{margin: "10px 0", width: "350px"}}>
-                                                            <div className="emp pixel">
+                                                    {Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 2550 &&
+                                                        <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
+                                                            <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
                                                                 Success rate : 1/2
                                                             </div>
-                                                            <div className="pixel">(depend on parent blockhash calculation)</div>
-                                                        </div> :
-                                                        <></>
+                                                            <div>(depend on parent blockhash calculation)</div>
+                                                        </div>
                                                     }
-                                                    {Number(item.Id) % 100000 === 950 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 ?
-                                                        <div style={{margin: "10px 0", width: "350px"}}>
-                                                            <div className="emp pixel">
+                                                    {Number(item.Id) % 100000 === 950 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 &&
+                                                        <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
+                                                            <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
                                                                 Success rate : 1/3
                                                             </div>
-                                                            <div className="pixel">(depend on parent blockhash calculation)</div>
-                                                        </div> :
-                                                        <></>
+                                                            <div>(depend on parent blockhash calculation)</div>
+                                                        </div>
                                                     }
                                                     <div
                                                         style={{background: "#67BAA7", textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
@@ -3518,6 +3523,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 enchantRHandle(item.Id, 50)
                                                             } else if (Number(item.Id) % 100000 === 1050) {
                                                                 enchantRHandle3(item.Id, 74)
+                                                            } else if (Number(item.Id) % 100000 === 1800) {
+                                                                enchantRHandle3(item.Id, 75)
                                                             } else if (Number(item.Id) % 100000 === 2550) {
                                                                 enchantRHandle3(item.Id, 83)
                                                             }
@@ -3525,8 +3532,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                     >
                                                         UPGRADE
                                                     </div>
-                                                </div> :
-                                                <></>
+                                                </div>
                                             }
 
                                             {String(item.Id).slice(0, 3) === "611" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 1800 && Number(item.Id) % 100000 !== 3450 ?
