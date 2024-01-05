@@ -296,7 +296,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     {(mode === 1 || mode === 12) &&
                         <>
                             <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
+                                <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />
                                 JUSDT, #1 stablecoin on JBC.
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[USDT : JUSDT] Cross-chain bridging is now on service 24/7!</div>
@@ -309,7 +309,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     {mode === 2 &&
                         <>
                             <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
+                                <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                                 CMJ, the currency token of CommuDAO.
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is coming soon!</div>

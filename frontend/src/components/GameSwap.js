@@ -634,8 +634,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         <div className="fa fa-plus"></div>
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <div style={{display: "flex"}}>
-                                {liquidMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img> : <></>}
-                                {liquidMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img> : <></>}
+                                {liquidMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ"></img> : <></>}
+                                {liquidMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT"></img> : <></>}
                                 {liquidMode === 0 ?
                                     <>
                                         <Select
@@ -711,7 +711,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                         <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
-                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}} className='bold'>
                                         {cmjPooled !== null ? <>{cmjPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -733,7 +733,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                         <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
-                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}} className='bold'>
                                         {jusdtjuPooled !== null ? <>{jusdtjuPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -769,7 +769,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                 <div style={{marginLeft: "5px", height: "25px"}}>
                                     <img style={{width: "28px", height: "28px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
-                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
+                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                                 </div>
                                 <div className='bold' style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
                                     {lpBalance !== null ? <>Balance: {lpBalance.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -780,7 +780,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                <div style={{marginLeft: "5px", height: "25px"}}>
                                     <img style={{width: "28px", height: "28px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
-                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
+                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />
                                 </div>
                                 <div className='bold' style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
                                     {julpBalance !== null ? <>Balance: {julpBalance.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
