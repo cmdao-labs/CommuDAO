@@ -327,7 +327,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 </div>
                 <div style={{margin: "30px 100px"}}>
                     <img
-                        src="../tokens/jbc.png"
+                        src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
                         width="150"
                         alt="$JBC"
                     />
@@ -406,7 +406,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                                             {ethers.utils.formatEther(String(item.Reward))}
                                         </div>
                                         <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="../tokens/jbc.png" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
+                                            <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
                                             {!item.isJbcOut ?
                                                 <>
                                                     {Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}

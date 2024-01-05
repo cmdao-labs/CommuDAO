@@ -301,7 +301,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Instant Swap</div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 || swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img> : <></>}
+                            {swapMode === 0 || swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC"></img> : <></>}
                             {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img> : <></>}
                             {swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img> : <></>}
                             {swapMode === 0 || swapMode === 3 ?
@@ -319,8 +319,6 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                         styles={inputStyle}
                                         isSearchable={false}
                                     />
-                                    {swapMode === 1 ? <a href="https://exp-l1.jibchain.net/token/0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a> : <></>}
-                                    {swapMode === 2 ? <a href="https://exp-l1.jibchain.net/token/0x24599b658b57f91E7643f4F154B16bcd2884f9ac/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a> : <></>}
                                 </>
                             }
                         </div>
@@ -361,7 +359,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
                             {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img> : <></>}
-                            {swapMode === 1 || swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img> : <></>}
+                            {swapMode === 1 || swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC"></img> : <></>}
                             {swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img> : <></>}
                             {swapMode === 0 ?
                                 <>
@@ -372,7 +370,6 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                         styles={inputStyle}
                                         isSearchable={false}
                                     />
-                                    <a href="https://exp-l1.jibchain.net/token/0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a>
                                 </> :
                                 <></>
                             }
@@ -396,7 +393,6 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                         styles={inputStyle}
                                         isSearchable={false}
                                     />
-                                    <a href="https://exp-l1.jibchain.net/token/0x24599b658b57f91E7643f4F154B16bcd2884f9ac/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a>
                                 </> :
                                 <></>
                             }

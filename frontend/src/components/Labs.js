@@ -1024,7 +1024,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Cryptocurrency</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="./tokens/jbc.png" width="20" alt="$JBC"/>
+                        <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$JBC"/>
                         <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -1330,7 +1330,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>100</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/jbc.png" height="18" alt="$JBC"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
                                 <div style={{margin: "0 5px"}}>0.01</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
@@ -1781,7 +1781,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>200</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="./tokens/jbc.png" height="18" alt="$JBC"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>

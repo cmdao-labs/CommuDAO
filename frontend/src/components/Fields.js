@@ -92,7 +92,7 @@ const Fields = ({ callMode, navigate }) => {
                     <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
                         <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                         <div style={{margin: "0 5px"}}>GOLD & </div>
-                        <img src="./tokens/jbc.png" height="18" alt="$JBC"/>
+                        <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
                         <div style={{margin: "0 5px"}}>JBC (LIMITED)</div>
                     </div>                    
                 </div>

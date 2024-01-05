@@ -137,7 +137,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                                 <div className="bold">JBC DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                     <div style={{marginRight: "10px", color: "#fff"}}>{Number(jbconFaucet).toFixed(2)}</div>
-                                    <img src="../tokens/jbc.png" height="30px" alt="$JBC"/>
+                                    <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
                                 </div>
                             </div>
                             <div>

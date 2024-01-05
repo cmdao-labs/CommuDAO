@@ -597,7 +597,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Add LP</div>
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <div style={{display: "flex"}}>
-                                <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img>
+                                <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC"></img>
                                 <Select
                                     options={[]}
                                     value={options[0]}
@@ -645,7 +645,6 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                             styles={inputStyle}
                                             isSearchable={false}
                                         />
-                                        <a href="https://exp-l1.jibchain.net/token/0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a>
                                     </> :
                                     <></>
                                 }
@@ -658,7 +657,6 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                         styles={inputStyle}
                                         isSearchable={false}
                                     />
-                                    <a href="https://exp-l1.jibchain.net/token/0x24599b658b57f91E7643f4F154B16bcd2884f9ac/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a>
                                 </> :
                                 <></>
                             }
@@ -697,57 +695,55 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             <></>
                         }
                     </div>
-                    <div style={{margin: "20px", padding: "20px 0", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                    <div style={{margin: "20px", padding: "20px 0", height: "450px", boxShadow: "6px 6px 0 #00000040", fontSize: "14px"}} className="nftCard">
                         <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Remove LP</div>
-                        {liquidMode === 0 ?
+                        {liquidMode === 0 &&
                             <>
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                                    <div style={{display: "flex"}}>
-                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img>
-                                        <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOLED JBC:</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                        <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
                                     </div>
-                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}} className='bold'>
                                         {jbcPooled !== null ? <>{jbcPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
                                     </div>
                                 </div>
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                                    <div style={{display: "flex"}}>
-                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ"></img>
-                                        <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOLED CMJ:</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                        <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
                                     </div>
-                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}} className='bold'>
                                         {cmjPooled !== null ? <>{cmjPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
                                     </div>
                                 </div>
-                            </> :
-                            <></>
+                            </>
                         }
-                        {liquidMode === 1 ?
+                        {liquidMode === 1 &&
                             <>
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                                    <div style={{display: "flex"}}>
-                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="../tokens/jbc.png" alt="$JBC"></img>
-                                        <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOLED JBC:</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                        <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
                                     </div>
-                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}} className='bold'>
                                         {jbcjuPooled !== null ? <>{jbcjuPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
                                     </div>
                                 </div>
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                                    <div style={{display: "flex"}}>
-                                        <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT"></img>
-                                        <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOLED JUSDT:</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                        <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
                                     </div>
-                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                                    <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}} className='bold'>
                                         {jusdtjuPooled !== null ? <>{jusdtjuPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
                                     </div>
                                 </div>
-                            </> :
-                            <></>
+                            </>
                         }
-                        <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>LP VALUE:</div>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                        <div style={{width: "85%", display: "flex", justifyContent: "space-between", fontSize: "14px"}}>
+                            <div style={{height: "25px", lineHeight: 1.75}}>LP VALUE:</div>
+                            <div className="bold" style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}}>
                                 {jbcReserv !== 0 ?
                                     <>
                                         {liquidMode === 0 ? <>~{(Math.floor((jbcPooled + (cmjPooled * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 100) / 100).toLocaleString('en-US', {minimumFractionDigits:2})} THB</> : <></>}
@@ -757,9 +753,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 }
                             </div>
                         </div>
-                        <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>POOL SHARE:</div>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                        <div style={{width: "85%", display: "flex", justifyContent: "space-between", fontSize: "14px"}}>
+                            <div style={{height: "25px", lineHeight: 1.75}}>LP SHARE:</div>
+                            <div className="bold" style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}}>
                                 {lpShare !== 0 && julpShare !== 0 ?
                                     <>
                                         {liquidMode === 0 ? <>{lpShare}%</> : <></>}
@@ -769,19 +765,24 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 }
                             </div>
                         </div>
-                        {liquidMode === 0 ?
+                        {liquidMode === 0 &&
                             <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                                <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>JBC/CMJ LP<a href="https://exp-l1.jibchain.net/token/0x472d0e2E9839c140786D38110b3251d5ED08DF41/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a></div>
-                                <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                                <div style={{marginLeft: "5px", height: "25px"}}>
+                                    <img style={{width: "28px", height: "28px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
+                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreibizkouoitypq64ynygiclarbenejrtvsrfzeuezwh2b75fffyrzi" alt="$CMJ" />
+                                </div>
+                                <div className='bold' style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
                                     {lpBalance !== null ? <>Balance: {lpBalance.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
                                 </div>
-                            </div> :
-                            <></>
+                            </div>
                         }
                         {liquidMode === 1 ?
                             <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                                <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>JBC/JUSDT LP<a href="https://exp-l1.jibchain.net/token/0x280608DD7712a5675041b95d0000B9089903B569/" target="_blank" rel="noreferrer"><i className="fa fa-external-link" style={{fontSize: "16px", marginLeft: "5px", lineHeight: 2.3}}></i></a></div>
-                                <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, fontSize: "16px"}}>
+                               <div style={{marginLeft: "5px", height: "25px"}}>
+                                    <img style={{width: "28px", height: "28px"}} src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
+                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://nftstorage.link/ipfs/bafkreiepfzqlifoasaykbhrhmd35a2uidczzgvwflf22ktnxdababchbta" alt="$JUSDT" />
+                                </div>
+                                <div className='bold' style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
                                     {julpBalance !== null ? <>Balance: {julpBalance.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
                                 </div>
                             </div> :
