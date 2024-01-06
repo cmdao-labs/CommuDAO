@@ -76,7 +76,7 @@ const Fields = ({ callMode, navigate }) => {
 
         <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="https://nftstorage.link/ipfs/bafybeih2ikujv3rpu4rumh2kugeah3wyxa37dgqq6cnwkonkrublj2j5hi" height="230" alt="Field_TheHeavenLand" />
+                <img src="https://nftstorage.link/ipfs/bafkreibgjc2bzx42soeevrzn6ohlr44xly4sjhj6k6o2spcsia24qztyki" height="230" alt="Field_TheHeavenLand" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -97,6 +97,27 @@ const Fields = ({ callMode, navigate }) => {
                     </div>                    
                 </div>
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(17); navigate('/fields/the-heaven-land');}}>Go to The Heaven Land</div>
+            </div>
+
+            <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
+                <img src="https://nftstorage.link/ipfs/bafybeih4wlopgsgvw73dnjczn6un6sagasx6eyq57hzhj3l7gwlbuin75y" height="230" alt="Field_EasternFront" />
+                <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                    <div>
+                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                        Eligible NFT Collection
+                    </div>
+                    <div className="emp" style={{fontSize: "12px"}}>Angel Plus: Adventurer Card</div>
+                </div>
+                <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                    <div>
+                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                        Earn
+                    </div>
+                    <div style={{display: "flex", flexDirection: "row"}} className="emp">
+                        <div style={{margin: "0 5px"}}>ITEM_DROP</div>
+                    </div>                    
+                </div>
+                <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(19); navigate('/fields/eastern-front');}}>Go to Eastern Front</div>
             </div>
         </div>
     </>
