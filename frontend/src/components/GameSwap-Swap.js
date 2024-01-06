@@ -268,7 +268,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setisLoading(false)
     }
 
-    const [swapMode, setSwapMode] = React.useState(0)
+    const [swapMode, setSwapMode] = React.useState(1)
     const swapModeChange = () => {
         if (swapMode === 0) { setSwapMode(1) }
         if (swapMode === 1) { setSwapMode(0) }
@@ -419,26 +419,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                         /> :
                         <></>
                     }
-                    {swapMode === 0 ?
-                        <>
-                            <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
-                                <div>JBC Price :</div>
-                                {cmjReserv !== 0 ? 
-                                    <div>{Number(cmjReserv/jbcReserv).toLocaleString('en-US', {minimumFractionDigits:3})} CMJ <span className="tokenNormText">(~{(Math.floor((cmjReserv/jbcReserv) * ((jbcReserv/cmjReserv) * ((jusdtJuReserv/jbcJuReserv) * priceTHB)) * 100) / 100).toLocaleString('en-US', {minimumFractionDigits:2})} THB)</span></div> :
-                                    <>Loading...</>
-                                }
-                            </div>
-                            <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
-                                <div>Price Impact :</div>
-                                {cmjBought !== "" && Number(inputSwap) !== 0 ? 
-                                    <div>{Number(((((Number(inputSwap) / (Number(cmjReserv) - ((Number(cmjReserv) * Number(jbcReserv)) / (Number(jbcReserv) + Number(inputSwap))))) - (Number(jbcReserv/cmjReserv))) / (Number(jbcReserv/cmjReserv))) * 100)).toFixed(2)}%</div> :
-                                    <div>0.00%</div>
-                                }
-                            </div>
-                        </> :
-                        <></>
-                    }
-                    {swapMode === 1 ?
+                    {swapMode === 0 &&
                         <>
                             <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
                                 <div>CMJ Price :</div>
@@ -449,34 +430,32 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                             </div>
                             <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
                                 <div>Price Impact :</div>
-                                {jbcBought !== "" && Number(inputSwap) !== 0 ?
-                                    <div>{Number(((((Number(inputSwap) / (Number(jbcReserv) - ((Number(cmjReserv) * Number(jbcReserv)) / (Number(cmjReserv) + Number(inputSwap))))) - (Number(cmjReserv/jbcReserv))) / (Number(cmjReserv/jbcReserv))) * 100)).toFixed(2)}%</div> :
+                                {cmjBought !== "" && Number(inputSwap) !== 0 ? 
+                                    <div>{Number(((((Number(inputSwap) / (Number(cmjReserv) - ((Number(cmjReserv) * Number(jbcReserv)) / (Number(jbcReserv) + Number(inputSwap))))) - (Number(jbcReserv/cmjReserv))) / (Number(jbcReserv/cmjReserv))) * 100)).toFixed(2)}%</div> :
                                     <div>0.00%</div>
                                 }
                             </div>
-                        </> :
-                        <></>
+                        </>
                     }
-                    {swapMode === 2 ?
+                    {swapMode === 1 &&
                         <>
                             <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
-                                <div>JUSDT Price :</div>
-                                {jusdtJuReserv !== 0 ?
-                                    <div>{Number(jbcJuReserv/jusdtJuReserv).toLocaleString('en-US', {minimumFractionDigits:3})} JBC <span className="tokenNormText">(~{(Math.floor(priceTHB * 100) / 100).toLocaleString('en-US', {minimumFractionDigits:2})} THB)</span></div> :
+                                <div>JBC Price :</div>
+                                {cmjReserv !== 0 ? 
+                                    <div>{Number(cmjReserv/jbcReserv).toLocaleString('en-US', {minimumFractionDigits:3})} CMJ <span className="tokenNormText">(~{(Math.floor((cmjReserv/jbcReserv) * ((jbcReserv/cmjReserv) * ((jusdtJuReserv/jbcJuReserv) * priceTHB)) * 100) / 100).toLocaleString('en-US', {minimumFractionDigits:2})} THB)</span></div> :
                                     <>Loading...</>
                                 }
                             </div>
                             <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
                                 <div>Price Impact :</div>
-                                {jbcJuBought !== "" && Number(inputSwap) !== 0 ?
-                                    <div>{Number(((((Number(inputSwap) / (Number(jbcJuReserv) - ((Number(jusdtJuReserv) * Number(jbcJuReserv)) / (Number(jusdtJuReserv) + Number(inputSwap))))) - (Number(jusdtJuReserv/jbcJuReserv))) / (Number(jusdtJuReserv/jbcJuReserv))) * 100)).toFixed(2)}%</div> :
+                                {jbcBought !== "" && Number(inputSwap) !== 0 ?
+                                    <div>{Number(((((Number(inputSwap) / (Number(jbcReserv) - ((Number(cmjReserv) * Number(jbcReserv)) / (Number(cmjReserv) + Number(inputSwap))))) - (Number(cmjReserv/jbcReserv))) / (Number(cmjReserv/jbcReserv))) * 100)).toFixed(2)}%</div> :
                                     <div>0.00%</div>
                                 }
                             </div>
-                        </> :
-                        <></>
+                        </>
                     }
-                    {swapMode === 3 ?
+                    {swapMode === 2 &&
                         <>
                             <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
                                 <div>JBC Price :</div>
@@ -487,13 +466,30 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                             </div>
                             <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
                                 <div>Price Impact :</div>
+                                {jbcJuBought !== "" && Number(inputSwap) !== 0 ?
+                                    <div>{Number(((((Number(inputSwap) / (Number(jbcJuReserv) - ((Number(jusdtJuReserv) * Number(jbcJuReserv)) / (Number(jusdtJuReserv) + Number(inputSwap))))) - (Number(jusdtJuReserv/jbcJuReserv))) / (Number(jusdtJuReserv/jbcJuReserv))) * 100)).toFixed(2)}%</div> :
+                                    <div>0.00%</div>
+                                }
+                            </div>
+                        </>
+                    }
+                    {swapMode === 3 &&
+                        <>
+                            <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
+                                <div>JUSDT Price :</div>
+                                {jusdtJuReserv !== 0 ?
+                                    <div>{Number(jbcJuReserv/jusdtJuReserv).toLocaleString('en-US', {minimumFractionDigits:3})} JBC <span className="tokenNormText">(~{(Math.floor(priceTHB * 100) / 100).toLocaleString('en-US', {minimumFractionDigits:2})} THB)</span></div> :
+                                    <>Loading...</>
+                                }
+                            </div>
+                            <div style={{width: "70%", lineHeight: 1.5, fontSize: "12px", display: "flex", justifyContent: "space-between"}}>
+                                <div>Price Impact :</div>
                                 {jusdtJuBought !== "" && Number(inputSwap) !== 0 ?
                                     <div>{Number(((((Number(inputSwap) / (Number(jusdtJuReserv) - ((Number(jusdtJuReserv) * Number(jbcJuReserv)) / (Number(jbcJuReserv) + Number(inputSwap))))) - (Number(jbcJuReserv/jusdtJuReserv))) / (Number(jbcJuReserv/jusdtJuReserv))) * 100)).toFixed(2)}%</div> :
                                     <div>0.00%</div>
                                 }
                             </div>
-                        </> :
-                        <></>
+                        </>
                     }
                     {swapMode === 0 || swapMode === 1 ?
                         <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px"}} className="bold" onClick={swapTokenHandle}>Swap</div> :
