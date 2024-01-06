@@ -114,7 +114,7 @@ const Fields = ({ callMode, navigate }) => {
                         Earn
                     </div>
                     <div style={{display: "flex", flexDirection: "row"}} className="emp">
-                        <div style={{margin: "0 5px"}}>ITEM_DROP</div>
+                        <div style={{margin: "0"}}>Valuable Bag</div>
                     </div>                    
                 </div>
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(19); navigate('/fields/eastern-front');}}>Go to Eastern Front</div>

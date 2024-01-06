@@ -211,12 +211,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
 
             console.log(nfts)
 
-            const goldBal = address !== null && address !== undefined ? await readContract({
-                address: gold,
-                abi: erc20ABI,
-                functionName: 'balanceOf',
-                args: [address],
-            }) : 0
+            const goldBal = 0
 
             return [nfts, _allDaily, _allReward, goldBal]
         }
