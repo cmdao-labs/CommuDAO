@@ -395,15 +395,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
             <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
                 <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "880px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
-                    <div style={{fontSize: "40px", color: "#fff"}}>December 2023 Prize Pool 🎁</div>
+                    <div style={{fontSize: "40px", color: "#fff"}}>January 2024 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Questers</div>
-                            <div>10,235 CMJ</div>
+                            <div>6,459 CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Strongest</div>
-                            <div>10,235 CMJ</div>
+                            <div>6,459 CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Spender</div>
