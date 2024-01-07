@@ -414,7 +414,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                             <div>10,000 JBC</div>
                         </div>
                     </div>
-                    <div style={{color: "#fff"}}>Snapshot on the last block before 0.00AM 01/11.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
+                    <div style={{color: "#fff"}}>Snapshot on the last block before 0.00AM 01/02.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top 1-3</div>
