@@ -3136,7 +3136,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             <div style={{width: "150px"}}>{item.Name}</div>
                                                         </div>
                                                         <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                                        {Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550 &&
+                                                        {(Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2550) &&
                                                             <div>
                                                                 <img src={item.Image} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name} +1</div>
@@ -3541,7 +3541,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             }
                                                         </div>
                                                     </div>
-                                                    {Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 2750 || Number(item.Id) % 100000 === 2550 &&
+                                                    {(Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 2750 || Number(item.Id) % 100000 === 2550) &&
                                                         <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
                                                             <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
@@ -3550,7 +3550,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             <div>(depend on parent blockhash calculation)</div>
                                                         </div>
                                                     }
-                                                    {Number(item.Id) % 100000 === 950 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 || Number(item.Id) % 100000 === 3900 &&
+                                                    {(Number(item.Id) % 100000 === 950 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 || Number(item.Id) % 100000 === 3900) &&
                                                         <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
                                                             <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>

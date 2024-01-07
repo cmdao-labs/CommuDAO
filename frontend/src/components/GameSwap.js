@@ -80,6 +80,10 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     const [mode, setMode] = React.useState(0)
     const [swapvol24USDT, setSwapvol24USDT] = React.useState("")
     const [swapvol24CMJ, setSwapvol24CMJ] = React.useState("")
+    /*
+    const [tswapvol24USDT, setTSwapvol24USDT] = React.useState("")
+    const [tswapvol24CMJ, setTSwapvol24CMJ] = React.useState("")
+    */
 
     const [jbcBalance, setJbcBalance] = React.useState(<>0.000</>)
     const [cmjBalance, setCmjBalance] = React.useState(<>0.000</>)
@@ -399,6 +403,22 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
 
             const sumVolUsdt = vol1Map.concat(vol2Map).reduce((partialSum, a) => partialSum + a, 0);
             const sumVolCmj = vol3Map.concat(vol4Map).reduce((partialSum, a) => partialSum + a, 0);
+            /*
+            const tvol1Event = await jusdtSC.queryFilter(vol1Filter, 143068, 'latest')
+            const tvol1Map = await Promise.all(tvol1Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const tvol2Event = await jusdtSC.queryFilter(vol2Filter, 143068, 'latest')
+            const tvol2Map = await Promise.all(tvol2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const tvol3Event = await cmjSC.queryFilter(vol3Filter, 98302, 'latest')
+            const tvol3Map = await Promise.all(tvol3Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const tvol4Event = await cmjSC.queryFilter(vol4Filter, 98302, 'latest')
+            const tvol4Map = await Promise.all(tvol4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+
+            const tsumVolUsdt = tvol1Map.concat(tvol2Map).reduce((partialSum, a) => partialSum + a, 0);
+            const tsumVolCmj = tvol3Map.concat(tvol4Map).reduce((partialSum, a) => partialSum + a, 0);
+            */
 
             const jbcBal = address !== null && address !== undefined ?
                 await fetchBalance({ address: address, }) :
@@ -481,7 +501,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 jbcBal, cmjBal, jusdtBal,
                 JbcJcReserv, CmjJcReserv, JbcJuReserv, JusdtJuReserv,
                 jclpBal, jclpTotalSup, julpBal, julpTotalSup,
-                usdtToTHB, sumVolUsdt, sumVolCmj, 
+                usdtToTHB, sumVolUsdt, sumVolCmj, /*tsumVolUsdt, tsumVolCmj,*/
             ]
         }
 
@@ -533,6 +553,10 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             setPriceTHB(ethers.utils.formatEther(result[11]) * (10**10))
             setSwapvol24USDT((Number(result[12]).toFixed(0)))
             setSwapvol24CMJ(Number(result[13]).toFixed(0))
+            /*
+            setTSwapvol24USDT((Number(result[14]).toFixed(0)))
+            setTSwapvol24CMJ(Number(result[15]).toFixed(0))
+            */
         })
     }, [address, txupdate, exchangeABI, exchangeJulpABI, erc20ABI, bkcOracleABI])
 
@@ -584,9 +608,13 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         jusdtJuReserv={jusdtJuReserv}
                         priceTHB={priceTHB}
                     />
-                    <div style={{margin: "20px 0", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
+                    <div style={{marginBottom: "40px", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                         <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px"}}>
-                            Daily volume: {jbcReserv !== 0 ? <>~฿{(Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>}
+                            <div>Daily volume: {jbcReserv !== 0 ? <>฿{(Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>}</div>
+                            <div style={{marginTop: "10px"}}>Total volume: {'฿17.7M+'/*jbcReserv !== 0 ? <>  ฿{(Number(Math.floor(tswapvol24USDT * priceTHB)) + Number(Math.floor(tswapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>*/}</div>
+                            <div style={{marginTop: "10px"}}>-----</div>
+                            <div style={{marginTop: "10px"}}>Daily LP revenue: {jbcReserv !== 0 ? <>฿{((Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)) * 0.01).toLocaleString('en-US', {maximumFractionDigits:0})}</> : <>~฿0</>}</div>
+                            <div style={{marginTop: "10px"}}>Total LP revenue: {'฿177,000+'/*jbcReserv !== 0 ? <>฿{((Number(Math.floor(tswapvol24USDT * priceTHB)) + Number(Math.floor(tswapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)) * 0.01).toLocaleString('en-US', {maximumFractionDigits:0})}</> : <>~฿0</>*/}</div>
                         </div>
                     </div>
                 </>
