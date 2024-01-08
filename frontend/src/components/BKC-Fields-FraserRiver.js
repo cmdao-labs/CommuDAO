@@ -111,7 +111,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
 
                 nfts.push({
                     Id: yournftstake[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " [" + yournftstake[i].Id + "]",
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -177,7 +177,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " [" + yournftwallet[i].Id + "]",
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
