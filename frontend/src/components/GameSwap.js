@@ -609,12 +609,12 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         priceTHB={priceTHB}
                     />
                     <div style={{marginBottom: "40px", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
-                        <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px"}}>
+                        <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px", letterSpacing: "0.5px"}}>
                             <div>Daily volume: {jbcReserv !== 0 ? <>฿{(Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>}</div>
-                            <div style={{marginTop: "10px"}}>Total volume: {'฿17.7M+'/*jbcReserv !== 0 ? <>  ฿{(Number(Math.floor(tswapvol24USDT * priceTHB)) + Number(Math.floor(tswapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>*/}</div>
+                            <div style={{marginTop: "10px"}}>Total volume: {'฿17M+'/*jbcReserv !== 0 ? <>  ฿{(Number(Math.floor(tswapvol24USDT * priceTHB)) + Number(Math.floor(tswapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>~฿0</>*/}</div>
                             <div style={{marginTop: "10px"}}>-----</div>
                             <div style={{marginTop: "10px"}}>Daily LP revenue: {jbcReserv !== 0 ? <>฿{((Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)) * 0.01).toLocaleString('en-US', {maximumFractionDigits:0})}</> : <>~฿0</>}</div>
-                            <div style={{marginTop: "10px"}}>Total LP revenue: {'฿177,000+'/*jbcReserv !== 0 ? <>฿{((Number(Math.floor(tswapvol24USDT * priceTHB)) + Number(Math.floor(tswapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)) * 0.01).toLocaleString('en-US', {maximumFractionDigits:0})}</> : <>~฿0</>*/}</div>
+                            <div style={{marginTop: "10px"}}>Total LP revenue: {'฿170k+'/*jbcReserv !== 0 ? <>฿{((Number(Math.floor(tswapvol24USDT * priceTHB)) + Number(Math.floor(tswapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)) * 0.01).toLocaleString('en-US', {maximumFractionDigits:0})}</> : <>~฿0</>*/}</div>
                         </div>
                     </div>
                 </>
