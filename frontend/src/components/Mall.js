@@ -246,6 +246,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell6Id = data2[5]
             const sell7Id = data2[11]
             const sell8Id = data2[12]
+            const sell9Id = data2[13]
             const roll1 = data2[6]
             const roll2 = data2[7]
             const roll3 = data2[8]
