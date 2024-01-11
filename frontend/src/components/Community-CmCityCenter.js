@@ -6,8 +6,10 @@ import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi
 const sx31Vote = '0x9787c30309103A7df118C7440E7C9b817eB60952'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const meritFaucet = '0x169816800f1eA9C5735937388aeb9C2A3bAca11F'
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 
-const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteABI, faucetABI }) => {
+const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteABI, faucetABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [sx31Voting1, setSx31Voting1] = React.useState(['Loading...', 'Loading...', 0, 'Loading...'])
@@ -17,6 +19,10 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
     const [jbconFaucet, setJbconFaucet] = React.useState(0)
     const [delegateAmount, setDelegateAmount] = React.useState("")
     const [allowClaimJBC, setAllowClaimJBC] = React.useState(false)
+
+    const [name, setName] = React.useState("")
+    const [avaiName, setAvaiName] = React.useState(null)
+    const [yourName, setYourName] = React.useState(null)
 
     const { config } = usePrepareSendTransaction({
         request: {
@@ -49,7 +55,20 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 args: [address],
             }) : false
 
-            return [sx31Proposal1, sx31Proposal1All, jbcFaucet, allowtoClaim]
+            const id = await readContract({
+                address: cmdaoName,
+                abi: cmdaoNameABI,
+                functionName: 'yourName',
+                args: [address]
+            })
+            const name = await readContract({
+                address: cmdaoName,
+                abi: cmdaoNameABI,
+                functionName: 'tokenURI',
+                args: [id]
+            })
+
+            return [sx31Proposal1, sx31Proposal1All, jbcFaucet, allowtoClaim, name]
         }
 
         const promise = thefetch()
@@ -66,9 +85,10 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
             setSx31Voting1All(ethers.utils.formatEther(String(result[1])))
             setJbconFaucet(result[2].formatted)
             setAllowClaimJBC(result[3])
+            setYourName(String(result[4]))
         })
 
-    }, [address, txupdate, erc20ABI, sx31voteABI, faucetABI])
+    }, [address, txupdate, erc20ABI, sx31voteABI, faucetABI, cmdaoNameABI])
 
     const voteHandle = async (_proposal) => {
         setisLoading(true)
@@ -117,6 +137,52 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
         setisLoading(false)
     }
 
+    const checkName = async () => {
+        setisLoading(true)
+        try {
+            const avai = await readContract({
+                address: cmdaoName,
+                abi: cmdaoNameABI,
+                functionName: 'availability',
+                args: [name]
+            })
+            avai === '0x0000000000000000000000000000000000000000' ? setAvaiName(true) : setAvaiName(false)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const registName = async () => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: cmj,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, cmdaoName],
+            })
+            if (Number(tokenAllow) < 250 * 10**18) {
+                const config = await prepareWriteContract({
+                    address: cmj,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [cmdaoName, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config = await prepareWriteContract({
+                address: cmdaoName,
+                abi: cmdaoNameABI,
+                functionName: 'idMint',
+                args: [name]
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -129,6 +195,40 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
             </div>
 
             <div style={{background: "rgb(0, 19, 33", width: "100%", margin: "0", padding: "75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll">
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "420px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">CMDAO Name Service [ALPHA]</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                        <div style={{width: "100%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                            <div>
+                                <div className="bold">PROPOSAL DETAIL</div>
+                                <div style={{marginTop: "10px", color: "#fff", fontSize: "12px"}} className="bold">ลงทะเบียนชื่อสำหรับใช้งานใน CommuDAO Ecosystem ค่าธรรมเนียม: ชื่อใหม่ (250 CMJ), เปลี่ยนชื่อ (500 cmj/ครั้ง)</div>
+                            </div>
+                            <div>
+                                <div className="bold">YOUR NAME</div>
+                                <div style={{marginTop: "10px", color: "#fff"}} className="bold">{yourName}</div>
+                            </div>
+                            <div style={{width: "65%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                <input style={{width: "250px", padding: "10px 40px", fontSize: "18px"}} className="bold" type="string" placeholder="Input Name (max 128 bytes)" value={name} onChange={(event) => {setAvaiName(null); if (new Blob([event.target.value]).size <= 128) {setName(event.target.value)};}}></input>
+                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={checkName}>CHECK</div>
+                            </div>
+                            <div style={{width: "65%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                {avaiName !== null ?
+                                    <>
+                                        {avaiName ?
+                                            <>
+                                                <div style={{color: "rgb(0, 227, 180)"}} className="bold">'{name}' IS AVAILABLE.</div>
+                                                <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={registName}>REGISTER</div>
+                                            </> :
+                                            <div style={{height: "52px"}} className="emp bold">'{name}' IS UNAVAILABLE.</div>
+                                        }
+                                    </> :
+                                    <div style={{height: "52px"}}></div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "420px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">CMDAO Charity - $JBC delegation for newcomers</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>

@@ -4,6 +4,8 @@ import { readContract, readContracts, prepareWriteContract, writeContract } from
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const quest01 = '0x3eB35884e8811188CCe3653fc67A3876d810E582'
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
@@ -20,7 +22,7 @@ const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -161,6 +163,46 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 ))
             })
+            const data2_001 = await readContracts({
+                contracts: data2_00.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item.fren]
+                    }
+                ))
+            })
+            const data2_002 = await readContracts({
+                contracts: data2_00.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item.ambassador]
+                    }
+                ))
+            })
+            const data2_0011 = await readContracts({
+                contracts: data2_001.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item]
+                    }
+                ))
+            })
+            const data2_0022 = await readContracts({
+                contracts: data2_002.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item]
+                    }
+                ))
+            })
             const ranker = []
             const mover = []
             for (let i = 0; i <= data2_00.length - 1; i++) {
@@ -237,7 +279,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 }
             }
-            const data2 = ranker.map((item, i) => {return {addr: item, cmxp: ((data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5) + (enderRemoveDup[i].value * 5) + (Number(ethers.utils.formatEther(data2_01[i].amount)).toFixed(0) * 500) + (Number(ethers.utils.formatEther(data2_02[i].amount)).toFixed(0) * 1000))}})
+            const data2 = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], cmxp: ((data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5) + (enderRemoveDup[i].value * 5) + (Number(ethers.utils.formatEther(data2_01[i].amount)).toFixed(0) * 500) + (Number(ethers.utils.formatEther(data2_02[i].amount)).toFixed(0) * 1000))}})
 
             const data3_1 = await readContracts({
                 contracts: ranker.map((item) => (
@@ -259,12 +301,14 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
-            const data3 = ranker.map((item, i) => {return {addr: item, cmpow: Number(data3_1[i].allPow) + Number(data3_2[i].allPow)}})
+            const data3 = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], cmpow: Number(data3_1[i].allPow) + Number(data3_2[i].allPow)}})
 
             const spendRemoveDup = []
             for (let i = 0; i <= ranker.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spendAllMerged).length -1; i2++) {
                     if (ranker[i].toUpperCase() === Object.values(spendAllMerged)[i2].from.toUpperCase()) {
+                        Object.values(spendAllMerged)[i2].name = data2_0011[i] === null ? Object.values(spendAllMerged)[i2].from.slice(0, 4) + "..." + Object.values(spendAllMerged)[i2].from.slice(-4) : data2_0011[i]
+                        console.log(Object.values(spendAllMerged)[i2])
                         spendRemoveDup.push(Object.values(spendAllMerged)[i2])
                     }
                 }
@@ -274,7 +318,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= spendRemoveDup.length - 1; i++) {
                 for (let i2 = 0; i2 <= ranker.length -1; i2++) {
                     if (spendRemoveDup[i].from.toUpperCase() === ranker[i2].toUpperCase()) {
-                        moverVal.push({addr: mover[i2], value: spendRemoveDup[i].value})
+                        moverVal.push({addr: mover[i2], name: data2_0022[i] === null ? spendRemoveDup[i].from.slice(0, 4) + "..." + spendRemoveDup[i].from.slice(-4) : data2_0022[i], value: spendRemoveDup[i].value})
                     }
                 }
             }
@@ -440,9 +484,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <div style={{width: "100%"}}>
                                         {rank.slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
                                                 <div>{item.cmxp} CMXP</div>
                                             </div>
@@ -465,9 +509,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <div style={{width: "100%"}}>
                                         {rank2.slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
                                                 <div>{item.cmpow} CMPOW</div>
                                             </div>
@@ -490,9 +534,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <div style={{width: "100%", height: "inherit"}}>
                                         {rank3.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.from.slice(0, 4) + "..." + item.from.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
                                                 <div>{Number(item.value).toFixed(2)} USDT</div>
                                             </div>
@@ -515,9 +559,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <div style={{width: "100%", height: "inherit"}}>
                                         {rank4.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "120px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.addr.slice(0, 4) + "..." + item.addr.slice(-4)}</div></a>
+                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
                                                 <div>{Number(item.value).toFixed(2)} USDT</div>
                                             </div>

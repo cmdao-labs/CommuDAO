@@ -71,6 +71,7 @@ import starterCMDSABI from './jsons/starterCMDSABI.json'
 import uplevelCMDSABI from './jsons/uplevelCMDSABI.json'
 import sx31voteABI from './jsons/sx31voteABI.json'
 import faucetABI from './jsons/faucetABI.json'
+import cmdaoNameABI from './jsons/cmdaoNameABI.json'
 import pvp01ABI from './jsons/pvp01ABI.json'
 import quest01ABI from './jsons/quest01ABI.json'
 import questAmbassABI from './jsons/questAmbassABI.json'
@@ -94,7 +95,7 @@ import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { bsc } from 'wagmi/chains'
 
-const v = '0.2.13'
+const v = '0.2.14'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -365,7 +366,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 41 ?
-                    <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} /> :
+                    <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} /> :
                     <></>
                 }
                 {mode === 42 ?
@@ -377,7 +378,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 44 ?
-                    <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} farmJdaoABI={farmJdaoABI} /> :
+                    <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} farmJdaoABI={farmJdaoABI} cmdaoNameABI={cmdaoNameABI} /> :
                     <></>
                 }
                 {mode === 5 ?
