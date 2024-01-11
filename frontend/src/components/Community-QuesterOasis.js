@@ -318,7 +318,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= spendRemoveDup.length - 1; i++) {
                 for (let i2 = 0; i2 <= ranker.length -1; i2++) {
                     if (spendRemoveDup[i].from.toUpperCase() === ranker[i2].toUpperCase()) {
-                        moverVal.push({addr: mover[i2], name: data2_0022[i] === null ? spendRemoveDup[i].from.slice(0, 4) + "..." + spendRemoveDup[i].from.slice(-4) : data2_0022[i], value: spendRemoveDup[i].value})
+                        moverVal.push({addr: mover[i2], name: data2_0022[i2] === null ? mover[i2].slice(0, 4) + "..." + mover[i2].slice(-4) : data2_0022[i2], value: spendRemoveDup[i].value})
                     }
                 }
             }
@@ -361,7 +361,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setRank4(result[11])
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI])
+    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI, cmdaoNameABI])
 
     const claimSILHandle = async () => {
         setisLoading(true)
