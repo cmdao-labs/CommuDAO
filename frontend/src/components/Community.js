@@ -1,4 +1,63 @@
-const Community = ({ callMode, navigate }) => {
+import React from 'react'
+import { readContracts } from '@wagmi/core'
+
+const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+
+const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
+    const [yourName, setYourName] = React.useState(null)
+
+    React.useEffect(() => {        
+        const thefetch = async () => {
+            const data = await readContracts({
+                contracts: [
+                    {
+                        address: land,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: ['10026010'],
+                    },
+                ],
+            })
+            const id = await readContracts({
+                contracts: data.map((item) => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item],
+                    }
+                )),
+            })
+            const name = await readContracts({
+                contracts: id.map((item) => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item],
+                    }
+                )),
+            })
+
+            return [name]
+        }
+
+        const promise = thefetch()
+
+        const getAsync = () =>
+            new Promise((resolve) => 
+                setTimeout(
+                    () => resolve(promise), 1000
+                )
+            )
+
+        getAsync().then(result => {
+            setYourName(String(result[0]))
+        })
+
+    }, [erc721ABI, cmdaoNameABI])
+
     return (
     <>
         <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -132,7 +191,7 @@ const Community = ({ callMode, navigate }) => {
                 </div>
                 <div id="tile30" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeiecefc3xbwj7mjd5pkpf7vb3mzu2xmce5t2h7ch4fq3xnz6gojclu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px", fontSize: "12px"}}>Land Z10 (Reserved)</div>
+                    <div style={{marginTop: "10px"}}>{yourName !== null ? <span style={{color: "rgb(0, 227, 180)"}}>{yourName + "'s Land [Z10]"}</span> : 'Land Z10 (Reserved)'}</div>
                 </div>
                 <div id="tile31" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
