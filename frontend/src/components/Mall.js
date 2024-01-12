@@ -34,6 +34,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [sell3Remain, setSell3Remain] = React.useState(500)
     const [canbuy3, setCanBuy3] = React.useState(false)
     const [sell4Remain, setSell4Remain] = React.useState(100)
+    const [canbuy4, setCanBuy4] = React.useState(false)
     const [sell5Remain, setSell5Remain] = React.useState(100)
     const [canbuy5, setCanBuy5] = React.useState(false)
     const [sell6Remain, setSell6Remain] = React.useState(100)
@@ -259,7 +260,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy2 = Number(ethers.utils.formatEther(String(pzaBal))) >= 49000 ? true : false
             const sell3remain = (210050100000 - (Number(sell3Id.sellId) - 250)) / 100000
             const _canBuy3 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 3 ? true : false
-            const sell4remain = (130010100000 - (Number(sell4Id.sellId) - 500)) / 100000
+            const sell4remain = (130020100000 - (Number(sell4Id.sellId) - 500)) / 100000
+            const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 12.5 ? true : false
             const sell5remain = (100520100000 - (Number(sell5Id.sellId) - 100)) / 100000
             const _canBuy5 = _isKYC && !isBought5 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
             const sell6remain = (1000010200000 - (Number(sell6Id.sellId) - 100)) / 100000
@@ -281,7 +283,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
 
             return [
-                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, 
+                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, 
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, 
             ]
         }
@@ -303,33 +305,34 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setSell3Remain(result[4])
             setCanBuy3(result[5])
             setSell4Remain(result[6])
-            setSell5Remain(result[7])
-            setCanBuy5(result[8])
-            setSell6Remain(result[9])
-            setCanBuy6(result[10])
-            setSell7Remain(result[18])
-            setCanBuy7(result[19])
-            setSell8Remain(result[20])
-            setCanBuy8(result[21])
-            setSell9Remain(result[22])
-            setCanBuy9(result[23])
+            setCanBuy4(result[7])
+            setSell5Remain(result[8])
+            setCanBuy5(result[9])
+            setSell6Remain(result[10])
+            setCanBuy6(result[11])
+            setSell7Remain(result[19])
+            setCanBuy7(result[20])
+            setSell8Remain(result[21])
+            setCanBuy8(result[22])
+            setSell9Remain(result[23])
+            setCanBuy9(result[24])
 
-            setRoll1Remain(result[11])
-            setCanRoll1(result[12])
-            setRoll2Remain(result[13])
-            setRoll3Remain(result[14])
-            setRoll4Remain(result[15])
-            setRoll5Remain(result[16])
-            setCanRoll2(result[17])
+            setRoll1Remain(result[12])
+            setCanRoll1(result[13])
+            setRoll2Remain(result[14])
+            setRoll3Remain(result[15])
+            setRoll4Remain(result[16])
+            setRoll5Remain(result[17])
+            setCanRoll2(result[18])
 
-            setCTunaBalance(ethers.utils.formatEther(String(result[24])))
-            setSx31Balance(ethers.utils.formatEther(String(result[25])))
-            setJusdtBalance(ethers.utils.formatEther(String(result[26])))
-            setCmjBalance(ethers.utils.formatEther(String(result[27])))
-            setBbqBalance(ethers.utils.formatEther(String(result[28])))
-            setPzaBalance(ethers.utils.formatEther(String(result[29])))
-            setCuBalance(ethers.utils.formatEther(String(result[30])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[31]), "gwei"))
+            setCTunaBalance(ethers.utils.formatEther(String(result[25])))
+            setSx31Balance(ethers.utils.formatEther(String(result[26])))
+            setJusdtBalance(ethers.utils.formatEther(String(result[27])))
+            setCmjBalance(ethers.utils.formatEther(String(result[28])))
+            setBbqBalance(ethers.utils.formatEther(String(result[29])))
+            setPzaBalance(ethers.utils.formatEther(String(result[30])))
+            setCuBalance(ethers.utils.formatEther(String(result[31])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[32]), "gwei"))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -409,7 +412,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
-            if (jusdtAllow < (10 * 10**18)) {
+            if (jusdtAllow < (12.5 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: jusdtToken,
                     abi: ctunaLabABI,
@@ -1207,7 +1210,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">SAPIENS #01</div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">SAPIENS #02</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" height="150" alt="Sapiens_01"/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
@@ -1225,7 +1228,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
-                                    <div style={{marginLeft: "7.5px"}}>10</div>
+                                    <div style={{marginLeft: "7.5px"}}>12.5</div>
                                 </div>
                             </div>
                         </div>
@@ -1233,7 +1236,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <>
                                 {sell4Remain > 0 ?
                                     <>
-                                        {canroll1 ?
+                                        {canbuy4 ?
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle3(4)}>BUY</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }

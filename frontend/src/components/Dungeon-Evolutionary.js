@@ -347,7 +347,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) <= 1009) {
+            } else if (Number(_enchantindex) <= 1009 || (Number(_enchantindex) >= 2001 && Number(_enchantindex) <= 2009)) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
@@ -997,14 +997,14 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                     <></>
                                                 }
                                                 {/*
-                                                ░██████╗░█████╗░██████╗░██╗███████╗███╗░░██╗░██████╗  ░░░██╗░██╗░░█████╗░░░███╗░░
-                                                ██╔════╝██╔══██╗██╔══██╗██║██╔════╝████╗░██║██╔════╝  ██████████╗██╔══██╗░████║░░
-                                                ╚█████╗░███████║██████╔╝██║█████╗░░██╔██╗██║╚█████╗░  ╚═██╔═██╔═╝██║░░██║██╔██║░░
-                                                ░╚═══██╗██╔══██║██╔═══╝░██║██╔══╝░░██║╚████║░╚═══██╗  ██████████╗██║░░██║╚═╝██║░░
-                                                ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝  ╚██╔═██╔══╝╚█████╔╝███████╗
-                                                ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░  ░╚═╝░╚═╝░░░░╚════╝░╚══════╝
+                                                ░██████╗░█████╗░██████╗░██╗███████╗███╗░░██╗░██████╗ 
+                                                ██╔════╝██╔══██╗██╔══██╗██║██╔════╝████╗░██║██╔════╝
+                                                ╚█████╗░███████║██████╔╝██║█████╗░░██╔██╗██║╚█████╗░
+                                                ░╚═══██╗██╔══██║██╔═══╝░██║██╔══╝░░██║╚████║░╚═══██╗
+                                                ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝ 
+                                                ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░
                                                 */}
-                                                {Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100 && Number(item.Id) % 100000 !== 9500 ?
+                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200)) && Number(item.Id) % 100000 !== 9500) &&
                                                     <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                         <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                             <div>
@@ -1013,39 +1013,45 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                             </div>
                                                             <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                                             <div>
-                                                                {Number(item.Id) % 100000 !== 1500 && Number(item.Id) % 100000 !== 4500 ? <img src={item.Image} width="120" alt="Can not load metadata." /> : <></>}
-                                                                {Number(item.Id) % 100000 === 1500 ? <img src="https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link" width="120" alt="Can not load metadata." /> : <></>}
-                                                                {Number(item.Id) % 100000 === 4500 ? <img src="https://nftstorage.link/ipfs/bafybeiew47pd67c3l5whmj6vhzullkqvrrsmtlssarwf5s54tnehejaxdu" width="120" alt="Can not load metadata." /> : <></>}
+                                                                {(Number(item.Id) % 100000 !== 1500 && Number(item.Id) % 100000 !== 4500) && <img src={item.Image} width="120" alt="Can not load metadata." />}
+                                                                {Number(item.Id) % 100000 === 1500 && <img src="https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />}
+                                                                {Number(item.Id) % 100000 === 4500 && <img src="https://nftstorage.link/ipfs/bafybeiew47pd67c3l5whmj6vhzullkqvrrsmtlssarwf5s54tnehejaxdu" width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}} className="emp pixel">
-                                                                    {Number(item.Id) % 100000 === 500 ? <>{item.Name} [Lv.1]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 540 ? <>{item.Name.slice(0, -2)}2]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 580 ? <>{item.Name.slice(0, -2)}3]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 660 ? <>{item.Name.slice(0, -2)}4]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 740 ? <>{item.Name.slice(0, -2)}5]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 860 ? <>{item.Name.slice(0, -2)}6]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 980 ? <>{item.Name.slice(0, -2)}7]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1140 ? <>{item.Name.slice(0, -2)}8]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1300 ? <>{item.Name.slice(0, -2)}9]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1500 ? <>{item.Name.slice(0, -2)}10]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1700 ? <>{item.Name.slice(0, -3)}11]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1940 ? <>{item.Name.slice(0, -3)}12]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2180 ? <>{item.Name.slice(0, -3)}13]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2460 ? <>{item.Name.slice(0, -3)}14]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2740 ? <>{item.Name.slice(0, -3)}15]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3060 ? <>{item.Name.slice(0, -3)}16]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3380 ? <>{item.Name.slice(0, -3)}17]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3740 ? <>{item.Name.slice(0, -3)}18]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4100 ? <>{item.Name.slice(0, -3)}19]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4500 ? <>{item.Name.slice(0, -3)}20]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4900 ? <>{item.Name.slice(0, -3)}21]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5340 ? <>{item.Name.slice(0, -3)}22]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5780 ? <>{item.Name.slice(0, -3)}23]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6260 ? <>{item.Name.slice(0, -3)}24]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6740 ? <>{item.Name.slice(0, -3)}25]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7260 ? <>{item.Name.slice(0, -3)}26]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7780 ? <>{item.Name.slice(0, -3)}27]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8340 ? <>{item.Name.slice(0, -3)}28]</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8900 ? <>{item.Name.slice(0, -3)}29]</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 500 ? 
+                                                                        <>{item.Name} [Lv.1]</> :
+                                                                        <>
+                                                                            {item.Name.slice(0, -3)}
+                                                                            {Number(item.Id) % 100000 === 540 && 2}
+                                                                            {Number(item.Id) % 100000 === 580 && 3}
+                                                                            {Number(item.Id) % 100000 === 660 && 4}
+                                                                            {Number(item.Id) % 100000 === 740 && 5}
+                                                                            {Number(item.Id) % 100000 === 860 && 6}
+                                                                            {Number(item.Id) % 100000 === 980 && 7}
+                                                                            {Number(item.Id) % 100000 === 1140 && 8}
+                                                                            {Number(item.Id) % 100000 === 1300 && 9}
+                                                                            {Number(item.Id) % 100000 === 1500 && 10}
+                                                                            {Number(item.Id) % 100000 === 1700 && 11}
+                                                                            {Number(item.Id) % 100000 === 1940 && 12}
+                                                                            {Number(item.Id) % 100000 === 2180 && 13}
+                                                                            {Number(item.Id) % 100000 === 2460 && 14}
+                                                                            {Number(item.Id) % 100000 === 2740 && 15}
+                                                                            {Number(item.Id) % 100000 === 3060 && 16}
+                                                                            {Number(item.Id) % 100000 === 3380 && 17}
+                                                                            {Number(item.Id) % 100000 === 3740 && 18}
+                                                                            {Number(item.Id) % 100000 === 4100 && 19}
+                                                                            {Number(item.Id) % 100000 === 4500 && 20}
+                                                                            {Number(item.Id) % 100000 === 4900 && 21}
+                                                                            {Number(item.Id) % 100000 === 5340 && 22}
+                                                                            {Number(item.Id) % 100000 === 5780 && 23}
+                                                                            {Number(item.Id) % 100000 === 6260 && 24}
+                                                                            {Number(item.Id) % 100000 === 6740 && 25}
+                                                                            {Number(item.Id) % 100000 === 7260 && 26}
+                                                                            {Number(item.Id) % 100000 === 7780 && 27}
+                                                                            {Number(item.Id) % 100000 === 8340 && 28}
+                                                                            {Number(item.Id) % 100000 === 8900 && 29}
+                                                                            ]
+                                                                        </>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1053,87 +1059,87 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                             <div>
                                                                 <div>
                                                                     Level&nbsp;
-                                                                    {Number(item.Id) % 100000 === 500 ? <>0</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 540 ? <>1</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 580 ? <>2</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 660 ? <>3</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 740 ? <>4</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 860 ? <>5</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 980 ? <>6</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1140 ? <>7</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1300 ? <>8</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1500 ? <>9</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1700 ? <>10</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1940 ? <>11</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2180 ? <>12</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2460 ? <>13</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2740 ? <>14</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3060 ? <>15</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3380 ? <>16</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3740 ? <>17</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4100 ? <>18</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4500 ? <>19</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4900 ? <>20</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5340 ? <>21</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5780 ? <>22</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6260 ? <>23</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6740 ? <>24</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7260 ? <>25</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7780 ? <>26</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8340 ? <>27</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8900 ? <>28</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 500 && 0}
+                                                                    {Number(item.Id) % 100000 === 540 && 1}
+                                                                    {Number(item.Id) % 100000 === 580 && 2}
+                                                                    {Number(item.Id) % 100000 === 660 && 3}
+                                                                    {Number(item.Id) % 100000 === 740 && 4}
+                                                                    {Number(item.Id) % 100000 === 860 && 5}
+                                                                    {Number(item.Id) % 100000 === 980 && 6}
+                                                                    {Number(item.Id) % 100000 === 1140 && 7}
+                                                                    {Number(item.Id) % 100000 === 1300 && 8}
+                                                                    {Number(item.Id) % 100000 === 1500 && 9}
+                                                                    {Number(item.Id) % 100000 === 1700 && 10}
+                                                                    {Number(item.Id) % 100000 === 1940 && 11}
+                                                                    {Number(item.Id) % 100000 === 2180 && 12}
+                                                                    {Number(item.Id) % 100000 === 2460 && 13}
+                                                                    {Number(item.Id) % 100000 === 2740 && 14}
+                                                                    {Number(item.Id) % 100000 === 3060 && 15}
+                                                                    {Number(item.Id) % 100000 === 3380 && 16}
+                                                                    {Number(item.Id) % 100000 === 3740 && 17}
+                                                                    {Number(item.Id) % 100000 === 4100 && 18}
+                                                                    {Number(item.Id) % 100000 === 4500 && 19}
+                                                                    {Number(item.Id) % 100000 === 4900 && 20}
+                                                                    {Number(item.Id) % 100000 === 5340 && 21}
+                                                                    {Number(item.Id) % 100000 === 5780 && 22}
+                                                                    {Number(item.Id) % 100000 === 6260 && 23}
+                                                                    {Number(item.Id) % 100000 === 6740 && 24}
+                                                                    {Number(item.Id) % 100000 === 7260 && 25}
+                                                                    {Number(item.Id) % 100000 === 7780 && 26}
+                                                                    {Number(item.Id) % 100000 === 8340 && 27}
+                                                                    {Number(item.Id) % 100000 === 8900 && 28}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                             </div>
                                                             <div>
                                                                 <div>
                                                                     Level&nbsp;
-                                                                    {Number(item.Id) % 100000 === 500 ? <>1</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 540 ? <>2</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 580 ? <>3</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 660 ? <>4</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 740 ? <>5</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 860 ? <>6</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 980 ? <>7</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1140 ? <>8</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1300 ? <>9</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1500 ? <>10</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1700 ? <>11</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1940 ? <>12</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2180 ? <>13</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2460 ? <>14</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2740 ? <>15</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3060 ? <>16</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3380 ? <>17</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3740 ? <>18</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4100 ? <>19</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4500 ? <>20</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4900 ? <>21</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5340 ? <>22</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5780 ? <>23</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6260 ? <>24</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6740 ? <>25</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7260 ? <>26</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7780 ? <>27</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8340 ? <>28</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8900 ? <>29</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 500 && 1}
+                                                                    {Number(item.Id) % 100000 === 540 && 2}
+                                                                    {Number(item.Id) % 100000 === 580 && 3}
+                                                                    {Number(item.Id) % 100000 === 660 && 4}
+                                                                    {Number(item.Id) % 100000 === 740 && 5}
+                                                                    {Number(item.Id) % 100000 === 860 && 6}
+                                                                    {Number(item.Id) % 100000 === 980 && 7}
+                                                                    {Number(item.Id) % 100000 === 1140 && 8}
+                                                                    {Number(item.Id) % 100000 === 1300 && 9}
+                                                                    {Number(item.Id) % 100000 === 1500 && 10}
+                                                                    {Number(item.Id) % 100000 === 1700 && 11}
+                                                                    {Number(item.Id) % 100000 === 1940 && 12}
+                                                                    {Number(item.Id) % 100000 === 2180 && 13}
+                                                                    {Number(item.Id) % 100000 === 2460 && 14}
+                                                                    {Number(item.Id) % 100000 === 2740 && 15}
+                                                                    {Number(item.Id) % 100000 === 3060 && 16}
+                                                                    {Number(item.Id) % 100000 === 3380 && 17}
+                                                                    {Number(item.Id) % 100000 === 3740 && 18}
+                                                                    {Number(item.Id) % 100000 === 4100 && 19}
+                                                                    {Number(item.Id) % 100000 === 4500 && 20}
+                                                                    {Number(item.Id) % 100000 === 4900 && 21}
+                                                                    {Number(item.Id) % 100000 === 5340 && 22}
+                                                                    {Number(item.Id) % 100000 === 5780 && 23}
+                                                                    {Number(item.Id) % 100000 === 6260 && 24}
+                                                                    {Number(item.Id) % 100000 === 6740 && 25}
+                                                                    {Number(item.Id) % 100000 === 7260 && 26}
+                                                                    {Number(item.Id) % 100000 === 7780 && 27}
+                                                                    {Number(item.Id) % 100000 === 8340 && 28}
+                                                                    {Number(item.Id) % 100000 === 8900 && 29}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>
-                                                                    {Number(item.Id) % 100000 <= 540 ? item.RewardPerSec + 40 : <></>}
-                                                                    {Number(item.Id) % 100000 === 580 || Number(item.Id) % 100000 === 660 ? item.RewardPerSec + 80 : <></>}
-                                                                    {Number(item.Id) % 100000 === 740 || Number(item.Id) % 100000 === 860 ? item.RewardPerSec + 120 : <></>}
-                                                                    {Number(item.Id) % 100000 === 980 || Number(item.Id) % 100000 === 1140 ? item.RewardPerSec + 160 : <></>}
-                                                                    {Number(item.Id) % 100000 === 1300 || Number(item.Id) % 100000 === 1500 ? item.RewardPerSec + 200 : <></>}
-                                                                    {Number(item.Id) % 100000 === 1700 || Number(item.Id) % 100000 === 1940 ? item.RewardPerSec + 240 : <></>}
-                                                                    {Number(item.Id) % 100000 === 2180 || Number(item.Id) % 100000 === 2460 ? item.RewardPerSec + 280 : <></>}
-                                                                    {Number(item.Id) % 100000 === 2740 || Number(item.Id) % 100000 === 3060 ? item.RewardPerSec + 320 : <></>}
-                                                                    {Number(item.Id) % 100000 === 3380 || Number(item.Id) % 100000 === 3740 ? item.RewardPerSec + 360 : <></>}
-                                                                    {Number(item.Id) % 100000 === 4100 || Number(item.Id) % 100000 === 4500 ? item.RewardPerSec + 400 : <></>}
-                                                                    {Number(item.Id) % 100000 === 4900 || Number(item.Id) % 100000 === 5340 ? item.RewardPerSec + 440 : <></>}
-                                                                    {Number(item.Id) % 100000 === 5780 || Number(item.Id) % 100000 === 6260 ? item.RewardPerSec + 480 : <></>}
-                                                                    {Number(item.Id) % 100000 === 6740 || Number(item.Id) % 100000 === 7260 ? item.RewardPerSec + 520 : <></>}
-                                                                    {Number(item.Id) % 100000 === 7780 || Number(item.Id) % 100000 === 8340 ? item.RewardPerSec + 560 : <></>}
-                                                                    {Number(item.Id) % 100000 === 8900 ? item.RewardPerSec + 600 : <></>}
+                                                                    {Number(item.Id) % 100000 <= 540 && item.RewardPerSec + 40}
+                                                                    {(Number(item.Id) % 100000 === 580 || Number(item.Id) % 100000 === 660) && item.RewardPerSec + 80}
+                                                                    {(Number(item.Id) % 100000 === 740 || Number(item.Id) % 100000 === 860) && item.RewardPerSec + 120}
+                                                                    {(Number(item.Id) % 100000 === 980 || Number(item.Id) % 100000 === 1140) && item.RewardPerSec + 160}
+                                                                    {(Number(item.Id) % 100000 === 1300 || Number(item.Id) % 100000 === 1500) && item.RewardPerSec + 200}
+                                                                    {(Number(item.Id) % 100000 === 1700 || Number(item.Id) % 100000 === 1940) && item.RewardPerSec + 240}
+                                                                    {(Number(item.Id) % 100000 === 2180 || Number(item.Id) % 100000 === 2460) && item.RewardPerSec + 280}
+                                                                    {(Number(item.Id) % 100000 === 2740 || Number(item.Id) % 100000 === 3060) && item.RewardPerSec + 320}
+                                                                    {(Number(item.Id) % 100000 === 3380 || Number(item.Id) % 100000 === 3740) && item.RewardPerSec + 360}
+                                                                    {(Number(item.Id) % 100000 === 4100 || Number(item.Id) % 100000 === 4500) && item.RewardPerSec + 400}
+                                                                    {(Number(item.Id) % 100000 === 4900 || Number(item.Id) % 100000 === 5340) && item.RewardPerSec + 440}
+                                                                    {(Number(item.Id) % 100000 === 5780 || Number(item.Id) % 100000 === 6260) && item.RewardPerSec + 480}
+                                                                    {(Number(item.Id) % 100000 === 6740 || Number(item.Id) % 100000 === 7260) && item.RewardPerSec + 520}
+                                                                    {(Number(item.Id) % 100000 === 7780 || Number(item.Id) % 100000 === 8340) && item.RewardPerSec + 560}
+                                                                    {Number(item.Id) % 100000 === 8900 && item.RewardPerSec + 600}
                                                                     &nbsp;cmpow per sec
                                                                 </div>
                                                             </div>
@@ -1147,71 +1153,71 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
                                                                 <div style={{margin: "0 5px"}}>
-                                                                    {Number(item.Id) % 100000 === 500 ? <>250</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 540 ? <>300</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 580 ? <>360</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 660 ? <>432</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 740 ? <>518</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 860 ? <>622</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 980 ? <>746</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1140 ? <>895</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1300 ? <>1,074</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1500 ? <>12,890</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1700 ? <>1,547</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1940 ? <>1,857</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2180 ? <>2,229</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2460 ? <>2,674</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2740 ? <>3,209</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3060 ? <>3,851</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3380 ? <>4,622</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3740 ? <>5,546</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4100 ? <>6,655</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4500 ? <>79,860</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4900 ? <>11,501</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5340 ? <>13,801</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5780 ? <>16,561</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6260 ? <>19,874</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6740 ? <>23,849</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7260 ? <>28,618</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7780 ? <>34,342</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8340 ? <>41,211</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8900 ? <>49,453</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 500 && 250}
+                                                                    {Number(item.Id) % 100000 === 540 && 300}
+                                                                    {Number(item.Id) % 100000 === 580 && 360}
+                                                                    {Number(item.Id) % 100000 === 660 && 432}
+                                                                    {Number(item.Id) % 100000 === 740 && 518}
+                                                                    {Number(item.Id) % 100000 === 860 && 622}
+                                                                    {Number(item.Id) % 100000 === 980 && 746}
+                                                                    {Number(item.Id) % 100000 === 1140 && 895}
+                                                                    {Number(item.Id) % 100000 === 1300 && '1,074'}
+                                                                    {Number(item.Id) % 100000 === 1500 && '12,890'}
+                                                                    {Number(item.Id) % 100000 === 1700 && '1,547'}
+                                                                    {Number(item.Id) % 100000 === 1940 && '1,857'}
+                                                                    {Number(item.Id) % 100000 === 2180 && '2,229'}
+                                                                    {Number(item.Id) % 100000 === 2460 && '2,674'}
+                                                                    {Number(item.Id) % 100000 === 2740 && '3,209'}
+                                                                    {Number(item.Id) % 100000 === 3060 && '3,851'}
+                                                                    {Number(item.Id) % 100000 === 3380 && '4,622'}
+                                                                    {Number(item.Id) % 100000 === 3740 && '5,546'}
+                                                                    {Number(item.Id) % 100000 === 4100 && '6,655'}
+                                                                    {Number(item.Id) % 100000 === 4500 && '79,860'}
+                                                                    {Number(item.Id) % 100000 === 4900 && '11,501'}
+                                                                    {Number(item.Id) % 100000 === 5340 && '13,801'}
+                                                                    {Number(item.Id) % 100000 === 5780 && '16,561'}
+                                                                    {Number(item.Id) % 100000 === 6260 && '19,874'}
+                                                                    {Number(item.Id) % 100000 === 6740 && '23,849'}
+                                                                    {Number(item.Id) % 100000 === 7260 && '28,618'}
+                                                                    {Number(item.Id) % 100000 === 7780 && '34,342'}
+                                                                    {Number(item.Id) % 100000 === 8340 && '41,211'}
+                                                                    {Number(item.Id) % 100000 === 8900 && '49,453'}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                {Number(item.Id) % 100000 <= 1300 ? <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/> : <></>}
-                                                                {Number(item.Id) % 100000 >= 1700 && Number(item.Id) % 100000 <= 4100 ? <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/> : <></>}
-                                                                {Number(item.Id) % 100000 >= 4900 ? <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/> : <></>}
-                                                                {Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 4500 ? <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> : <></>}
+                                                                {Number(item.Id) % 100000 <= 1300 && <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>}
+                                                                {(Number(item.Id) % 100000 >= 1700 && Number(item.Id) % 100000 <= 4100) && <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>}
+                                                                {Number(item.Id) % 100000 >= 4900 && <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>}
+                                                                {(Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 450) && <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>}
                                                                 <div style={{margin: "0 5px"}}>
-                                                                    {Number(item.Id) % 100000 === 500 ? <>0</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 540 ? <>500</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 580 ? <>1,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 660 ? <>2,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 740 ? <>4,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 860 ? <>8,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 980 ? <>16,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1140 ? <>32,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1300 ? <>64,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1500 ? <>50</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1700 ? <>1,500</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 1940 ? <>3,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2180 ? <>6,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2460 ? <>12,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 2740 ? <>24,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3060 ? <>48,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3380 ? <>96,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 3740 ? <>192,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4100 ? <>384,000</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4500 ? <>150</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 4900 ? <>19,200</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5340 ? <>28,800</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 5780 ? <>43,200</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6260 ? <>64,800</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 6740 ? <>97,200</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7260 ? <>145,800</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 7780 ? <>218,700</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8340 ? <>328,050</> : <></>}
-                                                                    {Number(item.Id) % 100000 === 8900 ? <>492,075</> : <></>}
+                                                                    {Number(item.Id) % 100000 === 500 && 0}
+                                                                    {Number(item.Id) % 100000 === 540 && 500}
+                                                                    {Number(item.Id) % 100000 === 580 && '1,000'}
+                                                                    {Number(item.Id) % 100000 === 660 && '2,000'}
+                                                                    {Number(item.Id) % 100000 === 740 && '4,000'}
+                                                                    {Number(item.Id) % 100000 === 860 && '8,000'}
+                                                                    {Number(item.Id) % 100000 === 980 && '16,000'}
+                                                                    {Number(item.Id) % 100000 === 1140 && '32,000'}
+                                                                    {Number(item.Id) % 100000 === 1300 && '64,000'}
+                                                                    {Number(item.Id) % 100000 === 1500 && 50}
+                                                                    {Number(item.Id) % 100000 === 1700 && '1,500'}
+                                                                    {Number(item.Id) % 100000 === 1940 && '3,000'}
+                                                                    {Number(item.Id) % 100000 === 2180 && '6,000'}
+                                                                    {Number(item.Id) % 100000 === 2460 && '12,000'}
+                                                                    {Number(item.Id) % 100000 === 2740 && '24,000'}
+                                                                    {Number(item.Id) % 100000 === 3060 && '48,000'}
+                                                                    {Number(item.Id) % 100000 === 3380 && '96,000'}
+                                                                    {Number(item.Id) % 100000 === 3740 && '192,000'}
+                                                                    {Number(item.Id) % 100000 === 4100 && '384,000'}
+                                                                    {Number(item.Id) % 100000 === 4500 && 150}
+                                                                    {Number(item.Id) % 100000 === 4900 && '19,200'}
+                                                                    {Number(item.Id) % 100000 === 5340 && '28,800'}
+                                                                    {Number(item.Id) % 100000 === 5780 && '43,200'}
+                                                                    {Number(item.Id) % 100000 === 6260 && '64,800'}
+                                                                    {Number(item.Id) % 100000 === 6740 && '97,200'}
+                                                                    {Number(item.Id) % 100000 === 7260 && '145,800'}
+                                                                    {Number(item.Id) % 100000 === 7780 && '218,700'}
+                                                                    {Number(item.Id) % 100000 === 8340 && '328,050'}
+                                                                    {Number(item.Id) % 100000 === 8900 && '492,075'}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1219,12 +1225,28 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                             style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
                                                             className="pixel button"
                                                             onClick={() => {
+                                                                let arg = 0
                                                                 if (Number(item.Id) % 100000 === 500) {
-                                                                    evolutionV2Handle(item.Id, 1001)
+                                                                    if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
+                                                                        arg = 1001
+                                                                    } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
+                                                                        arg = 2001
+                                                                    }
+                                                                    evolutionV2Handle(item.Id, arg)
                                                                 } else if (Number(item.Id) % 100000 === 540) {
-                                                                    evolutionV2Handle(item.Id, 1002)
+                                                                    if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
+                                                                        arg = 1002
+                                                                    } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
+                                                                        arg = 2002
+                                                                    }
+                                                                    evolutionV2Handle(item.Id, arg)
                                                                 } else if (Number(item.Id) % 100000 === 580) {
-                                                                    evolutionV2Handle(item.Id, 1003)
+                                                                    if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
+                                                                        arg = 1003
+                                                                    } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
+                                                                        arg = 2003
+                                                                    }
+                                                                    evolutionV2Handle(item.Id, arg)
                                                                 } else if (Number(item.Id) % 100000 === 660) {
                                                                     evolutionV2Handle(item.Id, 1004)
                                                                 } else if (Number(item.Id) % 100000 === 740) {
@@ -1282,8 +1304,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                         >
                                                             UPGRADE
                                                         </div>
-                                                    </div> :
-                                                    <></>
+                                                    </div>
                                                 }
 
 
