@@ -1274,21 +1274,21 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 } else if (Number(item.Id) % 100000 === 4900) {
                                                                     evolutionV2Handle(item.Id, arg + 21)
                                                                 } else if (Number(item.Id) % 100000 === 5340) {
-                                                                    evolutionV2Handle(item.Id, 1022)
+                                                                    evolutionV2Handle(item.Id, arg + 22)
                                                                 } else if (Number(item.Id) % 100000 === 5780) {
-                                                                    evolutionV2Handle(item.Id, 1023)
+                                                                    evolutionV2Handle(item.Id, arg + 23)
                                                                 } else if (Number(item.Id) % 100000 === 6260) {
-                                                                    evolutionV2Handle(item.Id, 1024)
+                                                                    evolutionV2Handle(item.Id, arg + 24)
                                                                 } else if (Number(item.Id) % 100000 === 6740) {
-                                                                    evolutionV2Handle(item.Id, 1025)
+                                                                    evolutionV2Handle(item.Id, arg + 25)
                                                                 } else if (Number(item.Id) % 100000 === 7260) {
-                                                                    evolutionV2Handle(item.Id, 1026)
+                                                                    evolutionV2Handle(item.Id, arg + 26)
                                                                 } else if (Number(item.Id) % 100000 === 7780) {
-                                                                    evolutionV2Handle(item.Id, 1027)
+                                                                    evolutionV2Handle(item.Id, arg + 27)
                                                                 } else if (Number(item.Id) % 100000 === 8340) {
-                                                                    evolutionV2Handle(item.Id, 1028)
+                                                                    evolutionV2Handle(item.Id, arg + 28)
                                                                 } else if (Number(item.Id) % 100000 === 8900) {
-                                                                    evolutionV2Handle(item.Id, 1029)
+                                                                    evolutionV2Handle(item.Id, arg + 29)
                                                                 }
                                                             }}
                                                         >
