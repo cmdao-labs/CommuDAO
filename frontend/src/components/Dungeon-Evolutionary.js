@@ -413,7 +413,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) <= 1019) {
+            } else if (Number(_enchantindex) <= 1019 || (Number(_enchantindex) >= 2011 && Number(_enchantindex) <= 2019)) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
@@ -1252,15 +1252,15 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 } else if (Number(item.Id) % 100000 === 1500) {
                                                                     evolutionV2Handle(item.Id, arg + 10)
                                                                 } else if (Number(item.Id) % 100000 === 1700) {
-                                                                    evolutionV2Handle(item.Id, 1011)
+                                                                    evolutionV2Handle(item.Id, arg + 11)
                                                                 } else if (Number(item.Id) % 100000 === 1940) {
-                                                                    evolutionV2Handle(item.Id, 1012)
+                                                                    evolutionV2Handle(item.Id, arg + 12)
                                                                 } else if (Number(item.Id) % 100000 === 2180) {
-                                                                    evolutionV2Handle(item.Id, 1013)
+                                                                    evolutionV2Handle(item.Id, arg + 13)
                                                                 } else if (Number(item.Id) % 100000 === 2460) {
-                                                                    evolutionV2Handle(item.Id, 1014)
+                                                                    evolutionV2Handle(item.Id, arg + 14)
                                                                 } else if (Number(item.Id) % 100000 === 2740) {
-                                                                    evolutionV2Handle(item.Id, 1015)
+                                                                    evolutionV2Handle(item.Id, arg + 15)
                                                                 } else if (Number(item.Id) % 100000 === 3060) {
                                                                     evolutionV2Handle(item.Id, 1016)
                                                                 } else if (Number(item.Id) % 100000 === 3380) {
