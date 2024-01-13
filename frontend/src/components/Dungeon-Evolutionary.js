@@ -1226,33 +1226,23 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                             className="pixel button"
                                                             onClick={() => {
                                                                 let arg = 0
+                                                                if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
+                                                                    arg = 1000
+                                                                } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
+                                                                    arg = 2000
+                                                                }
                                                                 if (Number(item.Id) % 100000 === 500) {
-                                                                    if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
-                                                                        arg = 1001
-                                                                    } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
-                                                                        arg = 2001
-                                                                    }
-                                                                    evolutionV2Handle(item.Id, arg)
+                                                                    evolutionV2Handle(item.Id, arg + 1)
                                                                 } else if (Number(item.Id) % 100000 === 540) {
-                                                                    if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
-                                                                        arg = 1002
-                                                                    } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
-                                                                        arg = 2002
-                                                                    }
-                                                                    evolutionV2Handle(item.Id, arg)
+                                                                    evolutionV2Handle(item.Id, arg + 2)
                                                                 } else if (Number(item.Id) % 100000 === 580) {
-                                                                    if (Number(String(item.Id).slice(0, 7)) <= 1300100) {
-                                                                        arg = 1003
-                                                                    } else if (Number(String(item.Id).slice(0, 7)) <= 1300200) {
-                                                                        arg = 2003
-                                                                    }
-                                                                    evolutionV2Handle(item.Id, arg)
+                                                                    evolutionV2Handle(item.Id, arg + 3)
                                                                 } else if (Number(item.Id) % 100000 === 660) {
-                                                                    evolutionV2Handle(item.Id, 1004)
+                                                                    evolutionV2Handle(item.Id, arg + 4)
                                                                 } else if (Number(item.Id) % 100000 === 740) {
-                                                                    evolutionV2Handle(item.Id, 1005)
+                                                                    evolutionV2Handle(item.Id, arg + 5)
                                                                 } else if (Number(item.Id) % 100000 === 860) {
-                                                                    evolutionV2Handle(item.Id, 1006)
+                                                                    evolutionV2Handle(item.Id, arg + 6)
                                                                 } else if (Number(item.Id) % 100000 === 980) {
                                                                     evolutionV2Handle(item.Id, 1007)
                                                                 } else if (Number(item.Id) % 100000 === 1140) {
