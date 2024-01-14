@@ -49,6 +49,7 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
     }
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         const orynftSC = new ethers.Contract(ory, aurora721ABI, providerJBC)
         setNft([])
         

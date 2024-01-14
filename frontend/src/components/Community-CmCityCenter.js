@@ -32,7 +32,9 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
     })
     const { sendTransaction } = useSendTransaction(config)
 
-    React.useEffect(() => {        
+    React.useEffect(() => {  
+        window.scrollTo(0, 0)
+              
         const thefetch = async () => {
             const sx31Proposal1 = await readContract({
                 address: sx31Vote,

@@ -1,5 +1,10 @@
-const Dungeon = ({ callMode, navigate }) => {
+import React from 'react'
 
+const Dungeon = ({ callMode, navigate }) => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+    
     return (
     <>
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>

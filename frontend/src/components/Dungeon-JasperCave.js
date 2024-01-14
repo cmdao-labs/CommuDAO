@@ -82,6 +82,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const [jaspBalance, setJaspBalance] = React.useState(0)
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
         const beastnftSC = new ethers.Contract(beasts, erc721ABI, providerJBC)
         // const cmdsnftSC = new ethers.Contract(CMDS, erc721ABI, providerJBC)

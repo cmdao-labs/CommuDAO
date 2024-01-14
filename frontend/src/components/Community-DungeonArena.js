@@ -92,6 +92,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
     const [battleHx, setBattleHx] = React.useState([])
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         const pvpSC = new ethers.Contract(pvp01, pvp01ABI, providerJBC)
 
         const thefetch = async () => {

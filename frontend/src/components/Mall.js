@@ -64,6 +64,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [cmjBalance, setCmjBalance] = React.useState(0)
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         console.log("Connected to " + address)
 
         const thefetch = async () => {

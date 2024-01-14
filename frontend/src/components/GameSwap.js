@@ -379,6 +379,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     const [priceTHB, setPriceTHB] = React.useState(0)
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         console.log("Connected to " + address)
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
         const cmjSC = new ethers.Contract(cmjToken, erc20ABI, providerJBC)

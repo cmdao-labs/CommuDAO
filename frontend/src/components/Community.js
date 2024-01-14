@@ -8,6 +8,8 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
     const [yourName, setYourName] = React.useState(null)
 
     React.useEffect(() => {        
+        window.scrollTo(0, 0)
+        
         const thefetch = async () => {
             const data = await readContracts({
                 contracts: [
@@ -189,8 +191,8 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeiecefc3xbwj7mjd5pkpf7vb3mzu2xmce5t2h7ch4fq3xnz6gojclu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
                     <div style={{marginTop: "10px", fontSize: "12px"}}>Land Z09 (Reserved)</div>
                 </div>
-                <div id="tile30" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
-                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeiecefc3xbwj7mjd5pkpf7vb3mzu2xmce5t2h7ch4fq3xnz6gojclu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
+                <div id="tile30" className='emp tile' style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "rgb(0, 227, 180)"}} onClick={() => {callMode(45); navigate('/community/cm-city/z10');}}>
+                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" width="120" alt="Can't load metadata" /></div>
                     <div style={{marginTop: "10px"}}>{yourName !== null ? <span style={{color: "rgb(0, 227, 180)"}}>{yourName + "'s Land [Z10]"}</span> : 'Land Z10 (Reserved)'}</div>
                 </div>
                 <div id="tile31" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>

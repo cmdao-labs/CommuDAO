@@ -43,6 +43,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     const [rank4, setRank4] = React.useState([])
 
     React.useEffect(() => {      
+        window.scrollTo(0, 0)
         console.log("Connected to " + address)
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
         const enderSC = new ethers.Contract(ender, enderPotteryABI, providerJBC)

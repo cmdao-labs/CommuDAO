@@ -25,7 +25,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
     const [cuBalance, setCuBalance] = React.useState(0)
     const [osBalance, setOsBalance] = React.useState(0)
 
-    React.useEffect(() => {      
+    React.useEffect(() => {
+        window.scrollTo(0, 0)    
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
 
         const thefetch = async () => {

@@ -39,6 +39,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
     const [skinSlot1, setSkinSlot1] = React.useState(null)
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
         const salonnftSC = new ethers.Contract(salon, erc721ABI, providerJBC)
 

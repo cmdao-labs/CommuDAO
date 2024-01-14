@@ -13,6 +13,7 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
     const [nft, setNft] = React.useState([])
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         console.log("Connected to " + address)
         setNft([])
         

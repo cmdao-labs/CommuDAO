@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Headbar from './Headbar'
 
+import Home from './Home'
 import Fields from './Fields'
 import FieldsAncientForrest from './Fields-AncientForrest'
 import FishingField from './Fields-TunaLake'
@@ -19,6 +20,7 @@ import CmCityCenter from './Community-CmCityCenter'
 import QuesterOasis from './Community-QuesterOasis'
 import DungeonArena from './Community-DungeonArena'
 import DumpsterHill from './Community-DumpsterHill'
+import CmCityLand from './Community-CmCityLand'
 import Mall from './Mall'
 import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
@@ -90,12 +92,12 @@ import bkcOracleABI from './jsons/bkcOracleABI.json'
 
 import TBridge from './tBridge'
 
-import { WagmiConfig, createClient, configureChains, useNetwork } from 'wagmi'
+import { WagmiConfig, createClient, configureChains } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { bsc } from 'wagmi/chains'
 
-const v = '0.2.15'
+const v = '0.2.16'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -110,8 +112,6 @@ const Main = () => {
         ],
         provider
     })
-
-    const { chain } = useNetwork()
 
     const navigate = useNavigate()
     const { modeText, subModeText, intrasubModetext } = useParams()
@@ -191,6 +191,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "COMMUNITY" && subModeText.toUpperCase() === "QUESTER-OASIS") {
                     preset = 44
                     document.title = "Quester Oasis | CommuDAO"
+                } else if (modeText.toUpperCase() === "COMMUNITY" && subModeText.toUpperCase() === "CM-CITY") {
+                    preset = 45
+                    document.title = "CM CITY LAND | CommuDAO"
                 }
             } else {
                 preset = 4
@@ -253,54 +256,8 @@ const Main = () => {
             }
             <WagmiConfig client={client}>
                 <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
-                {mode === 0 ?
-                    <div style={{width: "95%", overflow: "scroll", padding: "50px 0", textAlign: "left", fontSize: "16px"}} className="collection noscroll welcome pixel">
-                        <div className="welcomeText">
-                            <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect, Play, Build<br></br><span className="emp">CommuDAO</span></div>
-                            <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
-                            <div style={{minWidth: "500px", height: "100px", marginTop: "30px", flexDirection: "column"}} className="items">
-                                <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">21M+</div>
-                                <div style={{fontSize: "12px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
-                            </div>
-                            {chain !== undefined && chain.id === 8899 &&
-                                <>
-                                    <div>Explore the world of CommuDAO</div>
-                                    <div style={{margin: "20px 0", width: "500px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                                        <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
-                                            &nbsp;Ancient Forest
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
-                                            &nbsp;Tuna Lake
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
-                                            &nbsp;Old Warehouse
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
-                                            &nbsp;Copper Mine
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
-                                            &nbsp;Jasper Cave
-                                        </div>
-                                    </div>
-                                </>
-                            }
-                        </div>
-                        <div style={{width: "500px", height: "fit-content", background: "transparent", margin: 0, padding: 0, overflow: "hidden"}} className="nftCard">
-                            <img src="https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/23.png" width="100%" alt="NFT_GENESIS" />
-                            <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CM Hexa Cat Meaw JIB JIB, The OG NFT</div>
-                        </div>
-                    </div> :
-                    <></>
-                }
-                {mode === 1 ?
-                    <Fields callMode={callMode} navigate={navigate} /> :
-                    <></>
-                }
+                {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
+                {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
                 {mode === 11 ?
                     <FishingField setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} /> :
                     <></>
@@ -381,6 +338,7 @@ const Main = () => {
                     <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} farmJdaoABI={farmJdaoABI} cmdaoNameABI={cmdaoNameABI} /> :
                     <></>
                 }
+                {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} navigate={navigate} intrasubModetext={intrasubModetext} cmdaoNameABI={cmdaoNameABI} />}
                 {mode === 5 ?
                     <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyABI={ammyABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} /> :
                     <></>

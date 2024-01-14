@@ -34,7 +34,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
     const [sellPrice, setSellPrice] = React.useState("")
     const [currencyselected, setCurrencyselected] = React.useState("CMJ");
 
-    React.useEffect(() => {      
+    React.useEffect(() => {     
+        window.scrollTo(0, 0) 
         const cmdaoMkpSC = new ethers.Contract(cmdaomkp, cmdaoMkpABI, providerJBC)
         const orynftSC = new ethers.Contract(ory, erc721ABI, providerJBC)
         const beastnftSC = new ethers.Contract(beast, erc721ABI, providerJBC)

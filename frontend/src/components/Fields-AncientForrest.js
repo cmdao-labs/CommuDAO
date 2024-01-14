@@ -16,6 +16,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
     const [nft, setNft] = React.useState([])
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         setNft([])
 
         const thefetch = async () => {

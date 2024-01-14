@@ -35,6 +35,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [withdrawValue2, setWithdrawValue2] = React.useState('')
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
+        
         const fetch = async () => {
             const data1 = await readContracts({
                 contracts: [

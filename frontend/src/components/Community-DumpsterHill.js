@@ -28,6 +28,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
     const [miceBalance, setMiceBalance] = React.useState(0)
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         const lootnftSC = new ethers.Contract(jibLoot, erc721ABI, providerJBC)
 
         const thefetch = async () => {

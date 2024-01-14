@@ -49,6 +49,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
     }
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         console.log("Connected to " + address)
         const mgnftSC = new ethers.Contract(mgnft, erc721ABI, providerJBC)
         setNft([])

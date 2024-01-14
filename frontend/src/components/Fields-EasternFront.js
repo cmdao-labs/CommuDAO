@@ -49,6 +49,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
     }
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         console.log("Connected to " + address)
         const acNftSC = new ethers.Contract(acNft, erc721ABI, providerJBC)
         setNft([])

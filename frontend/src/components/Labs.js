@@ -90,7 +90,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
     const [isKYC, setIsKYC] = React.useState(null)
 
-    React.useEffect(() => {      
+    React.useEffect(() => {    
+        window.scrollTo(0, 0)  
         console.log("Connected to " + address)
         
         const thefetch = async () => {
