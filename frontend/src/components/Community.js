@@ -17,6 +17,30 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
                         address: land,
                         abi: erc721ABI,
                         functionName: 'ownerOf',
+                        args: ['10001001'],
+                    },
+                    {
+                        address: land,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: ['10001002'],
+                    },
+                    {
+                        address: land,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: ['10001003'],
+                    },
+                    {
+                        address: land,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: ['10001004'],
+                    },
+                    {
+                        address: land,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
                         args: ['10026010'],
                     },
                 ],
@@ -41,6 +65,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
                     }
                 )),
             })
+            console.log(name)
 
             return [name]
         }
@@ -55,7 +80,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
             )
 
         getAsync().then(result => {
-            setYourName(String(result[0]))
+            setYourName(result[0])
         })
 
     }, [erc721ABI, cmdaoNameABI])
@@ -75,13 +100,13 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
         <div style={{background: "rgb(0, 19, 33)", margin: "0", padding: "75px 0", minHeight: "inherit"}} className="collection pixel">
             <div style={{width: "1216px", maxWidth: "78%", marginBottom: "30px", textAlign: "left", fontSize: "22.5px", color: "#fff"}}>CM CITY - Urban District</div>
             <div style={{padding: 0, borderRadius: 0, border: "none", background: "transparent", boxShadow: "none", width: "1216px", maxWidth: "78%", height: "1216px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                <div id="tile1" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
-                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px"}}>Land A01</div>
+                <div id="tile1" className='emp tile' style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "#fff"}} onClick={() => {callMode(45); navigate('/community/cm-city/a01');}}>
+                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" width="120" alt="Can't load metadata" /></div>
+                    <div style={{marginTop: "10px"}}>{yourName !== null && yourName[0] !== null ? <span>{String(yourName[0]) + "'s Land [A01]"}</span> : 'Land A01'}</div>
                 </div>
-                <div id="tile2" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
-                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px"}}>Land A02</div>
+                <div id="tile2" className='emp tile' style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "#fff"}} onClick={() => {callMode(45); navigate('/community/cm-city/a02');}}>
+                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" width="120" alt="Can't load metadata" /></div>
+                    <div style={{marginTop: "10px"}}>{yourName !== null && yourName[1] !== null ? <span>{String(yourName[1]) + "'s Land [A02]"}</span> : 'Land A02'}</div>
                 </div>
                 <div id="tile3" className="emp tile" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "pointer", color: "rgb(0, 227, 180)"}} onClick={() => {callMode(41); navigate('/community/cmcity-citycenter');}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeidtpeph5ix5phlf2et2i665lesc76pidjxiazlamumn6ncidpumle" width="120" alt="Can't load metadata" /></div>
@@ -99,13 +124,13 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeiecefc3xbwj7mjd5pkpf7vb3mzu2xmce5t2h7ch4fq3xnz6gojclu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
                     <div style={{marginTop: "10px", fontSize: "12px"}}>Land Z04 (Reserved)</div>
                 </div>
-                <div id="tile7" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
-                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px"}}>Land A03</div>
+                <div id="tile7" className='emp tile' style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "#fff"}} onClick={() => {callMode(45); navigate('/community/cm-city/a03');}}>
+                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" width="120" alt="Can't load metadata" /></div>
+                    <div style={{marginTop: "10px"}}>{yourName !== null && yourName[2] !== null ? <span>{String(yourName[2]) + "'s Land [A03]"}</span> : 'Land A03'}</div>
                 </div>
-                <div id="tile8" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
-                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px"}}>Land A04</div>
+                <div id="tile8" className='emp tile' style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "#fff"}} onClick={() => {callMode(45); navigate('/community/cm-city/a04');}}>
+                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" width="120" alt="Can't load metadata" /></div>
+                    <div style={{marginTop: "10px"}}>{yourName !== null && yourName[3] !== null ? <span>{String(yourName[0]) + "'s Land [A04]"}</span> : 'Land A04'}</div>
                 </div>
                 <div id="tile9" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
@@ -193,7 +218,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
                 </div>
                 <div id="tile30" className='emp tile' style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "rgb(0, 227, 180)"}} onClick={() => {callMode(45); navigate('/community/cm-city/z10');}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px"}}>{yourName !== null ? <span style={{color: "rgb(0, 227, 180)"}}>{yourName + "'s Land [Z10]"}</span> : 'Land Z10 (Reserved)'}</div>
+                    <div style={{marginTop: "10px"}}>{yourName !== null && yourName[5] !== null ? <span style={{color: "rgb(0, 227, 180)"}}>{String(yourName[5]) + "'s Land [Z10]"}</span> : 'Land Z10 (Reserved)'}</div>
                 </div>
                 <div id="tile31" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://nftstorage.link/ipfs/bafybeibx4jdpjujrjqbax7megps3n2ynkh2sxcbpuiyvme4xlcmrs5nvnu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>

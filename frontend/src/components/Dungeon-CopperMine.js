@@ -263,7 +263,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             } else {
                 setCharacterSlotLevel(null)
             }
-            result[2] !== null && result[2].slice(0, 11) === "SAPIENS #01" ? setIsOp(true) : setIsOp(false)
+            result[2] !== null && result[2].slice(0, 7) === "SAPIENS" ? setIsOp(true) : setIsOp(false)
             setHatSlot(result[3])
             result[4] !== null && Number(result[4].slice(-1)) > 0 ? setHatSlotLevel(result[4].slice(-1)) : setHatSlotLevel(null)
             setClothSlot(result[5])

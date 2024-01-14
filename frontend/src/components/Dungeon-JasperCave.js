@@ -584,7 +584,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             } else {
                 setCharacterSlotLevel(null)
             }
-            result[2] !== null && result[2].slice(0, 11) === "SAPIENS #01" ? setIsOp(true) : setIsOp(false)
+            result[2] !== null && result[2].slice(0, 7) === "SAPIENS" ? setIsOp(true) : setIsOp(false)
             setAccSlot(result[3])
             result[4] !== null && Number(result[4].slice(-1)) > 0 ? setAccSlotLevel(result[4].slice(-1)) : setAccSlotLevel(null)
             setBackSlot(result[5])
