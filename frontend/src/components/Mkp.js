@@ -9,6 +9,8 @@ const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const ory = '0xD492E20Ecf3Ae85Fe3E3159BB064442b86D6DC02'
 const beast = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
 const cm_ogjibjib = '0xb6aaD2B2f9fD5eA0356F49c60Ee599De56206251'
+const cmdao_ti = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
+const cmdao_ti_helper = '0xedB737Cde19f0Db1852261C24b182bA6551863bD'
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 
@@ -41,6 +43,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
         const beastnftSC = new ethers.Contract(beast, erc721ABI, providerJBC)
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
         const cm_ogjibjibnftSC = new ethers.Contract(cm_ogjibjib, erc721ABI, providerJBC)
+        const cmdao_tiSC = new ethers.Contract(cmdao_ti, erc721ABI, providerJBC)
 
         const thefetch = async () => {
             const data = address !== null && address !== undefined ? await readContracts({
@@ -278,6 +281,71 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Description: nft.description,
                     Attribute: [],
                     RewardPerSec: bonus,
+                    Onsell: false,
+                    Count: null
+                })
+            }
+
+            setLoadingText("45% Fetching CMDAO Title Indeed NFT in Your Bag...")
+
+            const wallet5Filter = await cmdao_tiSC.filters.Transfer(null, address, null)
+            const wallet5Event = await cmdao_tiSC.queryFilter(wallet5Filter, 2506258, "latest")
+            const wallet5Map = await Promise.all(wallet5Event.map(async (obj) => String(obj.args.tokenId)))
+            const wallet5RemoveDup = wallet5Map.filter((obj, index) => wallet5Map.indexOf(obj) === index)
+            const data7 = address !== null && address !== undefined ? await readContracts({
+                contracts: wallet5RemoveDup.map((item) => (
+                    {
+                        address: cmdao_ti,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(wallet5RemoveDup.length).fill('')]
+
+            let yournftwallet5 = []
+            for (let i = 0; i <= wallet3RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data7[i].toUpperCase() === address.toUpperCase()) {
+                    yournftwallet5.push({Id: String(wallet5RemoveDup[i])})
+                }
+            }
+            console.log(yournftwallet5)
+
+            const data8 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet5.map((item) => (
+                    {
+                        address: cmdao_ti,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet5.length).fill('')]
+
+            for (let i = 0; i <= yournftwallet5.length - 1; i++) {
+                const nftipfs = data8[i]
+                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const nft = await response.json()
+
+                let letter = ''
+                if (yournftwallet5[i].Id.slice(0, 5) === '10026') {
+                    letter = 'Z'
+                } else if (yournftwallet5[i].Id.slice(0, 5) === '10001') {
+                    letter = 'A'
+                } else if (yournftwallet5[i].Id.slice(0, 5) === '10002') {
+                    letter = 'B'
+                } else if (yournftwallet5[i].Id.slice(0, 5) === '10003') {
+                    letter = 'C'
+                }
+
+                nfts.push({
+                    Col: 5,
+                    Id: yournftwallet5[i].Id,
+                    Name: nft.name + ' [' + letter + (yournftwallet5[i].Id % 1000) + ']',
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: [],
+                    RewardPerSec: 0,
                     Onsell: false,
                     Count: null
                 })
@@ -669,6 +737,120 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
+            setLoadingText("95% Fetching CMDAO Title Indeed NFT on Marketplace...")
+
+            const mkp5Filter = await cmdao_tiSC.filters.Transfer(null, cmdaomkp, null)
+            const mkp5Event = await cmdao_tiSC.queryFilter(mkp5Filter, 2506258, "latest")
+            const mkp5Map = await Promise.all(mkp5Event.map(async (obj) => String(obj.args.tokenId)))
+            const mkp5RemoveDup = mkp5Map.filter((obj, index) => mkp5Map.indexOf(obj) === index)
+            const mkp_data8 = await readContracts({
+                contracts: mkp5RemoveDup.map((item) => (
+                    {
+                        address: cmdao_ti,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            })
+
+            let mkp5wallet = []
+            for (let i = 0; i <= mkp5RemoveDup.length - 1; i++) {
+                if (mkp_data8[i].toUpperCase() === cmdaomkp.toUpperCase()) {
+                    mkp5wallet.push({Id: String(mkp5RemoveDup[i])})
+                }
+            }
+
+            const mkp_data9 = await readContracts({
+                contracts: mkp5wallet.map((item) => (
+                    {
+                        address: cmdao_ti,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            })
+
+            let yournftsell5 = []
+
+            for (let i = 0; i <= mkp5wallet.length - 1; i++) {
+                const nftipfs = mkp_data9[i]
+                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const nft = await response.json()
+
+                let count = null
+                let currencyindex = null
+                let price = null
+                let seller = null
+                let addrseller = null
+                for (let a = 0; a <= addItemMap.length - 1; a++) {
+                    if (Number(addItemMap[a].NftId) === Number(mkp5wallet[i].Id)) {
+                        count = addItemMap[a].Itemcount
+                        currencyindex = addItemMap[a].CurrencyIndex
+                        price = addItemMap[a].Price
+                        seller =  addItemMap[a].Seller
+                        addrseller = addItemMap[a].AddrSeller
+                    }
+                }
+
+                let letter = ''
+                if (mkp5wallet[i].Id.slice(0, 5) === '10026') {
+                    letter = 'Z'
+                } else if (mkp5wallet[i].Id.slice(0, 5) === '10001') {
+                    letter = 'A'
+                } else if (mkp5wallet[i].Id.slice(0, 5) === '10002') {
+                    letter = 'B'
+                } else if (mkp5wallet[i].Id.slice(0, 5) === '10003') {
+                    letter = 'C'
+                }
+
+                nftsell.push({
+                    Col: 5,
+                    Id: Number(mkp5wallet[i].Id),
+                    Name: nft.name + ' [' + letter + (mkp5wallet[i].Id % 1000) + ']',
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: 0,
+                    Count: count,
+                    Currencyindex: currencyindex,
+                    Price: price,
+                    Seller: seller
+                })
+
+                if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
+                    yournftsell5.push({Id: mkp5wallet[i].Id, URI: nft, Count: count})
+                }
+            }
+
+            for (let i = 0; i <= yournftsell5.length - 1; i++) {
+                const nft = yournftsell5[i].URI
+
+                let letter = ''
+                if (yournftsell5[i].Id.slice(0, 5) === '10026') {
+                    letter = 'Z'
+                } else if (yournftsell5[i].Id.slice(0, 5) === '10001') {
+                    letter = 'A'
+                } else if (yournftsell5[i].Id.slice(0, 5) === '10002') {
+                    letter = 'B'
+                } else if (yournftsell5[i].Id.slice(0, 5) === '10003') {
+                    letter = 'C'
+                }
+
+                nfts.push({
+                    Col: 5,
+                    Id: yournftsell5[i].Id,
+                    Name: nft.name + ' [' + letter + (yournftsell5[i].Id % 1000) + ']',
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: 0,
+                    Onsell: true,
+                    Count: yournftsell5[i].Count
+                })
+            }
+
             setLoadingText("100% Fetching Complete!")
 
             console.log(nftsell)
@@ -717,24 +899,28 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             nftAddr = beast
         } else if (sellNftCol === 4) {
             nftAddr = cm_ogjibjib
+        } else if (sellNftCol === 5) {
+            nftAddr = cmdao_ti_helper
         }
-        const nftAllow = await readContract({
-            address: nftAddr,
-            abi: erc721ABI,
-            functionName: 'getApproved',
-            args: [sellNftid],
-        })
-        if (nftAllow.toUpperCase() !== cmdaomkp.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
-                    address: nftAddr,
-                    abi: erc721ABI,
-                    functionName: 'approve',
-                    args: [cmdaomkp, sellNftid],
-                })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
-            } catch {}
+        if (sellNftCol !== 5) {
+            const nftAllow = await readContract({
+                address: nftAddr,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [sellNftid],
+            })
+            if (nftAllow.toUpperCase() !== cmdaomkp.toUpperCase()) {
+                try {
+                    const config = await prepareWriteContract({
+                        address: nftAddr,
+                        abi: erc721ABI,
+                        functionName: 'approve',
+                        args: [cmdaomkp, sellNftid],
+                    })
+                    const approvetx = await writeContract(config)
+                    await approvetx.wait()
+                } catch {}
+            }
         }
         let currencyIndex = 0
         if (currencyselected === "CMJ") {
