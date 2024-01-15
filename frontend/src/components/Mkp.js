@@ -304,7 +304,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             }) : [Array(wallet5RemoveDup.length).fill('')]
 
             let yournftwallet5 = []
-            for (let i = 0; i <= wallet3RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+            for (let i = 0; i <= wallet5RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
                 if (data7[i].toUpperCase() === address.toUpperCase()) {
                     yournftwallet5.push({Id: String(wallet5RemoveDup[i])})
                 }
