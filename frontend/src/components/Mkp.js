@@ -1111,11 +1111,15 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                                 } else if (event.target.value === "CM_OG_JIBJIB") {
                                     const filternft = mkpnft.filter((result) => result.Col === 4)
                                     filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                } else if (event.target.value === "TI") {
+                                    const filternft = mkpnft.filter((result) => result.Col === 5)
+                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
                                 }
                                 setColselect(event.target.value)
                             }}
                         >
                             <option value="ALL">ALL</option>
+                            <option value="TI">CMDAO Title Indeed</option>
                             <option value="OP">OPTIMIST</option>
                             <option value="MVT">Multiverse Traveller</option>
                             <option value="PEPE_JA">PEPE JA</option>
