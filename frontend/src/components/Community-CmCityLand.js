@@ -169,6 +169,22 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
         setisLoading(false)
     }
 
+    const registHouseHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: slot1,
+                abi: slot1ABI,
+                functionName: 'delegateOwner',
+                args: [0, address, tokenId]
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -218,15 +234,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                 CONSTRUCT
                                             </div> :
                                             <div 
-                                                style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)", fontSize: "10px"}}
+                                                style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
                                                 className="bold button" 
-                                                onClick={
-                                                    () => {
-                                                        if (slot1Lv === 1) {
-                                                            upgradeHouseHandle(1)
-                                                        }
-                                                    }
-                                                }
+                                                onClick={registHouseHandle}
                                             >
                                                 REGISTER HOUSE'S OWNER
                                             </div>
