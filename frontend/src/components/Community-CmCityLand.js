@@ -233,13 +233,18 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             >
                                                 CONSTRUCT
                                             </div> :
-                                            <div 
-                                                style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
-                                                className="bold button" 
-                                                onClick={registHouseHandle}
-                                            >
-                                                REGISTER HOUSE'S OWNER
-                                            </div>
+                                            <>
+                                                {slot1Owner === null ?
+                                                    <div 
+                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
+                                                        className="bold button" 
+                                                        onClick={registHouseHandle}
+                                                    >
+                                                        REGISTER HOUSE'S OWNER
+                                                    </div> :
+                                                    <div>Coming soon...</div>
+                                                }
+                                            </>
                                         }
                                     </>                                   
                                 }
