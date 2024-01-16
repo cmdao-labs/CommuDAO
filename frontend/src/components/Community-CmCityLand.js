@@ -27,6 +27,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
     const tokenId = '100' + code + '0' + intrasubModetext.slice(1, 3)
     const [llAddr, setLlAddr] = React.useState(null)
     const [llName, setLlName] = React.useState('...')
+    const [slot1Addr, setSlot1Addr] = React.useState(null)
     const [slot1Owner, setSlot1Owner] = React.useState('...')
     const [slot1Lv, setSlot1Lv] = React.useState(0)
 
@@ -86,7 +87,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 ],
             })
 
-            return [data, landlordname, slot1level, ]
+            return [data, slot1owner, landlordname, slot1level, ]
         }
 
         const promise = thefetch()
@@ -100,9 +101,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
         getAsync().then(result => {
             setLlAddr(result[0])
-            result[1] !== undefined && result[1][0] !== null ? setLlName(result[1][0]) : setLlName('Unknown')
-            result[1] !== undefined && result[1][1] !== null ? setSlot1Owner(result[1][1]) : setSlot1Owner('Unknown')
-            setSlot1Lv(Number(result[2]))
+            setSlot1Addr(result[1])
+            result[2] !== undefined && result[2][0] !== null ? setLlName(result[2][0]) : setLlName('Unknown')
+            result[2] !== undefined && result[2][1] !== null ? setSlot1Owner(result[2][1]) : setSlot1Owner('Unknown')
+            setSlot1Lv(Number(result[3]))
         })
 
     }, [code, intrasubModetext, erc721ABI, cmdaoNameABI, slot1ABI])
@@ -234,7 +236,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                 CONSTRUCT
                                             </div> :
                                             <>
-                                                {slot1Owner === null ?
+                                                {slot1Addr.toUpperCase() === '0X0000000000000000000000000000000000000000' ?
                                                     <div 
                                                         style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
                                                         className="bold button" 
