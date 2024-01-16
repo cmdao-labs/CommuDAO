@@ -149,14 +149,22 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 await approvetx2.wait()
             }
             const config3 = await prepareWriteContract({
+                address: slot1,
+                abi: slot1ABI,
+                functionName: 'delegateOwner',
+                args: [0, address, tokenId]
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            const config4 = await prepareWriteContract({
                 address: house,
                 abi: houseABI,
                 functionName: 'upgrade',
                 args: [_level, tokenId]
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const tx2 = await writeContract(config4)
+            await tx2.wait()
+            setTxupdate(tx2)
         } catch {}
         setisLoading(false)
     }
