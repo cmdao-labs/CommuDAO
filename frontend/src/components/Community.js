@@ -305,7 +305,6 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI }) => {
                     }
                 )),
             })
-            console.log(name)
 
             return [name]
         }

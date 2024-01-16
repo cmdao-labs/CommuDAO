@@ -3,18 +3,69 @@ import { ethers } from 'ethers'
 import { readContract, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, cmdaoNameABI }) => {
-    const { address } = useAccount()
+const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 
-    React.useEffect(() => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc721ABI, cmdaoNameABI }) => {
+    const { address } = useAccount()
+    const [llName, setLlName] = React.useState('...')
+
+    React.useEffect(() => {        
         window.scrollTo(0, 0)
-    }, [])
+        
+        const thefetch = async () => {
+            let code = ''
+            if (intrasubModetext.slice(0, 1).toUpperCase() === 'Z') {
+                code = '26'
+            } else if (intrasubModetext.slice(0, 1).toUpperCase() === 'A') {
+                code = '01'
+            } else if (intrasubModetext.slice(0, 1).toUpperCase() === 'B') {
+                code = '02'
+            } else if (intrasubModetext.slice(0, 1).toUpperCase() === 'C') {
+                code = '03'
+            }
+            const data = await readContract({
+                address: land,
+                abi: erc721ABI,
+                functionName: 'ownerOf',
+                args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+            })
+            const id = await readContract({
+                address: cmdaoName,
+                abi: cmdaoNameABI,
+                functionName: 'yourName',
+                args: [data],
+            })
+            const landlordname = Number(id) !== 0 ? await readContract({
+                address: cmdaoName,
+                abi: cmdaoNameABI,
+                functionName: 'tokenURI',
+                args: [id],
+            }) : 'Unknown'
+
+            return [landlordname]
+        }
+
+        const promise = thefetch()
+
+        const getAsync = () =>
+            new Promise((resolve) => 
+                setTimeout(
+                    () => resolve(promise), 1000
+                )
+            )
+
+        getAsync().then(result => {
+            setLlName(result[0])
+        })
+
+    }, [erc721ABI, cmdaoNameABI])
 
     return (
         <>
             <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}} className="pixel">
-                    <div style={{fontSize: "75px", width: "fit-content"}}>Land {intrasubModetext.toUpperCase()}</div>
+                    <div style={{fontSize: "75px", width: "fit-content"}}>Land {intrasubModetext.toUpperCase()} of {llName}</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}}></div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
