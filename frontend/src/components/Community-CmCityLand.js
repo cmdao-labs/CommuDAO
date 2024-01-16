@@ -5,10 +5,14 @@ import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi
 
 const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc721ABI, cmdaoNameABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc721ABI, cmdaoNameABI, slot1ABI }) => {
     const { address } = useAccount()
+    const [llAddr, setLlAddr] = React.useState(null)
     const [llName, setLlName] = React.useState('...')
+    const [slot1Owner, setSlot1Owner] = React.useState('...')
+    const [slot1Lv, setSlot1Lv] = React.useState(0)
 
     React.useEffect(() => {        
         window.scrollTo(0, 0)
@@ -42,8 +46,20 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'tokenURI',
                 args: [id],
             }) : 'Unknown'
+            const slot1owner = await readContract({
+                address: slot1,
+                abi: slot1ABI,
+                functionName: 'slotOwner',
+                args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+            })
+            const slot1level = await readContract({
+                address: slot1,
+                abi: slot1ABI,
+                functionName: 'slotLevel',
+                args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+            })
 
-            return [landlordname]
+            return [data, landlordname, slot1owner, slot1level, ]
         }
 
         const promise = thefetch()
@@ -56,10 +72,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             )
 
         getAsync().then(result => {
-            setLlName(result[0])
+            setLlAddr(result[0])
+            setLlName(result[1])
+            result[2] !== null && result[2].toUpperCase() !== '0X0000000000000000000000000000000000000000' ? setSlot1Owner(result[2]) : setSlot1Owner('Unknown')
+            setSlot1Lv(Number(result[3]))
         })
 
-    }, [erc721ABI, cmdaoNameABI])
+    }, [erc721ABI, cmdaoNameABI, slot1ABI])
 
     return (
         <>
@@ -74,7 +93,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
             <div style={{background: "rgb(0, 19, 33", width: "100%", margin: "0", padding: "75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll">
                 <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "420px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">HOUSE LV.1 (SLEEP TO EARN)</div>
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">{slot1Owner}'S HOUSE LV.{slot1Lv}</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                         <div style={{width: "30%", height: "320px"}}>
                             <img src="https://nftstorage.link/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1"/>
@@ -91,8 +110,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 </div>
                             </div>
                             <div>
-                                <div style={{margin: "20px 0", color: "#fff", fontSize: "12px"}} className="bold">STAKE COMMUMDAO NFT TO EARN $OS</div>
-                                <div className="bold">COMING SOON...</div>
+                                <div style={{margin: "20px 0", color: "#fff", fontSize: "12px"}} className="bold">SLEEP TO EARN!... STAKE COMMUDAO NFT TO EARN $OS</div>
+                                {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
+                                    <>
+                                        {false ?
+                                            <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={console.log('yo')}>CONSTRUCT</div> :
+                                            <div className="bold">COMING SOON...</div>
+                                        }
+                                    </>                                   
+                                }
                             </div>
                         </div>
                     </div>

@@ -1153,7 +1153,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             JBC PENDING
                             <div style={{display: "flex", flexDirection: "row", color: isStakeL2Now ? "#ff007a" : "#5f6476"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jbcPend).toFixed(9)}</div>
+                                <div style={{marginLeft: "5px"}}>Reward has been depleted!</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>

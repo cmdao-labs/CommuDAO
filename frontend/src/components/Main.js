@@ -79,6 +79,9 @@ import quest01ABI from './jsons/quest01ABI.json'
 import questAmbassABI from './jsons/questAmbassABI.json'
 import enderPotteryABI from './jsons/enderPotteryABI.json'
 
+import slot1ABI from './jsons/slot1ABI.json'
+
+
 import questBBQABI from './jsons/questBBQABI.json'
 import dumpster1ABI from './jsons/dumpster1ABI.json'
 import dumpster2ABI from './jsons/dumpster2ABI.json'
@@ -338,7 +341,7 @@ const Main = () => {
                     <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} farmJdaoABI={farmJdaoABI} cmdaoNameABI={cmdaoNameABI} /> :
                     <></>
                 }
-                {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} navigate={navigate} intrasubModetext={intrasubModetext} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} />}
+                {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} navigate={navigate} intrasubModetext={intrasubModetext} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} />}
                 {mode === 5 ?
                     <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyABI={ammyABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} /> :
                     <></>
