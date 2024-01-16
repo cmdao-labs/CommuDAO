@@ -217,7 +217,19 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             >
                                                 CONSTRUCT
                                             </div> :
-                                            <div className="bold">COMING SOON...</div>
+                                            <div 
+                                                style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}}
+                                                className="bold button" 
+                                                onClick={
+                                                    () => {
+                                                        if (slot1Lv === 0) {
+                                                            upgradeHouseHandle(1)
+                                                        }
+                                                    }
+                                                }
+                                            >
+                                                REGISTER HOUSE'S OWNER
+                                            </div>
                                         }
                                     </>                                   
                                 }
