@@ -830,7 +830,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                             <div style={{marginLeft: "10px"}}>{Number(goldBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="../items/oversoul.png" width="22" alt="$OS"/>
+                            <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
                             <div style={{marginLeft: "10px"}}>{Number(osBalance).toFixed(3)}</div>
                         </div>
                     </div>
@@ -1573,7 +1573,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                         Removal resource
                                                     </div>
                                                     <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                        <img src="../items/oversoul.png" height="18" alt="$OS"/>
+                                                        <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                         <div style={{margin: "0 5px"}}>10</div>
                                                     </div>
                                                 </div>
