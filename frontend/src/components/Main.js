@@ -322,7 +322,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 4 ?
-                    <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} /> :
+                    <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
                     <></>
                 }
                 {mode === 41 ?

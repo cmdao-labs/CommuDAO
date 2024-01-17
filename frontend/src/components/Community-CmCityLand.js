@@ -107,7 +107,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             setSlot1Lv(Number(result[3]))
         })
 
-    }, [code, intrasubModetext, erc721ABI, cmdaoNameABI, slot1ABI])
+    }, [code, intrasubModetext, txupdate, erc721ABI, cmdaoNameABI, slot1ABI])
 
     const upgradeHouseHandle = async (_level) => {
         setisLoading(true)
