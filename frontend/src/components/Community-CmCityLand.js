@@ -6,6 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const wood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 const cu = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
+const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 
@@ -13,10 +14,11 @@ const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
+const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, houseStakingABI }) => {
     const { address } = useAccount()
     
     let code = ''
@@ -29,7 +31,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
     } else if (intrasubModetext.slice(0, 1).toUpperCase() === 'C') {
         code = '03'
     }
-    const tokenId = '100' + code + '0' + intrasubModetext.slice(1, 3)
+    const houseId = '100' + code + '0' + intrasubModetext.slice(1, 3)
     const [mode, setMode] = React.useState(0)
     const [llAddr, setLlAddr] = React.useState(null)
     const [llName, setLlName] = React.useState('...')
@@ -38,36 +40,57 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
     const [slot1Lv, setSlot1Lv] = React.useState(0)
     const [nft, setNft] = React.useState([])
 
+    const [osPool, setOsPool] = React.useState(null)
+    const [allPendingReward, setAllPendingReward] = React.useState(0)
+    const [allPow, setAllPow] = React.useState(0)
+    const [nftStake, setNftStake] = React.useState([])
+
     React.useEffect(() => {        
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
         
         const thefetch = async () => {
-            const data = await readContract({
-                address: land,
-                abi: erc721ABI,
-                functionName: 'ownerOf',
-                args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
-            })
-            const slot1owner = await readContract({
-                address: slot1,
-                abi: slot1ABI,
-                functionName: 'slotOwner',
-                args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
-            })
-            const slot1level = await readContract({
-                address: slot1,
-                abi: slot1ABI,
-                functionName: 'slotLevel',
-                args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
-            })
+            const data = await readContracts({
+                contracts: [
+                    {
+                        address: land,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+                    },
+                    {
+                        address: os,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [houseStaking],
+                    },
+                ],
+            }) 
+            
+            const landOwner = data[0]
+            const slot1owner = data[1]
+            const slot1level = data[2]
+            const ospool = data[3]
+
             const id = await readContracts({
                 contracts: [
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'yourName',
-                        args: [data],
+                        args: [landOwner],
                     },
                     {
                         address: cmdaoName,
@@ -93,6 +116,78 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     }
                 ],
             })
+
+            let nftstake = []
+
+            const stakeFilter = await cmdaonftSC.filters.Transfer(slot1owner, houseStaking, null)
+            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const data0 = await readContracts({
+                contracts: stakeRemoveDup.map((item) => (
+                    {
+                        address: houseStaking,
+                        abi: houseStakingABI,
+                        functionName: 'nftStake',
+                        args: [1, String(item)],
+                    }
+                ))
+            })
+
+            let yournftstake = []
+            for (let i = 0; i <= stakeRemoveDup.length - 1; i++) {
+                if (data0[i].tokenOwnerOf.toUpperCase() === slot1owner.toUpperCase()) {
+                    yournftstake.push({Id: String(stakeRemoveDup[i])})
+                }
+            }
+            console.log(yournftstake)
+
+            const data1 = await readContracts({
+                contracts: yournftstake.map((item) => (
+                    {
+                        address: cmdaoNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            })
+
+
+            const data12 = await readContracts({
+                contracts: yournftstake.map((item) => (
+                    {
+                        address: houseStaking,
+                        abi: houseStakingABI,
+                        functionName: 'pendingReward',
+                        args: [1, String(item.Id)],
+                    }
+                ))
+            })
+
+            let _allReward1 = 0
+            let _allPow = 0
+            for (let i = 0; i <= yournftstake.length - 1; i++) {
+                const nftipfs = data1[i]
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    nft = await response.json()
+                } catch {}
+                _allReward1 += Number(ethers.utils.formatEther(String(data12[i])))
+                _allPow += Number(String(yournftstake[i].Id).slice(-5))
+
+                nftstake.push({
+                    Id: yournftstake[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerBlock: Number(String(yournftstake[i].Id).slice(-5)),
+                    isStaked: true,
+                    Reward: String(data12[i]),
+                })
+            }
 
             let nfts = []
 
@@ -148,7 +243,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
             console.log(nfts)
 
-            return [data, slot1owner, landlordname, slot1level, nfts, ]
+            return [landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, ]
         }
 
         const promise = thefetch()
@@ -167,9 +262,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             result[2] !== undefined && result[2][1] !== null ? setSlot1Owner(result[2][1]) : setSlot1Owner('Unknown')
             setSlot1Lv(Number(result[3]))
             setNft(result[4])
+            setOsPool(ethers.utils.formatEther(String(result[5])))
+            setAllPendingReward(result[6])
+            setAllPow(result[7])
+            setNftStake(result[8])
         })
 
-    }, [code, intrasubModetext, txupdate, erc721ABI, cmdaoNameABI, slot1ABI])
+    }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI])
 
     const upgradeHouseHandle = async (_level) => {
         setisLoading(true)
@@ -216,7 +315,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 address: slot1,
                 abi: slot1ABI,
                 functionName: 'delegateOwner',
-                args: [0, address, tokenId]
+                args: [0, address, houseId]
             })
             const tx = await writeContract(config3)
             await tx.wait()
@@ -224,7 +323,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 address: house,
                 abi: houseABI,
                 functionName: 'upgrade',
-                args: [_level, tokenId]
+                args: [_level, houseId]
             })
             const tx2 = await writeContract(config4)
             await tx2.wait()
@@ -240,7 +339,55 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 address: slot1,
                 abi: slot1ABI,
                 functionName: 'delegateOwner',
-                args: [0, address, tokenId]
+                args: [0, address, houseId]
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const stakeNft = async (_nftid) => {
+        setisLoading(true)
+        try {
+            const nftAllow = await readContract({
+                address: cmdaoNft,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== houseStaking.toUpperCase()) {
+                const config = await prepareWriteContract({
+                    address: cmdaoNft,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [houseStaking, _nftid],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }        
+            const config2 = await prepareWriteContract({
+                address: houseStaking,
+                abi: houseStakingABI,
+                functionName: 'stake',
+                args: [1, _nftid, houseId],
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const unstakeNft = async (_nftid, _unstake) => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: houseStaking,
+                abi: houseStakingABI,
+                functionName: 'unstake',
+                args: [1, _nftid, houseId, _unstake],
             })
             const tx = await writeContract(config)
             await tx.wait()
@@ -329,13 +476,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLEEP TO EARN</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
-                                        {false /*isStakeNow*/ ?
+                                        {nftStake !== null && nftStake[0] !== undefined &&
                                             <>
-                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>On Staking</div>
-                                            </> :
-                                            <>
-                                                {true /*isStakeNow === false*/ &&
+                                                {nftStake[0].isStaked ?
+                                                    <>
+                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>On Staking</div>
+                                                    </> :
                                                     <>
                                                         <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
                                                         <div>Available for stake</div>
@@ -345,50 +492,29 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                         }
                                     </div>
                                 </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{/*allPower*/}</div></div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    OVERSOUL BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                        <div style={{marginLeft: "5px"}}>{/*Number(cuBalance).toFixed(3).toLocaleString()*/}</div>
-                                    </div>
-                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{allPow}</div></div>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     OVERSOUL PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: false/*isStakeNow*/ ? "#ff007a" : "#5f6476"}}>
+                                    <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
                                         <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                        <div style={{marginLeft: "5px"}}>{/*cuPending.toLocaleString()*/}</div>
+                                        <div style={{marginLeft: "5px"}}>{allPendingReward.toLocaleString()}</div>
                                     </div>
                                 </div>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    AVAILABLE OVERSOUL IN POOL
+                                    AVAILABLE OS IN POOL
                                     <div style={{display: "flex", flexDirection: "row"}}>
                                         <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                        <div style={{marginLeft: "5px"}}>{/*Number(cuBalance).toFixed(3).toLocaleString()*/}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(osPool).toFixed(3).toLocaleString()}</div>
                                     </div>
                                 </div>
-                                {false && address !== undefined /*address === youraddr*/ ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {false /*isStakeNow*/ ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: false/*isRunout*/ ? "#67BAA7" : "#ff007a"}} className="button" onClick={console.log('yo')/*() => unstakeNft(0)*/}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
+                                <div style={{height: "41px"}}></div>
                             </div>
                             <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Char SLOT1</div>
+                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>{nftStake !== null && nftStake[0] !== undefined ? nftStake[0].Name : 'Main Char SLOT1'}</div>
                                 {nft.length > 0 ?
                                     <>
-                                        {false /*characterSlot !== null*/ ?
-                                            <>
-                                                {/*<img src={characterSlot} width="300px" alt="Can not load metadata." />*/}
-                                            </> :
+                                        {nftStake !== null && nftStake[0] !== undefined ?
+                                            <img src={nftStake[0].Image} width="300px" alt="Can not load metadata." /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                         }
                                     </> :
@@ -396,9 +522,22 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {false /*characterSlotLevel !== null*/ ?
-                                    <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px"}}>Lv.{/*characterSlotLevel*/}</div> :
-                                    <></>
+                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                    <>
+                                        {address.toUpperCase() === slot1Addr.toUpperCase() &&
+                                            <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                 {nftStake !== null && nftStake[0] !== undefined &&
+                                                    <>
+                                                        {nftStake[0].isStaked ?
+                                                            <div style={{alignSelf: "center", background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[0].Id, 1)}>HARVEST & UNSTAKE</div> :
+                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        }
+                                    </> :
+                                    <div style={{height: "41px", marginTop: "25px"}}></div>
                                 }
                             </div>
                         </div>
@@ -424,7 +563,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                                     <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                                                         {item.isStaked ?
                                                                             <div style={{background: "gray"}} className="pixel button" onClick={() => console.log('yo')}>UNEQUIP</div>:
-                                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">STAKE</div>
+                                                                            <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeNft(item.Id)}>STAKE</div>
                                                                         }
                                                                     </div>
                                                                 </div>
