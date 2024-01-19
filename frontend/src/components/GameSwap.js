@@ -878,7 +878,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             />}
             {mode === 3 &&
                 <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
-                    <div style={{margin: "20px", padding: "20px 0", height: "300px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                    <div style={{margin: "20px", padding: "20px 0", height: "420px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                         <div style={{width: "85%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{textAlign: "left"}}>
                                 <div style={{fontSize: "20px"}} className="bold">EARN $MEOW</div>
@@ -887,21 +887,61 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             </div>
                             <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="50" alt="$MEOW"/>
                         </div>
-                        <div style={{width: "85%", display: "flex", justifyContent: "space-between", fontSize: "8px"}}>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>ELIGIBLE TOKENS:</div>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
-                                JDAO, CMJ
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "25px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0015 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", justifyContent: "space-between", fontSize: "8px", marginBottom: "70px"}}>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>ELIGIBLE LP:</div>
-                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>
-                                <div>Jazzi-JDAO, Jazzi-CU, Jazzi-JASP,</div>
-                                <div>Ammy-CTUNA, Ammy-SX31, Ammy-BBQ, Ammy-PZA,</div>
-                                <div>GameSwap-JBC-JUSDT, Degeno-MEOW,</div>
-                                <div>Meow-SIL, Meow-GOLD, Meow-MT</div>
-                                <div>Meow-TUNA, Meow-MICE, Meow-WOOD</div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" alt="$MEOW" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>3 MEOW/LP/HOUR</div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" alt="$CTUNA" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                            </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0012 MEOW/LP/HOUR</div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" alt="$SX31" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                            </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0012 MEOW/LP/HOUR</div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" alt="$BBQ" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                            </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" alt="$PZA" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                            </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" alt="$CU" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                            </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
+                        </div>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", margin: "10px 0", borderBottom: "1px solid #d9d8df"}}>
+                            <div style={{height: "25px"}}>
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" alt="$JASP" />
+                                <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                            </div>
+                            <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.012 MEOW/LP/HOUR</div>
                         </div>
                         <a href="https://meowneon.app/pools" target="_blank" rel="noreferrer" style={{textDecoration: "none"}}><div style={{letterSpacing: "1px", width: "240px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "12px"}} className="bold">Explore Pool on Meowneon.app</div></a>
                     </div>
