@@ -894,49 +894,49 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0015 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" alt="$MEOW" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>3 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" alt="$CTUNA" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0012 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" alt="$SX31" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0012 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" alt="$BBQ" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" alt="$PZA" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" alt="$CU" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
                         </div>
-                        <div style={{width: "85%", display: "flex", alignItems: "center", alignItems: "center", justifyContent: "space-between", fontSize: "12px", margin: "10px 0", borderBottom: "1px solid #d9d8df"}}>
+                        <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", margin: "10px 0", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" alt="$JASP" />
                                 <img style={{width: "24px", height: "24px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
