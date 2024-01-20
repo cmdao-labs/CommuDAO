@@ -1026,7 +1026,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$JBC"/>
-                        <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img 
@@ -1049,7 +1049,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                     </div>
                 </div>
 
@@ -1076,7 +1076,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(woodBalance).toFixed(0)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1099,7 +1099,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(stOPTBalance).toFixed(2)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(stOPTBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1122,7 +1122,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(tunaBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(tunaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1145,7 +1145,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(miceBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(miceBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1168,10 +1168,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(copperBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(copperBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <div style={{marginLeft: "5px"}}>$MT {Number(mtBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>$MT {Number(mtBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
@@ -1198,7 +1198,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toFixed(0)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1221,7 +1221,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1244,7 +1244,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1267,7 +1267,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1290,7 +1290,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(silverBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(silverBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -1313,7 +1313,20 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(goldBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
+                </div>
+
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
+                            width="20"
+                            alt="$PLAT"
+                            style={{cursor: "crosshair"}}
+                            
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(0).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
@@ -1888,7 +1901,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
                                 <div style={{margin: "0 5px"}}>200</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <div style={{margin: "0 5px"}}>$PLAT 100</div>
+                                <img src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                <div style={{margin: "0 5px"}}>100</div>
                             </div>
                         </div>
                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
