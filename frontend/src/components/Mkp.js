@@ -1196,7 +1196,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             {mkpnft !== undefined && mkpnft.length > 0 ?
                 <>
                     <div style={{display: "flex", alignItems: "center"}} className="pixel">
-                        <div style={{fontSize: "18px"}}>Search by Category : </div>
+                        <div style={{fontSize: "18px"}}>Search by CMDAO NFT Category : </div>
                         <select
                             style={{marginLeft: "10px", padding: "0 5px", fontSize: "20px", width: "300px"}}
                             className="pixel"
@@ -1234,7 +1234,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         </select>
                     </div>
                     <div style={{marginTop: "20px", display: "flex", alignItems: "center"}} className="pixel">
-                        <div style={{fontSize: "18px"}}>Search by Collection : </div>
+                        <div style={{fontSize: "18px"}}>Search by All Collections : </div>
                         <select
                             style={{marginLeft: "10px", padding: "0 5px", fontSize: "20px", width: "300px"}}
                             className="pixel"
@@ -1259,26 +1259,30 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                                     setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) <= 1004 || Number(String(result.Id).slice(0, 4)) === 1014 || (Number(String(result.Id).slice(0, 7)) >= 1102001 && Number(String(result.Id).slice(0, 7)) <= 1102009))))
                                 } else if (event.target.value === "ETHER_BEAST") {
                                     setSelectedCol(mkpnft.filter((result) => result.Col === 3))
-                                } else if (event.target.value === "CM_OG_JIBJIB") {
+                                } else if (event.target.value === "OG_JIBJIB") {
                                     const filternft = mkpnft.filter((result) => result.Col === 4)
                                     filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
                                 } else if (event.target.value === "TI") {
                                     const filternft = mkpnft.filter((result) => result.Col === 5)
+                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                } else if (event.target.value === "MG") {
+                                    const filternft = mkpnft.filter((result) => result.Col === 6)
                                     filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
                                 }
                                 setColselect(event.target.value)
                             }}
                         >
                             <option value="ALL">ALL</option>
-                            <option value="TI">CMDAO Title Indeed</option>
+                            <option value="TI">Title Indeed</option>
                             <option value="OP">OPTIMIST</option>
                             <option value="MVT">Multiverse Traveller</option>
                             <option value="PEPE_JA">PEPE JA</option>
+                            <option value="PIXEL">CMDAO NFT x CM Hexa</option>
+                            <option value="MEOW-NEON">CMDAO NFT x Meow Neon</option>
+                            <option value="OG_JIBJIB">CM Hexa - JIB JIB</option>
                             <option value="ORY">CM Token - Ory</option>
-                            <option value="PIXEL">CMDAO x CM Hexa</option>
-                            <option value="MEOW-NEON">CMDAO x Meow Neon</option>
+                            <option value="MG">Mythical Guardians (MG)</option>
                             <option value="ETHER_BEAST">ThaiChain - Ethereal Beasts</option>
-                            <option value="CM_OG_JIBJIB">CM Hexa Cat Meaw JIB JIB</option>
                         </select>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "20px 0"}}></div>
