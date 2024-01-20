@@ -11,6 +11,8 @@ const beast = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
 const cm_ogjibjib = '0xb6aaD2B2f9fD5eA0356F49c60Ee599De56206251'
 const cmdao_ti = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const cmdao_ti_helper = '0xedB737Cde19f0Db1852261C24b182bA6551863bD'
+const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
+
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 
@@ -44,6 +46,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
         const cm_ogjibjibnftSC = new ethers.Contract(cm_ogjibjib, erc721ABI, providerJBC)
         const cmdao_tiSC = new ethers.Contract(cmdao_ti, erc721ABI, providerJBC)
+        const mgnftSC = new ethers.Contract(mgnft, erc721ABI, providerJBC)
 
         const thefetch = async () => {
             const data = address !== null && address !== undefined ? await readContracts({
@@ -135,7 +138,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("20% Fetching Ory NFTs in Your Bag...")
+            setLoadingText("15% Fetching Ory NFTs in Your Bag...")
 
             const wallet2Filter = await orynftSC.filters.Transfer(null, address, null)
             const wallet2Event = await orynftSC.queryFilter(wallet2Filter, 515000, "latest")
@@ -189,7 +192,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("30% Fetching Beast NFTs in Your Bag...")
+            setLoadingText("20% Fetching Beast NFTs in Your Bag...")
 
             const wallet3Filter = await beastnftSC.filters.Transfer(null, address, null)
             const wallet3Event = await beastnftSC.queryFilter(wallet3Filter, 137000, "latest")
@@ -243,7 +246,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("40% Fetching CM Hexa Cat Meaw JIB JIB NFTs in Your Bag...")
+            setLoadingText("25% Fetching CM Hexa Cat Meaw JIB JIB NFTs in Your Bag...")
 
             const wallet4RemoveDup = address !== null && address !== undefined ? await readContract({
                 address: cm_ogjibjib,
@@ -286,7 +289,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("45% Fetching CMDAO Title Indeed NFT in Your Bag...")
+            setLoadingText("30% Fetching CMDAO Title Indeed NFT in Your Bag...")
 
             const wallet5Filter = await cmdao_tiSC.filters.Transfer(null, address, null)
             const wallet5Event = await cmdao_tiSC.queryFilter(wallet5Filter, 2506258, "latest")
@@ -345,6 +348,60 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: [],
+                    RewardPerSec: 0,
+                    Onsell: false,
+                    Count: null
+                })
+            }
+
+            setLoadingText("40% Fetching MG NFTs in Your Bag...")
+
+            const wallet6Filter = await mgnftSC.filters.Transfer(null, address, null)
+            const wallet6Event = await mgnftSC.queryFilter(wallet6Filter, 2260250, "latest")
+            const wallet6Map = await Promise.all(wallet6Event.map(async (obj) => String(obj.args.tokenId)))
+            const wallet6RemoveDup = wallet6Map.filter((obj, index) => wallet6Map.indexOf(obj) === index)
+            const data9 = address !== null && address !== undefined ? await readContracts({
+                contracts: wallet6RemoveDup.map((item) => (
+                    {
+                        address: mgnft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(wallet6RemoveDup.length).fill('')]
+
+            let yournftwallet6 = []
+            for (let i = 0; i <= wallet6RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data9[i].toUpperCase() === address.toUpperCase()) {
+                    yournftwallet6.push({Id: String(wallet6RemoveDup[i])})
+                }
+            }
+            console.log(yournftwallet6)
+
+            const data10 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet6.map((item) => (
+                    {
+                        address: mgnft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet6.length).fill('')]
+
+            for (let i = 0; i <= yournftwallet6.length - 1; i++) {
+                const nftipfs = data10[i]
+                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const nft = await response.json()
+
+                nfts.push({
+                    Col: 6,
+                    Id: yournftwallet6[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
                     RewardPerSec: 0,
                     Onsell: false,
                     Count: null
@@ -444,7 +501,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("70% Fetching Ory NFTs on Marketplace...")
+            setLoadingText("60% Fetching Ory NFTs on Marketplace...")
 
             const mkp2Filter = await orynftSC.filters.Transfer(null, cmdaomkp, null)
             const mkp2Event = await orynftSC.queryFilter(mkp2Filter, 515000, "latest")
@@ -549,7 +606,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("80% Fetching Beast NFTs on Marketplace...")
+            setLoadingText("65% Fetching Beast NFTs on Marketplace...")
 
             const mkp3Filter = await beastnftSC.filters.Transfer(null, cmdaomkp, null)
             const mkp3Event = await beastnftSC.queryFilter(mkp3Filter, 137000, "latest")
@@ -641,7 +698,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("90% Fetching CM Hexa Cat Meaw JIB JIB NFTs on Marketplace...")
+            setLoadingText("70% Fetching CM Hexa Cat Meaw JIB JIB NFTs on Marketplace...")
 
             const mkp4Filter = await cm_ogjibjibnftSC.filters.Transfer(null, cmdaomkp, null)
             const mkp4Event = await cm_ogjibjibnftSC.queryFilter(mkp4Filter, 119318, "latest")
@@ -737,7 +794,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
-            setLoadingText("95% Fetching CMDAO Title Indeed NFT on Marketplace...")
+            setLoadingText("75% Fetching CMDAO Title Indeed NFT on Marketplace...")
 
             const mkp5Filter = await cmdao_tiSC.filters.Transfer(null, cmdaomkp, null)
             const mkp5Event = await cmdao_tiSC.queryFilter(mkp5Filter, 2506258, "latest")
@@ -851,6 +908,98 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 })
             }
 
+            setLoadingText("80% Fetching MG NFTs on Marketplace...")
+
+            const mkp6Filter = await mgnftSC.filters.Transfer(null, cmdaomkp, null)
+            const mkp6Event = await mgnftSC.queryFilter(mkp6Filter, 2260250, "latest")
+            const mkp6Map = await Promise.all(mkp6Event.map(async (obj) => String(obj.args.tokenId)))
+            const mkp6RemoveDup = mkp6Map.filter((obj, index) => mkp6Map.indexOf(obj) === index)
+            const mkp_data10 = await readContracts({
+                contracts: mkp6RemoveDup.map((item) => (
+                    {
+                        address: mgnft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            })
+
+            let mkp6wallet = []
+            for (let i = 0; i <= mkp6RemoveDup.length - 1; i++) {
+                if (mkp_data10[i].toUpperCase() === cmdaomkp.toUpperCase()) {
+                    mkp6wallet.push({Id: String(mkp6RemoveDup[i])})
+                }
+            }
+
+            const mkp_data11 = await readContracts({
+                contracts: mkp6wallet.map((item) => (
+                    {
+                        address: mgnft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            })
+
+            let yournftsell6 = []
+
+            for (let i = 0; i <= mkp6wallet.length - 1; i++) {
+                const nftipfs = mkp_data11[i]
+                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const nft = await response.json()
+
+                let count = null
+                let currencyindex = null
+                let price = null
+                let seller = null
+                let addrseller = null
+                for (let a = 0; a <= addItemMap.length - 1; a++) {
+                    if (Number(addItemMap[a].NftId) === Number(mkp6wallet[i].Id)) {
+                        count = addItemMap[a].Itemcount
+                        currencyindex = addItemMap[a].CurrencyIndex
+                        price = addItemMap[a].Price
+                        seller =  addItemMap[a].Seller
+                        addrseller = addItemMap[a].AddrSeller
+                    }
+                }
+
+                nftsell.push({
+                    Col: 6,
+                    Id: Number(mkp6wallet[i].Id),
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: 0,
+                    Count: count,
+                    Currencyindex: currencyindex,
+                    Price: price,
+                    Seller: seller
+                })
+
+                if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
+                    yournftsell6.push({Id: mkp6wallet[i].Id, URI: nft, Count: count})
+                }
+            }
+
+            for (let i = 0; i <= yournftsell6.length - 1; i++) {
+                const nft = yournftsell6[i].URI
+
+                nfts.push({
+                    Col: 6,
+                    Id: yournftsell6[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: 0,
+                    Onsell: true,
+                    Count: yournftsell6[i].Count
+                })
+            }
+
             setLoadingText("100% Fetching Complete!")
 
             console.log(nftsell)
@@ -901,6 +1050,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             nftAddr = cm_ogjibjib
         } else if (sellNftCol === 5) {
             nftAddr = cmdao_ti_helper
+        } else if (sellNftCol === 6) {
+            nftAddr = mgnft
         }
         if (sellNftCol !== 5) {
             const nftAllow = await readContract({
@@ -1214,9 +1365,9 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         {nft[0] !== null ?
                             <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                 {nft.map((item, index) => (
-                                    <div style={{justifyContent: "space-around", padding: "20px", width: "300px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
+                                    <div style={{justifyContent: "space-around", padding: "20px", width: "270px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
                                         <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
-                                            <img src={item.Image} height="250" alt="Can not load metadata." />
+                                            <img src={item.Image} height="200" alt="Can not load metadata." />
                                         </div>
                                         <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                             <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
