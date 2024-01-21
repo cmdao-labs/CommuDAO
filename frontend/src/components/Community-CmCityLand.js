@@ -241,6 +241,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 })
             }
 
+            if (nfts.length === 0) { nfts.push(null) }
+
             console.log(nfts)
 
             return [landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, ]

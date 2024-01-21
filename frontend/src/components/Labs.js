@@ -20,6 +20,7 @@ const goldLab = '0xc69F46334a86F4617Fa17432F430c641c2e10139'
 const mtToken = '0x169816800f1eA9C5735937388aeb9C2A3bAca11F'
 const goldLab2 = '0x47FA364aDafa7d78c0e4A4bF66D389d2D01A6b05'
 const goldMine = '0x28d8c3c2C0199Ff6E73eb7c4321F43E0e7F80ad8'
+const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 
 const tunaField = "0x09676315DC0c85F6bd5e866C5f1363A00Eec4381"
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
@@ -44,6 +45,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [copperBalance, setCopperBalance] = React.useState(0)
     const [silverBalance, setSilverBalance] = React.useState(0)
     const [goldBalance, setGoldBalance] = React.useState(0)
+    const [platBalance, setPlatBalance] = React.useState(0)
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
     const [mtBalance, setMtBalance] = React.useState(0)
 
@@ -232,8 +234,14 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: platToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, ]
             
             const cmjBal = data[0]
             const woodBal = data[1]
@@ -257,6 +265,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const mineGold = data[19]
             const labLogGOLD2 = data[20]
             const mtBal = data[21]
+            const platBal = data[22]
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -299,7 +308,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
                 labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
-                mtBal, labLogGOLD2, _canCraftGOLD2, 
+                mtBal, labLogGOLD2, _canCraftGOLD2, platBal, 
             ]
         }
 
@@ -403,6 +412,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimGOLD2(nextHourGOLD2.toLocaleString('es-CL')) :
                 setTimeToClaimGOLD2(0)
             setCanCraftGOLD2(result[34])
+
+            setPlatBalance(ethers.utils.formatEther(result[35]))
         })
 
     }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, goldMineABI, kycABI])
@@ -1324,9 +1335,22 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             width="20"
                             alt="$PLAT"
                             style={{cursor: "crosshair"}}
-                            
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: platToken,
+                                            symbol: 'PLAT',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
+                                        },
+                                    },
+                                })
+                            }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(0).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
