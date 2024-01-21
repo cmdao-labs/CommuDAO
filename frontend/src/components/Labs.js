@@ -428,7 +428,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
             setPlatBalance(ethers.utils.formatEther(result[35]))
             setIsCraftPLAT(Number(result[36].machineRun) > 0)
-            const nextHourPLAT = new Date((result[36].laststamp * 1000) + (3600 * 4 * 1000))
+            const nextHourPLAT = new Date((result[36].laststamp * 1000) + (3600 * 8 * 1000))
             Date.now() - (result[36].laststamp * 1000) <= (3600 * 8 * 1000) ?
                 setTimeToClaimPLAT(nextHourPLAT.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT(0)
