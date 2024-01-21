@@ -15,6 +15,7 @@ const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
+const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const cmdaoMerchant = "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D"
@@ -66,6 +67,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [pzaBalance, setPzaBalance] = React.useState(0)
     const [cuBalance, setCuBalance] = React.useState(0)
     const [jaspBalance, setJaspBalance] = React.useState(0)
+    const [osBalance, setOsBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
 
@@ -142,8 +144,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'bought',
                         args: [address, 1],
                     },
+                    {
+                        address: osToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, ]
             
             const _isKYC = data[0]
             const cmjBal = data[1]
@@ -156,6 +164,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const pzaBal = data[8]
             const jdaoBal = data[9]
             const isBought5 = data[10]
+            const osBal = data[11]
 
             const data2 = await readContracts({
                 contracts: [
@@ -318,7 +327,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
             return [
                 sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
-                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, 
+                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, 
             ]
         }
 
@@ -373,6 +382,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setPzaBalance(ethers.utils.formatEther(String(result[36])))
             setCuBalance(ethers.utils.formatEther(String(result[37])))
             setJaspBalance(ethers.utils.formatUnits(String(result[38]), "gwei"))
+            setOsBalance(ethers.utils.formatEther(String(result[39])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -933,6 +943,29 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             }}
                         />
                         <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toFixed(3)}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "10px 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
+                            width="20"
+                            alt="$OS"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: osToken,
+                                            symbol: 'OS',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(osBalance).toFixed(3)}</div>
                     </div>
                 </div>
 
