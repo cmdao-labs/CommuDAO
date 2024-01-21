@@ -1299,7 +1299,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                 }
 
 
-                                                {item.Id.length === 13 && Number(String(item.Id).slice(0, 4)) <= 1003 && Number(String(item.Id).slice(4, 7)) <= 500 ?
+                                                {Number(String(item.Id).slice(0, 4)) <= 1003 && Number(String(item.Id).slice(4, 7)) <= 500 ?
                                                     <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                         <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                             <div>
