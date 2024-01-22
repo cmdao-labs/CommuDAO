@@ -280,6 +280,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             if (_level === 1) {
                 woodUsage = 100000000
                 cuUsage = 50000
+            } else if (_level === 2) {
+                woodUsage = 200000000
+                cuUsage = 100000
             }
             const woodAllow = await readContract({
                 address: wood,
@@ -313,14 +316,16 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 const approvetx2 = await writeContract(config2)
                 await approvetx2.wait()
             }
-            const config3 = await prepareWriteContract({
-                address: slot1,
-                abi: slot1ABI,
-                functionName: 'delegateOwner',
-                args: [0, address, houseId]
-            })
-            const tx = await writeContract(config3)
-            await tx.wait()
+            if (_level === 1) {
+                const config3 = await prepareWriteContract({
+                    address: slot1,
+                    abi: slot1ABI,
+                    functionName: 'delegateOwner',
+                    args: [0, address, houseId]
+                })
+                const tx = await writeContract(config3)
+                await tx.wait()
+            }
             const config4 = await prepareWriteContract({
                 address: house,
                 abi: houseABI,
@@ -416,7 +421,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                         <div style={{width: "100%", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
                             <div style={{width: "320px"}}>
                                 {slot1Lv === 0 && <img src="https://nftstorage.link/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" style={{filter: "grayscale(1)"}} height="200" alt="HOUSE.LV.1" />}
-                                {slot1Lv === 1 && <img src="https://nftstorage.link/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1" />}
+                                {slot1Lv >= 1 && <img src="https://nftstorage.link/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1" />}
                             </div>
                             <div style={{textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                 <div>
@@ -426,11 +431,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                         <div style={{margin: "0 30px 0 10px"}}>
                                             {slot1Lv === 0 && '100M'}
                                             {slot1Lv === 1 && '200M'}
+                                            {slot1Lv === 2 && '400M'}
                                         </div>
                                         <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
                                         <div style={{marginLeft: "10px"}}>
                                             {slot1Lv === 0 && '50,000'}
                                             {slot1Lv === 1 && '100,000'}
+                                            {slot1Lv === 2 && '200,000'}
                                         </div>
                                         
                                     </div>
@@ -438,7 +445,22 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 <div>
                                     {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
                                         <>
-                                            {slot1Lv !== 1 ?
+                                            {slot1Lv === 1 &&
+                                                <div 
+                                                    style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
+                                                    className="bold button" 
+                                                    onClick={
+                                                        () => {
+                                                            if (slot1Lv === 1) {
+                                                                upgradeHouseHandle(2)
+                                                            }
+                                                        }
+                                                    }
+                                                >
+                                                    UPGRADE
+                                                </div>
+                                            }
+                                            {slot1Lv === 0 ?
                                                 <div 
                                                     style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                     className="bold button" 
@@ -510,36 +532,79 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 </div>
                                 <div style={{height: "41px"}}></div>
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>{nftStake !== null && nftStake[0] !== undefined ? nftStake[0].Name : 'Main Char SLOT1'}</div>
+                            <div style={{position: "relative", width: "80%", height: "400px", display: "flex", flexWrap: "row wrap", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
                                 {nft.length > 0 ?
                                     <>
-                                        {nftStake !== null && nftStake[0] !== undefined ?
-                                            <img src={nftStake[0].Image} width="300px" alt="Can not load metadata." /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                        {slot1Lv >= 1 &&
+                                            <div style={{ display: "flex", flexDirection: "column"}}>
+                                                {nftStake !== null && nftStake[0] !== undefined ?
+                                                    <>
+                                                        <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[0].Name}</div>
+                                                        <img src={nftStake[0].Image} width="200px" alt="Can not load metadata." />
+                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                            <>
+                                                                {address.toUpperCase() === slot1Addr.toUpperCase() &&
+                                                                    <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                        {nftStake !== null && nftStake[0] !== undefined &&
+                                                                            <>
+                                                                                {nftStake[0].isStaked ?
+                                                                                    <div style={{alignSelf: "center", background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[0].Id, 1)}>HARVEST & UNSTAKE</div> :
+                                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                                                }
+                                                                            </>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </> :
+                                                            <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>Main Char SLOT1</div>
+                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                        <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                    </>
+                                                }
+                                            </div>
+                                        }
+                                        {slot1Lv >= 2 && 
+                                            <div style={{marginLeft: "20px", display: "flex", flexDirection: "column"}}>
+                                                {nftStake !== null && nftStake[1] !== undefined ?
+                                                    <>
+                                                        <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[1].Name}</div>
+                                                        <img src={nftStake[1].Image} width="200px" alt="Can not load metadata." />
+                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                            <>
+                                                                {address.toUpperCase() === slot1Addr.toUpperCase() &&
+                                                                    <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                        {nftStake !== null && nftStake[1] !== undefined &&
+                                                                            <>
+                                                                                {nftStake[1].isStaked ?
+                                                                                    <div style={{alignSelf: "center", background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[1].Id, 1)}>HARVEST & UNSTAKE</div> :
+                                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                                                }
+                                                                            </>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </> :
+                                                            <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>Main Char SLOT2</div>
+                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                        <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                    </>
+                                                }
+                                            </div>
                                         }
                                     </> :
                                     <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                    <>
-                                        {address.toUpperCase() === slot1Addr.toUpperCase() &&
-                                            <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                                 {nftStake !== null && nftStake[0] !== undefined &&
-                                                    <>
-                                                        {nftStake[0].isStaked ?
-                                                            <div style={{alignSelf: "center", background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[0].Id, 1)}>HARVEST & UNSTAKE</div> :
-                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                                        }
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                    </> :
-                                    <div style={{height: "41px", marginTop: "25px"}}></div>
-                                }
+                               
                             </div>
                         </div>
                     </div>
