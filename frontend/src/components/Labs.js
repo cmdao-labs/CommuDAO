@@ -1264,7 +1264,27 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginLeft: "5px"}}>{Number(copperBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <div style={{marginLeft: "5px"}}>$MT {Number(mtBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    <img
+                            src="https://nftstorage.link/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia"
+                            width="20"
+                            alt="$MT"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: mtToken,
+                                            symbol: 'MT',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(mtBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
@@ -1946,7 +1966,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                            
+                            <img src="https://nftstorage.link/ipfs/bafybeigjhse2n7fm7o7mmodgpqs4ojd5n5wpfnzl5roegeoldrmujaimku" width="330" alt="$GOLD_Factory2"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -1954,7 +1974,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>100M</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <div style={{margin: "0 5px"}}>$MT 500</div>
+                                <img src="https://nftstorage.link/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia" height="18" alt="$MT"/>
+                                <div style={{margin: "0 5px"}}>500</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>10,000</div>
