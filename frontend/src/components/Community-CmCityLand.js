@@ -295,7 +295,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     address: wood,
                     abi: erc20ABI,
                     functionName: 'approve',
-                    args: [house, ethers.utils.parseEther(String(10**8))],
+                    args: [house, ethers.utils.parseEther(String(10**9))],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
