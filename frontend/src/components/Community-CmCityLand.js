@@ -283,7 +283,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             } else if (_level === 2) {
                 woodUsage = 200000000
                 cuUsage = 100000
-            } else if (_level === 2) {
+            } else if (_level === 3) {
                 woodUsage = 400000000
                 cuUsage = 200000
             }
