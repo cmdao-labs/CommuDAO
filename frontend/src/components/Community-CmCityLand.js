@@ -539,7 +539,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 </div>
                                 <div style={{height: "41px"}}></div>
                             </div>
-                            <div style={{position: "relative", width: "80%", height: "400px", display: "flex", flexWrap: "row wrap", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
+                            <div className="noscroll" style={{position: "relative", width: "80%", height: "400px", display: "flex", flexWrap: "row wrap", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
                                 {nft.length > 0 ?
                                     <>
                                         {slot1Lv >= 1 &&
