@@ -324,7 +324,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy11 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 90 ? true : false
             const sell12remain = 10003023 - Number(sell12Id.sellId)
             const _canBuy12 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 60 ? true : false
-            const sell13remain = (102100004500 - (Number(sell13Id.sellId) - 4500)) / 100000
+            const sell13remain = (102100000000 - (Number(sell13Id.sellId) - 4500)) / 100000
             const _canBuy13 = Number(ethers.utils.formatEther(String(osBal))) >= 5500 ? true : false
 
             const roll1remain = Number(roll1.nftCount)
