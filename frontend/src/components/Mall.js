@@ -935,7 +935,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                         options: {
                                             address: dunJasper,
                                             symbol: 'JASP',
-                                            decimals: 9,
+                                            decimals: 18,
                                             image: 'https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
                                         },
                                     },
