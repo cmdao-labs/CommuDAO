@@ -482,7 +482,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     CONSTRUCT
                                                 </div> :
                                                 <>
-                                                    {slot1Addr.toUpperCase() === '0X0000000000000000000000000000000000000000' ?
+                                                    {slot1Addr.toUpperCase() !== address.toUpperCase() ?
                                                         <div 
                                                             style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
                                                             className="bold button" 
