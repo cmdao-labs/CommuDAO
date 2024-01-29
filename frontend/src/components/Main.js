@@ -101,7 +101,7 @@ import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { bsc } from 'wagmi/chains'
 
-const v = '0.2.22'
+const v = '0.2.23'
 
 const Main = () => {
     const { chains, provider } = configureChains(
@@ -291,7 +291,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 19 ?
-                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} /> :
+                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
                     <></>
                 }
                 {mode === 2 ?

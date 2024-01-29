@@ -5,11 +5,10 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
-const thlField = '0xdBC6e0928e49f22Ca448fEF2fEb9de526d6A65B9'
-const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
+const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, salmFieldABI }) => {
+const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
     const { address } = useAccount()
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -20,7 +19,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
     const [nft, setNft] = React.useState([])
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
-    const [goldBalance, setGoldBalance] = React.useState("0.000")
+    const [vabagBalance, setVaBagBalance] = React.useState("0.000")
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_nftid) => {
@@ -56,16 +55,15 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
         
         const thefetch = async () => {
             let nfts = []
-            /*
-            const stakeFilter = await acNftSC.filters.Transfer(address, thlField, null)
+            const stakeFilter = await acNftSC.filters.Transfer(address, vabag, null)
             const stakeEvent = await acNftSC.queryFilter(stakeFilter, 2260250, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
                     {
-                        address: thlField,
-                        abi: salmFieldABI,
+                        address: vabag,
+                        abi: tunaFieldABI,
                         functionName: 'nftStake',
                         args: [String(item)],
                     }
@@ -83,8 +81,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             const data01 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: thlField,
-                        abi: salmFieldABI,
+                        address: vabag,
+                        abi: tunaFieldABI,
                         functionName: 'nftStake',
                         args: [String(item.Id)],
                     }
@@ -105,28 +103,16 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             const data11 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: thlField,
-                        abi: salmFieldABI,
-                        functionName: 'calculateRewards1',
+                        address: vabag,
+                        abi: tunaFieldABI,
+                        functionName: 'calculateRewards',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
-            const data12 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftstake.map((item) => (
-                    {
-                        address: thlField,
-                        abi: salmFieldABI,
-                        functionName: 'calculateRewards2',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftstake.length).fill(0)]
-            */
             let _allDaily = 0
             let _allReward = 0
-            /*
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i]
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -134,7 +120,13 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                     nft = await response.json()
                 } catch {}
-                _allDaily += Number(ethers.utils.formatEther(String(1 * 10**14)))
+
+                let _reward = 0
+                if (yournftstake[i].Id.slice(0, 3) === '101') {
+                    _reward = 100
+                }
+
+                _allDaily += Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400)))
                 _allReward += Number(ethers.utils.formatEther(String(data11[i])))
 
                 nfts.push({
@@ -143,12 +135,12 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: 1,
+                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
                     isStaked: true,
                     Reward: String(data11[i]),
                 })
             }
-            */
+
             const walletFilter = await acNftSC.filters.Transfer(null, address, null)
             const walletEvent = await acNftSC.queryFilter(walletFilter, 2260250, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
@@ -202,7 +194,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: _reward,
+                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
                     isStaked: false,
                     Reward: 0,
                 })
@@ -212,9 +204,20 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
 
             console.log(nfts)
 
-            const goldBal = 0
+            const dataToken = address !== null && address !== undefined ? await readContracts({
+                contracts: [
+                    {
+                        address: vabag,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    }
+                ],
+            }) : [0]
 
-            return [nfts, _allDaily, _allReward, goldBal]
+            const vaBal = dataToken[0]
+
+            return [nfts, _allDaily, _allReward, vaBal]
         }
 
         const promise = thefetch()
@@ -228,12 +231,12 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
 
         getAsync().then(result => {
             result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
-            setAllDaily(result[1] * 86400)
+            setAllDaily(result[1])
             setAllReward(result[2])
-            setGoldBalance(ethers.utils.formatEther(String(result[3])))
+            setVaBagBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, salmFieldABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, tunaFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -244,19 +247,19 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'getApproved',
                 args: [_nftid],
             })
-            if (nftAllow.toUpperCase() !== thlField.toUpperCase()) {
+            if (nftAllow.toUpperCase() !== vabag.toUpperCase()) {
                 const config = await prepareWriteContract({
                     address: acNft,
                     abi: erc721ABI,
                     functionName: 'approve',
-                    args: [thlField, _nftid],
+                    args: [vabag, _nftid],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
             }        
             const config2 = await prepareWriteContract({
-                address: thlField,
-                abi: salmFieldABI,
+                address: vabag,
+                abi: tunaFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
@@ -267,22 +270,12 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
         setisLoading(false)
     }
     
-    const unstakeNft = async (_nftid, jbcTime, _unstake, _isjbcout) => {
+    const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            if (Number(jbcTime) >= 86400 && !_isjbcout) {
-                const config1 = await prepareWriteContract({
-                    address: thlField,
-                    abi: salmFieldABI,
-                    functionName: 'claimJBC',
-                    args: [_nftid],
-                })
-                const tx1 = await writeContract(config1)
-                await tx1.wait()
-            }
             const config2 = await prepareWriteContract({
-                address: thlField,
-                abi: salmFieldABI,
+                address: vabag,
+                abi: tunaFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
@@ -339,7 +332,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
                         <div style={{fontSize: "24px"}}>
-                            {nft.length > 0 && nft[0] !== null ? Number(goldBalance).toFixed(3) : 0}
+                            {nft.length > 0 && nft[0] !== null ? Number(vabagBalance).toFixed(3) : 0}
                         </div>
                     </div>
                 </div>
@@ -366,7 +359,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                                     }
                                 </div>
                                 <div>
-                                    Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
+                                    Earn: {Number(item.RewardPerSec).toFixed(4)}
                                     &nbsp;
                                     VABAG/DAY
                                 </div>
@@ -378,14 +371,14 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, false, item.isJbcOut)}}>HARVEST</div> :
+                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                     }
                                 </div>
                                 {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true, item.isJbcOut)}}>UNSTAKE</div> :
+                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
                                     <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        <div className="button"style={{background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}}>STAKE</div>
+                                        <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
                                         <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
                                     </div>
                                 }
