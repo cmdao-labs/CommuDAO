@@ -1302,10 +1302,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        {/*<img
-                            src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"
                             width="20"
-                            alt="$WOOD"
+                            alt="$VABAG"
                             style={{cursor: "crosshair"}}
                             onClick={async () => {
                                 await ethereum.request({
@@ -1313,16 +1313,15 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     params: {
                                         type: 'ERC20',
                                         options: {
-                                            address: woodField,
-                                            symbol: 'WOOD',
+                                            address: vabag,
+                                            symbol: 'VABAG',
                                             decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                            image: 'https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
                                         },
                                     },
                                 })
                             }}
-                        />*/}
-                        vabag&nbsp;
+                        />
                         <div style={{marginLeft: "5px"}}>{Number(vabagBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
                     </div>
                 </div>

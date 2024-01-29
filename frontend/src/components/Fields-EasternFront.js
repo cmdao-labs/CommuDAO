@@ -308,20 +308,23 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
-                        <div style={{fontSize: "24px"}} className="emp">
+                        <div style={{fontSize: "24px", display: "flex"}} className="emp">
                             {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                        <div style={{fontSize: "24px"}}>
+                        <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
-                        <div style={{fontSize: "24px"}}>
+                        <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(vabagBalance).toFixed(3) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>
                 </div>
@@ -350,13 +353,15 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                                 <div>
                                     Earn: {Number(item.RewardPerSec).toFixed(4)}
                                     &nbsp;
-                                    VABAG/DAY
+                                    <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                    &nbsp;VABAG/DAY
                                 </div>
                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                         Pending Rewards<br></br>
                                         <div style={{display: "flex", alignItems: "center"}}>
-                                            {ethers.utils.formatEther(String(item.Reward))}
+                                            <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                            &nbsp;{ethers.utils.formatEther(String(item.Reward))}
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?
