@@ -78,17 +78,6 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             }
             console.log(yournftstake)
 
-            const data01 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftstake.map((item) => (
-                    {
-                        address: vabag,
-                        abi: tunaFieldABI,
-                        functionName: 'nftStake',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftstake.length).fill({tokenOwnerOf: '', isJbcOut: false})]
-
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
