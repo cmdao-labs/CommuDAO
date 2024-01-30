@@ -30,6 +30,7 @@ const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
+const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
@@ -52,6 +53,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
     const [mtBalance, setMtBalance] = React.useState(0)
     const [vabagBalance, setVabagBalance] = React.useState(0)
+    const [swarBalance, setSwarBalance] = React.useState(0)
 
     const [levelCraftBBQ, setLevelCraftBBQ] = React.useState(0)
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
@@ -97,6 +99,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isMineGold, setIsMineGold] = React.useState(null)
     const [timetoClaimMineGold, setTimeToClaimMineGold] = React.useState(0)
     const [canMineGold, setCanMineGold] = React.useState(false)
+
+    const [isCraftSWAR, setIsCraftSWAR] = React.useState(null)
+    const [timetoClaimSWAR, setTimeToClaimSWAR] = React.useState(0)
+    const [canCraftSWAR, setCanCraftSWAR] = React.useState(false)
 
     const [isKYC, setIsKYC] = React.useState(null)
 
@@ -260,8 +266,20 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: swarLab,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: swarLab,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, ]
             
             const cmjBal = data[0]
             const woodBal = data[1]
@@ -288,6 +306,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const platBal = data[22]
             const labLogPLAT = data[23]
             const vaBagBal = data[24]
+            const swarBal = data[25]
+            const labLogSWAR = data[26]
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -300,6 +320,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 500 ? true : false
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 200 && Number(jbcBal.formatted) >= 10 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 200 ? true : false
+            const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
 
             const currentQueue = await readContract({
                 address: globalBbqLab,
@@ -331,7 +352,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
                 labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
-                mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, 
+                mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR,
             ]
         }
 
@@ -445,6 +466,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setCanCraftPLAT(result[37])
 
             setVabagBalance(ethers.utils.formatEther(result[38]))
+            setSwarBalance(ethers.utils.formatEther(result[39]))
+            setIsCraftSWAR(Number(result[40].machineRun) > 0)
+            const nextHourSWAR = new Date((result[40].laststamp * 1000) + (3600 * 8 * 1000))
+            Date.now() - (result[40].laststamp * 1000) <= (3600 * 8 * 1000) ?
+                setTimeToClaimSWAR(nextHourSWAR.toLocaleString('es-CL')) :
+                setTimeToClaimSWAR(0)
+            setCanCraftSWAR(result[41])
         })
 
     }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, goldMineABI, kycABI])
@@ -1113,6 +1141,69 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
         setisLoading(false)
     }
 
+    const craftSWARHandle = async (_machine) => {
+        setisLoading(true)
+        try {
+            const vabagAllow = await readContract({
+                address: vabag,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, swarLab],
+            })
+            if (vabagAllow < (10 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: vabag,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [swarLab, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const cmjAllow = await readContract({
+                address: cmjToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, swarLab],
+            })
+            if (cmjAllow < (10 * 10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: mtToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [swarLab, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            const config3 = await prepareWriteContract({
+                address: swarLab,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const obtainSWARHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: swarLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
     <>
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -1492,6 +1583,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         />
                         <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
+                            width="20"
+                            alt="$SWAR"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: swarLab,
+                                            symbol: 'SWAR',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
                 </div>
 
                 <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
@@ -1854,40 +1968,38 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                {/*
-                                <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                                <div style={{margin: "0 5px"}}>100M</div>
+                                <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="18" alt="$VABAG"/>
+                                <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                <div style={{margin: "0 5px"}}>10,000</div>
-                                */}
+                                <img src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
+                                <div style={{margin: "0 5px"}}>1</div>
                             </div>
                         </div>
                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
                             <div>8 hour</div>
                         </div>
-                        {false && isCraftGOLD2 ?
+                        {isCraftSWAR ?
                             <>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                    <div>{timetoClaimGOLD2 === 0 ? "now" : timetoClaimGOLD2}</div>
+                                    <div>{timetoClaimSWAR === 0 ? "now" : timetoClaimSWAR}</div>
                                 </div>
-                                {timetoClaimGOLD2 === 0 ?
-                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainGOLDHandle2}>Obtain</div> :
+                                {timetoClaimSWAR === 0 ?
+                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainSWARHandle}>Obtain</div> :
                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
                                 }
                             </> :
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {false && isCraftGOLD2 !== null ?
+                                        {isCraftSWAR !== null ?
                                             <>
-                                                {canCraftGOLD2 ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftGOLDHandle2(1)}>Craft Gold</div> :
+                                                {canCraftSWAR ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftSWARHandle(1)}>Craft Supply War</div> :
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
                                                 }
                                             </> :
