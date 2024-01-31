@@ -113,6 +113,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 let _reward = 0
                 if (yournftstake[i].Id.slice(0, 3) === '101') {
                     _reward = 100
+                } else if (yournftwallet[i].Id.slice(0, 3) === '102') {
+                    _reward = 1000
                 }
 
                 _allDaily += Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400)))
@@ -175,6 +177,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 let _reward = 0
                 if (yournftwallet[i].Id.slice(0, 3) === '101') {
                     _reward = 100
+                } else if (yournftwallet[i].Id.slice(0, 3) === '102') {
+                    _reward = 1000
                 }
 
                 nfts.push({
