@@ -9,7 +9,7 @@ const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
-    const { address } = useAccount()
+    const address = '0x8c4369814AA115Dd2634a9aec310f47d0b551533'
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
@@ -113,7 +113,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 let _reward = 0
                 if (yournftstake[i].Id.slice(0, 3) === '101') {
                     _reward = 100
-                } else if (yournftwallet[i].Id.slice(0, 3) === '102') {
+                } else if (yournftstake[i].Id.slice(0, 3) === '102') {
                     _reward = 1000
                 }
 
