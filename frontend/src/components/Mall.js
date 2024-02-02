@@ -328,7 +328,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy13 = Number(ethers.utils.formatEther(String(osBal))) >= 5500 ? true : false
 
             const roll1remain = Number(roll1.nftCount)
-            const roll2remain = Number(roll2.nftCount)
+            const roll2remain = /*Number(roll2.nftCount)*/256
             const roll3remain = Number(roll3.nftCount)
             const roll4remain = Number(roll4.nftCount)
             const roll5remain = Number(roll5.nftCount)
@@ -1164,14 +1164,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Full Plate Valkyrian Armor</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://bafkreiftpkycalwvudetraf3p6rn4jkz6avoy5ogefrjm5dvwemojnfqna.ipfs.nftstorage.link/" height="150" alt="VALKYRIAN_GASHA"/>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Armor </div>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafkreibgzv6zcq4yuj2n44dw6o7ydwllepwry5nulqzdx4s2c7poabxwxa" height="150" alt="GDA_GASHA"/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                     <div className="emp">{roll2Remain}</div>
-                                    <div>/107 EA</div>
+                                    <div>/256 EA</div>
                                 </div>
                             </div>
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -1194,20 +1194,20 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
-                                    <div style={{marginLeft: "7.5px"}}>10</div>
+                                    <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
                         </div>
                         {address !== null && address !== undefined ?
                             <>
-                                {roll2Remain > 0 ?
+                                {false && roll2Remain > 0 ?
                                     <>
                                         {canroll1 ?
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => rollHandle2(2)}>ROLL</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">OUT OF STOCK</div>
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">ON STOCK: 10PM, 02.02</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
