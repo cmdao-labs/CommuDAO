@@ -1168,7 +1168,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             })
             if (cmjAllow < (10 * 10**18)) {
                 const config2 = await prepareWriteContract({
-                    address: mtToken,
+                    address: cmjToken,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [swarLab, ethers.utils.parseEther(String(10**8))],
