@@ -367,8 +367,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    nft = await response.json()
+                } catch {}
 
                 nfts.push({
                     Col: 1,
@@ -387,9 +390,12 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 abi: erc721ABI,
                 functionName: 'tokenURI',
                 args: [String(data[12].followerId)],
-            }) : null
-            const responsenft = nftipfs !== null ? await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/")) : null
-            const nft = responsenft !== null ? await responsenft.json() : null
+            }) : null  
+            let nft = {name: "", image: "", description: "", attributes: ""}
+            try {
+                const responsenft = nftipfs !== null ? await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/")) : null
+                nft = responsenft !== null ? await responsenft.json() : null
+            } catch {}
             if (Number(data[12].followerId) !== 0) {
                 nfts.push({
                     Col: 2,
