@@ -152,8 +152,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: cmdaoMerchantKYC,
+                        abi: cmdaoMerchantKYCABI,
+                        functionName: 'bought',
+                        args: [address, 2],
+                    },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, ]
             
             const _isKYC = data[0]
             const cmjBal = data[1]
@@ -167,6 +173,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const jdaoBal = data[9]
             const isBought5 = data[10]
             const osBal = data[11]
+            const isBought2 = data[12]
 
             const data2 = await readContracts({
                 contracts: [
@@ -177,10 +184,10 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         args: [1],
                     },
                     {
-                        address: cmdaoMerchantV2,
-                        abi: cmdaoMerchantV2ABI,
+                        address: cmdaoMerchantKYC,
+                        abi: cmdaoMerchantKYCABI,
                         functionName: 'sellList',
-                        args: [1],
+                        args: [2],
                     },
                     {
                         address: cmdaoMerchant,
@@ -302,8 +309,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
             const sell1remain = (410003800000 - (Number(sell1Id.sellId) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
-            const sell2remain = 100000000023 - Number(sell2Id.sellId)
-            const _canBuy2 = Number(ethers.utils.formatEther(String(pzaBal))) >= 49000 ? true : false
+            const sell2remain = (720041600000 - (Number(sell2Id.sellId) - 250)) / 100000
+            const _canBuy2 = _isKYC && !isBought2 && Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 ? true : false
             const sell3remain = (210050100000 - (Number(sell3Id.sellId) - 250)) / 100000
             const _canBuy3 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 3 ? true : false
             const sell4remain = (130030100000 - (Number(sell4Id.sellId) - 500)) / 100000
@@ -437,33 +444,33 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle2 = async () => {
         setisLoading(true)
         try {
-            const pzaAllow = await readContract({
-                address: pzaLab,
+            const bbqAllow = await readContract({
+                address: bbqToken,
                 abi: ctunaLabABI,
                 functionName: 'allowance',
-                args: [address, cmdaoMerchantV2],
+                args: [address, cmdaoMerchantKYC],
             })
-            if (pzaAllow < (49000 * 10**18)) {
+            if (bbqAllow < (20000 * 10**18)) {
                 const config = await prepareWriteContract({
-                    address: pzaLab,
+                    address: bbqToken,
                     abi: ctunaLabABI,
                     functionName: 'approve',
-                    args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
+                    args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
             }
             const config2 = await prepareWriteContract({
-                address: cmdaoMerchantV2,
-                abi: cmdaoMerchantV2ABI,
+                address: cmdaoMerchantKYC,
+                abi: cmdaoMerchantKYCABI,
                 functionName: 'buy',
-                args: [1]
+                args: [2]
             })
             const tx = await writeContract(config2)
             await tx.wait()
             setTxupdate(tx)
         } catch {}
-        setisLoading(false)
+        setisLoading(false)        
     }
 
     const buyHandle3 = async (_index) => {
@@ -1602,26 +1609,27 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         }
                     </div>
 
-                    <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Pizza Day!</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafkreies3tc5xzaph5lpjgka35qduucejronjb37nd5zuaztwhovnzkllm" height="150" alt="PZA-DAY-SALON-BG"/>
+                    <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                        <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">KYC Shop</div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Novice Sword Vol.1</div>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://bafkreiha7rbdsni6hvok2rs546zeowge2mwbfh3y75awlqv2u74zorltse.ipfs.nftstorage.link/" height="150" alt="Novice_Sword"/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                     <div className="emp">{sell2Remain}</div>
-                                    /22 EA
+                                    /100 EA
                                 </div>
                             </div>
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Status</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>Salon NFT - BG Type</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>250 CMPOW</div>
                             </div>
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
-                                    <div style={{marginLeft: "7.5px"}}>49,000</div>
+                                    <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                    <div style={{marginLeft: "7.5px"}}>20,000</div>
                                 </div>
                             </div>
                         </div>
@@ -1631,13 +1639,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                     <>
                                         {canbuy2 ?
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle2}>REDEEM</div> :
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">NOT ELIGIBLE TO REDEEM</div>
                                         }
                                     </> :
                                     <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
                                 }
                             </> :
-                            <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                         }
                     </div>
 
