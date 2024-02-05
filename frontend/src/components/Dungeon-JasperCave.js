@@ -477,8 +477,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             for (let i = 0; i <= yournftwallet2.length - 1; i++) {
                 const nftipfs = data5[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const responsenft = nftipfs !== null ? await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/")) : null
+                    nft = responsenft !== null ? await responsenft.json() : null
+                } catch {}
 
                 nfts.push({
                     Col: 2,
