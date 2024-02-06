@@ -57,9 +57,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
     const [roll1Remain, setRoll1Remain] = React.useState(107)
     const [canroll1, setCanRoll1] = React.useState(false)
-    const [roll2Remain, setRoll2Remain] = React.useState(107)
+    const [roll2Remain, setRoll2Remain] = React.useState(256)
     const [roll3Remain, setRoll3Remain] = React.useState(107)
-    const [roll4Remain, setRoll4Remain] = React.useState(107)
+    const [roll4Remain, setRoll4Remain] = React.useState(256)
     const [canroll2, setCanRoll2] = React.useState(false)
     const [roll5Remain, setRoll5Remain] = React.useState(1000)
 
@@ -337,7 +337,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll1remain = Number(roll1.nftCount)
             const roll2remain = Number(roll2.nftCount)
             const roll3remain = Number(roll3.nftCount)
-            const roll4remain = /*Number(roll4.nftCount)*/256
+            const roll4remain = Number(roll4.nftCount)
             const roll5remain = Number(roll5.nftCount)
 
             const _canRoll1 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 15 ? true : false
@@ -1313,14 +1313,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         </div>
                         {address !== null && address !== undefined ?
                             <>
-                                {false && roll4Remain > 0 ?
+                                {roll4Remain > 0 ?
                                     <>
                                         {canroll1 ?
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => rollHandle2(4)}>ROLL</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">ON STOCK 10PM, 06.02</div>
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">OUT OF STOCK</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
