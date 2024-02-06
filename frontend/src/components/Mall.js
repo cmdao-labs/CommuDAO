@@ -313,7 +313,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy2 = _isKYC && !isBought2 && Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 ? true : false
             const sell3remain = (210050100000 - (Number(sell3Id.sellId) - 250)) / 100000
             const _canBuy3 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 3 ? true : false
-            const sell4remain = /*(130030100000 - (Number(sell4Id.sellId) - 500)) / 100000*/256
+            const sell4remain = (130030100000 - (Number(sell4Id.sellId) - 500)) / 100000
             const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 15 ? true : false
             const sell5remain = (100530100000 - (Number(sell5Id.sellId) - 100)) / 100000
             const _canBuy5 = _isKYC && !isBought5 && Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 ? true : false
@@ -337,7 +337,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll1remain = Number(roll1.nftCount)
             const roll2remain = Number(roll2.nftCount)
             const roll3remain = Number(roll3.nftCount)
-            const roll4remain = Number(roll4.nftCount)
+            const roll4remain = /*Number(roll4.nftCount)*/256
             const roll5remain = Number(roll5.nftCount)
 
             const _canRoll1 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 15 ? true : false
