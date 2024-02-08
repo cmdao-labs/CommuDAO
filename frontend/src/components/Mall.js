@@ -286,6 +286,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'sellList',
                         args: [8],
                     },
+                    {
+                        address: cmdaoGasha02,
+                        abi: cmdaoGasha02ABI,
+                        functionName: 'colList',
+                        args: [6],
+                    },
                 ],
             })
             
@@ -307,6 +313,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll3 = data2[8]
             const roll4 = data2[9]
             const roll5 = data2[10]
+            const roll6 = data2[18]
 
             const sell1remain = (410003800000 - (Number(sell1Id.sellId) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
@@ -340,12 +347,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll3remain = Number(roll3.nftCount)
             const roll4remain = Number(roll4.nftCount)
             const roll5remain = Number(roll5.nftCount)
+            const roll6remain = Number(roll6.nftCount)
 
             const _canRoll1 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 15 ? true : false
             const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
 
             return [
-                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, sell13remain, _canBuy13,
+                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, sell13remain, _canBuy13, roll6remain,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, 
             ]
         }
@@ -394,16 +402,17 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setRoll4Remain(result[16])
             setRoll5Remain(result[17])
             setCanRoll2(result[18])
+            setRoll6Remain(result[33])
 
-            setCTunaBalance(ethers.utils.formatEther(String(result[33])))
-            setSx31Balance(ethers.utils.formatEther(String(result[34])))
-            setJusdtBalance(ethers.utils.formatEther(String(result[35])))
-            setCmjBalance(ethers.utils.formatEther(String(result[36])))
-            setBbqBalance(ethers.utils.formatEther(String(result[37])))
-            setPzaBalance(ethers.utils.formatEther(String(result[38])))
-            setCuBalance(ethers.utils.formatEther(String(result[39])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[40]), "gwei"))
-            setOsBalance(ethers.utils.formatEther(String(result[41])))
+            setCTunaBalance(ethers.utils.formatEther(String(result[34])))
+            setSx31Balance(ethers.utils.formatEther(String(result[35])))
+            setJusdtBalance(ethers.utils.formatEther(String(result[36])))
+            setCmjBalance(ethers.utils.formatEther(String(result[37])))
+            setBbqBalance(ethers.utils.formatEther(String(result[38])))
+            setPzaBalance(ethers.utils.formatEther(String(result[39])))
+            setCuBalance(ethers.utils.formatEther(String(result[40])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[41]), "gwei"))
+            setOsBalance(ethers.utils.formatEther(String(result[42])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -1366,14 +1375,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         </div>
                         {address !== null && address !== undefined ?
                             <>
-                                {false && roll6Remain > 0 ?
+                                {roll6Remain > 0 ?
                                     <>
                                         {canroll1 ?
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => rollHandle2(6)}>ROLL</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">ON STOCK 10PM, 08.02</div>
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel buttn">OUT OF STOCK</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
