@@ -128,7 +128,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 1,
                     Id: yournftwallet[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftwallet[i].Id,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -236,7 +236,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 3,
                     Id: yournftwallet3[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftwallet3[i].Id,
                     Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
                     Description: nft.description,
                     Attribute: [],
@@ -279,7 +279,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 4,
                     Id: yournftwallet4[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftwallet4[i].Id,
                     Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".png/",
                     Description: nft.description,
                     Attribute: [],
@@ -344,7 +344,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 5,
                     Id: yournftwallet5[i].Id,
-                    Name: nft.name + ' [' + letter + (yournftwallet5[i].Id % 1000) + ']',
+                    Name: nft.name + ' #' + letter + (yournftwallet5[i].Id % 1000),
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: [],
@@ -398,7 +398,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 6,
                     Id: yournftwallet6[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftwallet6[i].Id,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -469,7 +469,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nftsell.push({
                     Col: 1,
                     Id: Number(mkpwallet[i].Id),
-                    Name: nft.name,
+                    Name: nft.name + " #" + mkpwallet[i].Id,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -491,7 +491,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 1,
                     Id: yournftsell1[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftsell1[i].Id,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -669,7 +669,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nftsell.push({
                     Col: 3,
                     Id: Number(mkp3wallet[i].Id),
-                    Name: nft.name,
+                    Name: nft.name + " #" + mkp3wallet[i].Id,
                     Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -691,7 +691,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 3,
                     Id: yournftsell3[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftsell3[i].Id,
                     Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -868,7 +868,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nftsell.push({
                     Col: 5,
                     Id: Number(mkp5wallet[i].Id),
-                    Name: nft.name + ' [' + letter + (mkp5wallet[i].Id % 1000) + ']',
+                    Name: nft.name + ' #' + letter + (mkp5wallet[i].Id % 1000),
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -901,7 +901,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 5,
                     Id: yournftsell5[i].Id,
-                    Name: nft.name + ' [' + letter + (yournftsell5[i].Id % 1000) + ']',
+                    Name: nft.name + ' #' + letter + (yournftsell5[i].Id % 1000),
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -971,7 +971,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nftsell.push({
                     Col: 6,
                     Id: Number(mkp6wallet[i].Id),
-                    Name: nft.name,
+                    Name: nft.name + " #" + mkp6wallet[i].Id,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -993,7 +993,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 nfts.push({
                     Col: 6,
                     Id: yournftsell6[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " #" + yournftsell6[i].Id,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
