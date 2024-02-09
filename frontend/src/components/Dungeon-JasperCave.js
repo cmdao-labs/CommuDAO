@@ -196,6 +196,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     }, 
                 ],
             }) : ["", "", "", "", "", "", "", 0, 0, 0, 0, 0, {followerId: 0, servantId: 0, cmpow: 0, rewardDebt: 0}, 0, 0, 0, ]
+            console.log(nftEQ)
             console.log(data)
 
             let nfts = []

@@ -119,6 +119,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     }, 
                 ],
             }) : ["", "", "", 0, 0, 0, 0, 0, ]
+            console.log(nftEQ)
             console.log(data)
 
             let nfts = []
