@@ -409,14 +409,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
         setisLoading(false)
     }
 
-    const claimLandHandle = async () => {
+    /*const claimLandHandle = async () => {
         setisLoading(true)
         let id = 0
-        /*if (Number(houseId) === 10026002) {
+        if (Number(houseId) === 10026002) {
             id = 4
         } else if (Number(houseId) === 10026006) {
             id = 5
-        } else */if (Number(houseId) === 10026011) {
+        } else if (Number(houseId) === 10026011) {
             id = 6
         }
         try {
@@ -447,7 +447,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             setTxupdate(tx)
         } catch {}
         setisLoading(false)
-    }
+    }*/
 
     return (
         <>
@@ -539,7 +539,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             }
                                         </>                                   
                                     }
-                                    {Number(houseId) === 10026011 &&
+                                    {/*Number(houseId) === 10026011 &&
                                         <div 
                                             style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
                                             className="bold button" 
@@ -547,7 +547,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                         >
                                             CLAIM LAND
                                         </div>
-                                    }
+                                    */}
                                 </div>
                             </div>
                         </div>
