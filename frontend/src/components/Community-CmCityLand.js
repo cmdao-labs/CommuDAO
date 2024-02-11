@@ -16,9 +16,12 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 
+const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
+const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
+
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, houseStakingABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, houseStakingABI, wlMkpABI }) => {
     const { address } = useAccount()
     
     let code = ''
@@ -406,6 +409,46 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
         setisLoading(false)
     }
 
+    const claimLandHandle = async () => {
+        setisLoading(true)
+        let id = 0
+        if (Number(houseId) === 10026002) {
+            id = 2
+        } else if (Number(houseId) === 10026006) {
+            id = 3
+        } else if (Number(houseId) === 10026011) {
+            id = 1
+        }
+        try {
+            const jusdtAllow = await readContract({
+                address: jusdt,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, wlMkp],
+            })
+            if (jusdtAllow < (100000 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: jusdt,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [wlMkp, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: wlMkp,
+                abi: wlMkpABI,
+                functionName: 'buyItem',
+                args: [id]
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -495,6 +538,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                 </>
                                             }
                                         </>                                   
+                                    }
+                                    {(Number(houseId) === 10026002 || Number(houseId) === 10026006 || Number(houseId) === 10026011) &&
+                                        <div 
+                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
+                                            className="bold button" 
+                                            onClick={claimLandHandle}
+                                        >
+                                            CLAIM LAND
+                                        </div>
                                     }
                                 </div>
                             </div>
