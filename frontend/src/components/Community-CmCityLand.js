@@ -413,11 +413,11 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
         setisLoading(true)
         let id = 0
         if (Number(houseId) === 10026002) {
-            id = 2
+            id = 4
         } else if (Number(houseId) === 10026006) {
-            id = 3
+            id = 5
         } else if (Number(houseId) === 10026011) {
-            id = 1
+            id = 6
         }
         try {
             const jusdtAllow = await readContract({
