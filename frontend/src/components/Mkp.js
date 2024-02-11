@@ -230,8 +230,11 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
 
             for (let i = 0; i <= yournftwallet3.length - 1; i++) {
                 const nftipfs = data6[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"))
+                    nft = await response.json()
+                } catch {}
 
                 nfts.push({
                     Col: 3,
