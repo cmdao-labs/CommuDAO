@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
-import { useAccount } from 'wagmi'
+import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 
 import Ammmerchant from  './Mall-Ammy'
 import Ammmerchant2 from  './Mall-Jazzi'
@@ -31,6 +31,9 @@ const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
 const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoGasha02ABI, ammyABI, ammyStdABI, angeloStdABI, erc20ABI }) => {
     const { address } = useAccount()
+
+    const [isWrappedModal, setIsWrappedModal] = React.useState(false)
+    const [wrappedValue, setWrappedValue] = React.useState("")
 
     const [sell1Remain, setSell1Remain] = React.useState(37)
     const [canbuy1, setCanBuy1] = React.useState(false)
@@ -835,8 +838,36 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
         setisLoading(false)
     }
 
+    const { config } = usePrepareSendTransaction({
+        request: {
+            to: wjbcToken,
+            value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
+        },
+    })
+    const { sendTransaction } = useSendTransaction(config)
+
     return (
     <>
+        {isWrappedModal ?
+            <div style={{zIndex: "999"}} className="centermodal">
+                <div className="wrapper">
+                    <div className="bold" style={{width: "500px", height: "200px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "80%", fontSize: "12px", textAlign: "left"}}>
+                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                                <div style={{height: "30px", padding: "0 5px", marginRight: "10px", lineHeight: "32px"}} className="bold">WRAPPED</div>
+                                <div style={{width: "fit-content", height: "30px", margin: 0, padding: "5px", border: "1px solid", borderRadius: "10px", fontSize: "12px"}} className="items bold">
+                                    <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$WJBC"/>
+                                </div>
+                            </div>
+                            <input style={{marginTop: "10px", width: "90%", padding: "10px"}} className="bold" type="number" min="0" step="0.1" placeholder="Enter $JBC to Wrap" value={wrappedValue} onChange={(event) => setWrappedValue(event.target.value)}></input>
+                        </div>
+                        <div className="button" style={{width: "50%"}} onClick={sendTransaction}>WRAP</div>
+                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsWrappedModal(false)}>CLOSE</div>
+                    </div>
+                </div>
+            </div> :
+            <></>
+        }
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div style={{fontSize: "75px", width: "fit-content"}} className="pixel">Mall</div>
@@ -872,7 +903,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>(WJBC) {Number(wjbcBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "10px"}}><div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "1px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setIsWrappedModal(true)}>WRAP</div> {Number(wjbcBalance).toFixed(3)}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img

@@ -1977,7 +1977,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div style={{margin: "0 5px"}}>500</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                <div style={{margin: "0 5px"}}>10,000</div>
+                                <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
