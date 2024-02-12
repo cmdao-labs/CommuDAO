@@ -6,13 +6,16 @@ import { useAccount } from 'wagmi'
 import Ammmerchant from  './Mall-Ammy'
 import Ammmerchant2 from  './Mall-Jazzi'
 import Ammmerchant3 from  './Mall-Degeno'
+import Ammmerchant4 from  './Mall-Angelo'
 const { ethereum } = window
 
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
+const wjbcToken = '0xC4B7C87510675167643e3DE6EEeD4D2c06A9e747'
 const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
+const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
@@ -26,7 +29,7 @@ const cmdaoGasha02 = '0x87A612709b36b575103C65a90cB3B16Cac2BC898'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoGasha02ABI, ammyABI, ammyStdABI, erc20ABI }) => {
+const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoGasha02ABI, ammyABI, ammyStdABI, angeloStdABI, erc20ABI }) => {
     const { address } = useAccount()
 
     const [sell1Remain, setSell1Remain] = React.useState(37)
@@ -75,6 +78,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [osBalance, setOsBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
+    const [wjbcBalance, setWjbcBalance] = React.useState(0)
+    const [swarBalance, setSwarBalance] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -167,8 +172,20 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: wjbcToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: swarLab,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, ]
             
             const _isKYC = data[0]
             const cmjBal = data[1]
@@ -184,6 +201,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const osBal = data[11]
             const isBought2 = data[12]
             const goldBal = data[13]
+            const wjbcBal = data[14]
+            const swarBal = data[15]
 
             const data2 = await readContracts({
                 contracts: [
@@ -363,7 +382,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
             return [
                 sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, sell13remain, _canBuy13, roll6remain,
-                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, 
+                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, 
             ]
         }
 
@@ -423,6 +442,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setJaspBalance(ethers.utils.formatUnits(String(result[41]), "gwei"))
             setOsBalance(ethers.utils.formatEther(String(result[42])))
             setGoldBalance(ethers.utils.formatEther(String(result[43])))
+            setWjbcBalance(ethers.utils.formatEther(String(result[44])))
+            setSwarBalance(ethers.utils.formatEther(String(result[45])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -828,8 +849,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
         <div className="collection">
             <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
-                <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
+                <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Cryptocurrency</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
+                            width="20"
+                            alt="$WJBC"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: wjbcToken,
+                                            symbol: 'WJBC',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>(WJBC) {Number(wjbcBalance).toFixed(3)}</div>
+                    </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
                             src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
@@ -876,6 +920,152 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         />
                         <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
                     </div>
+                </div>
+
+                <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", marginTop: "20px"}} className="bold">CommuDAO Tokens</div>
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                            width="20"
+                            alt="$BBQ"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: bbqToken,
+                                            symbol: 'BBQ',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toFixed(3)}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                            width="20"
+                            alt="$PZA"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: pzaLab,
+                                            symbol: 'PZA',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toFixed(3)}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                            width="20"
+                            alt="$CU"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: dunCopper,
+                                            symbol: 'CU',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(cuBalance).toFixed(3)}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                            width="20"
+                            alt="$GOLD"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: goldToken,
+                                            symbol: 'GOLD',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
+                            width="20"
+                            alt="$JASP"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: dunJasper,
+                                            symbol: 'JASP',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toFixed(3)}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
+                            width="20"
+                            alt="$OS"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: osToken,
+                                            symbol: 'OS',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(osBalance).toFixed(3)}</div>
+                    </div>
+                </div>
+
+                <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", marginTop: "20px"}} className="bold">Partner Tokens</div>
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
                             src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
@@ -924,9 +1114,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                            src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
                             width="20"
-                            alt="$BBQ"
+                            alt="$SWAR"
                             style={{cursor: "crosshair"}}
                             onClick={async () => {
                                 await ethereum.request({
@@ -934,135 +1124,19 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                     params: {
                                         type: 'ERC20',
                                         options: {
-                                            address: bbqToken,
-                                            symbol: 'BBQ',
+                                            address: swarLab,
+                                            symbol: 'SWAR',
                                             decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                            image: 'https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
                                         },
                                     },
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toFixed(3)}</div>
-                    </div>
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img
-                            src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
-                            width="20"
-                            alt="$PZA"
-                            style={{cursor: "crosshair"}}
-                            onClick={async () => {
-                                await ethereum.request({
-                                    method: 'wallet_watchAsset',
-                                    params: {
-                                        type: 'ERC20',
-                                        options: {
-                                            address: pzaLab,
-                                            symbol: 'PZA',
-                                            decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
-                                        },
-                                    },
-                                })
-                            }}
-                        />
-                        <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toFixed(0)}</div>
                     </div>
                 </div>
-                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "10px 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img
-                            src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
-                            width="20"
-                            alt="$CU"
-                            style={{cursor: "crosshair"}}
-                            onClick={async () => {
-                                await ethereum.request({
-                                    method: 'wallet_watchAsset',
-                                    params: {
-                                        type: 'ERC20',
-                                        options: {
-                                            address: dunCopper,
-                                            symbol: 'CU',
-                                            decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
-                                        },
-                                    },
-                                })
-                            }}
-                        />
-                        <div style={{marginLeft: "5px"}}>{Number(cuBalance).toFixed(3)}</div>
-                    </div>
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "10px 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img
-                            src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
-                            width="20"
-                            alt="$GOLD"
-                            style={{cursor: "crosshair"}}
-                            onClick={async () => {
-                                await ethereum.request({
-                                    method: 'wallet_watchAsset',
-                                    params: {
-                                        type: 'ERC20',
-                                        options: {
-                                            address: goldToken,
-                                            symbol: 'GOLD',
-                                            decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
-                                        },
-                                    },
-                                })
-                            }}
-                        />
-                        <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                    </div>
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "10px 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img
-                            src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
-                            width="20"
-                            alt="$JASP"
-                            style={{cursor: "crosshair"}}
-                            onClick={async () => {
-                                await ethereum.request({
-                                    method: 'wallet_watchAsset',
-                                    params: {
-                                        type: 'ERC20',
-                                        options: {
-                                            address: dunJasper,
-                                            symbol: 'JASP',
-                                            decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
-                                        },
-                                    },
-                                })
-                            }}
-                        />
-                        <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toFixed(3)}</div>
-                    </div>
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "10px 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img
-                            src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
-                            width="20"
-                            alt="$OS"
-                            style={{cursor: "crosshair"}}
-                            onClick={async () => {
-                                await ethereum.request({
-                                    method: 'wallet_watchAsset',
-                                    params: {
-                                        type: 'ERC20',
-                                        options: {
-                                            address: osToken,
-                                            symbol: 'OS',
-                                            decimals: 18,
-                                            image: 'https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
-                                        },
-                                    },
-                                })
-                            }}
-                        />
-                        <div style={{marginLeft: "5px"}}>{Number(osBalance).toFixed(3)}</div>
-                    </div>
-                </div>
+
 
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
                 <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Automated Market Maker</div>
@@ -1070,6 +1144,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <Ammmerchant setisLoading={setisLoading} setTxupdate={setTxupdate} ammyABI={ammyABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} />
                     <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} />
                     <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} />
+                </div>
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} erc20ABI={erc20ABI} />
                 </div>
 
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
