@@ -72,7 +72,11 @@ const Fields = ({ callMode, navigate }) => {
             <div style={{width: "92.5%", borderBottom: "1px solid #dddade", marginTop: "60px"}}></div>
             <div style={{width: "95%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">Partner Fields</div>
             <div style={{width: "95%", minHeight: 0, marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-                <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
+                <div className="nftCard" style={{justifyContent: "center", margin: "20px", position: "relative"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                        <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                    </div>
                     <img src="https://nftstorage.link/ipfs/bafkreicoxmgbobc6eockaevaqmk2f7pwnfmtll2wze2npd2nyrxii2dblu" height="230" alt="Field_TunaLake" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="pixel">
@@ -90,7 +94,11 @@ const Fields = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>Go to Tuna Lake</div>
                 </div>
-                <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                        <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                    </div>
                     <img src="https://nftstorage.link/ipfs/bafkreiaplfqhpcall6mr7swyaqyatfri7p4z56i7ttfvhjmootnett3f3m" height="230" alt="Fields_OldWarehouse" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="pixel">
@@ -108,7 +116,11 @@ const Fields = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>Go to Old Warehouse</div>
                 </div>
-                <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
+                <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                        <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
+                    </div>
                     <img src="https://nftstorage.link/ipfs/bafybeih4wlopgsgvw73dnjczn6un6sagasx6eyq57hzhj3l7gwlbuin75y" height="230" alt="Field_EasternFront" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div>
