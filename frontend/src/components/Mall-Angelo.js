@@ -37,7 +37,7 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                 {
                     address: angeloSWAR,
                     abi: angeloStdABI,
-                    functionName: 'getReserveJBC',
+                    functionName: 'getReserveWJBC',
                 },
                 {
                     address: angeloSWAR,

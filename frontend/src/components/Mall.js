@@ -61,6 +61,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [canbuy12, setCanBuy12] = React.useState(false)
     const [sell13Remain, setSell13Remain] = React.useState(333)
     const [canbuy13, setCanBuy13] = React.useState(false)
+    const [sell14Remain, setSell14Remain] = React.useState(100)
+    const [canbuy14, setCanBuy14] = React.useState(false)
 
     const [roll1Remain, setRoll1Remain] = React.useState(107)
     const [canroll1, setCanRoll1] = React.useState(false)
@@ -323,6 +325,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'colList',
                         args: [6],
                     },
+                    {
+                        address: cmdaoMerchant,
+                        abi: cmdaoMerchantABI,
+                        functionName: 'sellList',
+                        args: [9],
+                    },
                 ],
             })
             
@@ -339,6 +347,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell11Id = data2[15]
             const sell12Id = data2[16]
             const sell13Id = data2[17]
+            const sell14Id = data2[19]
             const roll1 = data2[6]
             const roll2 = data2[7]
             const roll3 = data2[8]
@@ -372,6 +381,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy12 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 60 ? true : false
             const sell13remain = (102100000000 - (Number(sell13Id.sellId) - 4500)) / 100000
             const _canBuy13 = Number(ethers.utils.formatEther(String(osBal))) >= 5500 ? true : false
+            const sell14remain = (730020000000 - (Number(sell14Id.sellId) - 10400)) / 100000
+            const _canBuy14 = Number(ethers.utils.formatEther(String(goldBal))) >= 56000 ? true : false
 
             const roll1remain = Number(roll1.nftCount)
             const roll2remain = Number(roll2.nftCount)
@@ -384,7 +395,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
 
             return [
-                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, sell13remain, _canBuy13, roll6remain,
+                sell1remain, _canBuy1, sell2remain, _canBuy2, sell3remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, 
             ]
         }
@@ -425,6 +436,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy12(result[30])
             setSell13Remain(result[31])
             setCanBuy13(result[32])
+            setSell14Remain(result[34])
+            setCanBuy14(result[35])
 
             setRoll1Remain(result[12])
             setCanRoll1(result[13])
@@ -435,18 +448,18 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanRoll2(result[18])
             setRoll6Remain(result[33])
 
-            setCTunaBalance(ethers.utils.formatEther(String(result[34])))
-            setSx31Balance(ethers.utils.formatEther(String(result[35])))
-            setJusdtBalance(ethers.utils.formatEther(String(result[36])))
-            setCmjBalance(ethers.utils.formatEther(String(result[37])))
-            setBbqBalance(ethers.utils.formatEther(String(result[38])))
-            setPzaBalance(ethers.utils.formatEther(String(result[39])))
-            setCuBalance(ethers.utils.formatEther(String(result[40])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[41]), "gwei"))
-            setOsBalance(ethers.utils.formatEther(String(result[42])))
-            setGoldBalance(ethers.utils.formatEther(String(result[43])))
-            setWjbcBalance(ethers.utils.formatEther(String(result[44])))
-            setSwarBalance(ethers.utils.formatEther(String(result[45])))
+            setCTunaBalance(ethers.utils.formatEther(String(result[36])))
+            setSx31Balance(ethers.utils.formatEther(String(result[37])))
+            setJusdtBalance(ethers.utils.formatEther(String(result[38])))
+            setCmjBalance(ethers.utils.formatEther(String(result[39])))
+            setBbqBalance(ethers.utils.formatEther(String(result[40])))
+            setPzaBalance(ethers.utils.formatEther(String(result[41])))
+            setCuBalance(ethers.utils.formatEther(String(result[42])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[43]), "gwei"))
+            setOsBalance(ethers.utils.formatEther(String(result[44])))
+            setGoldBalance(ethers.utils.formatEther(String(result[45])))
+            setWjbcBalance(ethers.utils.formatEther(String(result[46])))
+            setSwarBalance(ethers.utils.formatEther(String(result[47])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -766,6 +779,38 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [8]
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const buyHandle14 = async () => {
+        setisLoading(true)
+        try {
+            const goldAllow = await readContract({
+                address: goldToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, cmdaoMerchant],
+            })
+            if (goldAllow < (56000 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: goldToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: cmdaoMerchant,
+                abi: cmdaoMerchantABI,
+                functionName: 'buy',
+                args: [9]
             })
             const tx = await writeContract(config2)
             await tx.wait()
@@ -2019,7 +2064,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <div className="emp">{100}</div>
+                                    <div className="emp">{sell14Remain}</div>
                                     /100 EA
                                 </div>
                             </div>
@@ -2037,14 +2082,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         </div>
                         {address !== null && address !== undefined ?
                             <>
-                                {false && sell8Remain > 0 ?
+                                {sell14Remain > 0 ?
                                     <>
-                                        {canbuy8 ?
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle8}>REDEEM</div> :
+                                        {canbuy14 ?
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle14}>REDEEM</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ON STOCK 13.02</div>
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
