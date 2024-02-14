@@ -330,7 +330,7 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                    <div style={{height: "260px"}}></div>
+                    <img src="https://nftstorage.link/ipfs/bafybeiacnhg5fsdlywlxfatj6y6aapbzcmroqvrler3mvlta6fappoe3um" width="230" alt="NPC_Angelo" />
                 </div>
                 {mode === 1 &&
                     <>
