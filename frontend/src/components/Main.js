@@ -362,7 +362,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 8 ?
-                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} /> :
+                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} /> :
                     <></>
                 }
                 {mode === null ?

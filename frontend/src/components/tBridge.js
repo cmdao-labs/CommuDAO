@@ -3,13 +3,15 @@ import { ethers } from 'ethers'
 import { readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount, useNetwork } from 'wagmi'
 
+import TBridgeTAODUM from  './tBridge-TAODUM'
+
 const jusdt = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
 const usdtBsc = '0x55d398326f99059ff775485246999027b3197955' 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const cmjb = '0xc5815d3ECA0AFBecB6687ffA9E6040D977a76F6D'
 
-const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI }) => {
+const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI }) => {
     const { address } = useAccount()
     const { chain } = useNetwork()
     const [mode, setMode] = React.useState(1)
@@ -290,10 +292,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         <div style={{position: "relative", background: "#1a1919", width: "100%", height: "100%", minHeight: "100vh"}}>
             <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexWrap: "wrap", color: "#fff", overflow: "scroll"}} className="noscroll pixel">
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
-                    <div style={{color: "#bdc2c4"}}>CHOOSE TOKEN TO BRIDGE</div>
+                    <div style={{color: "#bdc2c4"}}>CHOOSE TOKEN/NFTs TO BRIDGE</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
                         <div className='hashtag' onClick={() => setMode(1)}>USDT</div>
                         <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(2)}>CMJ</div>
+                        <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(3)}>TAO</div>
+                        <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(4)}>TAODUM NFT</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
@@ -314,9 +318,32 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
                                 CMJ, the currency token of CommuDAO.
                             </div>
-                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is coming soon!</div>
+                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is now on service 24/7!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
                                 <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(2)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                            </div>
+                        </>
+                    }
+                    {mode === 3 &&
+                        <>
+                            <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" alt="$TAO" />
+                                JTAO
+                            </div>
+                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[TAO : JTAO] Cross-chain bridging is coming soon!</div>
+                            <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
+                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(3)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                            </div>
+                        </>
+                    }
+                    {mode === 4 &&
+                        <>
+                            <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                TAODUM NFT
+                            </div>
+                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>TAODUM NFT Cross-chain bridging is coming soon!</div>
+                            <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
+                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(4)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
                             </div>
                         </>
                     }
@@ -454,7 +481,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={depositCMJ}
                                     onChange={(event) => setDepositCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== null  && address !== undefined ? 
+                                {chain.id === 8899 && address !== null && address !== undefined ? 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
@@ -470,7 +497,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={withdrawCMJ}
                                     onChange={(event) => setWithdrawCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 96 && address !== null   && address !== undefined ?
+                                {chain.id === 96 && address !== null && address !== undefined ?
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
@@ -478,6 +505,20 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                         </div>
                     </>
+                }
+                {mode === 3 && chain !== undefined &&
+                    <>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
+                                <div style={{fontSize: "30px"}}>888 TAO/TX</div>
+                            </div>
+                        </div>
+                        
+                    </>
+                }
+                {mode === 4 && chain !== undefined &&
+                    <>{/*<TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} />*/}</>
                 }
                 {chain === undefined && 
                     <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>
