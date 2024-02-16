@@ -50,7 +50,6 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -63,8 +62,6 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     }
                 ))
             }) : [Array(yournftwallet.length).fill('')]
-
-            console.log(data2)
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data2[i]
@@ -109,7 +106,6 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
                 }
             }
-            console.log(yournftwallet2)
 
             const data4 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet2.map((item) => (
@@ -122,8 +118,6 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     }
                 ))
             }) : [Array(yournftwallet2.length).fill('')]
-
-            console.log(data4)
 
             for (let i = 0; i <= yournftwallet2.length - 1; i++) {
                 const nftipfs = data4[i]
