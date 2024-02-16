@@ -592,9 +592,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={depositTAO}
                                     onChange={(event) => setDepositTAO(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositTaoHandle}>BRIDGE TO BKC</div> : 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                {chain.id === 96 && address !== null && address !== undefined ? 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositTaoHandle}>BRIDGE TO JBC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(taoBalance).toFixed(4)} TAO</div>
                             </div>
@@ -608,9 +608,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={withdrawTAO}
                                     onChange={(event) => setWithdrawTAO(event.target.value)}
                                 ></input>
-                                {chain.id === 96 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO JBC</div> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                {chain.id === 8899 && address !== null && address !== undefined ?
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO BKC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jtaoBalance).toFixed(4)} JTAO</div>
                             </div>
