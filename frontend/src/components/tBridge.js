@@ -10,8 +10,10 @@ const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
 const usdtBsc = '0x55d398326f99059ff775485246999027b3197955' 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const cmjb = '0xc5815d3ECA0AFBecB6687ffA9E6040D977a76F6D'
+const tao = '0x6527d3D38a7Ff4E62f98fE27dd9242a36227FE23'
+const jtao = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 
-const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI }) => {
+const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, tbridgeNFTABI }) => {
     const { address } = useAccount()
     const { chain } = useNetwork()
     const [mode, setMode] = React.useState(1)
@@ -26,12 +28,17 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [usdtBscBalance, setUsdtBscBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [cmjbBalance, setCmjbBalance] = React.useState(0)
+    const [taoBalance, setTaoBalance] = React.useState(0)
+    const [jtaoBalance, setJtaoBalance] = React.useState(0)
 
     const [depositValue, setDepositValue] = React.useState(null)
     const [withdrawValue, setWithdrawValue] = React.useState(null)
 
     const [depositCMJ, setDepositCMJ] = React.useState('')
     const [withdrawCMJ, setWithdrawCMJ] = React.useState('')
+
+    const [depositTAO, setDepositTAO] = React.useState('')
+    const [withdrawTAO, setWithdrawTAO] = React.useState('')
 
     const [depositValue2, setDepositValue2] = React.useState('')
     const [withdrawValue2, setWithdrawValue2] = React.useState('')
@@ -110,8 +117,22 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         args: [address],
                         chainId: 56,
                     },
+                    {
+                        address: tao,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 96,
+                    },
+                    {
+                        address: jtao,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 8899,
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, ]
 
             const Balance = data1[0]
             const Balance2 = data1[1]
@@ -123,8 +144,10 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             const cmjBal = data2[2]
             const cmjbBal = data2[3]
             const usdtBscBal = data2[4]
+            const taoBal = data2[5]
+            const jtaoBal = data2[6]
 
-            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmjbBal, usdtBscBal, Balance_2, Balance2_2, ]
+            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmjbBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal ]
         }
 
         const promise = fetch()
@@ -159,6 +182,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             setReserve2(balance_2)
             const balance2_2 = ethers.utils.formatEther(result[8])
             setSupply2(balance2_2)
+
+            const taobalance = ethers.utils.formatEther(result[9])
+            setTaoBalance(Math.floor(taobalance * 10000) / 10000)
+            const jtaobbalance = ethers.utils.formatEther(result[10])
+            setJtaoBalance(Math.floor(jtaobbalance * 10000) / 10000)
         })
     }, [address, txupdate, erc20ABI])
 
@@ -233,6 +261,45 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 abi: erc20ABI,
                 functionName: 'transfer',
                 args: ["0xF2a87528be1222A930D99f5f6ed94Aae72f40769", ethers.utils.parseEther(String(withdrawCMJ))],
+                chainId: 96,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const depositTaoHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: jtao,
+                abi: erc20ABI,
+                functionName: 'transfer',
+                args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(depositTAO))],
+                chainId: 8899,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(e)
+        }
+        setisLoading(false)
+    }
+    const withdrawTaoHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: jtao,
+                abi: erc20ABI,
+                functionName: 'transfer',
+                args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(withdrawTAO))],
                 chainId: 96,
             })
             const tx = await writeContract(config)
@@ -514,11 +581,44 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>888 TAO/TX</div>
                             </div>
                         </div>
-                        
+                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 TAO"
+                                    value={depositTAO}
+                                    onChange={(event) => setDepositTAO(event.target.value)}
+                                ></input>
+                                {chain.id === 8899 && address !== null && address !== undefined ? 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositTaoHandle}>BRIDGE TO BKC</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                }
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(taoBalance).toFixed(4)} TAO</div>
+                            </div>
+                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 JTAO"
+                                    value={withdrawTAO}
+                                    onChange={(event) => setWithdrawTAO(event.target.value)}
+                                ></input>
+                                {chain.id === 96 && address !== null && address !== undefined ?
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO JBC</div> :
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                }
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jtaoBalance).toFixed(4)} JTAO</div>
+                            </div>
+                        </div>
                     </>
                 }
                 {mode === 4 && chain !== undefined &&
-                    <>{/*<TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} />*/}</>
+                    <TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {chain === undefined && 
                     <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>

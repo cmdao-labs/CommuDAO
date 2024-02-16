@@ -5,17 +5,24 @@ import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const taodumBKC = '0x165DCCB59F0aaE80a0C20c8CF2b536BE6E120be9'
-const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
+const taodumJBC = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
+const jbcBridge = '0xf51F20D135b1Aa8A6d27eA61Bba47A453c8ee6D2'
+const bkcBridge = '0xdDD9caf2aa09CA75C86e868761A42750363b6e50'
 
-const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
-    let address = '0x7d6319e0B978516a3E09366da3fcF62128b5385B'
+const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
+const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+
+const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
+    let { address } = useAccount()
     const { chain } = useNetwork()
 
     const [nft, setNft] = React.useState([])
+    const [nft2, setNft2] = React.useState([])
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const taodumBkcSC = new ethers.Contract(taodumBKC, erc721ABI, providerBKC)
+        const taodumJbcSC = new ethers.Contract(taodumJBC, erc721ABI, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -69,7 +76,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + ' #' + yournftwallet[i].Id,
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -77,9 +84,68 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
             }
 
             if (nfts.length === 0) { nfts.push(null) }
+
+            let nfts2 = []
+            
+            const wallet2Filter = await taodumJbcSC.filters.Transfer(null, address, null)
+            const wallet2Event = await taodumJbcSC.queryFilter(wallet2Filter, 2725554, "latest")
+            const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
+            const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
+            const data3 = address !== null && address !== undefined ? await readContracts({
+                contracts: wallet2RemoveDup.map((item) => (
+                    {
+                        address: taodumJBC,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                        chainId: 8899
+                    }
+                ))
+            }) : [Array(wallet2RemoveDup.length).fill('')]
+
+            let yournftwallet2 = []
+            for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data3[i].toUpperCase() === address.toUpperCase()) {
+                    yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
+                }
+            }
+            console.log(yournftwallet2)
+
+            const data4 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet2.map((item) => (
+                    {
+                        address: taodumJBC,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                        chainId: 8899
+                    }
+                ))
+            }) : [Array(yournftwallet2.length).fill('')]
+
+            console.log(data4)
+
+            for (let i = 0; i <= yournftwallet2.length - 1; i++) {
+                const nftipfs = data4[i]
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs)
+                    nft = await response.json()
+                } catch {}
+
+                nfts2.push({
+                    Id: yournftwallet2[i].Id,
+                    Name: nft.name + ' #' + yournftwallet2[i].Id,
+                    Image: nft.image,
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                })
+            }
+
+            if (nfts2.length === 0) { nfts2.push(null) }
             
             return [
-                nfts
+                nfts, nfts2
             ]
         }
 
@@ -94,10 +160,49 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
 
         getAsync().then(result => {
             setNft(result[0])
-           
+            setNft2(result[1])
         })
 
     }, [address, txupdate, erc721ABI])
+
+    const depositTaoHandle = async (_nftId) => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: jbcBridge,
+                abi: tbridgeNFTABI,
+                functionName: 'receiveNFTs',
+                args: [_nftId],
+                overrides: {
+                    value: ethers.utils.parseEther('1'),
+                },
+                chainId: 8899,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+    const withdrawTaoHandle = async (_nftId) => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: bkcBridge,
+                abi: tbridgeNFTABI,
+                functionName: 'receiveNFTs',
+                args: [_nftId],
+                overrides: {
+                    value: ethers.utils.parseEther('10'),
+                },
+                chainId: 96,
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
 
     return (
         <>
@@ -119,9 +224,49 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                                     </div>
                                     <div className="emp bold">{item.Name}</div>
                                     <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                    {false && chain.id === 96 ?
-                                        <div style={{alignSelf: "center"}} className="pixel button">BRIDGE TO JBC</div> :
+                                    {chain.id === 96 ?
+                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => depositTaoHandle(item.Id)}>BRIDGE TO JBC</div> :
                                         <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BRIDGE TO JBC</div>
+                                    }
+                                </div>
+                            ))}
+                        </> :
+                        <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                            {address !== undefined ?
+                                <>
+                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                </> :
+                                <>
+                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                    <div className="bold">Please connect wallet to view your NFTs.</div>
+                                </>
+                            }
+                        </div>
+                    }
+                </div> :
+                <div style={{width: "1640px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
+                        <ThreeDots fill="#fff" />
+                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                    </div>
+                </div>
+            }
+            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "20px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">JBC NFTs</div>
+            {nft2.length > 0 ?
+                <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                    {nft2[0] !== null ?
+                        <>
+                            {nft2.map((item, index) => (
+                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
+                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                    </div>
+                                    <div className="emp bold">{item.Name}</div>
+                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                    {chain.id === 8899 ?
+                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => withdrawTaoHandle(item.Id)}>BRIDGE TO BKC</div> :
+                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BRIDGE TO BKC</div>
                                     }
                                 </div>
                             ))}

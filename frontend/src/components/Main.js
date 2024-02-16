@@ -96,6 +96,8 @@ import swapJulpABI from './jsons/swapcallJulpABI.json'
 import farmJdaoABI from './jsons/masterchefJdaoABI.json'
 import bkcOracleABI from './jsons/bkcOracleABI.json'
 
+import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
+
 import TBridge from './tBridge'
 
 import { WagmiConfig, createClient, configureChains } from 'wagmi'
@@ -362,7 +364,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 8 ?
-                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} /> :
+                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} /> :
                     <></>
                 }
                 {mode === null ?
