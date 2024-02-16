@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
