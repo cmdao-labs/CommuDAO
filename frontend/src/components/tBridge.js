@@ -277,11 +277,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: jtao,
+                address: tao,
                 abi: erc20ABI,
                 functionName: 'transfer',
-                args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(depositTAO))],
-                chainId: 8899,
+                args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(withdrawTAO))],
+                chainId: 96,
             })
             const tx = await writeContract(config)
             await tx.wait()
@@ -299,8 +299,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 address: jtao,
                 abi: erc20ABI,
                 functionName: 'transfer',
-                args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(withdrawTAO))],
-                chainId: 96,
+                args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(depositTAO))],
+                chainId: 8899,
             })
             const tx = await writeContract(config)
             await tx.wait()
