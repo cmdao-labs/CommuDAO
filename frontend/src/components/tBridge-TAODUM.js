@@ -168,15 +168,31 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
     const depositTaoHandle = async (_nftId) => {
         setisLoading(true)
         try {
+            const nftAllow = await readContract({
+                address: taodumBKC,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftId],
+            })
+            if (nftAllow.toUpperCase() !== bkcBridge.toUpperCase()) {
+                const config0 = await prepareWriteContract({
+                    address: taodumBKC,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [bkcBridge, _nftId],
+                })
+                const approvetx = await writeContract(config0)
+                await approvetx.wait()
+            }        
             const config = await prepareWriteContract({
-                address: jbcBridge,
+                address: bkcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
                 args: [_nftId],
                 overrides: {
                     value: ethers.utils.parseEther('1'),
                 },
-                chainId: 8899,
+                chainId: 96,
             })
             const tx = await writeContract(config)
             await tx.wait()
@@ -187,15 +203,31 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
     const withdrawTaoHandle = async (_nftId) => {
         setisLoading(true)
         try {
+            const nftAllow = await readContract({
+                address: taodumJBC,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftId],
+            })
+            if (nftAllow.toUpperCase() !== jbcBridge.toUpperCase()) {
+                const config0 = await prepareWriteContract({
+                    address: taodumJBC,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [jbcBridge, _nftId],
+                })
+                const approvetx = await writeContract(config0)
+                await approvetx.wait()
+            }       
             const config = await prepareWriteContract({
-                address: bkcBridge,
+                address: jbcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
                 args: [_nftId],
                 overrides: {
                     value: ethers.utils.parseEther('10'),
                 },
-                chainId: 96,
+                chainId: 8899,
             })
             const tx = await writeContract(config)
             await tx.wait()
