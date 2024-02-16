@@ -7,7 +7,7 @@ import { ThreeDots } from 'react-loading-icons'
 const taodumBKC = '0x165DCCB59F0aaE80a0C20c8CF2b536BE6E120be9'
 const taodumJBC = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
 const jbcBridge = '0xf51F20D135b1Aa8A6d27eA61Bba47A453c8ee6D2'
-const bkcBridge = '0xdDD9caf2aa09CA75C86e868761A42750363b6e50'
+const bkcBridge = '0x2ECF6a4109b51AD22A5C77c0E130e0b3fE2C78DA'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
