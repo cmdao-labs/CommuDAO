@@ -318,7 +318,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 10 && Number(ethers.utils.formatEther(String(cuBal))) >= 50000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 200 && Number(ethers.utils.formatEther(String(silBal))) >= 2000 ? true : false
             const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 500 ? true : false
-            const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 200 && Number(jbcBal.formatted) >= 10 ? true : false
+            const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 200 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
 
@@ -1037,7 +1037,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, goldMine],
             })
-            if (bbqAllow < (200 * 10**18)) {
+            if (bbqAllow < (20000 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: bbqToken,
                     abi: erc20ABI,
@@ -1053,7 +1053,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'mine',
                 args: [_machine],
                 overrides: {
-                    value: ethers.utils.parseEther('10'),
+                    value: ethers.utils.parseEther('1'),
                 },
             })
             const tx = await writeContract(config2)
@@ -1918,10 +1918,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
-                                <div style={{margin: "0 5px"}}>200</div>
+                                <div style={{margin: "0 5px"}}>20,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
-                                <div style={{margin: "0 5px"}}>10</div>
+                                <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>6.25</div>
