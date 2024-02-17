@@ -381,14 +381,14 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020) {
+            } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
-                if (pzaAllow < (79860 * 10**18)) {
+                if (pzaAllow < (593440 * 10**18)) {
                     const config = await prepareWriteContract({
                         address: pzaToken,
                         abi: erc20ABI,
@@ -404,7 +404,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
-                if (jdaoAllow < (150 * 10**18)) {
+                if (jdaoAllow < (450 * 10**18)) {
                     const config2 = await prepareWriteContract({
                         address: jdaoToken,
                         abi: erc20ABI,
@@ -1005,7 +1005,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                 ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝ 
                                                 ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░
                                                 */}
-                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300)) && Number(item.Id) % 100000 !== 9500) &&
+                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300)) && Number(item.Id) % 100000 !== 10100) &&
                                                     <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                         <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                             <div>
@@ -1017,6 +1017,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 {(Number(item.Id) % 100000 !== 1500 && Number(item.Id) % 100000 !== 4500) && <img src={item.Image} width="120" alt="Can not load metadata." />}
                                                                 {Number(item.Id) % 100000 === 1500 && <img src="https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />}
                                                                 {Number(item.Id) % 100000 === 4500 && <img src="https://nftstorage.link/ipfs/bafybeiew47pd67c3l5whmj6vhzullkqvrrsmtlssarwf5s54tnehejaxdu" width="120" alt="Can not load metadata." />}
+                                                                {Number(item.Id) % 100000 === 9500 && <img src="https://nftstorage.link/ipfs/bafkreihvuvksuylcjqb37rsgkr5z2l26iliyestxikmjsq7va6xtnnusxe" width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}} className="emp pixel">
                                                                     {Number(item.Id) % 100000 === 500 ? 
                                                                         <>{item.Name} [Lv.1]</> :
@@ -1050,6 +1051,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                             {Number(item.Id) % 100000 === 7780 && 27}
                                                                             {Number(item.Id) % 100000 === 8340 && 28}
                                                                             {Number(item.Id) % 100000 === 8900 && 29}
+                                                                            {Number(item.Id) % 100000 === 9500 && 30}
                                                                             ]
                                                                         </>
                                                                     }
@@ -1089,6 +1091,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7780 && 26}
                                                                     {Number(item.Id) % 100000 === 8340 && 27}
                                                                     {Number(item.Id) % 100000 === 8900 && 28}
+                                                                    {Number(item.Id) % 100000 === 9500 && 29}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                             </div>
@@ -1124,6 +1127,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7780 && 27}
                                                                     {Number(item.Id) % 100000 === 8340 && 28}
                                                                     {Number(item.Id) % 100000 === 8900 && 29}
+                                                                    {Number(item.Id) % 100000 === 9500 && 30}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>
                                                                     {Number(item.Id) % 100000 <= 540 && item.RewardPerSec + 40}
@@ -1140,7 +1144,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {(Number(item.Id) % 100000 === 5780 || Number(item.Id) % 100000 === 6260) && item.RewardPerSec + 480}
                                                                     {(Number(item.Id) % 100000 === 6740 || Number(item.Id) % 100000 === 7260) && item.RewardPerSec + 520}
                                                                     {(Number(item.Id) % 100000 === 7780 || Number(item.Id) % 100000 === 8340) && item.RewardPerSec + 560}
-                                                                    {Number(item.Id) % 100000 === 8900 && item.RewardPerSec + 600}
+                                                                    {(Number(item.Id) % 100000 === 8900 || Number(item.Id) % 100000 === 9500) && item.RewardPerSec + 600}
                                                                     &nbsp;cmpow per sec
                                                                 </div>
                                                             </div>
@@ -1183,12 +1187,13 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7780 && '34,342'}
                                                                     {Number(item.Id) % 100000 === 8340 && '41,211'}
                                                                     {Number(item.Id) % 100000 === 8900 && '49,453'}
+                                                                    {Number(item.Id) % 100000 === 9500 && '593,440'}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                 {Number(item.Id) % 100000 <= 1300 && <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>}
                                                                 {(Number(item.Id) % 100000 >= 1700 && Number(item.Id) % 100000 <= 4100) && <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>}
                                                                 {Number(item.Id) % 100000 >= 4900 && <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>}
-                                                                {(Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 450) && <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>}
+                                                                {(Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 4500 || Number(item.Id) % 100000 === 9500) && <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>}
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {Number(item.Id) % 100000 === 500 && 0}
                                                                     {Number(item.Id) % 100000 === 540 && 500}
@@ -1219,6 +1224,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 7780 && '218,700'}
                                                                     {Number(item.Id) % 100000 === 8340 && '328,050'}
                                                                     {Number(item.Id) % 100000 === 8900 && '492,075'}
+                                                                    {Number(item.Id) % 100000 === 9500 && 450}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1292,6 +1298,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     evolutionV2Handle(item.Id, arg + 28)
                                                                 } else if (Number(item.Id) % 100000 === 8900) {
                                                                     evolutionV2Handle(item.Id, arg + 29)
+                                                                } else if (Number(item.Id) % 100000 === 9500) {
+                                                                    evolutionV2Handle(item.Id, arg + 30)
                                                                 }
                                                             }}
                                                         >
