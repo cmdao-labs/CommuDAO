@@ -348,7 +348,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) <= 1009 || (Number(_enchantindex) >= 2001 && Number(_enchantindex) <= 2009) || (Number(_enchantindex) >= 3001 && Number(_enchantindex) <= 3009)) {
+            } else if (Number(_enchantindex) <= 1009 || (Number(_enchantindex) >= 2001 && Number(_enchantindex) <= 2009) || (Number(_enchantindex) >= 3001 && Number(_enchantindex) <= 3009) || (Number(_enchantindex) >= 4001 && Number(_enchantindex) <= 4009)) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
@@ -381,7 +381,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030) {
+            } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030 || Number(_enchantindex) === 4010 || Number(_enchantindex) === 4020 || Number(_enchantindex) === 4030) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
@@ -414,7 +414,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) <= 1019 || (Number(_enchantindex) >= 2011 && Number(_enchantindex) <= 2019) || (Number(_enchantindex) >= 3011 && Number(_enchantindex) <= 3019)) {
+            } else if (Number(_enchantindex) <= 1019 || (Number(_enchantindex) >= 2011 && Number(_enchantindex) <= 2019) || (Number(_enchantindex) >= 3011 && Number(_enchantindex) <= 3019) || (Number(_enchantindex) >= 4011 && Number(_enchantindex) <= 4019)) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
@@ -447,7 +447,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const approvetx2 = await writeContract(config2)
                     await approvetx2.wait()
                 }
-            } else if (Number(_enchantindex) <= 1029 || (Number(_enchantindex) >= 2021 && Number(_enchantindex) <= 2029) || (Number(_enchantindex) >= 3021 && Number(_enchantindex) <= 3029)) {
+            } else if (Number(_enchantindex) <= 1029 || (Number(_enchantindex) >= 2021 && Number(_enchantindex) <= 2029) || (Number(_enchantindex) >= 3021 && Number(_enchantindex) <= 3029) || (Number(_enchantindex) >= 4021 && Number(_enchantindex) <= 4029)) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
@@ -1005,7 +1005,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                 ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝ 
                                                 ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░
                                                 */}
-                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300)) && Number(item.Id) % 100000 !== 10100) &&
+                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300) || (Number(String(item.Id).slice(0, 7)) >= 1300401 && Number(String(item.Id).slice(0, 7)) <= 1300500)) && Number(item.Id) % 100000 !== 10100) &&
                                                     <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                         <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                             <div>
@@ -1239,6 +1239,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     arg = 2000
                                                                 } else if (Number(String(item.Id).slice(0, 7)) <= 1300300) {
                                                                     arg = 3000
+                                                                } else if (Number(String(item.Id).slice(0, 7)) <= 1300500) {
+                                                                    arg = 4000
                                                                 }
                                                                 if (Number(item.Id) % 100000 === 500) {
                                                                     evolutionV2Handle(item.Id, arg + 1)

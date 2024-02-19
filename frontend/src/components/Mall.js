@@ -361,7 +361,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy2 = _isKYC && !isBought2 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
             const sell3remain = (210050100000 - (Number(sell3Id.sellId) - 250)) / 100000
             const _canBuy3 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 3 ? true : false
-            const sell4remain = (130040100000 - (Number(sell4Id.sellId) - 500)) / 100000
+            const sell4remain = (130050100000 - (Number(sell4Id.sellId) - 500)) / 100000
             const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
             const sell5remain = (100540100000 - (Number(sell5Id.sellId) - 100)) / 100000
             const _canBuy5 = _isKYC && !isBought5 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
