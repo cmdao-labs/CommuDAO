@@ -18,6 +18,8 @@ const Dungeon = ({ callMode, navigate }) => {
         </div>
         
         <div style={{width: "95%", flexDirection: "column", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+            <div style={{width: "97.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
+            <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Dungeon</div>
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
                     <img src="https://nftstorage.link/ipfs/bafkreig5qnhdcfhtk54gmc6grtce5islfq7xfkyx4l6utr3ckwol4xj4iu" height="230" alt="Copper_Mine" />
@@ -36,6 +38,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     <div style={{width: "fit-content", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(33); navigate('/dungeon/copper-mine');}}>Go to Copper Mine</div>
                 </div>
 
+            
                 <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
                     <img src="https://nftstorage.link/ipfs/bafkreify5cxbaerycclmyyjnrxkt3abrtdjftxvqucuxac4kovhuan4cei" height="230" alt="Jasper_Cave" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
@@ -55,8 +58,8 @@ const Dungeon = ({ callMode, navigate }) => {
             </div>
 
             <div style={{width: "97.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
-            <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFTs Upgrade</div>
-            <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+            <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO NFTs Upgrade</div>
+            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{justifyContent: "flex-start", margin: "20px"}}>
                     <div style={{width: "345px", height: "230px", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", overflow: "hidden"}}>
                         <img src="https://nftstorage.link/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="230" alt="Blacksmith" />
@@ -71,6 +74,31 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{marginTop: "50px", width: "100%", fontSize: "12px", textAlign: "left"}} className="pixel"><br></br>"Are you ready to level up"<br></br><br></br></div>
                     <div style={{width: "fit-content", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(34); navigate('/dungeon/evolutionary-planet');}}>Enter Evolutionary Planet</div>
+                </div>
+            </div>
+
+            <div style={{width: "97.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
+            <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Dungeon</div>
+            <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                    <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                        <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
+                    </div>
+                    <img src="https://nftstorage.link/ipfs/bafybeibghshz6fd6vsc2is5egipg2wqwafpwztea4tfdbi6ajw6zxwfgfe" height="230" alt="Daemon_World" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
+                        <div className="emp">NA</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>Eligible NFT Collection</div>
+                        <div className="emp">Angel Plus NFTs</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
+                        <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="12" alt="$ANGB"/>ANGEL BLESSING</div>
+                    </div>
+                    <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" /*onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}*/>Go to Daemon World</div>
                 </div>
             </div>
         </div>

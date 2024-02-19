@@ -15,6 +15,7 @@ import Npcblacksmith from './Dungeon-Blacksmith'
 import NpcEvolutionary from './Dungeon-Evolutionary'
 import Coppermine from './Dungeon-CopperMine'
 import Jaspercave from './Dungeon-JasperCave'
+import Daemonworld from './Dungeon-DaemonWorld'
 import Community from './Community'
 import CmCityCenter from './Community-CmCityCenter'
 import QuesterOasis from './Community-QuesterOasis'
@@ -180,6 +181,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "EVOLUTIONARY-PLANET") {
                     preset = 34
                     document.title = "Evotionary Planet | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "DAEMON-WORLD") {
+                    preset = 35
+                    document.title = "Daemon World | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -324,6 +328,10 @@ const Main = () => {
                 }
                 {mode === 34 ?
                     <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
+                    <></>
+                }
+                {mode === 35 ?
+                    <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} /> :
                     <></>
                 }
                 {mode === 4 ?
