@@ -6,14 +6,12 @@ import { ThreeDots } from 'react-loading-icons'
 
 const angelplus = '0x0154fC0e36DA44b215DB355AcfD395350ff166b1'
 
-const ctunaLab = '0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0'
-const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
-const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
-const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
+const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
+const dunANGB = '0x85cD8D16325445F68764F0CA39B6d41064690E01'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunJasperABI }) => {
+const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunAngbABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -34,43 +32,43 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
     const [characterSlotLevel, setCharacterSlotLevel] = React.useState(null)
-    const [hatSlot, setHatSlot] = React.useState(null)
-    const [hatSlotLevel, setHatSlotLevel] = React.useState(null)
-    const [clothSlot, setClothSlot] = React.useState(null)
-    const [clothSlotLevel, setClothSlotLevel] = React.useState(null)
-    const [accSlot, setAccSlot] = React.useState(null)
-    const [accSlotLevel, setAccSlotLevel] = React.useState(null)
-    const [backSlot, setBackSlot] = React.useState(null)
-    const [backSlotLevel, setBackSlotLevel] = React.useState(null)
-    const [shoesSlot, setShoesSlot] = React.useState(null)
-    const [shoesSlotLevel, setShoesSlotLevel] = React.useState(null)
-    const [weaponSlot, setWeaponSlot] = React.useState(null)
-    const [wpSlotLevel, setWpSlotLevel] = React.useState(null)
+    const [helmetSlot, setHelmetSlot] = React.useState(null)
+    const [helmetSlotLevel, setHelmetSlotLevel] = React.useState(null)
+    const [armorSlot, setArmorSlot] = React.useState(null)
+    const [armorSlotLevel, setArmorSlotLevel] = React.useState(null)
+    const [ringSlot, setRingSlot] = React.useState(null)
+    const [ringSlotLevel, setRingSlotLevel] = React.useState(null)
+    const [shieldSlot, setShieldSlot] = React.useState(null)
+    const [shieldSlotLevel, setShieldSlotLevel] = React.useState(null)
+    const [bootsSlot, setBootsSlot] = React.useState(null)
+    const [bootsSlotLevel, setBootsSlotLevel] = React.useState(null)
+    const [swordSlot, setSwordSlot] = React.useState(null)
+    const [swordSlotLevel, setSwordSlotLevel] = React.useState(null)
+    const [fairySlot, setFairySlot] = React.useState(null)
+    const [fairySlotLevel, setFairySlotLevel] = React.useState(null)
 
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [timeToRunout, setTimeToRunout] = React.useState(null)
     const [isRunout, setIsRunout] = React.useState(false)
     const [gasselected, setGasselected] = React.useState("SWAR")
-    const [jasperPending, setJasperPending] = React.useState(0)
+    const [angbPending, setAngbPending] = React.useState(0)
 
-    const [ctunaBalance, setCTunaBalance] = React.useState(0)
-    const [sx31Balance, setSx31Balance] = React.useState(0)
-    const [pzaBalance, setPzaBalance] = React.useState(0)
-    const [jaspBalance, setJaspBalance] = React.useState(0)
+    const [swarBalance, setSwarBalance] = React.useState(0)
+    const [angbBalance, setAngbBalance] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(angelplus, erc721ABI, providerJBC)
+        const apnftSC = new ethers.Contract(angelplus, erc721ABI, providerJBC)
         setNft([])
         
         const thefetch = async () => {
             const nftEQ = address !== null && address !== undefined ? await readContract({
-                address: dunJasper,
-                abi: dunJasperABI,
+                address: dunANGB,
+                abi: dunAngbABI,
                 functionName: 'nftEquip',
                 args: [address],
-            }) : [{characterId: 0, hatId: 0, clothId: 0, accessoriesId: 0, backId: 0, shoesId: 0, weaponId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
+            }) : [{characterId: 0, helmetId: 0, armorId: 0, ringId: 0, shieldId: 0, bootsId: 0, swordId: 0, fairyId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
 
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -84,70 +82,64 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.accessoriesId)],
+                        args: [String(nftEQ.ringId)],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.backId)],
+                        args: [String(nftEQ.shieldId)],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.shoesId)],
+                        args: [String(nftEQ.bootsId)],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.weaponId)],
+                        args: [String(nftEQ.swordId)],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.clothId)],
+                        args: [String(nftEQ.armorId)],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.hatId)],
+                        args: [String(nftEQ.helmetId)],
                     },
                     {
-                        address: ctunaLab,
+                        address: angelplus,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.fairyId)],
+                    },
+                    {
+                        address: swarLab,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
-                        address: sx31Lab,
+                        address: dunANGB,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
-                        address: pzaLab,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },
-                    {
-                        address: dunJasper,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },
-                    {
-                        address: dunJasper,
-                        abi: dunJasperABI,
+                        address: dunANGB,
+                        abi: dunAngbABI,
                         functionName: 'calculateRewards',
                         args: [address],
                     },
                 ],
-            }) : ["", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, ]
+            }) : ["", "", "", "", "", "", "", "", 0, 0, 0, 0, ]
             console.log(nftEQ)
             console.log(data)
 
@@ -177,12 +169,12 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (response2 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.accessoriesId),
+                    Id: String(nftEQ.ringId),
                     Name: nftEQ_2_Name,
                     Image: nftEQ_2_Img,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(String(nftEQ.accessoriesId).slice(-5)),
+                    RewardPerSec: Number(String(nftEQ.ringId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -194,12 +186,12 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (response3 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.backId),
+                    Id: String(nftEQ.shieldId),
                     Name: nftEQ_3_Name,
                     Image: nftEQ_3,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(String(nftEQ.backId).slice(-5)),
+                    RewardPerSec: Number(String(nftEQ.shieldId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -211,12 +203,12 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (response4 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.shoesId),
+                    Id: String(nftEQ.bootsId),
                     Name: nftEQ_4_Name,
                     Image: nftEQ_4,
                     Description: nft4.description,
                     Attribute: nft4.attributes,
-                    RewardPerSec: Number(String(nftEQ.shoesId).slice(-5)),
+                    RewardPerSec: Number(String(nftEQ.bootsId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -228,12 +220,12 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (response5 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.weaponId),
+                    Id: String(nftEQ.swordId),
                     Name: nftEQ_5_Name,
                     Image: nftEQ_5,
                     Description: nft5.description,
                     Attribute: nft5.attributes,
-                    RewardPerSec: Number(String(nftEQ.weaponId).slice(-5)),
+                    RewardPerSec: Number(String(nftEQ.swordId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -245,12 +237,12 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (response6 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.clothId),
+                    Id: String(nftEQ.armorId),
                     Name: nftEQ_6_Name,
                     Image: nftEQ_6,
                     Description: nft6.description,
                     Attribute: nft6.attributes,
-                    RewardPerSec: Number(String(nftEQ.clothId).slice(-5)),
+                    RewardPerSec: Number(String(nftEQ.armorId).slice(-5)),
                     isStaked: true
                 })
             }
@@ -262,28 +254,44 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (response7 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.hatId),
+                    Id: String(nftEQ.helmetId),
                     Name: nftEQ_7_Name,
                     Image: nftEQ_7,
                     Description: nft7.description,
                     Attribute: nft7.attributes,
-                    RewardPerSec: Number(String(nftEQ.hatId).slice(-5)),
+                    RewardPerSec: Number(String(nftEQ.helmetId).slice(-5)),
                     isStaked: true
                 })
             }
+
+            const response8 = data[7] !== null ? await fetch(data[7].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const nft8 = response8 !== null ? await response8.json() : {image: null, name: null}
+            const nftEQ_8 = nft8.image !== null ? nft8.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
+            const nftEQ_8_Name = nft8.name
+            if (response8 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: String(nftEQ.fairyId),
+                    Name: nftEQ_8_Name,
+                    Image: nftEQ_8,
+                    Description: nft8.description,
+                    Attribute: nft8.attributes,
+                    RewardPerSec: Number(String(nftEQ.fairyId).slice(-5)),
+                    isStaked: true
+                })
+            }
+
 
             const allPow = Number(nftEQ.allPow)
             const isStaked = nftEQ.isStaked
             const refuelAt = Number(nftEQ.refuelAt)
 
-            const ctunaBal = data[7]
-            const sx31Bal = data[8]
-            const pzaBal = data[9]
-            const jaspBal = data[10]
-            const rewardPending = isStaked === true ? data[11] : 0
+            const swarBal = data[8]
+            const angbBal = data[9]
+            const rewardPending = isStaked === true ? data[10] : 0
             
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
+            const walletFilter = await apnftSC.filters.Transfer(null, address, null)
+            const walletEvent = await apnftSC.queryFilter(walletFilter, 2746581, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
@@ -339,8 +347,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             if (nfts.length === 0) { nfts.push(null) }
             
             return [
-                nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name,
-                allPow, isStaked, refuelAt, rewardPending, ctunaBal, sx31Bal, pzaBal, jaspBal,
+                nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, nftEQ_8, nftEQ_8_Name,
+                allPow, isStaked, refuelAt, rewardPending, swarBal, angbBal, 
             ]
         }
 
@@ -363,35 +371,35 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else {
                 setCharacterSlotLevel(null)
             }
-            setAccSlot(result[3])
-            result[4] !== null && Number(result[4].slice(-1)) > 0 ? setAccSlotLevel(result[4].slice(-1)) : setAccSlotLevel(null)
-            setBackSlot(result[5])
-            result[6] !== null && Number(result[6].slice(-1)) > 0 ? setBackSlotLevel(result[6].slice(-1)) : setBackSlotLevel(null)
-            setShoesSlot(result[7])
-            result[8] !== null && Number(result[8].slice(-1)) > 0 ? setShoesSlotLevel(result[8].slice(-1)) : setShoesSlotLevel(null)
-            setWeaponSlot(result[9])
-            result[10] !== null && Number(result[10].slice(-1)) > 0 ? setWpSlotLevel(result[10].slice(-1)) : setWpSlotLevel(null)
-            setClothSlot(result[11])
-            result[12] !== null && Number(result[12].slice(-1)) > 0 ? setClothSlotLevel(result[12].slice(-1)) : setClothSlotLevel(null)
-            setHatSlot(result[13])
-            result[14] !== null && Number(result[14].slice(-1)) > 0 ? setHatSlotLevel(result[14].slice(-1)) : setHatSlotLevel(null)
+            setRingSlot(result[3])
+            result[4] !== null && Number(result[4].slice(-1)) > 0 ? setRingSlotLevel(result[4].slice(-1)) : setRingSlotLevel(null)
+            setShieldSlot(result[5])
+            result[6] !== null && Number(result[6].slice(-1)) > 0 ? setShieldSlotLevel(result[6].slice(-1)) : setShieldSlotLevel(null)
+            setBootsSlot(result[7])
+            result[8] !== null && Number(result[8].slice(-1)) > 0 ? setBootsSlotLevel(result[8].slice(-1)) : setBootsSlotLevel(null)
+            setSwordSlot(result[9])
+            result[10] !== null && Number(result[10].slice(-1)) > 0 ? setSwordSlotLevel(result[10].slice(-1)) : setSwordSlotLevel(null)
+            setArmorSlot(result[11])
+            result[12] !== null && Number(result[12].slice(-1)) > 0 ? setArmorSlotLevel(result[12].slice(-1)) : setArmorSlotLevel(null)
+            setHelmetSlot(result[13])
+            result[14] !== null && Number(result[14].slice(-1)) > 0 ? setHelmetSlotLevel(result[14].slice(-1)) : setHelmetSlotLevel(null)
+            setFairySlot(result[15])
+            result[16] !== null && Number(result[15].slice(-1)) > 0 ? setFairySlotLevel(result[16].slice(-1)) : setFairySlotLevel(null)
 
-            setAllPower(result[15])
-            setIsStakeNow(result[16])
-            const gasOut = new Date((result[17] * 1000) + (86400 * 1000))
-            result[17] !== 0 ?
+            setAllPower(result[17])
+            setIsStakeNow(result[18])
+            const gasOut = new Date((result[19] * 1000) + (86400 * 1000))
+            result[19] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[17] !== 0 && Date.now() - (result[17] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
-            setJasperPending(ethers.utils.formatUnits(String(result[18]), "gwei"))
+            result[19] !== 0 && Date.now() - (result[19] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            setAngbPending(ethers.utils.formatEther(String(result[20])))
         
-            setCTunaBalance(ethers.utils.formatEther(String(result[19])))
-            setSx31Balance(ethers.utils.formatEther(String(result[20])))
-            setPzaBalance(ethers.utils.formatEther(String(result[21])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[22]), "gwei"))
+            setSwarBalance(ethers.utils.formatEther(String(result[21])))
+            setAngbBalance(ethers.utils.formatEther(String(result[22])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunJasperABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, dunAngbABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -432,13 +440,13 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             functionName: 'getApproved',
             args: [_nftid],
         })
-        if (nftAllow.toUpperCase() !== dunJasper.toUpperCase()) {
+        if (nftAllow.toUpperCase() !== dunANGB.toUpperCase()) {
             try {
                 const config = await prepareWriteContract({
                     address: angelplus,
                     abi: erc721ABI,
                     functionName: 'approve',
-                    args: [dunJasper, _nftid],
+                    args: [dunANGB, _nftid],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
@@ -446,8 +454,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         }
         try {
             const config2 = await prepareWriteContract({
-                address: dunJasper,
-                abi: dunJasperABI,
+                address: dunANGB,
+                abi: dunAngbABI,
                 functionName: 'equip',
                 args: [_nftid],
             })
@@ -462,8 +470,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: dunJasper,
-                abi: dunJasperABI,
+                address: dunANGB,
+                abi: dunAngbABI,
                 functionName: 'unstake',
                 args: [_slot],
             })
@@ -478,29 +486,23 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         setisLoading(true)
         let gasAddr = ''
         let gasIndex = 0
-        if (gasselected === "CTUNA") {
-            gasAddr = ctunaLab
+        if (gasselected === "SWAR") {
+            gasAddr = swarLab
             gasIndex = 1
-        } else if (gasselected === "SX31") {
-            gasAddr = sx31Lab
-            gasIndex = 2
-        } else if (gasselected === "PIZZA") {
-            gasAddr = pzaLab
-            gasIndex = 3
         }
         const gasAllow = await readContract({
             address: gasAddr,
             abi: erc20ABI,
             functionName: 'allowance',
-            args: [address, dunJasper],
+            args: [address, dunANGB],
         })
-        if (gasAllow < (500 * 10**18)) {
+        if (gasAllow < (2 * 10**17)) {
             try {
                 const config = await prepareWriteContract({
                     address: gasAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
-                    args: [dunJasper, ethers.utils.parseEther(String(10**8))],
+                    args: [dunANGB, ethers.utils.parseEther(String(10**8))],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
@@ -508,8 +510,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         }
         try {
             const config2 = await prepareWriteContract({
-                address: dunJasper,
-                abi: dunJasperABI,
+                address: dunANGB,
+                abi: dunAngbABI,
                 functionName: 'refuel',
                 args: [gasIndex]
             })
@@ -547,8 +549,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     
         <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "#ffeceb", border: "none", justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#EBDDB8", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                <div style={{background: "rgb(230, 250, 54)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{background: "rgb(194, 155, 231)", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                         <div style={{fontSize: "22px", lineHeight: "15px"}}>LAYER 1 STAKING</div>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -577,28 +579,28 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 }
                             </div>
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             {address !== undefined ?
                                 <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
                                 <>ADDRESS <div>-</div></>
                             }
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>TOTAL CMPOW PER SEC <div>{allPower}</div></div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            JASP BALANCE (GWEI UNIT)
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL POWER PER SEC <div>{allPower}</div></div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                            ANGB BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toFixed(3).toLocaleString()}</div>
+                                <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
+                                <div style={{marginLeft: "5px"}}>{Number(angbBalance).toFixed(3).toLocaleString()}</div>
                             </div>
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            JASP PENDING (GWEI UNIT)
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                            ANGB PENDING
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{jasperPending.toLocaleString()}</div>
+                                <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
+                                <div style={{marginLeft: "5px"}}>{angbPending.toLocaleString()}</div>
                             </div>
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             DAILY GAS USAGE
                             <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                 <option value="SWAR">$SWAR</option>
@@ -607,15 +609,15 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 {gasselected === "SWAR" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="20" alt="$SWAR"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toFixed(0)}</div>
                                     </> :
                                     <></>
                                 }
-                                <div style={{marginLeft: "5px"}}>/500</div>
+                                <div style={{marginLeft: "5px"}}>/0.2</div>
                             </div>
                         </div>
                         {timeToRunout !== null ?
-                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
+                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
                             : <></>
                         }
                         {address !== undefined && address === youraddr ?
@@ -626,7 +628,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && ((gasselected === "CTUNA" && Number(ctunaBalance) >= 500) || (gasselected === "SX31" && Number(sx31Balance) >= 500) || (gasselected === "PIZZA" && Number(pzaBalance) >= 500)) ?
+                                        {isStakeNow !== null && ((gasselected === "SWAR" && Number(swarBalance) >= 0.2)) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
@@ -643,30 +645,21 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         }
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {hatSlot !== null ?
-                            <img src={hatSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot"></img>
+                        {helmetSlot !== null ?
+                            <img src={helmetSlot} width="100px" alt="Can not load metadata." /> :
+                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {hatSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
-                            <></>
+                        {helmetSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{helmetSlotLevel}</div>}
+                        {armorSlot !== null ?
+                            <img src={armorSlot} width="100px" alt="Can not load metadata." /> :
+                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {clothSlot !== null ?
-                            <img src={clothSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot"></img>
+                        {armorSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{armorSlotLevel}</div>}
+                        {bootsSlot !== null ?
+                            <img src={bootsSlot} width="100px" alt="Can not load metadata." /> :
+                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {clothSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
-                            <></>
-                        }
-                        {shoesSlot !== null ?
-                            <img src={shoesSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/shoes.png" width="100px" alt="Shoes_slot"></img>
-                        }
-                        {shoesSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div> :
-                            <></>
-                        }
+                        {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{bootsSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
@@ -681,36 +674,39 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {characterSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div> :
-                            <></>
+                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
+                    </div>
+                    <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                        <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Fairy NFT</div>
+                        {nft.length > 0 ?
+                            <>
+                                {fairySlot !== null ?
+                                    <img src={fairySlot} width="300px" alt="Can not load metadata." /> :
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                }
+                            </> :
+                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
                         }
+                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{fairySlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot !== null ?
-                            <img src={accSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Accessories_slot"></img>
+                        {ringSlot !== null ?
+                            <img src={ringSlot} width="100px" alt="Can not load metadata." /> :
+                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {accSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div> :
-                            <></>
+                        {ringSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ringSlotLevel}</div>}
+                        {shieldSlot !== null ?
+                            <img src={shieldSlot} width="100px" alt="Can not load metadata." /> :
+                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {backSlot !== null ?
-                            <img src={backSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/back.png" width="100px" alt="Back_slot"></img>
+                        {shieldSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shieldSlotLevel}</div>}
+                        {swordSlot !== null ?
+                            <img src={swordSlot} width="100px" alt="Can not load metadata." /> :
+                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {backSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div> :
-                            <></>
-                        }
-                        {weaponSlot !== null ?
-                            <img src={weaponSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/weapon.png" width="100px" alt="Weapon_slot"></img>
-                        }
-                        {wpSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div> :
-                            <></>
-                        }
+                        {swordSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{swordSlotLevel}</div>}
                     </div>
                 </div>
             </div>
@@ -720,7 +716,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
-                            <div style={{background: "#ffeceb", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
+                            <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
                                 <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
                                     <img src={item.Image} height="100%" alt="Can not load metadata." />
                                 </div>
@@ -750,7 +746,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             </div>
                         ))}
                         </> :
-                        <div style={{background: "#ffeceb", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                        <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
                                 <>
                                     <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
@@ -765,7 +761,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     }
                 </div> :
                 <div style={{width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{background: "#ffeceb", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                    <div className="nftCard" style={{background: "rgb(230, 250, 54)", boxShadow: "none", border: 0, justifyContent: "center"}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>

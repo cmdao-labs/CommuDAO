@@ -56,6 +56,7 @@ import dunJasperABI from './jsons/dunJasperABI.json'
 import dunJasperL2ABI from './jsons/dunJasperL2ABI.json'
 import dunCopperABI from './jsons/dunCopperABI.json'
 import mintStOPTABI from './jsons/mintStOPTABI.json'
+import dunAngbABI from './jsons/dunAngbABI.json'
 
 import cmdaoMerchantABI from './jsons/cmdaoMerchantABI.json'
 import cmdaoMerchantV2ABI from './jsons/cmdaoMerchantV2ABI.json'
@@ -330,10 +331,7 @@ const Main = () => {
                     <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
                     <></>
                 }
-                {mode === 35 ?
-                    <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} /> :
-                    <></>
-                }
+                {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
                     <></>

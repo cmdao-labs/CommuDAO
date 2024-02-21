@@ -98,7 +98,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
                         <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="12" alt="$ANGB"/>ANGEL BLESSING</div>
                     </div>
-                    <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" /*onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}*/>Go to Daemon World</div>
+                    <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}>Go to Daemon World</div>
                 </div>
             </div>
         </div>
