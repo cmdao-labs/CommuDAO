@@ -291,7 +291,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const rewardPending = isStaked === true ? data[10] : 0
             
             const walletFilter = await apnftSC.filters.Transfer(null, address, null)
-            const walletEvent = await apnftSC.queryFilter(walletFilter, 2746581, "latest")
+            const walletEvent = await apnftSC.queryFilter(walletFilter, 2768102, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
