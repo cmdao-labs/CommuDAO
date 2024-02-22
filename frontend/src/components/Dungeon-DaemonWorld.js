@@ -4,10 +4,10 @@ import { readContract, readContracts, prepareWriteContract, writeContract } from
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
-const angelplus = '0x0154fC0e36DA44b215DB355AcfD395350ff166b1'
+const angelplus = '0x853beB37aBAfA021818B9f66e5333E657Ceb29d0'
 
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
-const dunANGB = '0x85cD8D16325445F68764F0CA39B6d41064690E01'
+const dunANGB = '0x660327B8Da1cbb2019432bC08ef3a2867bAFE61c'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
