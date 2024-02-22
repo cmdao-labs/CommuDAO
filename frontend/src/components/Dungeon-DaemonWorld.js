@@ -7,7 +7,7 @@ import { ThreeDots } from 'react-loading-icons'
 const angelplus = '0x853beB37aBAfA021818B9f66e5333E657Ceb29d0'
 
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
-const dunANGB = '0x660327B8Da1cbb2019432bC08ef3a2867bAFE61c'
+const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
