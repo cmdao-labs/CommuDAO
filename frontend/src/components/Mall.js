@@ -336,13 +336,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     },
                     {
                         address: cmdaoMerchantV105,
-                        abi: cmdaoMerchantABI,
+                        abi: cmdaoMerchantV2ABI,
                         functionName: 'sellList',
                         args: [1],
                     },
                     {
                         address: cmdaoMerchantV105,
-                        abi: cmdaoMerchantABI,
+                        abi: cmdaoMerchantV2ABI,
                         functionName: 'sellList',
                         args: [2],
                     },
