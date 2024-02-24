@@ -73,7 +73,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const spend6Event = await jusdtSC.queryFilter(spend6Filter, 2635414, 'latest')
             const spend6Map = await Promise.all(spend6Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
-            const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map).reduce((prev, curr) => {
+            const spend7Filter = await jusdtSC.filters.Transfer(null, "0x09e6a0A03afa27438c3f507de82b5f6061Ae1643", null)
+            const spend7Event = await jusdtSC.queryFilter(spend7Filter, 2635414, 'latest')
+            const spend7Map = await Promise.all(spend7Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+
+            const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
                    prev[curr.from.toUpperCase()].value += curr.value
                 } else {
