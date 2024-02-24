@@ -432,7 +432,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell18remain = (730060100000 - (Number(sell18Id.sellId) - 10000)) / 100000
             const _canBuy18 = Number(ethers.utils.formatEther(String(bbqBal))) >= 100000000 ? true : false
 
-            const sell19remain = (300010100000 - (Number(sell17Id.sellId) - 250)) / 100000
+            const sell19remain = (300010100000 - (Number(sell19Id.sellId) - 250)) / 100000
 
             const roll1remain = Number(roll1.nftCount)
             const roll2remain = Number(roll2.nftCount)
