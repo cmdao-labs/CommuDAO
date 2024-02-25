@@ -280,7 +280,7 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
             </div>
         </div>
 
-        <div style={{margin: "0", paddingTop: "30px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start"}} className="collection">
+        <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start"}} className="collection">
             <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>ORY ON WALLET</div>
@@ -308,7 +308,7 @@ const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tu
                     </div>
                 </div>
             </div>
-            <div style={{margin: "20px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+            <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                 {nft.length > 0 ?
                     <>
                     {nft[0] !== null ?

@@ -304,7 +304,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 </div>
             </div>
 
-            <div style={{margin: "0", paddingTop: "40px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+            <div style={{margin: "0", paddingTop: "40px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
                 <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>AP-AC ON WALLET</div>
@@ -332,76 +332,78 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                         </div>
                     </div>
                 </div>
-                {nft.length > 0 ?
-                    <>
-                    {nft[0] !== null ?
+                <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                    {nft.length > 0 ?
                         <>
-                        {nft.map((item, index) => (
-                            <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
-                                <video autoPlay muted loop width="150">
-                                    <source src={item.Image} type="video/mp4" />
-                                </video>
-                                <div>{item.Name}</div>
-                                <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                                    {item.isStaked ?
-                                        <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>On Staking</div>
-                                        </> :
-                                        <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>Available for stake</div>
-                                        </>
-                                    }
-                                </div>
-                                <div>
-                                    Earn: {Number(item.RewardPerSec).toFixed(4)}
-                                    &nbsp;
-                                    <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
-                                    &nbsp;VABAG/DAY
-                                </div>
-                                <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                    <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
-                                        Pending Rewards<br></br>
-                                        <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
-                                            &nbsp;{ethers.utils.formatEther(String(item.Reward))}
+                        {nft[0] !== null ?
+                            <>
+                            {nft.map((item, index) => (
+                                <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
+                                    <video autoPlay muted loop width="150">
+                                        <source src={item.Image} type="video/mp4" />
+                                    </video>
+                                    <div>{item.Name}</div>
+                                    <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                        {item.isStaked ?
+                                            <>
+                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                <div style={{color: "black"}}>On Staking</div>
+                                            </> :
+                                            <>
+                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                <div style={{color: "black"}}>Available for stake</div>
+                                            </>
+                                        }
+                                    </div>
+                                    <div>
+                                        Earn: {Number(item.RewardPerSec).toFixed(4)}
+                                        &nbsp;
+                                        <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                        &nbsp;VABAG/DAY
+                                    </div>
+                                    <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                        <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
+                                            Pending Rewards<br></br>
+                                            <div style={{display: "flex", alignItems: "center"}}>
+                                                <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                                &nbsp;{ethers.utils.formatEther(String(item.Reward))}
+                                            </div>
                                         </div>
+                                        {item.Reward > 0 ?
+                                            <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                            <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                        }
                                     </div>
-                                    {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
-                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                    {item.isStaked ?
+                                        <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                        </div>
                                     }
                                 </div>
-                                {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
-                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                        <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
-                                    </div>
+                            ))}
+                            </> :
+                            <div className="nftCard" style={{justifyContent: "center"}}>
+                                {address !== undefined ?
+                                    <>
+                                        <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                        <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                    </> :
+                                    <>
+                                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                        <div className="bold">Please connect wallet to view your NFTs.</div>
+                                    </>
                                 }
                             </div>
-                        ))}
+                        }
                         </> :
                         <div className="nftCard" style={{justifyContent: "center"}}>
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
-                            }
+                            <ThreeDots fill="#5f6476" />
+                            <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                         </div>
                     }
-                    </> :
-                    <div className="nftCard" style={{justifyContent: "center"}}>
-                        <ThreeDots fill="#5f6476" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
-                    </div>
-                }
+                </div>
             </div>
         </>
     )

@@ -341,7 +341,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 </div>
             </div>
 
-            <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+            <div style={{margin: "0", paddingTop: "40px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
                 <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>MG ON STAKING</div>
@@ -369,87 +369,89 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                         </div>
                     </div>
                 </div>
-                {nft.length > 0 ?
-                    <>
-                    {nft[0] !== null ?
+                <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                    {nft.length > 0 ?
                         <>
-                        {nft.map((item, index) => (
-                            <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
-                                <img
-                                    src={item.Image}
-                                    width="150"
-                                    alt="Can not load metadata."
-                                />
-                                <div>{item.Name}</div>
-                                <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                        {nft[0] !== null ?
+                            <>
+                            {nft.map((item, index) => (
+                                <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
+                                    <img
+                                        src={item.Image}
+                                        width="150"
+                                        alt="Can not load metadata."
+                                    />
+                                    <div>{item.Name}</div>
+                                    <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                        {item.isStaked ?
+                                            <>
+                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                <div style={{color: "black"}}>On Staking</div>
+                                            </> :
+                                            <>
+                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                <div style={{color: "black"}}>Available for stake</div>
+                                            </>
+                                        }
+                                    </div>
+                                    <div>
+                                        Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
+                                        &nbsp;
+                                        <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
+                                        GOLD/DAY
+                                    </div>
+                                    <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                        <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
+                                            Pending Rewards<br></br>
+                                            <div style={{display: "flex", alignItems: "center"}}>
+                                                <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
+                                                {ethers.utils.formatEther(String(item.Reward))}
+                                            </div>
+                                            <div style={{display: "flex", alignItems: "center"}}>
+                                                <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
+                                                {!item.isJbcOut ?
+                                                    <>
+                                                        {Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}
+                                                    </> :
+                                                    <>OUT</>
+                                                } 
+                                            </div>
+                                        </div>
+                                        {item.Reward > 0 ?
+                                            <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, false, item.isJbcOut)}}>HARVEST</div> :
+                                            <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                        }
+                                    </div>
                                     {item.isStaked ?
-                                        <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>On Staking</div>
-                                        </> :
-                                        <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>Available for stake</div>
-                                        </>
+                                        <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true, item.isJbcOut)}}>UNSTAKE</div> :
+                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                        </div>
                                     }
                                 </div>
-                                <div>
-                                    Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
-                                    &nbsp;
-                                    <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
-                                    GOLD/DAY
-                                </div>
-                                <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                    <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
-                                        Pending Rewards<br></br>
-                                        <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
-                                            {ethers.utils.formatEther(String(item.Reward))}
-                                        </div>
-                                        <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
-                                            {!item.isJbcOut ?
-                                                <>
-                                                    {Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}
-                                                </> :
-                                                <>OUT</>
-                                            } 
-                                        </div>
-                                    </div>
-                                    {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, false, item.isJbcOut)}}>HARVEST</div> :
-                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
-                                    }
-                                </div>
-                                {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, item.Reward2, true, item.isJbcOut)}}>UNSTAKE</div> :
-                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                        <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
-                                    </div>
+                            ))}
+                            </> :
+                            <div className="nftCard" style={{justifyContent: "center"}}>
+                                {address !== undefined ?
+                                    <>
+                                        <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                        <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                    </> :
+                                    <>
+                                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                        <div className="bold">Please connect wallet to view your NFTs.</div>
+                                    </>
                                 }
                             </div>
-                        ))}
+                        }
                         </> :
                         <div className="nftCard" style={{justifyContent: "center"}}>
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
-                            }
+                            <ThreeDots fill="#5f6476" />
+                            <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                         </div>
                     }
-                    </> :
-                    <div className="nftCard" style={{justifyContent: "center"}}>
-                        <ThreeDots fill="#5f6476" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
-                    </div>
-                }
+                </div>
             </div>
         </>
     )
