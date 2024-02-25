@@ -9,6 +9,7 @@ import FishingField from './Fields-TunaLake'
 import RatHuntingField from './Fields-OldWarehouse'
 import TheHeavenLand from './Fields-TheHeavenLand'
 import EasternFront from './Fields-EasternFront'
+import MechHarvestZone from './Fields-MechHarvestZone'
 import Labs from './Labs'
 import Dungeon from './Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
@@ -144,6 +145,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "EASTERN-FRONT") {
                     preset = 19
                     document.title = "Eastern Front | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "MECH-HARVEST-ZONE") {
+                    preset = 100
+                    document.title = "Mech Harvest Zone | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
                     document.title = "Fields [BKC] | CommuDAO"
@@ -303,6 +307,7 @@ const Main = () => {
                     <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
                     <></>
                 }
+                {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} />}
                 {mode === 2 ?
                     <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                     <></>

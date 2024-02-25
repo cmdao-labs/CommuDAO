@@ -4,11 +4,11 @@ import { readContract, readContracts, prepareWriteContract, writeContract } from
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
-const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
-const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
+const taodumNFT = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
+const gear = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
+const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
     const { address } = useAccount()
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -19,7 +19,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
     const [nft, setNft] = React.useState([])
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
-    const [vabagBalance, setVaBagBalance] = React.useState("0.000")
+    const [gearBalance, setGearBalance] = React.useState("0.000")
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_nftid) => {
@@ -35,7 +35,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: acNft,
+                address: taodumNFT,
                 abi: erc721ABI,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
@@ -50,19 +50,19 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const acNftSC = new ethers.Contract(acNft, erc721ABI, providerJBC)
+        const taodumNFTSC = new ethers.Contract(taodumNFT, erc721ABI, providerJBC)
         setNft([])
         
         const thefetch = async () => {
             let nfts = []
-            const stakeFilter = await acNftSC.filters.Transfer(address, vabag, null)
-            const stakeEvent = await acNftSC.queryFilter(stakeFilter, 2260250, "latest")
+            const stakeFilter = await taodumNFTSC.filters.Transfer(address, gear, null)
+            const stakeEvent = await taodumNFTSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
                     {
-                        address: vabag,
+                        address: gear,
                         abi: tunaFieldABI,
                         functionName: 'nftStake',
                         args: [String(item)],
@@ -81,7 +81,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: acNft,
+                        address: taodumNFT,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
@@ -92,7 +92,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             const data11 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: vabag,
+                        address: gear,
                         abi: tunaFieldABI,
                         functionName: 'calculateRewards',
                         args: [String(item.Id)],
@@ -132,14 +132,14 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 })
             }
 
-            const walletFilter = await acNftSC.filters.Transfer(null, address, null)
-            const walletEvent = await acNftSC.queryFilter(walletFilter, 2260250, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletFilter = await taodumNFTSC.filters.Transfer(null, address, null)
+            const walletEvent = await taodumNFTSC.queryFilter(walletFilter, 2725554, "latest")
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
                     {
-                        address: acNft,
+                        address: taodumNFT,
                         abi: erc721ABI,
                         functionName: 'ownerOf',
                         args: [String(item)],
@@ -158,7 +158,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
                     {
-                        address: acNft,
+                        address: taodumNFT,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
@@ -200,7 +200,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             const dataToken = address !== null && address !== undefined ? await readContracts({
                 contracts: [
                     {
-                        address: vabag,
+                        address: gear,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
@@ -226,7 +226,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
             setAllDaily(result[1])
             setAllReward(result[2])
-            setVaBagBalance(ethers.utils.formatEther(String(result[3])))
+            setGearBalance(ethers.utils.formatEther(String(result[3])))
         })
 
     }, [address, txupdate, erc20ABI, erc721ABI, tunaFieldABI])
@@ -235,23 +235,23 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
         setisLoading(true)
         try {
             const nftAllow = await readContract({
-                address: acNft,
+                address: taodumNFT,
                 abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
-            if (nftAllow.toUpperCase() !== vabag.toUpperCase()) {
+            if (nftAllow.toUpperCase() !== gear.toUpperCase()) {
                 const config = await prepareWriteContract({
-                    address: acNft,
+                    address: taodumNFT,
                     abi: erc721ABI,
                     functionName: 'approve',
-                    args: [vabag, _nftid],
+                    args: [gear, _nftid],
                 })
                 const approvetx = await writeContract(config)
                 await approvetx.wait()
             }        
             const config2 = await prepareWriteContract({
-                address: vabag,
+                address: gear,
                 abi: tunaFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
@@ -267,7 +267,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
         setisLoading(true)
         try {
             const config2 = await prepareWriteContract({
-                address: vabag,
+                address: gear,
                 abi: tunaFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
@@ -294,41 +294,41 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 </div> :
                 <></>
             }
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://nftstorage.link/ipfs/bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://nftstorage.link/ipfs/bafybeidlzwhqtdrt4dnymhtf3v5vbhfwaczn6i3676iqr2aymrwbqbtw4m')", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
-                    <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>Eastern Front</div>
-                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Adventurer Card to earn $Valuables-Bag.</div>
+                    <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>Mech Harvest Zone</div>
+                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake TAODUM / TAOMEME to earn $Gear.</div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="150" alt="$VABAG"/>
+                    <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="150" alt="$GEAR"/>
                 </div>
             </div>
 
             <div style={{margin: "0", paddingTop: "40px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
                 <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                        <div style={{marginBottom: "20px"}}>AP-AC ON WALLET</div>
+                        <div style={{marginBottom: "20px"}}>TAODUM ON WALLET</div>
                         <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}} className="emp">
                             {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="24" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="24" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                        <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
+                        <div style={{marginBottom: "20px"}}>GEAR BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {nft.length > 0 && nft[0] !== null ? Number(vabagBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            {nft.length > 0 && nft[0] !== null ? Number(gearBalance).toFixed(3) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="24" alt="$GEAR"/>
                         </div>
                     </div>
                 </div>
@@ -357,14 +357,14 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                                 <div>
                                     Earn: {Number(item.RewardPerSec).toFixed(4)}
                                     &nbsp;
-                                    <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
-                                    &nbsp;VABAG/DAY
+                                    <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
+                                    &nbsp;GEAR/DAY
                                 </div>
                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                         Pending Rewards<br></br>
                                         <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                            <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
                                             &nbsp;{ethers.utils.formatEther(String(item.Reward))}
                                         </div>
                                     </div>
@@ -407,4 +407,4 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
     )
 }
 
-export default EasternFront
+export default MechHarvestZone

@@ -39,7 +39,7 @@ const Fields = ({ callMode, navigate }) => {
                             <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                             <div style={{margin: "0 5px"}}>WOOD & </div>
                             <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                            <div style={{margin: "0 5px"}}>CMJ</div>
+                            <div style={{marginLeft: "5px"}}>CMJ</div>
                         </div>
                     </div>
                     <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>Go to Ancient Forest</div>
@@ -62,7 +62,7 @@ const Fields = ({ callMode, navigate }) => {
                             <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                             <div style={{margin: "0 5px"}}>GOLD & </div>
                             <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
-                            <div style={{margin: "0 5px"}}>JBC (LIMITED)</div>
+                            <div style={{marginLeft: "5px"}}>JBC (LIMITED)</div>
                         </div>                    
                     </div>
                     <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(17); navigate('/fields/the-heaven-land');}}>Go to The Heaven Land</div>
@@ -71,7 +71,7 @@ const Fields = ({ callMode, navigate }) => {
 
             <div style={{width: "92.5%", borderBottom: "1px solid #dddade", marginTop: "60px"}}></div>
             <div style={{width: "95%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">Partner Fields</div>
-            <div style={{width: "95%", minHeight: 0, marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+            <div style={{width: "95%", minHeight: 0, justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                 <div className="nftCard" style={{justifyContent: "center", margin: "20px", position: "relative"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
                         <img src="https://nftstorage.link/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
@@ -135,10 +135,39 @@ const Fields = ({ callMode, navigate }) => {
                             Earn
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp">
-                            <div style={{margin: "0"}}>Valuable Bag</div>
+                            <img src="https://nftstorage.link/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="14" alt="$VABAG"/>
+                            <div style={{marginLeft: "5px"}}>Valuable Bag</div>
                         </div>                    
                     </div>
                     <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(19); navigate('/fields/eastern-front');}}>Go to Eastern Front</div>
+                </div>
+            </div>
+
+            <div style={{width: "95%", minHeight: 0, marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                        <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                    </div>
+                    <img src="https://nftstorage.link/ipfs/bafybeicly2zmib2gwjqv2p752php3ff4pqonllfiyuelcik366gqtsto7e" height="230" alt="Field_Mech_Harvest_Zone" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div>
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                            Eligible Collection
+                        </div>
+                        <div className="emp" style={{fontSize: "12px"}}>TAODUM NFT & TAOMEME TOKEN</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div>
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                            Earn
+                        </div>
+                        <div style={{display: "flex", flexDirection: "row"}} className="emp">
+                            <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="16" alt="$GEAR"/>
+                            <div style={{marginLeft: "5px"}}>Gear</div>
+                        </div>                    
+                    </div>
+                    <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {/*callMode(100); navigate('/fields/mech-harvest-zone');*/}}>Go to Mech Harvest Zone</div>
                 </div>
             </div>
         </>
