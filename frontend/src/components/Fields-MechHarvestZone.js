@@ -5,7 +5,8 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const taodumNFT = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
-const gear = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
+const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
+const gear = '0xB85765E3E9f2714d4C2d78CEEC1F6DEfd11D87DF'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
@@ -332,16 +333,90 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
                         </div>
                     </div>
                 </div>
-                <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+
+                <div style={{width: "95%", borderBottom: "1px solid #dddade", margin: "40px 10px 10px 10px"}}></div>
+                <div style={{width: "95%", margin: "20px 10px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">TAOMEME STAKING</div>
+                <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                    <div className="nftCard" style={{position: "relative", margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}}>
+                        <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">Multiplier x0</div>
+                        <div style={{marginTop: "50px", width: "100%", display: "flex", justifyContent: "space-between"}}>
+                            <div>Total JTAO Staking:</div>
+                            <div className="bold"></div>
+                        </div>
+                        <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                            <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
+                                Pending Rewards<br></br>
+                                <div style={{display: "flex", alignItems: "center"}}>
+                                    <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
+                                    &nbsp;{}
+                                </div>
+                            </div>
+                            {false ?
+                                <div style={{lineHeight: 2}} className="button">HARVEST</div> :
+                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                            }
+                        </div>
+                        <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
+                                <div>$JTAO STAKED</div>
+                                <div className="bold">{}</div>
+                            </div>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                                <input
+                                    placeholder="0.0"
+                                    style={{width: "130px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                    value={1}
+                                />
+                                <div
+                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                    className="bold"
+                                >
+                                    Max
+                                </div>
+                                <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold">Unstake</div>
+                            </div>
+                        </div>
+                        <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
+                                <div>$JTAO BALANCE</div>
+                                <div className="bold">{}</div>
+                            </div>
+                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                                <input
+                                    placeholder="0.0"
+                                    style={{width: "130px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                    value={1}
+                                />
+                                <div
+                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
+                                    className="bold"
+                                >
+                                    Max
+                                </div>
+                                <div style={{letterSpacing: "1px", width: "50px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold">Stake</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "18px"}}>
+                        <div>TAOMEME PFP N1</div>
+                        <img src='https://nftstorage.link/ipfs/bafybeibvvcappbfq4pw7hvtdwsaageoelga5vwpco3qffcrwzzsk2wxoau' width="250" alt="Can not load metadata." />
+                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                            <div className="button" style={{fontSize: "14px"}}>MINT [8,888 JTAO]</div>
+                            <div style={{alignSelf: "center", background: "gray", fontSize: "14px"}} className="button">UP RARITY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{width: "95%", borderBottom: "1px solid #dddade", margin: "40px 10px 10px 10px"}}></div>
+                <div style={{width: "95%", margin: "20px 10px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">TAODUM STAKING</div>
+                <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                     {nft.length > 0 ?
                         <>
                         {nft[0] !== null ?
                             <>
                             {nft.map((item, index) => (
                                 <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} key={index}>
-                                    <video autoPlay muted loop width="150">
-                                        <source src={item.Image} type="video/mp4" />
-                                    </video>
+                                    <img src={item.Image} width="150" alt="Can not load metadata." />
                                     <div>{item.Name}</div>
                                     <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
                                         {item.isStaked ?
