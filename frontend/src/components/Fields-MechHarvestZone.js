@@ -458,21 +458,21 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}} className="emp">
-                            {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
+                            {Number(allDaily) > 0 ? allDaily.toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
+                            {Number(allReward) > 0 ? allReward.toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>GEAR BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {nft.length > 0 && nft[0] !== null ? Number(gearBalance).toFixed(3) : 0}
+                            {Number(gearBalance) > 0 ? gearBalance.toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
