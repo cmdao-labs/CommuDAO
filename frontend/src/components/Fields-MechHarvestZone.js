@@ -6,7 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const taodumNFT = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
 const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
-const gear = '0xF358406682b0F03C2a3EceBd469d0Ab46b95627F'
+const gear = '0xdCbe8EdAbCe8a19B201B09206536C34435ec3921'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI }) => {
@@ -75,7 +75,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         args: [String(item)],
                     }
                 ))
-            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: '', isJbcOut: false})]
+            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: ''})]
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
@@ -102,7 +102,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         address: gear,
                         abi: gearFieldABI,
                         functionName: 'calculateRewards',
-                        args: [String(item.Id)],
+                        args: [String(item.Id), address, 1],
                     }
                 ))
             }) : [Array(yournftstake.length).fill(0)]
@@ -118,13 +118,19 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 } catch {}
 
                 let _reward = 0
-                if (yournftstake[i].Id.slice(0, 3) === '101') {
-                    _reward = 100
-                } else if (yournftstake[i].Id.slice(0, 3) === '102') {
-                    _reward = 1000
+                if (Number(yournftstake[i].Id.slice(0, 3)) >= 271) {
+                    _reward = 100;
+                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 146) {
+                    _reward = 120;
+                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 77) {
+                    _reward = 150;
+                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 23) {
+                    _reward = 180;
+                } else {
+                    _reward = 250;
                 }
 
-                _allDaily += Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400)))
+                _allDaily += Number(ethers.utils.formatEther(String(_reward * 372756008454 * 8640000000000)))
                 _allReward += Number(ethers.utils.formatEther(String(data11[i])))
 
                 nfts.push({
@@ -133,7 +139,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
+                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 372756008454 * 8640000000000))),
                     isStaked: true,
                     Reward: String(data11[i]),
                 })
@@ -182,10 +188,16 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 } catch {}
 
                 let _reward = 0
-                if (yournftwallet[i].Id.slice(0, 3) === '101') {
-                    _reward = 100
-                } else if (yournftwallet[i].Id.slice(0, 3) === '102') {
-                    _reward = 1000
+                if (Number(yournftstake[i].Id.slice(0, 3)) >= 271) {
+                    _reward = 100;
+                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 146) {
+                    _reward = 120;
+                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 77) {
+                    _reward = 150;
+                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 23) {
+                    _reward = 180;
+                } else {
+                    _reward = 250;
                 }
 
                 nfts.push({
@@ -194,7 +206,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
+                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 372756008454 * 8640000000000))),
                     isStaked: false,
                     Reward: 0,
                 })
@@ -237,6 +249,52 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             const tmBal = dataToken[1]
             const tmStakeBal = dataToken[2].tokenAmount
             const gearTokenPend = dataToken[3] !== null ? dataToken[3] : 0
+
+            let _reward2 = 0
+            if (Number(ethers.utils.formatEther(String(tmStakeBal))) < 800000) {
+                _reward2 = 0.15
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 800000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 900000) {
+                _reward2 = 0.85
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 900000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1000000) {
+                _reward2 = 0.95
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1200000) {
+                _reward2 = 1.00
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1300000) {
+                _reward2 = 1.05
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1300000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1400000) {
+                _reward2 = 1.10
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1400000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1500000) {
+                _reward2 = 1.15
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1500000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2000000) {
+                _reward2 = 1.20
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2100000) {
+                _reward2 = 1.25
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2100000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2200000) {
+                _reward2 = 1.30
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2300000) {
+                _reward2 = 1.35
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2300000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3000000) {
+                _reward2 = 1.50
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3100000) {
+                _reward2 = 1.55
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3100000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3200000) {
+                _reward2 = 1.60
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3300000) {
+                _reward2 = 1.65
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3300000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5000000) {
+                _reward2 = 1.80
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5100000) {
+                _reward2 = 1.85
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5100000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5200000) {
+                _reward2 = 1.90
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5300000) {
+                _reward2 = 1.95
+            } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5300000) {
+                _reward2 = 2.50
+            }
+
+            _allDaily += Number(ethers.utils.formatEther(String(_reward2 * 2314810000000 * 86400)))
+            _allReward += Number(ethers.utils.formatEther(String(gearTokenPend)))
 
             return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, ]
         }
@@ -285,12 +343,15 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'stake',
-                args: [_nftid],
+                args: [_nftid, 1],
             })
             const tx = await writeContract(config2)
             await tx.wait()
             setTxupdate(tx)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     
@@ -301,7 +362,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'unstake',
-                args: [_nftid, _unstake],
+                args: [_nftid, 1, _unstake],
             })
             const tx2 = await writeContract(config2)
             await tx2.wait()
@@ -344,14 +405,14 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
         }
         setisLoading(false)
     }
-    const unstaketoken = async () => {
+    const unstaketoken = async (_unstake) => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'unstake',
-                args: [0, 0, 1],
+                args: [0, 0, _unstake],
             })
             const tx = await writeContract(config)
             await tx.wait()
@@ -421,10 +482,53 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 <div style={{width: "95%", margin: "20px 10px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">TAOMEME STAKING</div>
                 <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                     <div className="nftCard" style={{position: "relative", margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}}>
-                        <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">Multiplier x0</div>
+                        <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">
+                            Multiplier&nbsp; 
+                            {tmStakedBalance < 800000 && 'x0.15'}
+                            {tmStakedBalance >= 800000 && tmStakedBalance < 900000 && 'x0.85'}
+                            {tmStakedBalance >= 900000 && tmStakedBalance < 1000000 && 'x0.95'}
+                            {tmStakedBalance >= 1000000 && tmStakedBalance < 1200000 && 'x1.00'}
+                            {tmStakedBalance >= 1200000 && tmStakedBalance < 1300000 && 'x1.05'}
+                            {tmStakedBalance >= 1300000 && tmStakedBalance < 1400000 && 'x1.10'}
+                            {tmStakedBalance >= 1400000 && tmStakedBalance < 1500000 && 'x1.15'}
+                            {tmStakedBalance >= 1500000 && tmStakedBalance < 2000000 && 'x1.20'}
+                            {tmStakedBalance >= 2000000 && tmStakedBalance < 2100000 && 'x1.25'}
+                            {tmStakedBalance >= 2100000 && tmStakedBalance < 2200000 && 'x1.30'}
+                            {tmStakedBalance >= 2200000 && tmStakedBalance < 2300000 && 'x1.35'}
+                            {tmStakedBalance >= 2300000 && tmStakedBalance < 3000000 && 'x1.50'}
+                            {tmStakedBalance >= 3000000 && tmStakedBalance < 3100000 && 'x1.55'}
+                            {tmStakedBalance >= 3100000 && tmStakedBalance < 3200000 && 'x1.60'}
+                            {tmStakedBalance >= 3200000 && tmStakedBalance < 3300000 && 'x1.65'}
+                            {tmStakedBalance >= 3300000 && tmStakedBalance < 5000000 && 'x1.80'}
+                            {tmStakedBalance >= 5000000 && tmStakedBalance < 5100000 && 'x1.85'}
+                            {tmStakedBalance >= 5100000 && tmStakedBalance < 5200000 && 'x1.90'}
+                            {tmStakedBalance >= 5200000 && tmStakedBalance < 5300000 && 'x1.95'}
+                            {tmStakedBalance >= 5300000 && 'x2.50'}
+                        </div>
                         <div style={{marginTop: "50px", width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <div>Required JTAO for Next Level of Multiplier:</div>
-                            <div className="bold">800,000</div>
+                            <div className="bold">
+                                {tmStakedBalance < 800000 && '800,000'}
+                                {tmStakedBalance >= 800000 && tmStakedBalance < 900000 && '900,000'}
+                                {tmStakedBalance >= 900000 && tmStakedBalance < 1000000 && '1,000,000'}
+                                {tmStakedBalance >= 1000000 && tmStakedBalance < 1200000 && '1,200,000'}
+                                {tmStakedBalance >= 1200000 && tmStakedBalance < 1300000 && '1,300,000'}
+                                {tmStakedBalance >= 1300000 && tmStakedBalance < 1400000 && '1,400,000'}
+                                {tmStakedBalance >= 1400000 && tmStakedBalance < 1500000 && '1,500,000'}
+                                {tmStakedBalance >= 1500000 && tmStakedBalance < 2000000 && '2,000,000'}
+                                {tmStakedBalance >= 2000000 && tmStakedBalance < 2100000 && '2,100,000'}
+                                {tmStakedBalance >= 2100000 && tmStakedBalance < 2200000 && '2,200,000'}
+                                {tmStakedBalance >= 2200000 && tmStakedBalance < 2300000 && '2,300,000'}
+                                {tmStakedBalance >= 2300000 && tmStakedBalance < 3000000 && '3,000,000'}
+                                {tmStakedBalance >= 3000000 && tmStakedBalance < 3100000 && '3,100,000'}
+                                {tmStakedBalance >= 3100000 && tmStakedBalance < 3200000 && '3,200,000'}
+                                {tmStakedBalance >= 3200000 && tmStakedBalance < 3300000 && '3,300,000'}
+                                {tmStakedBalance >= 3300000 && tmStakedBalance < 5000000 && '5,000,000'}
+                                {tmStakedBalance >= 5000000 && tmStakedBalance < 5100000 && '5,100,000'}
+                                {tmStakedBalance >= 5100000 && tmStakedBalance < 5200000 && '5,200,000'}
+                                {tmStakedBalance >= 5200000 && tmStakedBalance < 5300000 && '5,300,000'}
+                                {tmStakedBalance >= 5300000 && 'MAX'}
+                            </div>
                         </div>
                         <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                             <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
@@ -434,8 +538,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                     &nbsp;{gearTokenPending}
                                 </div>
                             </div>
-                            {false ?
-                                <div style={{lineHeight: 2}} className="button">HARVEST</div> :
+                            {tmStakedBalance !== 0 ?
+                                <div style={{lineHeight: 2}} className="button"  onClick={() => unstaketoken(false)}>HARVEST</div> :
                                 <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                             }
                         </div>
@@ -445,7 +549,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                 <div className="bold" style={{cursor: "pointer"}}>{tmStakedBalance}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "flex-end", marginBottom: "7.5px"}}>
-                                <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={unstaketoken}>Unstake</div>
+                                <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => unstaketoken(true)}>Unstake</div>
                             </div>
                         </div>
                         <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
@@ -465,12 +569,19 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </div>
                     <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "18px"}}>
+                        <div>TAOMEME PFP is coming soon!</div>
+                        <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}></div>
+                        {false &&
+                        <>
                         <div>TAOMEME PFP N1</div>
                         <img src='https://nftstorage.link/ipfs/bafybeibvvcappbfq4pw7hvtdwsaageoelga5vwpco3qffcrwzzsk2wxoau' width="250" alt="Can not load metadata." />
                         <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                             <div className="button" style={{fontSize: "14px"}}>MINT [8,888 JTAO]</div>
                             <div style={{alignSelf: "center", background: "gray", fontSize: "14px"}} className="button">UP RARITY</div>
                         </div>
+                        </>
+                        }
                     </div>
                 </div>
 
