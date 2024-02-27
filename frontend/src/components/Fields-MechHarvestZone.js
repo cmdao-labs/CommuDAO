@@ -6,10 +6,10 @@ import { ThreeDots } from 'react-loading-icons'
 
 const taodumNFT = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
 const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
-const gear = '0xB85765E3E9f2714d4C2d78CEEC1F6DEfd11D87DF'
+const gear = '0xF358406682b0F03C2a3EceBd469d0Ab46b95627F'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
+const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI }) => {
     const { address } = useAccount()
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -21,6 +21,12 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
     const [gearBalance, setGearBalance] = React.useState("0.000")
+
+    const [tmBalance, setTmBalance] = React.useState("0.000")
+    const [tmStakedBalance, setTmStakedBalance] = React.useState("0.000")
+    const [inputTM, setInputTM] = React.useState('')
+
+    const [gearTokenPending, setGearTokenPending] = React.useState("0.000")
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_nftid) => {
@@ -64,7 +70,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: gear,
-                        abi: tunaFieldABI,
+                        abi: gearFieldABI,
                         functionName: 'nftStake',
                         args: [String(item)],
                     }
@@ -94,7 +100,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
                 contracts: yournftstake.map((item) => (
                     {
                         address: gear,
-                        abi: tunaFieldABI,
+                        abi: gearFieldABI,
                         functionName: 'calculateRewards',
                         args: [String(item.Id)],
                     }
@@ -205,13 +211,34 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
-                    }
+                    },
+                    {
+                        address: taomeme,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: gear,
+                        abi: gearFieldABI,
+                        functionName: 'tokenStake',
+                        args: [address],
+                    },
+                    {
+                        address: gear,
+                        abi: gearFieldABI,
+                        functionName: 'calculateRewards',
+                        args: [0, address, false],
+                    },
                 ],
-            }) : [0]
+            }) : [0, 0, 0, ]
 
             const vaBal = dataToken[0]
+            const tmBal = dataToken[1]
+            const tmStakeBal = dataToken[2].tokenAmount
+            const gearTokenPend = dataToken[3] !== null ? dataToken[3] : 0
 
-            return [nfts, _allDaily, _allReward, vaBal]
+            return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, ]
         }
 
         const promise = thefetch()
@@ -228,9 +255,12 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
             setAllDaily(result[1])
             setAllReward(result[2])
             setGearBalance(ethers.utils.formatEther(String(result[3])))
+            setTmBalance(ethers.utils.formatEther(String(result[4])))
+            setTmStakedBalance(ethers.utils.formatEther(String(result[5])))
+            setGearTokenPending(ethers.utils.formatEther(String(result[6])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, tunaFieldABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, gearFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -253,7 +283,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
             }        
             const config2 = await prepareWriteContract({
                 address: gear,
-                abi: tunaFieldABI,
+                abi: gearFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
@@ -269,7 +299,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
         try {
             const config2 = await prepareWriteContract({
                 address: gear,
-                abi: tunaFieldABI,
+                abi: gearFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
@@ -277,6 +307,59 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
             await tx2.wait()
             setTxupdate(tx2)
         } catch {}
+        setisLoading(false)
+    }
+
+    const staketoken = async () => {
+        setisLoading(true)
+        try {
+            const allowed = await readContract({
+                address: taomeme,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, gear],
+            })
+            if (Number(ethers.utils.parseEther(String(inputTM))) > Number(allowed)) {
+                const config = await prepareWriteContract({
+                    address: taomeme,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [gear, ethers.constants.MaxUint256],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: gear,
+                abi: gearFieldABI,
+                functionName: 'stake',
+                args: [ethers.utils.parseEther(String(inputTM)), 0],
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const unstaketoken = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: gear,
+                abi: gearFieldABI,
+                functionName: 'unstake',
+                args: [0, 0, 1],
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -340,15 +423,15 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
                     <div className="nftCard" style={{position: "relative", margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}}>
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">Multiplier x0</div>
                         <div style={{marginTop: "50px", width: "100%", display: "flex", justifyContent: "space-between"}}>
-                            <div>Total JTAO Staking:</div>
-                            <div className="bold"></div>
+                            <div>Required JTAO for Next Level of Multiplier:</div>
+                            <div className="bold">800,000</div>
                         </div>
                         <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                             <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                 Pending Rewards<br></br>
                                 <div style={{display: "flex", alignItems: "center"}}>
                                     <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
-                                    &nbsp;{}
+                                    &nbsp;{gearTokenPending}
                                 </div>
                             </div>
                             {false ?
@@ -359,41 +442,25 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721
                         <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$JTAO STAKED</div>
-                                <div className="bold">{}</div>
+                                <div className="bold" style={{cursor: "pointer"}}>{tmStakedBalance}</div>
                             </div>
-                            <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                                <input
-                                    placeholder="0.0"
-                                    style={{width: "130px", padding: "5px 20px", border: "1px solid #dddade"}}
-                                    value={1}
-                                />
-                                <div
-                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
-                                    className="bold"
-                                >
-                                    Max
-                                </div>
-                                <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold">Unstake</div>
+                            <div style={{width: "100%", display: "flex", justifyContent: "flex-end", marginBottom: "7.5px"}}>
+                                <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={unstaketoken}>Unstake</div>
                             </div>
                         </div>
                         <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$JTAO BALANCE</div>
-                                <div className="bold">{}</div>
+                                <div className="bold" style={{cursor: "pointer"}} onClick={() => setInputTM(tmBalance)}>{tmBalance}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
                                     placeholder="0.0"
-                                    style={{width: "130px", padding: "5px 20px", border: "1px solid #dddade"}}
-                                    value={1}
+                                    style={{width: "170px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                    value={inputTM}
+                                    onChange={(event) => setInputTM(event.target.value)}
                                 />
-                                <div
-                                    style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
-                                    className="bold"
-                                >
-                                    Max
-                                </div>
-                                <div style={{letterSpacing: "1px", width: "50px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold">Stake</div>
+                                <div style={{letterSpacing: "1px", width: "50px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={staketoken}>Stake</div>
                             </div>
                         </div>
                     </div>

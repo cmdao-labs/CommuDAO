@@ -44,6 +44,7 @@ import aurora721ABI from './jsons/aurora721ABI.json'
 import tunaFieldABI from './jsons/tunaFieldABI.json'
 import woodFieldABI from './jsons/woodFieldABI.json'
 import thlFieldABI from './jsons/thlFieldABI.json'
+import gearFieldABI from './jsons/gearFieldABI.json'
 
 import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
@@ -307,7 +308,7 @@ const Main = () => {
                     <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
                     <></>
                 }
-                {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} />}
+                {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} />}
                 {mode === 2 ?
                     <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                     <></>
