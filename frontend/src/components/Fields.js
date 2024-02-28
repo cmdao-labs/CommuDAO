@@ -167,7 +167,7 @@ const Fields = ({ callMode, navigate }) => {
                             <div style={{marginLeft: "5px"}}>Gear</div>
                         </div>                    
                     </div>
-                    <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {/*callMode(100); navigate('/fields/mech-harvest-zone');*/}}>Go to Mech Harvest Zone</div>
+                    <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(100); navigate('/fields/mech-harvest-zone');}}>Go to Mech Harvest Zone</div>
                 </div>
             </div>
         </>

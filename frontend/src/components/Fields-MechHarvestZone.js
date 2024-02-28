@@ -263,8 +263,110 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         functionName: 'user',
                         args: [address, 3],
                     },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 4],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 5],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 6],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 7],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 8],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 9],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 10],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 11],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 12],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 13],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 14],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 15],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 16],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 17],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 18],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 19],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 20],
+                    },
                 ],
-            }) : [0, 0, 0, false, false, false, ]
+            }) : [0, 0, 0, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, ]
 
             const vaBal = dataToken[0]
             const tmBal = dataToken[1]
@@ -272,7 +374,41 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             const gearTokenPend = dataToken[3] !== null ? dataToken[3] : 0
 
             let PFPlv = 0
-            if (dataToken[6]) {
+            if (dataToken[23]) {
+                PFPlv = 20
+            } else if (dataToken[22]) {
+                PFPlv = 19
+            } else if (dataToken[21]) {
+                PFPlv = 18
+            } else if (dataToken[20]) {
+                PFPlv = 17
+            } else if (dataToken[19]) {
+                PFPlv = 16
+            } else if (dataToken[18]) {
+                PFPlv = 15
+            } else if (dataToken[17]) {
+                PFPlv = 14
+            } else if (dataToken[16]) {
+                PFPlv = 13
+            } else if (dataToken[15]) {
+                PFPlv = 12
+            } else if (dataToken[14]) {
+                PFPlv = 11
+            } else if (dataToken[13]) {
+                PFPlv = 10
+            } else if (dataToken[12]) {
+                PFPlv = 9
+            } else if (dataToken[11]) {
+                PFPlv = 8
+            } else if (dataToken[10]) {
+                PFPlv = 7
+            } else if (dataToken[9]) {
+                PFPlv = 6
+            } else if (dataToken[8]) {
+                PFPlv = 5
+            } else if (dataToken[7]) {
+                PFPlv = 4
+            } else if (dataToken[6]) {
                 PFPlv = 3
             } else if (dataToken[5]) {
                 PFPlv = 2
@@ -661,6 +797,168 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                 <img src='https://bafybeidqmml2tr67q6rp3sfkbc73lwrraljkex7sf3oandu2m4rpusem4m.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
                                 <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                     {Number(tmStakedBalance) >= 900000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(3)}>UP RARITY & MINT N3 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 3 &&
+                            <>
+                                <div>TAOMEME PFP N3</div>
+                                <img src='https://bafybeicchn4potn36niuoyhhphltmrljtddira3lwypgpszpzfvju3cpd4.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 1000000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(4)}>UP RARITY & MINT N4 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 4 &&
+                            <>
+                                <div>TAOMEME PFP N4</div>
+                                <img src='https://bafybeiaho4pgra7fhociid6zjaavaouctanwf3lxq2ngzujxf4yc2d4yye.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 1200000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(5)}>UP RARITY & MINT R1 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 5 &&
+                            <>
+                                <div>TAOMEME PFP R1</div>
+                                <img src='https://bafybeifyq72iygru2iml2hignbjbhn5ud4hsp2zhtfngmyupu754s7ia6y.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 1300000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(6)}>UP RARITY & MINT R2 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 6 &&
+                            <>
+                                <div>TAOMEME PFP R2</div>
+                                <img src='https://bafybeicrsr44aadklhu4q4gyzwrtlqbu7vlhf7eyrjdjhyxsfofphh6aiy.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 1400000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(7)}>UP RARITY & MINT R3 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 7 &&
+                            <>
+                                <div>TAOMEME PFP R3</div>
+                                <img src='https://bafybeihxvgzhliqnfhppoowu2m4mbb5s52stk52p6hdqawm5ygopxgbmya.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 1500000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(8)}>UP RARITY & MINT R4 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 8 &&
+                            <>
+                                <div>TAOMEME PFP R4</div>
+                                <img src='https://bafybeiaghsurj4l7xankdrvrv2whhhy5xasejzusvemstkcloqqbnpovmu.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 2000000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(9)}>UP RARITY & MINT SR1 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 9 &&
+                            <>
+                                <div>TAOMEME PFP SR1</div>
+                                <img src='https://bafybeicuitq5arbmqr5bf33cdrbupv5ojzjwb7jhrl2r4yooeeuoivveku.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 2100000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(10)}>UP RARITY & MINT SR2 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 10 &&
+                            <>
+                                <div>TAOMEME PFP SR2</div>
+                                <img src='https://bafybeihgnsufjnh75b6iw5cj6xaj5ut6z56l3yjrmfua6ogjywit7le2uq.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 2200000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(11)}>UP RARITY & MINT SR3 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 11 &&
+                            <>
+                                <div>TAOMEME PFP SR3</div>
+                                <img src='https://bafybeidzhdrsohkshimumcmwptuvk6fmow6gp3bzuaz44kyuktb5qurcia.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 2300000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(12)}>UP RARITY & MINT SR4 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 12 &&
+                            <>
+                                <div>TAOMEME PFP SR4</div>
+                                <img src='https://bafybeiagcciesftrj2rkbwyci5m4yaurj6nbtmkfyzkviecarq7f77525q.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 3000000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(13)}>UP RARITY & MINT SSR1 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 13 &&
+                            <>
+                                <div>TAOMEME PFP SSR1</div>
+                                <img src='https://bafybeihhbbdyizbpgnigvzo35asjf56ein5zr4goas2otx3mvmbfec2jzm.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 3100000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(14)}>UP RARITY & MINT SSR2 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 14 &&
+                            <>
+                                <div>TAOMEME PFP SSR2</div>
+                                <img src='https://bafybeifvulnv2zpqnj4bck3svyjxrgxuo5szubtncg7f6efgm6rby2nqfm.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 3200000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(15)}>UP RARITY & MINT SSR3 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 15 &&
+                            <>
+                                <div>TAOMEME PFP SSR3</div>
+                                <img src='https://bafybeicyfvc27ylis55sw7txg2lucthwvetrgeeydok722f7anxajobry4.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 3300000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(16)}>UP RARITY & MINT SSR4 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 16 &&
+                            <>
+                                <div>TAOMEME PFP SSR4</div>
+                                <img src='https://bafybeiafjelnvhz7r3f72xml6jvri3pvhtffrfmyzj5jlq7x5kybxwqohm.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 5000000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(17)}>UP RARITY & MINT UR1 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 17 &&
+                            <>
+                                <div>TAOMEME PFP UR1</div>
+                                <img src='https://bafybeiad3cagzwuu42ugdlhntmnh3kw3fnrpeahwmfn2avt5x2mnkbro4q.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 5100000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(18)}>UP RARITY & MINT UR2 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 18 &&
+                            <>
+                                <div>TAOMEME PFP UR2</div>
+                                <img src='https://bafybeihyiqdlq23yzo4zgqbi3hpvb5iy7yjiezdk2omyonz4p7bkgg27h4.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 5200000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(19)}>UP RARITY & MINT UR3 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 19 &&
+                            <>
+                                <div>TAOMEME PFP UR3</div>
+                                <img src='https://bafybeifttdfppv2cxwdrqve73ls6im7o4rh2utj6uxgvr6pl2w22fsfzti.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 5300000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(20)}>UP RARITY & MINT UR4 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 20 &&
+                            <>
+                                <div>TAOMEME PFP UR4</div>
+                                <img src='https://nftstorage.link/ipfs/bafybeicrn3zs6lsv63d7voxzwcqayc6mfva6n56rq2kyh3bf6u4le7baem' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    <div className="button" style={{fontSize: "14px", cursor: "not-allowed"}}>MAX</div>
                                 </div>
                             </>
                         }
