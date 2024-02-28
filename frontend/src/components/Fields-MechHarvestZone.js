@@ -459,7 +459,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 _reward2 = 250
             }
 
-            _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward2).mul(ethers.BigNumber.from(23148100000)).mul(ethers.BigNumber.from(86400)).mul(ethers.BigNumber.from(Number(ethers.utils.formatEther(String(tmStakeBal))))))))
+            _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward2).mul(ethers.BigNumber.from(23148100000)).mul(ethers.BigNumber.from(86400))))) * Number(ethers.utils.formatEther(String(tmStakeBal)))
             _allReward += Number(ethers.utils.formatEther(String(gearTokenPend)))
 
             return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, PFPlv, ]
