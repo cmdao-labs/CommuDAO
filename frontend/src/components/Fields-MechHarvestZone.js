@@ -6,12 +6,12 @@ import { ThreeDots } from 'react-loading-icons'
 
 const taodumNFT = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
 const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
-const gear = '0xfc7271bd661e49c99D98061e7b51F0FD099AE26b'
-const taoPFP = '0xf8eBd1D45404B332D6f4736538303503C39f71da'
+const gear = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
+const taoPFP = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
-    const { address } = useAccount()
+    const { address } = useAccount() 
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
@@ -133,7 +133,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     _reward = 250;
                 }
 
-                _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(8640000000000)))))
+                _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(86400000000)))))
                 _allReward += Number(ethers.utils.formatEther(String(data11[i])))
 
                 nfts.push({
@@ -142,7 +142,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(8640000000000))))),
+                    RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(86400000000))))),
                     isStaked: true,
                     Reward: String(data11[i]),
                 })
@@ -209,7 +209,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(8640000000000))))),
+                    RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(86400000000))))),
                     isStaked: false,
                     Reward: 0,
                 })
@@ -281,7 +281,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             }
 
             let _reward2 = 0
-            if (Number(ethers.utils.formatEther(String(tmStakeBal))) < 800000) {
+            if (Number(ethers.utils.formatEther(String(tmStakeBal))) > 0 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 800000) {
                 _reward2 = 15
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 800000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 900000) {
                 _reward2 = 85
@@ -323,7 +323,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 _reward2 = 250
             }
 
-            _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward2).mul(ethers.BigNumber.from(2314810000000)).mul(ethers.BigNumber.from(86400)))))
+            _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward2).mul(ethers.BigNumber.from(23148100000)).mul(ethers.BigNumber.from(86400)).mul(ethers.BigNumber.from(Number(ethers.utils.formatEther(String(tmStakeBal))))))))
             _allReward += Number(ethers.utils.formatEther(String(gearTokenPend)))
 
             return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, PFPlv, ]
@@ -477,7 +477,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             const config2 = await prepareWriteContract({
                 address: taoPFP,
                 abi: taoPfpABI,
-                functionName: 'claimAirdrop',
+                functionName: 'claimDrop',
                 args: [_lv],
             })
             const tx = await writeContract(config2)
@@ -524,21 +524,21 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}} className="emp">
-                            {Number(allDaily) > 0 ? Number(allDaily).toFixed(3) : 0}
+                            {Number(allDaily) > 0 ? Number(allDaily).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {Number(allReward) > 0 ? Number(allReward).toFixed(3) : 0}
+                            {Number(allReward) > 0 ? Number(allReward).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>GEAR BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {Number(gearBalance) > 0 ? Number(gearBalance).toFixed(3) : 0}
+                            {Number(gearBalance) > 0 ? Number(gearBalance).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
@@ -550,7 +550,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     <div className="nftCard" style={{position: "relative", margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}}>
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">
                             Multiplier&nbsp; 
-                            {tmStakedBalance < 800000 && 'x0.15'}
+                            {Number(tmStakedBalance) === 0 && 'x0.00'}
+                            {tmStakedBalance > 0 && tmStakedBalance < 800000 && 'x0.15'}
                             {tmStakedBalance >= 800000 && tmStakedBalance < 900000 && 'x0.85'}
                             {tmStakedBalance >= 900000 && tmStakedBalance < 1000000 && 'x0.95'}
                             {tmStakedBalance >= 1000000 && tmStakedBalance < 1200000 && 'x1.00'}
@@ -574,7 +575,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         <div style={{marginTop: "50px", width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <div>Required JTAO for Next Level of Multiplier:</div>
                             <div className="bold">
-                                {tmStakedBalance < 800000 && '800,000'}
+                                {Number(tmStakedBalance) === 0 && '>0'}
+                                {tmStakedBalance > 0 && tmStakedBalance < 800000 && '800,000'}
                                 {tmStakedBalance >= 800000 && tmStakedBalance < 900000 && '900,000'}
                                 {tmStakedBalance >= 900000 && tmStakedBalance < 1000000 && '1,000,000'}
                                 {tmStakedBalance >= 1000000 && tmStakedBalance < 1200000 && '1,200,000'}
