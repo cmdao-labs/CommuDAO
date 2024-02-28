@@ -6,10 +6,11 @@ import { ThreeDots } from 'react-loading-icons'
 
 const taodumNFT = '0x2036186F6d5287FcB05C56C38374AC5236d8A61d'
 const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
-const gear = '0xdCbe8EdAbCe8a19B201B09206536C34435ec3921'
+const gear = '0xfc7271bd661e49c99D98061e7b51F0FD099AE26b'
+const taoPFP = '0xf8eBd1D45404B332D6f4736538303503C39f71da'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI }) => {
+const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
     const { address } = useAccount()
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -27,6 +28,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
     const [inputTM, setInputTM] = React.useState('')
 
     const [gearTokenPending, setGearTokenPending] = React.useState("0.000")
+
+    const [pfpLevel, setPfpLevel] = React.useState(0)
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_nftid) => {
@@ -242,13 +245,24 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         functionName: 'calculateRewards',
                         args: [0, address, false],
                     },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 1],
+                    },
                 ],
-            }) : [0, 0, 0, ]
+            }) : [0, 0, 0, false, ]
 
             const vaBal = dataToken[0]
             const tmBal = dataToken[1]
             const tmStakeBal = dataToken[2].tokenAmount
             const gearTokenPend = dataToken[3] !== null ? dataToken[3] : 0
+
+            let PFPlv = 0
+            if (dataToken[4]) {
+                PFPlv = 1
+            }
 
             let _reward2 = 0
             if (Number(ethers.utils.formatEther(String(tmStakeBal))) < 800000) {
@@ -296,7 +310,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             _allDaily += Number(ethers.utils.formatEther(String(_reward2 * 2314810000000 * 86400)))
             _allReward += Number(ethers.utils.formatEther(String(gearTokenPend)))
 
-            return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, ]
+            return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, PFPlv, ]
         }
 
         const promise = thefetch()
@@ -316,9 +330,10 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             setTmBalance(ethers.utils.formatEther(String(result[4])))
             setTmStakedBalance(ethers.utils.formatEther(String(result[5])))
             setGearTokenPending(ethers.utils.formatEther(String(result[6])))
+            setPfpLevel(result[7])
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, gearFieldABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -424,6 +439,41 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
         setisLoading(false)
     }
 
+    const mintPFP = async (_lv) => {
+        setisLoading(true)
+        try {
+            const allowed = await readContract({
+                address: taomeme,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, taoPFP],
+            })
+            if (Number(ethers.utils.parseEther(String(8888))) > Number(allowed)) {
+                const config = await prepareWriteContract({
+                    address: taomeme,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [taoPFP, ethers.constants.MaxUint256],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const config2 = await prepareWriteContract({
+                address: taoPFP,
+                abi: taoPfpABI,
+                functionName: 'claimAirdrop',
+                args: [_lv],
+            })
+            const tx = await writeContract(config2)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
     return (
         <>
             {isTransferModal ?
@@ -458,21 +508,21 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}} className="emp">
-                            {Number(allDaily) > 0 ? allDaily.toFixed(3) : 0}
+                            {Number(allDaily) > 0 ? Number(allDaily).toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {Number(allReward) > 0 ? allReward.toFixed(3) : 0}
+                            {Number(allReward) > 0 ? Number(allReward).toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>GEAR BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {Number(gearBalance) > 0 ? gearBalance.toFixed(3) : 0}
+                            {Number(gearBalance) > 0 ? Number(gearBalance).toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                         </div>
                     </div>
@@ -546,7 +596,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$JTAO STAKED</div>
-                                <div className="bold" style={{cursor: "pointer"}}>{tmStakedBalance}</div>
+                                <div className="bold">{tmStakedBalance}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "flex-end", marginBottom: "7.5px"}}>
                                 <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => unstaketoken(true)}>Unstake</div>
@@ -569,18 +619,23 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </div>
                     <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "18px"}}>
-                        <div>TAOMEME PFP is coming soon!</div>
-                        <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}></div>
-                        {false &&
-                        <>
-                        <div>TAOMEME PFP N1</div>
-                        <img src='https://nftstorage.link/ipfs/bafybeibvvcappbfq4pw7hvtdwsaageoelga5vwpco3qffcrwzzsk2wxoau' width="250" alt="Can not load metadata." />
-                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                            <div className="button" style={{fontSize: "14px"}}>MINT [8,888 JTAO]</div>
-                            <div style={{alignSelf: "center", background: "gray", fontSize: "14px"}} className="button">UP RARITY</div>
-                        </div>
-                        </>
+                        {pfpLevel === 0 &&
+                            <>
+                                <div>TAOMEME PFP</div>
+                                <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) > 0 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(1)}>UP RARITY & MINT N1 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 1 &&
+                            <>
+                                <div>TAOMEME PFP N1</div>
+                                <img src='https://nftstorage.link/ipfs/bafybeibvvcappbfq4pw7hvtdwsaageoelga5vwpco3qffcrwzzsk2wxoau' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 800000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(2)}>UP RARITY & MINT N2 [8,888 JTAO]</div>}
+                                </div>
+                            </>
                         }
                     </div>
                 </div>
