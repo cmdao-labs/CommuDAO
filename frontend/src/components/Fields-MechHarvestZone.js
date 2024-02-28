@@ -541,6 +541,16 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
     const staketoken = async () => {
         setisLoading(true)
         try {
+            if (tmStakedBalance > 0) {
+                const config0 = await prepareWriteContract({
+                    address: gear,
+                    abi: gearFieldABI,
+                    functionName: 'unstake',
+                    args: [0, 0, 0],
+                })
+                const tx0 = await writeContract(config0)
+                await tx0.wait()
+            }
             const allowed = await readContract({
                 address: taomeme,
                 abi: erc20ABI,
