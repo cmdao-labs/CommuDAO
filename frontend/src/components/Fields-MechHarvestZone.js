@@ -116,7 +116,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 const nftipfs = data1[i]
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const response = await fetch(nftipfs)
                     nft = await response.json()
                 } catch {}
 
@@ -133,16 +133,16 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     _reward = 250;
                 }
 
-                _allDaily += Number(ethers.utils.formatEther(String(_reward * 372756008454 * 8640000000000)))
+                _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(8640000000000)))))
                 _allReward += Number(ethers.utils.formatEther(String(data11[i])))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name + " [" + yournftstake[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 372756008454 * 8640000000000))),
+                    RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(8640000000000))))),
                     isStaked: true,
                     Reward: String(data11[i]),
                 })
@@ -186,18 +186,18 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 const nftipfs = data3[i]
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const response = await fetch(nftipfs)
                     nft = await response.json()
                 } catch {}
 
                 let _reward = 0
-                if (Number(yournftstake[i].Id.slice(0, 3)) >= 271) {
+                if (Number(yournftwallet[i].Id.slice(0, 3)) >= 271) {
                     _reward = 100;
-                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 146) {
+                } else if (Number(yournftwallet[i].Id.slice(0, 3)) >= 146) {
                     _reward = 120;
-                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 77) {
+                } else if (Number(yournftwallet[i].Id.slice(0, 3)) >= 77) {
                     _reward = 150;
-                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 23) {
+                } else if (Number(yournftwallet[i].Id.slice(0, 3)) >= 23) {
                     _reward = 180;
                 } else {
                     _reward = 250;
@@ -206,10 +206,10 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 nfts.push({
                     Id: yournftwallet[i].Id,
                     Name: nft.name + " [" + yournftwallet[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 372756008454 * 8640000000000))),
+                    RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(8640000000000))))),
                     isStaked: false,
                     Reward: 0,
                 })
@@ -266,48 +266,48 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
 
             let _reward2 = 0
             if (Number(ethers.utils.formatEther(String(tmStakeBal))) < 800000) {
-                _reward2 = 0.15
+                _reward2 = 15
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 800000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 900000) {
-                _reward2 = 0.85
+                _reward2 = 85
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 900000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1000000) {
-                _reward2 = 0.95
+                _reward2 = 95
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1200000) {
-                _reward2 = 1.00
+                _reward2 = 100
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1300000) {
-                _reward2 = 1.05
+                _reward2 = 105
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1300000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1400000) {
-                _reward2 = 1.10
+                _reward2 = 110
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1400000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 1500000) {
-                _reward2 = 1.15
+                _reward2 = 115
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 1500000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2000000) {
-                _reward2 = 1.20
+                _reward2 = 120
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2100000) {
-                _reward2 = 1.25
+                _reward2 = 125
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2100000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2200000) {
-                _reward2 = 1.30
+                _reward2 = 130
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 2300000) {
-                _reward2 = 1.35
+                _reward2 = 135
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 2300000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3000000) {
-                _reward2 = 1.50
+                _reward2 = 150
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3100000) {
-                _reward2 = 1.55
+                _reward2 = 155
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3100000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3200000) {
-                _reward2 = 1.60
+                _reward2 = 160
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 3300000) {
-                _reward2 = 1.65
+                _reward2 = 165
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 3300000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5000000) {
-                _reward2 = 1.80
+                _reward2 = 180
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5000000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5100000) {
-                _reward2 = 1.85
+                _reward2 = 185
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5100000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5200000) {
-                _reward2 = 1.90
+                _reward2 = 190
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5200000 && Number(ethers.utils.formatEther(String(tmStakeBal))) < 5300000) {
-                _reward2 = 1.95
+                _reward2 = 195
             } else if (Number(ethers.utils.formatEther(String(tmStakeBal))) >= 5300000) {
-                _reward2 = 2.50
+                _reward2 = 250
             }
 
-            _allDaily += Number(ethers.utils.formatEther(String(_reward2 * 2314810000000 * 86400)))
+            _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward2).mul(ethers.BigNumber.from(2314810000000)).mul(ethers.BigNumber.from(86400)))))
             _allReward += Number(ethers.utils.formatEther(String(gearTokenPend)))
 
             return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, PFPlv, ]
