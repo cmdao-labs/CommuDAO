@@ -251,8 +251,20 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         functionName: 'user',
                         args: [address, 1],
                     },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 2],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 3],
+                    },
                 ],
-            }) : [0, 0, 0, false, ]
+            }) : [0, 0, 0, false, false, false, ]
 
             const vaBal = dataToken[0]
             const tmBal = dataToken[1]
@@ -260,7 +272,11 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             const gearTokenPend = dataToken[3] !== null ? dataToken[3] : 0
 
             let PFPlv = 0
-            if (dataToken[4]) {
+            if (dataToken[6]) {
+                PFPlv = 3
+            } else if (dataToken[5]) {
+                PFPlv = 2
+            } else if (dataToken[4]) {
                 PFPlv = 1
             }
 
@@ -634,6 +650,15 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                 <img src='https://nftstorage.link/ipfs/bafybeibvvcappbfq4pw7hvtdwsaageoelga5vwpco3qffcrwzzsk2wxoau' width="250" alt="Can not load metadata." />
                                 <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                     {Number(tmStakedBalance) >= 800000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(2)}>UP RARITY & MINT N2 [8,888 JTAO]</div>}
+                                </div>
+                            </>
+                        }
+                        {pfpLevel === 2 &&
+                            <>
+                                <div>TAOMEME PFP N2</div>
+                                <img src='https://bafybeidqmml2tr67q6rp3sfkbc73lwrraljkex7sf3oandu2m4rpusem4m.ipfs.nftstorage.link' width="250" alt="Can not load metadata." />
+                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    {Number(tmStakedBalance) >= 900000 && <div className="button" style={{fontSize: "14px"}} onClick={() => mintPFP(3)}>UP RARITY & MINT N3 [8,888 JTAO]</div>}
                                 </div>
                             </>
                         }
