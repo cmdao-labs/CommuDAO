@@ -11,7 +11,7 @@ const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
-    const { address } = useAccount() 
+    const { address } = useAccount()
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
@@ -121,13 +121,13 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 } catch {}
 
                 let _reward = 0
-                if (Number(yournftstake[i].Id.slice(0, 3)) >= 271) {
+                if (Number(Number(yournftstake[i].Id) / 1e5).toFixed(0) >= 271) {
                     _reward = 100;
-                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 146) {
+                } else if (Number(Number(yournftstake[i].Id) / 1e5).toFixed(0) >= 146) {
                     _reward = 120;
-                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 77) {
+                } else if (Number(Number(yournftstake[i].Id) / 1e5).toFixed(0) >= 77) {
                     _reward = 150;
-                } else if (Number(yournftstake[i].Id.slice(0, 3)) >= 23) {
+                } else if (Number(Number(yournftstake[i].Id) / 1e5).toFixed(0) >= 23) {
                     _reward = 180;
                 } else {
                     _reward = 250;
@@ -191,13 +191,13 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 } catch {}
 
                 let _reward = 0
-                if (Number(yournftwallet[i].Id.slice(0, 3)) >= 271) {
+                if (Number(Number(yournftwallet[i].Id) / 1e5).toFixed(0) >= 271) {
                     _reward = 100;
-                } else if (Number(yournftwallet[i].Id.slice(0, 3)) >= 146) {
+                } else if (Number(Number(yournftwallet[i].Id) / 1e5).toFixed(0) >= 146) {
                     _reward = 120;
-                } else if (Number(yournftwallet[i].Id.slice(0, 3)) >= 77) {
+                } else if (Number(Number(yournftwallet[i].Id) / 1e5).toFixed(0) >= 77) {
                     _reward = 150;
-                } else if (Number(yournftwallet[i].Id.slice(0, 3)) >= 23) {
+                } else if (Number(Number(yournftwallet[i].Id) / 1e5).toFixed(0) >= 23) {
                     _reward = 180;
                 } else {
                     _reward = 250;
@@ -749,7 +749,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                 Pending Rewards<br></br>
                                 <div style={{display: "flex", alignItems: "center"}}>
                                     <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
-                                    &nbsp;{gearTokenPending}
+                                    &nbsp;{Number(gearTokenPending).toLocaleString('en-US', {minimumFractionDigits:0})}
                                 </div>
                             </div>
                             {tmStakedBalance !== 0 ?
@@ -760,7 +760,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$JTAO STAKED</div>
-                                <div className="bold">{tmStakedBalance}</div>
+                                <div className="bold">{Number(tmStakedBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "flex-end", marginBottom: "7.5px"}}>
                                 <div style={{letterSpacing: "1px", width: "70px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => unstaketoken(true)}>Unstake</div>
@@ -769,7 +769,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                         <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$JTAO BALANCE</div>
-                                <div className="bold" style={{cursor: "pointer"}} onClick={() => setInputTM(tmBalance)}>{tmBalance}</div>
+                                <div className="bold" style={{cursor: "pointer"}} onClick={() => setInputTM(tmBalance)}>{Number(tmBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -999,7 +999,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                         }
                                     </div>
                                     <div>
-                                        Earn: {Number(item.RewardPerSec).toFixed(4)}
+                                        Earn: {Number(item.RewardPerSec).toLocaleString('en-US', {maximumFractionDigits:3})}
                                         &nbsp;
                                         <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
                                         &nbsp;GEAR/DAY
@@ -1009,7 +1009,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                             Pending Rewards<br></br>
                                             <div style={{display: "flex", alignItems: "center"}}>
                                                 <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
-                                                &nbsp;{ethers.utils.formatEther(String(item.Reward))}
+                                                &nbsp;{Number(ethers.utils.formatEther(String(item.Reward))).toLocaleString('en-US', {minimumFractionDigits:0})}
                                             </div>
                                         </div>
                                         {item.Reward > 0 ?
