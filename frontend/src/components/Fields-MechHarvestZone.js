@@ -665,7 +665,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             </div>
 
             <div style={{margin: "0", paddingTop: "40px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
-                <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "14px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TAODUM ON WALLET</div>
                         <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
@@ -748,7 +748,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                             </div>
                         </div>
                         <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                            <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
+                            <div style={{lineHeight: 1.5, fontSize: "14px", textAlign: "left"}}>
                                 Pending Rewards<br></br>
                                 <div style={{display: "flex", alignItems: "center"}}>
                                     <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
@@ -1008,7 +1008,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                                         &nbsp;GEAR/DAY
                                     </div>
                                     <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                        <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
+                                        <div style={{lineHeight: 1.5, fontSize: "14px", textAlign: "left"}}>
                                             Pending Rewards<br></br>
                                             <div style={{display: "flex", alignItems: "center"}}>
                                                 <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="12" alt="$GEAR"/>
