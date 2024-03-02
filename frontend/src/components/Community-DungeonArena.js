@@ -128,7 +128,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             }
 
             const pvpFilter = await pvpSC.filters.Fight(null, null, null, null, null, null)
-            const pvpEvent = await pvpSC.queryFilter(pvpFilter, 1140392, "latest")
+            const pvpEvent = await pvpSC.queryFilter(pvpFilter, 2823000, "latest")
             const pvpMap = await Promise.all(pvpEvent.map(async (obj, index) => {
                 return {blockNum: Number(obj.blockNumber), cha1: String(obj.args.challenger1), cha2: String(obj.args.challenger2), cmpow1: Number(obj.args.cmpow1), cmpow2: Number(obj.args.cmpow2), rand1: Number(obj.args.random1), rand2: Number(obj.args.random2)}
             }))
@@ -593,8 +593,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             </div>
         </div>
 
-        <div style={{background: "rgb(0, 19, 33)", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", marginBottom: "50px", padding: "25px 50px", border: "none", minWidth: "880px", width: "55%", height: "400px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+        <div style={{background: "rgb(0, 19, 33)", margin: "0", padding: "75px 0", minHeight: "inherit", flexFlow: "row wrap", alignItems: "flex-start", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll">
+            <div style={{background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", margin: "50px", padding: "25px 50px", border: "none", minWidth: "880px", width: "55%", height: "400px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
                 <div style={{fontSize: "22.5px", color: "#fff", marginBottom: "30px"}} className="pixel">Battle Logs</div>
                 {battleHx.length > 0 ?
                     <>
@@ -624,7 +624,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 }
             </div>
 
-            <div style={{width: "40%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
+            <div style={{width: "800px", marginLeft: "50px", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
                 <div className="pixel" style={{fontSize: "22.5px", width: "fit-content", marginBottom: "20px"}}>KYC Challengers In Dungeon</div>
                 <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", justifyContent: "space-around", padding: "20px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">                    
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
@@ -758,7 +758,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 </div>
             </div>
             
-            <div style={{width: "40%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
+            <div style={{width: "800px", marginLeft: "50px", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{marginTop: "65px", backgroundColor: "#1C2024", border: "none", color: "#fff", justifyContent: "space-around", padding: "20px 0", width: "600px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">                    
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlot !== null ?
