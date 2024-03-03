@@ -7,7 +7,7 @@ const meowToken = '0x04052384166fC30D03929eE328805eC084776843'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const degenoMeow = '0xdB16eCc5d2c27F67B4a4dc1e25f1e6e20BAcAFD0'
 
-const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
+const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)
@@ -341,10 +341,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                     <div style={{maxHeight: "75px"}}>
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"BUY/SELL ${gasselected} - 5% TAX"</div>
-                        <div style={{fontSize: "14px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
-                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="12" alt="$MEOW"/>
-                            <div style={{marginLeft: "5px"}}>{gasselected === "MEOW" ? Number(meowBalance).toFixed(4) : ""}</div>
-                        </div>
                         <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
@@ -360,20 +356,26 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         </div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder={"0 $" + gasselected}
-                        onChange={(event) => {
-                            if (gasselected === "MEOW") {
-                                handleSwapMEOW(event)
-                            }
-                        }}
-                        value={inputSwap}
-                    ></input>
+                    <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <input
+                            style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder={"0 $" + gasselected}
+                            onChange={(event) => {
+                                if (gasselected === "MEOW") {
+                                    handleSwapMEOW(event)
+                                }
+                            }}
+                            value={inputSwap}
+                        ></input>
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleSwapMEOW(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
+                            <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                         {address !== null && address !== undefined ?
                             <div style={{width: "30px"}} className="pixel button" onClick={
@@ -387,7 +389,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         }
                         <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                             <div className="emp">
-                                {gasselected === "MEOW" ? cmjBoughtMEOW : ''}
+                                {gasselected === "MEOW" && Number(cmjBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
                             </div>
                             $CMJ (
                                 {gasselected === "MEOW" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjMeow) - ((Number(reserveCmjMeow) * Number(reserveMeow)) / (Number(reserveMeow) + Number(inputSwap))))) - (Number(reserveMeow/reserveCmjMeow))) / (Number(reserveMeow/reserveCmjMeow))) * 100)).toFixed(2)}%</>}
@@ -396,20 +398,26 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         </div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder="0 $CMJ"
-                        onChange={(event) => {
-                            if (gasselected === "MEOW") {
-                                handleSwapMEOW_2(event)
-                            }
-                        }}
-                        value={inputSwap2}
-                    ></input>
+                    <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <input
+                            style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder="0 $CMJ"
+                            onChange={(event) => {
+                                if (gasselected === "MEOW") {
+                                    handleSwapMEOW_2(event)
+                                }
+                            }}
+                            value={inputSwap2}
+                        ></input>
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleSwapMEOW_2(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                            <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                         {address !== null && address !== undefined ?
                             <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
@@ -423,7 +431,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         }
                         <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                             <div style={{color: "#67BAA7"}}>
-                                {gasselected === "MEOW" ? tokenBoughtMEOW : ''}
+                                {gasselected === "MEOW" && Number(tokenBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
                             </div>
                             ${gasselected} ( 
                                 {gasselected === "MEOW" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveMeow) - ((Number(reserveMeow) * Number(reserveCmjMeow)) / (Number(reserveCmjMeow) + Number(inputSwap2))))) - (Number(reserveCmjMeow/reserveMeow))) / (Number(reserveCmjMeow/reserveMeow))) * 100)).toFixed(2)}%</>}
@@ -439,16 +447,12 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                     <div style={{maxHeight: "75px"}}>
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"ADD/REMOVE {gasselected}-CMJ LP"</div>
-                        <div style={{fontSize: "14px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
-                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="12" alt="$MEOW"/>
-                            <div style={{marginLeft: "5px"}}>{gasselected === "MEOW" ? Number(meowBalance).toFixed(4) : ""}</div>
-                        </div>
                         <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                     <option value="MEOW">MEOW</option>
                                 </select>
-                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center"}} className="pixel">
+                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setMeowLpSell(meowLpBalance)}>
                                     {gasselected === "MEOW" ? <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(meowLpBalance).toFixed(4)}</div></> : ''}
                                 </div>
                             </div>
@@ -461,35 +465,47 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                         <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={removeMeowLp}>REMOVE</div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder={"0 $" + gasselected}
-                        onChange={(event) => {
-                            if (gasselected === "MEOW") {
-                                handleAddMeow(event)
-                            }
-                        }}
-                        value={meowAdd}
-                    ></input>
+                    <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <input
+                            style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder={"0 $" + gasselected}
+                            onChange={(event) => {
+                                if (gasselected === "MEOW") {
+                                    handleAddMeow(event)
+                                }
+                            }}
+                            value={meowAdd}
+                        ></input>
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleAddMeow(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
+                            <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    </div>
                     <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
-                    <input
-                        style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                        className="bold"
-                        type="number"
-                        step="1"
-                        min="1"
-                        placeholder="0 $CMJ"
-                        onChange={(event) => {
-                            if (gasselected === "MEOW") {
-                                handleAddMeow2(event)
-                            }
-                        }}
-                        value={cmjAdd}
-                    ></input>
+                    <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <input
+                            style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                            className="bold"
+                            type="number"
+                            step="1"
+                            min="1"
+                            placeholder="0 $CMJ"
+                            onChange={(event) => {
+                                if (gasselected === "MEOW") {
+                                    handleAddMeow2(event)
+                                }
+                            }}
+                            value={cmjAdd}
+                        ></input>
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddMeow2(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                            <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                         {address !== null && address !== undefined ?
                             <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
