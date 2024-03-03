@@ -7,7 +7,7 @@ const swarToken = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 const wjbcToken = '0xC4B7C87510675167643e3DE6EEeD4D2c06A9e747'
 const angeloSWAR = '0x5a9E35fC4Afc21B9Fc74bE18015D4D3B002A83A3'
 
-const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => {
+const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI, swarBalance, wjbcBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)
@@ -353,20 +353,28 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                             </div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder={"0 $" + gasselected}
-                            onChange={(event) => {
-                                if (gasselected === "SWAR") {
-                                    handleSwapSWAR(event)
-                                }
-                            }}
-                            value={inputSwap}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder={"0 $" + gasselected}
+                                onChange={(event) => {
+                                    if (gasselected === "SWAR") {
+                                        handleSwapSWAR(event)
+                                    }
+                                }}
+                                value={inputSwap}
+                            ></input>
+                            {gasselected === "SWAR" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: swarBalance}}; handleSwapSWAR(bal);}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" width="22" alt="$SWAR"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                        </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
@@ -380,7 +388,7 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                             }
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div className="emp">
-                                    {gasselected === "SWAR" ? wjbcBoughtSWAR : ''}
+                                    {gasselected === "SWAR" && Number(wjbcBoughtSWAR).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $WJBC (
                                     {gasselected === "SWAR" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveWjbcSwar) - ((Number(reserveWjbcSwar) * Number(reserveSwar)) / (Number(reserveSwar) + Number(inputSwap))))) - (Number(reserveSwar/reserveWjbcSwar))) / (Number(reserveSwar/reserveWjbcSwar))) * 100)).toFixed(2)}%</>}
@@ -389,20 +397,34 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                             </div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder="0 $WJBC"
-                            onChange={(event) => {
-                                if (gasselected === "SWAR") {
-                                    handleSwapSWAR_2(event)
-                                }
-                            }}
-                            value={inputSwap2}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder="0 $WJBC"
+                                onChange={(event) => {
+                                    if (gasselected === "SWAR") {
+                                        handleSwapSWAR_2(event)
+                                    }
+                                }}
+                                value={inputSwap2}
+                            ></input>
+                            <div
+                                style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
+                                onClick={() => {
+                                    const bal = {target: {value: wjbcBalance}};
+                                    if (gasselected === "SWAR") {
+                                        handleSwapSWAR_2(bal)
+                                    }
+                                }}
+                            >
+                                <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
@@ -416,7 +438,7 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                             }
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div style={{color: "#67BAA7"}}>
-                                    {gasselected === "SWAR" ? tokenBoughtSWAR : ''}
+                                    {gasselected === "SWAR" && Number(tokenBoughtSWAR).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 ${gasselected} ( 
                                     {gasselected === "SWAR" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveSwar) - ((Number(reserveSwar) * Number(reserveWjbcSwar)) / (Number(reserveWjbcSwar) + Number(inputSwap2))))) - (Number(reserveWjbcSwar/reserveSwar))) / (Number(reserveWjbcSwar/reserveSwar))) * 100)).toFixed(2)}%</>}
@@ -437,7 +459,7 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="SWAR">SWAR</option>
                                     </select>
-                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center"}} className="pixel">
+                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setSwarLpSell(swarLpBalance)}>
                                         {gasselected === "SWAR" ? <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(swarLpBalance).toFixed(4)}</div></> : ''}
                                     </div>
                                 </div>
@@ -450,35 +472,47 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, erc20ABI }) => 
                             <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={removeSwarLp}>REMOVE</div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder={"0 $" + gasselected}
-                            onChange={(event) => {
-                                if (gasselected === "SWAR") {
-                                    handleAddSwar(event)
-                                }
-                            }}
-                            value={swarAdd}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder={"0 $" + gasselected}
+                                onChange={(event) => {
+                                    if (gasselected === "SWAR") {
+                                        handleAddSwar(event)
+                                    }
+                                }}
+                                value={swarAdd}
+                            ></input>
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(swarBalance)}}; handleAddSwar(bal);}}>
+                                <img src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" width="22" alt="$SWAR"/>
+                                <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder="0 $WJBC"
-                            onChange={(event) => {
-                                if (gasselected === "SWAR") {
-                                    handleAddSwar2(event)
-                                }
-                            }}
-                            value={wjbcSwarAdd}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder="0 $WJBC"
+                                onChange={(event) => {
+                                    if (gasselected === "SWAR") {
+                                        handleAddSwar2(event)
+                                    }
+                                }}
+                                value={wjbcSwarAdd}
+                            ></input>
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: wjbcBalance}}; handleAddSwar2(bal);}}>
+                                <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
