@@ -3971,7 +3971,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ██████╦╝██████╔╝  ██████╦╝╚█████╔╝╚█████╔╝░░░██║░░░██████╔╝
                                             ╚═════╝░╚═════╝░  ╚═════╝░░╚════╝░░╚════╝░░░░╚═╝░░░╚═════╝░
                                             */}
-                                            {String(item.Id).slice(0, 3) === "611" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 9250 &&
+                                            {String(item.Id).slice(0, 3) === "611" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 11200 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -4073,6 +4073,12 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             <div>
                                                                 <img src="https://bafybeiadnmpj4tqij4fwiirvccaldqychsmbaspxs42a7yjjg2vupoabgq.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 9250 &&
+                                                            <div>
+                                                                <img src="https://bafybeihccfbtxewve5n4lr275vsglgwofd7izbhgb37i2lfvgrbeph2trm.ipfs.nftstorage.link" width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
                                                     </div>
@@ -4338,6 +4344,18 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 <div>
                                                                     <div>Level 5</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 1750} cmpow per sec</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 9250 &&
+                                                            <>
+                                                                <div>
+                                                                    <div>Level 5</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>Level 6</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 1950} cmpow per sec</div>
                                                                 </div>
                                                             </>
                                                         }
@@ -4616,6 +4634,18 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div style={{margin: "0 5px"}}>600</div>
                                                                 </>
                                                             }
+                                                            {Number(item.Id) % 100000 === 9250 &&
+                                                                <>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                    <div style={{margin: "0 5px"}}>1240</div>
+                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                    <div style={{margin: "0 5px"}}>45</div>
+                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                                    <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                    <div style={{margin: "0 5px"}}>650</div>
+                                                                </>
+                                                            }
                                                         </div>
                                                     </div>
                                                     {(Number(item.Id) % 100000 === 550 || Number(item.Id) % 100000 === 1450 || Number(item.Id) % 100000 === 2650 || Number(item.Id) % 100000 === 1050 || Number(item.Id) % 100000 === 2750 || Number(item.Id) % 100000 === 5250 || Number(item.Id) % 100000 === 8550 || Number(item.Id) % 100000 === 2550 || Number(item.Id) % 100000 === 4600 || Number(item.Id) % 100000 === 7500) &&
@@ -4627,7 +4657,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             <div>(depend on parent blockhash calculation)</div>
                                                         </div>
                                                     }
-                                                    {(Number(item.Id) % 100000 === 950 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 || Number(item.Id) % 100000 === 3900 || Number(item.Id) % 100000 === 6800 || Number(item.Id) % 100000 === 10500 || Number(item.Id) % 100000 === 3450 || Number(item.Id) % 100000 === 5950) &&
+                                                    {(Number(item.Id) % 100000 === 950 || Number(item.Id) % 100000 === 2000 || Number(item.Id) % 100000 === 3400 || Number(item.Id) % 100000 === 1800 || Number(item.Id) % 100000 === 3900 || Number(item.Id) % 100000 === 6800 || Number(item.Id) % 100000 === 10500 || Number(item.Id) % 100000 === 3450 || Number(item.Id) % 100000 === 5950 || Number(item.Id) % 100000 === 9250) &&
                                                         <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
                                                             <div className="emp">
                                                                 <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
@@ -4684,6 +4714,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                 enchantRHandle3(item.Id, 104)
                                                             } else if (Number(item.Id) % 100000 === 7500) {
                                                                 enchantRHandle3(item.Id, 105)
+                                                            } else if (Number(item.Id) % 100000 === 9250) {
+                                                                enchantRHandle3(item.Id, 106)
                                                             }
                                                         }}
                                                     >
