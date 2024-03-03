@@ -53,6 +53,7 @@ import sx31LabABI from './jsons/sx31LabABI.json'
 import bbqLab01ABI from './jsons/bbqLab01ABI.json'
 import bbqLab02ABI from './jsons/bbqLab02ABI.json'
 import pzaLabABI from './jsons/pzaLabABI.json'
+import cmdao20lab01ABI from './jsons/cmdao20lab01ABI.json'
 import goldMineABI from './jsons/goldMineABI.json'
 
 import dunJasperABI from './jsons/dunJasperABI.json'
@@ -311,7 +312,7 @@ const Main = () => {
                 }
                 {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
                 {mode === 2 ?
-                    <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
+                    <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                     <></>
                 }
                 {mode === 200 ?

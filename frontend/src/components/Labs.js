@@ -31,10 +31,12 @@ const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
+const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
+const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, goldMineABI, erc20ABI, kycABI }) => {
+const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, erc20ABI, kycABI }) => {
     const { address } = useAccount()
 
     const [jbcBalance, setJbcBalance] = React.useState(0)
@@ -54,6 +56,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [mtBalance, setMtBalance] = React.useState(0)
     const [vabagBalance, setVabagBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
+    const [angbBalance, setAngbBalance] = React.useState(0)
+    const [starBalance, setStarBalance] = React.useState(0)
 
     const [levelCraftBBQ, setLevelCraftBBQ] = React.useState(0)
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
@@ -103,6 +107,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isCraftSWAR, setIsCraftSWAR] = React.useState(null)
     const [timetoClaimSWAR, setTimeToClaimSWAR] = React.useState(0)
     const [canCraftSWAR, setCanCraftSWAR] = React.useState(false)
+
+    const [isCraftSTAR, setIsCraftSTAR] = React.useState(null)
+    const [timetoClaimSTAR, setTimeToClaimSTAR] = React.useState(0)
+    const [canCraftSTAR, setCanCraftSTAR] = React.useState(false)
 
     const [isKYC, setIsKYC] = React.useState(null)
 
@@ -278,8 +286,26 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         functionName: 'supplier',
                         args: [address],
                     },
+                    {
+                        address: dunANGB,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: starLab,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: starLab,
+                        abi: cmdao20lab01ABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, ]
             
             const cmjBal = data[0]
             const woodBal = data[1]
@@ -308,6 +334,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const vaBagBal = data[24]
             const swarBal = data[25]
             const labLogSWAR = data[26]
+            const angbBal = data[27]
+            const starBal = data[28]
+            const labLogSTAR = data[29]
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -321,6 +350,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 200 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
+            const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
 
             const currentQueue = await readContract({
                 address: globalBbqLab,
@@ -352,7 +382,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
                 labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
-                mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR,
+                mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR, angbBal, starBal, labLogSTAR, _canCraftSTAR,
             ]
         }
 
@@ -473,9 +503,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimSWAR(nextHourSWAR.toLocaleString('es-CL')) :
                 setTimeToClaimSWAR(0)
             setCanCraftSWAR(result[41])
+
+            setAngbBalance(ethers.utils.formatEther(result[42]))
+            setStarBalance(ethers.utils.formatEther(result[43]))
+            setIsCraftSTAR(Number(result[44].machineRun) > 0)
+            const nextHourSTAR = new Date((result[44].laststamp * 1000) + (3600 * 72 * 1000))
+            Date.now() - (result[44].laststamp * 1000) <= (3600 * 72 * 1000) ?
+                setTimeToClaimSTAR(nextHourSTAR.toLocaleString('es-CL')) :
+                setTimeToClaimSTAR(0)
+            setCanCraftSTAR(result[45])
         })
 
-    }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, goldMineABI, kycABI])
+    }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, kycABI])
 
     const craft1Handle = async () => {
         setisLoading(true)
@@ -1204,6 +1243,85 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
         setisLoading(false)
     }
 
+    const craftCMDAO20Lab01Handle = async (_index, _machine) => {
+        setisLoading(true)
+        let lab = '0x0000000000000000000000000000000000000000'
+        let res1 = '0x0000000000000000000000000000000000000000'
+        let res1Amount = 0
+        let curr = '0x0000000000000000000000000000000000000000'
+        let currAmount = 0
+        if (_index === 1) {
+            lab = starLab
+            res1 = dunANGB
+            res1Amount = 40
+            curr = cmjToken
+            currAmount = 10
+        }
+        try {
+            const res1Allow = await readContract({
+                address: res1,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, lab],
+            })
+            if (res1Allow < (res1Amount * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: res1,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [lab, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const currAllow = await readContract({
+                address: curr,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, lab],
+            })
+            if (currAllow < (currAmount * 10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: curr,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [lab, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            const config3 = await prepareWriteContract({
+                address: lab,
+                abi: cmdao20lab01ABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const obtainCMDAO20Lab01Handle = async (_index) => {
+        let lab = '0x0000000000000000000000000000000000000000'
+        if (_index === 1) {
+            lab = starLab
+        }
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: lab,
+                abi: cmdao20lab01ABI,
+                functionName: 'obtain',
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
     <>
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -1416,6 +1534,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         />
                         <div style={{marginLeft: "5px"}}>{Number(vabagBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
+                            width="20"
+                            alt="$ANGB"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: dunANGB,
+                                            symbol: 'ANGB',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
+                    </div>
                 </div>
 
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Craft Products</div>
@@ -1607,6 +1748,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             }}
                         />
                         <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"
+                            width="20"
+                            alt="$STAR"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: starLab,
+                                            symbol: 'STAR',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(starBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
@@ -2283,6 +2447,61 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                                 }
                                             </> :
                                             <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Supply War</div>
+                                        }
+                                    </> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                }
+                            </>
+                        }
+                    </div>
+
+                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
+                        <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <img src="https://nftstorage.link/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
+                        </div>
+                        <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
+                            <img src="https://nftstorage.link/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="270" alt="$STAR_Factory"/>
+                        </div>
+                        <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                            <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                <div style={{margin: "0 5px"}}>40</div>
+                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <div style={{margin: "0 5px"}}>10</div>
+                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                <img src="https://nftstorage.link/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                <div style={{margin: "0 5px"}}>1</div>
+                            </div>
+                        </div>
+                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                            <div>72 hour</div>
+                        </div>
+                        {isCraftSTAR ?
+                            <>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                    <div>{timetoClaimSTAR === 0 ? "now" : timetoClaimSTAR}</div>
+                                </div>
+                                {timetoClaimSTAR === 0 ?
+                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(1)}>Obtain</div> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                }
+                            </> :
+                            <>
+                                {address !== null && address !== undefined ?
+                                    <>
+                                        {isCraftSTAR !== null ?
+                                            <>
+                                                {canCraftSTAR ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(1, 1)}>Craft AP-STAR</div> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft AP-STAR</div>
                                         }
                                     </> :
                                     <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
