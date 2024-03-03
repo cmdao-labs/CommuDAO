@@ -573,7 +573,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTM)), 0],
                 overrides: {
-                    gasLimit: 130000,
+                    gasLimit: 1000000,
                 },
             })
             const tx = await writeContract(config2)

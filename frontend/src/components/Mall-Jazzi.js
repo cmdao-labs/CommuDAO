@@ -15,7 +15,7 @@ const jazziGOLD = '0xa47D84b88d504C7D2a034Cb8C028eB5914FE7ea7'
 const jazziJasp = '0xe5Dc4040f94f10AE0107AC25034d489fb588cC5F'
 const jazziOS = '0x6E2Be67383219656a08172446d595727313ffEB5'
 
-const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
+const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, jdaoBalance, cuBalance, goldBalance, jaspBalance, osBalance, cmjBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)
@@ -967,28 +967,60 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI }) => {
                             </div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder={"0 $" + gasselected}
-                            onChange={(event) => {
-                                if (gasselected === "JDAO") {
-                                    handleSwapJDAO(event)
-                                } else if (gasselected === "CU") {
-                                    handleSwapCU(event)
-                                } else if (gasselected === "GOLD") {
-                                    handleSwapGOLD(event)
-                                } else if (gasselected === "JASP") {
-                                    handleSwapJASP(event)
-                                } else if (gasselected === "OS") {
-                                    handleSwapOS(event)
-                                }
-                            }}
-                            value={inputSwap}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder={"0 $" + gasselected}
+                                onChange={(event) => {
+                                    if (gasselected === "JDAO") {
+                                        handleSwapJDAO(event)
+                                    } else if (gasselected === "CU") {
+                                        handleSwapCU(event)
+                                    } else if (gasselected === "GOLD") {
+                                        handleSwapGOLD(event)
+                                    } else if (gasselected === "JASP") {
+                                        handleSwapJASP(event)
+                                    } else if (gasselected === "OS") {
+                                        handleSwapOS(event)
+                                    }
+                                }}
+                                value={inputSwap}
+                            ></input>
+                            {gasselected === "JDAO" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jdaoBalance}}; handleSwapJDAO(bal);}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                            {gasselected === "CU" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cuBalance}}; handleSwapCU(bal);}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                            {gasselected === "GOLD" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: goldBalance}}; handleSwapGOLD(bal);}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="22" alt="$GOLD"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                            {gasselected === "JASP" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jaspBalance}}; handleSwapJASP(bal);}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                            {gasselected === "OS" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: osBalance}}; handleSwapOS(bal);}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(osBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                        </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
