@@ -15,7 +15,7 @@ const ammySX31 = '0x7B022df5b181b720BE5706B2ECCdC3c26C8322e5'
 const ammyBBQ = '0x01E856D31a7fdb2405c20c493C172A6AD6f1Bcaa'
 const ammyPZA = '0x5Ca958C9c7DC07BB2A0326cf6C8b8cf344C414a1'
 
-const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI }) => {
+const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, cmjBalance }) => {
     const { address } = useAccount()
 
     const [gasselected, setGasselected] = React.useState("BBQ");
@@ -642,8 +642,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
         getAsync().then(result => {
             setPriceCTUNA(Number(ethers.utils.formatEther(result[0])).toFixed(3))
             setPriceSX31(Number(ethers.utils.formatEther(result[1])).toFixed(3))
-            setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(5))
-            setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(3))
+            setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(7))
+            setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(5))
 
             setReserveCmjCTUNA(ethers.utils.formatEther(result[4]))
             setReserveCTUNA(ethers.utils.formatEther(result[5]))
@@ -685,26 +685,52 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                     </div>
                 </div>
                 <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                <input
-                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                    className="bold"
-                    type="number"
-                    step="1"
-                    min="1"
-                    placeholder={"0 $" + gasselected}
-                    onChange={(event) => {
-                        if (gasselected === "CTUNA") {
-                            handleSwap(event)
-                        } else if (gasselected === "SX31") {
-                            handleSwapSX31(event)
-                        } else if (gasselected === "BBQ") {
-                            handleSwapBBQ(event)
-                        } else if (gasselected === "PZA") {
-                            handleSwapPZA(event)
-                        }
-                    }}
-                    value={inputSwap}
-                ></input>
+                <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                    <input
+                        style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                        className="bold"
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder={"0 $" + gasselected}
+                        onChange={(event) => {
+                            if (gasselected === "CTUNA") {
+                                handleSwap(event)
+                            } else if (gasselected === "SX31") {
+                                handleSwapSX31(event)
+                            } else if (gasselected === "BBQ") {
+                                handleSwapBBQ(event)
+                            } else if (gasselected === "PZA") {
+                                handleSwapPZA(event)
+                            }
+                        }}
+                        value={inputSwap}
+                    ></input>
+                    {gasselected === "CTUNA" && 
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: ctunaBalance}}; handleSwap(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/>
+                            <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    }
+                    {gasselected === "SX31" && 
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: sx31Balance}}; handleSwapSX31(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/>
+                            <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    }
+                    {gasselected === "BBQ" && 
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: bbqBalance}}; handleSwapBBQ(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/>
+                            <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    }
+                    {gasselected === "PZA" && 
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: pzaBalance}}; handleSwapPZA(bal);}}>
+                            <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/>
+                            <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                        </div>
+                    }
+                </div>
                 <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                     {address !== null && address !== undefined ?
                         <div style={{width: "30px"}} className="pixel button" onClick={
@@ -724,10 +750,10 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                     }
                     <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                         <div className="emp">
-                            {gasselected === "CTUNA" ? cmjBought : ''}
-                            {gasselected === "SX31" ? cmjBought2 : ''}
-                            {gasselected === "BBQ" ? cmjBought3 : ''}
-                            {gasselected === "PZA" ? cmjBoughtPZA : ''}
+                            {gasselected === "CTUNA" && Number(cmjBought).toLocaleString('en-US', {maximumFractionDigits:3})}
+                            {gasselected === "SX31" && Number(cmjBought2).toLocaleString('en-US', {maximumFractionDigits:3})}
+                            {gasselected === "BBQ" && Number(cmjBought3).toLocaleString('en-US', {maximumFractionDigits:3})}
+                            {gasselected === "PZA" && Number(cmjBoughtPZA).toLocaleString('en-US', {maximumFractionDigits:3})}
                         </div>
                         $CMJ (
                             {gasselected === "CTUNA" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjCTUNA) - ((Number(reserveCmjCTUNA) * Number(reserveCTUNA)) / (Number(reserveCTUNA) + Number(inputSwap))))) - (Number(reserveCTUNA/reserveCmjCTUNA))) / (Number(reserveCTUNA/reserveCmjCTUNA))) * 100)).toFixed(2)}%</>}
@@ -739,26 +765,46 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                     </div>
                 </div>
                 <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                <input
-                    style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                    className="bold"
-                    type="number"
-                    step="1"
-                    min="1"
-                    placeholder="0 $CMJ"
-                    onChange={(event) => {
-                        if (gasselected === "CTUNA") {
-                            handleSwap2(event)
-                        } else if (gasselected === "SX31") {
-                            handleSwapSX31_2(event)
-                        } else if (gasselected === "BBQ") {
-                            handleSwapBBQ_2(event)
-                        } else if (gasselected === "PZA") {
-                            handleSwapPZA_2(event)
-                        }
-                    }}
-                    value={inputSwap2}
-                ></input>
+                <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                    <input
+                        style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                        className="bold"
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder="0 $CMJ"
+                        onChange={(event) => {
+                            if (gasselected === "CTUNA") {
+                                handleSwap2(event)
+                            } else if (gasselected === "SX31") {
+                                handleSwapSX31_2(event)
+                            } else if (gasselected === "BBQ") {
+                                handleSwapBBQ_2(event)
+                            } else if (gasselected === "PZA") {
+                                handleSwapPZA_2(event)
+                            }
+                        }}
+                        value={inputSwap2}
+                    ></input>
+                    <div
+                        style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
+                        onClick={() => {
+                            const bal = {target: {value: cmjBalance}};
+                            if (gasselected === "CTUNA") {
+                                handleSwap2(bal)
+                            } else if (gasselected === "SX31") {
+                                handleSwapSX31_2(bal)
+                            } else if (gasselected === "BBQ") {
+                                handleSwapBBQ_2(bal)
+                            } else if (gasselected === "PZA") {
+                                handleSwapPZA_2(bal)
+                            }
+                        }}
+                    >
+                        <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                        <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                    </div>
+                </div>
                 <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                     {address !== null && address !== undefined ?
                         <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
@@ -778,10 +824,10 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI 
                     }
                     <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                         <div style={{color: "#67BAA7"}}>
-                            {gasselected === "CTUNA" ? ctunaBought : ''}
-                            {gasselected === "SX31" ? tokenBought : ''}
-                            {gasselected === "BBQ" ? tokenBought3 : ''}
-                            {gasselected === "PZA" ? tokenBoughtPZA : ''}
+                            {gasselected === "CTUNA" && Number(ctunaBought).toLocaleString('en-US', {maximumFractionDigits:3})}
+                            {gasselected === "SX31" && Number(tokenBought).toLocaleString('en-US', {maximumFractionDigits:3})}
+                            {gasselected === "BBQ" && Number(tokenBought3).toLocaleString('en-US', {maximumFractionDigits:3})}
+                            {gasselected === "PZA" && Number(tokenBoughtPZA).toLocaleString('en-US', {maximumFractionDigits:3})}
                         </div>
                         ${gasselected} (
                             {gasselected === "CTUNA" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveCTUNA) - ((Number(reserveCTUNA) * Number(reserveCmjCTUNA)) / (Number(reserveCmjCTUNA) + Number(inputSwap2))))) - (Number(reserveCmjCTUNA/reserveCTUNA))) / (Number(reserveCmjCTUNA/reserveCTUNA))) * 100)).toFixed(2)}%</>}
