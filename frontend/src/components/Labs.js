@@ -1762,7 +1762,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                         type: 'ERC20',
                                         options: {
                                             address: starLab,
-                                            symbol: 'STAR',
+                                            symbol: 'AP-STAR',
                                             decimals: 18,
                                             image: 'https://nftstorage.link/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
                                         },
