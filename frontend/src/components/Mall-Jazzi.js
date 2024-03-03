@@ -1042,11 +1042,11 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, jdaoBal
                             }
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div className="emp">
-                                    {gasselected === "JDAO" && cmjBoughtJDAO}
-                                    {gasselected === "CU" && cmjBoughtCU}
-                                    {gasselected === "GOLD" && cmjBoughtGOLD}
-                                    {gasselected === "JASP" && cmjBoughtJASP}
-                                    {gasselected === "OS" && cmjBoughtOS}
+                                    {gasselected === "JDAO" && Number(cmjBoughtJDAO).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "CU" && Number(cmjBoughtCU).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "GOLD" && Number(cmjBoughtGOLD).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "JASP" && Number(cmjBoughtJASP).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "OS" && Number(cmjBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $CMJ (
                                     {gasselected === "JDAO" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</>}
@@ -1059,28 +1059,50 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, jdaoBal
                             </div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder="0 $CMJ"
-                            onChange={(event) => {
-                                if (gasselected === "JDAO") {
-                                    handleSwapJDAO_2(event)
-                                } else if (gasselected === "CU") {
-                                    handleSwapCU_2(event)
-                                } else if (gasselected === "GOLD") {
-                                    handleSwapGOLD_2(event)
-                                } else if (gasselected === "JASP") {
-                                    handleSwapJASP_2(event)
-                                } else if (gasselected === "OS") {
-                                    handleSwapOS_2(event)
-                                }
-                            }}
-                            value={inputSwap2}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder="0 $CMJ"
+                                onChange={(event) => {
+                                    if (gasselected === "JDAO") {
+                                        handleSwapJDAO_2(event)
+                                    } else if (gasselected === "CU") {
+                                        handleSwapCU_2(event)
+                                    } else if (gasselected === "GOLD") {
+                                        handleSwapGOLD_2(event)
+                                    } else if (gasselected === "JASP") {
+                                        handleSwapJASP_2(event)
+                                    } else if (gasselected === "OS") {
+                                        handleSwapOS_2(event)
+                                    }
+                                }}
+                                value={inputSwap2}
+                            ></input>
+                            <div
+                                style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
+                                onClick={() => {
+                                    const bal = {target: {value: cmjBalance}};
+                                    if (gasselected === "JDAO") {
+                                        handleSwapJDAO_2(bal)
+                                    } else if (gasselected === "CU") {
+                                        handleSwapCU_2(bal)
+                                    } else if (gasselected === "GOLD") {
+                                        handleSwapGOLD_2(bal)
+                                    } else if (gasselected === "JASP") {
+                                        handleSwapJASP_2(bal)
+                                    } else if (gasselected === "OS") {
+                                        handleSwapOS_2(bal)
+                                    }
+                                }}
+                            >
+                                <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
@@ -1102,11 +1124,11 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, jdaoBal
                             }
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div style={{color: "#67BAA7"}}>
-                                    {gasselected === "JDAO" && tokenBoughtJDAO}
-                                    {gasselected === "CU" && tokenBoughtCU}
-                                    {gasselected === "GOLD" && tokenBoughtGOLD}
-                                    {gasselected === "JASP" && tokenBoughtJASP}
-                                    {gasselected === "OS" && tokenBoughtOS}
+                                    {gasselected === "JDAO" && Number(tokenBoughtJDAO).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "CU" && Number(tokenBoughtCU).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "GOLD" && Number(tokenBoughtGOLD).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "JASP" && Number(tokenBoughtJASP).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "OS" && Number(tokenBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 ${gasselected} ( 
                                     {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</>}
@@ -1131,7 +1153,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, jdaoBal
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
                                     </select>
-                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center"}} className="pixel">
+                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setJdaoLpSell(jdaoLpBalance)}>
                                         {gasselected === "JDAO" ? <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jdaoLpBalance).toFixed(4)}</div></> : ''}
                                     </div>
                                 </div>
@@ -1144,35 +1166,47 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, jdaoBal
                             <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={removeJdaoLp}>REMOVE</div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder={"0 $" + gasselected}
-                            onChange={(event) => {
-                                if (gasselected === "JDAO") {
-                                    handleAddJdao(event)
-                                }
-                            }}
-                            value={jdaoAdd}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder={"0 $" + gasselected}
+                                onChange={(event) => {
+                                    if (gasselected === "JDAO") {
+                                        handleAddJdao(event)
+                                    }
+                                }}
+                                value={jdaoAdd}
+                            ></input>
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jdaoBalance)}}; handleAddJdao(bal);}}>
+                                <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
+                                <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
-                        <input
-                            style={{width: "90%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder="0 $CMJ"
-                            onChange={(event) => {
-                                if (gasselected === "JDAO") {
-                                    handleAddJdao2(event)
-                                }
-                            }}
-                            value={cmjAdd}
-                        ></input>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder="0 $CMJ"
+                                onChange={(event) => {
+                                    if (gasselected === "JDAO") {
+                                        handleAddJdao2(event)
+                                    }
+                                }}
+                                value={cmjAdd}
+                            ></input>
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddJdao2(bal);}}>
+                                <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
