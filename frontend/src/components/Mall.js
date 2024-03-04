@@ -16,6 +16,7 @@ const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
+const dunAngb = '0x59c1c2f5fa76db933b97b7c54223129e2a398534'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
@@ -32,7 +33,7 @@ const cmdaoGasha02 = '0x87A612709b36b575103C65a90cB3B16Cac2BC898'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoGasha02ABI, ammyABI, ammyStdABI, angeloStdABI, erc20ABI }) => {
+const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoGasha02ABI, ammyABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI }) => {
     const { address } = useAccount()
 
     const [isWrappedModal, setIsWrappedModal] = React.useState(false)
@@ -100,6 +101,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [wjbcBalance, setWjbcBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
+    const [angbBalance, setAngbBalance] = React.useState(0)
     const [jdaoBalance, setJdaoBalance] = React.useState(0)
 
     React.useEffect(() => {
@@ -211,8 +213,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: dunAngb,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, ]
             
             const _isKYC = data[0]
             const cmjBal = data[1]
@@ -231,6 +239,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const wjbcBal = data[14]
             const swarBal = data[15]
             const silBal = data[16]
+            const angbBal = data[17]
 
             const data2 = await readContracts({
                 contracts: [
@@ -500,7 +509,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
                 sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14, sell15remain, sell16remain, sell17remain, sell18remain, _canBuy18, 
                 sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23,
-                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, 
+                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, 
             ]
         }
 
@@ -577,6 +586,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setSwarBalance(ethers.utils.formatEther(String(result[58])))
             setSilBalance(ethers.utils.formatEther(String(result[59])))
             setJdaoBalance(ethers.utils.formatEther(String(result[60])))
+            setAngbBalance(ethers.utils.formatEther(String(result[61])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -1450,6 +1460,29 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         />
                         <div style={{marginLeft: "5px"}}>{Number(swarBalance).toFixed(0)}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
+                            width="20"
+                            alt="$ANGB"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: dunAngb,
+                                            symbol: 'ANGB',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
+                    </div>
                 </div>
 
 
@@ -1461,7 +1494,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} />
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} erc20ABI={erc20ABI} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
+                    <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
                 </div>
 
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
