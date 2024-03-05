@@ -389,8 +389,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 500 ? true : false
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 200 ? true : false
-            const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
-            const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
+            const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
+            const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftII = Number(ethers.utils.formatEther(String(gearBal))) >= 888 && Number(ethers.utils.formatEther(String(tmBal))) >= 8 ? true : false
 
             const currentQueue = await readContract({
@@ -2544,7 +2544,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                <div style={{margin: "0 5px"}}>10</div>
+                                <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
                                 <div style={{margin: "0 5px"}}>1</div>
@@ -2599,7 +2599,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div style={{margin: "0 5px"}}>40</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                <div style={{margin: "0 5px"}}>10</div>
+                                <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
                                 <div style={{margin: "0 5px"}}>1</div>
