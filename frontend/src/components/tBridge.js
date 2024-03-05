@@ -32,7 +32,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [jtaoBalance, setJtaoBalance] = React.useState(0)
 
     const [depositValue, setDepositValue] = React.useState(null)
+    const [depositValueDis, setDepositValueDis] = React.useState('')
     const [withdrawValue, setWithdrawValue] = React.useState(null)
+    const [withdrawValueDis, setWithdrawValueDis] = React.useState('')
 
     const [depositCMJ, setDepositCMJ] = React.useState('')
     const [withdrawCMJ, setWithdrawCMJ] = React.useState('')
@@ -191,6 +193,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     }, [address, txupdate, erc20ABI])
 
     const handleDeposit = (event) => {
+        setDepositValueDis(event.target.value)
         const _value  = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigDepositValue = ethers.BigNumber.from(_value)
         setDepositValue(bigDepositValue)
@@ -213,6 +216,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     }
 
     const handleWithdraw = (event) => {
+        setWithdrawValueDis(event.target.value)
         const _value  = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigWithdrawValue = ethers.BigNumber.from(_value)
         setWithdrawValue(bigWithdrawValue)
@@ -446,12 +450,13 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     min="1"
                                     placeholder="0.0 KUSDT"
                                     onChange={handleDeposit}
+                                    value={depositValueDis}
                                 ></input>
                                 {chain.id === 96 && address !== null && address !== undefined ? 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositHandle}>BRIDGE TO JBC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(kusdtBalance).toFixed(4)} KUSDT</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(kusdtBalance)}}; handleDeposit(bal);}}>Balance: {Number(kusdtBalance).toFixed(4)} KUSDT</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
@@ -461,12 +466,13 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     min="1"
                                     placeholder="0.0 JUSDT"
                                     onChange={handleWithdraw}
+                                    value={withdrawValueDis}
                                 ></input>
                                 {chain.id === 8899 && address !== null && address !== undefined ?
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jusdtBalance)}}; handleWithdraw(bal);}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
                             </div>
                         </div>
                     </>
@@ -508,7 +514,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(usdtBscBalance).toFixed(4)} USDT [BSC]</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositValue2(usdtBscBalance)}>Balance: {Number(usdtBscBalance).toFixed(4)} USDT [BSC]</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
@@ -524,7 +530,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawValue2(jusdtBalance)}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
                             </div>
                         </div>
                     </>
@@ -552,7 +558,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositCMJ(cmjBalance)}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
@@ -568,7 +574,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(cmjbBalance).toFixed(4)} CMJ.b</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawCMJ(cmjbBalance)}>Balance: {Number(cmjbBalance).toFixed(4)} CMJ.b</div>
                             </div>
                         </div>
                     </>
@@ -596,7 +602,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositTaoHandle}>BRIDGE TO JBC</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(taoBalance).toFixed(4)} TAO</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositTAO(taoBalance)}>Balance: {Number(taoBalance).toFixed(4)} TAO</div>
                             </div>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
@@ -612,7 +618,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO BKC</div> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left"}}>Balance: {Number(jtaoBalance).toFixed(4)} JTAO</div>
+                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawTAO(jtaoBalance)}>Balance: {Number(jtaoBalance).toFixed(4)} JTAO</div>
                             </div>
                         </div>
                     </>
