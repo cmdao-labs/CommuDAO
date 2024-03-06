@@ -88,7 +88,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     <img src="https://nftstorage.link/ipfs/bafybeibghshz6fd6vsc2is5egipg2wqwafpwztea4tfdbi6ajw6zxwfgfe" height="230" alt="Daemon_World" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
-                        <div className="emp">NA</div>
+                        <div className="emp">N/A</div>
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>Eligible NFT Collection</div>
@@ -99,6 +99,27 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="12" alt="$ANGB"/>ANGEL BLESSING</div>
                     </div>
                     <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}>Go to Daemon World</div>
+                </div>
+
+                <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                    <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                        <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                    </div>
+                    <img src="https://nftstorage.link/ipfs/bafybeiehky27iaain3y76xwcrgy3vyvrojzexi3alts5ybdf7gqjbh3yua" height="230" alt="Cryptic-Cogs" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
+                        <div className="emp">N/A</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>Eligible NFT Collection</div>
+                        <div className="emp">CommuDAO, Naruta NFTs</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
+                        <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="12" alt="$EE"/>Enchant Engine</div>
+                    </div>
+                    <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(36); navigate('/dungeon/cryptic-cogs');}}>Go to Cryptic Cogs</div>
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ import NpcEvolutionary from './Dungeon-Evolutionary'
 import Coppermine from './Dungeon-CopperMine'
 import Jaspercave from './Dungeon-JasperCave'
 import Daemonworld from './Dungeon-DaemonWorld'
+import CrypticCogs from './Dungeon-CrypticCogs'
 import Community from './Community'
 import CmCityCenter from './Community-CmCityCenter'
 import QuesterOasis from './Community-QuesterOasis'
@@ -61,6 +62,7 @@ import dunJasperL2ABI from './jsons/dunJasperL2ABI.json'
 import dunCopperABI from './jsons/dunCopperABI.json'
 import mintStOPTABI from './jsons/mintStOPTABI.json'
 import dunAngbABI from './jsons/dunAngbABI.json'
+import dunEEABI from './jsons/dunEEABI.json'
 
 import cmdaoMerchantABI from './jsons/cmdaoMerchantABI.json'
 import cmdaoMerchantV2ABI from './jsons/cmdaoMerchantV2ABI.json'
@@ -193,6 +195,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "DAEMON-WORLD") {
                     preset = 35
                     document.title = "Daemon World | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "CRYPTIC-COGS") {
+                    preset = 36
+                    document.title = "Cryptic Cogs | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -341,6 +346,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
+                {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
                     <></>
