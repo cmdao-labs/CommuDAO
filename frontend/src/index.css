@@ -206,10 +206,25 @@ header::-webkit-scrollbar { display: none; }
   font-size: 14px;
 }
 
+.halfone {
+  width: 50%;
+  background-color: #fff;
+}
+.halftwo {
+  width: 50%;
+  height: 100vh;
+  background: rgba(255, 0, 112, 0.7);
+  padding: 80px 0 245px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .welcomeText {
-  height: fit-content;
-  padding: 10px 0 75px 0;
+  height: 100vh;
+  padding: 80px 0 160px 0;
+  margin: 80px 0 0 50px;
   max-width: 95%;
+  min-width: 50%;
   margin-right: 100px;
   display: flex;
   flex-direction: column;
@@ -223,17 +238,17 @@ header::-webkit-scrollbar { display: none; }
   font-size: 18px;
 }
 .motto {
-  font-size: 55px;
+  font-size: 84px;
 }
 .hashtag {
-  margin: 10px 10px 10px 0;
+  margin: 10px;
   width: fit-content;
-  border-radius: 12px;
   padding: 10px 20px;
-  border: 1px solid rgb(227, 227, 227);
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
+  text-decoration: underline;
+  color: #000;
   cursor: pointer;
 }
 .hashtag:hover {
@@ -256,6 +271,12 @@ header::-webkit-scrollbar { display: none; }
   }
   .inFooterRight {
     margin: 25px;
+  }
+  .halfone {
+    width: 100%;
+  }
+  .halftwo {
+    width: 100%;
   }
   .welcome {
     margin-top: 0;
