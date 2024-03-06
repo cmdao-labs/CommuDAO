@@ -295,9 +295,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const isStaked = nftSTAT.isStaked
             const refuelAt = Number(nftSTAT.refuelAt)
 
-            const iiBal = data[8]
-            const eeBal = data[9]
-            const rewardPending = isStaked === true ? data[10] : 0
+            const iiBal = data[7]
+            const eeBal = data[8]
+            const rewardPending = isStaked === true ? data[9] : 0
             
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")

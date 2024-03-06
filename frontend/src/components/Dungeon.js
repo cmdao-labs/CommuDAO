@@ -35,7 +35,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
                         <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="12" alt="$COPPER"/>COPPER</div>
                     </div>
-                    <div style={{width: "fit-content", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(33); navigate('/dungeon/copper-mine');}}>Go to Copper Mine</div>
+                    <div style={{width: "170px", margin: "40px 170px 0px 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(33); navigate('/dungeon/copper-mine');}}>Go to Copper Mine</div>
                 </div>
 
             
@@ -53,7 +53,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
                         <div className="emp"><img style={{marginRight: "2px"}} src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="12" alt="$JASP"/>JASPER</div>
                     </div>
-                    <div style={{width: "fit-content", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(31); navigate('/dungeon/jasper-cave');}}>Go to Jasper Cave</div>
+                    <div style={{width: "170px", margin: "40px 170px 0px 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(31); navigate('/dungeon/jasper-cave');}}>Go to Jasper Cave</div>
                 </div>
             </div>
 
@@ -73,7 +73,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <img src="https://nftstorage.link/ipfs/bafybeibb6sv46fa4as36s5pvb5lihvgdhry7jlsifnzca4qbgbvkej3cae" height="230" alt="Evo_Planet" />
                     </div>
                     <div style={{marginTop: "50px", width: "100%", fontSize: "12px", textAlign: "left"}} className="pixel"><br></br>"Are you ready to level up"<br></br><br></br></div>
-                    <div style={{width: "fit-content", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(34); navigate('/dungeon/evolutionary-planet');}}>Enter Evolutionary Planet</div>
+                    <div style={{width: "170px", margin: "40px 170px 0px 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(34); navigate('/dungeon/evolutionary-planet');}}>Enter Evolutionary Planet</div>
                 </div>
             </div>
 
@@ -98,7 +98,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
                         <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="12" alt="$ANGB"/>ANGEL BLESSING</div>
                     </div>
-                    <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}>Go to Daemon World</div>
+                    <div style={{width: "170px", margin: "40px 170px 0px 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}>Go to Daemon World</div>
                 </div>
 
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
@@ -119,7 +119,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
                         <div className="emp"><img style={{marginRight: "5px"}} src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="12" alt="$EE"/>Enchant Engine</div>
                     </div>
-                    <div style={{width: "150px", margin: "40px 170px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(36); navigate('/dungeon/cryptic-cogs');}}>Go to Cryptic Cogs</div>
+                    <div style={{width: "170px", margin: "40px 170px 0px 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(36); navigate('/dungeon/cryptic-cogs');}}>Go to Cryptic Cogs</div>
                 </div>
             </div>
         </div>
