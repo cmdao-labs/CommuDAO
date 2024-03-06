@@ -240,6 +240,9 @@ header::-webkit-scrollbar { display: none; }
 .motto {
   font-size: 84px;
 }
+#showoff {
+  min-width: 600px;
+}
 .hashtag {
   margin: 10px;
   width: fit-content;
@@ -256,7 +259,7 @@ header::-webkit-scrollbar { display: none; }
   color: #fff;
 }
 
-@media (max-width: 390px) {
+@media (max-width: 480px) {
   .projectTitle {
     margin: 0 5px;
     width: 25px;
@@ -292,13 +295,16 @@ header::-webkit-scrollbar { display: none; }
   .motto {
     font-size: 35px;
   }
+  #showoff {
+    min-width: 350px;
+  }
   .hashtag {
     width: fit-content;
     padding: 10px 15px;
     font-size: 12px;
   }
 }
-@media (min-width: 391px) and (max-width: 1024px) {
+@media (min-width: 481px) and (max-width: 1024px) {
   .projectTitle {
     margin: 0 5px;
     width: 25px;
@@ -313,6 +319,12 @@ header::-webkit-scrollbar { display: none; }
   }
   .inFooterRight {
     margin: 25px;
+  }
+  .halfone {
+    width: 100%;
+  }
+  .halftwo {
+    width: 100%;
   }
   .welcome {
     justify-content: flex-start;
