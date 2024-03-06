@@ -365,10 +365,10 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
                     <div style={{color: "#bdc2c4"}}>CHOOSE TOKEN/NFTs TO BRIDGE</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                        <div className='hashtag' onClick={() => setMode(1)}>USDT</div>
-                        <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(2)}>CMJ</div>
-                        <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(3)}>TAO</div>
-                        <div className='hashtag' style={{marginLeft: "10px"}} onClick={() => setMode(4)}>TAODUM NFT</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(1)}>USDT</div>
+                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(2)}>CMJ</div>
+                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(3)}>TAO</div>
+                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
@@ -378,8 +378,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[USDT : JUSDT] Cross-chain bridging is now on service 24/7!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(1)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
-                                <div className='hashtag' style={{marginLeft: "10px", padding: "10px"}} onClick={() => setMode(12)}><img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" width="25" alt="BSC" /></div>
+                                <div className='hashtag' style={{padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(1)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                                <div className='hashtag' style={{marginLeft: "10px", padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(12)}><img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" width="25" alt="BSC" /></div>
                             </div>
                         </>
                     }
@@ -391,7 +391,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is now on service 24/7!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(2)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                                <div className='hashtag' style={{padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(2)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
                             </div>
                         </>
                     }
@@ -403,7 +403,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[TAO : JTAO] Cross-chain bridging is coming soon!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(3)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                                <div className='hashtag' style={{padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(3)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
                             </div>
                         </>
                     }
@@ -414,7 +414,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>TAODUM NFT Cross-chain bridging is coming soon!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                                <div className='hashtag' style={{padding: "10px"}} onClick={() => setMode(4)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+                                <div className='hashtag' style={{padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(4)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
                             </div>
                         </>
                     }
