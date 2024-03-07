@@ -463,7 +463,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             result[17] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[17] !== 0 && Date.now() - (result[19] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            result[17] !== 0 && Date.now() - (result[17] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
             setAngbPending(ethers.utils.formatEther(String(result[18])))
         
             setIIBalance(ethers.utils.formatEther(String(result[19])))
