@@ -65,7 +65,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <img src="https://nftstorage.link/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="230" alt="Blacksmith" />
                     </div>
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Looking to upgrade your equipment? I've got you covered! Let's get started on taking your setup to the next level - no time to waste!"</div>
-                    <div style={{width: "fit-content", margin: "40px 130px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(32); navigate('/dungeon/blacksmith-house');}}>Enter Blacksmith House</div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(32); navigate('/dungeon/blacksmith-house');}}>Enter Blacksmith House</div>
                 </div>
 
                 <div className="nftCard pixel" style={{justifyContent: "flex-start", margin: "20px"}}>
@@ -73,7 +73,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <img src="https://nftstorage.link/ipfs/bafybeibb6sv46fa4as36s5pvb5lihvgdhry7jlsifnzca4qbgbvkej3cae" height="230" alt="Evo_Planet" />
                     </div>
                     <div style={{marginTop: "50px", width: "100%", fontSize: "12px", textAlign: "left"}} className="pixel"><br></br>"Are you ready to level up"<br></br><br></br></div>
-                    <div style={{width: "170px", margin: "40px 170px 0px 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(34); navigate('/dungeon/evolutionary-planet');}}>Enter Evolutionary Planet</div>
+                    <div style={{width: "220px", margin: "40px 170px 0px 80px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(34); navigate('/dungeon/evolutionary-planet');}}>Enter Evolutionary Planet</div>
                 </div>
             </div>
 
