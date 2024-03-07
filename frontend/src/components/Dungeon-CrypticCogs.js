@@ -13,8 +13,7 @@ const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunEEABI }) => {
-    // let { address } = useAccount()
-    let address = '0x09e6a0A03afa27438c3f507de82b5f6061Ae1643'
+    let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/dungeon/cryptic-cogs/' + address)
