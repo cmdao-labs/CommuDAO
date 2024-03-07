@@ -5,6 +5,7 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
+const narutaNft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
 
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
@@ -12,7 +13,8 @@ const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunEEABI }) => {
-    let { address } = useAccount()
+    // let { address } = useAccount()
+    let address = '0x09e6a0A03afa27438c3f507de82b5f6061Ae1643'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/dungeon/cryptic-cogs/' + address)
@@ -58,6 +60,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
+        const nrtnftSC = new ethers.Contract(narutaNft, erc721ABI, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -137,8 +140,14 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         functionName: 'calculateRewards',
                         args: [address],
                     },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.characterId)],
+                    },
                 ],
-            }) : ["", "", "", "", "", "", "", 0, 0, 0, 0, ]
+            }) : ["", "", "", "", "", "", "", 0, 0, 0, 0, "", ]
             console.log(nftEQ)
             console.log(data)
 
@@ -147,6 +156,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let charIpfs = null
             if (Number(nftSTAT.characterIndex) === 1) {
                 charIpfs = data[0]
+            } else if (Number(nftSTAT.characterIndex) === 2) {
+                charIpfs = data[10]
             }
             const response1 = charIpfs !== null ? await fetch(charIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
@@ -154,7 +165,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
-                    Col: 1,
+                    Col: Number(nftSTAT.characterIndex),
                     Id: String(nftEQ.characterId),
                     Name: nftEQ_1_Name,
                     Image: nftEQ_1,
@@ -301,7 +312,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -349,6 +360,60 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
+                    isStaked: false
+                })
+            }
+
+            const wallet2Filter = await nrtnftSC.filters.Transfer(null, address, null)
+            const wallet2Event = await nrtnftSC.queryFilter(wallet2Filter, 2852393, "latest")
+            const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
+            const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
+            const data4 = address !== null && address !== undefined ? await readContracts({
+                contracts: wallet2RemoveDup.map((item) => (
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(wallet2RemoveDup.length).fill('')]
+
+            let yournftwallet2 = []
+            for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data4[i].toUpperCase() === address.toUpperCase()) {
+                    yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
+                }
+            }
+            console.log(yournftwallet2)
+
+            const data5 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet2.map((item) => (
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet2.length).fill('')]
+
+            for (let i = 0; i <= yournftwallet2.length - 1; i++) {
+                const nftipfs = data5[i]
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    nft = await response.json()
+                } catch {}
+
+                nfts.push({
+                    Col: 2,
+                    Id: yournftwallet2[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: Number(yournftwallet2[i].Id.slice(-5)),
                     isStaked: false
                 })
             }
@@ -424,6 +489,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         let addr = ''
         if (transferNftCol === 1) {
             addr = cmdaoNft
+        } else if (transferNftCol === 2) {
+            addr = narutaNft
         }
         try {
             const config = await prepareWriteContract({
@@ -444,6 +511,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         let addr = '0x0000000000000000000000000000000000000000'
         if (_index === 1) {
             addr = cmdaoNft
+        } else if (_index === 2) {
+            addr = narutaNft
         }
         const nftAllow = await readContract({
             address: addr,
