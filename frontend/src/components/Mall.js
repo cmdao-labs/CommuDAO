@@ -1922,7 +1922,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - TD-88 Blaster (Weapon)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u.ipfs.nftstorage.link/" height="150" alt="NARUTA"/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://nftstorage.link/ipfs/bafybeiglw3a5wuszv7zkmfw55e2bcaoxinsjwjinckccg4lxg2juoeegmu" height="150" alt="TD-88-BLASTER"/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
