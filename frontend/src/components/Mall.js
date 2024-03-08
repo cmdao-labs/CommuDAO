@@ -79,6 +79,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [sell23Remain, setSell23Remain] = React.useState(100)
     const [canbuy23, setCanBuy23] = React.useState(false)
     const [sell24Remain, setSell24Remain] = React.useState(250)
+    const [sell25Remain, setSell25Remain] = React.useState(250)
 
     const [roll1Remain, setRoll1Remain] = React.useState(107)
     const [canroll1, setCanRoll1] = React.useState(false)
@@ -424,6 +425,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'sellList',
                         args: [8],
                     },
+                    {
+                        address: cmdaoMerchantV105,
+                        abi: cmdaoMerchantV2ABI,
+                        functionName: 'sellList',
+                        args: [9],
+                    },
                 ],
             })
             
@@ -451,6 +458,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell22Id = data2[27]
             const sell23Id = data2[28]
             const sell24Id = data2[29]
+            const sell25Id = data2[30]
             const roll1 = data2[6]
             const roll2 = data2[7]
             const roll3 = data2[8]
@@ -502,6 +510,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy23 = Number(ethers.utils.formatEther(String(silBal))) >= 500000 ? true : false
 
             const sell24remain = (100025100000 - (Number(sell24Id.sellId) - 18800)) / 100000
+            const sell25remain = (700025100000 - (Number(sell25Id.sellId) - 18800)) / 100000
 
             const roll1remain = Number(roll1.nftCount)
             const roll2remain = Number(roll2.nftCount)
@@ -518,7 +527,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, 
                 sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
                 sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14, sell15remain, sell16remain, sell17remain, sell18remain, _canBuy18, 
-                sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, 
+                sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, sell25remain,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, 
             ]
         }
@@ -573,6 +582,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setSell23Remain(result[45])
             setCanBuy23(result[46])
             setSell24Remain(result[47])
+            setSell25Remain(result[48])
 
             setRoll1Remain(result[12])
             setCanRoll1(result[13])
@@ -583,21 +593,21 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanRoll2(result[18])
             setRoll6Remain(result[33])
 
-            setCTunaBalance(ethers.utils.formatEther(String(result[48])))
-            setSx31Balance(ethers.utils.formatEther(String(result[49])))
-            setJusdtBalance(ethers.utils.formatEther(String(result[50])))
-            setCmjBalance(ethers.utils.formatEther(String(result[51])))
-            setBbqBalance(ethers.utils.formatEther(String(result[52])))
-            setPzaBalance(ethers.utils.formatEther(String(result[53])))
-            setCuBalance(ethers.utils.formatEther(String(result[54])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[55]), "gwei"))
-            setOsBalance(ethers.utils.formatEther(String(result[56])))
-            setGoldBalance(ethers.utils.formatEther(String(result[57])))
-            setWjbcBalance(ethers.utils.formatEther(String(result[58])))
-            setSwarBalance(ethers.utils.formatEther(String(result[59])))
-            setSilBalance(ethers.utils.formatEther(String(result[60])))
-            setJdaoBalance(ethers.utils.formatEther(String(result[61])))
-            setAngbBalance(ethers.utils.formatEther(String(result[62])))
+            setCTunaBalance(ethers.utils.formatEther(String(result[49])))
+            setSx31Balance(ethers.utils.formatEther(String(result[50])))
+            setJusdtBalance(ethers.utils.formatEther(String(result[51])))
+            setCmjBalance(ethers.utils.formatEther(String(result[52])))
+            setBbqBalance(ethers.utils.formatEther(String(result[53])))
+            setPzaBalance(ethers.utils.formatEther(String(result[54])))
+            setCuBalance(ethers.utils.formatEther(String(result[55])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[56]), "gwei"))
+            setOsBalance(ethers.utils.formatEther(String(result[57])))
+            setGoldBalance(ethers.utils.formatEther(String(result[58])))
+            setWjbcBalance(ethers.utils.formatEther(String(result[59])))
+            setSwarBalance(ethers.utils.formatEther(String(result[60])))
+            setSilBalance(ethers.utils.formatEther(String(result[61])))
+            setJdaoBalance(ethers.utils.formatEther(String(result[62])))
+            setAngbBalance(ethers.utils.formatEther(String(result[63])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -1866,7 +1876,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <img src="https://nftstorage.link/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Naruta NFT - Naruta (Main Char)</div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Naruta (Main Char)</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u.ipfs.nftstorage.link/" height="150" alt="NARUTA"/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -1898,6 +1908,51 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                         }
                                     </> :
                                     <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
+                                }
+                            </> :
+                            <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                        }
+                    </div>
+                </div>
+
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                        <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <img src="https://nftstorage.link/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                        </div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - TD-88 Blaster (Weapon)</div>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u.ipfs.nftstorage.link/" height="150" alt="NARUTA"/>
+                        <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
+                            <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Limited</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <div className="emp">{250}</div>
+                                    /250 EA
+                                </div>
+                            </div>
+                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Status</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>18800 Power</div>
+                            </div>
+                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Price</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <div style={{marginLeft: "7.5px"}}>20</div>
+                                </div>
+                            </div>
+                        </div>
+                        {address !== null && address !== undefined ?
+                            <>
+                                {false && sell25Remain > 0 ?
+                                    <>
+                                        {canbuy4 ?
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle15(9)}>BUY</div> :
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
+                                        }
+                                    </> :
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ON STOCK 10PM, 08.03</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
