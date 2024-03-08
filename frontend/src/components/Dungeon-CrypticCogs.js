@@ -145,8 +145,44 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         functionName: 'tokenURI',
                         args: [String(nftEQ.characterId)],
                     },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.accessoriesId)],
+                    },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.backId)],
+                    },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.shoesId)],
+                    },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.weaponId)],
+                    },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.clothId)],
+                    },
+                    {
+                        address: narutaNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(nftEQ.hatId)],
+                    },
                 ],
-            }) : ["", "", "", "", "", "", "", 0, 0, 0, 0, "", ]
+            }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", ]
             console.log(nftEQ)
             console.log(data)
 
@@ -178,6 +214,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let accIpfs = null
             if (Number(nftSTAT.accessoriesIndex) === 1) {
                 accIpfs = data[1]
+            } else if (Number(nftSTAT.accessoriesIndex) === 2) {
+                accIpfs = data[11]
             }
             const response2 = accIpfs !== null ? await fetch(accIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
@@ -199,6 +237,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let backpfs = null
             if (Number(nftSTAT.backIndex) === 1) {
                 backpfs = data[2]
+            } else if (Number(nftSTAT.backIndex) === 2) {
+                backpfs = data[12]
             }
             const response3 = backpfs !== null ? await fetch(backpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
@@ -220,6 +260,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let shoesIpfs = null
             if (Number(nftSTAT.shoesIndex) === 1) {
                 shoesIpfs = data[3]
+            } else if (Number(nftSTAT.shoesIndex) === 2) {
+                shoesIpfs = data[13]
             }
             const response4 = shoesIpfs !== null ? await fetch(shoesIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
@@ -241,6 +283,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let weaponIpfs = null
             if (Number(nftSTAT.weaponIndex) === 1) {
                 weaponIpfs = data[4]
+            } else if (Number(nftSTAT.weaponIndex) === 2) {
+                weaponIpfs = data[14]
             }
             const response5 = weaponIpfs !== null ? await fetch(weaponIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
@@ -262,6 +306,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let clothIpfs = null
             if (Number(nftSTAT.clothIndex) === 1) {
                 clothIpfs = data[5]
+            } else if (Number(nftSTAT.clothIndex) === 2) {
+                clothIpfs = data[15]
             }
             const response6 = clothIpfs !== null ? await fetch(clothIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
@@ -283,6 +329,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             let hatIpfs = null
             if (Number(nftSTAT.hatIndex) === 1) {
                 hatIpfs = data[6]
+            } else if (Number(nftSTAT.hatIndex) === 2) {
+                hatIpfs = data[16]
             }
             const response7 = hatIpfs !== null ? await fetch(hatIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
