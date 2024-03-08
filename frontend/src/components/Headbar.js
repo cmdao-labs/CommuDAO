@@ -84,6 +84,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(5); navigate('/mall');}}>Mall</div>
               <div className="funcList" onClick={() => {callMode(6); navigate('/marketplace');}}>Marketplace</div>
               <div className="funcList" onClick={() => {callMode(7); navigate('/gameswap');}}>GameSwap</div>
+              <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
           {chain !== undefined && chain.id === 96 &&
@@ -91,9 +92,14 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(14); navigate('/fields/bkc');}}>Fields</div>
               <div className="funcList" onClick={() => {callMode(200); navigate('/labs/bkc');}}>Labs</div>
               <div className="funcList" onClick={() => {callMode(700); navigate('/gameswap/bkc');}}>GameSwap</div>
+              <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
-          <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
+          {chain !== undefined && chain.id === 56 &&
+            <> 
+              <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
+            </>
+          }
         </div>
         <div style={{fontSize: "16px"}} className="navButton pixel">
           {address !== null && address !== undefined && chain.id === 8899 &&
