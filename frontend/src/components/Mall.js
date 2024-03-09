@@ -592,7 +592,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy23(result[46])
             setSell24Remain(result[47])
             setSell25Remain(result[48])
-            setSell25Remain(result[49])
+            setSell26Remain(result[49])
 
             setRoll1Remain(result[12])
             setCanRoll1(result[13])
