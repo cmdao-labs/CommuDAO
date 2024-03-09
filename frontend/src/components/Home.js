@@ -19,7 +19,7 @@ const Home = ({ callMode, navigate }) => {
                         <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">45M+</div>
                         <div style={{fontSize: "16px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
-                    {chain !== undefined && chain.id === 8899 &&
+                    {chain !== undefined && chain.id === 8899 ?
                         <>
                             <div>Explore the world of CommuDAO</div>
                             <div style={{margin: "20px 0", width: "700px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
@@ -44,7 +44,8 @@ const Home = ({ callMode, navigate }) => {
                                     &nbsp;Jasper Cave
                                 </div>
                             </div>
-                        </>
+                        </> :
+                        <div style={{height: "246.5px", margin: "20px 0"}}></div>
                     }
                 </div>
             </div>
