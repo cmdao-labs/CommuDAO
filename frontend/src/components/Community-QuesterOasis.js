@@ -604,7 +604,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                             <div>
                                 <div className="bold">REWARDS</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                    <div style={{marginRight: "10px", color: "#fff"}}>500</div>
+                                    <div style={{marginRight: "10px", color: "#fff"}}>5</div>
                                     <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
                                 </div>
                             </div>
