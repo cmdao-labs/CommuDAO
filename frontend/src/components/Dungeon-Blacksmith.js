@@ -4831,7 +4831,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ░░░██║░░░░░░██║░░░  ██║░░░░░███████╗██║██║░╚███║░░░██║░░░███████╗╚█████╔╝╚█████╔╝██║░╚██╗
                                             ░░░╚═╝░░░░░░╚═╝░░░  ╚═╝░░░░░╚══════╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝░╚════╝░░╚════╝░╚═╝░░╚═╝
                                             */}
-                                            {String(item.Id).slice(0, 3) === "711" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 1450 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "711" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 2000 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -5634,7 +5634,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             } else if (Number(item.Id) % 100000 === 950) {
                                                                 enchantRHandle(item.Id, 125)
                                                             } else if (Number(item.Id) % 100000 === 1450) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 126)
                                                             } else if (Number(item.Id) % 100000 === 2000) {
                                                                 enchantRHandle(item.Id, null)
                                                             } else if (Number(item.Id) % 100000 === 2650) {
