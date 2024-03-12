@@ -4538,18 +4538,6 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1800 &&
-                                                                <>
-                                                                    <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
-                                                                    <div style={{margin: "0 5px"}}>200</div>
-                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
-                                                                    <div style={{margin: "0 5px"}}>20</div>
-                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                                                    <div style={{margin: "0 5px"}}>400</div>
-                                                                </>
-                                                            }
                                                             {Number(item.Id) % 100000 === 2750 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
@@ -4831,7 +4819,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ░░░██║░░░░░░██║░░░  ██║░░░░░███████╗██║██║░╚███║░░░██║░░░███████╗╚█████╔╝╚█████╔╝██║░╚██╗
                                             ░░░╚═╝░░░░░░╚═╝░░░  ╚═╝░░░░░╚══════╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝░╚════╝░░╚════╝░╚═╝░░╚═╝
                                             */}
-                                            {String(item.Id).slice(0, 3) === "711" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "711" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 3900 && Number(item.Id) % 100000 !== 2550 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -4889,7 +4877,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 1800 &&
                                                             <div>
-                                                                <img width="120" alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeia5ja2bqysgayvaybjwoxc5l2waay7jv4xye3l5ogbupsz557kjs4.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
                                                         }
@@ -5398,18 +5386,6 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                                     <div style={{margin: "0 5px"}}>400</div>
                                                                 </>
                                                             }
-                                                            {Number(item.Id) % 100000 === 1800 &&
-                                                                <>
-                                                                    <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
-                                                                    <div style={{margin: "0 5px"}}>200</div>
-                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
-                                                                    <div style={{margin: "0 5px"}}>20</div>
-                                                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                    <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                                                    <div style={{margin: "0 5px"}}>400</div>
-                                                                </>
-                                                            }
                                                             {Number(item.Id) % 100000 === 2750 &&
                                                                 <>
                                                                     <img src="https://nftstorage.link/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
@@ -5642,11 +5618,11 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             } else if (Number(item.Id) % 100000 === 3400) {
                                                                 enchantRHandle(item.Id, 129)
                                                             } else if (Number(item.Id) % 100000 === 1050) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 130)
                                                             } else if (Number(item.Id) % 100000 === 1800) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 131)
                                                             } else if (Number(item.Id) % 100000 === 2750) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 132)
                                                             } else if (Number(item.Id) % 100000 === 3900) {
                                                                 enchantRHandle3(item.Id, null)
                                                             } else if (Number(item.Id) % 100000 === 5250) {
