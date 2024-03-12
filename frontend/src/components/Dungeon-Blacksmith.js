@@ -4831,7 +4831,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ░░░██║░░░░░░██║░░░  ██║░░░░░███████╗██║██║░╚███║░░░██║░░░███████╗╚█████╔╝╚█████╔╝██║░╚██╗
                                             ░░░╚═╝░░░░░░╚═╝░░░  ╚═╝░░░░░╚══════╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝░╚════╝░░╚════╝░╚═╝░░╚═╝
                                             */}
-                                            {String(item.Id).slice(0, 3) === "711" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 3400 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "711" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -4883,7 +4883,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 3400 &&
                                                             <div>
-                                                                <img width="120" alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeid7h2iwscqsj57pozjlli3mhly3zaociswe7cu65rml3pv736e34q.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -5640,7 +5640,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             } else if (Number(item.Id) % 100000 === 2650) {
                                                                 enchantRHandle(item.Id, 128)
                                                             } else if (Number(item.Id) % 100000 === 3400) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 129)
                                                             } else if (Number(item.Id) % 100000 === 1050) {
                                                                 enchantRHandle3(item.Id, null)
                                                             } else if (Number(item.Id) % 100000 === 1800) {
