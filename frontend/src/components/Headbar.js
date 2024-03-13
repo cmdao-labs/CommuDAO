@@ -62,7 +62,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
       {isChainInvalid &&
         <div style={{zIndex: "999"}} className="centermodal">
           <div className="wrapper">
-            <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "150px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+            <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
               <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">UNSUPPORT CHAIN!</div>
               <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to supported network.</div>
               <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => switchNetwork(8899)}>SWITCH NETWORK</div>
