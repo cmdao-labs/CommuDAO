@@ -388,7 +388,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 200 && Number(ethers.utils.formatEther(String(silBal))) >= 2000 ? true : false
             const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 500 ? true : false
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
-            const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 200 ? true : false
+            const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 5 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftII = Number(ethers.utils.formatEther(String(gearBal))) >= 888 && Number(ethers.utils.formatEther(String(tmBal))) >= 8 ? true : false
@@ -1194,7 +1194,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, platLab],
             })
-            if (ctunaAllow < (200 * 10**18)) {
+            if (ctunaAllow < (5 * 10**18)) {
                 const config2 = await prepareWriteContract({
                     address: ctunaLab,
                     abi: erc20ABI,
@@ -2318,7 +2318,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div style={{margin: "0 5px"}}>300</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
-                                <div style={{margin: "0 5px"}}>200</div>
+                                <div style={{margin: "0 5px"}}>5</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
                                 <div style={{margin: "0 5px"}}>100</div>
