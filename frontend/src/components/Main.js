@@ -11,13 +11,16 @@ import TheHeavenLand from './Fields-TheHeavenLand'
 import EasternFront from './Fields-EasternFront'
 import MechHarvestZone from './Fields-MechHarvestZone'
 import Labs from './Labs'
+
 import Dungeon from './Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
 import NpcEvolutionary from './Dungeon-Evolutionary'
+import ApInn from './Dungeon-ApInn'
 import Coppermine from './Dungeon-CopperMine'
 import Jaspercave from './Dungeon-JasperCave'
 import Daemonworld from './Dungeon-DaemonWorld'
 import CrypticCogs from './Dungeon-CrypticCogs'
+
 import Community from './Community'
 import CmCityCenter from './Community-CmCityCenter'
 import QuesterOasis from './Community-QuesterOasis'
@@ -198,6 +201,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "CRYPTIC-COGS") {
                     preset = 36
                     document.title = "Cryptic Cogs | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "AP-INN") {
+                    preset = 37
+                    document.title = "AP INN | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -347,6 +353,7 @@ const Main = () => {
                 }
                 {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} />}
+                {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
                     <></>

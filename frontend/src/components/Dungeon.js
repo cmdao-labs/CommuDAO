@@ -135,7 +135,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <img src="https://nftstorage.link/ipfs/bafybeifrqslsoes7swzc3bnjl72x6sgsewcnx2w3zjsm5pzma7ku2onr6a" height="230" alt="AP-INN" />
                     </div>
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Grand opening soon!"</div>
-                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f", cursor: "not-allowed"}} className="pixel hashtag" >Enter AP INN</div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(37); navigate('/dungeon/ap-inn');}}>Enter AP INN</div>
                 </div>
             </div>
         </div>
