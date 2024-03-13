@@ -1039,7 +1039,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                 ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝ 
                                                 ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░
                                                 */}
-                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300) || (Number(String(item.Id).slice(0, 7)) >= 1300401 && Number(String(item.Id).slice(0, 7)) <= 1300500)) && Number(item.Id) % 100000 !== 11380) &&
+                                                {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300) || (Number(String(item.Id).slice(0, 7)) >= 1300401 && Number(String(item.Id).slice(0, 7)) <= 1300500)) && Number(item.Id) % 100000 !== 12060) &&
                                                     <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                         <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                             <div>
@@ -1088,6 +1088,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                             {Number(item.Id) % 100000 === 9500 && 30}
                                                                             {Number(item.Id) % 100000 === 10100 && 31}
                                                                             {Number(item.Id) % 100000 === 10740 && 32}
+                                                                            {Number(item.Id) % 100000 === 11380 && 33}
                                                                             ]
                                                                         </>
                                                                     }
@@ -1130,6 +1131,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 9500 && 29}
                                                                     {Number(item.Id) % 100000 === 10100 && 30}
                                                                     {Number(item.Id) % 100000 === 10740 && 31}
+                                                                    {Number(item.Id) % 100000 === 11380 && 32}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                             </div>
@@ -1168,6 +1170,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 9500 && 30}
                                                                     {Number(item.Id) % 100000 === 10100 && 31}
                                                                     {Number(item.Id) % 100000 === 10740 && 32}
+                                                                    {Number(item.Id) % 100000 === 11380 && 33}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>
                                                                     {Number(item.Id) % 100000 <= 540 && item.RewardPerSec + 40}
@@ -1186,6 +1189,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {(Number(item.Id) % 100000 === 7780 || Number(item.Id) % 100000 === 8340) && item.RewardPerSec + 560}
                                                                     {(Number(item.Id) % 100000 === 8900 || Number(item.Id) % 100000 === 9500) && item.RewardPerSec + 600}
                                                                     {(Number(item.Id) % 100000 === 10100 || Number(item.Id) % 100000 === 10740) && item.RewardPerSec + 640}
+                                                                    {(Number(item.Id) % 100000 === 11380) && item.RewardPerSec + 680}
                                                                     &nbsp;cmpow per sec
                                                                 </div>
                                                             </div>
@@ -1231,6 +1235,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 9500 && '593,440'}
                                                                     {Number(item.Id) % 100000 === 10100 && '71,212'}
                                                                     {Number(item.Id) % 100000 === 10740 && '85,455'}
+                                                                    {Number(item.Id) % 100000 === 11380 && '102,546'}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                 {Number(item.Id) % 100000 <= 1300 && <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>}
@@ -1271,6 +1276,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 9500 && 450}
                                                                     {Number(item.Id) % 100000 === 10100 && '240,000'}
                                                                     {Number(item.Id) % 100000 === 10740 && '360,000'}
+                                                                    {Number(item.Id) % 100000 === 11380 && '540,000'}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1288,71 +1294,75 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 } else if (Number(String(item.Id).slice(0, 7)) <= 1300500) {
                                                                     arg = 4000
                                                                 }
+                                                                let ind = 0
                                                                 if (Number(item.Id) % 100000 === 500) {
-                                                                    evolutionV2Handle(item.Id, arg + 1)
+                                                                    ind = 1
                                                                 } else if (Number(item.Id) % 100000 === 540) {
-                                                                    evolutionV2Handle(item.Id, arg + 2)
+                                                                    ind = 2
                                                                 } else if (Number(item.Id) % 100000 === 580) {
-                                                                    evolutionV2Handle(item.Id, arg + 3)
+                                                                    ind = 3
                                                                 } else if (Number(item.Id) % 100000 === 660) {
-                                                                    evolutionV2Handle(item.Id, arg + 4)
+                                                                    ind = 4
                                                                 } else if (Number(item.Id) % 100000 === 740) {
-                                                                    evolutionV2Handle(item.Id, arg + 5)
+                                                                    ind = 5
                                                                 } else if (Number(item.Id) % 100000 === 860) {
-                                                                    evolutionV2Handle(item.Id, arg + 6)
+                                                                    ind = 6
                                                                 } else if (Number(item.Id) % 100000 === 980) {
-                                                                    evolutionV2Handle(item.Id, arg + 7)
+                                                                    ind = 7
                                                                 } else if (Number(item.Id) % 100000 === 1140) {
-                                                                    evolutionV2Handle(item.Id, arg + 8)
+                                                                    ind = 8
                                                                 } else if (Number(item.Id) % 100000 === 1300) {
-                                                                    evolutionV2Handle(item.Id, arg + 9)
+                                                                    ind = 9
                                                                 } else if (Number(item.Id) % 100000 === 1500) {
-                                                                    evolutionV2Handle(item.Id, arg + 10)
+                                                                    ind = 10
                                                                 } else if (Number(item.Id) % 100000 === 1700) {
-                                                                    evolutionV2Handle(item.Id, arg + 11)
+                                                                    ind = 11
                                                                 } else if (Number(item.Id) % 100000 === 1940) {
-                                                                    evolutionV2Handle(item.Id, arg + 12)
+                                                                    ind = 12
                                                                 } else if (Number(item.Id) % 100000 === 2180) {
-                                                                    evolutionV2Handle(item.Id, arg + 13)
+                                                                    ind = 13
                                                                 } else if (Number(item.Id) % 100000 === 2460) {
-                                                                    evolutionV2Handle(item.Id, arg + 14)
+                                                                    ind = 14
                                                                 } else if (Number(item.Id) % 100000 === 2740) {
-                                                                    evolutionV2Handle(item.Id, arg + 15)
+                                                                    ind = 15
                                                                 } else if (Number(item.Id) % 100000 === 3060) {
-                                                                    evolutionV2Handle(item.Id, arg + 16)
+                                                                    ind = 16
                                                                 } else if (Number(item.Id) % 100000 === 3380) {
-                                                                    evolutionV2Handle(item.Id, arg + 17)
+                                                                    ind = 17
                                                                 } else if (Number(item.Id) % 100000 === 3740) {
-                                                                    evolutionV2Handle(item.Id, arg + 18)
+                                                                    ind = 18
                                                                 } else if (Number(item.Id) % 100000 === 4100) {
-                                                                    evolutionV2Handle(item.Id, arg + 19)
+                                                                    ind = 19
                                                                 } else if (Number(item.Id) % 100000 === 4500) {
-                                                                    evolutionV2Handle(item.Id, arg + 20)
+                                                                    ind = 20
                                                                 } else if (Number(item.Id) % 100000 === 4900) {
-                                                                    evolutionV2Handle(item.Id, arg + 21)
+                                                                    ind = 21
                                                                 } else if (Number(item.Id) % 100000 === 5340) {
-                                                                    evolutionV2Handle(item.Id, arg + 22)
+                                                                    ind = 22
                                                                 } else if (Number(item.Id) % 100000 === 5780) {
-                                                                    evolutionV2Handle(item.Id, arg + 23)
+                                                                    ind = 23
                                                                 } else if (Number(item.Id) % 100000 === 6260) {
-                                                                    evolutionV2Handle(item.Id, arg + 24)
+                                                                    ind = 24
                                                                 } else if (Number(item.Id) % 100000 === 6740) {
-                                                                    evolutionV2Handle(item.Id, arg + 25)
+                                                                    ind = 25
                                                                 } else if (Number(item.Id) % 100000 === 7260) {
-                                                                    evolutionV2Handle(item.Id, arg + 26)
+                                                                    ind = 26
                                                                 } else if (Number(item.Id) % 100000 === 7780) {
-                                                                    evolutionV2Handle(item.Id, arg + 27)
+                                                                    ind = 27
                                                                 } else if (Number(item.Id) % 100000 === 8340) {
-                                                                    evolutionV2Handle(item.Id, arg + 28)
+                                                                    ind = 28
                                                                 } else if (Number(item.Id) % 100000 === 8900) {
-                                                                    evolutionV2Handle(item.Id, arg + 29)
+                                                                    ind = 29
                                                                 } else if (Number(item.Id) % 100000 === 9500) {
-                                                                    evolutionV2Handle(item.Id, arg + 30)
+                                                                    ind = 30
                                                                 } else if (Number(item.Id) % 100000 === 10100) {
-                                                                    evolutionV2Handle(item.Id, arg + 31)
+                                                                    ind = 31
                                                                 } else if (Number(item.Id) % 100000 === 10740) {
-                                                                    evolutionV2Handle(item.Id, arg + 32)
+                                                                    ind = 32
+                                                                } else if (Number(item.Id) % 100000 === 11380) {
+                                                                    ind = 33
                                                                 }
+                                                                evolutionV2Handle(item.Id, arg + ind)
                                                             }}
                                                         >
                                                             UPGRADE
