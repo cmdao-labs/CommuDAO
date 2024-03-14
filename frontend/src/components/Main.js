@@ -16,6 +16,8 @@ import Dungeon from './Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
 import NpcEvolutionary from './Dungeon-Evolutionary'
 import ApInn from './Dungeon-ApInn'
+import TaoistTemple from './Dungeon-TaoistTemple'
+
 import Coppermine from './Dungeon-CopperMine'
 import Jaspercave from './Dungeon-JasperCave'
 import Daemonworld from './Dungeon-DaemonWorld'
@@ -79,6 +81,7 @@ import angeloStdABI from './jsons/angeloStdABI.json'
 import cmdaoAmmNpcABI from './jsons/cmdaoAmmNpcABI.json'
 import enchantNABI from './jsons/enchantNABI.json'
 import enchantRABI from './jsons/enchantRABI.json'
+import uniEnchanterABI from './jsons/uniEnchanterABI.json'
 import osABI from './jsons/osABI.json'
 import evolutionaryABI from './jsons/evolutionaryABI.json'
 import fusionABI from './jsons/fusionABI.json'
@@ -204,6 +207,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "AP-INN") {
                     preset = 37
                     document.title = "AP INN | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "TAOIST-TEMPLE") {
+                    preset = 38
+                    document.title = "Taoist Temple | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -354,6 +360,7 @@ const Main = () => {
                 {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} />}
                 {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
+                {mode === 38 && <TaoistTemple setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
                     <></>

@@ -137,6 +137,18 @@ const Dungeon = ({ callMode, navigate }) => {
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Grand opening soon!"</div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(37); navigate('/dungeon/ap-inn');}}>Enter AP INN</div>
                 </div>
+
+                <div className="nftCard pixel" style={{position: "relative", justifyContent: "flex-start", margin: "20px"}}>
+                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                        <img src="https://nftstorage.link/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                        <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                    </div>
+                    <div style={{width: "345px", height: "230px", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", overflow: "hidden"}}>
+
+                    </div>
+                    <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Grand opening soon!"</div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(38); navigate('/dungeon/taoist-temple');}}>Enter Taoist Temple</div>
+                </div>
             </div>
         </div>
     </>
