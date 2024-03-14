@@ -744,7 +744,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             tokenBoughtCurr = tokenBoughtSIL
         } else if (index === 2) {
             lp = jazziGOLD
-            token = goldTokenToken
+            token = goldToken
             currBoughtToken = cmjBoughtGOLD
             tokenBoughtCurr = tokenBoughtGOLD
         }
