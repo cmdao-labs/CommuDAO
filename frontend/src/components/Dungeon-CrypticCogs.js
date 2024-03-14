@@ -489,6 +489,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 setCharacterSlotLevel(result[2].slice(-2, -1))
             } else if (result[2] !== null && result[2].slice(-1) === "]" && result[2].slice(-4, -3) === ".") {
                 setCharacterSlotLevel(result[2].slice(-3, -1))
+            } else if (result[2] !== null) {
+                setCharacterSlotLevel(result[2].slice(-1))
             } else {
                 setCharacterSlotLevel(null)
             }
@@ -666,8 +668,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         }
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafybeiehjcwrzylly7xunlan4xqwe2aynokqkgtj65bwxxqq5wfnz4hcnq')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Cryptic Cogs</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $Enchant Engine.</div>
+                <div className="pixel" style={{fontSize: "75px", padding: "10px 20px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Cryptic Cogs</div>
+                <div style={{fontSize: "17px", padding: "10px", width: "fit-content", marginTop: "30px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}} className="pixel">Exploring exotic cave to collect a rare token, $Enchant Engine.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="150" alt="$EE" />
@@ -776,17 +778,17 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             <img src={helmetSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {helmetSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{helmetSlotLevel}</div>}
+                        {helmetSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{helmetSlotLevel}</div>}
                         {armorSlot !== null ?
                             <img src={armorSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {armorSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{armorSlotLevel}</div>}
+                        {armorSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel}</div>}
                         {bootsSlot !== null ?
                             <img src={bootsSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{bootsSlotLevel}</div>}
+                        {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{bootsSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
@@ -801,24 +803,24 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
+                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "10px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {ringSlot !== null ?
                             <img src={ringSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {ringSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ringSlotLevel}</div>}
+                        {ringSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{ringSlotLevel}</div>}
                         {shieldSlot !== null ?
                             <img src={shieldSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {shieldSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shieldSlotLevel}</div>}
+                        {shieldSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel}</div>}
                         {swordSlot !== null ?
                             <img src={swordSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {swordSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{swordSlotLevel}</div>}
+                        {swordSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{swordSlotLevel}</div>}
                     </div>
                 </div>
             </div>
