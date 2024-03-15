@@ -7,6 +7,7 @@ import Ammmerchant from  './Mall-Ammy'
 import Ammmerchant2 from  './Mall-Jazzi'
 import Ammmerchant3 from  './Mall-Degeno'
 import Ammmerchant4 from  './Mall-Angelo'
+import Ammmerchant5 from  './Mall-TaoUncle'
 const { ethereum } = window
 
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
@@ -17,6 +18,8 @@ const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 const dunAngb = '0x59c1c2f5fa76db933b97b7c54223129e2a398534'
+const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
+const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
@@ -109,6 +112,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [wjbcBalance, setWjbcBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
     const [angbBalance, setAngbBalance] = React.useState(0)
+    const [jtaoBalance, setJtaoBalance] = React.useState(0)
+    const [iiBalance, setIiBalance] = React.useState(0)
     const [jdaoBalance, setJdaoBalance] = React.useState(0)
 
     React.useEffect(() => {
@@ -226,8 +231,20 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: taomeme,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: iiLab,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
             
             const _isKYC = data[0]
             const cmjBal = data[1]
@@ -247,6 +264,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const swarBal = data[15]
             const silBal = data[16]
             const angbBal = data[17]
+            const jtaoBal = data[18]
+            const iiBal = data[19]
 
             const data2 = await readContracts({
                 contracts: [
@@ -573,7 +592,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
                 sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14, sell15remain, sell16remain, sell17remain, sell18remain, _canBuy18, 
                 sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, sell25remain, sell26remain, sell27remain, sell28remain, sell29remain, sell30remain,
-                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, 
+                ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, jtaoBal, iiBal, 
             ]
         }
 
@@ -658,6 +677,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setSilBalance(ethers.utils.formatEther(String(result[66])))
             setJdaoBalance(ethers.utils.formatEther(String(result[67])))
             setAngbBalance(ethers.utils.formatEther(String(result[68])))
+            setJtaoBalance(ethers.utils.formatEther(String(result[69])))
+            setIiBalance(ethers.utils.formatEther(String(result[70])))
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoGasha02ABI, erc20ABI])
@@ -1290,6 +1311,29 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         />
                         <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img 
+                            src="https://nftstorage.link/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
+                            width="20"
+                            alt="$JTAO"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: taomeme,
+                                            symbol: 'JTAO',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(jtaoBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                    </div>
                 </div>
 
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", marginTop: "20px"}} className="bold">CommuDAO Tokens</div>
@@ -1554,6 +1598,29 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         />
                         <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
+                            width="20"
+                            alt="$II"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: iiLab,
+                                            symbol: 'TDM - II',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
                 </div>
 
 
@@ -1566,6 +1633,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
+                    <Ammmerchant5 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} iiBalance={iiBalance} jtaoBalance={jtaoBalance} />
                 </div>
 
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
