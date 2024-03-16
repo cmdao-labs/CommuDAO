@@ -9,8 +9,16 @@ const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const RatHuntingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
-    const { address } = useAccount()
+const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
+    let { address } = useAccount()
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/old-warehouse/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/old-warehouse/' + address)
+    }
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
