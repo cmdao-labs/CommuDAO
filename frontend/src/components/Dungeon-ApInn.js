@@ -299,7 +299,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                                             {
 
                                             }
-                                            {String(item.Id).slice(0, 3) === "101" &&
+                                            {String(item.Id).slice(0, 3) !== "401" &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -317,6 +317,118 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}1</div>
                                                             </div>
                                                         }
+                                                        {String(item.Id).slice(0, 3) === "102" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeig6nfhwxb6apgwjpina3w3ltlfss2vgmn7e6loguf3db7z6yp6ofe' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "103" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeidvfdvw6mc2pln5wo7hstyl2pa6mwkvpdqi2onuam3uht6fnt23ui' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "104" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://bafybeiesy2tb3rk2xfnhe6sxpeoerwqfpelrjmeypisgr23ci7ifokjm5q.ipfs.nftstorage.link/' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "105" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeifqigkbjup3auor6puownvf2myhsxgogvp2rypacgpwi75juvqsae' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -4)}C +0</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "201" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeigso6gthqx37ok66bhtn4iwva5a3dvfummbdgfj5kjfosusqohfpu' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}1</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "202" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeidfn7btigokkuont2mjbwk377hp3ipgdffkqwp7etwhghvb7opspq' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "203" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeid37zvuwqumg45v4saisweceuxo7ukw4pa7rineghonfcndaa3yju' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "204" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeig3ilnnbbu5leurojtvtj44md6vt7paubqcgzddggmvnrj2qs7pzy' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "205" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeia22spf73265h7zwq3rlydayzhmksbmhpjn2ppncnpbuswigadj2e' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -4)}B +0</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "301" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeihs2ydvod22xncp3264pvybcxi6njid7ncqbrz2e4qkl6mresb6yq' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}1</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "302" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeifc7ffb7n2ytc7lfohcy3k6qgkfsz5t5jwbwpd552pkztamm7uuli' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "303" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeid2jukb33diwjv4p6ia4sg6zkdrd6rhbcy6nemlvnqhel3zesoqni' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "304" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeigvvbgvxsluftnkedcw2vwfaw5rarbhyonrwsvqh2rr3du7ndxzwa' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
+                                                            </div>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "305" &&
+                                                            <div>
+                                                                <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
+                                                                    <source src='https://nftstorage.link/ipfs/bafybeigvqwas5ph2qwfmlo5riqvnul7stnw5fbg2igqto55fgkqijciezi' type="video/mp4" />
+                                                                </video>
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -4)}A +0</div>
+                                                            </div>
+                                                        }
                                                     </div>
                                                     <div className="pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         {String(item.Id).slice(0, 3) === "101" &&
@@ -328,6 +440,174 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                                                                 <div>
                                                                     <div>D1</div>
                                                                     <div style={{width: "150px"}}>1000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "102" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>D1</div>
+                                                                    <div style={{width: "150px"}}>1000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>D2</div>
+                                                                    <div style={{width: "150px"}}>2000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "103" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>D2</div>
+                                                                    <div style={{width: "150px"}}>2000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>D3</div>
+                                                                    <div style={{width: "150px"}}>3000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "104" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>D3</div>
+                                                                    <div style={{width: "150px"}}>3000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>D4</div>
+                                                                    <div style={{width: "150px"}}>4000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "105" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>D4</div>
+                                                                    <div style={{width: "150px"}}>4000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>C0</div>
+                                                                    <div style={{width: "150px"}}>5000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "201" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>C0</div>
+                                                                    <div style={{width: "150px"}}>5000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>C1</div>
+                                                                    <div style={{width: "150px"}}>6000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "202" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>C1</div>
+                                                                    <div style={{width: "150px"}}>6000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>C2</div>
+                                                                    <div style={{width: "150px"}}>7000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "203" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>C2</div>
+                                                                    <div style={{width: "150px"}}>7000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>C3</div>
+                                                                    <div style={{width: "150px"}}>8000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "204" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>C3</div>
+                                                                    <div style={{width: "150px"}}>8000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>C4</div>
+                                                                    <div style={{width: "150px"}}>9000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "205" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>C4</div>
+                                                                    <div style={{width: "150px"}}>9000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>B0</div>
+                                                                    <div style={{width: "150px"}}>10000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "301" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>B0</div>
+                                                                    <div style={{width: "150px"}}>10000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>B1</div>
+                                                                    <div style={{width: "150px"}}>11000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "302" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>B1</div>
+                                                                    <div style={{width: "150px"}}>11000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>B2</div>
+                                                                    <div style={{width: "150px"}}>12000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "303" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>B2</div>
+                                                                    <div style={{width: "150px"}}>12000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>B3</div>
+                                                                    <div style={{width: "150px"}}>13000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "304" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>B3</div>
+                                                                    <div style={{width: "150px"}}>13000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>B4</div>
+                                                                    <div style={{width: "150px"}}>14000 pow</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {String(item.Id).slice(0, 3) === "305" &&
+                                                            <>
+                                                                <div>
+                                                                    <div>B4</div>
+                                                                    <div style={{width: "150px"}}>14000 pow</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>A0</div>
+                                                                    <div style={{width: "150px"}}>15000 pow</div>
                                                                 </div>
                                                             </>
                                                         }
@@ -347,9 +627,39 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                                                         style={{background: "#67BAA7", textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
                                                         className="pixel button"
                                                         onClick={() => {
+                                                            let arg = 0
                                                             if (String(item.Id).slice(0, 3) === "101") {
-                                                                enchantAcHandle(item.Id, 1)
+                                                                arg = 1
+                                                            } else if (String(item.Id).slice(0, 3) === "102") {
+                                                                arg = 2
+                                                            } else if (String(item.Id).slice(0, 3) === "103") {
+                                                                arg = 3
+                                                            } else if (String(item.Id).slice(0, 3) === "104") {
+                                                                arg = 4
+                                                            } else if (String(item.Id).slice(0, 3) === "105") {
+                                                                arg = 5
+                                                            } else if (String(item.Id).slice(0, 3) === "201") {
+                                                                arg = 6
+                                                            } else if (String(item.Id).slice(0, 3) === "202") {
+                                                                arg = 7
+                                                            } else if (String(item.Id).slice(0, 3) === "203") {
+                                                                arg = 8
+                                                            } else if (String(item.Id).slice(0, 3) === "204") {
+                                                                arg = 9
+                                                            } else if (String(item.Id).slice(0, 3) === "205") {
+                                                                arg = 10
+                                                            } else if (String(item.Id).slice(0, 3) === "301") {
+                                                                arg = 11
+                                                            } else if (String(item.Id).slice(0, 3) === "302") {
+                                                                arg = 12
+                                                            } else if (String(item.Id).slice(0, 3) === "303") {
+                                                                arg = 13
+                                                            } else if (String(item.Id).slice(0, 3) === "304") {
+                                                                arg = 14
+                                                            } else if (String(item.Id).slice(0, 3) === "305") {
+                                                                arg = 15
                                                             }
+                                                            enchantAcHandle(item.Id, arg)
                                                         }}
                                                     >
                                                         UPGRADE

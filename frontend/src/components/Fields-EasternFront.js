@@ -115,6 +115,34 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     _reward = 100
                 } else if (yournftstake[i].Id.slice(0, 3) === '102') {
                     _reward = 1000
+                } else if (yournftstake[i].Id.slice(0, 3) === '103') {
+                    _reward = 2000
+                } else if (yournftstake[i].Id.slice(0, 3) === '104') {
+                    _reward = 3000
+                } else if (yournftstake[i].Id.slice(0, 3) === '105') {
+                    _reward = 4000
+                } else if (yournftstake[i].Id.slice(0, 3) === '201') {
+                    _reward = 5000
+                } else if (yournftstake[i].Id.slice(0, 3) === '202') {
+                    _reward = 6000
+                } else if (yournftstake[i].Id.slice(0, 3) === '203') {
+                    _reward = 7000
+                } else if (yournftstake[i].Id.slice(0, 3) === '204') {
+                    _reward = 8000
+                } else if (yournftstake[i].Id.slice(0, 3) === '205') {
+                    _reward = 9000
+                } else if (yournftstake[i].Id.slice(0, 3) === '301') {
+                    _reward = 10000
+                } else if (yournftstake[i].Id.slice(0, 3) === '302') {
+                    _reward = 11000
+                } else if (yournftstake[i].Id.slice(0, 3) === '303') {
+                    _reward = 12000
+                } else if (yournftstake[i].Id.slice(0, 3) === '304') {
+                    _reward = 13000
+                } else if (yournftstake[i].Id.slice(0, 3) === '305') {
+                    _reward = 14000
+                } else if (yournftstake[i].Id.slice(0, 3) === '401') {
+                    _reward = 15000
                 }
 
                 _allDaily += Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400)))
@@ -179,6 +207,34 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     _reward = 100
                 } else if (yournftwallet[i].Id.slice(0, 3) === '102') {
                     _reward = 1000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '103') {
+                    _reward = 2000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '104') {
+                    _reward = 3000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '105') {
+                    _reward = 4000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '201') {
+                    _reward = 5000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '202') {
+                    _reward = 6000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '203') {
+                    _reward = 7000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '204') {
+                    _reward = 8000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '205') {
+                    _reward = 9000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '301') {
+                    _reward = 10000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '302') {
+                    _reward = 11000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '303') {
+                    _reward = 12000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '304') {
+                    _reward = 13000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '305') {
+                    _reward = 14000
+                } else if (yournftwallet[i].Id.slice(0, 3) === '401') {
+                    _reward = 15000
                 }
 
                 nfts.push({
