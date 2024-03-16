@@ -370,12 +370,12 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                    <div style={{height: "250px"}}></div>
+                    <img src="https://nftstorage.link/ipfs/bafybeigujzlvozogmovkcsai7o47bwewyj64goma2smlb3fsbjp24kgaua" width="220" alt="NPC_Auto_Taomi" />
                 </div>
                 {mode === 1 &&
                     <>
                         <div style={{maxHeight: "75px"}}>
-                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">TAO UNCLE, TAOMEME TRADER</div>
+                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">AUTO TAOMI, TAOMEME TRADER</div>
                             <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BUY/SELL ${gasselected}</div>
                             <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
                             <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -491,7 +491,7 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                 {mode === 2 &&
                     <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                         <div style={{maxHeight: "75px"}}>
-                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">TAO UNCLE, TAOMEME TRADER</div>
+                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">AUTO TAOMI, TAOMEME TRADER</div>
                             <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"ADD/REMOVE {gasselected}-JTAO LP</div>
                             <div style={{fontSize: "10px"}} className="light">READY TO JOIN MY BUSINESS?"</div>
                             <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>

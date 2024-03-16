@@ -7,7 +7,7 @@ import Ammmerchant from  './Mall-Ammy'
 import Ammmerchant2 from  './Mall-Jazzi'
 import Ammmerchant3 from  './Mall-Degeno'
 import Ammmerchant4 from  './Mall-Angelo'
-import Ammmerchant5 from  './Mall-TaoUncle'
+import Ammmerchant5 from  './Mall-AutoTaomi'
 const { ethereum } = window
 
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"

@@ -16,7 +16,7 @@ import Dungeon from './Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
 import NpcEvolutionary from './Dungeon-Evolutionary'
 import ApInn from './Dungeon-ApInn'
-import TaoistTemple from './Dungeon-TaoistTemple'
+import TdmRoboticsInc from './Dungeon-TdmRoboticsInc.js'
 
 import Coppermine from './Dungeon-CopperMine'
 import Jaspercave from './Dungeon-JasperCave'
@@ -208,9 +208,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "AP-INN") {
                     preset = 37
                     document.title = "AP INN | CommuDAO"
-                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "TAOIST-TEMPLE") {
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "TDM-ROBOTICS-INC") {
                     preset = 38
-                    document.title = "Taoist Temple | CommuDAO"
+                    document.title = "TDM Robotics Inc. | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -361,7 +361,7 @@ const Main = () => {
                 {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} />}
                 {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
-                {mode === 38 && <TaoistTemple setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
+                {mode === 38 && <TdmRoboticsInc setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
                     <></>

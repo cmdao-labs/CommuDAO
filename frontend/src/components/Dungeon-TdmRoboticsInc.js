@@ -13,7 +13,7 @@ const uniEnchanter = '0x2A7F88d4eACD6dbE8C255B54F8015eF40F5cfDE2'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TaoistTemple = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, erc721ABI, erc20ABI }) => {
+const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, erc721ABI, erc20ABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -231,10 +231,11 @@ const TaoistTemple = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, er
         <>
             <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                    <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Taoist Temple</div>
+                    <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>TDM Robotics Inc.</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
+                    <img src="https://nftstorage.link/ipfs/bafybeigac5ws4lgz5pqdt45bdyiqrhsbohguyqng6d7jxsed2c5m3dehe4" height="230" alt="TDM-ROBOTICS-INC" />
                 </div>
             </div>
 
@@ -422,4 +423,4 @@ const TaoistTemple = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, er
     )
 }
 
-export default TaoistTemple
+export default TdmRoboticsInc

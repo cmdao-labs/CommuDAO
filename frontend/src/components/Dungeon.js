@@ -144,10 +144,10 @@ const Dungeon = ({ callMode, navigate }) => {
                         <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                     </div>
                     <div style={{width: "345px", height: "230px", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", overflow: "hidden"}}>
-
+                        <img style={{position: "relative", zIndex: 2}} src="https://nftstorage.link/ipfs/bafybeigac5ws4lgz5pqdt45bdyiqrhsbohguyqng6d7jxsed2c5m3dehe4" height="230" alt="TDM-ROBOTICS-INC" />
                     </div>
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Grand opening soon!"</div>
-                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(38); navigate('/dungeon/taoist-temple');}}>Enter Taoist Temple</div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(38); navigate('/dungeon/tdm-robotics-inc');}}>Enter TDM Robotics Inc.</div>
                 </div>
             </div>
         </div>
