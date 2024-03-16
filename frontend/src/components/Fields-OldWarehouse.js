@@ -103,21 +103,21 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftid = yournftstake[i].Id
 
-                let bonus;
-                if (nftid >= 400) {
-                    bonus = 4;
-                } else if (nftid >= 180 && nftid < 400) {
-                    bonus = 10;
-                } else if (nftid >= 60 && nftid < 180) {
-                    bonus = 20;
-                } else if (nftid >= 20 && nftid < 60) {
-                    bonus = 50;
-                } else if (nftid >= 2 && nftid < 20) {
-                    bonus = 100;
-                } else if (nftid === 1) {
-                    bonus = 400;
+                let bonus = 0
+                if (Number(nftid) >= 400) {
+                    bonus = 4
+                } else if (Number(nftid) >= 180 && Number(nftid) < 400) {
+                    bonus = 10
+                } else if (Number(nftid) >= 60 && Number(nftid) < 180) {
+                    bonus = 20
+                } else if (Number(nftid) >= 20 && Number(nftid) < 60) {
+                    bonus = 50
+                } else if (Number(nftid) >= 2 && Number(nftid) < 20) {
+                    bonus = 100
+                } else if (Number(nftid) === 1) {
+                    bonus = 400
                 }
-                _allDaily += Number(ethers.utils.formatEther(String(bonus * 10**14)))
+                _allDaily = Number(ethers.utils.formatEther(String(bonus * 10**14)))
                 _allReward += Number(ethers.utils.formatEther(String(data2[i])))
 
                 nfts.push({
@@ -158,17 +158,17 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 const nftid = Number(yournftwallet[i].Id)
 
                 let bonus;
-                if (nftid >= 400) {
+                if (Number(nftid) >= 400) {
                     bonus = 4;
-                } else if (nftid >= 180 && nftid < 400) {
+                } else if (Number(nftid) >= 180 && Number(nftid) < 400) {
                     bonus = 10;
-                } else if (nftid >= 60 && nftid < 180) {
+                } else if (Number(nftid) >= 60 && nftid < 180) {
                     bonus = 20;
-                } else if (nftid >= 20 && nftid < 60) {
+                } else if (Number(nftid) >= 20 && Number(nftid) < 60) {
                     bonus = 50;
-                } else if (nftid >= 2 && nftid < 20) {
+                } else if (Number(nftid) >= 2 && Number(nftid) < 20) {
                     bonus = 100;
-                } else if (nftid === 1) {
+                } else if (Number(nftid) === 1) {
                     bonus = 400;
                 }
 
