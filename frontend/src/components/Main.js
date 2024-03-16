@@ -82,6 +82,7 @@ import cmdaoAmmNpcABI from './jsons/cmdaoAmmNpcABI.json'
 import enchantNABI from './jsons/enchantNABI.json'
 import enchantRABI from './jsons/enchantRABI.json'
 import uniEnchanterABI from './jsons/uniEnchanterABI.json'
+import acUpgradeABI from './jsons/acUpgradeABI.json'
 import osABI from './jsons/osABI.json'
 import evolutionaryABI from './jsons/evolutionaryABI.json'
 import fusionABI from './jsons/fusionABI.json'
@@ -359,7 +360,7 @@ const Main = () => {
                 }
                 {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} />}
-                {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
+                {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 38 && <TaoistTemple setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :
