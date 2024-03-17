@@ -686,7 +686,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)", color: "#000"}}>Lv.{fairySlotLevel}</div>}
+                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{fairySlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {ringSlot !== null ?
