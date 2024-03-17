@@ -364,13 +364,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         getAsync().then(result => {
             setNft(result[0])
             setCharacterSlot(result[1])
-            if (result[2] !== null && result[2].slice(-1) === "]" && result[2].slice(-3, -2) === ".") {
-                setCharacterSlotLevel(result[2].slice(-2, -1))
-            } else if (result[2] !== null && result[2].slice(-1) === "]" && result[2].slice(-4, -3) === ".") {
-                setCharacterSlotLevel(result[2].slice(-3, -1))
-            } else {
-                setCharacterSlotLevel(null)
-            }
+            result[2] !== null ? setCharacterSlotLevel(result[2].slice(-1)) : setCharacterSlotLevel(null)
             setRingSlot(result[3])
             result[4] !== null && Number(result[4].slice(-1)) > 0 ? setRingSlotLevel(result[4].slice(-1)) : setRingSlotLevel(null)
             setShieldSlot(result[5])
@@ -652,17 +646,17 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             <img src={helmetSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {helmetSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{helmetSlotLevel}</div>}
+                        {helmetSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{helmetSlotLevel}</div>}
                         {armorSlot !== null ?
                             <img src={armorSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {armorSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{armorSlotLevel}</div>}
+                        {armorSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel}</div>}
                         {bootsSlot !== null ?
                             <img src={bootsSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{bootsSlotLevel}</div>}
+                        {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{bootsSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
@@ -677,7 +671,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
+                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Fairy NFT</div>
@@ -692,30 +686,30 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{fairySlotLevel}</div>}
+                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)", color: "#000"}}>Lv.{fairySlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {ringSlot !== null ?
                             <img src={ringSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {ringSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ringSlotLevel}</div>}
+                        {ringSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{ringSlotLevel}</div>}
                         {shieldSlot !== null ?
                             <img src={shieldSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {shieldSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shieldSlotLevel}</div>}
+                        {shieldSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel}</div>}
                         {swordSlot !== null ?
                             <img src={swordSlot} width="100px" alt="Can not load metadata." /> :
                             <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                         }
-                        {swordSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{swordSlotLevel}</div>}
+                        {swordSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{swordSlotLevel}</div>}
                     </div>
                 </div>
             </div>
             
             {nft.length > 0 ?
-                <div style={{width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (

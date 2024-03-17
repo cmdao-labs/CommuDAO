@@ -826,7 +826,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             </div>
             
             {nft.length > 0 ?
-                <div style={{width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
