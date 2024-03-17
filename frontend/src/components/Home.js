@@ -14,14 +14,14 @@ const Home = ({ callMode, navigate }) => {
             <div className="halfone">
                 <div className="welcomeText">
                     <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect,<br></br>Play,<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
-                    <div style={{marginTop: "20px"}}>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
+                    <div style={{marginTop: "20px", fontSize: "18px"}} className='bold'>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
-                        <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52M+</div>
-                        <div style={{fontSize: "16px", marginTop: "5px"}} className="light">Transactions on CommuDAO Ecosystem</div>
+                        <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52,000,000+</div>
+                        <div style={{fontSize: "16px", marginTop: "5px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
                     {chain !== undefined && chain.id === 8899 ?
                         <>
-                            <div>Explore the world of CommuDAO</div>
+                            <div style={{padding: "2px 8px", color: "#000", background: "rgb(255, 255, 255, 0.4)", backdropFilter: "blur(10px)"}}>Explore the CommuDAO-verse now!</div>
                             <div style={{margin: "20px 0", width: "700px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                 <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
