@@ -56,8 +56,14 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: apDunNft,
+                        abi: erc721ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, ]
+            }) : [0, 0, 0, 0, 0, ]
 
             const cmjBal = data[1]
             const angbBal = data[2]
@@ -116,6 +122,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 })
             }
 
+            const nftbal2 = data[4]
             let yournft2 = []
             let count2 = 0
             const walletFilter2 = await apDunSC.filters.Transfer(null, address, null)
@@ -134,7 +141,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 ))
             }) : [Array(walletRemoveDup2.length).fill('')]
 
-            for (let i = 0; i <= walletRemoveDup2.length - 1 && count2 < nftbal; i++) {
+            for (let i = 0; i <= walletRemoveDup2.length - 1 && count2 < nftbal2; i++) {
                 if (data3[i].toUpperCase() === address.toUpperCase()) {
                     yournft2.push({Id: String(walletRemoveDup2[i])})
                     count2++
