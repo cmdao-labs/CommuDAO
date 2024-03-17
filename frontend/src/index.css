@@ -236,7 +236,7 @@ header::-webkit-scrollbar { display: none; }
   font-size: 18px;
   background-repeat: no-repeat;
   background-position: bottom center, 50%, 50%;
-  background-image: url('data:image/svg+xml,<svg style="object-fit:cover" id="my-svg" version="1" baseProfile="full" width="100%" height="100%" viewBox="0 0 1680 929" xmlns="http://www.w3.org/2000/svg"><rect width="1680" height="929" fill="%23ffffff"></rect><defs><radialGradient id="radial-gradient" cx="0.5" cy="0.75" r="0"><stop offset="0%" stop-color="%23ff007090"></stop><stop offset="100%" stop-color="%23ff007090"></stop></radialGradient></defs><path transform="scale(-1, 1)" style="transform-origin:center" d="M 0,929 V 0,371 C 333,440.5 666,510 946,510 C 1226,510 1453,440.5 1680,371 C 1680,371 1680,929 1680,929 Z" stroke="none" stroke-width="0" fill="url(%23radial-gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><radialGradient id="radial-gradient" cx="0.5" cy="0.75" r="0"><stop offset="0%" stop-color="%23ff0070ff"></stop><stop offset="100%" stop-color="%23ff0070ff"></stop></radialGradient></defs><path transform="scale(-1, 1)" d="M 0,929 V 0,557 C 346.5,490 693,423 973,423 C 1253,423 1466.5,490 1680,557 C 1680,557 1680,929 1680,929 Z" stroke="none" stroke-width="0" fill="url(%23radial-gradient)" class="transition-all duration-300 ease-in-out delay-150" style="transform-origin: center center;"></path></svg>');
+  background-image: url('https://bafkreiekq7urjzx7lzxclt5b2ykfhnbvvrsvmzg6qa2jxhn4uyiglzfvha.ipfs.nftstorage.link/');
 }
 .motto {
   font-size: 84px;
