@@ -249,7 +249,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
         let token2 = '0x0000000000000000000000000000000000000000'
         let token1Amount = 0
         let token2Amount = 0
-        if (_enchantindex >= 100000 && _enchantindex < 100009) {
+        if (_enchantindex >= 100000 && _enchantindex <= 100009) {
             token1 = dunANGB
             token1Amount = 1
         }
