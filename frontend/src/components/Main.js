@@ -357,7 +357,7 @@ const Main = () => {
                 }
                 {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} />}
-                {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
+                {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 38 && <TdmRoboticsInc setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
                 {mode === 4 ?
                     <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} /> :

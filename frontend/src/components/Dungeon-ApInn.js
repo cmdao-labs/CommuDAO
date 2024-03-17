@@ -11,9 +11,12 @@ const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
 const acUpgrade = '0x58AE9c64F0367cAcE006438af2E9E889F69051c4'
 
+const apDunNft = '0x853beB37aBAfA021818B9f66e5333E657Ceb29d0'
+const uniEnchanter = '0x2A7F88d4eACD6dbE8C255B54F8015eF40F5cfDE2'
+
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, erc20ABI }) => {
+const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanterABI, erc721ABI, erc20ABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -24,13 +27,9 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
     React.useEffect(() => {
         window.scrollTo(0, 0)    
         const acnftSC = new ethers.Contract(acNft, erc721ABI, providerJBC)
+        const apDunSC = new ethers.Contract(apDunNft, erc721ABI, providerJBC)
 
         const thefetch = async () => {
-            const walletFilter = await acnftSC.filters.Transfer(null, address, null)
-            const walletEvent = await acnftSC.queryFilter(walletFilter, 2337707, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: [
                     {
@@ -69,6 +68,11 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
             let nfts = []
             let yournft = []
 
+            const walletFilter = await acnftSC.filters.Transfer(null, address, null)
+            const walletEvent = await acnftSC.queryFilter(walletFilter, 2337707, "latest")
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
                     {
@@ -102,6 +106,56 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                 nfts.push({
                     Col: 1,
                     Id: Number(yournft[i].Id),
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: null,
+                    Onsell: false,
+                    Count: null
+                })
+            }
+
+            let yournft2 = []
+            let count2 = 0
+            const walletFilter2 = await apDunSC.filters.Transfer(null, address, null)
+            const walletEvent2 = await apDunSC.queryFilter(walletFilter2, 2768102, "latest")
+            const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
+            const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
+            
+            const data3 = address !== null && address !== undefined ? await readContracts({
+                contracts: walletRemoveDup2.map((item) => (
+                    {
+                        address: apDunNft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [item],
+                    }
+                ))
+            }) : [Array(walletRemoveDup2.length).fill('')]
+
+            for (let i = 0; i <= walletRemoveDup2.length - 1 && count2 < nftbal; i++) {
+                if (data3[i].toUpperCase() === address.toUpperCase()) {
+                    yournft2.push({Id: String(walletRemoveDup2[i])})
+                    count2++
+                }
+            }
+
+            console.log(yournft2)
+            for (let i = 0; i <= yournft2.length - 1; i++) {
+                const nftipfs = await readContract({
+                    address: apDunNft,
+                    abi: erc721ABI,
+                    functionName: 'tokenURI',
+                    args: [yournft2[i].Id],
+                })
+                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const nft = await response.json()
+
+
+                nfts.push({
+                    Col: 2,
+                    Id: Number(yournft2[i].Id),
                     Name: nft.name,
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Description: nft.description,
@@ -174,6 +228,99 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                 abi: acUpgradeABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
+            })
+            const tx = await writeContract(config5)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const enchantHandle = async (_nftid, _enchantindex) => {
+        setisLoading(true)
+        let token1 = '0x0000000000000000000000000000000000000000'
+        let token2 = '0x0000000000000000000000000000000000000000'
+        let token1Amount = 0
+        let token2Amount = 0
+        if (_enchantindex >= 100000 && _enchantindex < 100009) {
+            token1 = dunANGB
+            token1Amount = 1
+        }
+        try {
+            const cmjAllow = await readContract({
+                address: cmjToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, uniEnchanter],
+            })
+            if (cmjAllow < (1 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: cmjToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const token1Allow = await readContract({
+                address: token1,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, uniEnchanter],
+            })
+            if (token1Allow < (token1Amount * 10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: token1,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            if (token2Amount !== 0) {
+                const token2Allow = await readContract({
+                    address: token2,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, uniEnchanter],
+                })
+                if (token2Allow < (token2Amount * 10**18)) {
+                    const config3 = await prepareWriteContract({
+                        address: token2,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const approvetx3 = await writeContract(config3)
+                    await approvetx3.wait()
+                }
+            }
+            const nftAllow = await readContract({
+                address: apDunNft,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== uniEnchanter.toUpperCase()) {
+                const config4 = await prepareWriteContract({
+                    address: apDunNft,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [uniEnchanter, _nftid],
+                })
+                const approvetx4 = await writeContract(config4)
+                await approvetx4.wait()
+            }
+            const config5 = await prepareWriteContract({
+                address: uniEnchanter,
+                abi: uniEnchanterABI,
+                functionName: 'enchant',
+                args: [_enchantindex, _nftid],
+                overrides: {
+                    gasLimit: 3000000,
+                },
             })
             const tx = await writeContract(config5)
             await tx.wait()
@@ -296,10 +443,15 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                     {nft.map((item, index) => (
                                         <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}} key={index}>
-                                            {
-
-                                            }
-                                            {String(item.Id).slice(0, 3) !== "401" &&
+                                            {/*
+                                            ░█████╗░░█████╗░
+                                            ██╔══██╗██╔══██╗
+                                            ███████║██║░░╚═╝
+                                            ██╔══██║██║░░██╗
+                                            ██║░░██║╚█████╔╝
+                                            ╚═╝░░╚═╝░╚════╝░
+                                            */}
+                                            {item.Col === 1 && String(item.Id).slice(0, 3) !== "401" &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -666,7 +818,90 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, erc721ABI, e
                                                     </div>
                                                 </div>
                                             }
-                                            
+
+                                            {/*
+                                            ██╗░░██╗███████╗██████╗░░█████╗░
+                                            ██║░░██║██╔════╝██╔══██╗██╔══██╗
+                                            ███████║█████╗░░██████╔╝██║░░██║
+                                            ██╔══██║██╔══╝░░██╔══██╗██║░░██║
+                                            ██║░░██║███████╗██║░░██║╚█████╔╝
+                                            ╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░╚════╝░
+                                            */}
+                                            {item.Col === 2 && Number(item.Id) % 100000 !== 200 &&
+                                                <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
+                                                    <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                        <div>
+                                                            <img src={item.Image} width="120" alt="Can not load metadata." />
+                                                            <div style={{width: "150px"}}>{item.Name}</div>
+                                                        </div>
+                                                        <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                                        {Number(item.Id) % 100000 === 100 &&
+                                                            <div>
+                                                                <img src={item.Image} width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name} +1</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 200 &&
+                                                            <div>
+                                                                <img src={item.Image} width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
+                                                        }
+                                                        
+                                                    </div>
+                                                    <div className="pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                        {Number(item.Id) % 100000 === 100 &&
+                                                            <>
+                                                                <div>
+                                                                    <div>+0</div>
+                                                                    <div style={{width: "150px"}}>100 power</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>+1</div>
+                                                                    <div style={{width: "150px"}}>200 power</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                    <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
+                                                    <div style={{marginTop: "10px", width: "350px"}}>
+                                                        <div className="pixel">
+                                                            <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i>
+                                                            Enchanted resource
+                                                        </div>
+                                                        <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
+                                                            <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                                            <div style={{margin: "0 5px"}}>
+                                                                {Number(item.Id) % 100000 === 100 && 0.1}
+                                                            </div>
+                                                            <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                            <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                            <div style={{margin: "0 5px"}}>1</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
+                                                        <div className="emp">
+                                                            <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
+                                                            Success rate :&nbsp;
+                                                            {(Number(item.Id) % 100000 === 100) && '1/1'}
+                                                        </div>
+                                                        <div>(depend on parent blockhash calculation)</div>
+                                                    </div>
+                                                    <div
+                                                        style={{background: "#67BAA7", textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
+                                                        className="pixel button"
+                                                        onClick={() => {
+                                                            let arg = 0
+                                                            if (Number(item.Id) % 100000 === 100) {
+                                                                arg = 100000
+                                                            }
+                                                            enchantHandle(item.Id, arg)
+                                                        }}
+                                                    >
+                                                        UPGRADE
+                                                    </div>
+                                                </div>         
+                                            }                                   
                                         </div>
                                     ))}
                                 </div> :
