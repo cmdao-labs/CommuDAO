@@ -14,7 +14,7 @@ const jazziJDAO = '0x359237A0315D12A6eaA65d8887a2e12e1D56BBe1'
 const jazziCU = '0x91bF9b7a8F042C8aDc487200aD7Bc6Bd0b08A787'
 const jazziSIL = '0xf189c5B03694b70e5DFD8e8CAE84118Ed7616F19'
 const jazziGOLD = '0x7086EC7ED5D94ef503bE324B0aE8A3748A15fAE5'
-const jazziJasp = '0xe5Dc4040f94f10AE0107AC25034d489fb588cC5F'
+const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x6E2Be67383219656a08172446d595727313ffEB5'
 
 const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, erc20ABI, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, cmjBalance }) => {
@@ -67,7 +67,6 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
     const [priceOS, setPriceOS] = React.useState("0.000")
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
     const [reserveOS, setReserveOS] = React.useState("")
-
 
     const handleSwapJDAO = async (event) => {
         setInputSwap(event.target.value)
@@ -311,127 +310,6 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
         setisLoading(false)
     }
 
-    const handleSwapJASP = async (event) => {
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: jazziJasp,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: jazziJasp,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                }
-            ],
-        })
-        const _reserveCmj = data[0]
-        const _reserveToken = data[1]
-        const tokensBoughttokenTOcmj = await readContract({
-            address: jazziJasp,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveToken), String(_reserveCmj)],
-        })
-        event.target.value !== "" ? setCmjBoughtJASP(ethers.utils.formatEther(tokensBoughttokenTOcmj)) : setCmjBoughtJASP("0.000")
-    }
-    const handleSwapJASP_2 = async (event) => {
-        setInputSwap2(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: jazziJasp,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: jazziJasp,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                }
-            ],
-        })
-        const _reserveCmj = data[0]
-        const _reserveToken = data[1]
-        const tokensBoughtcmjTOtoken = await readContract({
-            address: jazziJasp,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveCmj), String(_reserveToken)],
-        })
-        event.target.value !== "" ? setTokenBoughtJASP(ethers.utils.formatUnits(String(tokensBoughtcmjTOtoken), "gwei")) : setTokenBoughtJASP("0.000")
-    }
-
-    const swapTokenHandleJASP = async (_sell) => {
-        setisLoading(true)
-        try {
-            if (_sell) {
-                const tokenAllow = await readContract({
-                    address: jaspToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, jazziJasp],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
-                    const config = await prepareWriteContract({
-                        address: jaspToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [jazziJasp, bigApprove],
-                    })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
-                }
-                const config = await prepareWriteContract({
-                    address: jazziJasp,
-                    abi: ammyStdABI,
-                    functionName: 'tokenTOcmj',
-                    args: [ethers.utils.parseUnits(inputSwap, "gwei"), ethers.utils.parseEther(cmjBoughtJASP)],
-                })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
-            } else {
-                const cmjAllow = await readContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, jazziJasp],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(cmjAllow)) {
-                    const config = await prepareWriteContract({
-                        address: cmjToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [jazziJasp, bigApprove],
-                    })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
-                }
-                const config2 = await prepareWriteContract({
-                    address: jazziJasp,
-                    abi: ammyStdABI,
-                    functionName: 'cmjTOtoken',
-                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseUnits(String(tokenBoughtJASP), "gwei")],
-                })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
-            }
-        } catch {}
-        setisLoading(false)
-    }
-
     const removeJdaoLp = async () => {
         setisLoading(true)
         try {
@@ -662,9 +540,16 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziSIL
         } else if (index === 2) {
             addr = jazziGOLD
+        } else if (index === 3) {
+            addr = jazziJasp
         }
         setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        let _value = 0
+        if (index === 3) {
+            _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
+        } else {
+            _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        }
         const data = await readContracts({
             contracts: [
                 {
@@ -691,6 +576,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             event.target.value !== "" ? setCmjBoughtSIL(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtSIL("0.000")
         } else if (index === 2) {
             event.target.value !== "" ? setCmjBoughtGOLD(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtGOLD("0.000")
+        } else if (index === 3) {
+            event.target.value !== "" ? setCmjBoughtJASP(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtJASP("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -699,9 +586,16 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziSIL
         } else if (index === 2) {
             addr = jazziGOLD
+        } else if (index === 3) {
+            addr = jazziJasp
         }
         setInputSwap2(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        let _value = 0
+        if (index === 3) {
+            _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
+        } else {
+            _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        }
         const data = await readContracts({
             contracts: [
                 {
@@ -728,6 +622,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             event.target.value !== "" ? setTokenBoughtSIL(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtSIL("0.000")
         } else if (index === 2) {
             event.target.value !== "" ? setTokenBoughtGOLD(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtGOLD("0.000")
+        } else if (index === 3) {
+            event.target.value !== "" ? setTokenBoughtJASP(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) : setTokenBoughtJASP("0.000")
         }
     }
 
@@ -747,6 +643,11 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             token = goldToken
             currBoughtToken = cmjBoughtGOLD
             tokenBoughtCurr = tokenBoughtGOLD
+        } else if (index === 3) {
+            lp = jazziJasp
+            token = jaspToken
+            currBoughtToken = cmjBoughtJASP
+            tokenBoughtCurr = tokenBoughtJASP
         }
         setisLoading(true)
         try {
@@ -770,12 +671,22 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     const approvetx = await writeContract(config)
                     await approvetx.wait()
                 }
-                const config = await prepareWriteContract({
-                    address: lp,
-                    abi: cmdaoAmmNpcABI,
-                    functionName: 'tokenTOcurrency',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(currBoughtToken)],
-                })
+                let config = null
+                if (index === 3) {
+                    config = await prepareWriteContract({
+                        address: lp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'tokenTOcurrency',
+                        args: [ethers.utils.parseUnits(inputSwap, "gwei"), ethers.utils.parseEther(currBoughtToken)],
+                    })
+                } else {
+                    config = await prepareWriteContract({
+                        address: lp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'tokenTOcurrency',
+                        args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(currBoughtToken)],
+                    })
+                }
                 const tx = await writeContract(config)
                 await tx.wait()
                 setTxupdate(tx)
@@ -799,12 +710,22 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     const approvetx = await writeContract(config)
                     await approvetx.wait()
                 }
-                const config2 = await prepareWriteContract({
-                    address: lp,
-                    abi: cmdaoAmmNpcABI,
-                    functionName: 'currencyTOtoken',
-                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCurr)],
-                })
+                let config2 = null
+                if (index === 3) {
+                    config2 = await prepareWriteContract({
+                        address: lp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'currencyTOtoken',
+                        args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseUnits(String(tokenBoughtCurr), "gwei")],
+                    })
+                } else {
+                    config2 = await prepareWriteContract({
+                        address: lp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'currencyTOtoken',
+                        args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCurr)],
+                    })
+                }
                 const tx = await writeContract(config2)
                 await tx.wait()
                 setTxupdate(tx)
@@ -839,12 +760,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     },
                     {
                         address: jazziJasp,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCMJ',
                     },
                     {
                         address: jazziJasp,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
                     {
@@ -909,7 +830,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     },
                     {
                         address: jazziJasp,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
                         args: [String(10**9), String(_reserveJASP), String(_reserveCmjJASP)],
                     },
@@ -1059,7 +980,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     } else if (gasselected === "GOLD") {
                                         handleSwapUni(2, event)
                                     } else if (gasselected === "JASP") {
-                                        handleSwapJASP(event)
+                                        handleSwapUni(3, event)
                                     } else if (gasselected === "OS") {
                                         handleSwapOS(event)
                                     }
@@ -1091,7 +1012,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 </div>
                             }
                             {gasselected === "JASP" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jaspBalance}}; handleSwapJASP(bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jaspBalance}}; handleSwapUni(3, bal);}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
                                     <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
@@ -1116,7 +1037,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                         } else if (gasselected === "GOLD") {
                                             swapTokenHandleUni(2, true)
                                         } else if (gasselected === "JASP") {
-                                            swapTokenHandleJASP(true)
+                                            swapTokenHandleUni(3, true)
                                         } else if (gasselected === "OS") {
                                             swapTokenHandleOS(true)
                                         }
@@ -1163,7 +1084,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     } else if (gasselected === "GOLD") {
                                         handleSwapUni_2(2, event)
                                     } else if (gasselected === "JASP") {
-                                        handleSwapJASP_2(event)
+                                        handleSwapUni_2(3, event)
                                     } else if (gasselected === "OS") {
                                         handleSwapOS_2(event)
                                     }
@@ -1183,7 +1104,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     } else if (gasselected === "GOLD") {
                                         handleSwapUni_2(2, bal)
                                     } else if (gasselected === "JASP") {
-                                        handleSwapJASP_2(bal)
+                                        handleSwapUni_2(3, bal)
                                     } else if (gasselected === "OS") {
                                         handleSwapOS_2(bal)
                                     }
@@ -1206,7 +1127,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                         } else if (gasselected === "GOLD") {
                                             swapTokenHandleUni(2, false)
                                         } else if (gasselected === "JASP") {
-                                            swapTokenHandleJASP(false)
+                                            swapTokenHandleUni(3, false)
                                         } else if (gasselected === "OS") {
                                             swapTokenHandleOS(false)
                                         }
