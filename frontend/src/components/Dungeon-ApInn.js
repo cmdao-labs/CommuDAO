@@ -252,6 +252,9 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
         if (_enchantindex >= 100000 && _enchantindex <= 100009) {
             token1 = dunANGB
             token1Amount = 1
+        } else if (_enchantindex >= 101000 && _enchantindex <= 101008) {
+            token1 = dunANGB
+            token1Amount = 0.25
         }
         try {
             const cmjAllow = await readContract({
@@ -834,7 +837,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                             ██║░░██║███████╗██║░░██║╚█████╔╝
                                             ╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░╚════╝░
                                             */}
-                                            {item.Col === 2 && Number(item.Id) % 100000 !== 1100 &&
+                                            {item.Col === 2 && String(item.Id).slice(0, 3) === "100" && Number(item.Id) % 100000 !== 1100 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -914,35 +917,195 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         style={{background: "#67BAA7", textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
                                                         className="pixel button"
                                                         onClick={() => {
-                                                            let arg = 0
+                                                            let arg = null
                                                             if (Number(item.Id) % 100000 === 100) {
-                                                                arg = 100000
+                                                                arg = 0
                                                             } else if (Number(item.Id) % 100000 === 200) {
-                                                                arg = 100001
+                                                                arg = 1
                                                             } else if (Number(item.Id) % 100000 === 300) {
-                                                                arg = 100002
+                                                                arg = 2
                                                             } else if (Number(item.Id) % 100000 === 400) {
-                                                                arg = 100003
+                                                                arg = 3
                                                             } else if (Number(item.Id) % 100000 === 500) {
-                                                                arg = 100004
+                                                                arg = 4
                                                             } else if (Number(item.Id) % 100000 === 600) {
-                                                                arg = 100005
+                                                                arg = 5
                                                             } else if (Number(item.Id) % 100000 === 700) {
-                                                                arg = 100006
+                                                                arg = 6
                                                             } else if (Number(item.Id) % 100000 === 800) {
-                                                                arg = 100007
+                                                                arg = 7
                                                             } else if (Number(item.Id) % 100000 === 900) {
-                                                                arg = 100008
-                                                            } else if (Number(item.Id) % 100000 === 1000) {
-                                                                arg = 100009
+                                                                arg = 8
                                                             }
-                                                            enchantHandle(item.Id, arg)
+                                                            enchantHandle(item.Id, 100000)
                                                         }}
                                                     >
                                                         UPGRADE
                                                     </div>
                                                 </div>         
-                                            }                                   
+                                            }
+
+                                            {/*
+                                            ░█████╗░██╗░░░░░░█████╗░██╗░░░██╗███╗░░░███╗░█████╗░██████╗░███████╗
+                                            ██╔══██╗██║░░░░░██╔══██╗╚██╗░██╔╝████╗░████║██╔══██╗██╔══██╗██╔════╝
+                                            ██║░░╚═╝██║░░░░░███████║░╚████╔╝░██╔████╔██║██║░░██║██████╔╝█████╗░░
+                                            ██║░░██╗██║░░░░░██╔══██║░░╚██╔╝░░██║╚██╔╝██║██║░░██║██╔══██╗██╔══╝░░
+                                            ╚█████╔╝███████╗██║░░██║░░░██║░░░██║░╚═╝░██║╚█████╔╝██║░░██║███████╗
+                                            ░╚════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝
+                                            */}
+                                            {item.Col === 2 && String(item.Id).slice(0, 3) === "700" && Number(item.Id) % 100000 !== 1100 &&
+                                                <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
+                                                    <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                        <div>
+                                                            <img src={item.Image} width="120" alt="Can not load metadata." />
+                                                            <div style={{width: "150px"}}>{item.Name}</div>
+                                                        </div>
+                                                        <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                                        {Number(item.Id) % 100000 === 250 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafybeidxnerdssvoads33qf5klz2gxx6c5f3pjkwleyyasxkr4d2fhddo4' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name} +1</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 300 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafkreib5o6ewz4uyjs4tnnwrwmc65phsro6iqkjo5zfny56huw76ew4jwu' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 400 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafkreicfuyvprncafvvus4e7mpuqcmkqujznohke222tz5vzdqsnlqdvdu' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 500 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafkreictz33nfdbozdf67456m6ulo2mrcmsldpree744tyj7gsary42mge' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 600 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafybeia52i47ftizdlnx77ekw7a3ncs2ahxiegxrlmci37a75vqcyyru6a' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 700 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafybeibvhepypdky2enzjzlbqozpmwiq7wvuda2hah5g2umhefxudmn5iu' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 800 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafybeif7siidbof5pzqmnpd337sksfaqhxd3f5iazcvne2nxv6rsoh2zum' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}7</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 900 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafybeiaxzem2d65p43oy2l53jkmcycwmdrqerglw2qvu2otmzmkve2uw3a' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
+                                                            </div>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 1000 &&
+                                                            <div>
+                                                                <img src='https://nftstorage.link/ipfs/bafybeicqf3zmvxmazfgmgcxyuv64t2mckpgfzz6pc4mnplltb2pvv7ez7u' width="120" alt="Can not load metadata." />
+                                                                <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <div className="pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                        {Number(item.Id) % 100000 === 250 &&
+                                                            <>
+                                                                <div>
+                                                                    <div>+0</div>
+                                                                    <div style={{width: "150px"}}>250 power</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>+1</div>
+                                                                    <div style={{width: "150px"}}>300 power</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {Number(item.Id) % 100000 >= 300 &&
+                                                            <>
+                                                                <div>
+                                                                    <div>+{((Number(item.Id) % 100000) / 100) - 2}</div>
+                                                                    <div style={{width: "150px"}}>{Number(item.Id) % 100000} power</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>+{((Number(item.Id) % 100000) / 100) - 1}</div>
+                                                                    <div style={{width: "150px"}}>{(Number(item.Id) % 100000) + 100} power</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                    <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "10px"}}></div>
+                                                    <div style={{marginTop: "10px", width: "350px"}}>
+                                                        <div className="pixel">
+                                                            <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i>
+                                                            Enchanted resource
+                                                        </div>
+                                                        <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
+                                                            <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                                            <div style={{margin: "0 5px"}}>
+                                                                {(Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 300) && '0.05'}
+                                                                {(Number(item.Id) % 100000 === 400 || Number(item.Id) % 100000 === 500) && '0.10'}
+                                                                {(Number(item.Id) % 100000 === 600 || Number(item.Id) % 100000 === 700) && '0.15'}
+                                                                {(Number(item.Id) % 100000 === 800 || Number(item.Id) % 100000 === 900) && '0.20'}
+                                                                {(Number(item.Id) % 100000 === 1000) && '0.25'}
+                                                            </div>
+                                                            <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                                            <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                            <div style={{margin: "0 5px"}}>1</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="pixel" style={{margin: "10px 0", width: "350px"}}>
+                                                        <div className="emp">
+                                                            <i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i>
+                                                            Success rate :&nbsp;
+                                                            {(Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 300 || Number(item.Id) % 100000 === 400) && '1/1'}
+                                                            {(Number(item.Id) % 100000 === 500 || Number(item.Id) % 100000 === 600 || Number(item.Id) % 100000 === 700) && '1/2'}
+                                                            {(Number(item.Id) % 100000 === 800 || Number(item.Id) % 100000 === 900) && '1/3'}
+                                                            {(Number(item.Id) % 100000 === 1000) && '1/4'}
+                                                        </div>
+                                                        <div>(depend on parent blockhash calculation)</div>
+                                                    </div>
+                                                    <div
+                                                        style={{background: "#67BAA7", textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}}
+                                                        className="pixel button"
+                                                        onClick={() => {
+                                                            let arg = null
+                                                            if (Number(item.Id) % 100000 === 250) {
+                                                                arg = 0
+                                                            } else if (Number(item.Id) % 100000 === 300) {
+                                                                arg = 1
+                                                            } else if (Number(item.Id) % 100000 === 400) {
+                                                                arg = 2
+                                                            } else if (Number(item.Id) % 100000 === 500) {
+                                                                arg = 3
+                                                            } else if (Number(item.Id) % 100000 === 600) {
+                                                                arg = 4
+                                                            } else if (Number(item.Id) % 100000 === 700) {
+                                                                arg = 5
+                                                            } else if (Number(item.Id) % 100000 === 800) {
+                                                                arg = 6
+                                                            } else if (Number(item.Id) % 100000 === 900) {
+                                                                arg = 7
+                                                            } else if (Number(item.Id) % 100000 === 1000) {
+                                                                arg = 8
+                                                            } else if (Number(item.Id) % 100000 === 1000) {
+                                                                arg = 9
+                                                            }
+                                                            enchantHandle(item.Id, 101000)
+                                                        }}
+                                                    >
+                                                        UPGRADE
+                                                    </div>
+                                                </div>         
+                                            }                                      
                                         </div>
                                     ))}
                                 </div> :
