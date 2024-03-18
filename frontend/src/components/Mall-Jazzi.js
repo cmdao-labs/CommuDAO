@@ -590,12 +590,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziJasp
         }
         setInputSwap2(event.target.value)
-        let _value = 0
-        if (index === 3) {
-            _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
-        } else {
-            _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        }
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const data = await readContracts({
             contracts: [
                 {
@@ -761,7 +756,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     {
                         address: jazziJasp,
                         abi: cmdaoAmmNpcABI,
-                        functionName: 'getReserveCMJ',
+                        functionName: 'getReserveCurrency',
                     },
                     {
                         address: jazziJasp,
@@ -902,8 +897,10 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
 
             setReserveCmjJdao(ethers.utils.formatEther(result[3]))
             setReserveJdao(ethers.utils.formatEther(result[4]))
+
             setReserveCmjCU(ethers.utils.formatEther(result[5]))
             setReserveCU(ethers.utils.formatEther(result[6]))
+
             setReserveCmjJASP(ethers.utils.formatEther(result[7]))
             setReserveJASP(ethers.utils.formatEther(result[8]))
 
