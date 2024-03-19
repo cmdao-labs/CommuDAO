@@ -252,7 +252,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
         if (_enchantindex >= 100000 && _enchantindex <= 100009) {
             token1 = dunANGB
             token1Amount = 1
-        } else if (_enchantindex >= 101000 && _enchantindex <= 101008) {
+        } else if ((_enchantindex >= 101000 && _enchantindex <= 101008) || (_enchantindex >= 101100 && _enchantindex <= 101108)) {
             token1 = dunANGB
             token1Amount = 0.25
         }
