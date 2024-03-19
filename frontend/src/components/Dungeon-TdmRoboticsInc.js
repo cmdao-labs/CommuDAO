@@ -314,7 +314,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         }
                                                         {Number(item.Id) % 100000 === 42800 &&
                                                             <div>
-                                                                <img  width="120" alt="Can not load metadata." />
+                                                                <img src='https://nftstorage.link/ipfs/bafybeidlmxivvz4k3ws2kpanq3nob7himsgzagna7sgxxaopcgigvxyove' width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -332,7 +332,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         }
                                                         {Number(item.Id) % 100000 === 64800 &&
                                                             <div>
-                                                                <img  width="120" alt="Can not load metadata." />
+                                                                <img src='https://nftstorage.link/ipfs/bafybeici6yhhom3u4unmxfiquzgp6f5iod46pz6mwsyujnseeu5szhwdfq' width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
@@ -458,26 +458,26 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                             <div style={{margin: "0 5px"}}>
                                                                 {Number(item.Id) % 100000 === 18800 && '888'}
                                                                 {Number(item.Id) % 100000 === 22800 && '1,888'}
-                                                                {Number(item.Id) % 100000 === 26800 && 2888}
-                                                                {Number(item.Id) % 100000 === 30800 && 3888}
-                                                                {Number(item.Id) % 100000 === 36800 && 4888}
-                                                                {Number(item.Id) % 100000 === 42800 && 5888}
-                                                                {Number(item.Id) % 100000 === 48800 && 6888}
-                                                                {Number(item.Id) % 100000 === 56800 && 7888}
-                                                                {Number(item.Id) % 100000 === 64800 && 8888}
+                                                                {Number(item.Id) % 100000 === 26800 && '2,888'}
+                                                                {Number(item.Id) % 100000 === 30800 && '3,888'}
+                                                                {Number(item.Id) % 100000 === 36800 && '4,888'}
+                                                                {Number(item.Id) % 100000 === 42800 && '5,888'}
+                                                                {Number(item.Id) % 100000 === 48800 && '6,888'}
+                                                                {Number(item.Id) % 100000 === 56800 && '7,888'}
+                                                                {Number(item.Id) % 100000 === 64800 && '8,888'}
                                                             </div>
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                             <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
                                                             <div style={{margin: "0 5px"}}>
                                                                 {Number(item.Id) % 100000 === 18800 && '18,800'}
                                                                 {Number(item.Id) % 100000 === 22800 && '28,800'}
-                                                                {Number(item.Id) % 100000 === 26800 && 42800}
-                                                                {Number(item.Id) % 100000 === 30800 && 63800}
-                                                                {Number(item.Id) % 100000 === 36800 && 95800}
-                                                                {Number(item.Id) % 100000 === 42800 && 142800}
-                                                                {Number(item.Id) % 100000 === 48800 && 214800}
-                                                                {Number(item.Id) % 100000 === 56800 && 321800}
-                                                                {Number(item.Id) % 100000 === 64800 && 481800}
+                                                                {Number(item.Id) % 100000 === 26800 && '42,800'}
+                                                                {Number(item.Id) % 100000 === 30800 && '63,800'}
+                                                                {Number(item.Id) % 100000 === 36800 && '95,800'}
+                                                                {Number(item.Id) % 100000 === 42800 && '142,800'}
+                                                                {Number(item.Id) % 100000 === 48800 && '214,800'}
+                                                                {Number(item.Id) % 100000 === 56800 && '321,800'}
+                                                                {Number(item.Id) % 100000 === 64800 && '481,800'}
                                                             </div>
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                             <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
