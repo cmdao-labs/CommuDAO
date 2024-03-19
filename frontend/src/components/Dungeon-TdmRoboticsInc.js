@@ -274,7 +274,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                             ██║░╚███║██║░░██║██║░░██║╚██████╔╝░░░██║░░░██║░░██║
                                             ╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝
                                             */}
-                                            {String(item.Id).slice(0, 3) === "100" && Number(item.Id) % 100000 !== 22800 &&
+                                            {String(item.Id).slice(0, 3) === "100" && Number(item.Id) % 100000 !== 72800 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -296,7 +296,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         }
                                                         {Number(item.Id) % 100000 === 26800 &&
                                                             <div>
-                                                                <img   width="120" alt="Can not load metadata." />
+                                                                <img src='https://nftstorage.link/ipfs/bafybeichx3l6sfsqot3gbk3hzhlbmupsani25zh57dd4ymxwse7mlrfdgy' width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
                                                         }
@@ -456,8 +456,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                             <img src="https://nftstorage.link/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
                                                             <div style={{margin: "0 5px"}}>
-                                                                {Number(item.Id) % 100000 === 18800 && 888}
-                                                                {Number(item.Id) % 100000 === 22800 && 1888}
+                                                                {Number(item.Id) % 100000 === 18800 && '888'}
+                                                                {Number(item.Id) % 100000 === 22800 && '1,888'}
                                                                 {Number(item.Id) % 100000 === 26800 && 2888}
                                                                 {Number(item.Id) % 100000 === 30800 && 3888}
                                                                 {Number(item.Id) % 100000 === 36800 && 4888}
@@ -469,8 +469,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                             <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
                                                             <div style={{margin: "0 5px"}}>
-                                                                {Number(item.Id) % 100000 === 18800 && 18800}
-                                                                {Number(item.Id) % 100000 === 22800 && 28800}
+                                                                {Number(item.Id) % 100000 === 18800 && '18,800'}
+                                                                {Number(item.Id) % 100000 === 22800 && '28,800'}
                                                                 {Number(item.Id) % 100000 === 26800 && 42800}
                                                                 {Number(item.Id) % 100000 === 30800 && 63800}
                                                                 {Number(item.Id) % 100000 === 36800 && 95800}

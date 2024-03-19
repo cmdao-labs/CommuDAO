@@ -936,6 +936,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 arg = 7
                                                             } else if (Number(item.Id) % 100000 === 900) {
                                                                 arg = 8
+                                                            } else if (Number(item.Id) % 100000 === 1000) {
+                                                                arg = 9
                                                             }
                                                             enchantHandle(item.Id, 100000 + arg)
                                                         }}
