@@ -452,7 +452,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                     <option value="MEOW">MEOW</option>
                                 </select>
-                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setMeowLpSell(meowLpBalance)}>
+                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setMeowLpSell(String(meowLpBalance))}>
                                     {gasselected === "MEOW" ? <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(meowLpBalance).toFixed(4)}</div></> : ''}
                                 </div>
                             </div>

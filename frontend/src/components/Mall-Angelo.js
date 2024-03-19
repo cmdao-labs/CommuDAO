@@ -795,9 +795,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                                         className="pixel"
                                         onClick={() => {
                                             if (gasselected === "SWAR") {
-                                                setLpSell(swarLpBalance)
+                                                setLpSell(String(swarLpBalance))
                                             } else if (gasselected === "ANGB") {
-                                                setLpSell(angbBalance)
+                                                setLpSell(String(angbLpBalance))
                                             }
                                         }}
                                     >
