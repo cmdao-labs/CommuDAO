@@ -254,13 +254,13 @@ header::-webkit-scrollbar { display: none; }
   display: flex;
   align-items: center;
   font-size: 18px;
-  text-decoration: underline;
   color: #000;
   cursor: pointer;
 }
 .hashtag:hover {
   background: #ff007a;
   color: #fff;
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {
