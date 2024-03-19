@@ -504,7 +504,7 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                                         className="pixel"
                                         onClick={() => {
                                             if (gasselected === "II") {
-                                                setLpSell(iiBalance)
+                                                setLpSell(iiLpBalance)
                                             }
                                         }}
                                     >
