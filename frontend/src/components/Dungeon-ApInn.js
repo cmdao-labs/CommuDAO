@@ -1123,7 +1123,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                             } else if (String(item.Id).slice(0, 3) === "500") {
                                                                 ind = 100
                                                             } else if (String(item.Id).slice(0, 3) === "300") {
-                                                                ind = 200
+                                                                ind = 300
                                                             }
                                                             enchantHandle(item.Id, 101000 + ind + arg)
                                                         }}
