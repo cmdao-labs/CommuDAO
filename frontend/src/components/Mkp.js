@@ -191,7 +191,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: null
                 })
             }
-
+            /*
             setLoadingText("20% Fetching Beast NFTs in Your Bag...")
 
             const wallet3Filter = await beastnftSC.filters.Transfer(null, address, null)
@@ -291,7 +291,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: null
                 })
             }
-
+            */
             setLoadingText("30% Fetching CMDAO Title Indeed NFT in Your Bag...")
 
             const wallet5Filter = await cmdao_tiSC.filters.Transfer(null, address, null)
@@ -414,9 +414,10 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             setLoadingText("50% Fetching CMDAO NFTs on Marketplace...")
 
             const mkpFilter = await cmdaonftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkpEvent = await cmdaonftSC.queryFilter(mkpFilter, 335000, "latest")
-            const mkpMap = await Promise.all(mkpEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const mkpEvent = await cmdaonftSC.queryFilter(mkpFilter, 515000, "latest")
+            const mkpMap = await Promise.all(mkpEvent.map(async (obj) => String(obj.args.tokenId)))
             const mkpRemoveDup = mkpMap.filter((obj, index) => mkpMap.indexOf(obj) === index)
+
             const mkp_data2 = await readContracts({
                 contracts: mkpRemoveDup.map((item) => (
                     {
@@ -507,9 +508,10 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             setLoadingText("60% Fetching Ory NFTs on Marketplace...")
 
             const mkp2Filter = await orynftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp2Event = await orynftSC.queryFilter(mkp2Filter, 515000, "latest")
-            const mkp2Map = await Promise.all(mkp2Event.map(async (obj, index) => String(obj.args.tokenId)))
+            const mkp2Event = await orynftSC.queryFilter(mkp2Filter, 652000, "latest")
+            const mkp2Map = await Promise.all(mkp2Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp2RemoveDup = mkp2Map.filter((obj, index) => mkp2Map.indexOf(obj) === index)
+
             const mkp_data4 = await readContracts({
                 contracts: mkp2RemoveDup.map((item) => (
                     {
@@ -608,7 +610,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: yournftsell2[i].Count
                 })
             }
-
+            /*
             setLoadingText("65% Fetching Beast NFTs on Marketplace...")
 
             const mkp3Filter = await beastnftSC.filters.Transfer(null, cmdaomkp, null)
@@ -703,13 +705,14 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: yournftsell3[i].Count
                 })
             }
-
+            */
             setLoadingText("70% Fetching CM Hexa Cat Meaw JIB JIB NFTs on Marketplace...")
 
             const mkp4Filter = await cm_ogjibjibnftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp4Event = await cm_ogjibjibnftSC.queryFilter(mkp4Filter, 119318, "latest")
-            const mkp4Map = await Promise.all(mkp4Event.map(async (obj, index) => String(obj.args.tokenId)))
+            const mkp4Event = await cm_ogjibjibnftSC.queryFilter(mkp4Filter, 2430000, "latest")
+            const mkp4Map = await Promise.all(mkp4Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp4RemoveDup = mkp4Map.filter((obj, index) => mkp4Map.indexOf(obj) === index)
+
             const mkp_data7 = await readContracts({
                 contracts: mkp4RemoveDup.map((item) => (
                     {
@@ -806,6 +809,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             const mkp5Event = await cmdao_tiSC.queryFilter(mkp5Filter, 2506258, "latest")
             const mkp5Map = await Promise.all(mkp5Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp5RemoveDup = mkp5Map.filter((obj, index) => mkp5Map.indexOf(obj) === index)
+
             const mkp_data8 = await readContracts({
                 contracts: mkp5RemoveDup.map((item) => (
                     {
@@ -917,9 +921,10 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             setLoadingText("80% Fetching MG NFTs on Marketplace...")
 
             const mkp6Filter = await mgnftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp6Event = await mgnftSC.queryFilter(mkp6Filter, 2260250, "latest")
+            const mkp6Event = await mgnftSC.queryFilter(mkp6Filter, 2560000, "latest")
             const mkp6Map = await Promise.all(mkp6Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp6RemoveDup = mkp6Map.filter((obj, index) => mkp6Map.indexOf(obj) === index)
+
             const mkp_data10 = await readContracts({
                 contracts: mkp6RemoveDup.map((item) => (
                     {

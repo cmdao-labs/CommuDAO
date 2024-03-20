@@ -6,7 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const beasts = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
-// const CMDS = '0xAF17Dc881204488d929a5D377eBCF3256130b335'
+//const CMDS = '0xAF17Dc881204488d929a5D377eBCF3256130b335'
 
 const ctunaLab = '0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
@@ -54,10 +54,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const [shoesSlotLevel, setShoesSlotLevel] = React.useState(null)
     const [weaponSlot, setWeaponSlot] = React.useState(null)
     const [wpSlotLevel, setWpSlotLevel] = React.useState(null)
-    const [l2FollowerSlot, setL2FollowerSlot] = React.useState(null)
+    /*const [l2FollowerSlot, setL2FollowerSlot] = React.useState(null)
     const [l2FollowerId, setL2FollowerId] = React.useState(null)
     const [l2ServantSlot, setL2ServantSlot] = React.useState(null)
-    const [l2ServantId, setL2ServantId] = React.useState(null)
+    const [l2ServantId, setL2ServantId] = React.useState(null)*/
 
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
@@ -65,11 +65,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const [isRunout, setIsRunout] = React.useState(false)
     const [gasselected, setGasselected] = React.useState("PIZZA")
     const [jasperPending, setJasperPending] = React.useState(0)
-    const [isStakeL2Now, setIsStakeL2Now] = React.useState(null)
+    /*const [isStakeL2Now, setIsStakeL2Now] = React.useState(null)
     const [jbcPool, setJbcPool] = React.useState(0)
     const [jbcPend, setJbcPend] = React.useState('0.0')
     const [yourL2CMPOW, setYourL2CMPOW] = React.useState(0)
-    const [l2CMPOW, setL2CMPOW] = React.useState(0)
+    const [l2CMPOW, setL2CMPOW] = React.useState(0)*/
 
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
 
@@ -386,7 +386,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const nftipfs = address !== null && address !== undefined ? await readContract({
+            /*const nftipfs = address !== null && address !== undefined ? await readContract({
                 address: beasts,
                 abi: erc721ABI,
                 functionName: 'tokenURI',
@@ -410,7 +410,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            /*
             const nftipfs2 = address !== null && address !== undefined ? await readContract({
                 address: CMDS,
                 abi: erc721ABI,
@@ -431,7 +430,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     isStaked: true
                 })
             }
-            */
+            
             const nft02 = null
 
             const L2_Follower_Id = Number(data[12].followerId)
@@ -496,7 +495,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            /*
             const wallet3Filter = await cmdsnftSC.filters.Transfer(null, address, null)
             const wallet3Event = await cmdsnftSC.queryFilter(wallet3Filter, 659239, "latest")
             const wallet3Map = await Promise.all(wallet3Event.map(async (obj, index) => String(obj.args.tokenId)))
@@ -553,23 +551,23 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             if (nfts.length === 0) { nfts.push(null) }
             
-            const l2Pool = await readContract({
+            const l2Pool = 0/*await readContract({
                 address: dunJasperL2,
                 abi: dunJasperL2ABI,
                 functionName: 'poolInfo',
                 args: [1],
-            })
-            const l2PoolCMPOW = Number(l2Pool.cmpowAll)
+            })*/
+            const l2PoolCMPOW = 0/*Number(l2Pool.cmpowAll)*/
 
-            const jbcPool = await fetchBalance({ address: dunJasperL2, })
+            const jbcPool = 0/*await fetchBalance({ address: dunJasperL2, })*/
 
-            const jbcBal = address !== null && address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
+            const jbcBal = 0/*address !== null && address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}*/
 
             const skinslot1 = data[15]
             
             return [
-                nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, L2_Follower_Id, nftEQ_L2_Follower, L2_Servant_Id, nftEQ_L2_Servant,
-                allPow, isStaked, refuelAt, rewardPending, isStakeL2, jbcPool, jbcPend, l2PoolCMPOW, cmpow_L2, stOPTClaim,
+                nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, /*L2_Follower_Id, nftEQ_L2_Follower, L2_Servant_Id, nftEQ_L2_Servant,*/
+                allPow, isStaked, refuelAt, rewardPending, /*isStakeL2, jbcPool, jbcPend, l2PoolCMPOW, cmpow_L2,*/ stOPTClaim,
                 jbcBal, ctunaBal, sx31Bal, pzaBal, jaspBal,
                 skinslot1
             ]
@@ -607,33 +605,33 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             result[12] !== null && Number(result[12].slice(-1)) > 0 ? setClothSlotLevel(result[12].slice(-1)) : setClothSlotLevel(null)
             setHatSlot(result[13])
             result[14] !== null && Number(result[14].slice(-1)) > 0 ? setHatSlotLevel(result[14].slice(-1)) : setHatSlotLevel(null)
-            setL2FollowerId(result[15])
+            /*setL2FollowerId(result[15])
             setL2FollowerSlot(result[16])
             setL2ServantId(result[17])
-            setL2ServantSlot(result[18])
+            setL2ServantSlot(result[18])*/
 
-            setAllPower(result[19])
-            setIsStakeNow(result[20])
-            const gasOut = new Date((result[21] * 1000) + (86400 * 1000))
-            result[21] !== 0 ?
+            setAllPower(result[15])
+            setIsStakeNow(result[16])
+            const gasOut = new Date((result[17] * 1000) + (86400 * 1000))
+            result[17] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[21] !== 0 && Date.now() - (result[21] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
-            setJasperPending(ethers.utils.formatUnits(String(result[22]), "gwei"))
-            setIsStakeL2Now(result[23])
+            result[17] !== 0 && Date.now() - (result[17] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            setJasperPending(ethers.utils.formatUnits(String(result[18]), "gwei"))
+            /*setIsStakeL2Now(result[23])
             setJbcPool(result[24].formatted)
             setJbcPend(ethers.utils.formatEther(String(result[25])))
             setL2CMPOW(result[26])
-            setYourL2CMPOW(result[27])
+            setYourL2CMPOW(result[27])*/
 
-            setLastedSTOPT(result[21] * 1000 === result[28] * 1000)
+            setLastedSTOPT(result[17] * 1000 === result[19] * 1000)
 
-            setJbcBalance(result[29].formatted)
-            setCTunaBalance(ethers.utils.formatEther(String(result[30])))
-            setSx31Balance(ethers.utils.formatEther(String(result[31])))
-            setPzaBalance(ethers.utils.formatEther(String(result[32])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[33]), "gwei"))
-            setSkinSlot1(result[34])
+            setJbcBalance(result[20].formatted)
+            setCTunaBalance(ethers.utils.formatEther(String(result[21])))
+            setSx31Balance(ethers.utils.formatEther(String(result[22])))
+            setPzaBalance(ethers.utils.formatEther(String(result[23])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[24]), "gwei"))
+            setSkinSlot1(result[25])
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI])
@@ -767,7 +765,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
         setisLoading(false)
     }
 
-    const stakeFollowerL2 = async (_nftid) => {
+    const stakeFollowerL2 = async (_nftid) => {/*
         setisLoading(true)
         try {
             if (yourL2CMPOW !== 0) {
@@ -827,10 +825,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             setTxupdate(tx)
         } catch {}
         setisLoading(false)
-    }
+    */}
 
-    const stakeServantL2 = async (_nftid) => {
-        /*
+    const stakeServantL2 = async (_nftid) => {/*
         setisLoading(true)
         try {
             if (l2CMPOW !== 0) {
@@ -872,8 +869,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             setTxupdate(tx)
         } catch {}
         setisLoading(false)
-        */
-    }
+    */}
 
     const mintStOPT = async () => {
         setisLoading(true)
@@ -1119,7 +1115,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 </div>
             </div>
 
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+            {/*<div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", marginBottom: "100px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
@@ -1224,10 +1220,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         }
                     </div>
                 </div>
-            </div>
+            </div>*/}
             
             {nft.length > 0 ?
-                <div style={{width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{marginTop: "40px", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
@@ -1290,7 +1286,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         </div>
                     }
                 </div> :
-                <div style={{width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
