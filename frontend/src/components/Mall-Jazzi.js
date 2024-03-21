@@ -10,7 +10,7 @@ const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
-const jazziJDAO = '0x359237A0315D12A6eaA65d8887a2e12e1D56BBe1'
+const jazziJDAO = '0x3C061eEce15C539CaE99FbE75B3044236Fa2eff0'
 const jazziCU = '0x91bF9b7a8F042C8aDc487200aD7Bc6Bd0b08A787'
 const jazziSIL = '0xf189c5B03694b70e5DFD8e8CAE84118Ed7616F19'
 const jazziGOLD = '0x7086EC7ED5D94ef503bE324B0aE8A3748A15fAE5'
@@ -26,6 +26,10 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
 
+    const [lpSell, setLpSell] = React.useState("")
+    const [tokenAdd, setTokenAdd] = React.useState("")
+    const [currAdd, setCurrAdd] = React.useState("")
+
     const [cmjBoughtJDAO, setCmjBoughtJDAO] = React.useState("0.000")
     const [tokenBoughtJDAO, setTokenBoughtJDAO] = React.useState("0.000")
     const [priceJDAO, setPriceJDAO] = React.useState("0.000")
@@ -33,10 +37,6 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
     const [reserveJdao, setReserveJdao] = React.useState("")
 
     const [jdaoLpBalance, setJdaoLpBalance] = React.useState("0")
-
-    const [jdaoLpSell, setJdaoLpSell] = React.useState("")
-    const [jdaoAdd, setJdaoAdd] = React.useState("")
-    const [cmjAdd, setCmjAdd] = React.useState("")
 
     const [cmjBoughtCU, setCmjBoughtCU] = React.useState("0.000")
     const [tokenBoughtCU, setTokenBoughtCU] = React.useState("0.000")
@@ -67,127 +67,6 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
     const [priceOS, setPriceOS] = React.useState("0.000")
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
     const [reserveOS, setReserveOS] = React.useState("")
-
-    const handleSwapJDAO = async (event) => {
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: jazziJDAO,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: jazziJDAO,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                }
-            ],
-        })
-        const _reserveCmj = data[0]
-        const _reserveToken = data[1]
-        const tokensBoughttokenTOcmj = await readContract({
-            address: jazziJDAO,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveToken), String(_reserveCmj)],
-        })
-        event.target.value !== "" ? setCmjBoughtJDAO(ethers.utils.formatEther(tokensBoughttokenTOcmj)) : setCmjBoughtJDAO("0.000")
-    }
-    const handleSwapJDAO_2 = async (event) => {
-        setInputSwap2(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: jazziJDAO,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: jazziJDAO,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                }
-            ],
-        })
-        const _reserveCmj = data[0]
-        const _reserveToken = data[1]
-        const tokensBoughtcmjTOtoken = await readContract({
-            address: jazziJDAO,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveCmj), String(_reserveToken)],
-        })
-        event.target.value !== "" ? setTokenBoughtJDAO(ethers.utils.formatEther(tokensBoughtcmjTOtoken)) : setTokenBoughtJDAO("0.000")
-    }
-
-    const swapTokenHandleJDAO = async (_sell) => {
-        setisLoading(true)
-        try {
-            if (_sell) {
-                const tokenAllow = await readContract({
-                    address: jdaoToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, jazziJDAO],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
-                    const config = await prepareWriteContract({
-                        address: jdaoToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [jazziJDAO, bigApprove],
-                    })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
-                }
-                const config = await prepareWriteContract({
-                    address: jazziJDAO,
-                    abi: ammyStdABI,
-                    functionName: 'tokenTOcmj',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBoughtJDAO)],
-                })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
-            } else {
-                const cmjAllow = await readContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, jazziJDAO],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(cmjAllow)) {
-                    const config = await prepareWriteContract({
-                        address: cmjToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [jazziJDAO, bigApprove],
-                    })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
-                }
-                const config2 = await prepareWriteContract({
-                    address: jazziJDAO,
-                    abi: ammyStdABI,
-                    functionName: 'cmjTOtoken',
-                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtJDAO)],
-                })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
-            }
-        } catch {}
-        setisLoading(false)
-    }
 
     const handleSwapCU = async (event) => {
         setInputSwap(event.target.value)
@@ -306,109 +185,6 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                 await tx.wait()
                 setTxupdate(tx)
             }
-        } catch {}
-        setisLoading(false)
-    }
-
-    const removeJdaoLp = async () => {
-        setisLoading(true)
-        try {
-            const config = await prepareWriteContract({
-                address: jazziJDAO,
-                abi: ammyStdABI,
-                functionName: 'removeLiquidity',
-                args: [ethers.utils.parseEther(jdaoLpSell)],
-            })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const handleAddJdao = async (event) => {
-        setJdaoAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJdao = await readContract({
-            address: jazziJDAO,
-            abi: ammyStdABI,
-            functionName: 'getReserveToken',
-        })
-        const bigJdaoReserv = ethers.BigNumber.from(_reserveJdao)
-        const _reserveCmj = await readContract({
-            address: jazziJDAO,
-            abi: ammyStdABI,
-            functionName: 'getReserveCMJ',
-        })
-        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
-        event.target.value !== "" ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigJdaoReserv)))) : setCmjAdd("")
-    }
-    const handleAddJdao2 = async (event) => {
-        setCmjAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJdao = await readContract({
-            address: jazziJDAO,
-            abi: ammyStdABI,
-            functionName: 'getReserveToken',
-        })
-        const bigJdaoReserv = ethers.BigNumber.from(_reserveJdao)
-        const _reserveCmj = await readContract({
-            address: jazziJDAO,
-            abi: ammyStdABI,
-            functionName: 'getReserveCMJ',
-        })
-        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
-        event.target.value !== "" ? setJdaoAdd(ethers.utils.formatEther(((bigValue.mul(bigJdaoReserv)).div(bigCmjReserv)))) : setJdaoAdd("")
-    }
-    const addJdaoLpHandle = async () => {
-        setisLoading(true)
-        try {
-            const cmjAllow = await readContract({
-                address: cmjToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, jazziJDAO],
-            })
-            const bigValue = cmjAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(cmjAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(cmjAdd) > Number(cmjAllow) / (10**18)) {
-                const config = await prepareWriteContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [jazziJDAO, bigApprove],
-                })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
-            }
-            const jdaoAllow = await readContract({
-                address: jdaoToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, jazziJDAO],
-            })
-            if (Number(jdaoAdd) > Number(jdaoAllow) / (10**18)) {
-                const config2 = await prepareWriteContract({
-                    address: jdaoToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [jazziJDAO, bigApprove],
-                })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
-            }
-            const config3 = await prepareWriteContract({
-                address: jazziJDAO,
-                abi: ammyStdABI,
-                functionName: 'addLiquidity',
-                args: [ethers.utils.parseEther(jdaoAdd), ethers.utils.parseEther(cmjAdd)],
-            })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
         } catch {}
         setisLoading(false)
     }
@@ -534,6 +310,129 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
         setisLoading(false)
     }
 
+    const removeLpUni = async (index) => {
+        let addr = '0x0000000000000000000000000000000000000000'
+        if (index === 4) {
+            addr = jazziJDAO
+        }
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: addr,
+                abi: cmdaoAmmNpcABI,
+                functionName: 'removeLiquidity',
+                args: [ethers.utils.parseEther(lpSell)],
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const handleAddUni = async (index, event) => {
+        let addr = '0x0000000000000000000000000000000000000000'
+        if (index === 4) {
+            addr = jazziJDAO
+        }
+        setTokenAdd(event.target.value)
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        const bigValue = ethers.BigNumber.from(_value)
+        const _reserveToken = await readContract({
+            address: addr,
+            abi: cmdaoAmmNpcABI,
+            functionName: 'getReserveToken',
+        })
+        const bigTokenReserv = ethers.BigNumber.from(_reserveToken)
+        const _reserveCurr = await readContract({
+            address: addr,
+            abi: cmdaoAmmNpcABI,
+            functionName: 'getReserveCurrency',
+        })
+        const bigCurrReserv = ethers.BigNumber.from(_reserveCurr)
+        event.target.value !== "" ? setCurrAdd(ethers.utils.formatEther(((bigValue.mul(bigCurrReserv)).div(bigTokenReserv)))) : setCurrAdd("")
+    }
+    const handleAddUni_2 = async (index, event) => {
+        let addr = '0x0000000000000000000000000000000000000000'
+        if (index === 4) {
+            addr = jazziJDAO
+        }
+        setCurrAdd(event.target.value)
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        const bigValue = ethers.BigNumber.from(_value)
+        const _reserveToken = await readContract({
+            address: addr,
+            abi: cmdaoAmmNpcABI,
+            functionName: 'getReserveToken',
+        })
+        const bigTokenReserv = ethers.BigNumber.from(_reserveToken)
+        const _reserveCurr = await readContract({
+            address: addr,
+            abi: cmdaoAmmNpcABI,
+            functionName: 'getReserveCurrency',
+        })
+        const bigCurrReserv = ethers.BigNumber.from(_reserveCurr)
+        event.target.value !== "" ? setTokenAdd(ethers.utils.formatEther(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)))) : setTokenAdd("")
+    }
+    const addLpHandleUni = async (index) => {
+        let lp = '0x0000000000000000000000000000000000000000'
+        let token = '0x0000000000000000000000000000000000000000'
+        let curr = '0x0000000000000000000000000000000000000000'
+        if (index === 4) {
+            lp = jazziJDAO
+            token = jdaoToken
+            curr = cmjToken
+        }
+        setisLoading(true)
+        try {
+            const currAllow = await readContract({
+                address: curr,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, lp],
+            })
+            const bigValue = currAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(currAdd)) : ethers.BigNumber.from(0)
+            const Hex = ethers.BigNumber.from(10**8)
+            const bigApprove = bigValue.mul(Hex)
+            if (Number(currAdd) > Number(currAllow) / (10**18)) {
+                const config = await prepareWriteContract({
+                    address: curr,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [lp, bigApprove],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const tokenAllow = await readContract({
+                address: token,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, lp],
+            })
+            if (Number(tokenAdd) > Number(tokenAllow) / (10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: token,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [lp, bigApprove],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            const config3 = await prepareWriteContract({
+                address: lp,
+                abi: cmdaoAmmNpcABI,
+                functionName: 'addLiquidity',
+                args: [ethers.utils.parseEther(tokenAdd), ethers.utils.parseEther(currAdd)],
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
@@ -542,6 +441,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziGOLD
         } else if (index === 3) {
             addr = jazziJasp
+        } else if (index === 4) {
+            addr = jazziJDAO
         }
         setInputSwap(event.target.value)
         let _value = 0
@@ -578,6 +479,10 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             event.target.value !== "" ? setCmjBoughtGOLD(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtGOLD("0.000")
         } else if (index === 3) {
             event.target.value !== "" ? setCmjBoughtJASP(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtJASP("0.000")
+        } else if (index === 3) {
+            event.target.value !== "" ? setCmjBoughtJASP(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtJASP("0.000")
+        } else if (index === 4) {
+            event.target.value !== "" ? setCmjBoughtJDAO(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtJDAO("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -588,6 +493,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziGOLD
         } else if (index === 3) {
             addr = jazziJasp
+        } else if (index === 4) {
+            addr = jazziJDAO
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -619,6 +526,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             event.target.value !== "" ? setTokenBoughtGOLD(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtGOLD("0.000")
         } else if (index === 3) {
             event.target.value !== "" ? setTokenBoughtJASP(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) : setTokenBoughtJASP("0.000")
+        } else if (index === 4) {
+            event.target.value !== "" ? setTokenBoughtJDAO(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtJDAO("0.000")
         }
     }
 
@@ -643,6 +552,11 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             token = jaspToken
             currBoughtToken = cmjBoughtJASP
             tokenBoughtCurr = tokenBoughtJASP
+        } else if (index === 4) {
+            lp = jazziJDAO
+            token = jdaoToken
+            currBoughtToken = cmjBoughtJDAO
+            tokenBoughtCurr = tokenBoughtJDAO
         }
         setisLoading(true)
         try {
@@ -735,12 +649,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                 contracts: [
                     {
                         address: jazziJDAO,
-                        abi: ammyStdABI,
-                        functionName: 'getReserveCMJ',
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
                     },
                     {
                         address: jazziJDAO,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
                     {
@@ -813,7 +727,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                 contracts: [
                     {
                         address: jazziJDAO,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
                         args: [String(10**18), String(_reserveJDAO), String(_reserveCmjJDAO)],
                     },
@@ -969,7 +883,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 placeholder={"0 $" + gasselected}
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
-                                        handleSwapJDAO(event)
+                                        handleSwapUni(4, event)
                                     } else if (gasselected === "CU") {
                                         handleSwapCU(event)
                                     } else if (gasselected === "SIL") {
@@ -985,7 +899,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 value={inputSwap}
                             ></input>
                             {gasselected === "JDAO" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jdaoBalance}}; handleSwapJDAO(bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jdaoBalance}}; handleSwapUni(4, bal);}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
                                     <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
@@ -1026,7 +940,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 <div style={{width: "30px"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
-                                            swapTokenHandleJDAO(true)
+                                            swapTokenHandleUni(4, true)
                                         } else if (gasselected === "CU") {
                                             swapTokenHandleCU(true)
                                         } else if (gasselected === "SIL") {
@@ -1073,7 +987,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 placeholder="0 $CMJ"
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
-                                        handleSwapJDAO_2(event)
+                                        handleSwapUni_2(4, event)
                                     } else if (gasselected === "CU") {
                                         handleSwapCU_2(event)
                                     } else if (gasselected === "SIL") {
@@ -1093,7 +1007,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 onClick={() => {
                                     const bal = {target: {value: cmjBalance}};
                                     if (gasselected === "JDAO") {
-                                        handleSwapJDAO_2(bal)
+                                        handleSwapUni_2(4, bal)
                                     } else if (gasselected === "CU") {
                                         handleSwapCU_2(bal)
                                     } else if (gasselected === "SIL") {
@@ -1116,7 +1030,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
-                                            swapTokenHandleJDAO(false)
+                                            swapTokenHandleUni(4, false)
                                         } else if (gasselected === "CU") {
                                             swapTokenHandleCU(false)
                                         } else if (gasselected === "SIL") {
@@ -1165,8 +1079,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
                                     </select>
-                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setJdaoLpSell(String(jdaoLpBalance))}>
-                                        {gasselected === "JDAO" ? <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jdaoLpBalance).toFixed(4)}</div></> : ''}
+                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setLpSell(String(jdaoLpBalance))}>
+                                        {gasselected === "JDAO" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jdaoLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -1174,8 +1088,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-CMJ LP"} className="bold" onChange={(event) => setJdaoLpSell(event.target.value)} value={jdaoLpSell}></input>
-                            <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={removeJdaoLp}>REMOVE</div>
+                            <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-CMJ LP"} className="bold" onChange={(event) => setLpSell(event.target.value)} value={lpSell}></input>
+                            <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => removeLpUni(4)}>REMOVE</div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -1188,12 +1102,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 placeholder={"0 $" + gasselected}
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
-                                        handleAddJdao(event)
+                                        handleAddUni(4, event)
                                     }
                                 }}
-                                value={jdaoAdd}
+                                value={tokenAdd}
                             ></input>
-                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jdaoBalance)}}; handleAddJdao(bal);}}>
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jdaoBalance)}}; handleAddUni(4, bal);}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
@@ -1209,12 +1123,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 placeholder="0 $CMJ"
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
-                                        handleAddJdao2(event)
+                                        handleAddUni_2(4, event)
                                     }
                                 }}
-                                value={cmjAdd}
+                                value={currAdd}
                             ></input>
-                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddJdao2(bal);}}>
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddUni_2(4, bal);}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
@@ -1224,7 +1138,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
-                                            addJdaoLpHandle()
+                                            addLpHandleUni(4)
                                         }
                                     }
                                 }>ADD</div> :
