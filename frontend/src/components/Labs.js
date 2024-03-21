@@ -22,6 +22,7 @@ const goldLab2 = '0x47FA364aDafa7d78c0e4A4bF66D389d2D01A6b05'
 const goldMine = '0x28d8c3c2C0199Ff6E73eb7c4321F43E0e7F80ad8'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const platLab = '0xFFBADf348b97055cA8E60a848718cAEf29df50A7'
+const platLab2 = '0xB080353ccD9CC565C0844Bb22e2997EdB2b6B7f0'
 
 const tunaField = "0x09676315DC0c85F6bd5e866C5f1363A00Eec4381"
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
@@ -32,6 +33,7 @@ const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 const gearField = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
+const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
@@ -66,6 +68,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [tmBalance, setTmBalance] = React.useState(0)
     const [gearBalance, setGearBalance] = React.useState(0)
     const [iiBalance, setIiBalance] = React.useState(0)
+    const [eeBalance, setEeBalance] = React.useState(0)
 
     const [levelCraftBBQ, setLevelCraftBBQ] = React.useState(0)
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
@@ -96,6 +99,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isCraftPLAT, setIsCraftPLAT] = React.useState(null)
     const [timetoClaimPLAT, setTimeToClaimPLAT] = React.useState(0)
     const [canCraftPLAT, setCanCraftPLAT] = React.useState(false)
+
+    const [isCraftPLAT2, setIsCraftPLAT2] = React.useState(null)
+    const [timetoClaimPLAT2, setTimeToClaimPLAT2] = React.useState(0)
+    const [canCraftPLAT2, setCanCraftPLAT2] = React.useState(false)
 
     const [isCraft1, setIsCraft1] = React.useState(null)
     const [timetoClaim1, setTimeToClaim1] = React.useState(0)
@@ -340,8 +347,20 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         functionName: 'supplier',
                         args: [address],
                     },
+                    {
+                        address: dunEE,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: platLab2,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, 0, {isCraft: false, laststamp: 0}, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, 0, {isCraft: false, laststamp: 0}, 0, {isCraft: false, laststamp: 0}, ]
             
             const cmjBal = data[0]
             const woodBal = data[1]
@@ -377,6 +396,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const gearBal = data[31]
             const iiBal = data[32]
             const labLogII = data[33]
+            const eeBal = data[34]
+            const labLogPlat2 = data[35]
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -392,6 +413,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftII = Number(ethers.utils.formatEther(String(gearBal))) >= 888 && Number(ethers.utils.formatEther(String(tmBal))) >= 8 ? true : false
+            const _canCraftPLAT2 = Number(ethers.utils.formatEther(String(eeBal))) >= 888 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
 
             const currentQueue = await readContract({
                 address: globalBbqLab,
@@ -424,7 +446,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
                 labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
                 mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR, angbBal, starBal, labLogSTAR, _canCraftSTAR,
-                tmBal, gearBal, iiBal, labLogII, _canCraftII,
+                tmBal, gearBal, iiBal, labLogII, _canCraftII, eeBal, labLogPlat2, _canCraftPLAT2,
             ]
         }
 
@@ -564,6 +586,14 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimII(nextHourII.toLocaleString('es-CL')) :
                 setTimeToClaimII(0)
             setCanCraftII(result[50])
+
+            setEeBalance(ethers.utils.formatEther(result[51]))
+            setIsCraftPLAT2(Number(result[52].machineRun) > 0)
+            const nextHourPLAT2 = new Date((result[52].laststamp * 1000) + (60 * 15 * 1000))
+            Date.now() - (result[52].laststamp * 1000) <= (60 * 15 * 1000) ?
+                setTimeToClaimPLAT2(nextHourPLAT2.toLocaleString('es-CL')) :
+                setTimeToClaimPLAT2(0)
+            setCanCraftPLAT2(result[53])
         })
 
     }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, kycABI])
@@ -1216,12 +1246,73 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
         } catch {}
         setisLoading(false)
     }
-
     const obtainPLATHandle = async () => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
                 address: platLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            const tx = await writeContract(config)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const craftPLAT2Handle = async (_machine) => {
+        setisLoading(true)
+        try {
+            const eeAllow = await readContract({
+                address: dunEE,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, platLab2],
+            })
+            if (eeAllow < (888 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: dunEE,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [platLab2, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx = await writeContract(config)
+                await approvetx.wait()
+            }
+            const cmjAllow = await readContract({
+                address: cmjToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, platLab2],
+            })
+            if (cmjAllow < 10**18) {
+                const config2 = await prepareWriteContract({
+                    address: cmjToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [platLab2, ethers.utils.parseEther(String(10**8))],
+                })
+                const approvetx2 = await writeContract(config2)
+                await approvetx2.wait()
+            }
+            const config3 = await prepareWriteContract({
+                address: platLab2,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            const tx = await writeContract(config3)
+            await tx.wait()
+            setTxupdate(tx)
+        } catch {}
+        setisLoading(false)
+    }
+    const obtainPLAT2Handle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: platLab2,
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
@@ -1901,6 +1992,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         />
                         <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
+                            width="20"
+                            alt="$EE"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: iiLab,
+                                            symbol: 'TDM-EE',
+                                            decimals: 18,
+                                            image: 'https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
                 </div>
 
                 <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
@@ -2365,31 +2479,38 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                
+                                <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                <div style={{margin: "0 5px"}}>888</div>
+                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <div style={{margin: "0 5px"}}>1</div>
+                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                <img src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                <div style={{margin: "0 5px"}}>10</div>
                             </div>
                         </div>
                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                            <div></div>
+                            <div>15 minutes</div>
                         </div>
-                        {false && isCraftPLAT ?
+                        {isCraftPLAT2 ?
                             <>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                    <div>{timetoClaimPLAT === 0 ? "now" : timetoClaimPLAT}</div>
+                                    <div>{timetoClaimPLAT2 === 0 ? "now" : timetoClaimPLAT2}</div>
                                 </div>
-                                {timetoClaimPLAT === 0 ?
-                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLATHandle}>Obtain</div> :
+                                {timetoClaimPLAT2 === 0 ?
+                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLAT2Handle}>Obtain</div> :
                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
                                 }
                             </> :
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {false && isCraftPLAT !== null ?
+                                        {isCraftPLAT2 !== null ?
                                             <>
-                                                {canCraftPLAT ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLATHandle(1)}>Craft Platinum</div> :
+                                                {canCraftPLAT2 ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLAT2Handle(1)}>Craft Platinum</div> :
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
                                                 }
                                             </> :
