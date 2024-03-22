@@ -7,7 +7,7 @@ const iiToken = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const eeToken = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 const jtaoToken = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 const taomiII = '0xbd5bff1fbbd83fecd749a328d98f860f7f343c10'
-const taomiEE = '0x085742E5e687F14d408130C60e2D0aCb1275b8a8'
+const taomiEE = '0x3822b065e9980f6cd62fd8fa60b3ffb36866ca60'
 
 const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiBalance, eeBalance, jtaoBalance }) => {
     const { address } = useAccount()
