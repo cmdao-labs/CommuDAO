@@ -121,7 +121,7 @@ import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { bsc } from 'wagmi/chains'
 
-const v = '0.3.0'
+const v = '0.3.1'
 
 const Main = () => {
     const { chains, provider } = configureChains(
