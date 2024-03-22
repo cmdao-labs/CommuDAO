@@ -955,7 +955,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                             ██║░░██║██║░░░░░  ░░░██║░░░██║░░██║███████╗  ██████╔╝╚██████╔╝██║░╚███║╚██████╔╝███████╗╚█████╔╝██║░╚███║
                                             ╚═╝░░╚═╝╚═╝░░░░░  ░░░╚═╝░░░╚═╝░░╚═╝╚══════╝  ╚═════╝░░╚═════╝░╚═╝░░╚══╝░╚═════╝░╚══════╝░╚════╝░╚═╝░░╚══╝
                                             */}
-                                            {item.Col === 2 && (String(item.Id).slice(0, 3) === "700" || String(item.Id).slice(0, 3) === "500" || String(item.Id).slice(0, 3) === "300" || String(item.Id).slice(0, 3) === "200") && Number(item.Id) % 100000 !== 1100 &&
+                                            {item.Col === 2 && (String(item.Id).slice(0, 3) === "700" || String(item.Id).slice(0, 3) === "500" || String(item.Id).slice(0, 3) === "300" || String(item.Id).slice(0, 3) === "600" || String(item.Id).slice(0, 3) === "200") && Number(item.Id) % 100000 !== 1100 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -969,6 +969,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeiavljudr364wnbra3glwvxx63emaawoti7o7uvdkfq6byre33k3by' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeifo6h2grxkhkhezqjpqj72dmwjwjumpglb75epnhkg5kmukkaegxa' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeidkwd67x7cuggzykl2s7az7adadu657hjq3rthvkb7wtjqyno4sxq' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeibwn7pyxxduc54giiujmc2lm2kv7twwcbxkmyrtm24d74wz4auryu' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name} +1</div>
                                                             </div>
                                                         }
@@ -978,6 +979,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeid57rinqklnxolfiro5yq2izqgr43k7tpo5trmewstp6h7aurp3ma' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeidex5aijsbmwidybwzjpbbnyxwmdpebehgmp2r5wlw3brg3c7zoeq' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeihal22c662yiosvtnrh7fsoqpie3jusfsqmpeo4jhwthineclx7q4' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeieh2jb2d527n4uummwxe7t36vjfhspv2opoxoqfrmxvzhziiukbs4' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
                                                         }
@@ -987,6 +989,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafkreifd45rhblhwe5qvkvpctaamqjdviijt4olae3266gosuw4mqgx7su' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeidwsyrf52coy3xxqlpw5thnqaaztsx7cdrwr2lwogzkp4gd4cbuwi' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafkreia4n6c2srsjbqv555tewpo5hjt575fw2l4cjfwk64sqcwcvpdrebe' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafkreieo765chiflk5msgydn5wxcmtqlf2sjfw5cuwpegnzzllyqhzcyci' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
                                                         }
@@ -996,6 +999,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafkreihezeecmvuj6cgse2rnc2tbzqrzeadxliuc3zzy2wxpfog5yv3cau' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeicjghxuvreknriwduid7zw6zfsxj6px7te6m3ybpxhjglktldh5q4' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafkreiedkyysocf56q2ykmmkismzvmlsp73b3e4wnxn2usmpislxvbfdue' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafkreigutlmirjgjy6nwgluv3sk4y6noqmxkqbmf5qk4zoh4tayz42rqzq' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
                                                         }
@@ -1005,6 +1009,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeibbakqgfnshw3jyyvbmymkuf5pylzrzseksfoo2rdhry6p7rrcbaq' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeiglsjsqn6bibwx6s2ehtawhqwroxsmasguayvdl7tlujmvkvgks2q' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeiho3m6yi3t45ljtufnlmq6xnkeeb4oz5lwjt5okwt5xkgwegb36v4' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeidmncmt75ansjbsrkvk3ujhquemej5nlime3cn2rmpsdwb7zrzi3e' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
                                                             </div>
                                                         }
@@ -1014,6 +1019,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeiercameocvi6xiw5yuwvbhagk2ut7xa4pr3delbqg2fpfhsnwxwgu' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeidgpxrzly3nqltvc4j6u4erni444th65szq2wsjrv66mas5qmcm34' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeigk3yjgpmtlbwrj7wwd6wnaamzym6lzmbogorb7wpgfkhxvr3auw4' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeic25z3kgp4qkqnkuyohof5vwj5hmdace5d2acqfk5tcw3qt2wtfiq' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -1023,6 +1029,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeihzcpnug3w4jpqmoznarvxbpdjdpnzibj7a2bzvh2af3js3lk4ani' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeifjnuyqckv6aalnd6mocxx6537gfrfixx2cswdq5oyqnyflm6qyuu' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeibo5f5ceohspkwbgflpwcas5qfemgqtknpf4msuktkyaq7cxgvtji' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeifvnvbsb5ou7b2tijqag2hxbfyrum6kdywe4hq7eea3cx34vr5j34' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}7</div>
                                                             </div>
                                                         }
@@ -1032,6 +1039,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeiacng6l2biwvphdlz3dqh6rknnjppanxdx2srvbrgfv67do3mi7wq' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeihmyw5fcjxcwv3afaefsv4twlkgmovozluiqiq3xvdr2tod6cztbi' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeicxcwrqutvfyjegcextgfq67txs7sg7dx33ck3huffeuq4x5ktmou' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeigevydzpebgfubwxoitzii5kfn64zma7npqd55j3cwnjp6w3hbm64' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                             </div>
                                                         }
@@ -1041,6 +1049,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {String(item.Id).slice(0, 3) === "500" && <img src='https://nftstorage.link/ipfs/bafybeifkfw2p65zmr3gop3p2uegldghj6vk455ezg33pelyl7jc3kuca3y' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeic7c6pjxrge36iwwsvhiw4rdzy6z3exlea3mnnsjkupzfvcqojdk4' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeib5wpqecdu2s65k4gktw7gdqgyxgrlpv44pszxxzyo65knnjwbwqi' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeieg2gz5jgwjqpbihfy4pns6mwkjajcxiy3paxsciriz7wduzghhdq' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
@@ -1135,6 +1144,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 ind = 200
                                                             } else if (String(item.Id).slice(0, 3) === "300") {
                                                                 ind = 300
+                                                            } else if (String(item.Id).slice(0, 3) === "600") {
+                                                                ind = 400
                                                             }
                                                             enchantHandle(item.Id, 101000 + ind + arg)
                                                         }}
