@@ -16,8 +16,8 @@ const Home = ({ callMode, navigate }) => {
                     <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect,<br></br>Play,<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
                     <div style={{marginTop: "20px", fontSize: "18px"}} className='bold'>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
-                        <div style={{fontSize: "36px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52,000,000+</div>
-                        <div style={{fontSize: "16px", marginTop: "5px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
+                        <div style={{fontSize: "40px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52,000,000+</div>
+                        <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
                     {chain !== undefined && chain.id === 8899 ?
                         <>
