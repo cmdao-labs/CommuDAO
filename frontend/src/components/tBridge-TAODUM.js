@@ -238,7 +238,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     <div style={{fontSize: "30px"}}>From BKC 1 KUB/TX; From JBC 10 JBC/TX</div>
                 </div>
             </div>
-            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "20px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">BKC NFTs</div>
+            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">BKC NFTs</div>
             {nft.length > 0 ?
                 <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
@@ -278,9 +278,9 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     </div>
                 </div>
             }
-            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "20px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">JBC NFTs</div>
+            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">JBC NFTs</div>
             {nft2.length > 0 ?
-                <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{width: "1650px", marginBottom: "200px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft2[0] !== null ?
                         <>
                             {nft2.map((item, index) => (
@@ -311,7 +311,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                         </div>
                     }
                 </div> :
-                <div style={{width: "1640px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                <div style={{width: "1640px", marginBottom: "200px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
