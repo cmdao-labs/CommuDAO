@@ -583,7 +583,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell21remain = (600010100000 - (Number(sell21Id.sellId) - 250)) / 100000
             const sell22remain = (400010100000 - (Number(sell22Id.sellId) - 250)) / 100000
 
-            const sell23remain = (400030000000 - (Number(sell23Id.sellId) - 10900)) / 100000
+            const sell23remain = (400040000000 - (Number(sell23Id.sellId) - 10900)) / 100000
             const _canBuy23 = Number(ethers.utils.formatEther(String(platBal))) >= 180000 ? true : false
 
             const sell24remain = (100025100000 - (Number(sell24Id.sellId) - 18800)) / 100000
@@ -3193,7 +3193,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <div className="emp">{0}</div>
+                                    <div className="emp">{100}</div>
                                     /100 EA
                                 </div>
                             </div>
