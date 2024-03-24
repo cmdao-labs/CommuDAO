@@ -455,11 +455,11 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         {Number(item.Id) % 100000 === 64800 &&
                                                             <>
                                                                 <div>
-                                                                    <div>Level 7</div>
+                                                                    <div>Level 8</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
                                                                 <div>
-                                                                    <div>Level 8</div>
+                                                                    <div>Level 9</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 8000} cmpow per sec</div>
                                                                 </div>
                                                             </>
