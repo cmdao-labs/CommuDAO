@@ -551,12 +551,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     },
                     {
                         address: jazziCU,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
                     },
                     {
                         address: jazziCU,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
                     {
@@ -625,7 +625,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     },
                     {
                         address: jazziCU,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
                         args: [String(10**18), String(_reserveCU), String(_reserveCmjCU)],
                     },
@@ -698,7 +698,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
 
         getAsync().then(result => {
             setPriceJDAO(Number(ethers.utils.formatEther(result[0])).toFixed(3))
-            setPriceCU(Number(ethers.utils.formatEther(result[1])).toFixed(5))
+            setPriceCU(Number(ethers.utils.formatEther(result[1])).toFixed(8))
             setPriceJASP(Number(ethers.utils.formatEther(result[2])).toFixed(3))
 
             setReserveCmjJdao(ethers.utils.formatEther(result[3]))
@@ -723,7 +723,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
 
             setReserveCmjSIL(ethers.utils.formatEther(result[16]))
             setReserveSIL(ethers.utils.formatEther(result[17]))
-            result[18] !== null && setPriceSIL(Number(ethers.utils.formatEther(result[18])).toFixed(3))
+            result[18] !== null && setPriceSIL(Number(ethers.utils.formatEther(result[18])).toFixed(8))
         })
 
     }, [address, erc20ABI, ammyStdABI, cmdaoAmmNpcABI])

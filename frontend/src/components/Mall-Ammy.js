@@ -642,8 +642,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
         getAsync().then(result => {
             setPriceCTUNA(Number(ethers.utils.formatEther(result[0])).toFixed(3))
             setPriceSX31(Number(ethers.utils.formatEther(result[1])).toFixed(3))
-            setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(7))
-            setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(5))
+            setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(8))
+            setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(8))
 
             setReserveCmjCTUNA(ethers.utils.formatEther(result[4]))
             setReserveCTUNA(ethers.utils.formatEther(result[5]))
