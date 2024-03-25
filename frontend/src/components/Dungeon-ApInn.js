@@ -2,7 +2,7 @@ import React from 'react'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
-import { ThreeDots } from 'react-loading-icons'
+import { ThreeDots, Oval } from 'react-loading-icons'
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
@@ -14,9 +14,13 @@ const acUpgrade = '0x58AE9c64F0367cAcE006438af2E9E889F69051c4'
 const apDunNft = '0x853beB37aBAfA021818B9f66e5333E657Ceb29d0'
 const uniEnchanter = '0x2A7F88d4eACD6dbE8C255B54F8015eF40F5cfDE2'
 
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
+const vabagToken = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
+
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanterABI, erc721ABI, erc20ABI }) => {
+const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanterABI, erc721ABI, erc20ABI, questAmbassABI, cmdaoNameABI, dunAngbABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -24,10 +28,17 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
     const [angbBalance, setAngbBalance] = React.useState(0)
     const [starBalance, setStarBalance] = React.useState(0)
 
+    const [rank, setRank] = React.useState([])
+    const [rank2, setRank2] = React.useState([])
+    const [rank3, setRank3] = React.useState([])
+    const [rank4, setRank4] = React.useState([])
+
     React.useEffect(() => {
         window.scrollTo(0, 0)    
         const acnftSC = new ethers.Contract(acNft, erc721ABI, providerJBC)
         const apDunSC = new ethers.Contract(apDunNft, erc721ABI, providerJBC)
+        const angbFarmSC = new ethers.Contract(dunANGB, dunAngbABI, providerJBC)
+        const vabagUsageSC = new ethers.Contract(vabagToken, erc20ABI, providerJBC)
 
         const thefetch = async () => {
             const data = address !== null && address !== undefined ? await readContracts({
@@ -174,7 +185,141 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, cmjBal, angbBal, starBal]
+            const data2_0 = await readContract({
+                address: questAmbass,
+                abi: questAmbassABI,
+                functionName: 'registCount',
+            })
+            const rankerDummy = []
+            for (let i = 1; i <= Number(data2_0); i++) {
+                rankerDummy.push(null)
+            }
+
+            const data2_00 = await readContracts({
+                contracts: rankerDummy.map((item, i) => (
+                    {
+                        address: questAmbass,
+                        abi: questAmbassABI,
+                        functionName: 'referalData',
+                        args: [i+1]
+                    }
+                ))
+            })
+            const data2_001 = await readContracts({
+                contracts: data2_00.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item.fren]
+                    }
+                ))
+            })
+            const data2_0011 = await readContracts({
+                contracts: data2_001.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item]
+                    }
+                ))
+            })
+            const ranker = []
+            for (let i = 0; i <= data2_00.length - 1; i++) {
+                ranker.push(data2_00[i].fren)
+            }
+
+            const data2_1 = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: dunANGB,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [item],
+                    }
+                )),
+            })
+
+            const dataANGB = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], apxp: Number(ethers.utils.formatEther(data2_1[i])).toFixed(3)}})
+
+            const spend1Filter = await angbFarmSC.filters.Claimed(null, null, null)
+            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 2500000, 'latest')
+            const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.staker), value: Number(ethers.utils.formatEther(obj.args.rewardAmount))}}))
+            const spend1Merged = spend1Map.reduce((prev, curr) => {
+                if (prev[curr.from.toUpperCase()]) {
+                   prev[curr.from.toUpperCase()].value += curr.value
+                } else {
+                   prev[curr.from.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+
+            const spend1RemoveDup = []
+            for (let i = 0; i <= ranker.length -1; i++) {
+                for (let i2 = 0; i2 <= Object.values(spend1Merged).length -1; i2++) {
+                    if (ranker[i].toUpperCase() === Object.values(spend1Merged)[i2].from.toUpperCase()) {
+                        Object.values(spend1Merged)[i2].name = data2_0011[i] === null ? Object.values(spend1Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend1Merged)[i2].from.slice(-4) : data2_0011[i]
+                        spend1RemoveDup.push(Object.values(spend1Merged)[i2])
+                    }
+                }
+            }
+
+            const spend2Filter = await vabagUsageSC.filters.Transfer(null, '0x0000000000000000000000000000000000000001', null)
+            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 2500000, 'latest')
+            const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spend2Merged = spend2Map.reduce((prev, curr) => {
+                if (prev[curr.from.toUpperCase()]) {
+                   prev[curr.from.toUpperCase()].value += curr.value
+                } else {
+                   prev[curr.from.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+
+            const spend2RemoveDup = []
+            for (let i = 0; i <= ranker.length -1; i++) {
+                for (let i2 = 0; i2 <= Object.values(spend2Merged).length -1; i2++) {
+                    if (ranker[i].toUpperCase() === Object.values(spend2Merged)[i2].from.toUpperCase() && Object.values(spend2Merged)[i2].from.toUpperCase() !== ('0x0Da584E836542Fc58E7c09725cF6dbDfeA22f427').toUpperCase()) {
+                        Object.values(spend2Merged)[i2].name = data2_0011[i] === null ? Object.values(spend2Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend2Merged)[i2].from.slice(-4) : data2_0011[i]
+                        spend2RemoveDup.push(Object.values(spend2Merged)[i2])
+                    }
+                }
+            }
+
+            const spend31Filter = await acnftSC.filters.Transfer('0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a', null, null)
+            const spend31Event = await acnftSC.queryFilter(spend31Filter, 2500000, 'latest')
+            const spend31Map = await Promise.all(spend31Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
+
+            const spend32Filter = await apDunSC.filters.Transfer('0x09e6a0A03afa27438c3f507de82b5f6061Ae1643', null, null)
+            const spend32Event = await apDunSC.queryFilter(spend32Filter, 2500000, 'latest')
+            const spend32Map = await Promise.all(spend32Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
+
+            const spend3Merged = spend31Map.concat(spend32Map).reduce((prev, curr) => {
+                if (prev[curr.from.toUpperCase()]) {
+                   prev[curr.from.toUpperCase()].value += curr.value
+                } else {
+                   prev[curr.from.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+
+            const spend3RemoveDup = []
+            for (let i = 0; i <= ranker.length -1; i++) {
+                for (let i2 = 0; i2 <= Object.values(spend3Merged).length -1; i2++) {
+                    if (ranker[i].toUpperCase() === Object.values(spend3Merged)[i2].from.toUpperCase()) {
+                        Object.values(spend3Merged)[i2].name = data2_0011[i] === null ? Object.values(spend3Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend3Merged)[i2].from.slice(-4) : data2_0011[i]
+                        spend3RemoveDup.push(Object.values(spend3Merged)[i2])
+                    }
+                }
+            }
+
+            if (dataANGB.length === 0) { dataANGB.push(null) }
+            if (spend1RemoveDup.length === 0) { spend1RemoveDup.push(null) }
+            if (spend2RemoveDup.length === 0) { spend2RemoveDup.push(null) }
+            if (spend3RemoveDup.length === 0) { spend3RemoveDup.push(null) }
+
+            return [nfts, cmjBal, angbBal, starBal, dataANGB, spend1RemoveDup, spend2RemoveDup, spend3RemoveDup ]
         }
 
         const promise = thefetch()
@@ -191,6 +336,11 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             setCmjBalance(ethers.utils.formatEther(String(result[1])))
             setAngbBalance(ethers.utils.formatEther(String(result[2])))
             setStarBalance(ethers.utils.formatEther(String(result[3])))
+
+            setRank(result[4])
+            setRank2(result[5])
+            setRank3(result[6])
+            setRank4(result[7])
         })
 
     }, [address, erc20ABI, erc721ABI, txupdate])
@@ -403,44 +553,100 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "420px", width: "25%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
                             <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top $ANGB Holder</div>
-                            {false ?
+                            {rank.length > 0 ?
                                 <>
+                                    {rank[0] !== null ?
+                                        <div style={{width: "100%", minHeight: "550px"}}>
+                                            {rank.slice(0).sort((a, b) => {return b.apxp-a.apxp}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
+                                                    <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{item.apxp} $ANGB</div>
+                                                </div>
+                                            ))}
+                                        </div> :
+                                        <></>
+                                    } 
                                 </> :
                                 <div style={{width: "100%", height: "inherit"}}>
-                                    
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
                                 </div>
                             }
                         </div>
 
                         <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "420px", width: "25%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top $ANGB Farmer</div>
-                            {false ?
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top $ANGB Farmer of the month</div>
+                            {rank2.length > 0 ?
                                 <>
+                                    {rank2[0] !== null ?
+                                        <div style={{width: "100%", minHeight: "550px"}}>
+                                            {rank2.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
+                                                    <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{Number(item.value).toFixed(3)} $ANGB</div>
+                                                </div>
+                                            ))}
+                                        </div> :
+                                        <></>
+                                    }
                                 </> :
                                 <div style={{width: "100%", height: "inherit"}}>
-
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
                                 </div>
                             }
                         </div>
 
                         <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "420px", width: "25%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top $VABAG Buner</div>
-                            {false ?
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top $VABAG Burner</div>
+                            {rank3.length > 0 ?
                                 <>
+                                    {rank3[0] !== null ?
+                                        <div style={{width: "100%", minHeight: "550px"}}>
+                                            {rank3.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
+                                                    <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{Number(item.value).toFixed(3)} $VABAG</div>
+                                                </div>
+                                            ))}
+                                        </div> :
+                                        <></>
+                                    }
                                 </> :
                                 <div style={{width: "100%", height: "inherit"}}>
-
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
                                 </div>
                             }
                         </div>
 
                         <div style={{padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "420px", width: "25%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
                             <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Spender</div>
-                            {false ?
+                            {rank4.length > 0 ?
                                 <>
+                                    {rank4[0] !== null ?
+                                        <div style={{width: "100%", minHeight: "550px"}}>
+                                            {rank4.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
+                                                    <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{Number(item.value).toFixed(2)} $JUSDT</div>
+                                                </div>
+                                            ))}
+                                        </div> :
+                                        <></>
+                                    }
                                 </> :
                                 <div style={{width: "100%", height: "inherit"}}>
-
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
                                 </div>
                             }
                         </div>
