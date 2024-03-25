@@ -11,7 +11,7 @@ const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const jazziJDAO = '0x3C061eEce15C539CaE99FbE75B3044236Fa2eff0'
-const jazziCU = '0x91bF9b7a8F042C8aDc487200aD7Bc6Bd0b08A787'
+const jazziCU = '0x1b70c95fD4EbF8920A624bd2ce22b6905eFBdF60'
 const jazziSIL = '0xf189c5B03694b70e5DFD8e8CAE84118Ed7616F19'
 const jazziGOLD = '0x7086EC7ED5D94ef503bE324B0aE8A3748A15fAE5'
 const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
@@ -67,127 +67,6 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
     const [priceOS, setPriceOS] = React.useState("0.000")
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
     const [reserveOS, setReserveOS] = React.useState("")
-
-    const handleSwapCU = async (event) => {
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: jazziCU,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: jazziCU,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                },
-            ],
-        })
-        const _reserveCmj = data[0]
-        const _reserveToken = data[1]
-        const tokensBoughttokenTOcmj = await readContract({
-            address: jazziCU,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveToken), String(_reserveCmj)],
-        })
-        event.target.value !== "" ? setCmjBoughtCU(ethers.utils.formatEther(tokensBoughttokenTOcmj)) : setCmjBoughtCU("0.000")
-    }
-    const handleSwapCU_2 = async (event) => {
-        setInputSwap2(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: jazziCU,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: jazziCU,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                },
-            ],
-        })
-        const _reserveCmj = data[0]
-        const _reserveToken = data[1]
-        const tokensBoughtcmjTOtoken = await readContract({
-            address: jazziCU,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveCmj), String(_reserveToken)],
-        })
-        event.target.value !== "" ? setTokenBoughtCU(ethers.utils.formatEther(tokensBoughtcmjTOtoken)) : setTokenBoughtCU("0.000")
-    }
-
-    const swapTokenHandleCU = async (_sell) => {
-        setisLoading(true)
-        try {
-            if (_sell) {
-                const tokenAllow = await readContract({
-                    address: cuToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, jazziCU],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
-                    const config = await prepareWriteContract({
-                        address: cuToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [jazziCU, bigApprove],
-                    })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
-                }
-                const config = await prepareWriteContract({
-                    address: jazziCU,
-                    abi: ammyStdABI,
-                    functionName: 'tokenTOcmj',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBoughtCU)],
-                })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
-            } else {
-                const cmjAllow = await readContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, jazziCU],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(cmjAllow)) {
-                    const config = await prepareWriteContract({
-                        address: cmjToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [jazziCU, bigApprove],
-                    })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
-                }
-                const config2 = await prepareWriteContract({
-                    address: jazziCU,
-                    abi: ammyStdABI,
-                    functionName: 'cmjTOtoken',
-                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCU)],
-                })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
-            }
-        } catch {}
-        setisLoading(false)
-    }
 
     const handleSwapOS = async (event) => {
         setInputSwap(event.target.value)
@@ -443,6 +322,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziJasp
         } else if (index === 4) {
             addr = jazziJDAO
+        } else if (index === 5) {
+            addr = jazziCU
         }
         setInputSwap(event.target.value)
         let _value = 0
@@ -483,6 +364,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             event.target.value !== "" ? setCmjBoughtJASP(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtJASP("0.000")
         } else if (index === 4) {
             event.target.value !== "" ? setCmjBoughtJDAO(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtJDAO("0.000")
+        } else if (index === 5) {
+            event.target.value !== "" ? setCmjBoughtCU(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtCU("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -495,6 +378,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             addr = jazziJasp
         } else if (index === 4) {
             addr = jazziJDAO
+        } else if (index === 5) {
+            addr = jazziCU
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -528,6 +413,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             event.target.value !== "" ? setTokenBoughtJASP(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) : setTokenBoughtJASP("0.000")
         } else if (index === 4) {
             event.target.value !== "" ? setTokenBoughtJDAO(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtJDAO("0.000")
+        } else if (index === 5) {
+            event.target.value !== "" ? setTokenBoughtCU(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtCU("0.000")
         }
     }
 
@@ -557,6 +444,11 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
             token = jdaoToken
             currBoughtToken = cmjBoughtJDAO
             tokenBoughtCurr = tokenBoughtJDAO
+        } else if (index === 5) {
+            lp = jazziCU
+            token = cuToken
+            currBoughtToken = cmjBoughtCU
+            tokenBoughtCurr = tokenBoughtCU
         }
         setisLoading(true)
         try {
@@ -660,7 +552,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                     {
                         address: jazziCU,
                         abi: ammyStdABI,
-                        functionName: 'getReserveCMJ',
+                        functionName: 'getReserveCurrency',
                     },
                     {
                         address: jazziCU,
@@ -885,7 +777,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     if (gasselected === "JDAO") {
                                         handleSwapUni(4, event)
                                     } else if (gasselected === "CU") {
-                                        handleSwapCU(event)
+                                        handleSwapUni(5, event)
                                     } else if (gasselected === "SIL") {
                                         handleSwapUni(1, event)
                                     } else if (gasselected === "GOLD") {
@@ -905,7 +797,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                 </div>
                             }
                             {gasselected === "CU" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cuBalance}}; handleSwapCU(bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cuBalance}}; handleSwapUni(5, bal);}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
                                     <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
@@ -942,7 +834,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                         if (gasselected === "JDAO") {
                                             swapTokenHandleUni(4, true)
                                         } else if (gasselected === "CU") {
-                                            swapTokenHandleCU(true)
+                                            swapTokenHandleUni(5, true)
                                         } else if (gasselected === "SIL") {
                                             swapTokenHandleUni(1, true)
                                         } else if (gasselected === "GOLD") {
@@ -989,7 +881,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     if (gasselected === "JDAO") {
                                         handleSwapUni_2(4, event)
                                     } else if (gasselected === "CU") {
-                                        handleSwapCU_2(event)
+                                        handleSwapUni_2(5, event)
                                     } else if (gasselected === "SIL") {
                                         handleSwapUni_2(1, event)
                                     } else if (gasselected === "GOLD") {
@@ -1009,7 +901,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                     if (gasselected === "JDAO") {
                                         handleSwapUni_2(4, bal)
                                     } else if (gasselected === "CU") {
-                                        handleSwapCU_2(bal)
+                                        handleSwapUni_2(5, bal)
                                     } else if (gasselected === "SIL") {
                                         handleSwapUni_2(1, bal)
                                     } else if (gasselected === "GOLD") {
@@ -1032,7 +924,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, ammyStdABI, cmdaoAmmNpcABI, e
                                         if (gasselected === "JDAO") {
                                             swapTokenHandleUni(4, false)
                                         } else if (gasselected === "CU") {
-                                            swapTokenHandleCU(false)
+                                            swapTokenHandleUni(5, false)
                                         } else if (gasselected === "SIL") {
                                             swapTokenHandleUni(1, false)
                                         } else if (gasselected === "GOLD") {
