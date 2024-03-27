@@ -106,7 +106,7 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
         })
         if (index === 1) {
             event.target.value !== "" ? setTokenBoughtII(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtII("0.000")
-        } else if (index === 1) {
+        } else if (index === 2) {
             event.target.value !== "" ? setTokenBoughtEE(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtEE("0.000")
         }
     }
