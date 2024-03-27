@@ -366,7 +366,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                 <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                     <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                         <div>{index+1}</div>
-                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/cryptic-cogs/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                     </div>
                                                     <div>{item.tdmxp} CMPOW</div>
                                                 </div>
