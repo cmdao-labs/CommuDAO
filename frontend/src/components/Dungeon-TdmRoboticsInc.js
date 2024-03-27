@@ -203,16 +203,10 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
 
     const enchantHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)
-        let token1 = '0x0000000000000000000000000000000000000000'
-        let token2 = '0x0000000000000000000000000000000000000000'
-        let token1Amount = 0
-        let token2Amount = 0
-        if (_enchantindex >= 200000 && _enchantindex <= 200009) {
-            token1 = iiLab
-            token2 = dunEE
-            token1Amount = 8888
-            token2Amount = 481800
-        }
+        let token1 = iiLab
+        let token2 = dunEE
+        let token1Amount = 8888
+        let token2Amount = 481800
         try {
             const cmjAllow = await readContract({
                 address: cmjToken,
