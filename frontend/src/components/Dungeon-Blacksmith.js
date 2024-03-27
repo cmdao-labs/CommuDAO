@@ -6515,7 +6515,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ╚██████╔╝██████╔╝  ██████╦╝╚█████╔╝╚█████╔╝░░░██║░░░██████╔╝
                                             ░╚═════╝░╚═════╝░  ╚═════╝░░╚════╝░░╚════╝░░░░╚═╝░░░╚═════╝░
                                             */}
-                                            {String(item.Id).slice(0, 3) === "612" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "612" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 5950 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -6609,7 +6609,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 3450 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeigng6bmk3iwy6yubgngns73aow2754lbzqqhgm5ixafcddk3wvqd4.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
                                                         }
