@@ -606,13 +606,15 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-II LP"} className="bold" onChange={(event) => {setLpSell(event.target.value)}} value={lpSell}></input>
+                            <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-JTAO LP"} className="bold" onChange={(event) => {setLpSell(event.target.value)}} value={lpSell}></input>
                             <div 
                                 style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}}
                                 className="button pixel"
                                 onClick={() => {
                                     if (gasselected === "II") {
                                         removeLpUni(1)
+                                    } else if (gasselected === "EE") {
+                                        removeLpUni(2)
                                     }
                                 }}
                             >
@@ -658,7 +660,7 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                                 type="number"
                                 step="1"
                                 min="1"
-                                placeholder="0 $II"
+                                placeholder="0 $JTAO"
                                 onChange={(event) => {
                                     if (gasselected === "II") {
                                         handleAddUni_2(1, event)
