@@ -171,7 +171,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callJbcToCmj',
-                    args: [ethers.utils.parseEther(cmjBought)],
+                    args: [ethers.utils.parseEther(String(cmjBought * 0.99))],
                     overrides: {
                         value: ethers.utils.parseEther(inputSwap),
                     },
@@ -207,7 +207,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callCmjToJbc',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(jbcBought)],
+                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcBought * 0.99))],
                 })
                 const tx = await writeContract(config2)
                 await tx.wait()
@@ -224,7 +224,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     address: juSwap,
                     abi: swapJulpABI,
                     functionName: 'callJbcToJusdt',
-                    args: [ethers.utils.parseEther(jusdtJuBought)],
+                    args: [ethers.utils.parseEther(String(jusdtJuBought * 0.99))],
                     overrides: {
                         value: ethers.utils.parseEther(inputSwap),
                     },
@@ -260,7 +260,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     address: juSwap,
                     abi: swapJulpABI,
                     functionName: 'callJusdtToJbc',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(jbcJuBought)],
+                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcJuBought * 0.99))],
                 })
                 const tx = await writeContract(config2)
                 await tx.wait()
