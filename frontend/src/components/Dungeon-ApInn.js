@@ -343,7 +343,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             setRank4(result[7])
         })
 
-    }, [address, erc20ABI, erc721ABI, txupdate])
+    }, [address, erc20ABI, erc721ABI, questAmbassABI, cmdaoNameABI, dunAngbABI, txupdate])
 
     const enchantAcHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)
@@ -541,7 +541,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                 <div>5 STAR</div>
                             </div>
                         </div>
-                        <div>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
+                        <div>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 5 for each leaderboard.</div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                             <div style={{width: "300px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Become Top 1-5</div>

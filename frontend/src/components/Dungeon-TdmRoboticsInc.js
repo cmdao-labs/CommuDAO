@@ -2,7 +2,7 @@ import React from 'react'
 import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
-import { ThreeDots } from 'react-loading-icons'
+import { ThreeDots, Oval } from 'react-loading-icons'
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
@@ -11,15 +11,20 @@ const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const narutaNft = '0x5e620d8980335167d9ef36cef5d9a6ea6607a8cb'
 const uniEnchanter = '0x2A7F88d4eACD6dbE8C255B54F8015eF40F5cfDE2'
 
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
+
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, erc721ABI, erc20ABI }) => {
+const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, erc721ABI, erc20ABI, questAmbassABI, cmdaoNameABI, dunEEABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [iiBalance, setIiBalance] = React.useState(0)
     const [eeBalance, setEeBalance] = React.useState(0)
+
+    const [rank, setRank] = React.useState([])
 
     React.useEffect(() => {
         window.scrollTo(0, 0)    
@@ -113,7 +118,67 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, cmjBal, iiBal, eeBal]
+            const data2_0 = await readContract({
+                address: questAmbass,
+                abi: questAmbassABI,
+                functionName: 'registCount',
+            })
+            const rankerDummy = []
+            for (let i = 1; i <= Number(data2_0); i++) {
+                rankerDummy.push(null)
+            }
+
+            const data2_00 = await readContracts({
+                contracts: rankerDummy.map((item, i) => (
+                    {
+                        address: questAmbass,
+                        abi: questAmbassABI,
+                        functionName: 'referalData',
+                        args: [i+1]
+                    }
+                ))
+            })
+            const data2_001 = await readContracts({
+                contracts: data2_00.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item.fren]
+                    }
+                ))
+            })
+            const data2_0011 = await readContracts({
+                contracts: data2_001.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item]
+                    }
+                ))
+            })
+            const ranker = []
+            for (let i = 0; i <= data2_00.length - 1; i++) {
+                ranker.push(data2_00[i].fren)
+            }
+
+            const nftSTAT = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: dunEE,
+                        abi: dunEEABI,
+                        functionName: 'nftStatus',
+                        args: [item],
+                    }
+                )),
+            })
+
+            const dataSuperPower = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], tdmxp: Number(nftSTAT[i].allPow)}})
+
+            if (dataSuperPower.length === 0) { dataSuperPower.push(null) }
+
+            return [nfts, cmjBal, iiBal, eeBal, dataSuperPower]
         }
 
         const promise = thefetch()
@@ -130,9 +195,11 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
             setCmjBalance(ethers.utils.formatEther(String(result[1])))
             setIiBalance(ethers.utils.formatEther(String(result[2])))
             setEeBalance(ethers.utils.formatEther(String(result[3])))
+
+            setRank(result[4])
         })
 
-    }, [address, erc20ABI, erc721ABI, txupdate])
+    }, [address, erc20ABI, erc721ABI, questAmbassABI, cmdaoNameABI, dunEEABI, txupdate])
 
     const enchantHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)
@@ -254,6 +321,64 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                             <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="22" alt="$EE"/>
                             <div style={{marginLeft: "10px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "70%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                    <div style={{padding: "50px", margin: "50px 0", backdropFilter: "blur(20px)", border: "none", minWidth: "940px", width: "80%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "14px"}} className="nftCard">
+                        <div style={{fontSize: "40px"}}>April 2024 Prize Pool 🎁</div>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
+                            <div style={{width: "220px", marginRight: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top TAO Superpower</div>
+                                <div>1,999,440 JTAO</div>
+                            </div>
+                        </div>
+                        <div>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 30 for each leaderboard.</div>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
+                            <div style={{width: "300px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top 1-3</div>
+                                <div>40% of prize pool</div>
+                            </div>
+                            <div style={{width: "300px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top 4-10</div>
+                                <div>30% of prize pool</div>
+                            </div>
+                            <div style={{width: "300px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top 11-20</div>
+                                <div>20% of prize pool</div>
+                            </div>
+                            <div style={{width: "300px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top 21-30</div>
+                                <div>10% of prize pool</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
+                        <div style={{padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "420px", width: "25%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top TAO Superpower</div>
+                            {rank.length > 0 ?
+                                <>
+                                    {rank[0] !== null ?
+                                        <div style={{width: "100%", minHeight: "550px"}}>
+                                            {rank.slice(0).sort((a, b) => {return b.tdmxp-a.tdmxp}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
+                                                    <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{item.tdmxp} CMPOW</div>
+                                                </div>
+                                            ))}
+                                        </div> :
+                                        <></>
+                                    } 
+                                </> :
+                                <div style={{width: "100%", height: "inherit"}}>
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
