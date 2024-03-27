@@ -6515,7 +6515,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ╚██████╔╝██████╔╝  ██████╦╝╚█████╔╝╚█████╔╝░░░██║░░░██████╔╝
                                             ░╚═════╝░╚═════╝░  ╚═════╝░░╚════╝░░╚════╝░░░░╚═╝░░░╚═════╝░
                                             */}
-                                            {String(item.Id).slice(0, 3) === "612" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 6800 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "612" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 2550 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -6591,7 +6591,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 6800 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeiagsffhx7u75qn3ehpobzo7zzevhp5itt2kmgw6lwo5ma2dftvlbi.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -6603,7 +6603,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 10500 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeibcmf6nnxus25s76fppdbszbcajpcqbjuxn6it22qoodoi4hsigpm.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                             </div>
                                                         }
