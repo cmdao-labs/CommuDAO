@@ -19,7 +19,7 @@ const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 const jcExchange = "0x472d0e2E9839c140786D38110b3251d5ED08DF41"
 const juExchange = "0x280608DD7712a5675041b95d0000B9089903B569"
-const jcSwap = "0x6784f834EE171C7fB824b2866dD58b6EcF0f2654"
+const jcSwap = "0xFF19990569739e79aFF8549d8dE087Ab79De8dc7"
 const juSwap = "0x7417b256b306578b627797f7b002363397772603"
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')

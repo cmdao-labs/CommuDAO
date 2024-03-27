@@ -171,6 +171,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callJbcToCmj',
+                    args: [ethers.utils.parseEther(cmjBought)],
                     overrides: {
                         value: ethers.utils.parseEther(inputSwap),
                     },
@@ -206,7 +207,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callCmjToJbc',
-                    args: [ethers.utils.parseEther(inputSwap)],
+                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(jbcBought)],
                 })
                 const tx = await writeContract(config2)
                 await tx.wait()
