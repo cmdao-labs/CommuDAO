@@ -7363,7 +7363,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ╚██████╔╝██████╔╝  ██║░░██║╚█████╔╝╚█████╔╝
                                             ░╚═════╝░╚═════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░
                                             */}
-                                            {String(item.Id).slice(0, 3) === "411" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 550 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "411" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 1050 && Number(item.Id) % 100000 !== 2550 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -7391,7 +7391,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 950 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeigb44uukyxblsxcblsdhmswguzyhaju3hbsuvvg6j6tyosvhhqbvy.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
                                                         }
@@ -7403,7 +7403,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 2000 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeiffwhvtixnrkm4tv5fzab353ohic5wesdmnco52eshfepoqgg3hea.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
                                                         }
@@ -7415,7 +7415,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 3400 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeidk63aqbzfflrc7tlbfohgvdqr5kqqvn7tlz2vkmqltytr2rvmucu.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -8150,17 +8150,17 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             } else if (Number(item.Id) % 100000 === 750) {
                                                                 enchantNHandle(item.Id, 30)
                                                             } else if (Number(item.Id) % 100000 === 550) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 193)
                                                             } else if (Number(item.Id) % 100000 === 950) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 194)
                                                             } else if (Number(item.Id) % 100000 === 1450) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 195)
                                                             } else if (Number(item.Id) % 100000 === 2000) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 196)
                                                             } else if (Number(item.Id) % 100000 === 2650) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 197)
                                                             } else if (Number(item.Id) % 100000 === 3400) {
-                                                                enchantRHandle(item.Id, null)
+                                                                enchantRHandle(item.Id, 198)
                                                             } else if (Number(item.Id) % 100000 === 1050) {
                                                                 enchantRHandle3(item.Id, null)
                                                             } else if (Number(item.Id) % 100000 === 1800) {
