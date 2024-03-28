@@ -1694,7 +1694,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Automated Market Maker</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant setisLoading={setisLoading} setTxupdate={setTxupdate} ammyABI={ammyABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} ctunaBalance={ctunaBalance} sx31Balance={sx31Balance} bbqBalance={bbqBalance} pzaBalance={pzaBalance} cmjBalance={cmjBalance} />
-                    <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} cmjBalance={cmjBalance} />
+                    <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} cmjBalance={cmjBalance} />
                     <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} />
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
