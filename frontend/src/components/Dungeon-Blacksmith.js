@@ -7363,7 +7363,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                             ╚██████╔╝██████╔╝  ██║░░██║╚█████╔╝╚█████╔╝
                                             ░╚═════╝░╚═════╝░  ╚═╝░░╚═╝░╚════╝░░╚════╝░
                                             */}
-                                            {String(item.Id).slice(0, 3) === "411" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 2550 &&
+                                            {String(item.Id).slice(0, 3) === "411" && Number(item.Id) % 100000 !== 1000 && Number(item.Id) % 100000 !== 4250 && Number(item.Id) % 100000 !== 14800 && Number(item.Id) % 100000 !== 25700 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -7457,31 +7457,31 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                         }
                                                         {Number(item.Id) % 100000 === 3450 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeicrm6bzkff3mbh6ki6dxigubxr7l7chu44fuowp5caoaozajdj6zi.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 5950 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeihgalj4aijtawksiz6h5oenr3kqcjpx6rlsznqdermpa3s4o2mdwu.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 9250 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeihd67fulxctcun773km2t3pds33qqsjbjrewgfrjylnqtsh2u6mrm.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 13350 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeiguh3i2u72v7koqspiwchcucou5ca5nydwovaeyhpnxbt3a3lkxge.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 18050 &&
                                                             <div>
-                                                                <img width="120"  alt="Can not load metadata." />
+                                                                <img width="120" src='https://bafybeiemu3idsjqmimsjrujpjj5ghfcnumoyn3dkfssp4szns3j5bp7ri4.ipfs.nftstorage.link/' alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
@@ -8178,23 +8178,23 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                             } else if (Number(item.Id) % 100000 === 10500) {
                                                                 enchantRHandle3(item.Id, 206)
                                                             } else if (Number(item.Id) % 100000 === 2550) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 207)
                                                             } else if (Number(item.Id) % 100000 === 3450) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 208)
                                                             } else if (Number(item.Id) % 100000 === 4600) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 209)
                                                             } else if (Number(item.Id) % 100000 === 5950) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 210)
                                                             } else if (Number(item.Id) % 100000 === 7500) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 211)
                                                             } else if (Number(item.Id) % 100000 === 9250) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 212)
                                                             } else if (Number(item.Id) % 100000 === 11200) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 213)
                                                             } else if (Number(item.Id) % 100000 === 13350) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 214)
                                                             } else if (Number(item.Id) % 100000 === 18050) {
-                                                                enchantRHandle3(item.Id, null)
+                                                                enchantRHandle3(item.Id, 215)
                                                             }
                                                         }}
                                                     >
