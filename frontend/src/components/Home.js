@@ -14,14 +14,14 @@ const Home = ({ callMode, navigate }) => {
             <div className="half welcomeText">
                 <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
                     <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect,<br></br>Play,<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
-                    <div style={{marginTop: "20px"}} className='bold motto2'>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
+                    <div style={{marginTop: "20px"}} className='bold motto2'>The Web3 Multiverse of Crypto-community</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
                         <div style={{fontSize: "40px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52,000,000+</div>
                         <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
                     {chain !== undefined && chain.id === 8899 ?
                         <>
-                            <div style={{padding: "2px 8px", color: "#000", background: "rgb(255, 255, 255, 0.4)", backdropFilter: "blur(10px)"}}>Explore the CommuDAO-verse now!</div>
+                            <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO-verse now!</div>
                             <div style={{margin: "20px 0", maxWidth: "550px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                 <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
@@ -45,7 +45,9 @@ const Home = ({ callMode, navigate }) => {
                                 </div>
                             </div>
                         </> :
-                        <div style={{height: "210px", margin: "20px 0"}}></div>
+                        <div style={{height: "215px", width: "410px", margin: "20px 0"}}>
+                            <div className='typed-out' style={{padding: "2px 8px"}}>Connect web3 wallet first</div>
+                        </div>
                     }
                 </div>
             </div>

@@ -231,7 +231,7 @@ header::-webkit-scrollbar { display: none; }
   font-size: 84px;
 }
 .motto2 {
-  font-size: 18px;
+  font-size: 20px;
 }
 #showoff {
   min-width: 550px;
@@ -255,6 +255,25 @@ header::-webkit-scrollbar { display: none; }
 }
 .nftControl {
   width: 500px
+}
+@keyframes blinking {
+  25% { opacity: 1; }
+  50% { opacity: 0.1; }
+  75% { opacity: 1; }
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 70%; }
+}
+.typed-out{
+  letter-spacing: 2px;
+  color: #000;
+  overflow: hidden;
+  border-right: 0.4em solid #000;
+  white-space: nowrap;
+  font-size: 20px;
+  width: 0;
+  animation: typing 1s forwards, blinking 3s linear infinite;
 }
 
 @media (max-width: 480px) {
@@ -285,6 +304,7 @@ header::-webkit-scrollbar { display: none; }
     justify-content: flex-start;
     flex-wrap: wrap;
     font-size: 10px;
+    background-size: 3000px;
   }
   .welcomeText {
     height: fit-content;
@@ -332,9 +352,9 @@ header::-webkit-scrollbar { display: none; }
   }
   .welcome {
     justify-content: flex-start;
+    background-size: 3000px;
   }
   .welcomeText {
-    margin-right: 50px;
-    padding: 50px 0 20px 0;
+    padding-top: 50px;
   }
 }
