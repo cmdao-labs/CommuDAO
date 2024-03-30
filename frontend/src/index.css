@@ -206,11 +206,7 @@ header::-webkit-scrollbar { display: none; }
   font-size: 14px;
 }
 
-.halfone {
-  width: 50%;
-  backdrop-filter: blur(20px);
-}
-.halftwo {
+.half {
   width: 50%;
   height: 100vh;
   padding: 80px 0 240px 0;
@@ -220,16 +216,7 @@ header::-webkit-scrollbar { display: none; }
   backdrop-filter: blur(20px);
 }
 .welcomeText {
-  height: 100vh;
-  padding: 80px 0 160px 0;
-  margin: 80px 0 0 100px;
-  max-width: 95%;
-  min-width: 50%;
-  margin-right: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  justify-content: center;
+  margin-top: 80px;
 }
 .welcome {
   margin-top: 100px;
@@ -243,8 +230,11 @@ header::-webkit-scrollbar { display: none; }
 .motto {
   font-size: 84px;
 }
+.motto2 {
+  font-size: 18px;
+}
 #showoff {
-  min-width: 600px;
+  min-width: 550px;
   background: hsla(0,0%,100%,.25);
   border: 0.5px solid rgb(227, 227, 227, 0.5);
 }
@@ -263,6 +253,9 @@ header::-webkit-scrollbar { display: none; }
   color: #fff;
   text-decoration: underline;
 }
+.nftControl {
+  width: 500px
+}
 
 @media (max-width: 480px) {
   .projectTitle {
@@ -276,15 +269,16 @@ header::-webkit-scrollbar { display: none; }
   }
   .inFooterLeft {
     margin: 25px;
+    font-size: 10px;
   }
   .inFooterRight {
     margin: 25px;
+    font-size: 10px;
   }
-  .halfone {
+  .half {
     width: 100%;
-  }
-  .halftwo {
-    width: 100%;
+    padding: 0;
+    height: fit-content;
   }
   .welcome {
     margin-top: 0;
@@ -295,10 +289,13 @@ header::-webkit-scrollbar { display: none; }
   .welcomeText {
     height: fit-content;
     margin-top: 100px;
-    padding: 0;
+    padding: 0 20px;
   }
   .motto {
-    font-size: 35px;
+    font-size: 60px;
+  }
+  .motto2 {
+    font-size: 12px;
   }
   #showoff {
     min-width: 350px;
@@ -307,6 +304,9 @@ header::-webkit-scrollbar { display: none; }
     width: fit-content;
     padding: 10px 15px;
     font-size: 12px;
+  }
+  .nftControl {
+    width: 350px
   }
 }
 @media (min-width: 481px) and (max-width: 1024px) {
@@ -325,20 +325,16 @@ header::-webkit-scrollbar { display: none; }
   .inFooterRight {
     margin: 25px;
   }
-  .halfone {
+  .half {
     width: 100%;
-  }
-  .halftwo {
-    width: 100%;
+    padding: 0;
+    height: fit-content;
   }
   .welcome {
     justify-content: flex-start;
   }
   .welcomeText {
     margin-right: 50px;
-    padding: 0;
-  }
-  .motto {
-    font-size: 55px;
+    padding: 50px 0 20px 0;
   }
 }

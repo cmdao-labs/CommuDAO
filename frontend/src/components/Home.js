@@ -11,10 +11,10 @@ const Home = ({ callMode, navigate }) => {
     return (
     <>
         <div style={{overflow: "scroll", padding: 0, margin: 0, textAlign: "left", fontSize: "22px", flexFlow: "row wrap"}} className="collection noscroll welcome pixel">
-            <div className="halfone">
-                <div className="welcomeText">
+            <div className="half welcomeText">
+                <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
                     <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect,<br></br>Play,<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
-                    <div style={{marginTop: "20px", fontSize: "18px"}} className='bold'>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
+                    <div style={{marginTop: "20px"}} className='bold motto2'>The Web3 Multiverse of Crypto-community is now ALPHA!</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
                         <div style={{fontSize: "40px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52,000,000+</div>
                         <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
@@ -22,7 +22,7 @@ const Home = ({ callMode, navigate }) => {
                     {chain !== undefined && chain.id === 8899 ?
                         <>
                             <div style={{padding: "2px 8px", color: "#000", background: "rgb(255, 255, 255, 0.4)", backdropFilter: "blur(10px)"}}>Explore the CommuDAO-verse now!</div>
-                            <div style={{margin: "20px 0", width: "700px", maxWidth: "90%", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                            <div style={{margin: "20px 0", maxWidth: "550px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                 <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
                                     <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
                                     &nbsp;Ancient Forest
@@ -45,12 +45,12 @@ const Home = ({ callMode, navigate }) => {
                                 </div>
                             </div>
                         </> :
-                        <div style={{height: "246.5px", margin: "20px 0"}}></div>
+                        <div style={{height: "210px", margin: "20px 0"}}></div>
                     }
                 </div>
             </div>
-            <div className='halftwo'>
-                <div style={{width: "500px", height: "fit-content", background: "#fff", margin: "80px 0", padding: 0, overflow: "hidden"}} className="nftCard">
+            <div className='half'>
+                <div className='nftCard nftControl' style={{height: "fit-content", background: "#fff", margin: "80px 0", padding: 0, overflow: "hidden"}}>
                     <img src="https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/23.png" width="100%" alt="NFT_GENESIS" />
                     <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CM Hexa Cat Meaw JIB JIB, The OG NFT</div>
                 </div>
