@@ -116,27 +116,56 @@ import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
 
 import TBridge from './tBridge'
 
-import { WagmiConfig, createClient, configureChains } from 'wagmi'
-import { publicProvider } from 'wagmi/providers/public'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { bsc } from 'wagmi/chains'
+
+import { createWeb3Modal } from '@web3modal/wagmi/react'
+import { walletConnectProvider, EIP6963Connector } from '@web3modal/wagmi'
+
+import { WagmiConfig, configureChains, createConfig } from 'wagmi'
+import { publicProvider } from 'wagmi/providers/public'
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+
+const projectId = 'a7f5e2dc839576cee8ebf11b79d2b4ee'
+
+const { chains, publicClient } = configureChains(
+  [jbcL1, bkc, bsc],
+  [walletConnectProvider({ projectId }), publicProvider()]
+)
+
+const metadata = {
+  name: 'Web3Modal',
+  description: 'Web3Modal Example',
+  url: 'https://web3modal.com',
+  icons: ['https://avatars.githubusercontent.com/u/37784886']
+}
+
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors: [
+    new WalletConnectConnector({ chains, options: { projectId, showQrModal: false, metadata } }),
+    new EIP6963Connector({ chains }),
+    new InjectedConnector({ chains, options: { shimDisconnect: true } }),
+    new CoinbaseWalletConnector({ chains, options: { appName: metadata.name } })
+  ],
+  publicClient
+})
+
+createWeb3Modal({
+    wagmiConfig,
+    projectId,
+    chains,
+    enableAnalytics: true,
+    themeMode: 'light',
+    themeVariables: {
+        '--w3m-accent': '#ff007a',
+    }
+})
 
 const v = '0.3.4'
 
-const Main = () => {
-    const { chains, provider } = configureChains(
-        [jbcL1, bkc, bsc],
-        [publicProvider()]
-    )
-
-    const client = createClient({
-        autoConnect: true,
-        connectors: [
-            new MetaMaskConnector({ chains }),
-        ],
-        provider
-    })
-
+const Main = () => {    
     const navigate = useNavigate()
     const { modeText, subModeText, intrasubModetext } = useParams()
     let preset = 0
@@ -278,7 +307,6 @@ const Main = () => {
             {isLoading &&
                 <div className="centermodal">
                     <div className="wrapper">
-                        <div className="bold" style={{fontSize: "40px", letterSpacing: "3px"}}>Waiting for confirmation...</div>
                     </div>
                 </div>
             }
@@ -293,7 +321,7 @@ const Main = () => {
                     </div>
                 </div>
             }
-            <WagmiConfig client={client}>
+            <WagmiConfig config={wagmiConfig}>
                 <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
                 {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
                 {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}

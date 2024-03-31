@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -46,7 +46,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data[i].toUpperCase() === address.toUpperCase()) {
+                if (data[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
@@ -64,7 +64,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data2[i]
+                const nftipfs = data2[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs)
@@ -102,7 +102,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
 
             let yournftwallet2 = []
             for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data3[i].toUpperCase() === address.toUpperCase()) {
+                if (data3[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
                 }
             }
@@ -120,7 +120,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
             }) : [Array(yournftwallet2.length).fill('')]
 
             for (let i = 0; i <= yournftwallet2.length - 1; i++) {
-                const nftipfs = data4[i]
+                const nftipfs = data4[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs)
@@ -175,22 +175,20 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     functionName: 'approve',
                     args: [bkcBridge, _nftId],
                 })
-                const approvetx = await writeContract(config0)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash0, })
             }        
             const config = await prepareWriteContract({
                 address: bkcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
                 args: [_nftId],
-                overrides: {
-                    value: ethers.utils.parseEther('1'),
-                },
+                value: ethers.utils.parseEther('1'),
                 chainId: 96,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -210,22 +208,20 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     functionName: 'approve',
                     args: [jbcBridge, _nftId],
                 })
-                const approvetx = await writeContract(config0)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash0, })
             }       
             const config = await prepareWriteContract({
                 address: jbcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
                 args: [_nftId],
-                overrides: {
-                    value: ethers.utils.parseEther('10'),
-                },
+                value: ethers.utils.parseEther('10'),
                 chainId: 8899,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1 })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

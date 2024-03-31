@@ -275,6 +275,11 @@ header::-webkit-scrollbar { display: none; }
   width: 0;
   animation: typing 1s forwards, blinking 3s linear infinite;
 }
+.blink {
+  letter-spacing: 1px;
+  font-size: 20px;
+  animation: typing 1s forwards, blinking 3s linear infinite;
+}
 
 @media (max-width: 480px) {
   .projectTitle {

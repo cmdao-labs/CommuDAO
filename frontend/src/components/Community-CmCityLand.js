@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -16,8 +16,8 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 
-const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
-const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
+//const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
+//const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
@@ -82,12 +82,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 ],
             }) 
             
-            const landOwner = data[0]
-            const slot1owner = data[1]
-            const slot1level = data[2]
-            const ospool = data[3]
+            const landOwner = data[0].result
+            const slot1owner = data[1].result
+            const slot1level = data[2].result
+            const ospool = data[3].result
 
-            const id = await readContracts({
+            const id = data[0].status === 'success' && data[1].status === 'success' ? await readContracts({
                 contracts: [
                     {
                         address: cmdaoName,
@@ -102,23 +102,25 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                         args: [slot1owner],
                     }
                 ],
-            })
-            const landlordname = await readContracts({
+            }) : [0, 0]
+            const id0 = id[0].result
+            const id1 = id[1].result
+            const landlordname = id[0].status === 'success' && id[1].status === 'success' ? await readContracts({
                 contracts: [
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'tokenURI',
-                        args: [id[0]],
+                        args: [Number(id0)],
                     },
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'tokenURI',
-                        args: [id[1]],
+                        args: [Number(id1)],
                     }
                 ],
-            })
+            }) : [0, 0]
 
             let nftstake = []
 
@@ -139,11 +141,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1; i++) {
-                if (data0[i].tokenOwnerOf.toUpperCase() === slot1owner.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === slot1owner.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data1 = await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -155,7 +156,6 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     }
                 ))
             })
-
 
             const data12 = await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -171,13 +171,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             let _allReward1 = 0
             let _allPow = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i]
+                const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                     nft = await response.json()
                 } catch {}
-                _allReward1 += Number(ethers.utils.formatEther(String(data12[i])))
+                _allReward1 += Number(ethers.utils.formatEther(data12[i].result))
                 _allPow += Number(String(yournftstake[i].Id).slice(-5))
 
                 nftstake.push({
@@ -188,7 +188,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     Attribute: nft.attributes,
                     RewardPerBlock: Number(String(yournftstake[i].Id).slice(-5)),
                     isStaked: true,
-                    Reward: String(data12[i]),
+                    Reward: Number(ethers.utils.formatEther(data12[i].result)),
                 })
             }
 
@@ -211,7 +211,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
@@ -228,7 +228,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
 
@@ -243,10 +243,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     isStaked: false
                 })
             }
-
             if (nfts.length === 0) { nfts.push(null) }
-
-            console.log(nfts)
 
             return [landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, ]
         }
@@ -263,8 +260,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
         getAsync().then(result => {
             setLlAddr(result[0])
             setSlot1Addr(result[1])
-            result[2] !== undefined && result[2][0] !== null ? setLlName(result[2][0]) : setLlName('Unknown')
-            result[2] !== undefined && result[2][1] !== null ? setSlot1Owner(result[2][1]) : setSlot1Owner('Unknown')
+            result[2][0].status === 'success' ? setLlName(result[2][0].result) : setLlName('Unknown')
+            result[2][1].status === 'success' ? setSlot1Owner(result[2][1].result) : setSlot1Owner('Unknown')
             setSlot1Lv(Number(result[3]))
             setNft(result[4])
             setOsPool(ethers.utils.formatEther(String(result[5])))
@@ -303,8 +300,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [house, ethers.utils.parseEther(String(10**9))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const cuAllow = await readContract({
                 address: cu,
@@ -319,8 +316,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [house, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             if (_level === 1) {
                 const config3 = await prepareWriteContract({
@@ -329,8 +326,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'delegateOwner',
                     args: [0, address, houseId]
                 })
-                const tx = await writeContract(config3)
-                await tx.wait()
+                const { hash1 } = await writeContract(config3)
+                await waitForTransaction({ hash1, })
             }
             const config4 = await prepareWriteContract({
                 address: house,
@@ -338,14 +335,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'upgrade',
                 args: [_level, houseId]
             })
-            const tx2 = await writeContract(config4)
-            await tx2.wait()
-            setTxupdate(tx2)
+            const { hash04 } = await writeContract(config4)
+            await waitForTransaction({ hash04 })
+            setTxupdate(hash04)
         } catch {}
         setisLoading(false)
     }
 
-    const registHouseHandle = async () => {
+    /*const registHouseHandle = async () => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
@@ -354,12 +351,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'delegateOwner',
                 args: [0, address, houseId]
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
-    }
+    }*/
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -377,8 +374,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [houseStaking, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: houseStaking,
@@ -386,9 +383,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'stake',
                 args: [1, _nftid, houseId],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -402,9 +399,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'unstake',
                 args: [1, _nftid, houseId, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -433,8 +430,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [wlMkp, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: wlMkp,
@@ -442,9 +439,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'buyItem',
                 args: [id]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }*/
@@ -463,7 +460,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             {mode === 0 &&
                 <div style={{background: "rgb(0, 19, 33", width: "100%", margin: "0", padding: "75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll">
                     <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", maxWidth: "70%", width: "880px", height: "420px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{maxWidth: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">{slot1Owner}'S HOUSE LV.{slot1Lv}</div>
+                        <div style={{maxWidth: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'S HOUSE LV.{slot1Lv}</div>
                         <div style={{width: "100%", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
                             <div style={{width: "320px"}}>
                                 {slot1Lv === 0 && <img src="https://nftstorage.link/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" style={{filter: "grayscale(1)"}} height="200" alt="HOUSE.LV.1" />}
@@ -525,7 +522,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     CONSTRUCT
                                                 </div> :
                                                 <>
-                                                    {slot1Addr.toUpperCase() !== address.toUpperCase() ?
+                                                    {/*{slot1Addr.toUpperCase() !== address.toUpperCase() ?
                                                         <div 
                                                             style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
                                                             className="bold button" 
@@ -534,7 +531,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                             REGISTER HOUSE'S OWNER
                                                         </div> :
                                                         <></>
-                                                    }
+                                                    */}
                                                 </>
                                             }
                                         </>                                   

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
-import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
+import { useAccount } from 'wagmi'
 
 import Ammmerchant from  './Mall-Ammy'
 import Ammmerchant2 from  './Mall-Jazzi'
@@ -262,28 +262,28 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 ],
             }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
             
-            const _isKYC = data[0]
-            const cmjBal = data[1]
-            const jusdtBal = data[2]
-            const ctunaBal = data[3]
-            const sx31Bal = data[4]
-            const bbqBal = data[5]
-            const cuBal = data[6]
-            const jaspBal = data[7]
-            const pzaBal = data[8]
-            const jdaoBal = data[9]
-            const isBought5 = data[10]
-            const osBal = data[11]
-            const isBought2 = data[12]
-            const goldBal = data[13]
-            const wjbcBal = data[14]
-            const swarBal = data[15]
-            const silBal = data[16]
-            const angbBal = data[17]
-            const jtaoBal = data[18]
-            const iiBal = data[19]
-            const eeBal = data[20]
-            const platBal = data[21]
+            const _isKYC = data[0].result
+            const cmjBal = data[1].result
+            const jusdtBal = data[2].result
+            const ctunaBal = data[3].result
+            const sx31Bal = data[4].result
+            const bbqBal = data[5].result
+            const cuBal = data[6].result
+            const jaspBal = data[7].result
+            const pzaBal = data[8].result
+            const jdaoBal = data[9].result
+            const isBought5 = data[10].result
+            const osBal = data[11].result
+            const isBought2 = data[12].result
+            const goldBal = data[13].result
+            const wjbcBal = data[14].result
+            const swarBal = data[15].result
+            const silBal = data[16].result
+            const angbBal = data[17].result
+            const jtaoBal = data[18].result
+            const iiBal = data[19].result
+            const eeBal = data[20].result
+            const platBal = data[21].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -506,100 +506,100 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 ],
             })
             
-            const sell1Id = data2[0]
-            const sell2Id = data2[1]
-            const sell3Id = data2[2]
-            const sell4Id = data2[3]
-            const sell5Id = data2[4]
-            const sell6Id = data2[5]
-            const sell7Id = data2[11]
-            const sell8Id = data2[12]
-            const sell9Id = data2[13]
-            const sell10Id = data2[14]
-            const sell11Id = data2[15]
-            const sell12Id = data2[16]
-            const sell13Id = data2[17]
-            const sell14Id = data2[19]
-            const sell15Id = data2[20]
-            const sell16Id = data2[21]
-            const sell17Id = data2[22]
-            const sell18Id = data2[23]
-            const sell19Id = data2[24]
-            const sell20Id = data2[25]
-            const sell21Id = data2[26]
-            const sell22Id = data2[27]
-            const sell23Id = data2[28]
-            const sell24Id = data2[29]
-            const sell25Id = data2[30]
-            const sell26Id = data2[31]
-            const sell27Id = data2[32]
-            const sell28Id = data2[33]
-            const sell29Id = data2[34]
-            const sell30Id = data2[35]
-            const roll1 = data2[6]
-            const roll2 = data2[7]
-            const roll3 = data2[8]
-            const roll4 = data2[9]
-            const roll5 = data2[10]
-            const roll6 = data2[18]
+            const sell1Id = data2[0].result
+            const sell2Id = data2[1].result
+            const sell3Id = data2[2].result
+            const sell4Id = data2[3].result
+            const sell5Id = data2[4].result
+            const sell6Id = data2[5].result
+            const sell7Id = data2[11].result
+            const sell8Id = data2[12].result
+            const sell9Id = data2[13].result
+            const sell10Id = data2[14].result
+            const sell11Id = data2[15].result
+            const sell12Id = data2[16].result
+            const sell13Id = data2[17].result
+            const sell14Id = data2[19].result
+            const sell15Id = data2[20].result
+            const sell16Id = data2[21].result
+            const sell17Id = data2[22].result
+            const sell18Id = data2[23].result
+            const sell19Id = data2[24].result
+            const sell20Id = data2[25].result
+            const sell21Id = data2[26].result
+            const sell22Id = data2[27].result
+            const sell23Id = data2[28].result
+            const sell24Id = data2[29].result
+            const sell25Id = data2[30].result
+            const sell26Id = data2[31].result
+            const sell27Id = data2[32].result
+            const sell28Id = data2[33].result
+            const sell29Id = data2[34].result
+            const sell30Id = data2[35].result
+            const roll1 = data2[6].result
+            const roll2 = data2[7].result
+            const roll3 = data2[8].result
+            const roll4 = data2[9].result
+            const roll5 = data2[10].result
+            const roll6 = data2[18].result
 
-            const sell1remain = (410003800000 - (Number(sell1Id.sellId) - 150)) / 100000
+            const sell1remain = (410003800000 - (Number(sell1Id[3]) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
-            const sell2remain = (720051600000 - (Number(sell2Id.sellId) - 250)) / 100000
+            const sell2remain = (720051600000 - (Number(sell2Id[3]) - 250)) / 100000
             const _canBuy2 = _isKYC && !isBought2 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
-            const sell3remain = (210050100000 - (Number(sell3Id.sellId) - 250)) / 100000
+            const sell3remain = (210050100000 - (Number(sell3Id[3]) - 250)) / 100000
             const _canBuy3 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 3 ? true : false
-            const sell4remain = (130050100000 - (Number(sell4Id.sellId) - 500)) / 100000
+            const sell4remain = (130050100000 - (Number(sell4Id[3]) - 500)) / 100000
             const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
-            const sell5remain = (100540100000 - (Number(sell5Id.sellId) - 100)) / 100000
+            const sell5remain = (100540100000 - (Number(sell5Id[3]) - 100)) / 100000
             const _canBuy5 = _isKYC && !isBought5 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
-            const sell6remain = (1000010200000 - (Number(sell6Id.sellId) - 100)) / 100000
+            const sell6remain = (1000010200000 - (Number(sell6Id[3]) - 100)) / 100000
             const _canBuy6 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 1 ? true : false
-            const sell7remain = 101000399 - Number(sell7Id.sellId)
+            const sell7remain = 101000399 - Number(sell7Id[3])
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
-            const sell8remain = (102033400000 - (Number(sell8Id.sellId) - 8000)) / 100000
+            const sell8remain = (102033400000 - (Number(sell8Id[3]) - 8000)) / 100000
             const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
-            const sell9remain = (102066400000 - (Number(sell9Id.sellId) - 19000)) / 100000
+            const sell9remain = (102066400000 - (Number(sell9Id[3]) - 19000)) / 100000
             const _canBuy9 = Number(ethers.utils.formatUnits(String(jaspBal), "gwei")) >= 100 ? true : false
-            const sell10remain = 10001012 - Number(sell10Id.sellId)
+            const sell10remain = 10001012 - Number(sell10Id[3])
             const _canBuy10 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 150 ? true : false
-            const sell11remain = 10002012 - Number(sell11Id.sellId)
+            const sell11remain = 10002012 - Number(sell11Id[3])
             const _canBuy11 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 90 ? true : false
-            const sell12remain = 10003023 - Number(sell12Id.sellId)
+            const sell12remain = 10003023 - Number(sell12Id[3])
             const _canBuy12 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 60 ? true : false
-            const sell13remain = (102100000000 - (Number(sell13Id.sellId) - 4500)) / 100000
+            const sell13remain = (102100000000 - (Number(sell13Id[3]) - 4500)) / 100000
             const _canBuy13 = Number(ethers.utils.formatEther(String(osBal))) >= 5500 ? true : false
-            const sell14remain = (730020000000 - (Number(sell14Id.sellId) - 10400)) / 100000
+            const sell14remain = (730020000000 - (Number(sell14Id[3]) - 10400)) / 100000
             const _canBuy14 = Number(ethers.utils.formatEther(String(goldBal))) >= 56000 ? true : false
-            const sell15remain = (100010100000 - (Number(sell15Id.sellId) - 100)) / 100000
-            const sell16remain = (700010100000 - (Number(sell16Id.sellId) - 250)) / 100000
-            const sell17remain = (500010100000 - (Number(sell17Id.sellId) - 250)) / 100000
+            const sell15remain = (100010100000 - (Number(sell15Id[3]) - 100)) / 100000
+            const sell16remain = (700010100000 - (Number(sell16Id[3]) - 250)) / 100000
+            const sell17remain = (500010100000 - (Number(sell17Id[3]) - 250)) / 100000
 
-            const sell18remain = (730060100000 - (Number(sell18Id.sellId) - 10000)) / 100000
+            const sell18remain = (730060100000 - (Number(sell18Id[3]) - 10000)) / 100000
             const _canBuy18 = Number(ethers.utils.formatEther(String(bbqBal))) >= 100000000 ? true : false
 
-            const sell19remain = (300010100000 - (Number(sell19Id.sellId) - 250)) / 100000
-            const sell20remain = (200010100000 - (Number(sell20Id.sellId) - 250)) / 100000
-            const sell21remain = (600010100000 - (Number(sell21Id.sellId) - 250)) / 100000
-            const sell22remain = (400010100000 - (Number(sell22Id.sellId) - 250)) / 100000
+            const sell19remain = (300010100000 - (Number(sell19Id[3]) - 250)) / 100000
+            const sell20remain = (200010100000 - (Number(sell20Id[3]) - 250)) / 100000
+            const sell21remain = (600010100000 - (Number(sell21Id[3]) - 250)) / 100000
+            const sell22remain = (400010100000 - (Number(sell22Id[3]) - 250)) / 100000
 
-            const sell23remain = (400040000000 - (Number(sell23Id.sellId) - 10900)) / 100000
+            const sell23remain = (400040000000 - (Number(sell23Id[3]) - 10900)) / 100000
             const _canBuy23 = Number(ethers.utils.formatEther(String(platBal))) >= 180000 ? true : false
 
-            const sell24remain = (100025100000 - (Number(sell24Id.sellId) - 18800)) / 100000
-            const sell25remain = (700025100000 - (Number(sell25Id.sellId) - 18800)) / 100000
-            const sell26remain = (300025100000 - (Number(sell26Id.sellId) - 18800)) / 100000
-            const sell27remain = (200025100000 - (Number(sell27Id.sellId) - 18800)) / 100000
-            const sell28remain = (500025100000 - (Number(sell28Id.sellId) - 18800)) / 100000
-            const sell29remain = (400025100000 - (Number(sell29Id.sellId) - 18800)) / 100000
-            const sell30remain = (600025100000 - (Number(sell30Id.sellId) - 18800)) / 100000
+            const sell24remain = (100025100000 - (Number(sell24Id[3]) - 18800)) / 100000
+            const sell25remain = (700025100000 - (Number(sell25Id[3]) - 18800)) / 100000
+            const sell26remain = (300025100000 - (Number(sell26Id[3]) - 18800)) / 100000
+            const sell27remain = (200025100000 - (Number(sell27Id[3]) - 18800)) / 100000
+            const sell28remain = (500025100000 - (Number(sell28Id[3]) - 18800)) / 100000
+            const sell29remain = (400025100000 - (Number(sell29Id[3]) - 18800)) / 100000
+            const sell30remain = (600025100000 - (Number(sell30Id[3]) - 18800)) / 100000
 
-            const roll1remain = Number(roll1.nftCount)
-            const roll2remain = Number(roll2.nftCount)
-            const roll3remain = Number(roll3.nftCount)
-            const roll4remain = Number(roll4.nftCount)
-            const roll5remain = Number(roll5.nftCount)
-            const roll6remain = Number(roll6.nftCount)
+            const roll1remain = Number(roll1[1])
+            const roll2remain = Number(roll2[1])
+            const roll3remain = Number(roll3[1])
+            const roll4remain = Number(roll4[1])
+            const roll5remain = Number(roll5[1])
+            const roll6remain = Number(roll6[1])
 
             const _canRoll1 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 15 ? true : false
             const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
@@ -719,8 +719,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -730,9 +730,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [1]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -753,8 +753,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantKYC,
@@ -762,9 +762,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [2]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)        
     }
@@ -785,8 +785,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -794,9 +794,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -817,8 +817,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantV2,
@@ -826,9 +826,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -849,8 +849,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantV2,
@@ -858,9 +858,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -882,8 +882,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantKYC,
@@ -891,9 +891,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [1]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -914,8 +914,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -923,9 +923,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [5]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -946,8 +946,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -955,9 +955,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [6]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -978,8 +978,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -987,9 +987,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [7]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1010,8 +1010,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1019,9 +1019,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [8]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1042,8 +1042,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1051,9 +1051,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [9]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1074,8 +1074,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantV105, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantV105,
@@ -1083,9 +1083,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1106,8 +1106,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1115,9 +1115,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [10]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1138,8 +1138,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1147,9 +1147,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [11]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1170,8 +1170,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoGasha02,
@@ -1179,14 +1179,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'roll',
                 args: [_colIndex]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
 
-    const rollHandle3 = async (_colIndex) => {
+    /*const rollHandle3 = async (_colIndex) => {
         setisLoading(true)
         try {
             const jusdtAllow = await readContract({
@@ -1202,8 +1202,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoGasha02,
@@ -1211,20 +1211,26 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'roll',
                 args: [_colIndex]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }*/
+    console.log(canroll2, roll5Remain)
+
+    const sendHandle = async () => {
+        setisLoading(true)
+        try {
+            const { hash } = await sendTransaction({
+                to: wjbcToken,
+            value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
+            })
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
-
-    const { config } = usePrepareSendTransaction({
-        request: {
-            to: wjbcToken,
-            value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
-        },
-    })
-    const { sendTransaction } = useSendTransaction(config)
 
     return (
     <>
@@ -1241,7 +1247,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             </div>
                             <input style={{marginTop: "10px", width: "90%", padding: "10px"}} className="bold" type="number" min="0" step="0.1" placeholder="Enter $JBC to Wrap" value={wrappedValue} onChange={(event) => setWrappedValue(event.target.value)}></input>
                         </div>
-                        <div className="button" style={{width: "50%"}} onClick={sendTransaction}>WRAP</div>
+                        <div className="button" style={{width: "50%"}} onClick={sendHandle}>WRAP</div>
                         <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsWrappedModal(false)}>CLOSE</div>
                     </div>
                 </div>

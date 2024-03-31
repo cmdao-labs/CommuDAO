@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, prepareWriteContract, writeContract } from '@wagmi/core'
-import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
+import { fetchBalance, readContract, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
+import { useAccount } from 'wagmi'
 
 const sx31Vote = '0x9787c30309103A7df118C7440E7C9b817eB60952'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
@@ -24,13 +24,18 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
     const [avaiName, setAvaiName] = React.useState(null)
     const [yourName, setYourName] = React.useState(null)
 
-    const { config } = usePrepareSendTransaction({
-        request: {
-            to: meritFaucet,
-            value: delegateAmount !== "" ? ethers.utils.parseEther(delegateAmount) : undefined,
-        },
-    })
-    const { sendTransaction } = useSendTransaction(config)
+    const sendHandle = async () => {
+        setisLoading(true)
+        try {
+            const { hash } = await sendTransaction({
+                to: meritFaucet,
+                value: delegateAmount !== '' ? ethers.utils.parseEther(delegateAmount) : undefined,
+            })
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
+        } catch {}
+        setisLoading(false)
+    }
 
     React.useEffect(() => {  
         window.scrollTo(0, 0)
@@ -108,8 +113,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                     functionName: 'approve',
                     args: [sx31Vote, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: sx31Vote,
@@ -117,9 +122,9 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 functionName: 'vote',
                 args: [_proposal, ethers.utils.parseEther(voteAmount)]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -132,9 +137,9 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 abi: faucetABI,
                 functionName: 'requestTokens',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -169,8 +174,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                     functionName: 'approve',
                     args: [cmdaoName, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config = await prepareWriteContract({
                 address: cmdaoName,
@@ -178,9 +183,9 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 functionName: 'idMint',
                 args: [name]
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -248,7 +253,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                             </div>
                             <div style={{width: "65%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                 <input style={{width: "250px", padding: "10px 40px", fontSize: "18px"}} className="bold" type="number" placeholder="Enter $JBC Amount" value={delegateAmount} onChange={(event) => {setDelegateAmount(event.target.value)}}></input>
-                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={sendTransaction}>DELEGATE</div>
+                                <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={sendHandle}>DELEGATE</div>
                             </div>
                             <div style={{width: "65%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                 {allowClaimJBC ?

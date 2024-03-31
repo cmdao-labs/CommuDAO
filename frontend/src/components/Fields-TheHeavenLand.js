@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -41,9 +41,9 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -59,7 +59,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
 
             const stakeFilter = await mgnftSC.filters.Transfer(address, thlField, null)
             const stakeEvent = await mgnftSC.queryFilter(stakeFilter, 2260250, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
@@ -74,11 +74,10 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data0[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data01 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -127,14 +126,14 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
             let _allDaily = 0
             let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i]
+                const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                     nft = await response.json()
                 } catch {}
                 _allDaily += Number(ethers.utils.formatEther(String(1 * 10**14)))
-                _allReward += Number(ethers.utils.formatEther(String(data11[i])))
+                _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -144,15 +143,15 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
                     isStaked: true,
-                    Reward: String(data11[i]),
-                    Reward2: String(data12[i]),
-                    isJbcOut: data01[i].isJbcOut
+                    Reward: String(data11[i].result),
+                    Reward2: String(data12[i].result),
+                    isJbcOut: data01[i].result[1]
                 })
             }
 
             const walletFilter = await mgnftSC.filters.Transfer(null, address, null)
             const walletEvent = await mgnftSC.queryFilter(walletFilter, 2260250, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -167,11 +166,10 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data00 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -195,7 +193,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -212,13 +210,11 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     isStaked: false,
                     Reward: 0,
                     Reward2: 0,
-                    isJbcOut: data00[i].isJbcOut
+                    isJbcOut: data00[i].result[1]
                 })
             }
 
             if (nfts.length === 0) { nfts.push(null) }
-
-            console.log(nfts)
 
             const goldBal = address !== null && address !== undefined ? await readContract({
                 address: gold,
@@ -264,8 +260,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     functionName: 'approve',
                     args: [thlField, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: thlField,
@@ -273,9 +269,9 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -290,8 +286,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     functionName: 'claimJBC',
                     args: [_nftid],
                 })
-                const tx1 = await writeContract(config1)
-                await tx1.wait()
+                const { hash11 } = await writeContract(config1)
+                await waitForTransaction({ hash11, })
             }
             const config2 = await prepareWriteContract({
                 address: thlField,
@@ -299,9 +295,9 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const tx2 = await writeContract(config2)
-            await tx2.wait()
-            setTxupdate(tx2)
+            const { hash12 } = await writeContract(config2)
+            await waitForTransaction({ hash12, })
+            setTxupdate(hash12)
         } catch {}
         setisLoading(false)
     }

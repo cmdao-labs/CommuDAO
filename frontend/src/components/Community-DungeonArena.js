@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useContractEvent, useAccount } from 'wagmi'
 import { Oval, ThreeDots } from 'react-loading-icons'
 
@@ -14,7 +14,7 @@ const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, questAmbassABI, dunJasperABI, pvp01ABI, salonABI }) => {
+const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, questAmbassABI, dunJasperABI, pvp01ABI, salonABI }) => {    
     const { address } = useAccount()
     useContractEvent({
         address: pvp01,
@@ -117,7 +117,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             })
             let _challenger = []
             for (let i = 0; i <= data00.length - 1; i++) {
-                _challenger.push(data00[i].fren)
+                _challenger.push(data00[i].result[0])
             }
 
             for (let i = _challenger.length - 1; i > 0; i--) {
@@ -127,9 +127,10 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 _challenger[j] = temp;
             }
 
+            const block = await providerJBC.getBlockNumber()
             const pvpFilter = await pvpSC.filters.Fight(null, null, null, null, null, null)
-            const pvpEvent = await pvpSC.queryFilter(pvpFilter, 2823000, "latest")
-            const pvpMap = await Promise.all(pvpEvent.map(async (obj, index) => {
+            const pvpEvent = await pvpSC.queryFilter(pvpFilter, block - 50400, "latest")
+            const pvpMap = await Promise.all(pvpEvent.map(async (obj) => {
                 return {blockNum: Number(obj.blockNumber), cha1: String(obj.args.challenger1), cha2: String(obj.args.challenger2), cmpow1: Number(obj.args.cmpow1), cmpow2: Number(obj.args.cmpow2), rand1: Number(obj.args.random1), rand2: Number(obj.args.random2)}
             }))
             const pvpRemove = pvpMap.filter((obj) => {return String(obj.cha1).toUpperCase() !== String(obj.cha2).toUpperCase()})
@@ -147,43 +148,43 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.characterId)],
+                        args: [Number(nftEQ[0])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.accessoriesId)],
+                        args: [Number(nftEQ[3])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.backId)],
+                        args: [Number(nftEQ[4])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.shoesId)],
+                        args: [Number(nftEQ[5])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.weaponId)],
+                        args: [Number(nftEQ[6])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.clothId)],
+                        args: [Number(nftEQ[2])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.hatId)],
+                        args: [Number(nftEQ[1])],
                     },
                     {
                         address: jdao,
@@ -205,48 +206,47 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     }, 
                 ],
             }) : [null, null, null, null, null, null, null, 0, {bountyAmount: 0, win: 0}, null, ]
-            console.log(data)
 
-            const response1 = data[0] !== null ? await fetch(data[0].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_1_Name = nft1.name
 
-            const response2 = data[1] !== null ? await fetch(data[1].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_2_Name = nft2.name
             
-            const response3 = data[2] !== null ? await fetch(data[2].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_3_Name = nft3.name
 
-            const response4 = data[3] !== null ? await fetch(data[3].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
             const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_4_Name = nft4.name
 
-            const response5 = data[4] !== null ? await fetch(data[4].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
             const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_5_Name = nft5.name
 
-            const response6 = data[5] !== null ? await fetch(data[5].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
             const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_6_Name = nft6.name
 
-            const response7 = data[6] !== null ? await fetch(data[6].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
             const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_7_Name = nft7.name
 
-            const pvpStat = data[8]
-            const allPow = Number(nftEQ.allPow)
-            const isStaked = nftEQ.isStaked
-            const jdaoBal = data[7]
-            const skin1 = data[9]
+            const pvpStat = data[8].result
+            const allPow = Number(nftEQ[7])
+            const isStaked = nftEQ[9]
+            const jdaoBal = data[7].result
+            const skin1 = data[9].result
 
             return [
                 nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, pvpStat, allPow, isStaked,
@@ -284,8 +284,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             result[11] !== null && Number(result[11].slice(-1)) > 0 ? setClothSlotLevel(result[11].slice(-1)) : setClothSlotLevel(null)
             setHatSlot(result[12])
             result[13] !== null && Number(result[13].slice(-1)) > 0 ? setHatSlotLevel(result[13].slice(-1)) : setHatSlotLevel(null)
-            setBounty(Number(result[14].bountyAmount))
-            setYourWin(Number(result[14].win))
+            setBounty(Number(result[14][0]))
+            setYourWin(Number(result[14][1]))
             setAllPower(result[15])
             setIsStakeNow(result[16])
 
@@ -343,9 +343,9 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     ],
                 })
 
-                const c_nftEQ = data2[0]
-                const c_pvpStat = data2[1]
-                const c_skin1 = data2[2]
+                const c_nftEQ = data2[0].result
+                const c_pvpStat = data2[1].result
+                const c_skin1 = data2[2].result
 
                 const data3 = await readContracts({
                     contracts: [
@@ -353,84 +353,84 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.characterId)],
+                            args: [Number(c_nftEQ[0])],
                         },
                         {
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.accessoriesId)],
+                            args: [Number(c_nftEQ[3])],
                         },
                         {
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.backId)],
+                            args: [Number(c_nftEQ[4])],
                         },
                         {
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.shoesId)],
+                            args: [Number(c_nftEQ[5])],
                         },
                         {
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.weaponId)],
+                            args: [Number(c_nftEQ[6])],
                         },
                         {
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.clothId)],
+                            args: [Number(c_nftEQ[2])],
                         },
                         {
                             address: hexajibjib,
                             abi: erc721ABI,
                             functionName: 'tokenURI',
-                            args: [String(c_nftEQ.hatId)],
+                            args: [Number(c_nftEQ[1])],
                         }
                     ],
                 })
                 
-                const c_response1 = data3[0] !== null ? await fetch(data3[0].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response1 = data3[0].status === 'success' ? await fetch(data3[0].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft1 = c_response1 !== null ? await c_response1.json() : {image: null, name: null}
                 const c_nftEQ_1 = c_nft1.image !== null ? c_nft1.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_1_Name = c_nft1.name
 
-                const c_response2 = data3[1] !== null ? await fetch(data3[1].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response2 = data3[1].status === 'success' ? await fetch(data3[1].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft2 = c_response2 !== null ? await c_response2.json() : {image: null, name: null}
                 const c_nftEQ_2_Img = c_nft2.image !== null ? c_nft2.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_2_Name = c_nft2.name
                 
-                const c_response3 = data3[2] !== null ? await fetch(data3[2].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response3 = data3[2].status === 'success' ? await fetch(data3[2].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft3 = c_response3 !== null ? await c_response3.json() : {image: null, name: null}
                 const c_nftEQ_3 = c_nft3.image !== null ? c_nft3.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_3_Name = c_nft3.name
 
-                const c_response4 = data3[3] !== null ? await fetch(data3[3].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response4 = data3[3].status === 'success' ? await fetch(data3[3].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft4 = c_response4 !== null ? await c_response4.json() : {image: null, name: null}
                 const c_nftEQ_4 = c_nft4.image !== null ? c_nft4.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_4_Name = c_nft4.name
 
-                const c_response5 = data3[4] !== null ? await fetch(data3[4].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response5 = data3[4].status === 'success' ? await fetch(data3[4].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft5 = c_response5 !== null ? await c_response5.json() : {image: null, name: null}
                 const c_nftEQ_5 = c_nft5.image !== null ? c_nft5.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_5_Name = c_nft5.name
 
-                const c_response6 = data3[5] !== null ? await fetch(data3[5].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response6 = data3[5].status === 'success' ? await fetch(data3[5].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft6 = c_response6 !== null ? await c_response6.json() : {image: null, name: null}
                 const c_nftEQ_6 = c_nft6.image !== null ? c_nft6.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_6_Name = c_nft6.name
 
-                const c_response7 = data3[6] !== null ? await fetch(data3[6].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+                const c_response7 = data3[6].status === 'success' ? await fetch(data3[6].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
                 const c_nft7 = c_response7 !== null ? await c_response7.json() : {image: null, name: null}
                 const c_nftEQ_7 = c_nft7.image !== null ? c_nft7.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
                 const c_nftEQ_7_Name = c_nft7.name
 
-                const c_allPow = Number(c_nftEQ.allPow)
-                const c_isStaked = c_nftEQ.isStaked
+                const c_allPow = Number(c_nftEQ[7])
+                const c_isStaked = c_nftEQ[9]
 
                 return [
                     c_nftEQ_1, c_nftEQ_1_Name, c_nftEQ_2_Img, c_nftEQ_2_Name, c_nftEQ_3, c_nftEQ_3_Name, c_nftEQ_4, c_nftEQ_4_Name, c_nftEQ_5, c_nftEQ_5_Name, c_nftEQ_6, c_nftEQ_6_Name, c_nftEQ_7, c_nftEQ_7_Name, c_allPow, c_isStaked,
@@ -449,7 +449,6 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
             getAsync().then(result => {
                 setCharacterSlotC(result[0])
-                console.log(result[1])
                 if (result[1] !== null && result[1].slice(-1) === "]" && result[1].slice(-3, -2) === ".") {
                     setCharSlotLevelC(result[1].slice(-2, -1))
                 } else if (result[1] !== null && result[1].slice(-1) === "]" && result[1].slice(-4, -3) === ".") {
@@ -472,8 +471,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 setAllPowerC(result[14])
                 setIsStakeNowC(result[15])
 
-                setBountyC(Number(result[16].bountyAmount))
-                setPeerWin(Number(result[16].win))
+                setBountyC(Number(result[16][0]))
+                setPeerWin(Number(result[16][1]))
 
                 setSkinSlot1C(result[17])
             })
@@ -496,21 +495,19 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     functionName: 'approve',
                     args: [pvp01, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: pvp01,
                 abi: pvp01ABI,
                 functionName: 'fight',
                 args: [challenger[challengerSlot]],
-                overrides: {
-                    gasLimit: 3000000,
-                },
+                gasLimit: 3000000,
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -531,8 +528,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     functionName: 'approve',
                     args: [pvp01, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: pvp01,
@@ -540,9 +537,9 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 functionName: 'challenge',
                 args: [1]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -554,6 +551,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 setChallengerSlot(0)
                 break
             } else {
+                setChallengerSlot(i)
                 const data = await readContracts({
                     contracts: [
                         {
@@ -570,10 +568,10 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                     ],
                 })
-                const c_nftEQ = data[0]
-                const c_pvpStat = data[1]
+                const c_nftEQ = data[0].result
+                const c_pvpStat = data[1].result
 
-                if (c_nftEQ.isStaked && Number(c_pvpStat.bountyAmount) !== 0) {
+                if (c_nftEQ[9] && Number(c_pvpStat[0]) !== 0) {
                     setChallengerSlot(i)
                     break
                 }

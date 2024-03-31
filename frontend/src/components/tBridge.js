@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount, useNetwork } from 'wagmi'
 
 import TBridgeTAODUM from  './tBridge-TAODUM'
@@ -135,7 +135,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     },
                 ],
             }) : [0, 0, 0, 0, 0, 0, 0, ]
-
+            
             const Balance = data1[0]
             const Balance2 = data1[1]
             const Balance_2 = data1[2]
@@ -162,32 +162,32 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             )
 
         getAsync().then(result => {
-            const balance = result[0] / 10**18
+            const balance = ethers.utils.formatEther(result[0].result)
             setReserve(balance)
-            const balance2 = ethers.utils.formatEther(result[1])
+            const balance2 = ethers.utils.formatEther(result[1].result)
             setSupply(balance2)
             
-            const kusdtbalance = ethers.utils.formatEther(result[2])
+            const kusdtbalance = ethers.utils.formatEther(result[2].result)
             setKusdtBalance(Math.floor(kusdtbalance * 10000) / 10000)
-            const jusdtbalance = ethers.utils.formatEther(result[3])
+            const jusdtbalance = ethers.utils.formatEther(result[3].result)
             setJusdtBalance(Math.floor(jusdtbalance * 10000) / 10000)
 
-            const cmjbalance = ethers.utils.formatEther(result[4])
+            const cmjbalance = ethers.utils.formatEther(result[4].result)
             setCmjBalance(Math.floor(cmjbalance * 10000) / 10000)
-            const cmjbbalance = ethers.utils.formatEther(result[5])
+            const cmjbbalance = ethers.utils.formatEther(result[5].result)
             setCmjbBalance(Math.floor(cmjbbalance * 10000) / 10000)
 
-            const usdtBscbalance = ethers.utils.formatEther(result[6])
+            const usdtBscbalance = ethers.utils.formatEther(result[6].result)
             setUsdtBscBalance(Math.floor(usdtBscbalance * 10000) / 10000)
 
-            const balance_2 = result[7] / 10**18
+            const balance_2 = ethers.utils.formatEther(result[7].result)
             setReserve2(balance_2)
-            const balance2_2 = ethers.utils.formatEther(result[8])
+            const balance2_2 = ethers.utils.formatEther(result[8].result)
             setSupply2(balance2_2)
 
-            const taobalance = ethers.utils.formatEther(result[9])
+            const taobalance = ethers.utils.formatEther(result[9].result)
             setTaoBalance(Math.floor(taobalance * 10000) / 10000)
-            const jtaobbalance = ethers.utils.formatEther(result[10])
+            const jtaobbalance = ethers.utils.formatEther(result[10].result)
             setJtaoBalance(Math.floor(jtaobbalance * 10000) / 10000)
         })
     }, [address, txupdate, erc20ABI])
@@ -208,9 +208,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0x8622049edEcC20ADA5aDEeaf2Caa53447e68Ae63", depositValue],
                 chainId: 96,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -231,9 +231,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0xBb7A653509CDd8C4Ccd34D5834c817Ed3DFD6Fc7", withdrawValue],
                 chainId: 8899,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -248,12 +248,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0x553819505D984EeE91aDD1DdCD60C82618d0CD5d", ethers.utils.parseEther(String(depositCMJ))],
                 chainId: 8899,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch (e) {
             setisError(true)
-            setErrMsg(e)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -267,9 +267,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0xF2a87528be1222A930D99f5f6ed94Aae72f40769", ethers.utils.parseEther(String(withdrawCMJ))],
                 chainId: 96,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -287,12 +287,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(depositTAO))],
                 chainId: 96,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
-            setErrMsg(e)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -306,9 +306,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(withdrawTAO))],
                 chainId: 8899,
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -327,12 +327,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     args: ["0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3", ethers.utils.parseEther(String(depositValue2))],
                     chainId: 56,
                 })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash } = await writeContract(config)
+                await waitForTransaction({ hash, })
+                setTxupdate(hash)
             } catch (e) {
                 setisError(true)
-                setErrMsg(e)
+                setErrMsg(String(e))
             }
         }
         setisLoading(false)
@@ -348,9 +348,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     args: ["0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063", ethers.utils.parseEther(String(withdrawValue2))],
                     chainId: 8899,
                 })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash } = await writeContract(config)
+                await waitForTransaction({ hash, })
+                setTxupdate(hash)
             } catch (e) {
                 setisError(true)
                 setErrMsg(String(e))

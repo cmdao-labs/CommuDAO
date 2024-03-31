@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -83,43 +83,43 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.characterId)],
+                        args: [Number(nftEQ[0])],
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.accessoriesId)],
+                        args: [Number(nftEQ[3])],
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.backId)],
+                        args: [Number(nftEQ[4])],
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.shoesId)],
+                        args: [Number(nftEQ[5])],
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.weaponId)],
+                        args: [Number(nftEQ[6])],
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.clothId)],
+                        args: [Number(nftEQ[2])],
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.hatId)],
+                        args: [Number(nftEQ[1])],
                     },
                     {
                         address: iiLab,
@@ -143,56 +143,54 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.characterId)],
+                        args: [Number(nftEQ[0])],
                     },
                     {
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.accessoriesId)],
+                        args: [Number(nftEQ[3])],
                     },
                     {
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.backId)],
+                        args: [Number(nftEQ[4])],
                     },
                     {
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.shoesId)],
+                        args: [Number(nftEQ[5])],
                     },
                     {
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.weaponId)],
+                        args: [Number(nftEQ[6])],
                     },
                     {
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.clothId)],
+                        args: [Number(nftEQ[2])],
                     },
                     {
                         address: narutaNft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.hatId)],
+                        args: [Number(nftEQ[1])],
                     },
                 ],
             }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", ]
-            console.log(nftEQ)
-            console.log(data)
 
             let nfts = []
 
             let charIpfs = null
-            if (Number(nftSTAT.characterIndex) === 1) {
-                charIpfs = data[0]
-            } else if (Number(nftSTAT.characterIndex) === 2) {
-                charIpfs = data[10]
+            if (data[0].status === 'success' && Number(nftSTAT[0]) === 1) {
+                charIpfs = data[0].result
+            } else if (data[10].status === 'success' && Number(nftSTAT[0]) === 2) {
+                charIpfs = data[10].result
             }
             const response1 = charIpfs !== null ? await fetch(charIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
@@ -200,22 +198,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
-                    Col: Number(nftSTAT.characterIndex),
-                    Id: String(nftEQ.characterId),
+                    Col: Number(nftSTAT[0]),
+                    Id: Number(nftEQ[0]),
                     Name: nftEQ_1_Name,
                     Image: nftEQ_1,
                     Description: nft1.description,
                     Attribute: nft1.attributes,
-                    RewardPerSec: Number(String(nftEQ.characterId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[0]) % 100000,
                     isStaked: true
                 })
             }
 
             let accIpfs = null
-            if (Number(nftSTAT.accessoriesIndex) === 1) {
-                accIpfs = data[1]
-            } else if (Number(nftSTAT.accessoriesIndex) === 2) {
-                accIpfs = data[11]
+            if (data[1].status === 'success' && Number(nftSTAT[3]) === 1) {
+                accIpfs = data[1].result
+            } else if (data[11].status === 'success' && Number(nftSTAT[3]) === 2) {
+                accIpfs = data[11].result
             }
             const response2 = accIpfs !== null ? await fetch(accIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
@@ -223,22 +221,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
-                    Col: 1,
-                    Id: String(nftEQ.accessoriesId),
+                    Col: Number(nftSTAT[3]),
+                    Id: Number(nftEQ[3]),
                     Name: nftEQ_2_Name,
                     Image: nftEQ_2_Img,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(String(nftEQ.accessoriesId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[3]) % 100000,
                     isStaked: true
                 })
             }
             
             let backpfs = null
-            if (Number(nftSTAT.backIndex) === 1) {
-                backpfs = data[2]
-            } else if (Number(nftSTAT.backIndex) === 2) {
-                backpfs = data[12]
+            if (data[2].status === 'success' && Number(nftSTAT[4]) === 1) {
+                backpfs = data[2].result
+            } else if (data[12].status === 'success' && Number(nftSTAT[4]) === 2) {
+                backpfs = data[12].result
             }
             const response3 = backpfs !== null ? await fetch(backpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
@@ -246,22 +244,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
-                    Col: 1,
-                    Id: String(nftEQ.backId),
+                    Col: Number(nftSTAT[4]),
+                    Id: Number(nftEQ[4]),
                     Name: nftEQ_3_Name,
                     Image: nftEQ_3,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(String(nftEQ.backId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[4]) % 100000,
                     isStaked: true
                 })
             }
 
             let shoesIpfs = null
-            if (Number(nftSTAT.shoesIndex) === 1) {
-                shoesIpfs = data[3]
-            } else if (Number(nftSTAT.shoesIndex) === 2) {
-                shoesIpfs = data[13]
+            if (data[3].status === 'success' && Number(nftSTAT[5]) === 1) {
+                shoesIpfs = data[3].result
+            } else if (data[13].status === 'success' && Number(nftSTAT[5]) === 2) {
+                shoesIpfs = data[13].result
             }
             const response4 = shoesIpfs !== null ? await fetch(shoesIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
@@ -269,22 +267,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
-                    Col: 1,
-                    Id: String(nftEQ.shoesId),
+                    Col: Number(nftSTAT[5]),
+                    Id: Number(nftEQ[5]),
                     Name: nftEQ_4_Name,
                     Image: nftEQ_4,
                     Description: nft4.description,
                     Attribute: nft4.attributes,
-                    RewardPerSec: Number(String(nftEQ.shoesId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[5]) % 100000,
                     isStaked: true
                 })
             }
 
             let weaponIpfs = null
-            if (Number(nftSTAT.weaponIndex) === 1) {
-                weaponIpfs = data[4]
-            } else if (Number(nftSTAT.weaponIndex) === 2) {
-                weaponIpfs = data[14]
+            if (data[4].status === 'success' && Number(nftSTAT[6]) === 1) {
+                weaponIpfs = data[4].result
+            } else if (data[14].status === 'success' && Number(nftSTAT[6]) === 2) {
+                weaponIpfs = data[14].result
             }
             const response5 = weaponIpfs !== null ? await fetch(weaponIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
@@ -292,22 +290,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
-                    Col: 1,
-                    Id: String(nftEQ.weaponId),
+                    Col: Number(nftSTAT[6]),
+                    Id: Number(nftEQ[6]),
                     Name: nftEQ_5_Name,
                     Image: nftEQ_5,
                     Description: nft5.description,
                     Attribute: nft5.attributes,
-                    RewardPerSec: Number(String(nftEQ.weaponId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[6]) % 100000,
                     isStaked: true
                 })
             }
 
             let clothIpfs = null
-            if (Number(nftSTAT.clothIndex) === 1) {
-                clothIpfs = data[5]
-            } else if (Number(nftSTAT.clothIndex) === 2) {
-                clothIpfs = data[15]
+            if (data[5].status === 'success' && Number(nftSTAT[2]) === 1) {
+                clothIpfs = data[5].result
+            } else if (data[15].status === 'success' && Number(nftSTAT[2]) === 2) {
+                clothIpfs = data[15].result
             }
             const response6 = clothIpfs !== null ? await fetch(clothIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
@@ -315,22 +313,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
-                    Col: 1,
-                    Id: String(nftEQ.clothId),
+                    Col: Number(nftSTAT[2]),
+                    Id: Number(nftEQ[2]),
                     Name: nftEQ_6_Name,
                     Image: nftEQ_6,
                     Description: nft6.description,
                     Attribute: nft6.attributes,
-                    RewardPerSec: Number(String(nftEQ.clothId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[2]) % 100000,
                     isStaked: true
                 })
             }
 
             let hatIpfs = null
-            if (Number(nftSTAT.hatIndex) === 1) {
-                hatIpfs = data[6]
-            } else if (Number(nftSTAT.hatIndex) === 2) {
-                hatIpfs = data[16]
+            if (data[6].status === 'success' && Number(nftSTAT[1]) === 1) {
+                hatIpfs = data[6].result
+            } else if (data[16].status === 'success' && Number(nftSTAT[1]) === 2) {
+                hatIpfs = data[16].result
             }
             const response7 = hatIpfs !== null ? await fetch(hatIpfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
@@ -338,24 +336,24 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
-                    Col: 1,
-                    Id: String(nftEQ.hatId),
+                    Col: Number(nftSTAT[1]),
+                    Id: Number(nftEQ[1]),
                     Name: nftEQ_7_Name,
                     Image: nftEQ_7,
                     Description: nft7.description,
                     Attribute: nft7.attributes,
-                    RewardPerSec: Number(String(nftEQ.hatId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[1]) % 100000,
                     isStaked: true
                 })
             }
 
-            const allPow = Number(nftSTAT.allPow)
-            const isStaked = nftSTAT.isStaked
-            const refuelAt = Number(nftSTAT.refuelAt)
+            const allPow = Number(nftSTAT[7])
+            const isStaked = nftSTAT[9]
+            const refuelAt = Number(nftSTAT[8])
 
-            const iiBal = data[7]
-            const eeBal = data[8]
-            const rewardPending = isStaked === true ? data[9] : 0
+            const iiBal = data[7].result
+            const eeBal = data[8].result
+            const rewardPending = isStaked === true ? data[9].result : 0
             
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
@@ -374,11 +372,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -392,7 +389,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -428,11 +425,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let yournftwallet2 = []
             for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data4[i].toUpperCase() === address.toUpperCase()) {
+                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
                 }
             }
-            console.log(yournftwallet2)
 
             const data5 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet2.map((item) => (
@@ -446,7 +442,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             }) : [Array(yournftwallet2.length).fill('')]
 
             for (let i = 0; i <= yournftwallet2.length - 1; i++) {
-                const nftipfs = data5[i]
+                const nftipfs = data5[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -509,11 +505,11 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             setAllPower(result[15])
             setIsStakeNow(result[16])
-            const gasOut = new Date((result[17] * 1000) + (86400 * 1000))
+            const gasOut = new Date((Number(result[17]) * 1000) + (86400 * 1000))
             result[17] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[17] !== 0 && Date.now() - (result[17] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            result[17] !== 0 && Date.now() - (Number(result[17]) * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
             setAngbPending(ethers.utils.formatEther(String(result[18])))
         
             setIIBalance(ethers.utils.formatEther(String(result[19])))
@@ -548,9 +544,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -577,8 +573,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     functionName: 'approve',
                     args: [dunEE, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -588,9 +584,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'equip',
                 args: [_index, _nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -604,9 +600,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -633,8 +629,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     functionName: 'approve',
                     args: [dunEE, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -644,9 +640,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

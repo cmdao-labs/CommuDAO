@@ -2,14 +2,16 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract } from '@wagmi/core'
 import { useAccount, useConnect, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useWeb3Modal } from '@web3modal/wagmi/react'
 const { ethereum } = window
 
 const jdao = "0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88"
 const cmos = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 
 const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
+  const { open } = useWeb3Modal()
   const { address, isConnected } = useAccount()
-  const { connect, connectors, error } = useConnect()
+  const { error } = useConnect()
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
   const { disconnect } = useDisconnect()
@@ -165,26 +167,23 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <i style={{fontSize: "16px", marginLeft: "15px", color: "#ff007a", cursor: "pointer"}} className="fa fa-sign-out" onClick={disconnect}></i>
             </div> :
             <>
-              {connectors.map((connector) => (
-                  <div 
-                    id="walletDiv"
-                    className="button wallet"
-                    key={connector.id}
-                    onClick={() => connect({chainId: 8899, connector})}
-                  >
-                    <div style={{letterSpacing: 0}} className="pixel">
-                      {error ?
-                        <div style={{width: "115px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
-                          {error.message === "Connector not found" ?
-                            <div>No Metamask</div> :
-                            <div>{error.message}</div>
-                          }
-                        </div> :
-                        <div>CONNECT WALLET</div>
+              <div 
+                id="walletDiv"
+                className="button wallet"
+                onClick={open}
+              >
+                <div style={{letterSpacing: 0}} className="pixel">
+                  {error ?
+                    <div style={{width: "115px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
+                      {error.message === "Connector not found" ?
+                        <div>No Metamask</div> :
+                        <div>{error.message}</div>
                       }
-                    </div>
-                  </div>
-              ))}
+                    </div> :
+                    <div>CONNECT WALLET</div>
+                  }
+                </div>
+              </div>
             </>
           }
         </div>

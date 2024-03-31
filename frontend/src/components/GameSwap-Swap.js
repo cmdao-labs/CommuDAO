@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { fetchBalance, readContract, prepareWriteContract, writeContract } from '@wagmi/core'
+import { fetchBalance, readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
    
 const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20ABI, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
@@ -9,8 +9,10 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
     const [cmjBought, setCmjBought] = React.useState("")
     const [jbcJuBought, setJbcJuBought] = React.useState("")
     const [jusdtJuBought, setJusdtJuBought] = React.useState("")
+    const [delaySwap, setDelaySwap] = React.useState(false)
 
     const handleSwap = async (event) => {
+        setDelaySwap(true)
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const _reserveJbc = await fetchBalance({ address: jcExchange, })
@@ -26,6 +28,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
             args: [String(_value), String(_reserveJbc.value), String(_reserveCmj)],
         })
         event.target.value !== "" ? setCmjBought(ethers.utils.formatEther(tokensBought)) : setCmjBought("")
+        setDelaySwap(false)
     }
     const maxHandle1 = async () => {
         const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
@@ -47,7 +50,9 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         maxSubGas >= 0 ? setCmjBought(ethers.utils.formatEther(tokensBought)) : setCmjBought("")
     }
     const handleSwap2 = async (event) => {
+        setDelaySwap(true)
         setInputSwap(event.target.value)
+        
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const _reserveJbc = await fetchBalance({ address: jcExchange, })
         const _reserveCmj = await readContract({
@@ -62,6 +67,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
             args: [String(_value), String(_reserveCmj), String(_reserveJbc.value)],
         })
         event.target.value !== "" ? setJbcBought(ethers.utils.formatEther(jbcBought)) : setJbcBought("")
+        setDelaySwap(false)
     }
     const maxHandle2 = async () => {
         const _max = address !== undefined ? await readContract({
@@ -87,6 +93,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         _max !== "" ? setJbcBought(ethers.utils.formatEther(jbcBought)) : setJbcBought("")
     }
     const handleSwap3 = async (event) => {
+        setDelaySwap(true)
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const _reserveJbc = await fetchBalance({ address: juExchange, })
@@ -102,6 +109,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
             args: [String(_value), String(_reserveJbc.value), String(_reserveJusdt)],
         })
         event.target.value !== "" ? setJusdtJuBought(ethers.utils.formatEther(tokensBought)) : setJusdtJuBought("")
+        setDelaySwap(false)
     }
     const maxHandle3 = async () => {
         const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
@@ -123,6 +131,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         maxSubGas !== "" ? setJusdtJuBought(ethers.utils.formatEther(tokensBought)) : setJusdtJuBought("")
     }
     const handleSwap4 = async (event) => {
+        setDelaySwap(true)
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const _reserveJbc = await fetchBalance({ address: juExchange, })
@@ -138,6 +147,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
             args: [String(_value), String(_reserveJusdt), String(_reserveJbc.value)],
         })
         event.target.value !== "" ? setJbcJuBought(ethers.utils.formatEther(jbcBought)) : setJbcJuBought("")
+        setDelaySwap(false)
     }
     const maxHandle4 = async () => {
         const _max = address !== undefined ? await readContract({
@@ -172,13 +182,11 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     abi: swapABI,
                     functionName: 'callJbcToCmj',
                     args: [ethers.utils.parseEther(String(cmjBought * 0.99))],
-                    overrides: {
-                        value: ethers.utils.parseEther(inputSwap),
-                    },
+                    value: ethers.utils.parseEther(inputSwap),
                 })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             } catch {}
         } else {
             const cmAllow = await readContract({
@@ -198,8 +206,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                         functionName: 'approve',
                         args: [jcSwap, bigApprove],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 } catch {}
             }
             try {
@@ -209,9 +217,9 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     functionName: 'callCmjToJbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcBought * 0.99))],
                 })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             } catch {}
         }
         setisLoading(false)
@@ -225,13 +233,11 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     abi: swapJulpABI,
                     functionName: 'callJbcToJusdt',
                     args: [ethers.utils.parseEther(String(jusdtJuBought * 0.99))],
-                    overrides: {
-                        value: ethers.utils.parseEther(inputSwap),
-                    },
+                    value: ethers.utils.parseEther(inputSwap),
                 })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             } catch {}
         } else {
             const jusdtAllow = await readContract({
@@ -251,8 +257,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                         functionName: 'approve',
                         args: [juSwap, bigApprove],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 } catch {}
             }
             try {
@@ -262,9 +268,9 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     functionName: 'callJusdtToJbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcJuBought * 0.99))],
                 })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             } catch {}
         }
         setisLoading(false)
@@ -335,6 +341,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                 placeholder="0.0"
                                 onChange={swapMode === 0 ? handleSwap : handleSwap2}
                                 value={inputSwap}
+                                readOnly={delaySwap}
                             />
                             {swapMode === 0 ?
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle1}>Max</div> :
@@ -349,6 +356,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                 placeholder="0.0"
                                 onChange={swapMode === 3 ? handleSwap3 : handleSwap4}
                                 value={inputSwap}
+                                readOnly={delaySwap}
                             />
                             {swapMode === 3 ? 
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle3}>Max</div> :

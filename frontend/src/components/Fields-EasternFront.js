@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -40,9 +40,9 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -68,15 +68,14 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                         args: [String(item)],
                     }
                 ))
-            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: '', isJbcOut: false})]
+            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: ''})]
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data0[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -103,7 +102,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             let _allDaily = 0
             let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i]
+                const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -146,7 +145,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 }
 
                 _allDaily += Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400)))
-                _allReward += Number(ethers.utils.formatEther(String(data11[i])))
+                _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -156,13 +155,13 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     Attribute: nft.attributes,
                     RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
                     isStaked: true,
-                    Reward: String(data11[i]),
+                    Reward: String(data11[i].result),
                 })
             }
 
             const walletFilter = await acNftSC.filters.Transfer(null, address, null)
             const walletEvent = await acNftSC.queryFilter(walletFilter, 2260250, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -177,11 +176,10 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -195,7 +193,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -251,20 +249,12 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            console.log(nfts)
-
-            const dataToken = address !== null && address !== undefined ? await readContracts({
-                contracts: [
-                    {
-                        address: vabag,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    }
-                ],
-            }) : [0]
-
-            const vaBal = dataToken[0]
+            const vaBal = address !== null && address !== undefined ? await readContract({
+                address: vabag,
+                abi: erc20ABI,
+                functionName: 'balanceOf',
+                args: [address],
+            }) : 0
 
             return [nfts, _allDaily, _allReward, vaBal]
         }
@@ -303,8 +293,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     functionName: 'approve',
                     args: [vabag, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: vabag,
@@ -312,9 +302,9 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -328,9 +318,9 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const tx2 = await writeContract(config2)
-            await tx2.wait()
-            setTxupdate(tx2)
+            const { hash12 } = await writeContract(config2)
+            await waitForTransaction({ hash12, })
+            setTxupdate(hash12)
         } catch {}
         setisLoading(false)
     }

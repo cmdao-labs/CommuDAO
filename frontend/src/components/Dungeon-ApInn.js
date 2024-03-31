@@ -1,5 +1,5 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots, Oval } from 'react-loading-icons'
@@ -76,11 +76,11 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 ],
             }) : [0, 0, 0, 0, 0, ]
 
-            const cmjBal = data[1]
-            const angbBal = data[2]
-            const starBal = data[3]
+            const cmjBal = data[1].result
+            const angbBal = data[2].result
+            const starBal = data[3].result
 
-            const nftbal = data[0]
+            const nftbal = data[0].result
             let count = 0
             let nfts = []
             let yournft = []
@@ -102,13 +102,12 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }) : [Array(walletRemoveDup.length).fill('')]
 
             for (let i = 0; i <= walletRemoveDup.length - 1 && count < nftbal; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournft.push({Id: String(walletRemoveDup[i])})
                     count++
                 }
             }
 
-            console.log(yournft)
             for (let i = 0; i <= yournft.length - 1; i++) {
                 const nftipfs = await readContract({
                     address: acNft,
@@ -118,7 +117,6 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 })
                 const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
-
 
                 nfts.push({
                     Col: 1,
@@ -133,7 +131,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 })
             }
 
-            const nftbal2 = data[4]
+            const nftbal2 = data[4].result
             let yournft2 = []
             let count2 = 0
             const walletFilter2 = await apDunSC.filters.Transfer(null, address, null)
@@ -153,13 +151,12 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }) : [Array(walletRemoveDup2.length).fill('')]
 
             for (let i = 0; i <= walletRemoveDup2.length - 1 && count2 < nftbal2; i++) {
-                if (data3[i].toUpperCase() === address.toUpperCase()) {
+                if (data3[i].result.toUpperCase() === address.toUpperCase()) {
                     yournft2.push({Id: String(walletRemoveDup2[i])})
                     count2++
                 }
             }
 
-            console.log(yournft2)
             for (let i = 0; i <= yournft2.length - 1; i++) {
                 const nftipfs = await readContract({
                     address: apDunNft,
@@ -194,7 +191,6 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             for (let i = 1; i <= Number(data2_0); i++) {
                 rankerDummy.push(null)
             }
-
             const data2_00 = await readContracts({
                 contracts: rankerDummy.map((item, i) => (
                     {
@@ -205,18 +201,26 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     }
                 ))
             })
+            const nameArr = []
+            for (let i = 0; i <= Number(data2_00.length - 1); i++) {
+                nameArr.push(data2_00[i].result[0])
+            }
             const data2_001 = await readContracts({
-                contracts: data2_00.map(item => (
+                contracts: nameArr.map(item => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'yourName',
-                        args: [item.fren]
+                        args: [item]
                     }
                 ))
             })
+            const nameArr2 = []
+            for (let i = 0; i <= Number(nameArr.length - 1); i++) {
+                nameArr2.push(Number(data2_001[i].result))
+            }
             const data2_0011 = await readContracts({
-                contracts: data2_001.map(item => (
+                contracts: nameArr2.map(item => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
@@ -225,13 +229,12 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     }
                 ))
             })
-            const ranker = []
-            for (let i = 0; i <= data2_00.length - 1; i++) {
-                ranker.push(data2_00[i].fren)
+            const nameArr3 = []
+            for (let i = 0; i <= Number(nameArr.length - 1); i++) {
+                nameArr3.push(data2_0011[i].result)
             }
-
             const data2_1 = await readContracts({
-                contracts: ranker.map((item) => (
+                contracts: nameArr.map((item) => (
                     {
                         address: dunANGB,
                         abi: erc20ABI,
@@ -240,8 +243,17 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     }
                 )),
             })
-
-            const dataANGB = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], apxp: Number(ethers.utils.formatEther(data2_1[i])).toFixed(3)}})
+            const angbtotal = []
+            for (let i = 0; i <= Number(nameArr.length - 1); i++) {
+                angbtotal.push(data2_1[i].result)
+            }
+            const dataANGB = nameArr.map((item, i) => {
+                return {
+                    addr: item,
+                    name: nameArr3[i] !== undefined ? nameArr3[i] : item.slice(0, 4) + "..." + item.slice(-4),
+                    apxp: Number(ethers.utils.formatEther(angbtotal[i])).toFixed(3)
+                }
+            })
 
             const spend1Filter = await angbFarmSC.filters.Claimed(null, null, null)
             const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 2500000, 'latest')
@@ -256,10 +268,10 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }, {})
 
             const spend1RemoveDup = []
-            for (let i = 0; i <= ranker.length -1; i++) {
+            for (let i = 0; i <= nameArr.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spend1Merged).length -1; i2++) {
-                    if (ranker[i].toUpperCase() === Object.values(spend1Merged)[i2].from.toUpperCase()) {
-                        Object.values(spend1Merged)[i2].name = data2_0011[i] === null ? Object.values(spend1Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend1Merged)[i2].from.slice(-4) : data2_0011[i]
+                    if (nameArr[i].toUpperCase() === Object.values(spend1Merged)[i2].from.toUpperCase()) {
+                        Object.values(spend1Merged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(spend1Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend1Merged)[i2].from.slice(-4)
                         spend1RemoveDup.push(Object.values(spend1Merged)[i2])
                     }
                 }
@@ -278,10 +290,10 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }, {})
 
             const spend2RemoveDup = []
-            for (let i = 0; i <= ranker.length -1; i++) {
+            for (let i = 0; i <= nameArr.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spend2Merged).length -1; i2++) {
-                    if (ranker[i].toUpperCase() === Object.values(spend2Merged)[i2].from.toUpperCase() && Object.values(spend2Merged)[i2].from.toUpperCase() !== ('0x0Da584E836542Fc58E7c09725cF6dbDfeA22f427').toUpperCase()) {
-                        Object.values(spend2Merged)[i2].name = data2_0011[i] === null ? Object.values(spend2Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend2Merged)[i2].from.slice(-4) : data2_0011[i]
+                    if (nameArr[i].toUpperCase() === Object.values(spend2Merged)[i2].from.toUpperCase() && Object.values(spend2Merged)[i2].from.toUpperCase() !== ('0x0Da584E836542Fc58E7c09725cF6dbDfeA22f427').toUpperCase()) {
+                        Object.values(spend2Merged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(spend2Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend2Merged)[i2].from.slice(-4)
                         spend2RemoveDup.push(Object.values(spend2Merged)[i2])
                     }
                 }
@@ -305,10 +317,10 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }, {})
 
             const spend3RemoveDup = []
-            for (let i = 0; i <= ranker.length -1; i++) {
+            for (let i = 0; i <= nameArr.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spend3Merged).length -1; i2++) {
-                    if (ranker[i].toUpperCase() === Object.values(spend3Merged)[i2].from.toUpperCase()) {
-                        Object.values(spend3Merged)[i2].name = data2_0011[i] === null ? Object.values(spend3Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend3Merged)[i2].from.slice(-4) : data2_0011[i]
+                    if (nameArr[i].toUpperCase() === Object.values(spend3Merged)[i2].from.toUpperCase()) {
+                        Object.values(spend3Merged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(spend3Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend3Merged)[i2].from.slice(-4)
                         spend3RemoveDup.push(Object.values(spend3Merged)[i2])
                     }
                 }
@@ -361,8 +373,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'approve',
                     args: [acUpgrade, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const nftAllow = await readContract({
                 address: acNft,
@@ -377,8 +389,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'approve',
                     args: [acUpgrade, _nftid],
                 })
-                const approvetx4 = await writeContract(config4)
-                await approvetx4.wait()
+                const { hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash04, })
             }
             const config5 = await prepareWriteContract({
                 address: acUpgrade,
@@ -386,9 +398,9 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
             })
-            const tx = await writeContract(config5)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -420,8 +432,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const token1Allow = await readContract({
                 address: token1,
@@ -436,8 +448,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             if (token2Amount !== 0) {
                 const token2Allow = await readContract({
@@ -453,8 +465,8 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                         functionName: 'approve',
                         args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx3 = await writeContract(config3)
-                    await approvetx3.wait()
+                    const { hash03 } = await writeContract(config3)
+                    await waitForTransaction({ hash03, })
                 }
             }
             const nftAllow = await readContract({
@@ -470,21 +482,19 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'approve',
                     args: [uniEnchanter, _nftid],
                 })
-                const approvetx4 = await writeContract(config4)
-                await approvetx4.wait()
+                const { hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash04, })
             }
             const config5 = await prepareWriteContract({
                 address: uniEnchanter,
                 abi: uniEnchanterABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
-                overrides: {
-                    gasLimit: 3000000,
-                },
+                gasLimit: 3000000,
             })
-            const tx = await writeContract(config5)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

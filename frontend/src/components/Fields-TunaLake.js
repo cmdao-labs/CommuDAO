@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -39,11 +39,10 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
             let yournftstake = []
 
             for (let i = 0; i <= balanceofstake.length - 1; i++) {
-                if (data[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(balanceofstake[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -78,7 +77,7 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: true,
-                    Reward: String(data2[i])
+                    Reward: String(data2[i].result)
                 })
             }
 
@@ -148,8 +147,8 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                     functionName: 'approve',
                     args: [tunaField, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: tunaField,
@@ -157,9 +156,9 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -173,9 +172,9 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -189,11 +188,7 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw JIB JIB to earn $TUNA.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img
-                    src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
-                    width="150"
-                    alt="tunapic"
-                />
+                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="150" alt="$TUNA" />
             </div>
         </div>
 
@@ -225,13 +220,13 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                             <div>
                                 Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                 &nbsp;
-                                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="tunapic"/>
+                                <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                 TUNA/DAY
                             </div>
                             <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                 <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
                                     Pending Rewards<br></br>
-                                    <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="tunapic"/>
+                                    <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                     {ethers.utils.formatEther(String(item.Reward))}
                                 </div>
                                 {item.Reward > 0 ?

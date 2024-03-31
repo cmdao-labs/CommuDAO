@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -30,7 +30,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
 
             const stakeFilter = await cmnftSC.filters.Transfer(address, fraserField, null)
             const stakeEvent = await cmnftSC.queryFilter(stakeFilter, 15727711, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
@@ -45,11 +45,10 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data0[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -99,15 +98,15 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
             let _allReward1 = 0
             let _allReward2 = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i]
+                const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs)
                     nft = await response.json()
                 } catch {}
                 _allDaily1 += Number(ethers.utils.formatEther(String(1 * 10**14)))
-                _allReward1 += Number(ethers.utils.formatEther(String(data11[i])))
-                _allReward2 += Number(ethers.utils.formatEther(String(data12[i])))
+                _allReward1 += Number(ethers.utils.formatEther(data11[i].result))
+                _allReward2 += Number(ethers.utils.formatEther(data12[i].result))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -115,16 +114,16 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: String(data10[i]),
+                    RewardPerSec: Number(data10[i].result),
                     isStaked: true,
-                    Reward: String(data11[i]),
-                    Reward2: String(data12[i])
+                    Reward: data11[i].result,
+                    Reward2: data12[i].result
                 })
             }
 
             const walletFilter = await cmnftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmnftSC.queryFilter(walletFilter, 8248906, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -139,11 +138,10 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -168,7 +166,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
             }) : [Array(yournftwallet.length).fill(0)]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs)
@@ -181,7 +179,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: String(data30[i]),
+                    RewardPerSec: Number(data30[i].result),
                     isStaked: false,
                     Reward: 0,
                     Reward2: 0
@@ -207,8 +205,8 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                 ],
             }) : [0, 0]
 
-            const cmmBal = dataToken[0]
-            const salmBal = dataToken[1]
+            const cmmBal = dataToken[0].result
+            const salmBal = dataToken[1].result
 
             return [nfts, _allDaily1, _allReward1, _allReward2, cmmBal, salmBal, ]
         }
@@ -249,8 +247,8 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                     functionName: 'approve',
                     args: [fraserField, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: fraserField,
@@ -258,9 +256,9 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                 functionName: 'stake',
                 args: [1, _nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -274,9 +272,9 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                 functionName: 'unstake',
                 args: [1, _nftid, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -375,11 +373,11 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                                         Pending Rewards<br></br>
                                         <div style={{display: "flex", alignItems: "center"}}>
                                             <img src="https://nftstorage.link/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" style={{marginRight: "5px"}} alt="$SALM"/>
-                                            {ethers.utils.formatEther(String(item.Reward))}
+                                            {ethers.utils.formatEther(item.Reward)}
                                         </div>
                                         <div style={{display: "flex", alignItems: "center"}}>
                                             <img src="https://nftstorage.link/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="12" style={{marginRight: "5px"}} alt="CMM"/>
-                                            {ethers.utils.formatEther(String(item.Reward2))}
+                                            {ethers.utils.formatEther(item.Reward2)}
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?

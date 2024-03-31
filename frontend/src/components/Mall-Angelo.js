@@ -1,5 +1,5 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -56,8 +56,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 }
             ],
         })
-        const _reserveWjbc = data[0]
-        const _reserveToken = data[1]
+        const _reserveWjbc = data[0].result
+        const _reserveToken = data[1].result
         const tokensBoughttokenTOwjbc = await readContract({
             address: angeloSWAR,
             abi: angeloStdABI,
@@ -83,8 +83,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 }
             ],
         })
-        const _reserveWjbc = data[0]
-        const _reserveToken = data[1]
+        const _reserveWjbc = data[0].result
+        const _reserveToken = data[1].result
         const tokensBoughtwjbcTOtoken = await readContract({
             address: angeloSWAR,
             abi: angeloStdABI,
@@ -114,8 +114,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                         functionName: 'approve',
                         args: [angeloSWAR, bigApprove],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const config = await prepareWriteContract({
                     address: angeloSWAR,
@@ -123,9 +123,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'tokenTOwjbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(wjbcBoughtSWAR)],
                 })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             } else {
                 const wjbcAllow = await readContract({
                     address: wjbcToken,
@@ -143,8 +143,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                         functionName: 'approve',
                         args: [angeloSWAR, bigApprove],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const config2 = await prepareWriteContract({
                     address: angeloSWAR,
@@ -152,9 +152,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'wjbcTOtoken',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtSWAR)],
                 })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             }
         } catch {}
         setisLoading(false)
@@ -169,9 +169,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(lpSell)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -231,8 +231,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'approve',
                     args: [angeloSWAR, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const swarAllow = await readContract({
                 address: swarToken,
@@ -247,8 +247,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'approve',
                     args: [angeloSWAR, bigApprove],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: angeloSWAR,
@@ -256,9 +256,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(tokenAdd), ethers.utils.parseEther(currAdd)],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -284,8 +284,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 }
             ],
         })
-        const _reserveCurr = data[0]
-        const _reserveToken = data[1]
+        const _reserveCurr = data[0].result
+        const _reserveToken = data[1].result
         const tokensBoughttokenTOcurr = await readContract({
             address: addr,
             abi: cmdaoAmmNpcABI,
@@ -317,8 +317,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 }
             ],
         })
-        const _reserveCurr = data[0]
-        const _reserveToken = data[1]
+        const _reserveCurr = data[0].result
+        const _reserveToken = data[1].result
         const tokensBoughtcurrTOtoken = await readContract({
             address: addr,
             abi: cmdaoAmmNpcABI,
@@ -362,8 +362,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                         functionName: 'approve',
                         args: [lp, bigApprove],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const config = await prepareWriteContract({
                     address: lp,
@@ -371,9 +371,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'tokenTOcurrency',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(currBoughtToken)],
                 })
-                const tx = await writeContract(config)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             } else {
                 const currAllow = await readContract({
                     address: curr,
@@ -391,8 +391,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                         functionName: 'approve',
                         args: [lp, bigApprove],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const config2 = await prepareWriteContract({
                     address: lp,
@@ -400,9 +400,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'currencyTOtoken',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCurr)],
                 })
-                const tx = await writeContract(config2)
-                await tx.wait()
-                setTxupdate(tx)
+                const { hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash1, })
+                setTxupdate(hash1)
             }
         } catch {}
         setisLoading(false)
@@ -421,9 +421,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(lpSell)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -499,8 +499,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'approve',
                     args: [lp, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const tokenAllow = await readContract({
                 address: token,
@@ -515,8 +515,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                     functionName: 'approve',
                     args: [lp, bigApprove],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: lp,
@@ -524,9 +524,9 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(tokenAdd), ethers.utils.parseEther(currAdd)],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -558,10 +558,10 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 ],
             })
 
-            const _reserveWjbcSWAR = data[0]
-            const _reserveSWAR = data[1]
-            const _reserveWjbcANGB = data[2]
-            const _reserveANGB = data[3]
+            const _reserveWjbcSWAR = data[0].result
+            const _reserveSWAR = data[1].result
+            const _reserveWjbcANGB = data[2].result
+            const _reserveANGB = data[3].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -580,8 +580,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 ],
             })
 
-            const tokensBoughtswarTOwjbc = data2[0]
-            const tokensBoughtangbTOwjbc = data2[1]
+            const tokensBoughtswarTOwjbc = data2[0].result
+            const tokensBoughtangbTOwjbc = data2[1].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -600,8 +600,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 ],
             }) : [0, 0, ]
 
-            const swarlpBal = data3[0]
-            const angblpBal = data3[1]
+            const swarlpBal = data3[0].result
+            const angblpBal = data3[1].result
 
             return [
                 tokensBoughtswarTOwjbc, _reserveWjbcSWAR, _reserveSWAR, swarlpBal,

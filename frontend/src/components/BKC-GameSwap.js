@@ -1,5 +1,5 @@
 import React from 'react'
-import { readContract, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount, useContractReads } from 'wagmi'
 import { ethers } from 'ethers'
 const { ethereum } = window
@@ -102,8 +102,8 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                     functionName: 'approve',
                     args: [farmCMOS, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: farmCMOS,
@@ -111,9 +111,9 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 functionName: 'deposit',
                 args: [1, lp1StakeWei],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -131,9 +131,9 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 functionName: 'withdraw',
                 args: [1, ethers.utils.parseEther(String(lp1Withdraw))],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             refetch()
         } catch (e) {
             setisError(true)
@@ -151,9 +151,9 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 functionName: 'withdraw',
                 args: [1, 0],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             refetch()
         } catch (e) {
             setisError(true)
@@ -215,19 +215,26 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity:</div>
-                        {!isLoading_Token ? <div className="bold">~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[7]) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</div> : <>0.000</>}
+                        {!isLoading_Token ?
+                            <div className="bold">~฿{((ethers.utils.formatEther(data_Token[7].result) / ethers.utils.formatEther(data_Token[6].result)) * ( Number(ethers.utils.formatEther(data_Token[4].result)) + Number(ethers.utils.formatEther(data_Token[5].result) * (ethers.utils.formatEther(data_Token[1].result[0]) / ethers.utils.formatEther(data_Token[1].result[1]))) ) * (Number(data_Token[2].result) / 1e8) * (Number(data_Token[3].result) / 1e8)).toLocaleString('en-US', {minimumFractionDigits:0})}</div> :
+                            <>0.000</>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>CMOS EARNED:</div>
-                            <div className="bold">{address !== undefined && !isLoading_Token ? Number(ethers.utils.formatEther(data_Token[9])).toFixed(3) : <>0.0</>}</div>
+                            <div className="bold">{address !== undefined && !isLoading_Token ? Number(ethers.utils.formatEther(data_Token[9].result)).toFixed(3) : <>0.0</>}</div>
                         </div>
                         <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle}>Harvest</div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <div style={{textAlign: "left", fontSize: "14px"}}>LP STAKED</div>
-                            {address !== undefined && !isLoading_Token ? <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[8].amount) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[8].amount) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                            {address !== undefined && !isLoading_Token ? 
+                                <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[8].result[0]) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</div> :
+                                <>0.000</>
+                            }
+                            {/*<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[8].amount) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5].result) * (ethers.utils.formatEther(data_Token[1].result[0])/ethers.utils.formatEther(data_Token[1].result[1]))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span>*/}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <input
@@ -239,7 +246,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                             <div
                                 style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                 className="bold"
-                                onClick={() => setLp1Withdraw(ethers.utils.formatEther(data_Token[8].amount))}
+                                onClick={() => setLp1Withdraw(ethers.utils.formatEther(data_Token[8].result[0]))}
                             >
                                 Max
                             </div>
@@ -249,7 +256,11 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <div style={{textAlign: "left", fontSize: "14px"}}>LP BALANCE</div>
-                            {address !== undefined && !isLoading_Token ? <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[0]) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[0]) / ethers.utils.formatEther(data_Token[6])) * ( Number(ethers.utils.formatEther(data_Token[4])) + (ethers.utils.formatEther(data_Token[5]) * (ethers.utils.formatEther(data_Token[1].reserve0)/ethers.utils.formatEther(data_Token[1].reserve1))) ) * (data_Token[2] / 1e8) * (data_Token[3] / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                            {address !== undefined && !isLoading_Token ?
+                                <div style={{textAlign: "left", fontSize: "14px"}} className="bold">{Number(Math.floor(ethers.utils.formatEther(data_Token[0].result) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</div> :
+                                <>0.000</>
+                            }
+                            {/*<span> (~฿{Number(Math.floor(((ethers.utils.formatEther(data_Token[0].result) / ethers.utils.formatEther(data_Token[6].result)) * ( Number(ethers.utils.formatEther(data_Token[4].result)) + (ethers.utils.formatEther(data_Token[5].result) * (ethers.utils.formatEther(data_Token[1].result.reserve0)/ethers.utils.formatEther(data_Token[1].result.reserve1))) ) * (data_Token[2].result / 1e8) * (data_Token[3].result / 1e8) * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})})</span>*/}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <input
@@ -261,7 +272,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                             <div
                                 style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                 className="bold"
-                                onClick={() => {setLp1Stake(ethers.utils.formatEther(data_Token[0])); setLp1StakeWei(data_Token[0]);}}
+                                onClick={() => {setLp1Stake(ethers.utils.formatEther(data_Token[0].result)); setLp1StakeWei(data_Token[0].result);}}
                             >
                                 Max
                             </div>

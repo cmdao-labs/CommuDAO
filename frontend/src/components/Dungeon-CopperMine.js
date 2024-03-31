@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -73,19 +73,19 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.characterId)],
+                        args: [Number(nftEQ[0])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.clothId)],
+                        args: [Number(nftEQ[2])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.hatId)],
+                        args: [Number(nftEQ[1])],
                     },
                     {
                         address: dunCopper,
@@ -119,71 +119,69 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     }, 
                 ],
             }) : ["", "", "", 0, 0, 0, 0, 0, ]
-            console.log(nftEQ)
-            console.log(data)
 
             let nfts = []
 
-            const response1 = data[0] !== null ? await fetch(data[0].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.characterId),
+                    Id: Number(nftEQ[0]),
                     Name: nftEQ_1_Name,
                     Image: nftEQ_1,
                     Description: nft1.description,
                     Attribute: nft1.attributes,
-                    RewardPerSec: Number(String(nftEQ.characterId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[0]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response2 = data[1] !== null ? await fetch(data[1].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2 = nft2.image !== null ? nft2.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.clothId),
+                    Id: Number(nftEQ[2]),
                     Name: nftEQ_2_Name,
                     Image: nftEQ_2,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(String(nftEQ.clothId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[2]) % 100000,
                     isStaked: true
                 })
             }
             
-            const response3 = data[2] !== null ? await fetch(data[2].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.hatId),
+                    Id: Number(nftEQ[1]),
                     Name: nftEQ_3_Name,
                     Image: nftEQ_3,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(String(nftEQ.hatId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[1]) % 100000,
                     isStaked: true
                 })
             }
 
-            const allPow = Number(nftEQ.allPow)
-            const isStaked = nftEQ.isStaked
-            const refuelAt = Number(nftEQ.refuelAt)
+            const allPow = Number(nftEQ[3])
+            const isStaked = nftEQ[5]
+            const refuelAt = Number(nftEQ[4])
 
-            const rewardPending = isStaked ? data[3] : 0
-            const stOPTClaim = isStaked === true ? data[4] : 0
-            const bbqBal = data[5]
-            const cuBal = data[6]
-            const skin1 = data[7]
+            const rewardPending = isStaked ? data[3].result : 0
+            const stOPTClaim = isStaked === true ? data[4].result : 0
+            const bbqBal = data[5].result
+            const cuBal = data[6].result
+            const skin1 = data[7].result
 
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
@@ -202,11 +200,10 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -220,7 +217,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
 
@@ -272,13 +269,13 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             setAllPower(result[7])
             setIsStakeNow(result[8])
-            const gasOut = new Date((result[9] * 1000) + (3600 * 1000))
+            const gasOut = new Date((Number(result[9]) * 1000) + (3600 * 1000))
             result[9] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[9] !== 0 && Date.now() - (result[9] * 1000) > (3600 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            result[9] !== 0 && Date.now() - (Number(result[9]) * 1000) > (3600 * 1000) ? setIsRunout(true) : setIsRunout(false)
             setCuPending(ethers.utils.formatEther(String(result[10])))
-            setLastedSTOPT(result[9] * 1000 === result[11] * 1000)
+            setLastedSTOPT(Number(result[9]) * 1000 === Number(result[11]) * 1000)
 
             setBbqBalance(ethers.utils.formatEther(String(result[12])))
             setCuBalance(ethers.utils.formatEther(String(result[13])))
@@ -311,9 +308,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -334,8 +331,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunCopper, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: dunCopper,
@@ -343,9 +340,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -359,9 +356,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -382,8 +379,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunCopper, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: dunCopper,
@@ -391,9 +388,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'refuel',
                 args: [1]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -407,9 +404,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'mintST',
                 args: []
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {console.log(e)}
         setisLoading(false)
     }

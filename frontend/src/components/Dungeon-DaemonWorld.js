@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -76,49 +76,49 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.characterId)],
+                        args: [Number(nftEQ[0])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.ringId)],
+                        args: [Number(nftEQ[3])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.shieldId)],
+                        args: [Number(nftEQ[4])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.bootsId)],
+                        args: [Number(nftEQ[5])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.swordId)],
+                        args: [Number(nftEQ[6])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.armorId)],
+                        args: [Number(nftEQ[2])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.helmetId)],
+                        args: [Number(nftEQ[1])],
                     },
                     {
                         address: angelplus,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.fairyId)],
+                        args: [Number(nftEQ[7])],
                     },
                     {
                         address: swarLab,
@@ -140,155 +140,152 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     },
                 ],
             }) : ["", "", "", "", "", "", "", "", 0, 0, 0, 0, ]
-            console.log(nftEQ)
-            console.log(data)
 
             let nfts = []
 
-            const response1 = data[0] !== null ? await fetch(data[0].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.characterId),
+                    Id: Number(nftEQ[0]),
                     Name: nftEQ_1_Name,
                     Image: nftEQ_1,
                     Description: nft1.description,
                     Attribute: nft1.attributes,
-                    RewardPerSec: Number(String(nftEQ.characterId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[0]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response2 = data[1] !== null ? await fetch(data[1].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.ringId),
+                    Id: Number(nftEQ[3]),
                     Name: nftEQ_2_Name,
                     Image: nftEQ_2_Img,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(String(nftEQ.ringId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[3]) % 100000,
                     isStaked: true
                 })
             }
             
-            const response3 = data[2] !== null ? await fetch(data[2].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.shieldId),
+                    Id: Number(nftEQ[4]),
                     Name: nftEQ_3_Name,
                     Image: nftEQ_3,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(String(nftEQ.shieldId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[4]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response4 = data[3] !== null ? await fetch(data[3].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
             const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.bootsId),
+                    Id: Number(nftEQ[5]),
                     Name: nftEQ_4_Name,
                     Image: nftEQ_4,
                     Description: nft4.description,
                     Attribute: nft4.attributes,
-                    RewardPerSec: Number(String(nftEQ.bootsId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[5]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response5 = data[4] !== null ? await fetch(data[4].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
             const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.swordId),
+                    Id: Number(nftEQ[6]),
                     Name: nftEQ_5_Name,
                     Image: nftEQ_5,
                     Description: nft5.description,
                     Attribute: nft5.attributes,
-                    RewardPerSec: Number(String(nftEQ.swordId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[6]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response6 = data[5] !== null ? await fetch(data[5].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
             const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.armorId),
+                    Id: Number(nftEQ[2]),
                     Name: nftEQ_6_Name,
                     Image: nftEQ_6,
                     Description: nft6.description,
                     Attribute: nft6.attributes,
-                    RewardPerSec: Number(String(nftEQ.armorId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[2]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response7 = data[6] !== null ? await fetch(data[6].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
             const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.helmetId),
+                    Id: Number(nftEQ[1]),
                     Name: nftEQ_7_Name,
                     Image: nftEQ_7,
                     Description: nft7.description,
                     Attribute: nft7.attributes,
-                    RewardPerSec: Number(String(nftEQ.helmetId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[1]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response8 = data[7] !== null ? await fetch(data[7].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response8 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft8 = response8 !== null ? await response8.json() : {image: null, name: null}
             const nftEQ_8 = nft8.image !== null ? nft8.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_8_Name = nft8.name
             if (response8 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.fairyId),
+                    Id: Number(nftEQ[7]),
                     Name: nftEQ_8_Name,
                     Image: nftEQ_8,
                     Description: nft8.description,
                     Attribute: nft8.attributes,
-                    RewardPerSec: Number(String(nftEQ.fairyId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[7]) % 100000,
                     isStaked: true
                 })
             }
 
+            const allPow = Number(nftEQ[8])
+            const isStaked = nftEQ[10]
+            const refuelAt = Number(nftEQ[9])
 
-            const allPow = Number(nftEQ.allPow)
-            const isStaked = nftEQ.isStaked
-            const refuelAt = Number(nftEQ.refuelAt)
-
-            const swarBal = data[8]
-            const angbBal = data[9]
-            const rewardPending = isStaked === true ? data[10] : 0
+            const swarBal = data[8].result
+            const angbBal = data[9].result
+            const rewardPending = isStaked === true ? data[10].result : 0
             
             const walletFilter = await apnftSC.filters.Transfer(null, address, null)
             const walletEvent = await apnftSC.queryFilter(walletFilter, 2768102, "latest")
@@ -307,11 +304,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -325,7 +321,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -382,11 +378,11 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             setAllPower(result[17])
             setIsStakeNow(result[18])
-            const gasOut = new Date((result[19] * 1000) + (86400 * 1000))
+            const gasOut = new Date((Number(result[19]) * 1000) + (86400 * 1000))
             result[19] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[19] !== 0 && Date.now() - (result[19] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            result[19] !== 0 && Date.now() - (Number(result[19]) * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
             setAngbPending(ethers.utils.formatEther(String(result[20])))
         
             setSwarBalance(ethers.utils.formatEther(String(result[21])))
@@ -419,9 +415,9 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -442,8 +438,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     functionName: 'approve',
                     args: [dunANGB, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -453,9 +449,9 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -469,9 +465,9 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -498,8 +494,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     functionName: 'approve',
                     args: [dunANGB, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -509,9 +505,9 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { /*fetchBalance, */readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -84,7 +84,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
-        const beastnftSC = new ethers.Contract(beasts, erc721ABI, providerJBC)
+        // const beastnftSC = new ethers.Contract(beasts, erc721ABI, providerJBC)
         // const cmdsnftSC = new ethers.Contract(CMDS, erc721ABI, providerJBC)
         setNft([])
         
@@ -102,43 +102,43 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.characterId)],
+                        args: [Number(nftEQ[0])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.accessoriesId)],
+                        args: [Number(nftEQ[3])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.backId)],
+                        args: [Number(nftEQ[4])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.shoesId)],
+                        args: [Number(nftEQ[5])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.weaponId)],
+                        args: [Number(nftEQ[6])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.clothId)],
+                        args: [Number(nftEQ[2])],
                     },
                     {
                         address: hexajibjib,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
-                        args: [String(nftEQ.hatId)],
+                        args: [Number(nftEQ[1])],
                     },
                     {
                         address: ctunaLab,
@@ -196,145 +196,143 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     }, 
                 ],
             }) : ["", "", "", "", "", "", "", 0, 0, 0, 0, 0, {followerId: 0, servantId: 0, cmpow: 0, rewardDebt: 0}, 0, 0, 0, ]
-            console.log(nftEQ)
-            console.log(data)
 
             let nfts = []
 
-            const response1 = data[0] !== null ? await fetch(data[0].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.characterId),
+                    Id: Number(nftEQ[0]),
                     Name: nftEQ_1_Name,
                     Image: nftEQ_1,
                     Description: nft1.description,
                     Attribute: nft1.attributes,
-                    RewardPerSec: Number(String(nftEQ.characterId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[0]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response2 = data[1] !== null ? await fetch(data[1].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.accessoriesId),
+                    Id: Number(nftEQ[3]),
                     Name: nftEQ_2_Name,
                     Image: nftEQ_2_Img,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(String(nftEQ.accessoriesId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[3]) % 100000,
                     isStaked: true
                 })
             }
             
-            const response3 = data[2] !== null ? await fetch(data[2].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.backId),
+                    Id: Number(nftEQ[4]),
                     Name: nftEQ_3_Name,
                     Image: nftEQ_3,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(String(nftEQ.backId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[4]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response4 = data[3] !== null ? await fetch(data[3].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
             const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.shoesId),
+                    Id: Number(nftEQ[5]),
                     Name: nftEQ_4_Name,
                     Image: nftEQ_4,
                     Description: nft4.description,
                     Attribute: nft4.attributes,
-                    RewardPerSec: Number(String(nftEQ.shoesId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[5]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response5 = data[4] !== null ? await fetch(data[4].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
             const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.weaponId),
+                    Id: Number(nftEQ[6]),
                     Name: nftEQ_5_Name,
                     Image: nftEQ_5,
                     Description: nft5.description,
                     Attribute: nft5.attributes,
-                    RewardPerSec: Number(String(nftEQ.weaponId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[6]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response6 = data[5] !== null ? await fetch(data[5].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
             const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.clothId),
+                    Id: Number(nftEQ[2]),
                     Name: nftEQ_6_Name,
                     Image: nftEQ_6,
                     Description: nft6.description,
                     Attribute: nft6.attributes,
-                    RewardPerSec: Number(String(nftEQ.clothId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[2]) % 100000,
                     isStaked: true
                 })
             }
 
-            const response7 = data[6] !== null ? await fetch(data[6].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
             const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
                     Col: 1,
-                    Id: String(nftEQ.hatId),
+                    Id: Number(nftEQ[1]),
                     Name: nftEQ_7_Name,
                     Image: nftEQ_7,
                     Description: nft7.description,
                     Attribute: nft7.attributes,
-                    RewardPerSec: Number(String(nftEQ.hatId).slice(-5)),
+                    RewardPerSec: Number(nftEQ[1]) % 100000,
                     isStaked: true
                 })
             }
 
-            const allPow = Number(nftEQ.allPow)
-            const isStaked = nftEQ.isStaked
-            const refuelAt = Number(nftEQ.refuelAt)
+            const allPow = Number(nftEQ[7])
+            const isStaked = nftEQ[9]
+            const refuelAt = Number(nftEQ[8])
 
-            const ctunaBal = data[7]
-            const sx31Bal = data[8]
-            const pzaBal = data[9]
-            const jaspBal = data[10]
-            const stOPTClaim = isStaked === true ? data[11] : 0
-            const nftEQ_L2 = data[12]
-            const rewardPending = isStaked === true ? data[13] : 0
+            const ctunaBal = data[7].result
+            const sx31Bal = data[8].result
+            const pzaBal = data[9].result
+            const jaspBal = data[10].result
+            const stOPTClaim = isStaked === true ? data[11].result : 0
+            const nftEQ_L2 = data[12].result
+            const rewardPending = isStaked === true ? data[13].result : 0
             
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -349,11 +347,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -367,7 +364,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -563,7 +560,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             const jbcBal = 0/*address !== null && address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}*/
 
-            const skinslot1 = data[15]
+            console.log(nftEQ_L2, l2Pool, l2PoolCMPOW, jbcPool, )
+
+            const skinslot1 = data[15].result
             
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, /*L2_Follower_Id, nftEQ_L2_Follower, L2_Servant_Id, nftEQ_L2_Servant,*/
@@ -612,11 +611,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             setAllPower(result[15])
             setIsStakeNow(result[16])
-            const gasOut = new Date((result[17] * 1000) + (86400 * 1000))
+            const gasOut = new Date((Number(result[17]) * 1000) + (86400 * 1000))
             result[17] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[17] !== 0 && Date.now() - (result[17] * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            result[17] !== 0 && Date.now() - (Number(result[17]) * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
             setJasperPending(ethers.utils.formatUnits(String(result[18]), "gwei"))
             /*setIsStakeL2Now(result[23])
             setJbcPool(result[24].formatted)
@@ -624,7 +623,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             setL2CMPOW(result[26])
             setYourL2CMPOW(result[27])*/
 
-            setLastedSTOPT(result[17] * 1000 === result[19] * 1000)
+            setLastedSTOPT(Number(result[17]) * 1000 === Number(result[19]) * 1000)
 
             setJbcBalance(result[20].formatted)
             setCTunaBalance(ethers.utils.formatEther(String(result[21])))
@@ -635,6 +634,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI])
+
+    console.log(jbcBalance, )
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -662,9 +663,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -685,8 +686,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunJasper, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -696,9 +697,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -712,9 +713,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -747,8 +748,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunJasper, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -758,9 +759,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -775,8 +776,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'unstakeL2',
                     args: [1, false, false]
                 })
-                const tx0 = await writeContract(config0)
-                await tx0.wait()
+                const { hash10 } = await writeContract(config0)
+                await waitForTransaction({ hash10, })
             }
             if (_nftid !== 0) {
                 const nftAllow = await readContract({
@@ -792,8 +793,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         functionName: 'approve',
                         args: [dunJasperL2, _nftid],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
             }
             const config2 = await prepareWriteContract({
@@ -802,9 +803,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'stakeL2',
                 args: [1, _nftid, 0]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -820,9 +821,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'unstakeL2',
                 args: [1, _isUnstakeFollower, _isUnstakeServant]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     */}
@@ -837,8 +838,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'unstakeL2',
                     args: [1, false, false]
                 })
-                const tx0 = await writeContract(config0)
-                await tx0.wait()
+                const { hash10 } = await writeContract(config0)
+                await waitForTransaction({ hash10, })
             }
             if (_nftid !== 0) {
                 const nftAllow = await readContract({
@@ -854,8 +855,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         functionName: 'approve',
                         args: [dunJasperL2, _nftid],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
             }
             const config2 = await prepareWriteContract({
@@ -864,9 +865,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'stakeL2',
                 args: [1, 0, _nftid]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     */}
@@ -880,9 +881,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'mintST',
                 args: []
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {console.log(e)}
         setisLoading(false)
     }

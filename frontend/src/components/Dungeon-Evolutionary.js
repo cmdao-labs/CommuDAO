@@ -1,5 +1,5 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots } from 'react-loading-icons'
@@ -47,12 +47,12 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
         const thefetch = async () => {
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
 
             const walletSalonFilter = await salonnftSC.filters.Transfer(null, address, null)
             const walletSalonEvent = await salonnftSC.queryFilter(walletSalonFilter, 1815632, "latest")
-            const walletSalonMap = await Promise.all(walletSalonEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletSalonMap = await Promise.all(walletSalonEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletSalonRemoveDup = walletSalonMap.filter((obj, index) => walletSalonMap.indexOf(obj) === index)
 
             const data = address !== null && address !== undefined ? await readContracts({
@@ -120,15 +120,15 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 ],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
 
-            const cmjBal = data[1]
-            const bbqBal = data[2]
-            const cuBal = data[3]
-            const pzaBal = data[4]
-            const silBal = data[5]
-            const goldBal = data[6]
-            const osBal = data[7]
+            const cmjBal = data[1].result
+            const bbqBal = data[2].result
+            const cuBal = data[3].result
+            const pzaBal = data[4].result
+            const silBal = data[5].result
+            const goldBal = data[6].result
+            const osBal = data[7].result
 
-            const nftbal = data[0]
+            const nftbal = data[0].result
             let count = 0
             let nfts = []
             let yournft = []
@@ -145,7 +145,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             }) : [Array(walletRemoveDup.length).fill('')]
 
             for (let i = 0; i <= walletRemoveDup.length - 1 && count < nftbal; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournft.push({Id: String(walletRemoveDup[i])})
                     count++
                 }
@@ -162,9 +162,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 ))
             }) : [Array(yournft.length).fill('')]
 
-            console.log(yournft)
             for (let i = 0; i <= yournft.length - 1; i++) {
-                const response = await fetch(data3[i].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const response = await fetch(data3[i].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
 
                 const bonus = Number(String(yournft[i].Id).slice(-5))
@@ -192,7 +191,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             }) : [Array(walletSalonRemoveDup.length).fill('')]
 
             for (let i = 0; i <= walletSalonRemoveDup.length - 1 && salonCount < salonNftbal; i++) {
-                if (data4[i].toUpperCase() === address.toUpperCase()) {
+                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
                     yoursalonnft.push({Id: String(walletSalonRemoveDup[i])})
                     salonCount++
                 }
@@ -209,9 +208,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 ))
             }) : [Array(yoursalonnft.length).fill('')]
 
-            console.log(yoursalonnft)
             for (let i = 0; i <= yoursalonnft.length - 1; i++) {
-                const response = await fetch(data5[i].replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const response = await fetch(data5[i].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
 
                 const bonus = Number(String(yoursalonnft[i].Id).slice(-5))
@@ -264,8 +262,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const cuAllow = await readContract({
                     address: cuToken,
@@ -280,8 +278,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) === 10) {
                 const bbqAllow = await readContract({
@@ -297,8 +295,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const jdaoAllow = await readContract({
                     address: jdaoToken,
@@ -313,8 +311,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) >= 11 && Number(_enchantindex) <= 19) {
                 const bbqAllow = await readContract({
@@ -330,8 +328,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const silAllow = await readContract({
                     address: silToken,
@@ -346,8 +344,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) <= 1009 || (Number(_enchantindex) >= 2001 && Number(_enchantindex) <= 2009) || (Number(_enchantindex) >= 3001 && Number(_enchantindex) <= 3009) || (Number(_enchantindex) >= 4001 && Number(_enchantindex) <= 4009)) {
                 const pzaAllow = await readContract({
@@ -363,8 +361,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const cuAllow = await readContract({
                     address: cuToken,
@@ -379,8 +377,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030 || Number(_enchantindex) === 4010 || Number(_enchantindex) === 4020 || Number(_enchantindex) === 4030) {
                 const pzaAllow = await readContract({
@@ -396,8 +394,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const jdaoAllow = await readContract({
                     address: jdaoToken,
@@ -412,8 +410,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) <= 1019 || (Number(_enchantindex) >= 2011 && Number(_enchantindex) <= 2019) || (Number(_enchantindex) >= 3011 && Number(_enchantindex) <= 3019) || (Number(_enchantindex) >= 4011 && Number(_enchantindex) <= 4019)) {
                 const pzaAllow = await readContract({
@@ -429,8 +427,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const silAllow = await readContract({
                     address: silToken,
@@ -445,8 +443,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) <= 1029 || (Number(_enchantindex) >= 2021 && Number(_enchantindex) <= 2029) || (Number(_enchantindex) >= 3021 && Number(_enchantindex) <= 3029) || (Number(_enchantindex) >= 4021 && Number(_enchantindex) <= 4029)) {
                 const pzaAllow = await readContract({
@@ -462,8 +460,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const goldAllow = await readContract({
                     address: goldToken,
@@ -478,8 +476,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             } else if (Number(_enchantindex) <= 1039 || (Number(_enchantindex) >= 2031 && Number(_enchantindex) <= 2039) || (Number(_enchantindex) >= 3031 && Number(_enchantindex) <= 3039) || (Number(_enchantindex) >= 4031 && Number(_enchantindex) <= 4039)) {
                 const pzaAllow = await readContract({
@@ -495,8 +493,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx = await writeContract(config)
-                    await approvetx.wait()
+                    const { hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash0, })
                 }
                 const platAllow = await readContract({
                     address: platToken,
@@ -511,8 +509,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const approvetx2 = await writeContract(config2)
-                    await approvetx2.wait()
+                    const { hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash02, })
                 }
             }
             const nftAllow = await readContract({
@@ -528,8 +526,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [evolutionaryV2, _nftid],
                 })
-                const approvetxNFT = await writeContract(config3)
-                await approvetxNFT.wait()
+                const { hash721 } = await writeContract(config3)
+                await waitForTransaction({ hash721, })
             }
             const config4 = await prepareWriteContract({
                 address: evolutionaryV2,
@@ -537,9 +535,9 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const tx = await writeContract(config4)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config4)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -561,8 +559,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [evolutionary, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -577,8 +575,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [evolutionary, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const bbqAllow = await readContract({
                 address: bbqToken,
@@ -593,8 +591,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [evolutionary, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx3 = await writeContract(config3)
-                await approvetx3.wait()
+                const { hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash03, })
             }
             const nftAllow = await readContract({
                 address: hexajibjib,
@@ -609,8 +607,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [evolutionary, _nftid],
                 })
-                const approvetx4 = await writeContract(config4)
-                await approvetx4.wait()
+                const { hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash04, })
             }
             const config5 = await prepareWriteContract({
                 address: evolutionary,
@@ -618,9 +616,9 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const tx = await writeContract(config5)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -641,8 +639,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [fusion, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -657,8 +655,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [fusion, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const nftAllow = await readContract({
                 address: hexajibjib,
@@ -673,8 +671,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [fusion, _nftid],
                 })
-                const approvetx4 = await writeContract(config4)
-                await approvetx4.wait()
+                const { hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash04, })
             }
             let _nftId2 = nft.filter((item) => item.Id >= 100410100400 && item.Id <= 100420000400)
             const nftAllow2 = await readContract({
@@ -690,8 +688,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [fusion, _nftId2[0].Id],
                 })
-                const approvetx5 = await writeContract(config5)
-                await approvetx5.wait()
+                const { hash05 } = await writeContract(config5)
+                await waitForTransaction({ hash05, })
             }
             let _nftId3 = nft.filter((item) => item.Id >= 100420100400 && item.Id <= 100430000400)
             const nftAllow3 = await readContract({
@@ -707,8 +705,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [fusion, _nftId3[0].Id],
                 })
-                const approvetx6 = await writeContract(config6)
-                await approvetx6.wait()
+                const { hash06 } = await writeContract(config6)
+                await waitForTransaction({ hash06, })
             }
             let _nftId4 = nft.filter((item) => item.Id >= 100430100400 && item.Id <= 100440000400)
             const nftAllow4 = await readContract({
@@ -724,21 +722,19 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [fusion, _nftId4[0].Id],
                 })
-                const approvetx7 = await writeContract(config7)
-                await approvetx7.wait()
+                const { hash07 } = await writeContract(config7)
+                await waitForTransaction({ hash07, })
             }
             const config8 = await prepareWriteContract({
                 address: fusion,
                 abi: fusionABI,
                 functionName: 'enchant',
                 args: [_fusionindex, _nftid, _nftId2[0].Id, _nftId3[0].Id, _nftId4[0].Id, 0],
-                overrides: {
-                    gasLimit: 1000000,
-                },
+                gasLimit: 1000000,
             })
-            const tx = await writeContract(config8)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config8)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -759,8 +755,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [salonRouter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const salonAllow = await readContract({
                 address: salon,
@@ -775,8 +771,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [salonRouter, _salonid],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: salonRouter,
@@ -784,9 +780,9 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 functionName: 'change',
                 args: [_salonid],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -807,8 +803,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'approve',
                     args: [salonRouter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: salonRouter,
@@ -816,9 +812,9 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 functionName: 'unchange',
                 args: [_salontype],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { useAccount, useBalance, useContractReads } from 'wagmi'
-import { readContract, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 const { ethereum } = window
 
 const bstToken = "0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e"
@@ -111,8 +111,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [bstMachine, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: bstMachine,
@@ -120,9 +120,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTrash))],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -140,9 +140,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'unstake',
                 args: [ethers.utils.parseEther(String(inputStakedTrash))],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             refetch()
         } catch (e) {
             setisError(true)
@@ -167,8 +167,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [bstMachine, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: bstMachine,
@@ -176,9 +176,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'craft',
                 args: [_index],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -195,9 +195,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 abi: stakerMachineABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             refetch()
         } catch (e) {
             setisError(true)
@@ -222,8 +222,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [salmMachine, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: salmMachine,
@@ -231,9 +231,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputCMM))],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -251,9 +251,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'unstake',
                 args: [ethers.utils.parseEther(String(inputStakedCMM))],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             refetch()
         } catch (e) {
             setisError(true)
@@ -278,8 +278,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [salmMachine, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: salmMachine,
@@ -287,9 +287,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'craft',
                 args: [_index],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -306,9 +306,9 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 abi: stakerMachineABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             refetch()
         } catch (e) {
             setisError(true)
@@ -362,7 +362,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[0])).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[0].result)).toFixed(3)}</div>
                     </div>
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -386,7 +386,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[5])).toFixed(3)}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[5].result)).toFixed(3)}</div>
                     </div>
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -410,7 +410,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : data_Token[4] + ' Wei'}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : data_Token[4].result + ' Wei'}</div>
                     </div>
 
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
@@ -434,7 +434,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : data_Token[9] + ' Wei'}</div>
+                        <div style={{marginLeft: "5px"}}>{address === undefined || isLoading_Token ? "..." : data_Token[9].result + ' Wei'}</div>
                     </div>
                 </div>
 
@@ -445,12 +445,12 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <div>Total Staking Power:</div>
-                            <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2])).toFixed(0)}</div>
+                            <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2].result)).toFixed(0)}</div>
                         </div>
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$TRASH STAKED</div>
-                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[2])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[2].result)).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -462,7 +462,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 <div
                                     style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                     className="bold"
-                                    onClick={() => setInputStakeTrash(ethers.utils.formatEther(data_Token[2]))}
+                                    onClick={() => setInputStakeTrash(ethers.utils.formatEther(data_Token[2].result))}
                                 >
                                     Max
                                 </div>
@@ -472,7 +472,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$TRASH BALANCE</div>
-                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[1])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[1].result)).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -484,7 +484,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 <div
                                     style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                     className="bold"
-                                    onClick={() => setInputTrash(ethers.utils.formatEther(data_Token[1]))}
+                                    onClick={() => setInputTrash(ethers.utils.formatEther(data_Token[1].result))}
                                 >
                                     Max
                                 </div>
@@ -498,7 +498,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
-                                <div style={{margin: "0 5px"}}>{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2])).toFixed(0) + ' Wei'}</div>
+                                <div style={{margin: "0 5px"}}>{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[2].result)).toFixed(0) + ' Wei'}</div>
                             </div>
                         </div>
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
@@ -508,7 +508,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             {address !== undefined && !isLoading_Token &&
                                 <>
-                                    {Number(data_Token[3].machineRun) === 0 &&
+                                    {Number(data_Token[3].result[1]) === 0 &&
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
@@ -517,10 +517,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                             </div>
                                         </>
                                     }
-                                    {Number(data_Token[3].machineRun) !== 0 && 
+                                    {Number(data_Token[3].result[1]) !== 0 && 
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div>{Date.now() - (data_Token[3].laststamp * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[3].laststamp) + 3600) * 1000).toLocaleString('es-CL'))}</div>
+                                            <div>{Date.now() - (data_Token[3].result[2] * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[3].result[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
                                         </>
                                     }
                                 </>
@@ -529,17 +529,17 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                             {address !== undefined && !isLoading_Token &&
                                 <>
-                                    {Number(data_Token[3].machineRun) === 0 && 
+                                    {Number(data_Token[3].result[1]) === 0 && 
                                         <>
-                                            {Number(data_Token[2]) > 0 && Number(ethers.utils.formatEther(data_Token[0])) > 10 ?
+                                            {Number(data_Token[2].result) > 0 && Number(ethers.utils.formatEther(data_Token[0].result)) > 10 ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromBST(1)}>Craft TIERRA</div> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TIERRA</div>
                                             }
                                         </>
                                     }
-                                    {Number(data_Token[3].machineRun) !== 0 && 
+                                    {Number(data_Token[3].result[1]) !== 0 && 
                                         <>
-                                            {Date.now() - (data_Token[3].laststamp * 1000) > (3600 * 1000) ?
+                                            {Date.now() - (data_Token[3].result[2] * 1000) > (3600 * 1000) ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromBST}>Obtain TIERRA</div> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain TIERRA</div>
                                             }
@@ -555,12 +555,12 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                             <div>Total Staking Power:</div>
-                            <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0)}</div>
+                            <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7].result)).toFixed(0)}</div>
                         </div>
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$CMM STAKED</div>
-                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[7])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[7].result)).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -572,7 +572,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 <div
                                     style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                     className="bold"
-                                    onClick={() => setInputStakeCMM(ethers.utils.formatEther(data_Token[7]))}
+                                    onClick={() => setInputStakeCMM(ethers.utils.formatEther(data_Token[7].result))}
                                 >
                                     Max
                                 </div>
@@ -582,7 +582,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #dddade", boxShadow: "inset -2px -2px 0px 0.25px #00000040", padding: "15px"}}>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px", textAlign: "left", fontSize: "14px"}}>
                                 <div>$CMM BALANCE</div>
-                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[6])).toFixed(3)}</div>
+                                <div className="bold">{address === undefined || isLoading_Token ? "..." : Number(ethers.utils.formatEther(data_Token[6].result)).toFixed(3)}</div>
                             </div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                                 <input
@@ -594,7 +594,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 <div
                                     style={{padding: "10px 10px", border: "1px solid #dddade", cursor: "pointer"}}
                                     className="bold"
-                                    onClick={() => setInputCMM(ethers.utils.formatEther(data_Token[6]))}
+                                    onClick={() => setInputCMM(ethers.utils.formatEther(data_Token[6].result))}
                                 >
                                     Max
                                 </div>
@@ -608,7 +608,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq" height="18" alt="$AGUA"/>
-                                <div style={{margin: "0 5px"}}>{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7])).toFixed(0) + ' Wei'}</div>
+                                <div style={{margin: "0 5px"}}>{address === undefined || isLoading_Token ? "..." : Number(1 * ethers.utils.formatEther(data_Token[7].result)).toFixed(0) + ' Wei'}</div>
                             </div>
                         </div>
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
@@ -618,7 +618,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             {address !== undefined && !isLoading_Token &&
                                 <>
-                                    {Number(data_Token[8].machineRun) === 0 &&
+                                    {Number(data_Token[8].result[1]) === 0 &&
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
@@ -627,10 +627,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                             </div>
                                         </>
                                     }
-                                    {Number(data_Token[8].machineRun) !== 0 && 
+                                    {Number(data_Token[8].result[1]) !== 0 && 
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div>{Date.now() - (data_Token[8].laststamp * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[8].laststamp) + 3600) * 1000).toLocaleString('es-CL'))}</div>
+                                            <div>{Date.now() - (data_Token[8].result[2] * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[8].result[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
                                         </>
                                     }
                                 </>
@@ -639,17 +639,17 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                         <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                             {address !== undefined && !isLoading_Token &&
                                 <>
-                                    {Number(data_Token[8].machineRun) === 0 && 
+                                    {Number(data_Token[8].result[1]) === 0 && 
                                         <>
-                                            {Number(data_Token[7]) > 0 && Number(ethers.utils.formatEther(data_Token[5])) > 10 ?
+                                            {Number(data_Token[7].result) > 0 && Number(ethers.utils.formatEther(data_Token[5].result)) > 10 ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromSALM(1)}>Craft AGUA</div> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft AGUA</div>
                                             }
                                         </>
                                     }
-                                    {Number(data_Token[8].machineRun) !== 0 && 
+                                    {Number(data_Token[8].result[1]) !== 0 && 
                                         <>
-                                            {Date.now() - (data_Token[8].laststamp * 1000) > (3600 * 1000) ?
+                                            {Date.now() - (data_Token[8].result[2] * 1000) > (3600 * 1000) ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromSALM}>Obtain AGUA</div> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain AGUA</div>
                                             }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
@@ -145,16 +145,16 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 ],
             }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0},  ]
             
-            const jaspBal = data[0]
-            const reward = data[1].win - data[2]
-            const _isKYC = data[3]
-            const _frens = Number(data[4])
-            const _isJoin = Number(data[5]) !== 0 ? true : false
-            const _gmStreak = Number(data[6])
+            const jaspBal = data[0].result
+            const reward = data[1].result[1] - data[2].result
+            const _isKYC = data[3].result
+            const _frens = Number(data[4].result)
+            const _isJoin = Number(data[5].result) !== 0 ? true : false
+            const _gmStreak = Number(data[6].result)
 
             const _canClaimSIL = ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : false
-            const _canClaimBBQ = Date.now() > (data[7] * 1000) + (3600 * 24 * 1000) ? true : false
-            const _nextClaimBBQ = new Date((data[7] * 1000) + (3600 * 24 * 1000))
+            const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
+            const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
 
             const data2_0 = await readContract({
                 address: questAmbass,
@@ -176,28 +176,26 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 ))
             })
+            const ambassArr = []
+            for (let i = 0; i <= Number(data2_00.length - 1); i++) {
+                ambassArr.push(data2_00[i].result[0])
+            }
             const data2_001 = await readContracts({
-                contracts: data2_00.map(item => (
+                contracts: ambassArr.map(item => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'yourName',
-                        args: [item.fren]
+                        args: [item]
                     }
                 ))
             })
-            const data2_002 = await readContracts({
-                contracts: data2_00.map(item => (
-                    {
-                        address: cmdaoName,
-                        abi: cmdaoNameABI,
-                        functionName: 'yourName',
-                        args: [item.ambassador]
-                    }
-                ))
-            })
+            const ambass10Arr = []
+            for (let i = 0; i <= Number(data2_001.length - 1); i++) {
+                ambass10Arr.push(data2_001[i].result)
+            }
             const data2_0011 = await readContracts({
-                contracts: data2_001.map(item => (
+                contracts: ambass10Arr.map(item => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
@@ -206,8 +204,31 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 ))
             })
+            const ambass100Arr = []
+            for (let i = 0; i <= Number(data2_0011.length - 1); i++) {
+                ambass100Arr.push(data2_0011[i].result)
+            }
+
+            const ambass2Arr = []
+            for (let i = 0; i <= Number(data2_00.length - 1); i++) {
+                ambass2Arr.push(data2_00[i].result[1])
+            }
+            const data2_002 = await readContracts({
+                contracts: ambass2Arr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item]
+                    }
+                ))
+            })
+            const ambass20Arr = []
+            for (let i = 0; i <= Number(data2_002.length - 1); i++) {
+                ambass20Arr.push(data2_002[i].result)
+            }
             const data2_0022 = await readContracts({
-                contracts: data2_002.map(item => (
+                contracts: ambass20Arr.map(item => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
@@ -216,11 +237,16 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 ))
             })
+            const ambass200Arr = []
+            for (let i = 0; i <= Number(data2_0022.length - 1); i++) {
+                ambass200Arr.push(data2_0022[i].result)
+            }
+
             const ranker = []
             const mover = []
             for (let i = 0; i <= data2_00.length - 1; i++) {
-                ranker.push(data2_00[i].fren)
-                mover.push(data2_00[i].ambassador)
+                ranker.push(ambassArr[i])
+                mover.push(ambass2Arr[i])
             }
 
             const data2_01 = await readContracts({
@@ -233,6 +259,10 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            const jdaoArr = []
+            for (let i = 0; i <= Number(data2_01.length - 1); i++) {
+                jdaoArr.push(data2_01[i].result[0])
+            }
             const data2_02 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -243,6 +273,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            const jdao2Arr = []
+            for (let i = 0; i <= Number(data2_02.length - 1); i++) {
+                jdao2Arr.push(data2_02[i].result[0])
+            }
+
             const data2_1 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -253,6 +288,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            const questArr = []
+            for (let i = 0; i <= Number(data2_1.length - 1); i++) {
+                questArr.push(data2_1[i].result)
+            }
+
             const data2_2 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -263,6 +303,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            const quest2Arr = []
+            for (let i = 0; i <= Number(data2_2.length - 1); i++) {
+                quest2Arr.push(data2_2[i].result)
+            }
+
             const data2_3 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -273,9 +318,14 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            const quest3Arr = []
+            for (let i = 0; i <= Number(data2_3.length - 1); i++) {
+                quest3Arr.push(data2_3[i].result)
+            }
+
             const enderFilter = await enderSC.filters.Participants(null, null, null)
             const enderEvent = await enderSC.queryFilter(enderFilter, 200737, 'latest')
-            const enderMap = await Promise.all(enderEvent.map(async (obj, index) => {return {from: String(obj.args.participant), value: 1}}))
+            const enderMap = await Promise.all(enderEvent.map(async (obj) => {return {from: String(obj.args.participant), value: 1}}))
             const enderAllMerged = spend1Map.concat(enderMap).reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
                    prev[curr.from.toUpperCase()].value += curr.value
@@ -292,7 +342,13 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 }
             }
-            const data2 = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], cmxp: ((data2_1[i] * 100) + (data2_2[i] * 500) + (data2_3[i] * 5) + (enderRemoveDup[i].value * 5) + (Number(ethers.utils.formatEther(data2_01[i].amount)).toFixed(0) * 500) + (Number(ethers.utils.formatEther(data2_02[i].amount)).toFixed(0) * 1000))}})
+            const data2 = ranker.map((item, i) => {
+                return {
+                    addr: item,
+                    name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
+                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (Number(ethers.utils.formatEther(jdaoArr[i])).toFixed(0) * 500) + (Number(ethers.utils.formatEther(jdao2Arr[i])).toFixed(0) * 1000))
+                }
+            })
 
             const data3_1 = await readContracts({
                 contracts: ranker.map((item) => (
@@ -304,6 +360,10 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
+            const powCuArr = []
+            for (let i = 0; i <= Number(data3_1.length - 1); i++) {
+                powCuArr.push(data3_1[i].result[3])
+            }
             const data3_2 = await readContracts({
                 contracts: ranker.map((item) => (
                     {
@@ -314,14 +374,23 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 )),
             })
-            const data3 = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], cmpow: Number(data3_1[i].allPow) + Number(data3_2[i].allPow)}})
+            const powJaspArr = []
+            for (let i = 0; i <= Number(data3_2.length - 1); i++) {
+                powJaspArr.push(data3_2[i].result[7])
+            }
+            const data3 = ranker.map((item, i) => {
+                return {
+                    addr: item,
+                    name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
+                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i])
+                }
+            })
 
             const spendRemoveDup = []
             for (let i = 0; i <= ranker.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spendAllMerged).length -1; i2++) {
                     if (ranker[i].toUpperCase() === Object.values(spendAllMerged)[i2].from.toUpperCase()) {
-                        Object.values(spendAllMerged)[i2].name = data2_0011[i] === null ? Object.values(spendAllMerged)[i2].from.slice(0, 4) + "..." + Object.values(spendAllMerged)[i2].from.slice(-4) : data2_0011[i]
-                        console.log(Object.values(spendAllMerged)[i2])
+                        Object.values(spendAllMerged)[i2].name = ambass100Arr[i] !== undefined ? ambass100Arr[i] : Object.values(spendAllMerged)[i2].from.slice(0, 4) + "..." + Object.values(spendAllMerged)[i2].from.slice(-4)
                         spendRemoveDup.push(Object.values(spendAllMerged)[i2])
                     }
                 }
@@ -331,7 +400,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= spendRemoveDup.length - 1; i++) {
                 for (let i2 = 0; i2 <= ranker.length -1; i2++) {
                     if (spendRemoveDup[i].from.toUpperCase() === ranker[i2].toUpperCase()) {
-                        moverVal.push({addr: mover[i2], name: data2_0022[i2] === null ? mover[i2].slice(0, 4) + "..." + mover[i2].slice(-4) : data2_0022[i2], value: spendRemoveDup[i].value})
+                        moverVal.push({
+                            addr: mover[i2],
+                            name: ambass200Arr[i2] !== undefined ? ambass200Arr[i2] : mover[i2].slice(0, 4) + "..." + mover[i2].slice(-4), 
+                            value: spendRemoveDup[i].value
+                        })
                     }
                 }
             }
@@ -392,17 +465,17 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     functionName: 'approve',
                     args: [quest01, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: quest01,
                 abi: quest01ABI,
                 functionName: 'claim',
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -416,9 +489,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 functionName: 'regist',
                 args: [ambass],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -432,9 +505,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 functionName: 'claim',
                 args: [0, 0, address],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -665,7 +738,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 <div className="bold">QUEST DETAIL</div>
                                 <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
                                 <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
-                                <div style={{marginTop: "20px", fontSize: "16px"}} className="bold">Your Claimable Rewards : {1500 * rewardSIL} $SIL</div>
+                                <div style={{marginTop: "20px", fontSize: "16px"}} className="bold">Your Claimable Rewards : {1500 * Number(rewardSIL)} $SIL</div>
                             </div>
                             {canClaimSIL ?
                                 <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -67,7 +67,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             let yournftstake = []
 
             for (let i = 0; i <= data.length - 1 ; i++) {
-                if (data[i] !== null && data[i].toUpperCase() === fieldWood.toUpperCase()) {
+                if (data[i].status === 'success' && data[i].result.toUpperCase() === fieldWood.toUpperCase()) {
                     yournftstake.push({Id: String(ethers.BigNumber.from(String('100000' + i + '0000000000000')).add(ethers.BigNumber.from(String(nftIndex))))})
                 }
             }
@@ -96,9 +96,9 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     ],
                 })
 
-                const nftipfs = data2[0]
-                const nftData = data2[1]
-                const reward = data2[2]
+                const nftipfs = data2[0].result
+                const nftData = data2[1].result
+                const reward = data2[2].result
 
                 const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
@@ -131,15 +131,15 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
                 nfts.push({
                     Id: String(yournftstake[i].Id),
-                    Name: nftData.name,
+                    Name: nftData[0],
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Class: theClass,
                     Level: level,
-                    Exp: ethers.utils.formatEther(String(nftData.exp)),
+                    Exp: ethers.utils.formatEther(String(nftData[1])),
                     ExpMax: expMax,
                     Hashrate: hashRate,
                     RewardWood: ethers.utils.formatEther(String(reward)),
-                    RewardCmj: ethers.utils.formatEther(String(reward.div(ethers.BigNumber.from(1e12)))),
+                    RewardCmj: ethers.utils.formatEther(String(ethers.BigNumber.from(reward).div(ethers.BigNumber.from(1e12)))),
                     isStaked: true
                 })
             }
@@ -147,7 +147,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             let yournftwallet = []
 
             for (let i = 0; i <= data.length - 1 ; i++) {
-                if (data[i] !== null && data[i].toUpperCase() === address.toUpperCase()) {
+                if (data[i].status === 'success' && data[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(ethers.BigNumber.from(String('100000' + i + '0000000000000')).add(ethers.BigNumber.from(String(nftIndex))))})
                 }
             }
@@ -170,8 +170,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     ],
                 })
 
-                const nftipfs = data3[0]
-                const nftData = data3[1]
+                const nftipfs = data3[0].result
+                const nftData = data3[1].result
 
                 const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
                 const nft = await response.json()
@@ -204,11 +204,11 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
                 nfts.push({
                     Id: String(yournftwallet[i].Id),
-                    Name: nftData.name,
+                    Name: nftData[0],
                     Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
                     Class: theClass,
                     Level: level,
-                    Exp: ethers.utils.formatEther(String(nftData.exp)),
+                    Exp: ethers.utils.formatEther(String(nftData[1])),
                     ExpMax: expMax,
                     Hashrate: hashRate,
                     RewardWood: "0.000",
@@ -245,9 +245,9 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'mintServant',
                 args: [1, inputName],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -268,8 +268,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     functionName: 'approve',
                     args: [fieldWood, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -279,9 +279,9 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -295,9 +295,9 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'unstake',
                 args: [_nftid, true],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
             setisLoading(false)
             if (_uplevel) {
                 uplevelNft(_nftid, _toLv)
@@ -321,8 +321,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     functionName: 'approve',
                     args: [uplevelCMDS, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -332,9 +332,9 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'uplevelServant',
                 args: [_toLv, _nftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -381,15 +381,15 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                                         {item.isStaked ?
                                             <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
                                                 {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">LEVEL UP</div>
+                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
+                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
                                                 }
                                             </div> :
                                             <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
                                                 <div style={{lineHeight: 2, height: "fit-content", textAlign: "center"}} className="pixel button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
                                                 {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">LEVEL UP</div>
+                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
+                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
                                                 }
                                             </div>
                                         }

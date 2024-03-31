@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -50,9 +50,9 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -82,11 +82,10 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data0[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -113,7 +112,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             let _allDaily = 0
             let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i]
+                const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs)
@@ -134,7 +133,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 }
 
                 _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(86400000000)))))
-                _allReward += Number(ethers.utils.formatEther(String(data11[i])))
+                _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -144,7 +143,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     Attribute: nft.attributes,
                     RewardPerSec: Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(86400000000))))),
                     isStaked: true,
-                    Reward: String(data11[i]),
+                    Reward: String(data11[i].result),
                 })
             }
 
@@ -165,11 +164,10 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -183,7 +181,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs)
@@ -216,8 +214,6 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
             }
 
             if (nfts.length === 0) { nfts.push(null) }
-
-            console.log(nfts)
 
             const dataToken = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -368,51 +364,51 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 ],
             }) : [0, 0, 0, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, ]
 
-            const vaBal = dataToken[0]
-            const tmBal = dataToken[1]
-            const tmStakeBal = dataToken[2].tokenAmount
-            const gearTokenPend = dataToken[3] !== null ? dataToken[3] : 0
+            const vaBal = dataToken[0].result
+            const tmBal = dataToken[1].result
+            const tmStakeBal = dataToken[2].result[0]
+            const gearTokenPend = dataToken[3].status === 'success' ? dataToken[3].result : 0
 
             let PFPlv = 0
-            if (dataToken[23]) {
+            if (dataToken[23].result) {
                 PFPlv = 20
-            } else if (dataToken[22]) {
+            } else if (dataToken[22].result) {
                 PFPlv = 19
-            } else if (dataToken[21]) {
+            } else if (dataToken[21].result) {
                 PFPlv = 18
-            } else if (dataToken[20]) {
+            } else if (dataToken[20].result) {
                 PFPlv = 17
-            } else if (dataToken[19]) {
+            } else if (dataToken[19].result) {
                 PFPlv = 16
-            } else if (dataToken[18]) {
+            } else if (dataToken[18].result) {
                 PFPlv = 15
-            } else if (dataToken[17]) {
+            } else if (dataToken[17].result) {
                 PFPlv = 14
-            } else if (dataToken[16]) {
+            } else if (dataToken[16].result) {
                 PFPlv = 13
-            } else if (dataToken[15]) {
+            } else if (dataToken[15].result) {
                 PFPlv = 12
-            } else if (dataToken[14]) {
+            } else if (dataToken[14].result) {
                 PFPlv = 11
-            } else if (dataToken[13]) {
+            } else if (dataToken[13].result) {
                 PFPlv = 10
-            } else if (dataToken[12]) {
+            } else if (dataToken[12].result) {
                 PFPlv = 9
-            } else if (dataToken[11]) {
+            } else if (dataToken[11].result) {
                 PFPlv = 8
-            } else if (dataToken[10]) {
+            } else if (dataToken[10].result) {
                 PFPlv = 7
-            } else if (dataToken[9]) {
+            } else if (dataToken[9].result) {
                 PFPlv = 6
-            } else if (dataToken[8]) {
+            } else if (dataToken[8].result) {
                 PFPlv = 5
-            } else if (dataToken[7]) {
+            } else if (dataToken[7].result) {
                 PFPlv = 4
-            } else if (dataToken[6]) {
+            } else if (dataToken[6].result) {
                 PFPlv = 3
-            } else if (dataToken[5]) {
+            } else if (dataToken[5].result) {
                 PFPlv = 2
-            } else if (dataToken[4]) {
+            } else if (dataToken[4].result) {
                 PFPlv = 1
             }
 
@@ -503,8 +499,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'approve',
                     args: [gear, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: gear,
@@ -512,9 +508,9 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'stake',
                 args: [_nftid, 1],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -531,9 +527,9 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'unstake',
                 args: [_nftid, 1, _unstake],
             })
-            const tx2 = await writeContract(config2)
-            await tx2.wait()
-            setTxupdate(tx2)
+            const { hash12 } = await writeContract(config2)
+            await waitForTransaction({ hash12, })
+            setTxupdate(hash12)
         } catch {}
         setisLoading(false)
     }
@@ -548,8 +544,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'unstake',
                     args: [0, 0, 0],
                 })
-                const tx0 = await writeContract(config0)
-                await tx0.wait()
+                const { hash10 } = await writeContract(config0)
+                await waitForTransaction({ hash10, })
             }
             const allowed = await readContract({
                 address: taomeme,
@@ -564,21 +560,19 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'approve',
                     args: [gear, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTM)), 0],
-                overrides: {
-                    gasLimit: 1000000,
-                },
+                gasLimit: 1000000,
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -594,9 +588,9 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'unstake',
                 args: [0, 0, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -620,8 +614,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'approve',
                     args: [taoPFP, ethers.constants.MaxUint256],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: taoPFP,
@@ -629,9 +623,9 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'claimDrop',
                 args: [_lv],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

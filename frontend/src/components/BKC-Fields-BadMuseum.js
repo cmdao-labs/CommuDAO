@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -23,7 +23,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             const stakeFilter = await bkgaSC.filters.Transfer(address, badField, null)
             const stakeEvent = await bkgaSC.queryFilter(stakeFilter, 15619908, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
@@ -38,11 +38,10 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data0[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data1 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -67,7 +66,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
             }) : [Array(yournftstake.length).fill(0)]
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i]
+                const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -82,13 +81,13 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
                     isStaked: true,
-                    Reward: String(data11[i])
+                    Reward: data11[i].result
                 })
             }
 
             const walletFilter = await bkgaSC.filters.Transfer(null, address, null)
             const walletEvent = await bkgaSC.queryFilter(walletFilter, 12767368, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -103,11 +102,10 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
@@ -121,7 +119,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
             }) : [Array(yournftwallet.length).fill('')]
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i]
+                const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
@@ -176,8 +174,8 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                     functionName: 'approve',
                     args: [badField, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }        
             const config2 = await prepareWriteContract({
                 address: badField,
@@ -185,9 +183,9 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -201,9 +199,9 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -260,7 +258,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                                         Pending Rewards<br></br>
                                         <div style={{display: "flex", alignItems: "center"}}>
                                             <img src="https://nftstorage.link/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
-                                            {ethers.utils.formatEther(String(item.Reward))}
+                                            {ethers.utils.formatEther(item.Reward)}
                                         </div>
                                     </div>
                                     {item.Reward > 0 ?

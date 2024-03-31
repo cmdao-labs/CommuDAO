@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -49,9 +49,9 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -64,7 +64,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         const thefetch = async () => {
             const stakeFilter = await orynftSC.filters.Transfer(address, fieldMice, null)
             const stakeEvent = await orynftSC.queryFilter(stakeFilter, 515000, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
@@ -81,11 +81,10 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             let yournftstake = []
 
             for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined ; i++) {
-                if (data[i].tokenOwnerOf.toUpperCase() === address.toUpperCase()) {
+                if (data[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            console.log(yournftstake)
 
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
@@ -118,21 +117,21 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     bonus = 400
                 }
                 _allDaily = Number(ethers.utils.formatEther(String(bonus * 10**14)))
-                _allReward += Number(ethers.utils.formatEther(String(data2[i])))
+                _allReward += Number(ethers.utils.formatEther(String(data2[i].result)))
 
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
                     Image: "https://bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu.ipfs.nftstorage.link/" + nftid + ".png",
                     Bonus: ethers.utils.formatEther(String(bonus * 10**14)),
-                    Reward: ethers.utils.formatEther(String(data2[i])),
+                    Reward: ethers.utils.formatEther(String(data2[i].result)),
                     isStaked: true
                 })
             }
 
             const walletFilter = await orynftSC.filters.Transfer(null, address, null)
             const walletEvent = await orynftSC.queryFilter(walletFilter, 515000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
@@ -148,11 +147,10 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             let yournftwallet = []
 
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data3[i].toUpperCase() === address.toUpperCase()) {
+                if (data3[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            console.log(yournftwallet)
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftid = Number(yournftwallet[i].Id)
@@ -227,8 +225,8 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     functionName: 'approve',
                     args: [fieldMice, _nftid],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -238,9 +236,9 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -254,9 +252,9 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }

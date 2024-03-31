@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 
-import { fetchBalance, readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 
 import { ethers } from 'ethers'
@@ -256,21 +256,19 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     functionName: 'approve',
                     args: [jcExchange, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: jcExchange,
                 abi: exchangeABI,
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(cmjAdd)],
-                overrides: {
-                    value: ethers.utils.parseEther(jbcAdd),
-                },
+                value: ethers.utils.parseEther(jbcAdd),
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -293,21 +291,19 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     functionName: 'approve',
                     args: [juExchange, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: juExchange,
                 abi: exchangeJulpABI,
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(jusdtJuAdd)],
-                overrides: {
-                    value: ethers.utils.parseEther(jbcJuAdd),
-                },
+                value: ethers.utils.parseEther(jbcJuAdd),
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -334,9 +330,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(lpSell)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -359,9 +355,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(julpSell)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -518,34 +514,34 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         getAsync().then(result => {
             setJbcBalance(Number(Math.floor((result[0].formatted) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
 
-            const _cmjbalance = ethers.utils.formatEther(result[1])
+            const _cmjbalance = ethers.utils.formatEther(result[1].result)
             setCmjBalanceFull(Number(_cmjbalance))
             setCmjBalance(Number(Math.floor(_cmjbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
             
-            const _jusdtbalance = ethers.utils.formatEther(result[2])
+            const _jusdtbalance = ethers.utils.formatEther(result[2].result)
             setJusdtBalance(Number(Math.floor(_jusdtbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
 
             const _jbcreserve = ethers.utils.formatEther(result[3].value)
             setJbcReserv(_jbcreserve)
-            const _cmjreserve = ethers.utils.formatEther(result[4])
+            const _cmjreserve = ethers.utils.formatEther(result[4].result)
             setCmjReserv(_cmjreserve)
 
             const _jbcjureserve = ethers.utils.formatEther(result[5].value)
             setJbcJuReserv(_jbcjureserve)
-            const _jusdtjureserve = ethers.utils.formatEther(result[6])
+            const _jusdtjureserve = ethers.utils.formatEther(result[6].result)
             setJusdtJuReserv(_jusdtjureserve)
 
-            const _lpbalance = ethers.utils.formatEther(result[7])
+            const _lpbalance = ethers.utils.formatEther(result[7].result)
             setLpBalance(Math.floor(_lpbalance * 1000) / 1000)
-            const _lptotalsupply = ethers.utils.formatEther(result[8])
+            const _lptotalsupply = ethers.utils.formatEther(result[8].result)
             setLpShare(Number((_lpbalance / _lptotalsupply) * 100).toFixed(4))
 
             setJbcPooled((Number(_jbcreserve) * Number(_lpbalance)) / Number(_lptotalsupply))
             setCmjPooled((Number(_cmjreserve) * Number(_lpbalance)) / Number(_lptotalsupply))
 
-            const _julpbalance = ethers.utils.formatEther(result[9])
+            const _julpbalance = ethers.utils.formatEther(result[9].result)
             setJulpBalance(Math.floor(_julpbalance * 1000) / 1000)
-            const _julptotalsupply = ethers.utils.formatEther(result[10])
+            const _julptotalsupply = ethers.utils.formatEther(result[10].result)
             setJulpShare(Number((_julpbalance / _julptotalsupply) * 100).toFixed(4))
 
             setJbcjuPooled((Number(_jbcjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))

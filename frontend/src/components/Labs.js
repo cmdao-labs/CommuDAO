@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 const { ethereum } = window
 
@@ -362,42 +362,42 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 ],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, 0, {isCraft: false, laststamp: 0}, 0, {isCraft: false, laststamp: 0}, ]
             
-            const cmjBal = data[0]
-            const woodBal = data[1]
-            const bbqBal = data[2]
-            const tunaBal = data[3]
-            const ctunaBal = data[4]
-            const miceBal = data[5]
-            const sx31Bal = data[6]
-            const stOPTBal = data[7]
-            const pzaBal = data[8]
-            const cuBal = data[9]
-            const silBal = data[10]
-            const goldBal = data[11]
-            const isDionysus = data[12]
-            const labLog = data[13]
-            const labLog2 = data[14]
-            const labLogBBQ = data[15]
-            const labLogPZA = data[16]
-            const labLogSIL = data[17]
-            const labLogGOLD = data[18]
-            const mineGold = data[19]
-            const labLogGOLD2 = data[20]
-            const mtBal = data[21]
-            const platBal = data[22]
-            const labLogPLAT = data[23]
-            const vaBagBal = data[24]
-            const swarBal = data[25]
-            const labLogSWAR = data[26]
-            const angbBal = data[27]
-            const starBal = data[28]
-            const labLogSTAR = data[29]
-            const tmBal = data[30]
-            const gearBal = data[31]
-            const iiBal = data[32]
-            const labLogII = data[33]
-            const eeBal = data[34]
-            const labLogPlat2 = data[35]
+            const cmjBal = data[0].result
+            const woodBal = data[1].result
+            const bbqBal = data[2].result
+            const tunaBal = data[3].result
+            const ctunaBal = data[4].result
+            const miceBal = data[5].result
+            const sx31Bal = data[6].result
+            const stOPTBal = data[7].result
+            const pzaBal = data[8].result
+            const cuBal = data[9].result
+            const silBal = data[10].result
+            const goldBal = data[11].result
+            const isDionysus = data[12].result
+            const labLog = data[13].result
+            const labLog2 = data[14].result
+            const labLogBBQ = data[15].result
+            const labLogPZA = data[16].result
+            const labLogSIL = data[17].result
+            const labLogGOLD = data[18].result
+            const mineGold = data[19].result
+            const labLogGOLD2 = data[20].result
+            const mtBal = data[21].result
+            const platBal = data[22].result
+            const labLogPLAT = data[23].result
+            const vaBagBal = data[24].result
+            const swarBal = data[25].result
+            const labLogSWAR = data[26].result
+            const angbBal = data[27].result
+            const starBal = data[28].result
+            const labLogSTAR = data[29].result
+            const tmBal = data[30].result
+            const gearBal = data[31].result
+            const iiBal = data[32].result
+            const labLogII = data[33].result
+            const eeBal = data[34].result
+            const labLogPlat2 = data[35].result
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -475,104 +475,104 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setSilverBalance(ethers.utils.formatEther(result[12]))
             setGoldBalance(ethers.utils.formatEther(result[13]))
 
-            setIsCraft1(result[14].isCraft)
-            const nextHour = new Date((result[14].laststamp * 1000) + (3600 * 1000))
-            Date.now() - (result[14].laststamp * 1000) <= (3600 * 1000) ?
+            setIsCraft1(result[14][0])
+            const nextHour = new Date((Number(result[14][1]) * 1000) + (3600 * 1000))
+            Date.now() - (Number(result[14][1]) * 1000) <= (3600 * 1000) ?
                 setTimeToClaim1(nextHour.toLocaleString('es-CL')) :
                 setTimeToClaim1(0)
             setCanCraft1(result[15])
 
-            setIsCraft2(result[16].isCraft)
-            setCraft2machine(Number(result[16].machineIndex))
+            setIsCraft2(result[16][0])
+            setCraft2machine(Number(result[16][1]))
             let nextHour2 = 0
-            if (Number(result[16].machineIndex) === 1) {
-                nextHour2 = new Date((result[16].laststamp * 1000) + (3600 * 1 * 1000))
-                Date.now() - (result[16].laststamp * 1000) <= (3600 * 1 * 1000) ?
+            if (Number(result[16][1]) === 1) {
+                nextHour2 = new Date((Number(result[16][2]) * 1000) + (3600 * 1 * 1000))
+                Date.now() - (Number(result[16][2]) * 1000) <= (3600 * 1 * 1000) ?
                     setTimeToClaim2(nextHour2.toLocaleString('es-CL')) :
                     setTimeToClaim2(0)
-            } else if (Number(result[16].machineIndex) === 431826) {
-                nextHour2 = new Date((result[16].laststamp * 1000) + (3600 * 8 * 1000))
-                Date.now() - (result[16].laststamp * 1000) <= (3600 * 8 * 1000) ?
+            } else if (Number(result[16][1]) === 431826) {
+                nextHour2 = new Date((Number(result[16][2]) * 1000) + (3600 * 8 * 1000))
+                Date.now() - (Number(result[16][2]) * 1000) <= (3600 * 8 * 1000) ?
                     setTimeToClaim2_2(nextHour2.toLocaleString('es-CL')) :
                     setTimeToClaim2_2(0)
             }
             setCanCraft2(result[17])
             setCanCraft2_2(result[18])
 
-            setLevelCraftBBQ(Number(result[19].craftLevel))
-            setIsCraftBBQ(Number(result[19].machineRun) > 0)
-            const nextObtainBBQ = new Date((result[19].laststamp * 1000) + (300 * 1000))
-            Date.now() - (result[19].laststamp * 1000) <= (300 * 1000) ?
+            setLevelCraftBBQ(Number(result[19][0]))
+            setIsCraftBBQ(Number(result[19][1]) > 0)
+            const nextObtainBBQ = new Date((Number(result[19][2]) * 1000) + (300 * 1000))
+            Date.now() - (Number(result[19][2]) * 1000) <= (300 * 1000) ?
                 setTimeToClaimBBQ(nextObtainBBQ.toLocaleString('es-CL')) :
                 setTimeToClaimBBQ(0)
             setCanCraftBBQ(result[20])
-
+            
             setDataCraftBBQ_G(result[21])
-            const nextObtainBBQ_G = new Date((result[21].laststamp * 1000) + (60 * 1000))
-            Date.now() - (result[21].laststamp * 1000) <= (60 * 1000) ?
+            const nextObtainBBQ_G = result[21].status === 'success' ? new Date((Number(result[21].result[2]) * 1000) + (60 * 1000)) : 0
+            result[21].status === 'success' && Date.now() - (Number(result[21].result[2]) * 1000) <= (60 * 1000) ?
                 setTimeToClaimBBQ_G(nextObtainBBQ_G.toLocaleString('es-CL')) :
                 setTimeToClaimBBQ_G(0)
             setDataCraftBBQ_G_Next(result[22])
             setCanCraftBBQ_G(result[23])
 
-            setIsCraftPZA(Number(result[24].machineRun) > 0)
-            const nextHourPZA = new Date((result[24].laststamp * 1000) + (3600 * 24 * 1000))
-            Date.now() - (result[24].laststamp * 1000) <= (3600 * 24 * 1000) ?
+            setIsCraftPZA(Number(result[24][0]) > 0)
+            const nextHourPZA = new Date((Number(result[24][1]) * 1000) + (3600 * 24 * 1000))
+            Date.now() - (Number(result[24][1]) * 1000) <= (3600 * 24 * 1000) ?
                 setTimeToClaimPZA(nextHourPZA.toLocaleString('es-CL')) :
                 setTimeToClaimPZA(0)
             setCanCraftPZA(result[25])
             
-            setIsCraftSIL(Number(result[26].machineRun) > 0)
-            const nextHourSIL = new Date((result[26].laststamp * 1000) + (3600 * 2 * 1000))
-            Date.now() - (result[26].laststamp * 1000) <= (3600 * 2 * 1000) ?
+            setIsCraftSIL(Number(result[26][0]) > 0)
+            const nextHourSIL = new Date((Number(result[26][1]) * 1000) + (3600 * 2 * 1000))
+            Date.now() - (Number(result[26][1]) * 1000) <= (3600 * 2 * 1000) ?
                 setTimeToClaimSIL(nextHourSIL.toLocaleString('es-CL')) :
                 setTimeToClaimSIL(0)
             setCanCraftSIL(result[27])
 
-            setIsCraftGOLD(Number(result[28].machineRun) > 0)
-            const nextHourGOLD = new Date((result[28].laststamp * 1000) + (3600 * 4 * 1000))
-            Date.now() - (result[28].laststamp * 1000) <= (3600 * 4 * 1000) ?
+            setIsCraftGOLD(Number(result[28][0]) > 0)
+            const nextHourGOLD = new Date((Number(result[28][1]) * 1000) + (3600 * 4 * 1000))
+            Date.now() - (Number(result[28][1]) * 1000) <= (3600 * 4 * 1000) ?
                 setTimeToClaimGOLD(nextHourGOLD.toLocaleString('es-CL')) :
                 setTimeToClaimGOLD(0)
             setCanCraftGOLD(result[29])
 
-            setIsMineGold(Number(result[30].machineRun) > 0)
-            const nextMineGOLD = new Date((result[30].laststamp * 1000) + (60 * 15 * 1000))
-            Date.now() - (result[30].laststamp * 1000) <= (60 * 15 * 1000) ?
+            setIsMineGold(Number(result[30][0]) > 0)
+            const nextMineGOLD = new Date((Number(result[30][1]) * 1000) + (60 * 15 * 1000))
+            Date.now() - (Number(result[30][1]) * 1000) <= (60 * 15 * 1000) ?
                 setTimeToClaimMineGold(nextMineGOLD.toLocaleString('es-CL')) :
                 setTimeToClaimMineGold(0)
             setCanMineGold(result[31])
 
             setMtBalance(ethers.utils.formatEther(result[32]))
-            setIsCraftGOLD2(Number(result[33].machineRun) > 0)
-            const nextHourGOLD2 = new Date((result[33].laststamp * 1000) + (3600 * 1 * 1000))
-            Date.now() - (result[33].laststamp * 1000) <= (3600 * 1 * 1000) ?
+            setIsCraftGOLD2(Number(result[33][0]) > 0)
+            const nextHourGOLD2 = new Date((Number(result[33][1]) * 1000) + (3600 * 1 * 1000))
+            Date.now() - (Number(result[33][1]) * 1000) <= (3600 * 1 * 1000) ?
                 setTimeToClaimGOLD2(nextHourGOLD2.toLocaleString('es-CL')) :
                 setTimeToClaimGOLD2(0)
             setCanCraftGOLD2(result[34])
 
             setPlatBalance(ethers.utils.formatEther(result[35]))
-            setIsCraftPLAT(Number(result[36].machineRun) > 0)
-            const nextHourPLAT = new Date((result[36].laststamp * 1000) + (3600 * 8 * 1000))
-            Date.now() - (result[36].laststamp * 1000) <= (3600 * 8 * 1000) ?
+            setIsCraftPLAT(Number(result[36][0]) > 0)
+            const nextHourPLAT = new Date((Number(result[36][1]) * 1000) + (3600 * 8 * 1000))
+            Date.now() - (Number(result[36][1]) * 1000) <= (3600 * 8 * 1000) ?
                 setTimeToClaimPLAT(nextHourPLAT.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT(0)
             setCanCraftPLAT(result[37])
 
             setVabagBalance(ethers.utils.formatEther(result[38]))
             setSwarBalance(ethers.utils.formatEther(result[39]))
-            setIsCraftSWAR(Number(result[40].machineRun) > 0)
-            const nextHourSWAR = new Date((result[40].laststamp * 1000) + (3600 * 8 * 1000))
-            Date.now() - (result[40].laststamp * 1000) <= (3600 * 8 * 1000) ?
+            setIsCraftSWAR(Number(result[40][0]) > 0)
+            const nextHourSWAR = new Date((Number(result[40][1]) * 1000) + (3600 * 8 * 1000))
+            Date.now() - (Number(result[40][1]) * 1000) <= (3600 * 8 * 1000) ?
                 setTimeToClaimSWAR(nextHourSWAR.toLocaleString('es-CL')) :
                 setTimeToClaimSWAR(0)
             setCanCraftSWAR(result[41])
 
             setAngbBalance(ethers.utils.formatEther(result[42]))
             setStarBalance(ethers.utils.formatEther(result[43]))
-            setIsCraftSTAR(Number(result[44].machineRun) > 0)
-            const nextHourSTAR = new Date((result[44].laststamp * 1000) + (3600 * 72 * 1000))
-            Date.now() - (result[44].laststamp * 1000) <= (3600 * 72 * 1000) ?
+            setIsCraftSTAR(Number(result[44][0]) > 0)
+            const nextHourSTAR = new Date((Number(result[44][1]) * 1000) + (3600 * 72 * 1000))
+            Date.now() - (Number(result[44][1]) * 1000) <= (3600 * 72 * 1000) ?
                 setTimeToClaimSTAR(nextHourSTAR.toLocaleString('es-CL')) :
                 setTimeToClaimSTAR(0)
             setCanCraftSTAR(result[45])
@@ -580,17 +580,17 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setTmBalance(ethers.utils.formatEther(result[46]))
             setGearBalance(ethers.utils.formatEther(result[47]))
             setIiBalance(ethers.utils.formatEther(result[48]))
-            setIsCraftII(Number(result[49].machineRun) > 0)
-            const nextHourII = new Date((result[49].laststamp * 1000) + (60 * 30 * 1000))
-            Date.now() - (result[49].laststamp * 1000) <= (60 * 30 * 1000) ?
+            setIsCraftII(Number(result[49][0]) > 0)
+            const nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 30 * 1000))
+            Date.now() - (Number(result[49][1]) * 1000) <= (60 * 30 * 1000) ?
                 setTimeToClaimII(nextHourII.toLocaleString('es-CL')) :
                 setTimeToClaimII(0)
             setCanCraftII(result[50])
 
             setEeBalance(ethers.utils.formatEther(result[51]))
-            setIsCraftPLAT2(Number(result[52].machineRun) > 0)
-            const nextHourPLAT2 = new Date((result[52].laststamp * 1000) + (60 * 15 * 1000))
-            Date.now() - (result[52].laststamp * 1000) <= (60 * 15 * 1000) ?
+            setIsCraftPLAT2(Number(result[52][0]) > 0)
+            const nextHourPLAT2 = new Date((Number(result[52][1]) * 1000) + (60 * 15 * 1000))
+            Date.now() - (Number(result[52][1]) * 1000) <= (60 * 15 * 1000) ?
                 setTimeToClaimPLAT2(nextHourPLAT2.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT2(0)
             setCanCraftPLAT2(result[53])
@@ -614,8 +614,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [ctunaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         const cmjAllow = await readContract({
@@ -632,8 +632,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [ctunaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             } catch {}
         }
         try {
@@ -642,9 +642,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: ctunaLabABI,
                 functionName: 'craft',
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -657,9 +657,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: ctunaLabABI,
                 functionName: 'claim',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -680,8 +680,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [sx31Lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -696,8 +696,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [sx31Lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: sx31Lab,
@@ -705,9 +705,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -721,9 +721,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'obtain',
                 args: [_machine],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -744,21 +744,19 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: bbqLab,
                 abi: bbqLab01ABI,
                 functionName: 'craft',
                 args: [_machine],
-                overrides: {
-                    value: ethers.utils.parseEther('0.01'),
-                },
+                value: ethers.utils.parseEther('0.01'),
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -771,9 +769,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: bbqLab01ABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -802,8 +800,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: bbqLab,
@@ -811,9 +809,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'upgrade',
                 args: [_level]
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -834,8 +832,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [globalBbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -850,17 +848,17 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [globalBbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: globalBbqLab,
                 abi: bbqLab02ABI,
                 functionName: 'craft',
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -881,17 +879,17 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [globalBbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: globalBbqLab,
                 abi: bbqLab02ABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -913,8 +911,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [pzaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const stOPTAllow = await readContract({
                 address: stOPT,
@@ -929,8 +927,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [pzaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: pzaLab,
@@ -938,9 +936,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_index],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -953,9 +951,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -976,8 +974,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [silLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -992,8 +990,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [silLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: silLab,
@@ -1001,9 +999,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1016,9 +1014,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1039,8 +1037,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const sx31Allow = await readContract({
                 address: sx31Lab,
@@ -1055,8 +1053,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: goldLab,
@@ -1064,9 +1062,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1079,9 +1077,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1102,8 +1100,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const mtAllow = await readContract({
                 address: mtToken,
@@ -1118,8 +1116,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: goldLab2,
@@ -1127,9 +1125,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1142,9 +1140,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1165,21 +1163,19 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldMine, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const config2 = await prepareWriteContract({
                 address: goldMine,
                 abi: goldMineABI,
                 functionName: 'mine',
                 args: [_machine],
-                overrides: {
-                    value: ethers.utils.parseEther('1'),
-                },
+                value: ethers.utils.parseEther('1'),
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1192,9 +1188,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: goldMineABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1215,8 +1211,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const ctunaAllow = await readContract({
                 address: ctunaLab,
@@ -1231,8 +1227,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: platLab,
@@ -1240,9 +1236,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1254,9 +1250,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1277,8 +1273,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -1293,8 +1289,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: platLab2,
@@ -1302,9 +1298,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1316,9 +1312,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1339,8 +1335,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [swarLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -1355,8 +1351,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [swarLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: swarLab,
@@ -1364,9 +1360,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1379,9 +1375,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1420,8 +1416,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const currAllow = await readContract({
                 address: curr,
@@ -1436,8 +1432,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const config3 = await prepareWriteContract({
                 address: lab,
@@ -1445,9 +1441,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const tx = await writeContract(config3)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -1466,9 +1462,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: cmdao20lab01ABI,
                 functionName: 'obtain',
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -2105,8 +2101,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", fontSize: "14px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">
-                            [{Number(dataCraftBBQ_G.totalQuota)}/60] {dataCraftBBQ_G.addr.slice(0, 4) + "..." + dataCraftBBQ_G.addr.slice(-4)}<br></br>
-                            [Next] {dataCraftBBQ_G_Next.addr.slice(0, 4) + "..." + dataCraftBBQ_G_Next.addr.slice(-4)}
+                            [{Number(dataCraftBBQ_G[1])}/60] {dataCraftBBQ_G.status === 'success' && dataCraftBBQ_G.result[0].slice(0, 4) + "..." + dataCraftBBQ_G.result[0].slice(-4)}<br></br>
+                            [Next] {dataCraftBBQ_G_Next.status === 'success' && dataCraftBBQ_G_Next.result[0].slice(0, 4) + "..." + dataCraftBBQ_G_Next.result[0].slice(-4)}
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                             <img src="https://nftstorage.link/ipfs/bafkreidgivpl6pkbnimqngnyq7ovwnzrzbqnjwkclvcpzr4ypcfyxirwbu" width="290" alt="Large_BBQ_Factory"/>
@@ -2131,7 +2127,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         {address !== null && address !== undefined ?
                             <>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                    {Number(dataCraftBBQ_G.totalQuota) !== 0 ?
+                                    {dataCraftBBQ_G.status === 'success' && Number(dataCraftBBQ_G.result[1]) !== 0 ?
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
                                             <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/> 1)</> : timetoClaimBBQ_G}</div>
@@ -2143,11 +2139,11 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     }
                                 </div>
                                 <div style={{width: "100%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                    {Number(dataCraftBBQ_G.totalQuota) !== 0 && timetoClaimBBQ_G === 0 ?
+                                    {dataCraftBBQ_G.status === 'success' && Number(dataCraftBBQ_G.result[1]) !== 0 && timetoClaimBBQ_G === 0 ?
                                         <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainBBQHandle_G}>Obtain 100 BBQ</div> :
                                         <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain 100 BBQ</div>
                                     }
-                                    {dataCraftBBQ_G_Next.addr === "0x0000000000000000000000000000000000000000" ?
+                                    {dataCraftBBQ_G_Next.status === 'success' && dataCraftBBQ_G_Next.result[0] === "0x0000000000000000000000000000000000000000" ?
                                         <>
                                             {canCraftBBQ_G ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={craftBBQHandle_G}>Craft</div> :

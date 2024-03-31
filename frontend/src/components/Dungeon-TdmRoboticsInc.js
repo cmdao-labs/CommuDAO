@@ -1,5 +1,5 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots, Oval } from 'react-loading-icons'
@@ -65,11 +65,11 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                 ],
             }) : [0, 0, 0, 0, ]
 
-            const cmjBal = data[1]
-            const eeBal = data[2]
-            const iiBal = data[3]
+            const cmjBal = data[1].result
+            const eeBal = data[2].result
+            const iiBal = data[3].result
 
-            const nftbal = data[0]
+            const nftbal = data[0].result
             let count = 0
             let nfts = []
             let yournft = []
@@ -86,13 +86,12 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
             }) : [Array(walletRemoveDup.length).fill('')]
 
             for (let i = 0; i <= walletRemoveDup.length - 1 && count < nftbal; i++) {
-                if (data2[i].toUpperCase() === address.toUpperCase()) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
                     yournft.push({Id: String(walletRemoveDup[i])})
                     count++
                 }
             }
 
-            console.log(yournft)
             for (let i = 0; i <= yournft.length - 1; i++) {
                 const nftipfs = await readContract({
                     address: narutaNft,
@@ -138,18 +137,26 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     }
                 ))
             })
+            const nameArr = []
+            for (let i = 0; i <= Number(data2_00.length - 1); i++) {
+                nameArr.push(data2_00[i].result[0])
+            }
             const data2_001 = await readContracts({
-                contracts: data2_00.map(item => (
+                contracts: nameArr.map((item) => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'yourName',
-                        args: [item.fren]
+                        args: [item]
                     }
                 ))
             })
+            const nameArr2 = []
+            for (let i = 0; i <= Number(nameArr.length - 1); i++) {
+                nameArr2.push(Number(data2_001[i].result))
+            }
             const data2_0011 = await readContracts({
-                contracts: data2_001.map(item => (
+                contracts: nameArr2.map((item) => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
@@ -158,13 +165,12 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     }
                 ))
             })
-            const ranker = []
-            for (let i = 0; i <= data2_00.length - 1; i++) {
-                ranker.push(data2_00[i].fren)
+            const nameArr3 = []
+            for (let i = 0; i <= Number(nameArr.length - 1); i++) {
+                nameArr3.push(data2_0011[i].result)
             }
-
             const nftSTAT = await readContracts({
-                contracts: ranker.map((item) => (
+                contracts: nameArr.map((item) => (
                     {
                         address: dunEE,
                         abi: dunEEABI,
@@ -173,9 +179,17 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     }
                 )),
             })
-
-            const dataSuperPower = ranker.map((item, i) => {return {addr: item, name: data2_0011[i] === null ? item.slice(0, 4) + "..." + item.slice(-4) : data2_0011[i], tdmxp: Number(nftSTAT[i].allPow)}})
-
+            const tdmpow = []
+            for (let i = 0; i <= Number(nameArr.length - 1); i++) {
+                tdmpow.push(Number(nftSTAT[i].result[7]))
+            }
+            const dataSuperPower = nameArr.map((item, i) => {
+                return {
+                    addr: item,
+                    name: nameArr3[i] !== undefined ? nameArr3[i] : item.slice(0, 4) + "..." + item.slice(-4),
+                    tdmxp: tdmpow[i]
+                }}
+            )
             if (dataSuperPower.length === 0) { dataSuperPower.push(null) }
 
             return [nfts, cmjBal, iiBal, eeBal, dataSuperPower]
@@ -221,8 +235,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             }
             const token1Allow = await readContract({
                 address: token1,
@@ -237,8 +251,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx2 = await writeContract(config2)
-                await approvetx2.wait()
+                const { hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash02, })
             }
             const token2Allow = await readContract({
                 address: token2,
@@ -253,8 +267,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const approvetx3 = await writeContract(config3)
-                await approvetx3.wait()
+                const { hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash03, })
             }
             const nftAllow = await readContract({
                 address: narutaNft,
@@ -269,21 +283,19 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, _nftid],
                 })
-                const approvetx4 = await writeContract(config4)
-                await approvetx4.wait()
+                const { hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash04, })
             }
             const config5 = await prepareWriteContract({
                 address: uniEnchanter,
                 abi: uniEnchanterABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
-                overrides: {
-                    gasLimit: 3000000,
-                },
+                gasLimit: 3000000,
             })
-            const tx = await writeContract(config5)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -377,7 +389,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     </div>
                 </div>
 
-                <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "70%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                     <div style={{marginTop: "20px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Upgradable NFTs</div>
                     {nft !== undefined && nft.length > 0 ?
                         <>
@@ -394,7 +406,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                             ╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝  ░╚═╝░╚═╝░░░░╚════╝░╚══════╝
                                             */}
                                             {(String(item.Id).slice(0, 3) === "100" || String(item.Id).slice(0, 3) === "700") && Number(item.Id) % 100000 !== 72800 &&
-                                                <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
+                                                <div style={{justifyContent: "space-around", padding: "30px", marginRight: "40px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
                                                             <img src={item.Image} width="120" alt="Can not load metadata." />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
@@ -38,9 +38,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'withdraw',
                 args: [1, 0],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -53,9 +53,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'withdraw',
                 args: [2, 0],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -68,9 +68,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'withdraw',
                 args: [3, 0],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -87,7 +87,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             functionName: 'userInfo',
             args: [1, address],
         }) : 0
-        setLpJdaoWithdraw(ethers.utils.formatEther(farmJdaoBal.amount))
+        setLpJdaoWithdraw(ethers.utils.formatEther(farmJdaoBal[0]))
     }
     const withdrawstakeHandle = async () => {
         setisLoading(true)
@@ -98,9 +98,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'withdraw',
                 args: [1, ethers.utils.parseEther(lpJdaoWithdraw)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -112,7 +112,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             functionName: 'userInfo',
             args: [2, address],
         }) : 0
-        setLpJdao202Withdraw(ethers.utils.formatEther(farmJdao202Bal.amount))
+        setLpJdao202Withdraw(ethers.utils.formatEther(farmJdao202Bal[0]))
     }
     const withdrawstakeHandle202 = async () => {
         setisLoading(true)
@@ -123,9 +123,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'withdraw',
                 args: [2, ethers.utils.parseEther(lpJdao202Withdraw)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -137,7 +137,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             functionName: 'userInfo',
             args: [3, address],
         }) : 0
-        setLpJdao3Withdraw(ethers.utils.formatEther(farmJdao3Bal.amount))
+        setLpJdao3Withdraw(ethers.utils.formatEther(farmJdao3Bal[0]))
     }
     const withdrawstakeHandle3 = async () => {
         setisLoading(true)
@@ -148,9 +148,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'withdraw',
                 args: [3, ethers.utils.parseEther(lpJdao3Withdraw)],
             })
-            const tx = await writeContract(config)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash } = await writeContract(config)
+            await waitForTransaction({ hash, })
+            setTxupdate(hash)
         } catch {}
         setisLoading(false)
     }
@@ -188,8 +188,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     functionName: 'approve',
                     args: [farmJdao, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -199,9 +199,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'deposit',
                 args: [1, ethers.utils.parseEther(lpJdaoStake)],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -234,8 +234,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     functionName: 'approve',
                     args: [farmJdao, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -245,9 +245,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'deposit',
                 args: [2, ethers.utils.parseEther(lpJdao202Stake)],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -280,8 +280,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     functionName: 'approve',
                     args: [farmJdao, bigApprove],
                 })
-                const approvetx = await writeContract(config)
-                await approvetx.wait()
+                const { hash0 } = await writeContract(config)
+                await waitForTransaction({ hash0, })
             } catch {}
         }
         try {
@@ -291,9 +291,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 functionName: 'deposit',
                 args: [3, ethers.utils.parseEther(lpJdao3Stake)],
             })
-            const tx = await writeContract(config2)
-            await tx.wait()
-            setTxupdate(tx)
+            const { hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash1, })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -428,34 +428,33 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             )
 
         getAsync().then(result => {
-            const _lptotalsupply = ethers.utils.formatEther(result[0])
-            const _julptotalsupply = ethers.utils.formatEther(result[1])
-
-            const _farmjdaobalance = ethers.utils.formatEther(result[2].amount)
+            const _lptotalsupply = ethers.utils.formatEther(result[0].result)
+            const _julptotalsupply = ethers.utils.formatEther(result[1].result)
+            const _farmjdaobalance = ethers.utils.formatEther(result[2].result[0])
             setFarmJdaoBalance(Number(_farmjdaobalance).toFixed(4))
-            const _farmjdaototalstake = ethers.utils.formatEther(result[3])
+            const _farmjdaototalstake = ethers.utils.formatEther(result[3].result)
 
             setJbcJdaoStaked((Number(jbcReserv) * Number(_farmjdaototalstake)) / Number(_lptotalsupply))
             setCmjJdaoStaked((Number(cmjReserv) * Number(_farmjdaototalstake)) / Number(_lptotalsupply))
             setYourJbcJdaoStaked((Number(jbcReserv) * Number(_farmjdaobalance)) / Number(_lptotalsupply))
             setYourCmjJdaoStaked((Number(cmjReserv) * Number(_farmjdaobalance)) / Number(_lptotalsupply))
 
-            setJdaoPending(Number(ethers.utils.formatEther(result[4])).toFixed(4))
+            setJdaoPending(Number(ethers.utils.formatEther(result[4].result)).toFixed(4))
 
-            setFarmJdao202Balance(Number(ethers.utils.formatEther(result[5].amount)).toFixed(4))
-            setCmjJdao202Staked(Number(ethers.utils.formatEther(result[6])).toFixed(4))
-            setJdao202Pending(Number(ethers.utils.formatEther(result[7])).toFixed(4))
+            setFarmJdao202Balance(Number(ethers.utils.formatEther(result[5].result[0])).toFixed(4))
+            setCmjJdao202Staked(Number(ethers.utils.formatEther(result[6].result)).toFixed(4))
+            setJdao202Pending(Number(ethers.utils.formatEther(result[7].result)).toFixed(4))
 
-            const _farmjdao3balance = ethers.utils.formatEther(result[8].amount)
+            const _farmjdao3balance = ethers.utils.formatEther(result[8].result[0])
             setFarmJdao3Balance(Number(_farmjdao3balance).toFixed(4))
-            const _farmjdao3totalstake = ethers.utils.formatEther(result[9])
+            const _farmjdao3totalstake = ethers.utils.formatEther(result[9].result)
 
             setJbcJdao3Staked((Number(jbcJuReserv) * Number(_farmjdao3totalstake)) / Number(_julptotalsupply))
             setJusdtJdao3Staked((Number(jusdtJuReserv) * Number(_farmjdao3totalstake)) / Number(_julptotalsupply))
             setYourJbcJdao3Staked((Number(jbcJuReserv) * Number(_farmjdao3balance)) / Number(_julptotalsupply))
             setYourJusdtJdao3Staked((Number(jusdtJuReserv) * Number(_farmjdao3balance)) / Number(_julptotalsupply))
 
-            setJdao3Pending(Number(ethers.utils.formatEther(result[10])).toFixed(4))
+            setJdao3Pending(Number(ethers.utils.formatEther(result[10].result)).toFixed(4))
 
             setSwapfee24hour1(Number(result[11]).toFixed(0))
             setSwapfee24hour2(Number(result[12]).toFixed(0))
