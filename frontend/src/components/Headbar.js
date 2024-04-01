@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract } from '@wagmi/core'
-import { useAccount, useConnect, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 const { ethereum } = window
 
@@ -11,7 +11,6 @@ const cmos = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
   const { open } = useWeb3Modal()
   const { address, isConnected } = useAccount()
-  const { error } = useConnect()
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
   const { disconnect } = useDisconnect()
@@ -170,18 +169,18 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div 
                 id="walletDiv"
                 className="button wallet"
-                onClick={open}
+                onClick={() => {
+                    try {
+                      open()
+                    } catch (e) {
+                      console.log(e)
+                      open()
+                    }
+                  }
+                }
               >
                 <div style={{letterSpacing: 0}} className="pixel">
-                  {error ?
-                    <div style={{width: "115px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
-                      {error.message === "Connector not found" ?
-                        <div>No Metamask</div> :
-                        <div>{error.message}</div>
-                      }
-                    </div> :
-                    <div>CONNECT WALLET</div>
-                  }
+                  <div>CONNECT WALLET</div>
                 </div>
               </div>
             </>
