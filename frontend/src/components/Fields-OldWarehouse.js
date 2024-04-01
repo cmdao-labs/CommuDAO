@@ -116,7 +116,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 } else if (Number(nftid) === 1) {
                     bonus = 400
                 }
-                _allDaily = Number(ethers.utils.formatEther(String(bonus * 10**14)))
+                _allDaily += Number(ethers.utils.formatEther(String(bonus * 10**14)))
                 _allReward += Number(ethers.utils.formatEther(String(data2[i].result)))
 
                 nfts.push({
