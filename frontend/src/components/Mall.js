@@ -543,23 +543,23 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll5 = data2[10].result
             const roll6 = data2[18].result
 
-            const sell1remain = (410003800000 - (Number(sell1Id[3]) - 150)) / 100000
+            const sell1remain = (410003800000 - (Number(sell1Id[2]) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
-            const sell2remain = (720051600000 - (Number(sell2Id[3]) - 250)) / 100000
+            const sell2remain = (720051600000 - (Number(sell2Id[4]) - 250)) / 100000
             const _canBuy2 = _isKYC && !isBought2 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
-            const sell3remain = (210050100000 - (Number(sell3Id[3]) - 250)) / 100000
+            const sell3remain = (210050100000 - (Number(sell3Id[2]) - 250)) / 100000
             const _canBuy3 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 3 ? true : false
-            const sell4remain = (130050100000 - (Number(sell4Id[3]) - 500)) / 100000
+            const sell4remain = (130050100000 - (Number(sell4Id[2]) - 500)) / 100000
             const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
-            const sell5remain = (100540100000 - (Number(sell5Id[3]) - 100)) / 100000
+            const sell5remain = (100540100000 - (Number(sell5Id[4]) - 100)) / 100000
             const _canBuy5 = _isKYC && !isBought5 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
-            const sell6remain = (1000010200000 - (Number(sell6Id[3]) - 100)) / 100000
+            const sell6remain = (1000010200000 - (Number(sell6Id[2]) - 100)) / 100000
             const _canBuy6 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 1 ? true : false
             const sell7remain = 101000399 - Number(sell7Id[3])
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
-            const sell8remain = (102033400000 - (Number(sell8Id[3]) - 8000)) / 100000
+            const sell8remain = (102033400000 - (Number(sell8Id[2]) - 8000)) / 100000
             const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
-            const sell9remain = (102066400000 - (Number(sell9Id[3]) - 19000)) / 100000
+            const sell9remain = (102066400000 - (Number(sell9Id[2]) - 19000)) / 100000
             const _canBuy9 = Number(ethers.utils.formatUnits(String(jaspBal), "gwei")) >= 100 ? true : false
             const sell10remain = 10001012 - Number(sell10Id[3])
             const _canBuy10 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 150 ? true : false
@@ -567,15 +567,15 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy11 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 90 ? true : false
             const sell12remain = 10003023 - Number(sell12Id[3])
             const _canBuy12 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 60 ? true : false
-            const sell13remain = (102100000000 - (Number(sell13Id[3]) - 4500)) / 100000
+            const sell13remain = (102100000000 - (Number(sell13Id[2]) - 4500)) / 100000
             const _canBuy13 = Number(ethers.utils.formatEther(String(osBal))) >= 5500 ? true : false
-            const sell14remain = (730020000000 - (Number(sell14Id[3]) - 10400)) / 100000
+            const sell14remain = (730020000000 - (Number(sell14Id[2]) - 10400)) / 100000
             const _canBuy14 = Number(ethers.utils.formatEther(String(goldBal))) >= 56000 ? true : false
             const sell15remain = (100010100000 - (Number(sell15Id[3]) - 100)) / 100000
             const sell16remain = (700010100000 - (Number(sell16Id[3]) - 250)) / 100000
-            const sell17remain = (500010100000 - (Number(sell17Id[3]) - 250)) / 100000
-
-            const sell18remain = (730060100000 - (Number(sell18Id[3]) - 10000)) / 100000
+            const sell17remain = (500010100000 - (Number(sell17Id[3]) - 250)) / 100000            
+            
+            const sell18remain = (730060100000 - (Number(sell18Id[2]) - 10000)) / 100000
             const _canBuy18 = Number(ethers.utils.formatEther(String(bbqBal))) >= 100000000 ? true : false
 
             const sell19remain = (300010100000 - (Number(sell19Id[3]) - 250)) / 100000
@@ -583,7 +583,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell21remain = (600010100000 - (Number(sell21Id[3]) - 250)) / 100000
             const sell22remain = (400010100000 - (Number(sell22Id[3]) - 250)) / 100000
 
-            const sell23remain = (400040000000 - (Number(sell23Id[3]) - 10900)) / 100000
+            const sell23remain = (400040000000 - (Number(sell23Id[2]) - 10900)) / 100000
             const _canBuy23 = Number(ethers.utils.formatEther(String(platBal))) >= 180000 ? true : false
 
             const sell24remain = (100025100000 - (Number(sell24Id[3]) - 18800)) / 100000
