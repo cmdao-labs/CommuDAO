@@ -86,7 +86,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             let yournft = []
 
             const walletFilter = await acnftSC.filters.Transfer(null, address, null)
-            const walletEvent = await acnftSC.queryFilter(walletFilter, 2337707, "latest")
+            const walletEvent = await acnftSC.queryFilter(walletFilter, 3004475, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
 
@@ -135,7 +135,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             let yournft2 = []
             let count2 = 0
             const walletFilter2 = await apDunSC.filters.Transfer(null, address, null)
-            const walletEvent2 = await apDunSC.queryFilter(walletFilter2, 2768102, "latest")
+            const walletEvent2 = await apDunSC.queryFilter(walletFilter2, 3004475, "latest")
             const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
             
@@ -256,7 +256,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             })
 
             const spend1Filter = await angbFarmSC.filters.Claimed(null, null, null)
-            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 2500000, 'latest')
+            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 3004475, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.staker), value: Number(ethers.utils.formatEther(obj.args.rewardAmount))}}))
             const spend1Merged = spend1Map.reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
@@ -278,7 +278,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }
 
             const spend2Filter = await vabagUsageSC.filters.Transfer(null, '0x0000000000000000000000000000000000000001', null)
-            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 2500000, 'latest')
+            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 3004475, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
             const spend2Merged = spend2Map.reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
@@ -300,11 +300,11 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }
 
             const spend31Filter = await acnftSC.filters.Transfer('0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a', null, null)
-            const spend31Event = await acnftSC.queryFilter(spend31Filter, 2500000, 'latest')
+            const spend31Event = await acnftSC.queryFilter(spend31Filter, 3004475, 'latest')
             const spend31Map = await Promise.all(spend31Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
             const spend32Filter = await apDunSC.filters.Transfer('0x09e6a0A03afa27438c3f507de82b5f6061Ae1643', null, null)
-            const spend32Event = await apDunSC.queryFilter(spend32Filter, 2500000, 'latest')
+            const spend32Event = await apDunSC.queryFilter(spend32Filter, 3004475, 'latest')
             const spend32Map = await Promise.all(spend32Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
             const spend3Merged = spend31Map.concat(spend32Map).reduce((prev, curr) => {
@@ -532,7 +532,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
 
                 <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "70%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                     <div style={{padding: "50px", margin: "50px 0", backdropFilter: "blur(20px)", border: "none", minWidth: "940px", width: "80%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "14px"}} className="nftCard">
-                        <div style={{fontSize: "40px"}}>March 2024 Prize Pool 🎁</div>
+                        <div style={{fontSize: "40px"}}>April 2024 Prize Pool 🎁</div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                             <div style={{width: "220px", marginRight: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top $ANGB Holder</div>
