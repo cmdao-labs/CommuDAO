@@ -47,7 +47,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
             ],
         })
         const _reserveCmj = data[0].result
-        const _reserveToken = data[1].result.result
+        const _reserveToken = data[1].result
         const tokensBoughttokenTOcmj = await readContract({
             address: degenoMeow,
             abi: ammyStdABI,
