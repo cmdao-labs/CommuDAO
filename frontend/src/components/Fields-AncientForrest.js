@@ -247,7 +247,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -297,7 +297,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
             setisLoading(false)
             if (_uplevel) {
                 uplevelNft(_nftid, _toLv)

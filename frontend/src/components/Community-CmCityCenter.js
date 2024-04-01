@@ -32,7 +32,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 value: delegateAmount !== '' ? ethers.utils.parseEther(delegateAmount) : undefined,
             })
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -139,7 +139,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

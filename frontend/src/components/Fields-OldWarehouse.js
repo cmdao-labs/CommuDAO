@@ -51,7 +51,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -254,7 +254,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

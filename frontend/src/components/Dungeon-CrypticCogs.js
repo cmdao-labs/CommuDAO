@@ -546,7 +546,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -602,7 +602,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }

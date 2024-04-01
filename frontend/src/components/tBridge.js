@@ -210,7 +210,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -233,7 +233,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -250,7 +250,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -269,7 +269,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -308,7 +308,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -329,7 +329,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 })
                 const { hash: hash1 } = await writeContract(config)
                 await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash)
+                setTxupdate(hash1)
             } catch (e) {
                 setisError(true)
                 setErrMsg(String(e))
@@ -350,7 +350,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 })
                 const { hash: hash1 } = await writeContract(config)
                 await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash)
+                setTxupdate(hash1)
             } catch (e) {
                 setisError(true)
                 setErrMsg(String(e))

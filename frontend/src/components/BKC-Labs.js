@@ -142,7 +142,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -197,7 +197,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -253,7 +253,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)
@@ -308,7 +308,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
             refetch()
         } catch (e) {
             setisError(true)

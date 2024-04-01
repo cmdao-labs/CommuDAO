@@ -1227,7 +1227,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
             })
             await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash)
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
