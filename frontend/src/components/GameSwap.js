@@ -256,8 +256,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     functionName: 'approve',
                     args: [jcExchange, bigApprove],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: jcExchange,
@@ -266,8 +266,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 args: [ethers.utils.parseEther(cmjAdd)],
                 value: ethers.utils.parseEther(jbcAdd),
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -291,8 +291,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     functionName: 'approve',
                     args: [juExchange, bigApprove],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: juExchange,
@@ -301,8 +301,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 args: [ethers.utils.parseEther(jusdtJuAdd)],
                 value: ethers.utils.parseEther(jbcJuAdd),
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -330,8 +330,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(lpSell)],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -355,8 +355,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(julpSell)],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)

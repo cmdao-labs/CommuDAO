@@ -184,8 +184,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     args: [ethers.utils.parseEther(String(cmjBought * 0.99))],
                     value: ethers.utils.parseEther(inputSwap),
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } catch {}
         } else {
@@ -206,8 +206,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                         functionName: 'approve',
                         args: [jcSwap, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 } catch {}
             }
             try {
@@ -217,8 +217,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     functionName: 'callCmjToJbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcBought * 0.99))],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } catch {}
         }
@@ -235,8 +235,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     args: [ethers.utils.parseEther(String(jusdtJuBought * 0.99))],
                     value: ethers.utils.parseEther(inputSwap),
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } catch {}
         } else {
@@ -257,8 +257,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                         functionName: 'approve',
                         args: [juSwap, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 } catch {}
             }
             try {
@@ -268,8 +268,8 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     functionName: 'callJusdtToJbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcJuBought * 0.99))],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } catch {}
         }

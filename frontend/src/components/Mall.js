@@ -719,8 +719,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -730,8 +730,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [1]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -753,8 +753,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantKYC,
@@ -762,8 +762,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [2]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)        
@@ -785,8 +785,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -794,8 +794,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -817,8 +817,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantV2,
@@ -826,8 +826,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -849,8 +849,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantV2,
@@ -858,8 +858,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -882,8 +882,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantKYC,
@@ -891,8 +891,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [1]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -914,8 +914,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -923,8 +923,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [5]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -946,8 +946,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -955,8 +955,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [6]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -978,8 +978,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -987,8 +987,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [7]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1010,8 +1010,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1019,8 +1019,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [8]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1042,8 +1042,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1051,8 +1051,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [9]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1074,8 +1074,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchantV105, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchantV105,
@@ -1083,8 +1083,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1106,8 +1106,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1115,8 +1115,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [10]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1138,8 +1138,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoMerchant,
@@ -1147,8 +1147,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'buy',
                 args: [11]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1170,8 +1170,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoGasha02,
@@ -1179,8 +1179,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'roll',
                 args: [_colIndex]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1202,8 +1202,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     functionName: 'approve',
                     args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: cmdaoGasha02,
@@ -1211,8 +1211,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'roll',
                 args: [_colIndex]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1222,11 +1222,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const sendHandle = async () => {
         setisLoading(true)
         try {
-            const { hash } = await sendTransaction({
+            const { hash: hash1 } = await sendTransaction({
                 to: wjbcToken,
             value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
             })
-            await waitForTransaction({ hash, })
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)

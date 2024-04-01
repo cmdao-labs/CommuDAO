@@ -415,42 +415,40 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
-            setTxupdate(hash)
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
 
     const equipNft = async (_nftid) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: angelplus,
-            abi: erc721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== dunANGB.toUpperCase()) {
-            try {
+        try {
+            const nftAllow = await readContract({
+                address: angelplus,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== dunANGB.toUpperCase()) {
                 const config = await prepareWriteContract({
                     address: angelplus,
                     abi: erc721ABI,
                     functionName: 'approve',
                     args: [dunANGB, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
-            } catch {}
-        }
-        try {
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
             const config2 = await prepareWriteContract({
                 address: dunANGB,
                 abi: dunAngbABI,
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -465,9 +463,9 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
-            setTxupdate(hash)
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -480,33 +478,31 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             gasAddr = swarLab
             gasIndex = 1
         }
-        const gasAllow = await readContract({
-            address: gasAddr,
-            abi: erc20ABI,
-            functionName: 'allowance',
-            args: [address, dunANGB],
-        })
-        if (gasAllow < (2 * 10**17)) {
-            try {
+        try {
+            const gasAllow = await readContract({
+                address: gasAddr,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, dunANGB],
+            })
+            if (gasAllow < (2 * 10**17)) {
                 const config = await prepareWriteContract({
                     address: gasAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [dunANGB, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
-            } catch {}
-        }
-        try {
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
             const config2 = await prepareWriteContract({
                 address: dunANGB,
                 abi: dunAngbABI,
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

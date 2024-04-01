@@ -1091,8 +1091,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         functionName: 'approve',
                         args: [cmdaomkp, sellNftid],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 } catch {}
             }
         }
@@ -1109,8 +1109,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 functionName: 'addItem',
                 args: [sellNftCol, sellNftid, currencyIndex, ethers.utils.parseUnits(String(sellPrice, "wei"))]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setIsSellModal(false)
@@ -1126,8 +1126,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 functionName: 'removeItem',
                 args: [_count]
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -1155,8 +1155,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     functionName: 'approve',
                     args: [cmdaomkp, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -1166,8 +1166,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 functionName: 'buyItem',
                 args: [_count]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

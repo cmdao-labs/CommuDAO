@@ -50,8 +50,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -499,8 +499,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'approve',
                     args: [gear, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: gear,
@@ -508,8 +508,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'stake',
                 args: [_nftid, 1],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
             setisError(true)
@@ -527,8 +527,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'unstake',
                 args: [_nftid, 1, _unstake],
             })
-            const { hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash12, })
+            const { hash: hash12 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash12 })
             setTxupdate(hash12)
         } catch {}
         setisLoading(false)
@@ -544,8 +544,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'unstake',
                     args: [0, 0, 0],
                 })
-                const { hash10 } = await writeContract(config0)
-                await waitForTransaction({ hash10, })
+                const { hash: hash10 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash10 })
             }
             const allowed = await readContract({
                 address: taomeme,
@@ -560,8 +560,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'approve',
                     args: [gear, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: gear,
@@ -570,8 +570,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 args: [ethers.utils.parseEther(String(inputTM)), 0],
                 gasLimit: 1000000,
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
             setisError(true)
@@ -588,8 +588,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'unstake',
                 args: [0, 0, _unstake],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
             setisError(true)
@@ -614,8 +614,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                     functionName: 'approve',
                     args: [taoPFP, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: taoPFP,
@@ -623,8 +623,8 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'claimDrop',
                 args: [_lv],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
             setisError(true)

@@ -104,8 +104,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                         functionName: 'approve',
                         args: [degenoMeow, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config = await prepareWriteContract({
                     address: degenoMeow,
@@ -113,8 +113,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                     functionName: 'tokenTOcmj',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBoughtMEOW)],
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } else {
                 const cmjAllow = await readContract({
@@ -133,8 +133,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                         functionName: 'approve',
                         args: [degenoMeow, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config2 = await prepareWriteContract({
                     address: degenoMeow,
@@ -142,8 +142,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                     functionName: 'cmjTOtoken',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtMEOW)],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             }
         } catch {}
@@ -159,8 +159,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(meowLpSell)],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -221,8 +221,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                     functionName: 'approve',
                     args: [degenoMeow, bigApprove],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const meowAllow = await readContract({
                 address: meowToken,
@@ -237,8 +237,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                     functionName: 'approve',
                     args: [degenoMeow, bigApprove],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: degenoMeow,
@@ -246,8 +246,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(meowAdd), ethers.utils.parseEther(cmjAdd)],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

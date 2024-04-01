@@ -208,8 +208,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0x8622049edEcC20ADA5aDEeaf2Caa53447e68Ae63", depositValue],
                 chainId: 96,
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -231,8 +231,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0xBb7A653509CDd8C4Ccd34D5834c817Ed3DFD6Fc7", withdrawValue],
                 chainId: 8899,
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -248,8 +248,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0x553819505D984EeE91aDD1DdCD60C82618d0CD5d", ethers.utils.parseEther(String(depositCMJ))],
                 chainId: 8899,
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch (e) {
             setisError(true)
@@ -267,8 +267,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0xF2a87528be1222A930D99f5f6ed94Aae72f40769", ethers.utils.parseEther(String(withdrawCMJ))],
                 chainId: 96,
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch (e) {
             setisError(true)
@@ -287,8 +287,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(depositTAO))],
                 chainId: 96,
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
             setisError(true)
@@ -306,8 +306,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(withdrawTAO))],
                 chainId: 8899,
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch (e) {
             setisError(true)
@@ -327,8 +327,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     args: ["0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3", ethers.utils.parseEther(String(depositValue2))],
                     chainId: 56,
                 })
-                const { hash } = await writeContract(config)
-                await waitForTransaction({ hash, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash)
             } catch (e) {
                 setisError(true)
@@ -348,8 +348,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     args: ["0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063", ethers.utils.parseEther(String(withdrawValue2))],
                     chainId: 8899,
                 })
-                const { hash } = await writeContract(config)
-                await waitForTransaction({ hash, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash)
             } catch (e) {
                 setisError(true)

@@ -614,8 +614,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [ctunaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         const cmjAllow = await readContract({
@@ -632,8 +632,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [ctunaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             } catch {}
         }
         try {
@@ -642,8 +642,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: ctunaLabABI,
                 functionName: 'craft',
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -657,8 +657,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: ctunaLabABI,
                 functionName: 'claim',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -680,8 +680,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [sx31Lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -696,8 +696,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [sx31Lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: sx31Lab,
@@ -705,8 +705,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -721,8 +721,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'obtain',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -744,8 +744,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: bbqLab,
@@ -754,8 +754,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 args: [_machine],
                 value: ethers.utils.parseEther('0.01'),
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -769,8 +769,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: bbqLab01ABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -800,8 +800,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: bbqLab,
@@ -809,8 +809,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'upgrade',
                 args: [_level]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -832,8 +832,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [globalBbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -848,16 +848,16 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [globalBbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: globalBbqLab,
                 abi: bbqLab02ABI,
                 functionName: 'craft',
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -879,16 +879,16 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [globalBbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: globalBbqLab,
                 abi: bbqLab02ABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -911,8 +911,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [pzaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const stOPTAllow = await readContract({
                 address: stOPT,
@@ -927,8 +927,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [pzaLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: pzaLab,
@@ -936,8 +936,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_index],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -951,8 +951,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -974,8 +974,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [silLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -990,8 +990,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [silLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: silLab,
@@ -999,8 +999,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1014,8 +1014,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1037,8 +1037,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const sx31Allow = await readContract({
                 address: sx31Lab,
@@ -1053,8 +1053,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: goldLab,
@@ -1062,8 +1062,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1077,8 +1077,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1100,8 +1100,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const mtAllow = await readContract({
                 address: mtToken,
@@ -1116,8 +1116,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: goldLab2,
@@ -1125,8 +1125,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1140,8 +1140,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1163,8 +1163,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [goldMine, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: goldMine,
@@ -1173,8 +1173,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 args: [_machine],
                 value: ethers.utils.parseEther('1'),
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1188,8 +1188,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: goldMineABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1211,8 +1211,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const ctunaAllow = await readContract({
                 address: ctunaLab,
@@ -1227,8 +1227,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: platLab,
@@ -1236,8 +1236,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1250,8 +1250,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1273,8 +1273,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -1289,8 +1289,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [platLab2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: platLab2,
@@ -1298,8 +1298,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1312,8 +1312,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1335,8 +1335,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [swarLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const cmjAllow = await readContract({
                 address: cmjToken,
@@ -1351,8 +1351,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [swarLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: swarLab,
@@ -1360,8 +1360,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1375,8 +1375,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1416,8 +1416,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const currAllow = await readContract({
                 address: curr,
@@ -1432,8 +1432,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     functionName: 'approve',
                     args: [lab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const config3 = await prepareWriteContract({
                 address: lab,
@@ -1441,8 +1441,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'craft',
                 args: [_machine],
             })
-            const { hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -1462,8 +1462,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: cmdao20lab01ABI,
                 functionName: 'obtain',
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

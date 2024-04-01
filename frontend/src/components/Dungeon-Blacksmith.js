@@ -152,8 +152,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         const jaspAllow = await readContract({
@@ -170,8 +170,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             } catch {}
         }
         const nftAllow = await readContract({
@@ -188,8 +188,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantN1, _nftid],
                 })
-                const { hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash03, })
+                const { hash: hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash03 })
             } catch {}
         }
         try {
@@ -199,8 +199,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const { hash1 } = await writeContract(config4)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config4)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -221,8 +221,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const cuAllow = await readContract({
                 address: dunCopper,
@@ -237,8 +237,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const nftAllow = await readContract({
                 address: hexajibjib,
@@ -253,8 +253,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantN1, _nftid],
                 })
-                const { hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash03, })
+                const { hash: hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash03 })
             }
             const config4 = await prepareWriteContract({
                 address: enchantN1,
@@ -262,8 +262,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const { hash1 } = await writeContract(config4)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config4)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -285,8 +285,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -301,8 +301,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const jaspAllow = await readContract({
                 address: dunJasper,
@@ -317,8 +317,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash03, })
+                const { hash: hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash03 })
             }
             const nftAllow = await readContract({
                 address: hexajibjib,
@@ -333,8 +333,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, _nftid],
                 })
-                const { hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash04, })
+                const { hash: hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash: hash04 })
             }
             const config5 = await prepareWriteContract({
                 address: enchantR,
@@ -343,8 +343,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 args: [_enchantindex, _nftid],
                 gasLimit: 3000000,
             })
-            const { hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -365,8 +365,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -381,8 +381,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const cuAllow = await readContract({
                 address: dunCopper,
@@ -397,8 +397,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash03, })
+                const { hash: hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash03 })
             }
             const nftAllow = await readContract({
                 address: hexajibjib,
@@ -413,8 +413,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, _nftid],
                 })
-                const { hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash04, })
+                const { hash: hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash: hash04 })
             }
             const config5 = await prepareWriteContract({
                 address: enchantR,
@@ -423,8 +423,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 args: [_enchantindex, _nftid],
                 gasLimit: 3000000,
             })
-            const { hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -446,8 +446,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const jdaoAllow = await readContract({
                 address: jdaoToken,
@@ -462,8 +462,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const osAllow = await readContract({
                 address: osToken,
@@ -478,8 +478,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash03, })
+                const { hash: hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash03 })
             }
             const nftAllow = await readContract({
                 address: hexajibjib,
@@ -494,8 +494,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [enchantR, _nftid],
                 })
-                const { hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash04, })
+                const { hash: hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash: hash04 })
             }
             const config5 = await prepareWriteContract({
                 address: enchantR,
@@ -504,8 +504,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 args: [_enchantindex, _nftid],
                 gasLimit: 3000000,
             })
-            const { hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -527,8 +527,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     functionName: 'approve',
                     args: [osToken, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config = await prepareWriteContract({
                 address: osToken,
@@ -536,8 +536,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 functionName: 'extract',
                 args: [_nftid]
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}        
         setisLoading(false)

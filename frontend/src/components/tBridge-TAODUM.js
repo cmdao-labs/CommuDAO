@@ -175,8 +175,8 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     functionName: 'approve',
                     args: [bkcBridge, _nftId],
                 })
-                const { hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config = await prepareWriteContract({
                 address: bkcBridge,
@@ -186,8 +186,8 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                 value: ethers.utils.parseEther('1'),
                 chainId: 96,
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -208,8 +208,8 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     functionName: 'approve',
                     args: [jbcBridge, _nftId],
                 })
-                const { hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash0 })
             }       
             const config = await prepareWriteContract({
                 address: jbcBridge,
@@ -219,8 +219,8 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                 value: ethers.utils.parseEther('10'),
                 chainId: 8899,
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1 })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

@@ -27,11 +27,11 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
     const sendHandle = async () => {
         setisLoading(true)
         try {
-            const { hash } = await sendTransaction({
+            const { hash: hash1 } = await sendTransaction({
                 to: meritFaucet,
                 value: delegateAmount !== '' ? ethers.utils.parseEther(delegateAmount) : undefined,
             })
-            await waitForTransaction({ hash, })
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -113,8 +113,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                     functionName: 'approve',
                     args: [sx31Vote, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: sx31Vote,
@@ -122,8 +122,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 functionName: 'vote',
                 args: [_proposal, ethers.utils.parseEther(voteAmount)]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -137,8 +137,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 abi: faucetABI,
                 functionName: 'requestTokens',
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -174,8 +174,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                     functionName: 'approve',
                     args: [cmdaoName, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config = await prepareWriteContract({
                 address: cmdaoName,
@@ -183,8 +183,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, sx31voteA
                 functionName: 'idMint',
                 args: [name]
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

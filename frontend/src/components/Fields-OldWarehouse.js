@@ -49,8 +49,8 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -225,8 +225,8 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     functionName: 'approve',
                     args: [fieldMice, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -236,8 +236,8 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -252,8 +252,8 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)

@@ -162,8 +162,8 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     functionName: 'approve',
                     args: [dumpster1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: dumpster1,
@@ -171,8 +171,8 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 functionName: 'dump',
                 args: [_index, ethers.utils.parseEther(handle)],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -194,8 +194,8 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     functionName: 'approve',
                     args: [dumpster2, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: dumpster2,
@@ -203,8 +203,8 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 functionName: 'dump',
                 args: [_index, _nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

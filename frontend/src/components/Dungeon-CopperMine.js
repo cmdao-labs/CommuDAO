@@ -308,9 +308,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
-            setTxupdate(hash)
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
@@ -331,8 +331,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunCopper, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: dunCopper,
@@ -340,8 +340,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -356,8 +356,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -379,8 +379,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunCopper, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: dunCopper,
@@ -388,8 +388,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'refuel',
                 args: [1]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -404,10 +404,10 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'mintST',
                 args: []
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) {console.log(e)}
+        } catch {}
         setisLoading(false)
     }
 

@@ -300,8 +300,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [house, ethers.utils.parseEther(String(10**9))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const cuAllow = await readContract({
                 address: cu,
@@ -316,8 +316,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [house, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             if (_level === 1) {
                 const config3 = await prepareWriteContract({
@@ -326,8 +326,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'delegateOwner',
                     args: [0, address, houseId]
                 })
-                const { hash1 } = await writeContract(config3)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash1 })
             }
             const config4 = await prepareWriteContract({
                 address: house,
@@ -335,8 +335,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'upgrade',
                 args: [_level, houseId]
             })
-            const { hash04 } = await writeContract(config4)
-            await waitForTransaction({ hash04 })
+            const { hash: hash04 } = await writeContract(config4)
+            await waitForTransaction({ hash: hash04 })
             setTxupdate(hash04)
         } catch {}
         setisLoading(false)
@@ -351,8 +351,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'delegateOwner',
                 args: [0, address, houseId]
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -374,8 +374,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [houseStaking, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: houseStaking,
@@ -383,8 +383,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'stake',
                 args: [1, _nftid, houseId],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -399,8 +399,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'unstake',
                 args: [1, _nftid, houseId, _unstake],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -430,8 +430,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                     functionName: 'approve',
                     args: [wlMkp, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: wlMkp,
@@ -439,8 +439,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 functionName: 'buyItem',
                 args: [id]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

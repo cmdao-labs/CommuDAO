@@ -544,8 +544,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -573,8 +573,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     functionName: 'approve',
                     args: [dunEE, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -584,8 +584,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'equip',
                 args: [_index, _nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -600,8 +600,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -629,8 +629,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     functionName: 'approve',
                     args: [dunEE, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -640,8 +640,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

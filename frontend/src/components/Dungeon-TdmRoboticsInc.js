@@ -235,8 +235,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const token1Allow = await readContract({
                 address: token1,
@@ -251,8 +251,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash02, })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
             }
             const token2Allow = await readContract({
                 address: token2,
@@ -267,8 +267,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash03, })
+                const { hash: hash03 } = await writeContract(config3)
+                await waitForTransaction({ hash: hash03 })
             }
             const nftAllow = await readContract({
                 address: narutaNft,
@@ -283,8 +283,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'approve',
                     args: [uniEnchanter, _nftid],
                 })
-                const { hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash04, })
+                const { hash: hash04 } = await writeContract(config4)
+                await waitForTransaction({ hash: hash04 })
             }
             const config5 = await prepareWriteContract({
                 address: uniEnchanter,
@@ -293,8 +293,8 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                 args: [_enchantindex, _nftid],
                 gasLimit: 3000000,
             })
-            const { hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config5)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

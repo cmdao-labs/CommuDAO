@@ -174,8 +174,8 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                     functionName: 'approve',
                     args: [badField, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: badField,
@@ -183,8 +183,8 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -199,8 +199,8 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)

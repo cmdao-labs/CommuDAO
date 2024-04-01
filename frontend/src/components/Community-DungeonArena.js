@@ -495,8 +495,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     functionName: 'approve',
                     args: [pvp01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: pvp01,
@@ -505,8 +505,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 args: [challenger[challengerSlot]],
                 gasLimit: 3000000,
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -528,8 +528,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     functionName: 'approve',
                     args: [pvp01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: pvp01,
@@ -537,8 +537,8 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 functionName: 'challenge',
                 args: [1]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

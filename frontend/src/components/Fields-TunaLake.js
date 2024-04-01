@@ -147,8 +147,8 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                     functionName: 'approve',
                     args: [tunaField, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: tunaField,
@@ -156,8 +156,8 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -172,8 +172,8 @@ const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaF
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)

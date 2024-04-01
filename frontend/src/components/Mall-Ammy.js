@@ -287,8 +287,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammyCTUNA, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 } catch {}
             }
             try {
@@ -298,8 +298,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'ctunaTOcmj',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBought)],
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } catch {}
         } else {
@@ -320,8 +320,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammyCTUNA, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 } catch {}
             }
             try {
@@ -331,8 +331,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'cmjTOctuna',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(ctunaBought)],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } catch {}
         }
@@ -359,8 +359,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammySX31, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config = await prepareWriteContract({
                     address: ammySX31,
@@ -368,8 +368,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'tokenTOcmj',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBought2)],
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } else {
                 const cmjAllow = await readContract({
@@ -388,8 +388,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammySX31, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config2 = await prepareWriteContract({
                     address: ammySX31,
@@ -397,8 +397,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'cmjTOtoken',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBought)],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             }
         } catch {}
@@ -425,8 +425,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammyBBQ, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config = await prepareWriteContract({
                     address: ammyBBQ,
@@ -434,8 +434,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'tokenTOcmj',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBought3)],
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } else {
                 const cmjAllow = await readContract({
@@ -454,8 +454,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammyBBQ, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config2 = await prepareWriteContract({
                     address: ammyBBQ,
@@ -463,8 +463,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'cmjTOtoken',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBought3)],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             }
         } catch {}
@@ -491,8 +491,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammyPZA, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config = await prepareWriteContract({
                     address: ammyPZA,
@@ -500,8 +500,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'tokenTOcmj',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBoughtPZA)],
                 })
-                const { hash1 } = await writeContract(config)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             } else {
                 const cmjAllow = await readContract({
@@ -520,8 +520,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                         functionName: 'approve',
                         args: [ammyPZA, bigApprove],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
                 const config2 = await prepareWriteContract({
                     address: ammyPZA,
@@ -529,8 +529,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, ammyABI, ammyStdABI, erc20ABI,
                     functionName: 'cmjTOtoken',
                     args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtPZA)],
                 })
-                const { hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash1, })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
             }
         } catch {}

@@ -245,8 +245,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'mintServant',
                 args: [1, inputName],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -268,8 +268,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     functionName: 'approve',
                     args: [fieldWood, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -279,8 +279,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -295,8 +295,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'unstake',
                 args: [_nftid, true],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             setisLoading(false)
             if (_uplevel) {
@@ -321,8 +321,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     functionName: 'approve',
                     args: [uplevelCMDS, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -332,8 +332,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 functionName: 'uplevelServant',
                 args: [_toLv, _nftid],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)

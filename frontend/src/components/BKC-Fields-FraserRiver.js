@@ -247,8 +247,8 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                     functionName: 'approve',
                     args: [fraserField, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: fraserField,
@@ -256,8 +256,8 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                 functionName: 'stake',
                 args: [1, _nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -272,8 +272,8 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                 functionName: 'unstake',
                 args: [1, _nftid, _unstake],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)

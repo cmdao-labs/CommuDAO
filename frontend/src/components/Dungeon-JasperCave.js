@@ -663,8 +663,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -686,8 +686,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunJasper, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -697,8 +697,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -713,8 +713,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -748,8 +748,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'approve',
                     args: [dunJasper, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             } catch {}
         }
         try {
@@ -759,8 +759,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -776,8 +776,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'unstakeL2',
                     args: [1, false, false]
                 })
-                const { hash10 } = await writeContract(config0)
-                await waitForTransaction({ hash10, })
+                const { hash: hash10 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash10 })
             }
             if (_nftid !== 0) {
                 const nftAllow = await readContract({
@@ -793,8 +793,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         functionName: 'approve',
                         args: [dunJasperL2, _nftid],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
             }
             const config2 = await prepareWriteContract({
@@ -803,8 +803,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'stakeL2',
                 args: [1, _nftid, 0]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -821,8 +821,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'unstakeL2',
                 args: [1, _isUnstakeFollower, _isUnstakeServant]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -838,8 +838,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     functionName: 'unstakeL2',
                     args: [1, false, false]
                 })
-                const { hash10 } = await writeContract(config0)
-                await waitForTransaction({ hash10, })
+                const { hash: hash10 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash10 })
             }
             if (_nftid !== 0) {
                 const nftAllow = await readContract({
@@ -855,8 +855,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         functionName: 'approve',
                         args: [dunJasperL2, _nftid],
                     })
-                    const { hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash0, })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
                 }
             }
             const config2 = await prepareWriteContract({
@@ -865,8 +865,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'stakeL2',
                 args: [1, 0, _nftid]
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -881,10 +881,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'mintST',
                 args: []
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) {console.log(e)}
+        } catch {}
         setisLoading(false)
     }
 

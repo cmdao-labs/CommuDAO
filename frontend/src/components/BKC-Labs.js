@@ -111,8 +111,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [bstMachine, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: bstMachine,
@@ -120,8 +120,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTrash))],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
             refetch()
         } catch (e) {
@@ -140,8 +140,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'unstake',
                 args: [ethers.utils.parseEther(String(inputStakedTrash))],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             refetch()
         } catch (e) {
@@ -167,8 +167,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [bstMachine, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: bstMachine,
@@ -176,8 +176,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'craft',
                 args: [_index],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
             refetch()
         } catch (e) {
@@ -195,8 +195,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 abi: stakerMachineABI,
                 functionName: 'obtain',
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             refetch()
         } catch (e) {
@@ -222,8 +222,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [salmMachine, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: salmMachine,
@@ -231,8 +231,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputCMM))],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
             refetch()
         } catch (e) {
@@ -251,8 +251,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'unstake',
                 args: [ethers.utils.parseEther(String(inputStakedCMM))],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             refetch()
         } catch (e) {
@@ -278,8 +278,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                     functionName: 'approve',
                     args: [salmMachine, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: salmMachine,
@@ -287,8 +287,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 functionName: 'craft',
                 args: [_index],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
             refetch()
         } catch (e) {
@@ -306,8 +306,8 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                 abi: stakerMachineABI,
                 functionName: 'obtain',
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             refetch()
         } catch (e) {

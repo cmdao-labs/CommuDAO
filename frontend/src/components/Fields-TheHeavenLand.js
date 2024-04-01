@@ -41,8 +41,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
         } catch {}
         setisLoading(false)
@@ -260,8 +260,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     functionName: 'approve',
                     args: [thlField, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: thlField,
@@ -269,8 +269,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -287,7 +287,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     args: [_nftid],
                 })
                 const { hash11 } = await writeContract(config1)
-                await waitForTransaction({ hash11, })
+                await waitForTransaction({ hash: hash11 })
             }
             const config2 = await prepareWriteContract({
                 address: thlField,
@@ -295,8 +295,8 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash12, })
+            const { hash: hash12 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash12 })
             setTxupdate(hash12)
         } catch {}
         setisLoading(false)

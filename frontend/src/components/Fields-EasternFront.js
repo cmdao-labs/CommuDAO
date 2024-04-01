@@ -40,8 +40,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash1 } = await writeContract(config)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -293,8 +293,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                     functionName: 'approve',
                     args: [vabag, _nftid],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
                 address: vabag,
@@ -302,8 +302,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
@@ -318,8 +318,8 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash12, })
+            const { hash: hash12 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash12 })
             setTxupdate(hash12)
         } catch {}
         setisLoading(false)

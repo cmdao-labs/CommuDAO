@@ -102,8 +102,8 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                     functionName: 'approve',
                     args: [farmCMOS, ethers.constants.MaxUint256],
                 })
-                const { hash0 } = await writeContract(config)
-                await waitForTransaction({ hash0, })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
                 address: farmCMOS,
@@ -111,8 +111,8 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 functionName: 'deposit',
                 args: [1, lp1StakeWei],
             })
-            const { hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash1, })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
             refetch()
         } catch (e) {
@@ -131,8 +131,8 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 functionName: 'withdraw',
                 args: [1, ethers.utils.parseEther(String(lp1Withdraw))],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             refetch()
         } catch (e) {
@@ -151,8 +151,8 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20AB
                 functionName: 'withdraw',
                 args: [1, 0],
             })
-            const { hash } = await writeContract(config)
-            await waitForTransaction({ hash, })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
             setTxupdate(hash)
             refetch()
         } catch (e) {
