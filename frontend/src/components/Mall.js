@@ -263,27 +263,27 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
             
             const _isKYC = data[0].result
-            const cmjBal = data[1].result
-            const jusdtBal = data[2].result
-            const ctunaBal = data[3].result
-            const sx31Bal = data[4].result
-            const bbqBal = data[5].result
-            const cuBal = data[6].result
-            const jaspBal = data[7].result
-            const pzaBal = data[8].result
-            const jdaoBal = data[9].result
+            const cmjBal = data[1] === 0 ? 0 : data[1].result
+            const jusdtBal = data[2] === 0 ? 0 : data[2].result
+            const ctunaBal = data[3] === 0 ? 0 : data[3].result
+            const sx31Bal = data[4] === 0 ? 0 : data[4].result
+            const bbqBal = data[5] === 0 ? 0 : data[5].result
+            const cuBal = data[6] === 0 ? 0 : data[6].result
+            const jaspBal = data[7] === 0 ? 0 : data[7].result
+            const pzaBal = data[8] === 0 ? 0 : data[8].result
+            const jdaoBal = data[9] === 0 ? 0 : data[9].result
             const isBought5 = data[10].result
-            const osBal = data[11].result
+            const osBal = data[11] === 0 ? 0 : data[11].result
             const isBought2 = data[12].result
-            const goldBal = data[13].result
-            const wjbcBal = data[14].result
-            const swarBal = data[15].result
-            const silBal = data[16].result
-            const angbBal = data[17].result
-            const jtaoBal = data[18].result
-            const iiBal = data[19].result
-            const eeBal = data[20].result
-            const platBal = data[21].result
+            const goldBal = data[13] === 0 ? 0 : data[13].result
+            const wjbcBal = data[14] === 0 ? 0 : data[14].result
+            const swarBal = data[15] === 0 ? 0 : data[15].result
+            const silBal = data[16] === 0 ? 0 : data[16].result
+            const angbBal = data[17] === 0 ? 0 : data[17].result
+            const jtaoBal = data[18] === 0 ? 0 : data[18].result
+            const iiBal = data[19] === 0 ? 0 : data[19].result
+            const eeBal = data[20] === 0 ? 0 : data[20].result
+            const platBal = data[21] === 0 ? 0 : data[21].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -1622,7 +1622,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img

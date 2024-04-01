@@ -351,10 +351,10 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                 ],
             })
 
-            const _reserveJtaoII = data[0].result
-            const _reserveII = data[1].result
-            const _reserveJtaoEE = data[2].result
-            const _reserveEE = data[3].result
+            const _reserveJtaoII = data[0] === 0 ? 0 : data[0].result
+            const _reserveII = data[1] === 0 ? 0 : data[1].result
+            const _reserveJtaoEE = data[2] === 0 ? 0 : data[2].result
+            const _reserveEE = data[3] === 0 ? 0 : data[3].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -373,8 +373,8 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                 ],
             })
 
-            const tokensBoughtiiTOjtao = data2[0].result
-            const tokensBoughteeTOjtao = data2[1].result
+            const tokensBoughtiiTOjtao = data2[0] === 0 ? 0 : data2[0].result
+            const tokensBoughteeTOjtao = data2[1] === 0 ? 0 : data2[1].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -393,8 +393,8 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, iiB
                 ],
             }) : [0, 0, ]
 
-            const iilpBal = data3[0].result
-            const eelpBal = data3[1].result
+            const iilpBal = data3[0] === 0 ? 0 : data3[0].result
+            const eelpBal = data3[1] === 0 ? 0 : data3[1].result
 
             return [
                 tokensBoughtiiTOjtao, _reserveJtaoII, _reserveII, iilpBal,

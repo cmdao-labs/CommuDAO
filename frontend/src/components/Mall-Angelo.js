@@ -558,10 +558,10 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 ],
             })
 
-            const _reserveWjbcSWAR = data[0].result
-            const _reserveSWAR = data[1].result
-            const _reserveWjbcANGB = data[2].result
-            const _reserveANGB = data[3].result
+            const _reserveWjbcSWAR = data[0] === 0 ? 0 : data[0].result
+            const _reserveSWAR = data[1] === 0 ? 0 : data[1].result
+            const _reserveWjbcANGB = data[2] === 0 ? 0 : data[2].result
+            const _reserveANGB = data[3] === 0 ? 0 : data[3].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -580,8 +580,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 ],
             })
 
-            const tokensBoughtswarTOwjbc = data2[0].result
-            const tokensBoughtangbTOwjbc = data2[1].result
+            const tokensBoughtswarTOwjbc = data2[0] === 0 ? 0 : data2[0].result
+            const tokensBoughtangbTOwjbc = data2[1] === 0 ? 0 : data2[1].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -600,8 +600,8 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                 ],
             }) : [0, 0, ]
 
-            const swarlpBal = data3[0].result
-            const angblpBal = data3[1].result
+            const swarlpBal = data3[0] === 0 ? 0 : data3[0].result
+            const angblpBal = data3[1] === 0 ? 0 : data3[1].result
 
             return [
                 tokensBoughtswarTOwjbc, _reserveWjbcSWAR, _reserveSWAR, swarlpBal,

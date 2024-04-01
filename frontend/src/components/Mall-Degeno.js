@@ -270,8 +270,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 ],
             })
 
-            const _reserveCmjMEOW = data[0].result
-            const _reserveMEOW = data[1].result
+            const _reserveCmjMEOW = data[0] === 0 ? 0 : data[0].result
+            const _reserveMEOW = data[1] === 0 ? 0 : data[1].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -284,7 +284,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 ],
             })
 
-            const tokensBoughtbbqTOcmj = data2[0].result
+            const tokensBoughtbbqTOcmj = data2[0] === 0 ? 0 : data2[0].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -301,10 +301,10 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                         args: [address],
                     },                    
                 ],
-            }) : [0]
+            }) : [0,0]
 
-            const meowBal = data3[0].result
-            const meowlpBal = data3[1].result
+            const meowBal = data3[0] === 0 ? 0 : data3[0].result
+            const meowlpBal = data3[1] === 0 ? 0 : data3[1].result
 
             return [tokensBoughtbbqTOcmj, meowBal, meowlpBal, _reserveCmjMEOW, _reserveMEOW]
         }
