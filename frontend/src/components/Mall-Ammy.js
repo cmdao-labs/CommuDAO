@@ -135,8 +135,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
         if (index === 1) {
             lp = ammyBBQ
             token = bbqToken
-            currBoughtToken = setCmjBought3
-            tokenBoughtCurr = setTokenBought3
+            currBoughtToken = cmjBought3
+            tokenBoughtCurr = tokenBought3
         } else if (index === 2) {
         } else if (index === 3) {
         } else if (index === 4) {
@@ -192,22 +192,12 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                     const { hash: hash0 } = await writeContract(config)
                     await waitForTransaction({ hash: hash0 })
                 }
-                let config2 = null
-                if (index === 3) {
-                    config2 = await prepareWriteContract({
-                        address: lp,
-                        abi: cmdaoAmmNpcABI,
-                        functionName: 'currencyTOtoken',
-                        args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseUnits(String(tokenBoughtCurr), "gwei")],
-                    })
-                } else {
-                    config2 = await prepareWriteContract({
-                        address: lp,
-                        abi: cmdaoAmmNpcABI,
-                        functionName: 'currencyTOtoken',
-                        args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCurr)],
-                    })
-                }
+                const config2 = await prepareWriteContract({
+                    address: lp,
+                    abi: cmdaoAmmNpcABI,
+                    functionName: 'currencyTOtoken',
+                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCurr)],
+                })
                 const { hash: hash1 } = await writeContract(config2)
                 await waitForTransaction({ hash: hash1 })
                 setTxupdate(hash1)
