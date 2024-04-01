@@ -342,6 +342,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                 onChange={swapMode === 0 ? handleSwap : handleSwap2}
                                 value={inputSwap}
                                 readOnly={delaySwap}
+                                type='number'
                             />
                             {swapMode === 0 ?
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle1}>Max</div> :
@@ -357,6 +358,7 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                                 onChange={swapMode === 3 ? handleSwap3 : handleSwap4}
                                 value={inputSwap}
                                 readOnly={delaySwap}
+                                type='number'
                             />
                             {swapMode === 3 ? 
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle3}>Max</div> :
