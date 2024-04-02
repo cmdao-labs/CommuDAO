@@ -52,6 +52,7 @@ import woodFieldABI from './jsons/woodFieldABI.json'
 import thlFieldABI from './jsons/thlFieldABI.json'
 import gearFieldABI from './jsons/gearFieldABI.json'
 import taoPfpABI from './jsons/taoPfpABI.json'
+import vabagFieldABI from './jsons/vabagFieldABI.json'
 
 import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
@@ -351,7 +352,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 19 ?
-                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
+                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} vabagFieldABI={vabagFieldABI} /> :
                     <></>
                 }
                 {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
