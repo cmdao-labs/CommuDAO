@@ -586,18 +586,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setIiBalance(ethers.utils.formatEther(result[48]))
             setIsCraftII(Number(result[49][0]) > 0)
             setCraftIImachine(Number(result[49][0]))
-                let nextHourII = 0
-                if (Number(result[49][1]) === 1) {
-                    nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 30 * 1000))
-                    Date.now() - (Number(result[49][1]) * 1000) <= (60 * 30 * 1000) ?
-                        setTimeToClaimII(nextHourII.toLocaleString('es-CL')) :
-                        setTimeToClaimII(0)
-                } else if (Number(result[49][1]) === 2) {
-                    nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 1440 * 1000))
-                    Date.now() - (Number(result[49][1]) * 1000) <= (60 * 1440 * 1000) ?
-                        setTimeToClaimII2(nextHourII.toLocaleString('es-CL')) :
-                        setTimeToClaimII2(0)
-                }
+            let nextHourII = 0
+            if (Number(result[49][0]) === 1) {
+                nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 30 * 1000))
+                Date.now() - (Number(result[49][1]) * 1000) <= (60 * 30 * 1000) ?
+                    setTimeToClaimII(nextHourII.toLocaleString('es-CL')) :
+                    setTimeToClaimII(0)
+            } else if (Number(result[49][0]) === 2) {
+                nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 1440 * 1000))
+                Date.now() - (Number(result[49][1]) * 1000) <= (60 * 1440 * 1000) ?
+                    setTimeToClaimII2(nextHourII.toLocaleString('es-CL')) :
+                    setTimeToClaimII2(0)
+            }
             setCanCraftII(result[50])
             setCanCraftII2(result[51])
 
