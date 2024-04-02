@@ -86,7 +86,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             let yournft = []
 
             const walletFilter = await acnftSC.filters.Transfer(null, address, null)
-            const walletEvent = await acnftSC.queryFilter(walletFilter, 3004475, "latest")
+            const walletEvent = await acnftSC.queryFilter(walletFilter, 2337707, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
 
@@ -135,7 +135,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             let yournft2 = []
             let count2 = 0
             const walletFilter2 = await apDunSC.filters.Transfer(null, address, null)
-            const walletEvent2 = await apDunSC.queryFilter(walletFilter2, 3004475, "latest")
+            const walletEvent2 = await apDunSC.queryFilter(walletFilter2, 2768084, "latest")
             const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
             
