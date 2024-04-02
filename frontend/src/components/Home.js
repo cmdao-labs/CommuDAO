@@ -19,34 +19,38 @@ const Home = ({ callMode, navigate }) => {
                         <div style={{fontSize: "40px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">52,000,000+</div>
                         <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
-                    {chain !== undefined && chain.id === 8899 ?
+                    {chain !== undefined ?
                         <>
-                            <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO-verse now!</div>
-                            <div style={{margin: "20px 0", maxWidth: "550px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                                <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
-                                    &nbsp;Ancient Forest
-                                </div>
-                                <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
-                                    &nbsp;Tuna Lake
-                                </div>
-                                <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
-                                    &nbsp;Old Warehouse
-                                </div>
-                                <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
-                                    &nbsp;Copper Mine
-                                </div>
-                                <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
-                                    &nbsp;Jasper Cave
-                                </div>
-                            </div>
+                            {chain.id === 8899 &&
+                                <>
+                                    <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO-verse now!</div>
+                                    <div style={{margin: "20px 0", maxWidth: "550px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                                        <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
+                                            &nbsp;Ancient Forest
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
+                                            &nbsp;Tuna Lake
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
+                                            &nbsp;Old Warehouse
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
+                                            &nbsp;Copper Mine
+                                        </div>
+                                        <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
+                                            <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
+                                            &nbsp;Jasper Cave
+                                        </div>
+                                    </div>
+                                </>
+                            }
                         </> :
                         <div style={{height: "215px", width: "410px", margin: "20px 0"}}>
-                            <div className='typed-out' style={{padding: "2px 8px"}}>Connect web3 wallet first</div>
+                            <div className='typed-out' style={{padding: "2px 8px"}}>PRESS CONNECT WALLET...</div>
                         </div>
                     }
                 </div>

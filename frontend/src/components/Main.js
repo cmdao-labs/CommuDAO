@@ -43,7 +43,6 @@ import stakerMachineABI from './jsons/stakerMachineABI.json'
 import diamonLpABI from './jsons/diamonlpABI.json'
 import farmCmosABI from './jsons/farmcmosABI.json'
 
-import { jbcL1 } from './chains/jbcL1.ts'
 import { bkc } from './chains/bkc.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
 import aurora721ABI from './jsons/aurora721ABI.json'
@@ -117,7 +116,7 @@ import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
 
 import TBridge from './tBridge'
 
-import { bsc } from 'wagmi/chains'
+import { bsc, jbc } from 'wagmi/chains'
 
 import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { walletConnectProvider, EIP6963Connector } from '@web3modal/wagmi'
@@ -131,7 +130,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 const projectId = 'a7f5e2dc839576cee8ebf11b79d2b4ee'
 
 const { chains, publicClient } = configureChains(
-  [jbcL1, bkc, bsc],
+  [jbc, bkc, bsc],
   [walletConnectProvider({ projectId }), publicProvider()]
 )
 
@@ -161,10 +160,12 @@ createWeb3Modal({
     themeMode: 'light',
     themeVariables: {
         '--w3m-accent': '#ff007a',
+        '--w3m-font-family': 'Inter',
+        '--w3m-font-size-master': '10px',
     }
 })
 
-const v = '0.3.4'
+const v = '0.3.5'
 
 const Main = () => {    
     const navigate = useNavigate()
