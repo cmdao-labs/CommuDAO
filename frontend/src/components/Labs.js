@@ -130,6 +130,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isCraftII, setIsCraftII] = React.useState(null)
     const [timetoClaimII, setTimeToClaimII] = React.useState(0)
     const [canCraftII, setCanCraftII] = React.useState(false)
+    const [craftIImachine, setCraftIImachine] = React.useState(0)
+    const [timetoClaimII2, setTimeToClaimII2] = React.useState(0)
+    const [canCraftII2, setCanCraftII2] = React.useState(false)
 
     const [isKYC, setIsKYC] = React.useState(null)
 
@@ -413,6 +416,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftII = Number(ethers.utils.formatEther(String(gearBal))) >= 888 && Number(ethers.utils.formatEther(String(tmBal))) >= 8 ? true : false
+            const _canCraftII2 = Number(ethers.utils.formatEther(String(gearBal))) >= 88888 && Number(ethers.utils.formatEther(String(tmBal))) >= 128 ? true : false
             const _canCraftPLAT2 = Number(ethers.utils.formatEther(String(eeBal))) >= 888 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
 
             const currentQueue = await readContract({
@@ -446,7 +450,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
                 labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
                 mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR, angbBal, starBal, labLogSTAR, _canCraftSTAR,
-                tmBal, gearBal, iiBal, labLogII, _canCraftII, eeBal, labLogPlat2, _canCraftPLAT2,
+                tmBal, gearBal, iiBal, labLogII, _canCraftII, _canCraftII2, eeBal, labLogPlat2, _canCraftPLAT2,
             ]
         }
 
@@ -581,19 +585,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setGearBalance(ethers.utils.formatEther(result[47]))
             setIiBalance(ethers.utils.formatEther(result[48]))
             setIsCraftII(Number(result[49][0]) > 0)
-            const nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 30 * 1000))
-            Date.now() - (Number(result[49][1]) * 1000) <= (60 * 30 * 1000) ?
-                setTimeToClaimII(nextHourII.toLocaleString('es-CL')) :
-                setTimeToClaimII(0)
+            setCraftIImachine(Number(result[49][1]))
+                let nextHourII = 0
+                if (Number(result[49][1]) === 1) {
+                    nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 30 * 1000))
+                    Date.now() - (Number(result[49][1]) * 1000) <= (60 * 30 * 1000) ?
+                        setTimeToClaimII(nextHourII.toLocaleString('es-CL')) :
+                        setTimeToClaimII(0)
+                } else if (Number(result[49][1]) === 2) {
+                    nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 1440 * 1000))
+                    Date.now() - (Number(result[49][1]) * 1000) <= (60 * 1440 * 1000) ?
+                        setTimeToClaimII2(nextHourII.toLocaleString('es-CL')) :
+                        setTimeToClaimII2(0)
+                }
             setCanCraftII(result[50])
+            setCanCraftII2(result[51])
 
-            setEeBalance(ethers.utils.formatEther(result[51]))
-            setIsCraftPLAT2(Number(result[52][0]) > 0)
-            const nextHourPLAT2 = new Date((Number(result[52][1]) * 1000) + (60 * 15 * 1000))
-            Date.now() - (Number(result[52][1]) * 1000) <= (60 * 15 * 1000) ?
+            setEeBalance(ethers.utils.formatEther(result[52]))
+            setIsCraftPLAT2(Number(result[53][0]) > 0)
+            const nextHourPLAT2 = new Date((Number(result[53][1]) * 1000) + (60 * 15 * 1000))
+            Date.now() - (Number(result[53][1]) * 1000) <= (60 * 15 * 1000) ?
                 setTimeToClaimPLAT2(nextHourPLAT2.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT2(0)
-            setCanCraftPLAT2(result[53])
+            setCanCraftPLAT2(result[54])
         })
 
     }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, kycABI])
@@ -1395,12 +1409,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             res1Amount = 40
             curr = cmjToken
             currAmount = 10
-        } else if (_index === 2) {
+        } else if (_index === 2 && _machine === 1) {
             lab = iiLab
             res1 = gearField
             res1Amount = 888
             curr = taomeme
             currAmount = 8
+        } else if (_index === 2 && _machine === 2) {
+            lab = iiLab
+            res1 = gearField
+            res1Amount = 88888
+            curr = taomeme
+            currAmount = 128
         }
         try {
             const res1Allow = await readContract({
@@ -2617,7 +2637,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {isCraft2 === false ?
+                                        {!isCraft2 ?
                                             <>
                                                 {canCraft2 ?
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(1)}>Craft Sphinx31</div> :
@@ -2672,7 +2692,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     }
                                 </> :
                                 <>
-                                    {isCraft2 === false ?
+                                    {!isCraft2 ?
                                         <>
                                             {canCraft2_2 ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(431826)}>Craft Sphinx31</div> :
@@ -2825,7 +2845,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
                             <div>30 minutes</div>
                         </div>
-                        {isCraftII ?
+                        {isCraftII && craftIImachine === 1 ?
                             <>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
@@ -2839,7 +2859,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {isCraftII !== null ?
+                                        {!isCraftII ?
                                             <>
                                                 {canCraftII ?
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 1)}>Craft TDM-II</div> :
@@ -2868,19 +2888,27 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                <div style={{margin: "0 5px"}}>88,888</div>
+                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                <img src="https://nftstorage.link/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                <div style={{margin: "0 5px"}}>128</div>
+                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                <img src="https://nftstorage.link/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                <div style={{margin: "0 5px"}}>8</div>
                             </div>
                         </div>
                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                            <div></div>
+                            <div>24 hours</div>
                         </div>
-                        {false && isCraftII ?
+                        {isCraftII && craftIImachine === 2 ?
                             <>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                    <div>{timetoClaimII === 0 ? "now" : timetoClaimII}</div>
+                                    <div>{timetoClaimII2 === 0 ? "now" : timetoClaimII2}</div>
                                 </div>
-                                {timetoClaimII === 0 ?
+                                {timetoClaimII2 === 0 ?
                                     <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(2)}>Obtain</div> :
                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
                                 }
@@ -2888,10 +2916,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {false && isCraftII !== null ?
+                                        {!isCraftII ?
                                             <>
-                                                {canCraftII ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 1)}>Craft TDM-II</div> :
+                                                {canCraftII2 ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 2)}>Craft TDM-II</div> :
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
                                                 }
                                             </> :
