@@ -520,7 +520,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     {Number(data_Token[3].result[1]) !== 0 && 
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div>{Date.now() - (data_Token[3].result[2] * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[3].result[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
+                                            <div>{Date.now() - (Number(data_Token[3].result[2]) * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[3].result[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
                                         </>
                                     }
                                 </>
@@ -539,7 +539,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     }
                                     {Number(data_Token[3].result[1]) !== 0 && 
                                         <>
-                                            {Date.now() - (data_Token[3].result[2] * 1000) > (3600 * 1000) ?
+                                            {Date.now() - (Number(data_Token[3].result[2]) * 1000) > (3600 * 1000) ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromBST}>Obtain TIERRA</div> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain TIERRA</div>
                                             }
@@ -630,7 +630,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     {Number(data_Token[8].result[1]) !== 0 && 
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div>{Date.now() - (data_Token[8].result[2] * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[8].result[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
+                                            <div>{Date.now() - (Number(data_Token[8].result[2]) * 1000) > (3600 * 1000) ? "now" : (new Date((Number(data_Token[8].result[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
                                         </>
                                     }
                                 </>
@@ -649,7 +649,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, setisError, setErrMsg, erc20ABI, s
                                     }
                                     {Number(data_Token[8].result[1]) !== 0 && 
                                         <>
-                                            {Date.now() - (data_Token[8].result[2] * 1000) > (3600 * 1000) ?
+                                            {Date.now() - (Number(data_Token[8].result[2]) * 1000) > (3600 * 1000) ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromSALM}>Obtain AGUA</div> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain AGUA</div>
                                             }
