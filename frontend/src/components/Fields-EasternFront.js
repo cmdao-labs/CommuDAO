@@ -8,7 +8,7 @@ const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, tunaFieldABI }) => {
+const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, vabagFieldABI }) => {
     const { address } = useAccount()
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -63,7 +63,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: vabag,
-                        abi: tunaFieldABI,
+                        abi: vabagFieldABI,
                         functionName: 'nftStake',
                         args: [String(item)],
                     }
@@ -92,7 +92,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
                 contracts: yournftstake.map((item) => (
                     {
                         address: vabag,
-                        abi: tunaFieldABI,
+                        abi: vabagFieldABI,
                         functionName: 'calculateRewards',
                         args: [String(item.Id)],
                     }
@@ -275,7 +275,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             setVaBagBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, tunaFieldABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, vabagFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -298,7 +298,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
             }        
             const config2 = await prepareWriteContract({
                 address: vabag,
-                abi: tunaFieldABI,
+                abi: vabagFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
@@ -314,7 +314,7 @@ const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI
         try {
             const config2 = await prepareWriteContract({
                 address: vabag,
-                abi: tunaFieldABI,
+                abi: vabagFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })

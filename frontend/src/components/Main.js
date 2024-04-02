@@ -52,6 +52,7 @@ import woodFieldABI from './jsons/woodFieldABI.json'
 import thlFieldABI from './jsons/thlFieldABI.json'
 import gearFieldABI from './jsons/gearFieldABI.json'
 import taoPfpABI from './jsons/taoPfpABI.json'
+import vabagFieldABI from './jsons/vabagFieldABI.json'
 
 import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
@@ -351,7 +352,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 19 ?
-                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} /> :
+                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} vabagFieldABI={vabagFieldABI} /> :
                     <></>
                 }
                 {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
@@ -440,7 +441,7 @@ const Main = () => {
             </WagmiConfig>
             <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <div className="inFooterLeft">
-                    <div style={{marginBottom: "10px"}}><img src="https://flagcdn.com/16x12/sg.png" srcset="https://flagcdn.com/32x24/sg.png 2x, https://flagcdn.com/48x36/sg.png 3x" width="16" height="12" alt="Singapore" /> {'© CommuDAO 2023 - Alpha V. ' + v}</div>
+                    <div style={{marginBottom: "10px"}}><img src="https://flagcdn.com/16x12/sg.png" srcSet="https://flagcdn.com/32x24/sg.png 2x, https://flagcdn.com/48x36/sg.png 3x" width="16" height="12" alt="Singapore" /> {'© CommuDAO 2023 - Alpha V. ' + v}</div>
                     <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
                     <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>
