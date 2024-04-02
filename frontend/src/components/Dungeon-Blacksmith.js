@@ -341,7 +341,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 abi: enchantRABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
-                gasLimit: 3000000,
+                gas: 3000000,
             })
             const { hash: hash1 } = await writeContract(config5)
             await waitForTransaction({ hash: hash1 })
@@ -421,7 +421,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 abi: enchantRABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
-                gasLimit: 3000000,
+                gas: 3000000,
             })
             const { hash: hash1 } = await writeContract(config5)
             await waitForTransaction({ hash: hash1 })
@@ -502,7 +502,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 abi: enchantRABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
-                gasLimit: 3000000,
+                gas: 3000000,
             })
             const { hash: hash1 } = await writeContract(config5)
             await waitForTransaction({ hash: hash1 })

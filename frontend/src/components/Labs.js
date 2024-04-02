@@ -585,7 +585,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setGearBalance(ethers.utils.formatEther(result[47]))
             setIiBalance(ethers.utils.formatEther(result[48]))
             setIsCraftII(Number(result[49][0]) > 0)
-            setCraftIImachine(Number(result[49][1]))
+            setCraftIImachine(Number(result[49][0]))
                 let nextHourII = 0
                 if (Number(result[49][1]) === 1) {
                     nextHourII = new Date((Number(result[49][1]) * 1000) + (60 * 30 * 1000))
@@ -2637,7 +2637,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {!isCraft2 ?
+                                        {isCraft2 === false ?
                                             <>
                                                 {canCraft2 ?
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(1)}>Craft Sphinx31</div> :
@@ -2692,7 +2692,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     }
                                 </> :
                                 <>
-                                    {!isCraft2 ?
+                                    {isCraft2 === false ?
                                         <>
                                             {canCraft2_2 ?
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(431826)}>Craft Sphinx31</div> :
@@ -2859,7 +2859,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {!isCraftII ?
+                                        {isCraftII !== true ?
                                             <>
                                                 {canCraftII ?
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 1)}>Craft TDM-II</div> :
@@ -2916,7 +2916,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <>
                                 {address !== null && address !== undefined ?
                                     <>
-                                        {!isCraftII ?
+                                        {isCraftII !== true ?
                                             <>
                                                 {canCraftII2 ?
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 2)}>Craft TDM-II</div> :

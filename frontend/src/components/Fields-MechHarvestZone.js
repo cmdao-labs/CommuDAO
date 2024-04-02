@@ -568,7 +568,7 @@ const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setE
                 abi: gearFieldABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTM)), 0],
-                gasLimit: 1000000,
+                gas: 1000000,
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })

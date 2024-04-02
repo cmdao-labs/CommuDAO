@@ -291,7 +291,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                 abi: uniEnchanterABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
-                gasLimit: 3000000,
+                gas: 3000000,
             })
             const { hash: hash1 } = await writeContract(config5)
             await waitForTransaction({ hash: hash1 })

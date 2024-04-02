@@ -503,7 +503,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 abi: pvp01ABI,
                 functionName: 'fight',
                 args: [challenger[challengerSlot]],
-                gasLimit: 3000000,
+                gas: 3000000,
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })

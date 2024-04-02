@@ -730,7 +730,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 abi: fusionABI,
                 functionName: 'enchant',
                 args: [_fusionindex, _nftid, _nftId2[0].Id, _nftId3[0].Id, _nftId4[0].Id, 0],
-                gasLimit: 1000000,
+                gas: 1000000,
             })
             const { hash: hash1 } = await writeContract(config8)
             await waitForTransaction({ hash: hash1 })
