@@ -444,8 +444,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             </div>
         </div>
 
-        <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start"}} className="collection">
-            <div style={{width: '60%', display: 'flex', justifyContent: 'center'}}>
+        <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start", justifyContent: 'center'}} className="collection">
+            <div style={{width: '70%', display: 'flex', justifyContent: 'center'}}>
                 {nft.length > 0 ?
                     <>
                         {nft[0] !== null ?
@@ -532,8 +532,8 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     </div>
                 }
             </div>
-            <div style={{width: '30%', height: "100vh", padding: "50px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
-                <div style={{padding: "10px", width: "100%", height: "500px", background: "#fff", overflow: 'scroll'}}>
+            <div style={{minWidth: '400px', width: '25%', height: "100vh", padding: "20px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
+                <div style={{padding: "10px", width: "95%", height: "500px", background: "#fff", overflow: 'scroll'}}>
                     {chat.length > 0 ?
                         <>
                             {chat[0] !== null &&
@@ -555,7 +555,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                         <Oval stroke="#ff007a" strokeWidth="5px" />
                     }
                 </div>
-                <div style={{width: "100%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <div style={{width: "95%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                     <input style={{width: "70%", padding: "10px 20px"}} value={msg} onChange={(event) => setMsg(event.target.value)}></input>
                     <div style={{borderRadius: "12px", color: "#fff"}} className="bold button" onClick={sendMsg}>SEND</div>
                 </div>
