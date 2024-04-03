@@ -120,7 +120,6 @@ import { bsc, jbc } from 'wagmi/chains'
 
 import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { walletConnectProvider, EIP6963Connector } from '@web3modal/wagmi'
-
 import { WagmiConfig, configureChains, createConfig } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -163,6 +162,11 @@ createWeb3Modal({
         '--w3m-font-family': 'Inter',
         '--w3m-font-size-master': '10px',
         '--w3m-z-index': 1000, 
+    },
+    chainImages: {
+        56: 'https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte',
+        96: 'https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a',
+        8899: 'https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu'
     }
 })
 

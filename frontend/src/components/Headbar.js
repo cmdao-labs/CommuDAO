@@ -156,33 +156,24 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             </div>
           }
           {isConnected ?
-            <>
-              <div>
-                {chain.id === 8899 && <img src="https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu" style={{marginRight: "15px"}} width="25" alt="JBCL1" />}
-                {chain.id === 96 && <img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" style={{marginRight: "15px"}} width="25" alt="BKC" />}
-                {chain.id === 56 && <img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" style={{marginRight: "15px"}} width="25" alt="BSC" />}
-              </div>
-              <w3m-account-button />
-            </> :
-            <>
-              <div 
-                id="walletDiv"
-                className="button wallet"
-                onClick={() => {
-                    try {
-                      open()
-                    } catch (e) {
-                      console.log(e)
-                      open()
-                    }
+            <w3m-account-button /> :
+            <div 
+              id="walletDiv"
+              className="button wallet"
+              onClick={() => {
+                  try {
+                    open()
+                  } catch (e) {
+                    console.log(e)
+                    open()
                   }
                 }
-              >
-                <div style={{letterSpacing: 0}} className="pixel">
-                  <div>CONNECT WALLET</div>
-                </div>
+              }
+            >
+              <div style={{letterSpacing: 0}} className="pixel">
+                <div>CONNECT WALLET</div>
               </div>
-            </>
+            </div>
           }
         </div>
       </header>
