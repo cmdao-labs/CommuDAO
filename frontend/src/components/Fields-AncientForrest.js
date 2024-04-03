@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount } from 'wagmi'
+import { useContractEvent, useAccount } from 'wagmi'
 import { ThreeDots, Oval } from 'react-loading-icons'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
@@ -11,8 +11,9 @@ const uplevelCMDS = '0x5fCf6Bd82Bd156Ef4DBef47f2997F91bD3E214BB'
 const fieldWood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 
 const chatSC = '0x4c3216151BFb0b2c710B6bA7f86f4A01cEE540a2'
+const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 
-const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI }) => {
+const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [msg, setMsg] = React.useState("")
@@ -20,6 +21,25 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
+
+    const messagesEndRef = React.useRef(null);
+
+    useContractEvent({
+        address: chatSC,
+        abi: msgABI,
+        eventName: 'Message',
+        listener(log) {
+            if (Number(log.slice(-1)[0].args.index) === 1) {
+                setTxupdate('yo')
+            }
+        },
+    })
+
+    React.useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({behavior: "smooth", block: 'end', inline: 'nearest'})
+        }
+    }, [chat])
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -31,9 +51,48 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             const chatFilter = await chatBox.filters.Message(null, null, 1, null,)
             const chatEvent = await chatBox.queryFilter(chatFilter, block - 5760, "latest")
             const chatMap = await Promise.all(chatEvent.map(async (obj) => {
-                return {sender: String(obj.args.sender), message: String(obj.args.message)}
+                return {sender: String(obj.args.sender), message: String(obj.args.message), blockNumber: "@" + String(obj.blockNumber)}
             }))
-            if (chatMap.length === 0) { chatMap.push(null) }
+            const senderArr = []
+            for (let i = 0; i <= Number(chatMap.length - 1); i++) {
+                senderArr.push(chatMap[i].sender)
+            }
+            const idName = await readContracts({
+                contracts: senderArr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item]
+                    }
+                ))
+            })
+            const idArr = []
+            for (let i = 0; i <= Number(idName.length - 1); i++) {
+                idArr.push(idName[i].result)
+            }
+            const strName = await readContracts({
+                contracts: idArr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item]
+                    }
+                ))
+            })
+            const strArr = []
+            for (let i = 0; i <= Number(strName.length - 1); i++) {
+                strArr.push(strName[i].result)
+            }
+            const chatFinal = chatMap.map((item, i) => {
+                return {
+                    sender: strArr[i] !== undefined ? strArr[i] : item.sender.slice(0, 4) + "..." + item.sender.slice(-4),
+                    message: item.message,
+                    blockNumber: item.blockNumber
+                }
+            })
+            if (chatFinal.length === 0) { chatFinal.push(null) }
 
             const nftGenesis = address !== null && address !== undefined ? await readContract({
                 address: starterCMDS,
@@ -233,7 +292,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, chatMap]
+            return [nfts, chatFinal]
         }
 
         const promise = thefetch()
@@ -250,7 +309,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             setChat(result[1])
         })
 
-    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI])
+    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI])
 
     const mintServant = async () => {
         setisLoading(true)
@@ -368,6 +427,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
+            setMsg('')
         } catch {}
         setisLoading(false)
     }
@@ -473,7 +533,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 }
             </div>
             <div style={{width: '30%', height: "100vh", padding: "50px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
-                <div style={{padding: "10px", width: "100%", height: "500px", background: "#fff", overflow: 'scroll', overflowAnchor: 'none'}}>
+                <div style={{padding: "10px", width: "100%", height: "500px", background: "#fff", overflow: 'scroll'}}>
                     {chat.length > 0 ?
                         <>
                             {chat[0] !== null &&
@@ -481,14 +541,16 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                                     {chat.map((item, index) => (
                                         <div style={{margin: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                             <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                <div className="emp bold">{item.sender.slice(0, 4) + "..." + item.sender.slice(-4)}</div>
-                                                <div style={{padding: "10px", fontSize: "18px"}}>{item.message}</div>
+                                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                                    <div className="emp bold">{item.sender}</div>
+                                                    <div style={{marginLeft: '10px', fontSize: '12px'}}>{item.blockNumber}</div>
+                                                </div>
+                                                <div ref={messagesEndRef} style={{padding: "10px", fontSize: "18px"}}>{item.message}</div>
                                             </div>
                                         </div>
                                     ))}
                                 </>
                             }
-                            <div style={{overflowAnchor: 'auto', height: '1px'}}></div>
                         </> :
                         <Oval stroke="#ff007a" strokeWidth="5px" />
                     }
