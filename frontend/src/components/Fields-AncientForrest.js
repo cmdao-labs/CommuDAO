@@ -2,15 +2,21 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
-import { ThreeDots } from 'react-loading-icons'
+import { ThreeDots, Oval } from 'react-loading-icons'
+const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const CMDS = '0xAF17Dc881204488d929a5D377eBCF3256130b335'
 const starterCMDS = '0x936322111e1c9dCa38a721C1E07b9ec553BF2f04'
 const uplevelCMDS = '0x5fCf6Bd82Bd156Ef4DBef47f2997F91bD3E214BB'
 const fieldWood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 
-const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI }) => {
+const chatSC = '0x4c3216151BFb0b2c710B6bA7f86f4A01cEE540a2'
+
+const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI }) => {
     const { address } = useAccount()
+
+    const [msg, setMsg] = React.useState("")
+    const [chat, setChat] = React.useState([])
 
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
@@ -18,8 +24,17 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         setNft([])
+        const chatBox = new ethers.Contract(chatSC, msgABI, providerJBC)
 
         const thefetch = async () => {
+            const block = await providerJBC.getBlockNumber()
+            const chatFilter = await chatBox.filters.Message(null, null, 1, null,)
+            const chatEvent = await chatBox.queryFilter(chatFilter, block - 5760, "latest")
+            const chatMap = await Promise.all(chatEvent.map(async (obj) => {
+                return {sender: String(obj.args.sender), message: String(obj.args.message)}
+            }))
+            if (chatMap.length === 0) { chatMap.push(null) }
+
             const nftGenesis = address !== null && address !== undefined ? await readContract({
                 address: starterCMDS,
                 abi: starterCMDSABI,
@@ -218,7 +233,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts]
+            return [nfts, chatMap]
         }
 
         const promise = thefetch()
@@ -232,9 +247,10 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
         getAsync().then(result => {
             setNft(result[0])
+            setChat(result[1])
         })
 
-    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI])
+    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI])
 
     const mintServant = async () => {
         setisLoading(true)
@@ -339,6 +355,23 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
         setisLoading(false)
     }
 
+    const sendMsg = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: chatSC,
+                abi: msgABI,
+                functionName: 'sendMessage',
+                args: ['0x0000000000000000000000000000000000000427', 1, msg],
+                value: ethers.utils.parseEther('0.01'),
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
     <>
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
@@ -352,91 +385,119 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
         </div>
 
         <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start"}} className="collection">
-            {nft.length > 0 ?
-                <>
-                    {nft[0] !== null ?
-                        <>
-                            {nft.map((item, index) => (
-                                <div style={{justifyContent: "space-around", height: "500px"}} className="nftCard" key={index}>
-                                    <img src={item.Image} width="175" alt="Can not load metadata." />
-                                    <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
-                                        <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
-                                            <div style={{color: "black"}}>{item.Name} [Lv. {item.Level}]</div>
-                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                                {item.isStaked ?
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
+            <div style={{width: '60%', display: 'flex', justifyContent: 'center'}}>
+                {nft.length > 0 ?
+                    <>
+                        {nft[0] !== null ?
+                            <>
+                                {nft.map((item, index) => (
+                                    <div style={{justifyContent: "space-around", height: "500px"}} className="nftCard" key={index}>
+                                        <img src={item.Image} width="175" alt="Can not load metadata." />
+                                        <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
+                                            <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
+                                                <div style={{color: "black"}}>{item.Name} [Lv. {item.Level}]</div>
+                                                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                    {item.isStaked ?
+                                                        <>
+                                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                            <div>On Staking</div>
+                                                        </> :
+                                                        <>
+                                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                            <div>Available for stake</div>
+                                                        </>
+                                                    }
+                                                </div>
+                                                <div>Class : {item.Class}</div>
+                                                <div>Hash rate : {item.Hashrate}</div>
+                                                <div>EXP : {Number(item.Exp >= 1 ? item.Exp - 1 : 0).toFixed(0)}/{item.ExpMax} ({(((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax) >= 100 ? "MAX" : (((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax).toFixed(3).concat("%")})</div>
                                             </div>
-                                            <div>Class : {item.Class}</div>
-                                            <div>Hash rate : {item.Hashrate}</div>
-                                            <div>EXP : {Number(item.Exp >= 1 ? item.Exp - 1 : 0).toFixed(0)}/{item.ExpMax} ({(((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax) >= 100 ? "MAX" : (((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax).toFixed(3).concat("%")})</div>
+                                            {item.isStaked ?
+                                                <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                                                    {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
+                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
+                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
+                                                    }
+                                                </div> :
+                                                <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                                                    <div style={{lineHeight: 2, height: "fit-content", textAlign: "center"}} className="pixel button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                                    {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
+                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
+                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
+                                                    }
+                                                </div>
+                                            }
                                         </div>
-                                        {item.isStaked ?
-                                            <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                                                {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
-                                                }
-                                            </div> :
-                                            <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                                                <div style={{lineHeight: 2, height: "fit-content", textAlign: "center"}} className="pixel button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                                {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
-                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
-                                                }
+                                        <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                            <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
+                                                Pending Rewards
+                                                <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
+                                                <div style={{fontSize: "10px"}} className="emp"><img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
+                                                <div style={{fontSize: "10px"}} className="emp"><img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
                                             </div>
-                                        }
-                                    </div>
-                                    <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                        <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
-                                            Pending Rewards
-                                            <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
-                                            <div style={{fontSize: "10px"}} className="emp"><img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
-                                            <div style={{fontSize: "10px"}} className="emp"><img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
+                                            {item.RewardWood > 0 ?
+                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
+                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">HARVEST</div>
+                                            }
                                         </div>
-                                        {item.RewardWood > 0 ?
-                                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
-                                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">HARVEST</div>
-                                        }
                                     </div>
-                                </div>
-                            ))}
-                        </> :
+                                ))}
+                            </> :
+                            <>
+                                {address !== undefined ?
+                                    <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
+                                        <img src="https://nftstorage.link/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
+                                        <div style={{margin: "20px 0", fontSize: "18px"}} className="emp pixel">CommuDAO Servant Incubator</div>
+                                        <input
+                                            style={{width: "90%", padding: "5px 10px", marginBottom: "20px", border: "1px solid #dddade", fontSize: "18px"}}
+                                            className="bold"
+                                            type="string"
+                                            placeholder="Input Servant Name (max 32 chars)"
+                                            onChange={(event) => {if (event.target.value.length <= 32) { setInputName(event.target.value)} }}
+                                            value={inputName}
+                                        ></input>
+                                        <div className="pixel button" onClick={mintServant}>MINT SERVANT</div>
+                                    </div> :
+                                    <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
+                                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                        <div className="bold">Please connect wallet to view your servant.</div>
+                                    </div>
+                                }
+                            </>
+                        }
+                    </> :
+                    <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
+                        <ThreeDots fill="#5f6476" />
+                        <div className="bold" style={{marginTop: "80px"}}>Loading Servant...</div>
+                    </div>
+                }
+            </div>
+            <div style={{width: '30%', height: "100vh", padding: "50px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
+                <div style={{padding: "10px", width: "100%", height: "500px", background: "#fff"}}>
+                    {chat.length > 0 ?
                         <>
-                            {address !== undefined ?
-                                <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
-                                    <img src="https://nftstorage.link/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
-                                    <div style={{margin: "20px 0", fontSize: "18px"}} className="emp pixel">CommuDAO Servant Incubator</div>
-                                    <input
-                                        style={{width: "90%", padding: "5px 10px", marginBottom: "20px", border: "1px solid #dddade", fontSize: "18px"}}
-                                        className="bold"
-                                        type="string"
-                                        placeholder="Input Servant Name (max 32 chars)"
-                                        onChange={(event) => {if (event.target.value.length <= 32) { setInputName(event.target.value)} }}
-                                        value={inputName}
-                                    ></input>
-                                    <div className="pixel button" onClick={mintServant}>MINT SERVANT</div>
-                                </div> :
-                                <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your servant.</div>
-                                </div>
+                            {chat[0] !== null &&
+                                <>
+                                    {chat.map((item, index) => (
+                                        <div style={{margin: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
+                                            <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                <div className="emp bold">{item.sender.slice(0, 4) + "..." + item.sender.slice(-4)}</div>
+                                                <div style={{padding: "10px", fontSize: "18px"}}>{item.message}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
                             }
-                        </>
+                        </> :
+                        <Oval stroke="#ff007a" strokeWidth="5px" />
                     }
-                </> :
-                <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
-                    <ThreeDots fill="#5f6476" />
-                    <div className="bold" style={{marginTop: "80px"}}>Loading Servant...</div>
                 </div>
-            }
+                <div style={{width: "100%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                    <input style={{width: "70%", padding: "10px 20px"}} value={msg} onChange={(event) => setMsg(event.target.value)}></input>
+                    <div style={{borderRadius: "12px", color: "#fff"}} className="bold button" onClick={sendMsg}>SEND</div>
+                </div>
+               
+            </div>
         </div>
     </>
     )
