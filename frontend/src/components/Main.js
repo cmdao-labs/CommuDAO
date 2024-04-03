@@ -119,7 +119,7 @@ import TBridge from './tBridge'
 import { bsc, jbc } from 'wagmi/chains'
 
 import { createWeb3Modal } from '@web3modal/wagmi/react'
-import { walletConnectProvider, EIP6963Connector } from '@web3modal/wagmi'
+import { walletConnectProvider, EIP6963Connector, EmailConnector } from '@web3modal/wagmi'
 import { WagmiConfig, configureChains, createConfig } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -146,9 +146,10 @@ const wagmiConfig = createConfig({
     new WalletConnectConnector({ chains, options: { projectId, showQrModal: false, metadata } }),
     new EIP6963Connector({ chains }),
     new InjectedConnector({ chains, options: { shimDisconnect: true } }),
-    new CoinbaseWalletConnector({ chains, options: { appName: metadata.name } })
+    new CoinbaseWalletConnector({ chains, options: { appName: metadata.name } }),
+    new EmailConnector({ chains, options: { projectId } })
   ],
-  publicClient
+  publicClient,
 })
 
 createWeb3Modal({
