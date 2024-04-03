@@ -45,7 +45,6 @@ const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, erc20ABI, kycABI }) => {
     const { address } = useAccount()
 
-    const [jbcBalance, setJbcBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [woodBalance, setWoodBalance] = React.useState(0)
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -465,7 +464,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
         getAsync().then(result => {
             setIsKYC(result[0])
-            setJbcBalance(result[1].formatted)
             setCmjBalance(ethers.utils.formatEther(result[2]))
             setWoodBalance(ethers.utils.formatEther(result[3]))
             setBbqBalance(ethers.utils.formatEther(result[4]))
@@ -1505,10 +1503,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Cryptocurrency</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                        <img src="https://nftstorage.link/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$JBC"/>
-                        <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                    </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img 
                             src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"

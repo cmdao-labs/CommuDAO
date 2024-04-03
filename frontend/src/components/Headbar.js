@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract } from '@wagmi/core'
-import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 const { ethereum } = window
 
@@ -12,8 +12,6 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
   const { open } = useWeb3Modal()
   const { address, isConnected } = useAccount()
   const { chain } = useNetwork()
-  const { switchNetwork } = useSwitchNetwork()
-  const { disconnect } = useDisconnect()
 
   const [isChainInvalid, setIsChainInvalid] = React.useState(false)
   const [jdaoBalance, setJdaoBalance] = React.useState(0)
@@ -66,7 +64,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
               <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">UNSUPPORT CHAIN!</div>
               <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to supported network.</div>
-              <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => switchNetwork(8899)}>SWITCH NETWORK</div>
+              <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
             </div>
           </div>
         </div>
@@ -161,8 +159,8 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <>
               <div>
                 {chain.id === 8899 && <img src="https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu" style={{marginRight: "15px"}} width="25" alt="JBCL1" />}
-                  {chain.id === 96 && <img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" style={{marginRight: "15px"}} width="25" alt="BKC" />}
-                  {chain.id === 56 && <img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" style={{marginRight: "15px"}} width="25" alt="BSC" />}
+                {chain.id === 96 && <img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" style={{marginRight: "15px"}} width="25" alt="BKC" />}
+                {chain.id === 56 && <img src="https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte" style={{marginRight: "15px"}} width="25" alt="BSC" />}
               </div>
               <w3m-account-button />
             </> :
