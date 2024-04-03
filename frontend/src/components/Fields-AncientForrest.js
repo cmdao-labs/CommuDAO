@@ -473,7 +473,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 }
             </div>
             <div style={{width: '30%', height: "100vh", padding: "50px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
-                <div style={{padding: "10px", width: "100%", height: "500px", background: "#fff"}}>
+                <div style={{padding: "10px", width: "100%", height: "500px", background: "#fff", overflow: 'scroll', overflowAnchor: 'none'}}>
                     {chat.length > 0 ?
                         <>
                             {chat[0] !== null &&
@@ -488,6 +488,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                                     ))}
                                 </>
                             }
+                            <div style={{overflowAnchor: 'auto', height: '1px'}}></div>
                         </> :
                         <Oval stroke="#ff007a" strokeWidth="5px" />
                     }
