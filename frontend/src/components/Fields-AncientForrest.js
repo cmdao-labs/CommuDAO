@@ -444,14 +444,14 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             </div>
         </div>
 
-        <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start", justifyContent: 'center'}} className="collection">
-            <div style={{width: '70%', display: 'flex', justifyContent: 'center'}}>
+        <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start", justifyContent: 'space-between'}} className="collection">
+            <div style={{minWidth: '50%', display: 'flex', justifyContent: 'flex-start', flexWrap: "wrap"}}>
                 {nft.length > 0 ?
                     <>
                         {nft[0] !== null ?
                             <>
                                 {nft.map((item, index) => (
-                                    <div style={{justifyContent: "space-around", height: "500px"}} className="nftCard" key={index}>
+                                    <div style={{justifyContent: "space-around", height: "500px", margin: "20px"}} className="nftCard" key={index}>
                                         <img src={item.Image} width="175" alt="Can not load metadata." />
                                         <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
                                             <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
@@ -505,7 +505,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                             </> :
                             <>
                                 {address !== undefined ?
-                                    <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
+                                    <div className="nftCard" style={{justifyContent: "flex-start", height: "500px", margin: '20px'}}>
                                         <img src="https://nftstorage.link/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
                                         <div style={{margin: "20px 0", fontSize: "18px"}} className="emp pixel">CommuDAO Servant Incubator</div>
                                         <input
@@ -526,11 +526,36 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                             </>
                         }
                     </> :
-                    <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
+                    <div className="nftCard" style={{justifyContent: "flex-start", height: "500px", margin: '20px'}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading Servant...</div>
                     </div>
                 }
+                <div style={{justifyContent: "space-around", height: "500px", margin: '20px'}} className="nftCard">
+                    <img src='https://bafybeiax35zfioffpmp3tlyjwdrz2dplldgm5qokqi5p3b76cmomtkfri4.ipfs.nftstorage.link/' width="175" alt="Can not load metadata." />
+                    <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
+                        <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
+                            <div style={{color: "red"}}>Fishmon [Lv. 5]</div>
+                            <div>Class : Virtual Monster</div>
+                            <div>Hash rate : 125</div>
+                            <div>Spawn : 0 / 1000</div>
+                            <div>Stamina (PZA bal.) : 100</div>
+                        </div>
+                        <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">RESPAWN</div>
+                        </div>
+                    </div>
+                    <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                        <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
+                            Rewards
+                            <div style={{fontSize: "14px"}}><img src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="12" alt="$PLAT"/> 1 per defeat</div>
+                        </div>
+                        {false ?
+                            <div style={{lineHeight: 2, height: "fit-content"}} className="pixel button">ATTACK</div> :
+                            <div style={{lineHeight: 2, height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ATTACK</div>
+                        }
+                    </div>
+                </div>
             </div>
             <div style={{minWidth: '400px', width: '25%', height: "100vh", padding: "20px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
                 <div style={{padding: "10px", width: "95%", height: "500px", background: "#fff", overflow: 'scroll'}}>
@@ -557,7 +582,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 </div>
                 <div style={{width: "95%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                     <input style={{width: "70%", padding: "10px 20px"}} value={msg} onChange={(event) => setMsg(event.target.value)}></input>
-                    <div style={{borderRadius: "12px", color: "#fff"}} className="bold button" onClick={sendMsg}>SEND</div>
+                    <div style={{borderRadius: "12px", color: "#fff", marginLeft: "10px"}} className="bold button" onClick={sendMsg}>SEND</div>
                 </div>
                
             </div>

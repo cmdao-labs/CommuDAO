@@ -172,7 +172,7 @@ createWeb3Modal({
     }
 })
 
-const v = '0.3.5'
+const v = '0.3.6'
 
 const Main = () => {    
     const navigate = useNavigate()
@@ -369,7 +369,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 200 ?
-                    <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
+                    <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
                     <></>
                 }
                 {mode === 3 ?
@@ -430,7 +430,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 700 ?
-                    <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
+                    <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
                     <></>
                 }
                 {mode === 8 ?
