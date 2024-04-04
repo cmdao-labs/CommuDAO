@@ -405,7 +405,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                             ██║░╚███║██║░░██║██║░░██║╚██████╔╝░░░██║░░░██║░░██║  ╚██╔═██╔══╝╚█████╔╝███████╗
                                             ╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝  ░╚═╝░╚═╝░░░░╚════╝░╚══════╝
                                             */}
-                                            {(String(item.Id).slice(0, 3) === "100" || String(item.Id).slice(0, 3) === "700" || String(item.Id).slice(0, 3) === "300") && Number(item.Id) % 100000 !== 72800 &&
+                                            {(String(item.Id).slice(0, 3) === "100" || String(item.Id).slice(0, 3) === "700" || String(item.Id).slice(0, 3) === "300" || String(item.Id).slice(0, 3) === "200") && Number(item.Id) % 100000 !== 72800 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "40px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -431,7 +431,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {String(item.Id).slice(0, 3) === "700" && <img src='https://nftstorage.link/ipfs/bafybeiefq2r3t5z7d5yt6gwbckkr2qvrgdgjgd4g764d25nficw2knnrai' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "500" && <img  width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeif4amlgguwmct6dkcu6whcrbrz4lxir6tvyvuxp5dwi6vdoft3zgi' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img  width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeieljlh4zog6hzjvktizkb6xdswswzxys7rlj4xm7fp47ytizglxpi' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "600" && <img  width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "400" && <img  width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
@@ -455,7 +455,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {String(item.Id).slice(0, 3) === "700" && <img src='https://nftstorage.link/ipfs/bafybeihi5ty2pn5b3hridcszupaelj2lm4y5fctfirrp4f5457puemrdsa' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "500" && <img  width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeifriz3jssqcl7uzwjexv3chn56awmnmvjklmgdy5uabaovhqlwmwy' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img  width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeiad4vswhlfjemiylp5r4mlghz4tqag6dn7bimnd5qysnkidlaieai' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "600" && <img  width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "400" && <img  width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
@@ -479,7 +479,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {String(item.Id).slice(0, 3) === "700" && <img src='https://nftstorage.link/ipfs/bafybeibrg3peklun2ednncyqftjduu64atrckm5qqdx5dlk5io6rjetxei' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "500" && <img  width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeiflj5c5xdevsg5odxepmqrvtpvukntaudqcahrtjwl6fdaeyauiny' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img  width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeig5hgcjimmkvjanskq6aofpmkhufarvnthqbddekeuygwpofewh2m' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "600" && <img  width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "400" && <img  width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
