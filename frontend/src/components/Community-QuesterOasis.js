@@ -674,7 +674,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                             <div style={{height: "320px"}}>
                                 <img src="https://nftstorage.link/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
                             </div>
-                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
@@ -705,7 +705,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                             <div style={{height: "320px"}}>
                                 <img src="https://nftstorage.link/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
                             </div>
-                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
                                     <div className="bold">QUEST DETAIL</div>
                                     <div style={{marginTop: "10px", color: "#fff"}} className="bold">Insert 1 JBC to be a participants of each epoch on <a style={{textDecoration: "none", color: "red"}} href="https://enderapp.vercel.app/" target="_blank" rel="noreferrer">Ender Pottery</a></div>
@@ -725,7 +725,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                             <div style={{height: "320px"}}>
                                 <img src="https://nftstorage.link/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
                             </div>
-                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
@@ -759,7 +759,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                             <div style={{height: "320px"}}>
                                 <img src="https://nftstorage.link/ipfs/bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa" height="300" alt="PVP_Quest"/>
                             </div>
-                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
                                     <div className="bold">Your Invited Frens</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
