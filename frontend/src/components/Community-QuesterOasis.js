@@ -524,7 +524,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             </div>
 
             <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
-                <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "880px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "16px"}} className="nftCard">
+                <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px"}} className="nftCard">
                     <div style={{fontSize: "40px", color: "#fff"}}>April 2024 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
@@ -662,127 +662,127 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         }
                     </div>
                 </div>
-
-                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", marginTop: "50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "450px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{width: "140px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Daily</div>
-                    </div>
-                    <div style={{width: "100%", paddingBottom: "10px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Let's Cook BBQ!</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div style={{height: "320px", marginRight: "40px"}}>
-                            <img src="https://nftstorage.link/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
+                
+                <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "140px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Daily</div>
                         </div>
-                        <div style={{width: "65%", height: "300px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                            <div>
-                                <div className="bold">REWARDS</div>
-                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                    <div style={{marginRight: "10px", color: "#fff"}}>5</div>
-                                    <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Let's Cook BBQ!</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
+                            </div>
+                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">REWARDS</div>
+                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
+                                        <div style={{marginRight: "10px", color: "#fff"}}>5</div>
+                                        <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div className="bold">QUEST DETAIL</div>
-                                <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">Craft a $BBQ in LABS and say GM!</div>
-                                <div style={{marginTop: "20px", fontSize: "16px"}} className="bold">GM STREAKS: {gmStreak}</div>
-                            </div>
-                            {canClaimBBQ ?
-                                <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={gmHandle}>GM</div> :
-                                <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Next to say GM in {nextClaimBBQ !== null ? nextClaimBBQ.toLocaleString('es-CL') : "..."}</div>
-                            }
-                        </div>
-                    </div>
-                </div>
-
-                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", marginTop: "50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "450px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{width: "190px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
-                    </div>
-                    <div style={{width: "100%", paddingBottom: "10px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div style={{height: "320px", marginRight: "40px"}}>
-                            <img src="https://nftstorage.link/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
-                        </div>
-                        <div style={{width: "65%", height: "300px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                            <div>
-                            </div>
-                            <div>
-                                <div className="bold">QUEST DETAIL</div>
-                                <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">Insert 1 JBC to be a participants of each epoch on <a style={{textDecoration: "none", color: "red"}} href="https://enderapp.vercel.app/" target="_blank" rel="noreferrer">Ender Pottery</a></div>
-                            </div>
-                            <div style={{color: "rgb(0, 227, 180)"}} className="bold emp"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "450px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>100 CMXP</div>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
-                    </div>
-                    <div style={{width: "100%", paddingBottom: "10px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div style={{height: "320px", marginRight: "40px"}}>
-                            <img src="https://nftstorage.link/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
-                        </div>
-                        <div style={{width: "65%", height: "300px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                            <div>
-                                <div className="bold">REWARDS</div>
-                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                    <div style={{marginRight: "10px", color: "#fff"}}>1,500</div>
-                                    <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SILL"/>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Craft a $BBQ in LABS and say GM!</div>
+                                    <div style={{marginTop: "10px"}} className="bold">GM STREAKS: {gmStreak}</div>
                                 </div>
+                                {canClaimBBQ ?
+                                    <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={gmHandle}>GM</div> :
+                                    <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Next to say GM in {nextClaimBBQ !== null ? nextClaimBBQ.toLocaleString('es-CL') : "..."}</div>
+                                }
                             </div>
-                            <div>
-                                <div className="bold">QUEST DETAIL</div>
-                                <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
-                                <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
-                                <div style={{marginTop: "20px", fontSize: "16px"}} className="bold">Your Claimable Rewards : {1500 * Number(rewardSIL)} $SIL</div>
-                            </div>
-                            {canClaimSIL ?
-                                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                    <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={claimSILHandle}>CLAIM REWARD</div>
-                                </div> :
-                                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">You are not eligible to claim</div>
-                            }
                         </div>
                     </div>
-                </div>
 
-                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "450px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{width: "160px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>500 CMXP</div>
-                        <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Once</div>
-                    </div>
-                    <div style={{width: "100%", paddingBottom: "10px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">How To Win Frens!</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                        <div style={{height: "320px", marginRight: "40px"}}>
-                            <img src="https://nftstorage.link/ipfs/bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa" height="300" alt="PVP_Quest"/>
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "190px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
                         </div>
-                        <div style={{width: "65%", height: "300px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                            <div>
-                                <div className="bold">Your Invited Frens</div>
-                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                    <div style={{marginRight: "10px", color: "#fff"}}>{frens} 👽</div>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
+                            </div>
+                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Insert 1 JBC to be a participants of each epoch on <a style={{textDecoration: "none", color: "red"}} href="https://enderapp.vercel.app/" target="_blank" rel="noreferrer">Ender Pottery</a></div>
                                 </div>
+                                <div style={{color: "rgb(0, 227, 180)"}} className="bold emp"></div>
                             </div>
-                            <div>
-                                <div className="bold">QUEST DETAIL</div>
-                                <div style={{marginTop: "10px", color: "#fff", fontSize: "16px"}} className="bold">Invite your friends to join and get reward!</div>
+                        </div>
+                    </div>
+
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>100 CMXP</div>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
+                        </div>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
                             </div>
-                            {isJoin ?
-                                <div style={{width: "fit-content", color: "rgb(0, 227, 180)", borderRadius: "12px", border: "1px solid rgb(0, 227, 180)", padding: "15px 40px"}} className="bold">You have already joined CMDAO club 🎉</div> :
-                                <>
-                                    {isKYC ?
-                                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                            <input style={{width: "250px", padding: "10px 40px", fontSize: "18px"}} className="bold" type="string" placeholder="Enter Your Referer" value={ambass} onChange={(event) => {setAmbass(event.target.value)}}></input>
-                                            <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={joinHandle}>Join CMDAO Club</div>
-                                        </div> :
-                                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="emp bold">You must KYC first!</div>
-                                    }
-                                </>
-                            }
+                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">REWARDS</div>
+                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
+                                        <div style={{marginRight: "10px", color: "#fff"}}>1,500</div>
+                                        <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SILL"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
+                                    <div style={{marginTop: "20px", fontSize: "16px"}} className="bold">Your Claimable Rewards : {1500 * Number(rewardSIL)} $SIL</div>
+                                </div>
+                                {canClaimSIL ?
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                        <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={claimSILHandle}>CLAIM REWARD</div>
+                                    </div> :
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">You are not eligible to claim</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "160px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>500 CMXP</div>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Once</div>
+                        </div>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">How To Win Frens!</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa" height="300" alt="PVP_Quest"/>
+                            </div>
+                            <div style={{width: "65%", height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">Your Invited Frens</div>
+                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
+                                        <div style={{marginRight: "10px", color: "#fff"}}>{frens} 👽</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Invite your friends to join and get reward!</div>
+                                </div>
+                                {isJoin ?
+                                    <div style={{width: "fit-content", color: "rgb(0, 227, 180)", borderRadius: "12px", border: "1px solid rgb(0, 227, 180)", padding: "15px 40px"}} className="bold">You have already joined CMDAO club 🎉</div> :
+                                    <>
+                                        {isKYC ?
+                                            <div style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                <input style={{width: "250px", padding: "10px 40px", marginBottom: "20px"}} className="bold" type="string" placeholder="Enter Your Referer" value={ambass} onChange={(event) => {setAmbass(event.target.value)}}></input>
+                                                <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={joinHandle}>Join CMDAO Club</div>
+                                            </div> :
+                                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="emp bold">You must KYC first!</div>
+                                        }
+                                    </>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
