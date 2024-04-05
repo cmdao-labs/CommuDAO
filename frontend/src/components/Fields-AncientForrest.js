@@ -45,11 +45,11 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 let monatk = Number(log.slice(-1)[0].args.hrate2) * Number(log.slice(-1)[0].args.random2)
 
                 if (youratk > monatk) {
-                    alert("You win 🎉 --- Your ATK:" + youratk + " VS. Monster ATK:" + monatk)
+                    alert("You win 🎉 --- Your ATK: " + youratk + " VS. Monster ATK: " + monatk)
                 } else if (youratk < monatk) {
-                    alert("You lose 😂 --- Your ATK:" + youratk + " VS. Monster ATK:" + monatk)
+                    alert("You lose 😂 --- Your ATK: " + youratk + " VS. Monster ATK: " + monatk)
                 } else if (youratk === monatk) {
-                    alert("Tie 🤝 --- Your ATK:" + youratk + " VS. Monster ATK:" + monatk)
+                    alert("Tie 🤝 --- Your ATK: " + youratk + " VS. Monster ATK: " + monatk)
                 }
             }
         },
@@ -351,7 +351,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                         args: [address],
                     },
                 ],
-            }) : [{result: [0, 0]} ]
+            }) : [{result: [0, 0]}, {result: 0} ]
 
             const userData01 = data4[0].result
             const pzaBal = data4[1].result
@@ -376,8 +376,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             setPzaBalance(ethers.utils.formatEther(result[4]))
         })
 
-    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI])
-    console.log(monInfo01)
+    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20ABI])
 
     const mintServant = async () => {
         setisLoading(true)
@@ -680,7 +679,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                                         ></input>
                                         <div className="pixel button" onClick={mintServant}>MINT SERVANT</div>
                                     </div> :
-                                    <div className="nftCard" style={{justifyContent: "center", height: "500px"}}>
+                                    <div className="nftCard" style={{justifyContent: "center", height: "500px", margin: '20px'}}>
                                         <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
                                         <div className="bold">Please connect wallet to view your servant.</div>
                                     </div>
@@ -688,7 +687,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                             </>
                         }
                     </> :
-                    <div className="nftCard" style={{justifyContent: "flex-start", height: "500px", margin: '20px'}}>
+                    <div className="nftCard" style={{justifyContent: "center", height: "500px", margin: '20px'}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading Servant...</div>
                     </div>
