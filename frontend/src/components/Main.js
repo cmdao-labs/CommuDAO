@@ -46,6 +46,7 @@ import farmCmosABI from './jsons/farmcmosABI.json'
 import { bkc } from './chains/bkc.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
 import msgABI from './jsons/msgABI.json'
+import pve01ABI from './jsons/pve01ABI.json'
 import aurora721ABI from './jsons/aurora721ABI.json'
 import tunaFieldABI from './jsons/tunaFieldABI.json'
 import woodFieldABI from './jsons/woodFieldABI.json'
@@ -340,7 +341,7 @@ const Main = () => {
                 }
                 {mode === 12 && <RatHuntingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
                 {mode === 13 ?
-                    <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} /> :
+                    <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20ABI={erc20ABI} /> :
                     <></>
                 }
                 {mode === 14 ?

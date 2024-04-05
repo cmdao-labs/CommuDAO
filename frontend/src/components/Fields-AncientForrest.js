@@ -12,17 +12,48 @@ const fieldWood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 
 const chatSC = '0x4c3216151BFb0b2c710B6bA7f86f4A01cEE540a2'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
+const pve01 = '0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'
+const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
+const pzaToken = '0x09DcdCFc6C48803681a3422997c679E773656763'
+const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 
-const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI }) => {
+const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20ABI }) => {
     const { address } = useAccount()
 
     const [msg, setMsg] = React.useState("")
     const [chat, setChat] = React.useState([])
+    const [monInfo01, setMonInfo01] = React.useState([0, 0, 0, 0, 0, 0, 0])
+    const [userInfo01, setUserInfo01] = React.useState([])
+    const [pzaBalance, setPzaBalance] = React.useState(0)
 
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
 
     const messagesEndRef = React.useRef(null);
+
+    useContractEvent({
+        address: pve01,
+        abi: pve01ABI,
+        eventName: 'Fight',
+        listener(log) {
+            console.log(log)
+            let addr = log.slice(-1)[0].args.challenger
+            let monindex = Number(log.slice(-1)[0].args.monIndex)
+            
+            if (addr.toUpperCase() === address.toUpperCase() && monindex === 1) {
+                let youratk = Number(log.slice(-1)[0].args.hrate1) * Number(log.slice(-1)[0].args.random1)
+                let monatk = Number(log.slice(-1)[0].args.hrate2) * Number(log.slice(-1)[0].args.random2)
+
+                if (youratk > monatk) {
+                    alert("You win 🎉 --- Your ATK:" + youratk + " VS. Monster ATK:" + monatk)
+                } else if (youratk < monatk) {
+                    alert("You lose 😂 --- Your ATK:" + youratk + " VS. Monster ATK:" + monatk)
+                } else if (youratk === monatk) {
+                    alert("Tie 🤝 --- Your ATK:" + youratk + " VS. Monster ATK:" + monatk)
+                }
+            }
+        },
+    })
 
     useContractEvent({
         address: chatSC,
@@ -292,7 +323,40 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, chatFinal]
+            const data3 = await readContracts({
+                contracts: [
+                    {
+                        address: pve01,
+                        abi: pve01ABI,
+                        functionName: 'monData',
+                        args: [1],
+                    }
+                ],
+            })
+
+            const monData01 = data3[0].result
+
+            const data4 = address !== null && address !== undefined ? await readContracts({
+                contracts: [
+                    {
+                        address: pve01,
+                        abi: pve01ABI,
+                        functionName: 'userInfo',
+                        args: [address],
+                    },
+                    {
+                        address: pzaToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                ],
+            }) : [{result: [0, 0]} ]
+
+            const userData01 = data4[0].result
+            const pzaBal = data4[1].result
+
+            return [nfts, chatFinal, monData01, userData01, pzaBal]
         }
 
         const promise = thefetch()
@@ -307,9 +371,13 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
         getAsync().then(result => {
             setNft(result[0])
             setChat(result[1])
+            setMonInfo01(result[2])
+            setUserInfo01(result[3])
+            setPzaBalance(ethers.utils.formatEther(result[4]))
         })
 
-    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI])
+    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI])
+    console.log(monInfo01)
 
     const mintServant = async () => {
         setisLoading(true)
@@ -432,6 +500,100 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
         setisLoading(false)
     }
 
+    const respawn01Handle = async (_index) => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: jdaoToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, pve01],
+            })
+            if (tokenAllow < (10 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: jdaoToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [pve01, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: pve01,
+                abi: pve01ABI,
+                functionName: 'respawn',
+                args: [_index],
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const hpup01Handle = async () => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: osToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, pve01],
+            })
+            if (tokenAllow < (10 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: osToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [pve01, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: pve01,
+                abi: pve01ABI,
+                functionName: 'healthPotion',
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+    const fight01Handle = async (_index) => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: pzaToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, pve01],
+            })
+            if (tokenAllow < (10 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: pzaToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [pve01, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config = await prepareWriteContract({
+                address: pve01,
+                abi: pve01ABI,
+                functionName: 'fight',
+                args: [nft[0].Id, _index],
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
     <>
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
@@ -532,17 +694,30 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     </div>
                 }
                 <div style={{justifyContent: "space-around", height: "500px", margin: '20px'}} className="nftCard">
-                    <img src='https://bafybeiax35zfioffpmp3tlyjwdrz2dplldgm5qokqi5p3b76cmomtkfri4.ipfs.nftstorage.link/' width="175" alt="Can not load metadata." />
+                    <img src='https://bafybeiax35zfioffpmp3tlyjwdrz2dplldgm5qokqi5p3b76cmomtkfri4.ipfs.nftstorage.link/' width="150" alt="Can not load metadata." />
                     <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
                         <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
                             <div style={{color: "red"}}>Fishmon [Lv. 5]</div>
-                            <div>Class : Virtual Monster</div>
-                            <div>Hash rate : 125</div>
-                            <div>Spawn : 0 / 1000</div>
-                            <div>Stamina (PZA bal.) : 100</div>
+                            <div>Hash rate : {Number(monInfo01[1])}</div>
+                            <div>Spawn : {Number(monInfo01[0])} / 1000</div>
+                            <div style={{color: "gray"}}>(10 JDAO / respawn)</div>
                         </div>
                         <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">RESPAWN</div>
+                            {Number(monInfo01[0]) === 0 ? 
+                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", fontSize: "16px"}} className="pixel button" onClick={() => respawn01Handle(1)}>RESPAWN</div> :
+                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">RESPAWN</div>
+                            }
+                        </div>
+                    </div>
+                    <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
+                        <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
+                            <div style={{color: "#000"}}>Your Status</div>
+                            <div>Win : {Number(userInfo01[0])}</div>
+                            <div>HP (Added OS) : {Number(userInfo01[1])}</div>
+                            <div>Stamina (PZA bal.) : {Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
+                        <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", fontSize: "16px"}} className="pixel button" onClick={hpup01Handle}>HP UP</div>
                         </div>
                     </div>
                     <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
@@ -550,9 +725,9 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                             Rewards
                             <div style={{fontSize: "14px"}}><img src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="12" alt="$PLAT"/> 1 per defeat</div>
                         </div>
-                        {false ?
-                            <div style={{lineHeight: 2, height: "fit-content"}} className="pixel button">ATTACK</div> :
-                            <div style={{lineHeight: 2, height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ATTACK</div>
+                        {Number(monInfo01[0]) > 0 && Number(userInfo01[1]) > 0?
+                            <div style={{lineHeight: 2, height: "fit-content", fontSize: "16px"}} className="pixel button" onClick={() => fight01Handle(1)}>ATTACK</div> :
+                            <div style={{lineHeight: 2, height: "fit-content", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">ATTACK</div>
                         }
                     </div>
                 </div>
