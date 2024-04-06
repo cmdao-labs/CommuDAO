@@ -405,7 +405,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                             ██║░╚███║██║░░██║██║░░██║╚██████╔╝░░░██║░░░██║░░██║  ╚██╔═██╔══╝╚█████╔╝███████╗
                                             ╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝  ░╚═╝░╚═╝░░░░╚════╝░╚══════╝
                                             */}
-                                            {(String(item.Id).slice(0, 3) === "100" || String(item.Id).slice(0, 3) === "700" || String(item.Id).slice(0, 3) === "300" || String(item.Id).slice(0, 3) === "200" || String(item.Id).slice(0, 3) === "600") && Number(item.Id) % 100000 !== 72800 &&
+                                            {(String(item.Id).slice(0, 3) === "100" || String(item.Id).slice(0, 3) === "700" || String(item.Id).slice(0, 3) === "300" || String(item.Id).slice(0, 3) === "200" || String(item.Id).slice(0, 3) === "600" || String(item.Id).slice(0, 3) === "400") && Number(item.Id) % 100000 !== 72800 &&
                                                 <div style={{justifyContent: "space-around", padding: "30px", marginRight: "40px"}} className="nftCard">
                                                     <div className="emp pixel" style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div>
@@ -433,7 +433,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeif4amlgguwmct6dkcu6whcrbrz4lxir6tvyvuxp5dwi6vdoft3zgi' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeieljlh4zog6hzjvktizkb6xdswswzxys7rlj4xm7fp47ytizglxpi' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeiem3jns3i4lkot6hqe5zxpwj6cnvojukggplenmtsnenqitnk6wki' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img  width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://nftstorage.link/ipfs/bafybeieckgtj7nitlnjoiwgy4bzmnnponwlr2h7delw5pfueruz73ztvy4' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
                                                         }
@@ -457,7 +457,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeifriz3jssqcl7uzwjexv3chn56awmnmvjklmgdy5uabaovhqlwmwy' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeiad4vswhlfjemiylp5r4mlghz4tqag6dn7bimnd5qysnkidlaieai' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeifi34uh6hsohnd47wfcynesrwmxot63c65vj4rnwqsc74sjdb7vke' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img  width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://nftstorage.link/ipfs/bafybeidkvucspmzjq635okuui5raaozne5bsm7i73cynztbwqlc5uso27u' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -481,7 +481,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {String(item.Id).slice(0, 3) === "300" && <img src='https://nftstorage.link/ipfs/bafybeiflj5c5xdevsg5odxepmqrvtpvukntaudqcahrtjwl6fdaeyauiny' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "200" && <img src='https://nftstorage.link/ipfs/bafybeig5hgcjimmkvjanskq6aofpmkhufarvnthqbddekeuygwpofewh2m' width="120" alt="Can not load metadata." />}
                                                                 {String(item.Id).slice(0, 3) === "600" && <img src='https://nftstorage.link/ipfs/bafybeienx6ko3j7mptpootmcdt556z5hud5jyq4vgwibmnxvpmlacsvdvq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img  width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://nftstorage.link/ipfs/bafybeicf6zi22f5nrurejd26qp7vcqq7bjuiil4jya3276qnvpn27mxtwq' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
