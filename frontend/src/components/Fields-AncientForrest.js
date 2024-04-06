@@ -585,6 +585,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 abi: pve01ABI,
                 functionName: 'fight',
                 args: [nft[0].Id, _index],
+                gas: 150000,
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
