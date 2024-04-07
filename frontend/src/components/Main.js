@@ -386,7 +386,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 32 ?
-                    <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} /> :
+                    <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} /> :
                     <></>
                 }
                 {mode === 34 ?
