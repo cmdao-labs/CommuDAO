@@ -231,7 +231,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     } else if (Number(walletAllMap[i].value) % 100000 === 6800) { valSR = 6
                     } else if (Number(walletAllMap[i].value) % 100000 === 8550) { valSR = 7
                     } else if (Number(walletAllMap[i].value) % 100000 === 10500) { valSR = 8
-                    } else if (Number(walletAllMap[i].value) % 100000 === 2250) { valSSR = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 2550) { valSSR = 1
                     } else if (Number(walletAllMap[i].value) % 100000 === 3450) { valSSR = 2
                     } else if (Number(walletAllMap[i].value) % 100000 === 4600) { valSSR = 3
                     } else if (Number(walletAllMap[i].value) % 100000 === 5950) { valSSR = 4
