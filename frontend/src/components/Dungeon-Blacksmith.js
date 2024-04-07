@@ -171,10 +171,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             for (let i = 0; i <= Number(nameArr.length - 1); i++) {
                 nameArr3.push(data2_0011[i].result)
             }
-            const walletAllFilter = await cmdaonftSC.filters.Transfer(null, '0x0000000000000000000000000000000000000001', null)
+            const walletAllFilter = await cmdaonftSC.filters.Transfer('0x0000000000000000000000000000000000000000', null, null)
             const walletAllEvent = await cmdaonftSC.queryFilter(walletAllFilter, 572243, "latest")
-            const walletAllMap = await Promise.all(walletAllEvent.map(async (obj) => {return {from: String(obj.args.from), value: String(obj.args.tokenId)}}))
-
+            const walletAllMap = await Promise.all(walletAllEvent.map(async (obj) => {return {to: String(obj.args.to), value: String(obj.args.tokenId)}}))
             let allnft = []
             for (let i = 0; i <= walletAllMap.length - 1; i++) {
                 if (String(walletAllMap[i].value).slice(0, 3) === "210") {
@@ -182,77 +181,79 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                     let valR = 0
                     let valSR = 0
                     let valSSR = 0
-                    if (Number(walletAllMap[i].value) % 100000 === 250) { valN = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 300) { valN = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 400) { valN = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 550) { valR = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 650) { valR = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 750) { valR = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 950) { valR = 4
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1150) { valR = 5
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1550) { valR = 6
+                    if (Number(walletAllMap[i].value) % 100000 === 300) { valN = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 400) { valN = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 500) { valN = 3
+                    // N3 -> R0 ?
+                    } else if (Number(walletAllMap[i].value) % 100000 === 650) { valR = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 750) { valR = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 950) { valR = 3
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1150) { valR = 4
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1550) { valR = 5
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1950) { valR = 6
                     }
-                    allnft.push({from: walletAllMap[i].from, scoreN: valN, scoreR: valR, scoreSR: valSR, scoreSSR: valSSR})
+                    allnft.push({to: walletAllMap[i].to, scoreN: valN, scoreR: valR, scoreSR: valSR, scoreSSR: valSSR})
                 } else if (String(walletAllMap[i].value).slice(0, 3) === "410") {
                     let valN = 0
                     let valR = 0
                     let valSR = 0
                     let valSSR = 0
-                    if (Number(walletAllMap[i].value) % 100000 === 150) { valN = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 200) { valN = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 300) { valN = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 450) { valR = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 550) { valR = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 650) { valR = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 850) { valR = 4
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1050) { valR = 5
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1450) { valR = 6
+                    if (Number(walletAllMap[i].value) % 100000 === 200) { valN = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 300) { valN = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 400) { valN = 3
+                    // N3 -> R0 ?
+                    } else if (Number(walletAllMap[i].value) % 100000 === 550) { valR = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 650) { valR = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 850) { valR = 3
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1050) { valR = 4
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1450) { valR = 5
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1850) { valR = 6
                     }
-                    allnft.push({from: walletAllMap[i].from, scoreN: valN, scoreR: valR, scoreSR: valSR, scoreSSR: valSSR})
+                    allnft.push({to: walletAllMap[i].to, scoreN: valN, scoreR: valR, scoreSR: valSR, scoreSSR: valSSR})
                 } else if (String(walletAllMap[i].value).slice(0, 3) === "310" || String(walletAllMap[i].value).slice(0, 3) === "312" || String(walletAllMap[i].value).slice(0, 3) === "411" || String(walletAllMap[i].value).slice(0, 3) === "511" || String(walletAllMap[i].value).slice(0, 3) === "611" || String(walletAllMap[i].value).slice(0, 3) === "612" || String(walletAllMap[i].value).slice(0, 3) === "710" || String(walletAllMap[i].value).slice(0, 3) === "711" || String(walletAllMap[i].value).slice(0, 3) === "712") {
                     let valN = 0
                     let valR = 0
                     let valSR = 0
                     let valSSR = 0
-                    if (Number(walletAllMap[i].value) % 100000 === 250) { valN = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 500) { valN = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 750) { valN = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 550) { valR = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1000) { valR = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1450) { valR = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 2000) { valR = 4
-                    } else if (Number(walletAllMap[i].value) % 100000 === 2650) { valR = 5
-                    } else if (Number(walletAllMap[i].value) % 100000 === 3400) { valR = 6
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1050) { valSR = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 1800) { valSR = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 2750) { valSR = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 3900) { valSR = 4
-                    } else if (Number(walletAllMap[i].value) % 100000 === 5250) { valSR = 5
-                    } else if (Number(walletAllMap[i].value) % 100000 === 6800) { valSR = 6
-                    } else if (Number(walletAllMap[i].value) % 100000 === 8550) { valSR = 7
-                    } else if (Number(walletAllMap[i].value) % 100000 === 10500) { valSR = 8
-                    } else if (Number(walletAllMap[i].value) % 100000 === 2250) { valSSR = 1
-                    } else if (Number(walletAllMap[i].value) % 100000 === 3450) { valSSR = 2
-                    } else if (Number(walletAllMap[i].value) % 100000 === 4600) { valSSR = 3
-                    } else if (Number(walletAllMap[i].value) % 100000 === 5950) { valSSR = 4
-                    } else if (Number(walletAllMap[i].value) % 100000 === 7500) { valSSR = 5
-                    } else if (Number(walletAllMap[i].value) % 100000 === 9250) { valSSR = 6
-                    } else if (Number(walletAllMap[i].value) % 100000 === 11200) { valSSR = 7
-                    } else if (Number(walletAllMap[i].value) % 100000 === 13350) { valSSR = 8
-                    } else if (Number(walletAllMap[i].value) % 100000 === 18050) { valSSR = 9
+                    if (Number(walletAllMap[i].value) % 100000 === 500) { valN = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 750) { valN = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1000 ) { valN = 3
+                    } else if (Number(walletAllMap[i].value) % 100000 === 950) { valR = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1450) { valR = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 2000) { valR = 3
+                    } else if (Number(walletAllMap[i].value) % 100000 === 2650) { valR = 4
+                    } else if (Number(walletAllMap[i].value) % 100000 === 3400) { valR = 5
+                    } else if (Number(walletAllMap[i].value) % 100000 === 4250) { valR = 6
+                    } else if (Number(walletAllMap[i].value) % 100000 === 1800) { valSR = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 2750) { valSR = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 3900) { valSR = 3
+                    } else if (Number(walletAllMap[i].value) % 100000 === 5250) { valSR = 4
+                    } else if (Number(walletAllMap[i].value) % 100000 === 6800) { valSR = 5
+                    } else if (Number(walletAllMap[i].value) % 100000 === 8550) { valSR = 6
+                    } else if (Number(walletAllMap[i].value) % 100000 === 10500) { valSR = 7
+                    } else if (Number(walletAllMap[i].value) % 100000 === 14800) { valSR = 8
+                    } else if (Number(walletAllMap[i].value) % 100000 === 3450) { valSSR = 1
+                    } else if (Number(walletAllMap[i].value) % 100000 === 4600) { valSSR = 2
+                    } else if (Number(walletAllMap[i].value) % 100000 === 5950) { valSSR = 3
+                    } else if (Number(walletAllMap[i].value) % 100000 === 7500) { valSSR = 4
+                    } else if (Number(walletAllMap[i].value) % 100000 === 9250) { valSSR = 5
+                    } else if (Number(walletAllMap[i].value) % 100000 === 11200) { valSSR = 6
+                    } else if (Number(walletAllMap[i].value) % 100000 === 13350) { valSSR = 7
+                    } else if (Number(walletAllMap[i].value) % 100000 === 18050) { valSSR = 8
+                    } else if (Number(walletAllMap[i].value) % 100000 === 25700) { valSSR = 9
                     }
-                    allnft.push({from: walletAllMap[i].from, scoreN: valN, scoreR: valR, scoreSR: valSR, scoreSSR: valSSR})
+                    allnft.push({to: walletAllMap[i].to, scoreN: valN, scoreR: valR, scoreSR: valSR, scoreSSR: valSSR})
                 }
             }
             
             const allNftMerged = allnft.reduce((prev, curr) => {
-                if (prev[curr.from.toUpperCase()]) {
-                   prev[curr.from.toUpperCase()].scoreN += curr.scoreN
-                   prev[curr.from.toUpperCase()].scoreR += curr.scoreR
-                   prev[curr.from.toUpperCase()].scoreSR += curr.scoreSR
-                   prev[curr.from.toUpperCase()].scoreSSR += curr.scoreSSR
+                if (prev[curr.to.toUpperCase()]) {
+                   prev[curr.to.toUpperCase()].scoreN += curr.scoreN
+                   prev[curr.to.toUpperCase()].scoreR += curr.scoreR
+                   prev[curr.to.toUpperCase()].scoreSR += curr.scoreSR
+                   prev[curr.to.toUpperCase()].scoreSSR += curr.scoreSSR
                 } else {
-                   prev[curr.from.toUpperCase()] = curr
+                   prev[curr.to.toUpperCase()] = curr
                 }
                 return prev
             }, {})
@@ -261,8 +262,8 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             const allNftRemoveDup = []
             for (let i = 0; i <= nameArr.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(allNftMerged).length -1; i2++) {
-                    if (nameArr[i].toUpperCase() === Object.values(allNftMerged)[i2].from.toUpperCase()) {
-                        Object.values(allNftMerged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(allNftMerged)[i2].from.slice(0, 4) + "..." + Object.values(allNftMerged)[i2].from.slice(-4)
+                    if (nameArr[i].toUpperCase() === Object.values(allNftMerged)[i2].to.toUpperCase()) {
+                        Object.values(allNftMerged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(allNftMerged)[i2].to.slice(0, 4) + "..." + Object.values(allNftMerged)[i2].to.slice(-4)
                         allNftRemoveDup.push(Object.values(allNftMerged)[i2])
                     }
                 }
