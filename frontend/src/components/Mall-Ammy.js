@@ -11,7 +11,7 @@ const pzaToken = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 
 const ammyCTUNA = "0x7801F8cdBABE6999331d1Bf37d74aAf713C3722F"
-const ammySX31 = '0x7B022df5b181b720BE5706B2ECCdC3c26C8322e5'
+const ammySX31 = '0xda558EE93B466aEb4F59fBf95D25d410318be43A'
 const ammyBBQ = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const ammyPZA = '0x5Ca958C9c7DC07BB2A0326cf6C8b8cf344C414a1'
 
@@ -54,6 +54,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
         } else if (index === 2) {
             addr = ammyCTUNA
         } else if (index === 3) {
+            addr = ammySX31
         } else if (index === 4) {
         }
         setInputSwap(event.target.value)
@@ -85,6 +86,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
         } else if (index === 2) {
             event.target.value !== "" ? setCmjBought(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBought("0.000")
         } else if (index === 3) {
+            event.target.value !== "" ? setCmjBought2(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBought2("0.000")
         } else if (index === 4) {
         }
     }
@@ -95,6 +97,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
         } else if (index === 2) {
             addr = ammyCTUNA
         } else if (index === 3) {
+            addr = ammySX31
         } else if (index === 4) {
         }
         setInputSwap2(event.target.value)
@@ -126,6 +129,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
         } else if (index === 2) {
             event.target.value !== "" ? setCtunaBought(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setCtunaBought("0.000")
         } else if (index === 3) {
+            event.target.value !== "" ? setTokenBought(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBought("0.000")
         } else if (index === 4) {
         }
     }
@@ -147,6 +151,10 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
             currBoughtToken = cmjBought
             tokenBoughtCurr = ctunaBought
         } else if (index === 3) {
+            lp = ammySX31
+            token = sx31Lab
+            currBoughtToken = cmjBought2
+            tokenBoughtCurr = tokenBought
         } else if (index === 4) {
         }
         setisLoading(true)
@@ -214,61 +222,6 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
         setisLoading(false)
     }
 
-    const handleSwapSX31 = async (event) => {
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: ammySX31,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: ammySX31,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                }
-            ],
-        })
-        const _reserveCmj = data[0].result
-        const _reserveToken = data[1].result
-        const tokensBoughttokenTOcmj = await readContract({
-            address: ammySX31,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveToken), String(_reserveCmj)],
-        })
-        event.target.value !== "" ? setCmjBought2(ethers.utils.formatEther(tokensBoughttokenTOcmj)) : setCmjBought2("0.000")
-    }
-    const handleSwapSX31_2 = async (event) => {
-        setInputSwap2(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: ammySX31,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: ammySX31,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                }
-            ],
-        })
-        const _reserveCmj = data[0].result
-        const _reserveToken = data[1].result
-        const tokensBoughtcmjTOtoken = await readContract({
-            address: ammySX31,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveCmj), String(_reserveToken)],
-        })
-        event.target.value !== "" ? setTokenBought(ethers.utils.formatEther(tokensBoughtcmjTOtoken)) : setTokenBought("0.000")
-    }
-
     const handleSwapPZA = async (event) => {
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -322,72 +275,6 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
             args: [String(_value), String(_reserveCmj), String(_reserveToken)],
         })
         event.target.value !== "" ? setTokenBoughtPZA(ethers.utils.formatEther(tokensBoughtcmjTOtoken)) : setTokenBoughtPZA("0.000")
-    }
-
-    const swapTokenHandle2 = async (_sell) => {
-        setisLoading(true)
-        try {
-            if (_sell) {
-                const tokenAllow = await readContract({
-                    address: sx31Lab,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, ammySX31],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
-                    const config = await prepareWriteContract({
-                        address: sx31Lab,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [ammySX31, bigApprove],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                }
-                const config = await prepareWriteContract({
-                    address: ammySX31,
-                    abi: ammyStdABI,
-                    functionName: 'tokenTOcmj',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBought2)],
-                })
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            } else {
-                const cmjAllow = await readContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, ammySX31],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(cmjAllow)) {
-                    const config = await prepareWriteContract({
-                        address: cmjToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [ammySX31, bigApprove],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                }
-                const config2 = await prepareWriteContract({
-                    address: ammySX31,
-                    abi: ammyStdABI,
-                    functionName: 'cmjTOtoken',
-                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBought)],
-                })
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            }
-        } catch {}
-        setisLoading(false)
     }
 
     const swapTokenHandlePZA = async (_sell) => {
@@ -472,12 +359,12 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                     },
                     {
                         address: ammySX31,
-                        abi: ammyStdABI,
-                        functionName: 'getReserveCMJ',
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
                     },
                     {
                         address: ammySX31,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
                     {
@@ -522,7 +409,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                     },
                     {
                         address: ammySX31,
-                        abi: ammyStdABI,
+                        abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
                         args: [String(10**18), String(_reserveSX31), String(_reserveCmj2)],
                     },
@@ -616,7 +503,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                             if (gasselected === "CTUNA") {
                                 handleSwapUni(2, event)
                             } else if (gasselected === "SX31") {
-                                handleSwapSX31(event)
+                                handleSwapUni(3, event)
                             } else if (gasselected === "BBQ") {
                                 handleSwapUni(1, event)
                             } else if (gasselected === "PZA") {
@@ -632,7 +519,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                         </div>
                     }
                     {gasselected === "SX31" && 
-                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: sx31Balance}}; handleSwapSX31(bal);}}>
+                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: sx31Balance}}; handleSwapUni(3, bal);}}>
                             <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/>
                             <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                         </div>
@@ -657,7 +544,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                                 if (gasselected === "CTUNA") {
                                     swapTokenHandleUni(2, true)
                                 } else if (gasselected === "SX31") {
-                                    swapTokenHandle2(true)
+                                    swapTokenHandleUni(3, true)
                                 } else if (gasselected === "BBQ") {
                                     swapTokenHandleUni(1, true)
                                 } else if (gasselected === "PZA") {
@@ -696,7 +583,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                             if (gasselected === "CTUNA") {
                                 handleSwapUni_2(2, event)
                             } else if (gasselected === "SX31") {
-                                handleSwapSX31_2(event)
+                                handleSwapUni_2(3, event)
                             } else if (gasselected === "BBQ") {
                                 handleSwapUni_2(1, event)
                             } else if (gasselected === "PZA") {
@@ -712,7 +599,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                             if (gasselected === "CTUNA") {
                                 handleSwapUni_2(2, bal)
                             } else if (gasselected === "SX31") {
-                                handleSwapSX31_2(bal)
+                                handleSwapUni_2(3, bal)
                             } else if (gasselected === "BBQ") {
                                 handleSwapUni_2(1, bal)
                             } else if (gasselected === "PZA") {
@@ -731,7 +618,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyABI, ammyS
                                 if (gasselected === "CTUNA") {
                                     swapTokenHandleUni(2, false)
                                 } else if (gasselected === "SX31") {
-                                    swapTokenHandle2(false)
+                                    swapTokenHandleUni(3, false)
                                 } else if (gasselected === "BBQ") {
                                     swapTokenHandleUni(1, false)
                                 } else if (gasselected === "PZA") {

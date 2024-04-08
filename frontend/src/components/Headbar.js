@@ -100,7 +100,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             </>
           }
         </div>
-        <div style={{fontSize: "16px"}} className="navButton pixel">
+        <div style={{fontSize: "16px", marginRight: "10px"}} className="navButton pixel">
           {address !== null && address !== undefined && chain.id === 8899 &&
             <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(255, 255, 255, 0.4)", border: "0 solid #e2e8f0", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
               <div style={{display: "flex", flexDirection: "row"}}>
