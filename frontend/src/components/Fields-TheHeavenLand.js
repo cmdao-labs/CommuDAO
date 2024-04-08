@@ -145,7 +145,7 @@ const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721AB
                     isStaked: true,
                     Reward: String(data11[i].result),
                     Reward2: String(data12[i].result),
-                    isJbcOut: data01[i].result[1]
+                    isJbcOut: data01[i].result[2]
                 })
             }
 
