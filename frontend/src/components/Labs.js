@@ -2014,7 +2014,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     params: {
                                         type: 'ERC20',
                                         options: {
-                                            address: iiLab,
+                                            address: dunEE,
                                             symbol: 'TDM-EE',
                                             decimals: 18,
                                             image: 'https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
