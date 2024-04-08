@@ -256,7 +256,6 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 }
                 return prev
             }, {})
-            console.log(allNftMerged)
 
             const allNftRemoveDup = []
             for (let i = 0; i <= nameArr.length -1; i++) {
@@ -746,7 +745,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                 <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                     <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                         <div>{index+1}</div>
-                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                     </div>
                                                     <div>{item.scoreN}</div>
                                                 </div>
@@ -770,7 +769,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                 <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                     <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                         <div>{index+1}</div>
-                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                     </div>
                                                     <div>{item.scoreR}</div>
                                                 </div>
@@ -794,7 +793,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                 <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                     <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                         <div>{index+1}</div>
-                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                     </div>
                                                     <div>{item.scoreSR}</div>
                                                 </div>
@@ -819,7 +818,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                                                 <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
                                                     <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
                                                         <div>{index+1}</div>
-                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/daemon-world/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                        <a style={{textDecoration: "none", color: "#000", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                     </div>
                                                     <div>{item.scoreSSR}</div>
                                                 </div>
