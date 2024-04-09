@@ -447,7 +447,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         args: [address],
                     },
                 ],
-            }) : [0, 0, 0, 0, ]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
             
             const cmjBal = data[0]
             const jusdtBal = data[1]

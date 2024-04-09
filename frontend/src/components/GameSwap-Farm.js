@@ -364,7 +364,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         args: [3, address],
                     },
                 ],
-            }) : [{amount: 0}, 0, {amount: 0}, 0, {amount: 0}, 0, ]
+            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, ]
 
             const farmJdaoBal = data[0]
             const jdaoPend = data[1]
