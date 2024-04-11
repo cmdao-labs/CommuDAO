@@ -99,6 +99,11 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
+          {chain !== undefined && chain.id === 190 &&
+            <> 
+              <div className="funcList" onClick={() => {callMode(20000); navigate('/labs/bbqchain');}}>Labs</div>
+            </>
+          }
         </div>
         <div style={{fontSize: "16px", marginRight: "10px"}} className="navButton pixel">
           {address !== null && address !== undefined && chain.id === 8899 &&

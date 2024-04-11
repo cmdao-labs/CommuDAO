@@ -43,6 +43,8 @@ import stakerMachineABI from './jsons/stakerMachineABI.json'
 import diamonLpABI from './jsons/diamonlpABI.json'
 import farmCmosABI from './jsons/farmcmosABI.json'
 
+import BBQLabs from './BBQ-Labs'
+
 import { bkc } from './chains/bkc.ts'
 import { bbqchain } from './chains/bbqchain.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
@@ -220,6 +222,9 @@ const Main = () => {
                 if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "BKC") {
                     preset = 200
                     document.title = "Labs [BKC] | CommuDAO"
+                } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "BBQCHAIN") {
+                    preset = 20000
+                    document.title = "Labs [BBQ-CHAIN] | CommuDAO"
                 }
             } else {
                 preset = 2
@@ -374,6 +379,7 @@ const Main = () => {
                     <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
                     <></>
                 }
+                {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} />}
                 {mode === 3 ?
                     <Dungeon callMode={callMode} navigate={navigate} /> :
                     <></>
