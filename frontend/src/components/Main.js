@@ -77,7 +77,6 @@ import cmdaoMerchantKYCABI from './jsons/cmdaoMerchantKYCABI.json'
 import cmdaoGasha02ABI from './jsons/cmdaoGasha02ABI.json'
 import cmdaoMkpABI from './jsons/cmdaoMkpABI.json'
 import wlMkpABI from './jsons/wlMkpABI.json'
-import ammyABI from './jsons/ammyABI.json'
 import ammyStdABI from './jsons/ammyStdABI.json'
 import angeloStdABI from './jsons/angeloStdABI.json'
 import cmdaoAmmNpcABI from './jsons/cmdaoAmmNpcABI.json'
@@ -419,7 +418,7 @@ const Main = () => {
                 }
                 {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} navigate={navigate} intrasubModetext={intrasubModetext} erc20ABI={erc20ABI} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} houseABI={houseABI} houseStakingABI={houseStakingABI} wlMkpABI={wlMkpABI} />}
                 {mode === 5 ?
-                    <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyABI={ammyABI} ammyStdABI={ammyStdABI} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} /> :
+                    <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyStdABI={ammyStdABI} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} /> :
                     <></>
                 }
                 {mode === 6 ?
