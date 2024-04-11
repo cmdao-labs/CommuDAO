@@ -19,7 +19,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
 
   React.useEffect(() => {
     if (chain !== undefined) {
-      chain.id !== 8899 && chain.id !== 96 && chain.id !== 56 ? setIsChainInvalid(true) : setIsChainInvalid(false)
+      chain.id !== 8899 && chain.id !== 96 && chain.id !== 56 && chain.id !== 190 ? setIsChainInvalid(true) : setIsChainInvalid(false)
     }
 
     const thefetch = async () => {

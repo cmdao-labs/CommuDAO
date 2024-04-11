@@ -44,6 +44,7 @@ import diamonLpABI from './jsons/diamonlpABI.json'
 import farmCmosABI from './jsons/farmcmosABI.json'
 
 import { bkc } from './chains/bkc.ts'
+import { bbqchain } from './chains/bbqchain.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
 import msgABI from './jsons/msgABI.json'
 import pve01ABI from './jsons/pve01ABI.json'
@@ -130,7 +131,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 const projectId = 'a7f5e2dc839576cee8ebf11b79d2b4ee'
 
 const { chains, publicClient } = configureChains(
-  [jbc, bkc, bsc],
+  [jbc, bkc, bsc, bbqchain],
   [walletConnectProvider({ projectId }), publicProvider()]
 )
 
@@ -168,7 +169,8 @@ createWeb3Modal({
     chainImages: {
         56: 'https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte',
         96: 'https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a',
-        8899: 'https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu'
+        8899: 'https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu',
+        190: 'https://bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce.ipfs.nftstorage.link/',
     }
 })
 
