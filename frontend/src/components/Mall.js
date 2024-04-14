@@ -1324,12 +1324,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantWL],
             })
-            if (tokenAllow < (999999999 * 10**18)) {
+            if (tokenAllow < (10**27)) {
                 const config = await prepareWriteContract({
                     address: gearToken,
                     abi: erc20ABI,
                     functionName: 'approve',
-                    args: [cmdaoMerchantWL, ethers.utils.parseEther(String(10**8))],
+                    args: [cmdaoMerchantWL, ethers.utils.parseEther(String(10**9))],
                 })
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
@@ -1343,7 +1343,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) {console.log(e)}
+        } catch {}
         setisLoading(false)
     }
 
