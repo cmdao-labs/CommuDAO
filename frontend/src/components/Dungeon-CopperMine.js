@@ -608,7 +608,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                             {address === youraddr ?
                                                 <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                                     {item.isStaked ?
-                                                        <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(Number(item.Id / 100000000000).toFixed(0))}>UNEQUIP</div> :
+                                                        <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
                                                         <>
                                                             {isStakeNow ?
                                                                 <></> :

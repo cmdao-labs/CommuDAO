@@ -1240,7 +1240,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                         {item.isStaked ?
                                             <>
                                                 {item.Col === 1 ?
-                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(Number(item.Id / 100000000000).toFixed(0))}>UNEQUIP</div> :
+                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
                                                     <></>
                                                 }
                                             </> :
