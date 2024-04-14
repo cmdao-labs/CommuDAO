@@ -785,7 +785,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setSell36Remain(result[79])
             setCanBuy31(result[80])
             setCanBuy32(result[81])
-            setCanBuy33(result[88])
+            setCanBuy33(result[82])
         })
 
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20ABI])
