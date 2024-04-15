@@ -726,7 +726,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            DAILY GAS USAGE
+                            GAS USAGE
                             <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                 <option value="II">$II</option>
                             </select>
@@ -741,9 +741,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <div style={{marginLeft: "5px"}}>/7</div>
                             </div>
                         </div>
-                        {timeToRunout !== null ?
+                        {isStakeNow ?
                             <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                            : <></>
+                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
                         }
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>

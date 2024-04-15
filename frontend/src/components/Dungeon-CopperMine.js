@@ -490,7 +490,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            HOURLY GAS USAGE
+                            GAS USAGE
                             <select style={{padding: "2.5px 5px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                 <option value="BBQ">$BBQ</option>
                             </select>
@@ -505,9 +505,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 <div style={{marginLeft: "5px"}}>/500</div>
                             </div>
                         </div>
-                        {isStakeNow !== null ?
+                        {isStakeNow ?
                             <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                            : <></>
+                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 hour</div></div>
                         }
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>

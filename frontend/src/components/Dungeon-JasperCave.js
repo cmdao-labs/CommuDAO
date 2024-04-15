@@ -967,7 +967,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            DAILY GAS USAGE
+                            GAS USAGE
                             <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent", color: "#fff"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                 <option value="CTUNA">$CTUNA</option>
                                 <option value="SX31">$SX31</option>
@@ -998,9 +998,9 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 <div style={{marginLeft: "5px"}}>/500</div>
                             </div>
                         </div>
-                        {timeToRunout !== null ?
+                        {isStakeNow ?
                             <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                            : <></>
+                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>1 day</div></div>
                         }
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
