@@ -22,7 +22,7 @@ const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI, cmdaoNameABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -47,6 +47,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
         console.log("Connected to " + address)
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
         const enderSC = new ethers.Contract(ender, enderPotteryABI, providerJBC)
+        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20ABI, providerJBC)
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
@@ -249,33 +250,24 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 mover.push(ambass2Arr[i])
             }
 
-            const data2_01 = await readContracts({
-                contracts: ranker.map((item) => (
-                    {
-                        address: farmJdao,
-                        abi: farmJdaoABI,
-                        functionName: 'userInfo',
-                        args: [1, item],
+            const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
+            const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 3004475, 'latest')
+            const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const jdaoFarmAllMerged = spend1Map.concat(jdaoFarmMap).reduce((prev, curr) => {
+                if (prev[curr.to.toUpperCase()]) {
+                   prev[curr.to.toUpperCase()].value += curr.value
+                } else {
+                   prev[curr.to.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+            const jdaoFarmRemoveDup = ranker.map((item) => ({to: item, value: 0}))
+            for (let i = 0; i <= jdaoFarmRemoveDup.length -1; i++) {
+                for (let i2 = 0; i2 <= Object.values(jdaoFarmAllMerged).length -1; i2++) {
+                    if (jdaoFarmRemoveDup[i].to.toUpperCase() === Object.values(jdaoFarmAllMerged)[i2].to.toUpperCase()) {
+                        jdaoFarmRemoveDup[i] = Object.values(jdaoFarmAllMerged)[i2]
                     }
-                )),
-            })
-            const jdaoArr = []
-            for (let i = 0; i <= Number(data2_01.length - 1); i++) {
-                jdaoArr.push(data2_01[i].result[0])
-            }
-            const data2_02 = await readContracts({
-                contracts: ranker.map((item) => (
-                    {
-                        address: farmJdao,
-                        abi: farmJdaoABI,
-                        functionName: 'userInfo',
-                        args: [3, item],
-                    }
-                )),
-            })
-            const jdao2Arr = []
-            for (let i = 0; i <= Number(data2_02.length - 1); i++) {
-                jdao2Arr.push(data2_02[i].result[0])
+                }
             }
 
             const data2_1 = await readContracts({
@@ -346,7 +338,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 return {
                     addr: item,
                     name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
-                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (Number(ethers.utils.formatEther(jdaoArr[i])).toFixed(0) * 500) + (Number(ethers.utils.formatEther(jdao2Arr[i])).toFixed(0) * 1000))
+                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (jdaoFarmRemoveDup[i].value * 1000))
                 }
             })
 
@@ -447,7 +439,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setRank4(result[11])
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, farmJdaoABI, cmdaoNameABI])
+    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI])
 
     const claimSILHandle = async () => {
         setisLoading(true)
@@ -574,7 +566,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{item.cmxp} CMXP</div>
+                                                <div>{item.cmxp | 0} CMXP</div>
                                             </div>
                                         ))}
                                     </div> :
