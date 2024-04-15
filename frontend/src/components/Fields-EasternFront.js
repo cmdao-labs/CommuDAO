@@ -8,8 +8,16 @@ const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const EasternFront = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, fieldEfABI }) => {
-    const { address } = useAccount()
+const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, fieldEfABI }) => {
+    let { address } = useAccount()
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/eastern-front/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/eastern-front/' + address)
+    }
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)

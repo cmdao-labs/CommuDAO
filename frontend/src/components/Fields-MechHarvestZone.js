@@ -10,8 +10,16 @@ const gear = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
 const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const MechHarvestZone = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
-    const { address } = useAccount()
+const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
+    let { address } = useAccount()
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/mech-harvest-zone/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/mech-harvest-zone/' + address)
+    }
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)

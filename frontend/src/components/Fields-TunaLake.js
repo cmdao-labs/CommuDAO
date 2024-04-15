@@ -7,8 +7,16 @@ import { ThreeDots } from 'react-loading-icons'
 const jibjib = '0xb6aaD2B2f9fD5eA0356F49c60Ee599De56206251'
 const tunaField = '0x09676315DC0c85F6bd5e866C5f1363A00Eec4381'
 
-const FishingField = ({ setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
-    const { address } = useAccount()
+const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
+    let { address } = useAccount()
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/tuna-lake/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/tuna-lake/' + address)
+    }
 
     const [nft, setNft] = React.useState([])
 

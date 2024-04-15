@@ -253,7 +253,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
             const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 3004475, 'latest')
             const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-            const jdaoFarmAllMerged = spend1Map.concat(jdaoFarmMap).reduce((prev, curr) => {
+            const jdaoFarmAllMerged = jdaoFarmMap.concat(jdaoFarmMap).reduce((prev, curr) => {
                 if (prev[curr.to.toUpperCase()]) {
                    prev[curr.to.toUpperCase()].value += curr.value
                 } else {

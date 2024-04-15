@@ -342,15 +342,9 @@ const Main = () => {
                 <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
                 {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
                 {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
-                {mode === 11 ?
-                    <FishingField setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} /> :
-                    <></>
-                }
+                {mode === 11 && <FishingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
                 {mode === 12 && <RatHuntingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
-                {mode === 13 ?
-                    <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20ABI={erc20ABI} /> :
-                    <></>
-                }
+                {mode === 13  &&<FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20ABI={erc20ABI} /> }
                 {mode === 14 ?
                     <BKCFields callMode={callMode} navigate={navigate} /> :
                     <></>
@@ -363,15 +357,9 @@ const Main = () => {
                     <FraserRiver setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} /> :
                     <></>
                 }
-                {mode === 17 ?
-                    <TheHeavenLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} /> :
-                    <></>
-                }
-                {mode === 19 ?
-                    <EasternFront setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldEfABI={fieldEfABI} /> :
-                    <></>
-                }
-                {mode === 100 && <MechHarvestZone setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
+                {mode === 17 && <TheHeavenLand intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} />}
+                {mode === 19 && <EasternFront intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldEfABI={fieldEfABI} />}
+                {mode === 100 && <MechHarvestZone intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
                 {mode === 2 ?
                     <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                     <></>

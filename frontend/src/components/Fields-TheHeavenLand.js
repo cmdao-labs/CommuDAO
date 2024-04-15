@@ -9,8 +9,16 @@ const thlField = '0xdBC6e0928e49f22Ca448fEF2fEb9de526d6A65B9'
 const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, thlFieldABI }) => {
-    const { address } = useAccount()
+const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, thlFieldABI }) => {
+    let { address } = useAccount()
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/the-heaven-land/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/the-heaven-land/' + address)
+    }
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
