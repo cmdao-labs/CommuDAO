@@ -240,7 +240,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
     const depositCmjHandle = async () => {
         setisLoading(true)
-        try {
+        try {/*
             const config = await prepareWriteContract({
                 address: cmj,
                 abi: erc20ABI,
@@ -251,25 +251,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-    const withdrawCmjHandle = async () => {
-        setisLoading(true)
-        try {
-            const config = await prepareWriteContract({
-                address: cmjb,
-                abi: erc20ABI,
-                functionName: 'transfer',
-                args: ["0xF2a87528be1222A930D99f5f6ed94Aae72f40769", ethers.utils.parseEther(String(withdrawCMJ))],
-                chainId: 96,
-            })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            */
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -366,7 +348,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     <div style={{color: "#bdc2c4"}}>CHOOSE TOKEN/NFTs TO BRIDGE</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(1)}>USDT</div>
-                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(2)}>CMJ</div>
+                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(2)}>CMD</div>
                         <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(3)}>TAO</div>
                         <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
                     </div>
@@ -386,12 +368,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     {mode === 2 &&
                         <>
                             <div style={{width: "100%", marginTop: "30px", fontSize: "45px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                <img style={{marginRight: "20px"}} height="45px" src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
-                                CMJ, the currency token of CommuDAO.
+                                CMD, the governance token of CommuDAO.
                             </div>
-                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[CMJ : CMJ.b] Cross-chain bridging is now on service 24/7!</div>
+                            <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[1 CMJ to 80 CMD] Cross-chain bridging is now on service 24/7!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                                <div className='hashtag' style={{padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(2)}><img src="https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
+               
                             </div>
                         </>
                     }
@@ -540,7 +521,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
-                                <div style={{fontSize: "30px"}}>10 CMJ/TX</div>
+                                <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
                         </div>
                         <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
@@ -554,27 +535,13 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={depositCMJ}
                                     onChange={(event) => setDepositCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={depositCmjHandle}>BRIDGE TO BKC</div> : 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                {chain.id === 10 && address !== null && address !== undefined ? 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositCMJ(cmjBalance)}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
-                            </div>
-                            <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0.0 CMJ.b"
-                                    value={withdrawCMJ}
-                                    onChange={(event) => setWithdrawCMJ(event.target.value)}
-                                ></input>
-                                {chain.id === 96 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)"}} className="button" onClick={withdrawCmjHandle}>BRIDGE TO JBC</div> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
-                                }
-                                <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawCMJ(cmjbBalance)}>Balance: {Number(cmjbBalance).toFixed(4)} CMJ.b</div>
+                                <div style={{width: "92%", margin: "10px 0", textAlign: "left"}}>Will receive: {Number(depositCMJ * 80).toFixed(3)} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>WARN: This operation is one-way bridging!</div>
                             </div>
                         </div>
                     </>
