@@ -1247,96 +1247,100 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
         <div style={{textAlign: "left", marginTop: "50px", minHeight: "600px", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
             {mkpnft !== undefined && mkpnft.length > 0 ?
                 <>
-                    <div style={{display: "flex", alignItems: "center"}} className="pixel">
-                        <div style={{fontSize: "18px"}}>Search by CMDAO NFT Category : </div>
-                        <select
-                            style={{marginLeft: "10px", padding: "0 5px", fontSize: "20px", width: "300px"}}
-                            className="pixel"
-                            value={colselect}
-                            onChange={(event) => {
-                                if (event.target.value === "ALL") {
-                                    setSelectedCol(mkpnft)
-                                } else if (event.target.value === "MAIN-CHAR") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "1"))
-                                } else if (event.target.value === "HAT") {
-                                    const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "2")
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                } else if (event.target.value === "CLOTH") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "3"))
-                                } else if (event.target.value === "ACCESSORIES") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "4"))
-                                } else if (event.target.value === "BACK") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "5"))
-                                } else if (event.target.value === "SHOES") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "6"))
-                                } else if (event.target.value === "WEAPONS") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "7"))
-                                }
-                                setColselect(event.target.value)
-                            }}
-                        >
-                            <option value="ALL">ALL</option>
-                            <option value="MAIN-CHAR">Main Character</option>
-                            <option value="HAT">Hat</option>
-                            <option value="CLOTH">Cloth</option>
-                            <option value="SHOES">Shoes</option>
-                            <option value="ACCESSORIES">Accessories</option>
-                            <option value="BACK">Back</option>
-                            <option value="WEAPONS">Weapons</option>
-                        </select>
-                    </div>
-                    <div style={{marginTop: "20px", display: "flex", alignItems: "center"}} className="pixel">
-                        <div style={{fontSize: "18px"}}>Search by All Collections : </div>
-                        <select
-                            style={{marginLeft: "10px", padding: "0 5px", fontSize: "20px", width: "300px"}}
-                            className="pixel"
-                            value={colselect}
-                            onChange={(event) => {
-                                if (event.target.value === "ALL") {
-                                    setSelectedCol(mkpnft)
-                                } else if (event.target.value === "OP") {
-                                    const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) === 1300))
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                } else if (event.target.value === "MVT") {
-                                    const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) >= 1005 && Number(String(result.Id).slice(0, 4)) <= 1009))
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                } else if (event.target.value === "ORY") {
-                                    setSelectedCol(mkpnft.filter((result) => result.Col === 2))
-                                } else if (event.target.value === "PIXEL") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 4) === "1200"))
-                                } else if (event.target.value === "MEOW-NEON") {
-                                    const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 4) === "1202")
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                } else if (event.target.value === "PEPE_JA") {
-                                    setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) <= 1004 || Number(String(result.Id).slice(0, 4)) === 1014 || (Number(String(result.Id).slice(0, 7)) >= 1102001 && Number(String(result.Id).slice(0, 7)) <= 1102009))))
-                                } else if (event.target.value === "ETHER_BEAST") {
-                                    setSelectedCol(mkpnft.filter((result) => result.Col === 3))
-                                } else if (event.target.value === "OG_JIBJIB") {
-                                    const filternft = mkpnft.filter((result) => result.Col === 4)
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                } else if (event.target.value === "TI") {
-                                    const filternft = mkpnft.filter((result) => result.Col === 5)
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                } else if (event.target.value === "MG") {
-                                    const filternft = mkpnft.filter((result) => result.Col === 6)
-                                    filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
-                                }
-                                setColselect(event.target.value)
-                            }}
-                        >
-                            <option value="ALL">ALL</option>
-                            <option value="TI">Title Indeed</option>
-                            <option value="OP">OPTIMIST</option>
-                            <option value="MVT">Multiverse Traveller</option>
-                            <option value="PEPE_JA">PEPE JA</option>
-                            <option value="PIXEL">CMDAO NFT x CM Hexa</option>
-                            <option value="MEOW-NEON">CMDAO NFT x Meow Neon</option>
-                            <option value="OG_JIBJIB">CM Hexa - JIB JIB</option>
-                            <option value="ORY">CM Token - Ory</option>
-                            <option value="MG">Mythical Guardians (MG)</option>
-                            <option value="ETHER_BEAST">ThaiChain - Ethereal Beasts</option>
-                        </select>
-                    </div>
+                    {sellerAddr === '' &&
+                        <>
+                            <div style={{display: "flex", alignItems: "center"}} className="pixel">
+                                <div style={{fontSize: "18px"}}>Search by CMDAO NFT Category : </div>
+                                <select
+                                    style={{marginLeft: "10px", padding: "0 5px", fontSize: "20px", width: "300px"}}
+                                    className="pixel"
+                                    value={colselect}
+                                    onChange={(event) => {
+                                        if (event.target.value === "ALL") {
+                                            setSelectedCol(mkpnft)
+                                        } else if (event.target.value === "MAIN-CHAR") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "1"))
+                                        } else if (event.target.value === "HAT") {
+                                            const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "2")
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        } else if (event.target.value === "CLOTH") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "3"))
+                                        } else if (event.target.value === "ACCESSORIES") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "4"))
+                                        } else if (event.target.value === "BACK") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "5"))
+                                        } else if (event.target.value === "SHOES") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "6"))
+                                        } else if (event.target.value === "WEAPONS") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 1) === "7"))
+                                        }
+                                        setColselect(event.target.value)
+                                    }}
+                                >
+                                    <option value="ALL">ALL</option>
+                                    <option value="MAIN-CHAR">Main Character</option>
+                                    <option value="HAT">Hat</option>
+                                    <option value="CLOTH">Cloth</option>
+                                    <option value="SHOES">Shoes</option>
+                                    <option value="ACCESSORIES">Accessories</option>
+                                    <option value="BACK">Back</option>
+                                    <option value="WEAPONS">Weapons</option>
+                                </select>
+                            </div>
+                            <div style={{marginTop: "20px", display: "flex", alignItems: "center"}} className="pixel">
+                                <div style={{fontSize: "18px"}}>Search by All Collections : </div>
+                                <select
+                                    style={{marginLeft: "10px", padding: "0 5px", fontSize: "20px", width: "300px"}}
+                                    className="pixel"
+                                    value={colselect}
+                                    onChange={(event) => {
+                                        if (event.target.value === "ALL") {
+                                            setSelectedCol(mkpnft)
+                                        } else if (event.target.value === "OP") {
+                                            const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) === 1300))
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        } else if (event.target.value === "MVT") {
+                                            const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) >= 1005 && Number(String(result.Id).slice(0, 4)) <= 1009))
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        } else if (event.target.value === "ORY") {
+                                            setSelectedCol(mkpnft.filter((result) => result.Col === 2))
+                                        } else if (event.target.value === "PIXEL") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 4) === "1200"))
+                                        } else if (event.target.value === "MEOW-NEON") {
+                                            const filternft = mkpnft.filter((result) => String(result.Id).length === 12 && String(result.Id).slice(0, 4) === "1202")
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        } else if (event.target.value === "PEPE_JA") {
+                                            setSelectedCol(mkpnft.filter((result) => String(result.Id).length === 12 && (Number(String(result.Id).slice(0, 4)) <= 1004 || Number(String(result.Id).slice(0, 4)) === 1014 || (Number(String(result.Id).slice(0, 7)) >= 1102001 && Number(String(result.Id).slice(0, 7)) <= 1102009))))
+                                        } else if (event.target.value === "ETHER_BEAST") {
+                                            setSelectedCol(mkpnft.filter((result) => result.Col === 3))
+                                        } else if (event.target.value === "OG_JIBJIB") {
+                                            const filternft = mkpnft.filter((result) => result.Col === 4)
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        } else if (event.target.value === "TI") {
+                                            const filternft = mkpnft.filter((result) => result.Col === 5)
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        } else if (event.target.value === "MG") {
+                                            const filternft = mkpnft.filter((result) => result.Col === 6)
+                                            filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+                                        }
+                                        setColselect(event.target.value)
+                                    }}
+                                >
+                                    <option value="ALL">ALL</option>
+                                    <option value="TI">Title Indeed</option>
+                                    <option value="OP">OPTIMIST</option>
+                                    <option value="MVT">Multiverse Traveller</option>
+                                    <option value="PEPE_JA">PEPE JA</option>
+                                    <option value="PIXEL">CMDAO NFT x CM Hexa</option>
+                                    <option value="MEOW-NEON">CMDAO NFT x Meow Neon</option>
+                                    <option value="OG_JIBJIB">CM Hexa - JIB JIB</option>
+                                    <option value="ORY">CM Token - Ory</option>
+                                    <option value="MG">Mythical Guardians (MG)</option>
+                                    <option value="ETHER_BEAST">ThaiChain - Ethereal Beasts</option>
+                                </select>
+                            </div>
+                        </>
+                    }
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "20px 0"}}></div>
                     {mkpnft[0] !== null && selectedCol[0] !== null ?
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
@@ -1401,7 +1405,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                         </>
                     }
                     <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
-                        <div style={{textAlign: "left", marginTop: "50px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                        <div style={{textAlign: "left", margin: "50px 0", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                             <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
                             <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
