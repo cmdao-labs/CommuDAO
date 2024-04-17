@@ -18,8 +18,16 @@ const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora721ABI, cmdaoMkpABI }) => {
+const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora721ABI, cmdaoMkpABI }) => {
     const { address } = useAccount()
+    let sellerAddr = ''
+    if (intrasubModetext === undefined) {
+    } else if (intrasubModetext.toUpperCase() === "ME") {
+        navigate('/marketplace/store/' + address)
+        sellerAddr = address
+    } else if (intrasubModetext.length === 42) {
+        sellerAddr = intrasubModetext
+    }
 
     const [colselect, setColselect] = React.useState("ALL")
     const [selectedCol, setSelectedCol] = React.useState([])
@@ -75,6 +83,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 return {
                     AddrSeller: obj.args.seller,
                     Seller: obj.args.seller.slice(0, 4) + "..." + obj.args.seller.slice(-4),
+                    FullSeller: obj.args.seller,
                     NftId: obj.args.nftId,
                     CurrencyIndex: Number(obj.args.currencyIndex),
                     Price: ethers.utils.formatEther(String(obj.args.price)),
@@ -85,334 +94,335 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             let nfts = []
 
             setLoadingText("10.00%")
+            if (sellerAddr === '') { 
+                const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
+                const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
+                const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+                const data2 = address !== null && address !== undefined ? await readContracts({
+                    contracts: walletRemoveDup.map((item) => (
+                        {
+                            address: hexajibjib,
+                            abi: erc721ABI,
+                            functionName: 'ownerOf',
+                            args: [String(item)],
+                        }
+                    ))
+                }) : [Array(walletRemoveDup.length).fill('')]
 
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
-                contracts: walletRemoveDup.map((item) => (
-                    {
-                        address: hexajibjib,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
+                let yournftwallet = []
+                for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                    if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+                        yournftwallet.push({Id: String(walletRemoveDup[i])})
                     }
-                ))
-            }) : [Array(walletRemoveDup.length).fill('')]
-
-            let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
-            }
-            
-            setLoadingText("12.50%")
+                
+                setLoadingText("12.50%")
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet.map((item) => (
-                    {
-                        address: hexajibjib,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet.length).fill('')]
+                const data3 = address !== null && address !== undefined ? await readContracts({
+                    contracts: yournftwallet.map((item) => (
+                        {
+                            address: hexajibjib,
+                            abi: erc721ABI,
+                            functionName: 'tokenURI',
+                            args: [String(item.Id)],
+                        }
+                    ))
+                }) : [Array(yournftwallet.length).fill('')]
 
-            for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
-                const nft = await response.json()
+                for (let i = 0; i <= yournftwallet.length - 1; i++) {
+                    const nftipfs = data3[i].result
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const nft = await response.json()
 
-                nfts.push({
-                    Col: 1,
-                    Id: yournftwallet[i].Id,
-                    Name: nft.name + " #" + yournftwallet[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
-                    Onsell: false,
-                    Count: null
-                })
-            }
-
-            setLoadingText("15.00%")
-
-            const wallet2Filter = await orynftSC.filters.Transfer(null, address, null)
-            const wallet2Event = await orynftSC.queryFilter(wallet2Filter, 515000, "latest")
-            const wallet2Map = await Promise.all(wallet2Event.map(async (obj, index) => String(obj.args.tokenId)))
-            const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
-                contracts: wallet2RemoveDup.map((item) => (
-                    {
-                        address: ory,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(wallet2RemoveDup.length).fill('')]
-
-            let yournftwallet2 = []
-            for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
-                }
-            }
-            
-            setLoadingText("17.50%")
-
-            for (let i = 0; i <= yournftwallet2.length - 1; i++) {
-                let bonus;
-                if (Number(yournftwallet2[i].Id) >= 400) {
-                    bonus = 4;
-                } else if (Number(yournftwallet2[i].Id) >= 180 && Number(yournftwallet2[i].Id) < 400) {
-                    bonus = 10;
-                } else if (Number(yournftwallet2[i].Id) >= 60 && Number(yournftwallet2[i].Id) < 180) {
-                    bonus = 20;
-                } else if (Number(yournftwallet2[i].Id) >= 20 && Number(yournftwallet2[i].Id) < 60) {
-                    bonus = 50;
-                } else if (Number(yournftwallet2[i].Id) >= 2 && Number(yournftwallet2[i].Id) < 20) {
-                    bonus = 100;
-                } else if (Number(yournftwallet2[i].Id) === 1) {
-                    bonus = 400;
+                    nfts.push({
+                        Col: 1,
+                        Id: yournftwallet[i].Id,
+                        Name: nft.name + " #" + yournftwallet[i].Id,
+                        Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                        Description: nft.description,
+                        Attribute: nft.attributes,
+                        RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
+                        Onsell: false,
+                        Count: null
+                    })
                 }
 
-                nfts.push({
-                    Col: 2,
-                    Id: yournftwallet2[i].Id,
-                    Name: "CM Cat Meaw Ory JIBJIB #" + yournftwallet2[i].Id,
-                    Image: "https://bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu.ipfs.nftstorage.link/" + yournftwallet2[i].Id + ".png",
-                    Description: "",
-                    Attribute: [],
-                    RewardPerSec: bonus,
-                    Onsell: false,
-                    Count: null
-                })
-            }
-            /*
-            setLoadingText("20% Fetching Beast NFTs in Your Bag...")
+                setLoadingText("15.00%")
 
-            const wallet3Filter = await beastnftSC.filters.Transfer(null, address, null)
-            const wallet3Event = await beastnftSC.queryFilter(wallet3Filter, 137000, "latest")
-            const wallet3Map = await Promise.all(wallet3Event.map(async (obj, index) => String(obj.args.tokenId)))
-            const wallet3RemoveDup = wallet3Map.filter((obj, index) => wallet3Map.indexOf(obj) === index)
-            const data5 = address !== null && address !== undefined ? await readContracts({
-                contracts: wallet3RemoveDup.map((item) => (
-                    {
-                        address: beast,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
+                const wallet2Filter = await orynftSC.filters.Transfer(null, address, null)
+                const wallet2Event = await orynftSC.queryFilter(wallet2Filter, 515000, "latest")
+                const wallet2Map = await Promise.all(wallet2Event.map(async (obj, index) => String(obj.args.tokenId)))
+                const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
+                const data4 = address !== null && address !== undefined ? await readContracts({
+                    contracts: wallet2RemoveDup.map((item) => (
+                        {
+                            address: ory,
+                            abi: erc721ABI,
+                            functionName: 'ownerOf',
+                            args: [String(item)],
+                        }
+                    ))
+                }) : [Array(wallet2RemoveDup.length).fill('')]
+
+                let yournftwallet2 = []
+                for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                    if (data4[i].result.toUpperCase() === address.toUpperCase()) {
+                        yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
                     }
-                ))
-            }) : [Array(wallet3RemoveDup.length).fill('')]
-
-            let yournftwallet3 = []
-            for (let i = 0; i <= wallet3RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data5[i].toUpperCase() === address.toUpperCase()) {
-                    yournftwallet3.push({Id: String(wallet3RemoveDup[i])})
                 }
-            }
-            console.log(yournftwallet3)
+                
+                setLoadingText("17.50%")
 
-            const data6 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet3.map((item) => (
-                    {
-                        address: beast,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
+                for (let i = 0; i <= yournftwallet2.length - 1; i++) {
+                    let bonus;
+                    if (Number(yournftwallet2[i].Id) >= 400) {
+                        bonus = 4;
+                    } else if (Number(yournftwallet2[i].Id) >= 180 && Number(yournftwallet2[i].Id) < 400) {
+                        bonus = 10;
+                    } else if (Number(yournftwallet2[i].Id) >= 60 && Number(yournftwallet2[i].Id) < 180) {
+                        bonus = 20;
+                    } else if (Number(yournftwallet2[i].Id) >= 20 && Number(yournftwallet2[i].Id) < 60) {
+                        bonus = 50;
+                    } else if (Number(yournftwallet2[i].Id) >= 2 && Number(yournftwallet2[i].Id) < 20) {
+                        bonus = 100;
+                    } else if (Number(yournftwallet2[i].Id) === 1) {
+                        bonus = 400;
                     }
-                ))
-            }) : [Array(yournftwallet3.length).fill('')]
 
-            for (let i = 0; i <= yournftwallet3.length - 1; i++) {
-                const nftipfs = data6[i]
-                let nft = {name: "", image: "", description: "", attributes: ""}
-                try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"))
-                    nft = await response.json()
-                } catch {}
-
-                nfts.push({
-                    Col: 3,
-                    Id: yournftwallet3[i].Id,
-                    Name: nft.name + " #" + yournftwallet3[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
-                    Description: nft.description,
-                    Attribute: [],
-                    RewardPerSec: 0,
-                    Onsell: false,
-                    Count: null
-                })
-            }
-
-            setLoadingText("25% Fetching CM Hexa Cat Meaw JIB JIB NFTs in Your Bag...")
-
-            const wallet4RemoveDup = address !== null && address !== undefined ? await readContract({
-                address: cm_ogjibjib,
-                abi: aurora721ABI,
-                functionName: 'walletOfOwner',
-                args: [address],
-            }) : []
-
-            let yournftwallet4 = []
-            for (let i = 0; i <= wallet4RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                yournftwallet4.push({Id: String(wallet4RemoveDup[i])})
-            }
-            console.log(yournftwallet4)
-
-            for (let i = 0; i <= yournftwallet4.length - 1; i++) {
-                const response = await fetch("https://bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".json/")
-                const nft = await response.json()
-
-                let bonus;
-                if (Number(yournftwallet4[i].Id) >= 61) {
-                    bonus = 2;
-                } else if (Number(yournftwallet4[i].Id) >= 31 && Number(yournftwallet4[i].Id) <= 59) {
-                    bonus = 5;
-                } else if (Number(yournftwallet4[i].Id) >= 11 && Number(yournftwallet4[i].Id) <= 29) {
-                    bonus = 10;
-                } else if (Number(yournftwallet4[i].Id) <= 10) {
-                    bonus = 25;
+                    nfts.push({
+                        Col: 2,
+                        Id: yournftwallet2[i].Id,
+                        Name: "CM Cat Meaw Ory JIBJIB #" + yournftwallet2[i].Id,
+                        Image: "https://bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu.ipfs.nftstorage.link/" + yournftwallet2[i].Id + ".png",
+                        Description: "",
+                        Attribute: [],
+                        RewardPerSec: bonus,
+                        Onsell: false,
+                        Count: null
+                    })
                 }
+                /*
+                setLoadingText("20% Fetching Beast NFTs in Your Bag...")
 
-                nfts.push({
-                    Col: 4,
-                    Id: yournftwallet4[i].Id,
-                    Name: nft.name + " #" + yournftwallet4[i].Id,
-                    Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".png/",
-                    Description: nft.description,
-                    Attribute: [],
-                    RewardPerSec: bonus,
-                    Onsell: false,
-                    Count: null
-                })
-            }
-            */
-            setLoadingText("30.00%")
+                const wallet3Filter = await beastnftSC.filters.Transfer(null, address, null)
+                const wallet3Event = await beastnftSC.queryFilter(wallet3Filter, 137000, "latest")
+                const wallet3Map = await Promise.all(wallet3Event.map(async (obj, index) => String(obj.args.tokenId)))
+                const wallet3RemoveDup = wallet3Map.filter((obj, index) => wallet3Map.indexOf(obj) === index)
+                const data5 = address !== null && address !== undefined ? await readContracts({
+                    contracts: wallet3RemoveDup.map((item) => (
+                        {
+                            address: beast,
+                            abi: erc721ABI,
+                            functionName: 'ownerOf',
+                            args: [String(item)],
+                        }
+                    ))
+                }) : [Array(wallet3RemoveDup.length).fill('')]
 
-            const wallet5Filter = await cmdao_tiSC.filters.Transfer(null, address, null)
-            const wallet5Event = await cmdao_tiSC.queryFilter(wallet5Filter, 2506258, "latest")
-            const wallet5Map = await Promise.all(wallet5Event.map(async (obj) => String(obj.args.tokenId)))
-            const wallet5RemoveDup = wallet5Map.filter((obj, index) => wallet5Map.indexOf(obj) === index)
-            const data7 = address !== null && address !== undefined ? await readContracts({
-                contracts: wallet5RemoveDup.map((item) => (
-                    {
-                        address: cmdao_ti,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
+                let yournftwallet3 = []
+                for (let i = 0; i <= wallet3RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                    if (data5[i].toUpperCase() === address.toUpperCase()) {
+                        yournftwallet3.push({Id: String(wallet3RemoveDup[i])})
                     }
-                ))
-            }) : [Array(wallet5RemoveDup.length).fill('')]
-
-            let yournftwallet5 = []
-            for (let i = 0; i <= wallet5RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data7[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet5.push({Id: String(wallet5RemoveDup[i])})
                 }
-            }
-            
-            setLoadingText("32.50%")
+                console.log(yournftwallet3)
 
-            const data8 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet5.map((item) => (
-                    {
-                        address: cmdao_ti,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet5.length).fill('')]
+                const data6 = address !== null && address !== undefined ? await readContracts({
+                    contracts: yournftwallet3.map((item) => (
+                        {
+                            address: beast,
+                            abi: erc721ABI,
+                            functionName: 'tokenURI',
+                            args: [String(item.Id)],
+                        }
+                    ))
+                }) : [Array(yournftwallet3.length).fill('')]
 
-            for (let i = 0; i <= yournftwallet5.length - 1; i++) {
-                const nftipfs = data8[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
-                const nft = await response.json()
+                for (let i = 0; i <= yournftwallet3.length - 1; i++) {
+                    const nftipfs = data6[i]
+                    let nft = {name: "", image: "", description: "", attributes: ""}
+                    try {
+                        const response = await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"))
+                        nft = await response.json()
+                    } catch {}
 
-                let letter = ''
-                if (yournftwallet5[i].Id.slice(0, 5) === '10026') {
-                    letter = 'Z'
-                } else if (yournftwallet5[i].Id.slice(0, 5) === '10001') {
-                    letter = 'A'
-                } else if (yournftwallet5[i].Id.slice(0, 5) === '10002') {
-                    letter = 'B'
-                } else if (yournftwallet5[i].Id.slice(0, 5) === '10003') {
-                    letter = 'C'
+                    nfts.push({
+                        Col: 3,
+                        Id: yournftwallet3[i].Id,
+                        Name: nft.name + " #" + yournftwallet3[i].Id,
+                        Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
+                        Description: nft.description,
+                        Attribute: [],
+                        RewardPerSec: 0,
+                        Onsell: false,
+                        Count: null
+                    })
                 }
 
-                nfts.push({
-                    Col: 5,
-                    Id: yournftwallet5[i].Id,
-                    Name: nft.name + ' #' + letter + (yournftwallet5[i].Id % 1000),
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
-                    Description: nft.description,
-                    Attribute: [],
-                    RewardPerSec: 0,
-                    Onsell: false,
-                    Count: null
-                })
-            }
+                setLoadingText("25% Fetching CM Hexa Cat Meaw JIB JIB NFTs in Your Bag...")
 
-            setLoadingText("35.00%")
+                const wallet4RemoveDup = address !== null && address !== undefined ? await readContract({
+                    address: cm_ogjibjib,
+                    abi: aurora721ABI,
+                    functionName: 'walletOfOwner',
+                    args: [address],
+                }) : []
 
-            const wallet6Filter = await mgnftSC.filters.Transfer(null, address, null)
-            const wallet6Event = await mgnftSC.queryFilter(wallet6Filter, 2260250, "latest")
-            const wallet6Map = await Promise.all(wallet6Event.map(async (obj) => String(obj.args.tokenId)))
-            const wallet6RemoveDup = wallet6Map.filter((obj, index) => wallet6Map.indexOf(obj) === index)
-            const data9 = address !== null && address !== undefined ? await readContracts({
-                contracts: wallet6RemoveDup.map((item) => (
-                    {
-                        address: mgnft,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(wallet6RemoveDup.length).fill('')]
-
-            let yournftwallet6 = []
-            for (let i = 0; i <= wallet6RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data9[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet6.push({Id: String(wallet6RemoveDup[i])})
+                let yournftwallet4 = []
+                for (let i = 0; i <= wallet4RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                    yournftwallet4.push({Id: String(wallet4RemoveDup[i])})
                 }
-            }
-            
-            setLoadingText("37.50%")
+                console.log(yournftwallet4)
 
-            const data10 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet6.map((item) => (
-                    {
-                        address: mgnft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
+                for (let i = 0; i <= yournftwallet4.length - 1; i++) {
+                    const response = await fetch("https://bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".json/")
+                    const nft = await response.json()
+
+                    let bonus;
+                    if (Number(yournftwallet4[i].Id) >= 61) {
+                        bonus = 2;
+                    } else if (Number(yournftwallet4[i].Id) >= 31 && Number(yournftwallet4[i].Id) <= 59) {
+                        bonus = 5;
+                    } else if (Number(yournftwallet4[i].Id) >= 11 && Number(yournftwallet4[i].Id) <= 29) {
+                        bonus = 10;
+                    } else if (Number(yournftwallet4[i].Id) <= 10) {
+                        bonus = 25;
                     }
-                ))
-            }) : [Array(yournftwallet6.length).fill('')]
 
-            for (let i = 0; i <= yournftwallet6.length - 1; i++) {
-                const nftipfs = data10[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
-                const nft = await response.json()
+                    nfts.push({
+                        Col: 4,
+                        Id: yournftwallet4[i].Id,
+                        Name: nft.name + " #" + yournftwallet4[i].Id,
+                        Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".png/",
+                        Description: nft.description,
+                        Attribute: [],
+                        RewardPerSec: bonus,
+                        Onsell: false,
+                        Count: null
+                    })
+                }
+                */
+                setLoadingText("30.00%")
 
-                nfts.push({
-                    Col: 6,
-                    Id: yournftwallet6[i].Id,
-                    Name: nft.name + " #" + yournftwallet6[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: 0,
-                    Onsell: false,
-                    Count: null
-                })
+                const wallet5Filter = await cmdao_tiSC.filters.Transfer(null, address, null)
+                const wallet5Event = await cmdao_tiSC.queryFilter(wallet5Filter, 2506258, "latest")
+                const wallet5Map = await Promise.all(wallet5Event.map(async (obj) => String(obj.args.tokenId)))
+                const wallet5RemoveDup = wallet5Map.filter((obj, index) => wallet5Map.indexOf(obj) === index)
+                const data7 = address !== null && address !== undefined ? await readContracts({
+                    contracts: wallet5RemoveDup.map((item) => (
+                        {
+                            address: cmdao_ti,
+                            abi: erc721ABI,
+                            functionName: 'ownerOf',
+                            args: [String(item)],
+                        }
+                    ))
+                }) : [Array(wallet5RemoveDup.length).fill('')]
+
+                let yournftwallet5 = []
+                for (let i = 0; i <= wallet5RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                    if (data7[i].result.toUpperCase() === address.toUpperCase()) {
+                        yournftwallet5.push({Id: String(wallet5RemoveDup[i])})
+                    }
+                }
+                
+                setLoadingText("32.50%")
+
+                const data8 = address !== null && address !== undefined ? await readContracts({
+                    contracts: yournftwallet5.map((item) => (
+                        {
+                            address: cmdao_ti,
+                            abi: erc721ABI,
+                            functionName: 'tokenURI',
+                            args: [String(item.Id)],
+                        }
+                    ))
+                }) : [Array(yournftwallet5.length).fill('')]
+
+                for (let i = 0; i <= yournftwallet5.length - 1; i++) {
+                    const nftipfs = data8[i].result
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const nft = await response.json()
+
+                    let letter = ''
+                    if (yournftwallet5[i].Id.slice(0, 5) === '10026') {
+                        letter = 'Z'
+                    } else if (yournftwallet5[i].Id.slice(0, 5) === '10001') {
+                        letter = 'A'
+                    } else if (yournftwallet5[i].Id.slice(0, 5) === '10002') {
+                        letter = 'B'
+                    } else if (yournftwallet5[i].Id.slice(0, 5) === '10003') {
+                        letter = 'C'
+                    }
+
+                    nfts.push({
+                        Col: 5,
+                        Id: yournftwallet5[i].Id,
+                        Name: nft.name + ' #' + letter + (yournftwallet5[i].Id % 1000),
+                        Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                        Description: nft.description,
+                        Attribute: [],
+                        RewardPerSec: 0,
+                        Onsell: false,
+                        Count: null
+                    })
+                }
+
+                setLoadingText("35.00%")
+
+                const wallet6Filter = await mgnftSC.filters.Transfer(null, address, null)
+                const wallet6Event = await mgnftSC.queryFilter(wallet6Filter, 2260250, "latest")
+                const wallet6Map = await Promise.all(wallet6Event.map(async (obj) => String(obj.args.tokenId)))
+                const wallet6RemoveDup = wallet6Map.filter((obj, index) => wallet6Map.indexOf(obj) === index)
+                const data9 = address !== null && address !== undefined ? await readContracts({
+                    contracts: wallet6RemoveDup.map((item) => (
+                        {
+                            address: mgnft,
+                            abi: erc721ABI,
+                            functionName: 'ownerOf',
+                            args: [String(item)],
+                        }
+                    ))
+                }) : [Array(wallet6RemoveDup.length).fill('')]
+
+                let yournftwallet6 = []
+                for (let i = 0; i <= wallet6RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                    if (data9[i].result.toUpperCase() === address.toUpperCase()) {
+                        yournftwallet6.push({Id: String(wallet6RemoveDup[i])})
+                    }
+                }
+                
+                setLoadingText("37.50%")
+
+                const data10 = address !== null && address !== undefined ? await readContracts({
+                    contracts: yournftwallet6.map((item) => (
+                        {
+                            address: mgnft,
+                            abi: erc721ABI,
+                            functionName: 'tokenURI',
+                            args: [String(item.Id)],
+                        }
+                    ))
+                }) : [Array(yournftwallet6.length).fill('')]
+
+                for (let i = 0; i <= yournftwallet6.length - 1; i++) {
+                    const nftipfs = data10[i].result
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const nft = await response.json()
+
+                    nfts.push({
+                        Col: 6,
+                        Id: yournftwallet6[i].Id,
+                        Name: nft.name + " #" + yournftwallet6[i].Id,
+                        Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                        Description: nft.description,
+                        Attribute: nft.attributes,
+                        RewardPerSec: 0,
+                        Onsell: false,
+                        Count: null
+                    })
+                }
             }
 
             setLoadingText("50.00%")
@@ -465,13 +475,15 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 let currencyindex = null
                 let price = null
                 let seller = null
+                let fullSeller = null
                 let addrseller = null
                 for (let a = 0; a <= addItemMap.length - 1; a++) {
                     if (Number(addItemMap[a].NftId) === Number(mkpwallet[i].Id)) {
                         count = addItemMap[a].Itemcount
                         currencyindex = addItemMap[a].CurrencyIndex
                         price = addItemMap[a].Price
-                        seller =  addItemMap[a].Seller
+                        seller = addItemMap[a].Seller
+                        fullSeller = addItemMap[a].FullSeller
                         addrseller = addItemMap[a].AddrSeller
                     }
                 }
@@ -487,7 +499,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: count,
                     Currencyindex: currencyindex,
                     Price: price,
-                    Seller: seller
+                    Seller: seller,
+                    FullSeller: fullSeller
                 })
 
                 if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
@@ -560,6 +573,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 let currencyindex = null
                 let price = null
                 let seller = null
+                let fullSeller = null
                 let addrseller = null
                 for (let a = 0; a <= addItemMap.length - 1; a++) {
                     if (Number(addItemMap[a].NftId) === Number(mkp2wallet[i].Id)) {
@@ -567,6 +581,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         currencyindex = addItemMap[a].CurrencyIndex
                         price = addItemMap[a].Price
                         seller =  addItemMap[a].Seller
+                        fullSeller = addItemMap[a].FullSeller
                         addrseller = addItemMap[a].AddrSeller
                     }
                 }
@@ -582,7 +597,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: count,
                     Currencyindex: currencyindex,
                     Price: price,
-                    Seller: seller
+                    Seller: seller,
+                    FullSeller: fullSeller
                 })
 
                 if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
@@ -758,6 +774,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 let currencyindex = null
                 let price = null
                 let seller = null
+                let fullSeller = null
                 let addrseller = null
                 for (let a = 0; a <= addItemMap.length - 1; a++) {
                     if (Number(addItemMap[a].NftId) === Number(mkp4wallet[i].Id)) {
@@ -765,6 +782,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         currencyindex = addItemMap[a].CurrencyIndex
                         price = addItemMap[a].Price
                         seller = addItemMap[a].Seller
+                        fullSeller = addItemMap[a].FullSeller
                         addrseller = addItemMap[a].AddrSeller
                     }
                 }
@@ -780,7 +798,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: count,
                     Currencyindex: currencyindex,
                     Price: price,
-                    Seller: seller
+                    Seller: seller,
+                    FullSeller: fullSeller
                 })
 
                 if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
@@ -862,6 +881,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 let currencyindex = null
                 let price = null
                 let seller = null
+                let fullSeller = null
                 let addrseller = null
                 for (let a = 0; a <= addItemMap.length - 1; a++) {
                     if (Number(addItemMap[a].NftId) === Number(mkp5wallet[i].Id)) {
@@ -869,6 +889,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         currencyindex = addItemMap[a].CurrencyIndex
                         price = addItemMap[a].Price
                         seller =  addItemMap[a].Seller
+                        fullSeller = addItemMap[a].FullSeller
                         addrseller = addItemMap[a].AddrSeller
                     }
                 }
@@ -895,7 +916,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: count,
                     Currencyindex: currencyindex,
                     Price: price,
-                    Seller: seller
+                    Seller: seller,
+                    FullSeller: fullSeller
                 })
 
                 if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
@@ -979,6 +1001,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 let currencyindex = null
                 let price = null
                 let seller = null
+                let fullSeller = null
                 let addrseller = null
                 for (let a = 0; a <= addItemMap.length - 1; a++) {
                     if (Number(addItemMap[a].NftId) === Number(mkp6wallet[i].Id)) {
@@ -986,6 +1009,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         currencyindex = addItemMap[a].CurrencyIndex
                         price = addItemMap[a].Price
                         seller =  addItemMap[a].Seller
+                        fullSeller = addItemMap[a].FullSeller
                         addrseller = addItemMap[a].AddrSeller
                     }
                 }
@@ -1001,7 +1025,8 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                     Count: count,
                     Currencyindex: currencyindex,
                     Price: price,
-                    Seller: seller
+                    Seller: seller,
+                    FullSeller: fullSeller
                 })
 
                 if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
@@ -1047,9 +1072,13 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
             setNft(result[1])
             setCmjBalance(ethers.utils.formatEther(String(result[2])))
             setJusdtBalance(ethers.utils.formatEther(String(result[3])))
+            if (sellerAddr !== '' && result[0][0] !== null) {
+                const filternft = result[0].filter((res) => res.FullSeller.toUpperCase() === sellerAddr.toUpperCase())
+                filternft[0] !== undefined ? setSelectedCol(filternft) : setSelectedCol([null]) 
+            }
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, aurora721ABI, cmdaoMkpABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, aurora721ABI, cmdaoMkpABI, sellerAddr])
 
     const sellPriceHandle = (event) => { setSellPrice(event.target.value) }
     const sell = (_nftcol, _nftid, _nftname, _nftimage) => {
@@ -1211,7 +1240,7 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">NFTs Second-hand marketplace provided In DApp.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="./background/mkplogo.png" width="150" alt="MKP_Logo" />
+                <img src="https://gateway.pinata.cloud/ipfs/QmcsFn3ZKhZTM7PvRLdCCuPERi1vDdHzQowsHWFSLcBCsr" width="150" alt="MKP_Logo" />
             </div>
         </div>
 
@@ -1372,60 +1401,62 @@ const Mkp = ({ setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora7
                         </>
                     }
                     <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
-                    <div style={{textAlign: "left", marginTop: "50px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
-                        <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
-                        <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
-                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
-                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/>
-                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
-                            </div>
-                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
+                        <div style={{textAlign: "left", marginTop: "50px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                            <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
+                            <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
+                                <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                    <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
+                                </div>
+                                <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                    <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
-                        <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
-                        <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFTs</div>
-                        {nft[0] !== null ?
-                            <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                                {nft.map((item, index) => (
-                                    <div style={{justifyContent: "space-around", padding: "20px", width: "270px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
-                                        <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
-                                            <img src={item.Image} height="200" alt="Can not load metadata." />
-                                        </div>
-                                        <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                            <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
-                                                <div style={{fontSize: "14px"}} className="emp bold">{item.Name}</div>
-                                                <div style={{fontSize: "16px", margin: "5px 0 12px 0"}} className="pixel">
-                                                    {item.Col === 1 || item.Col === 3 ? <>{item.RewardPerSec} cmpow per sec</> : <>{item.RewardPerSec} bonus per sec</>}   
+                        {sellerAddr === '' &&
+                            <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                                <div style={{width: "100%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
+                                <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFTs</div>
+                                {nft[0] !== null ?
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                                        {nft.map((item, index) => (
+                                            <div style={{justifyContent: "space-around", padding: "20px", width: "270px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
+                                                <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
+                                                    <img src={item.Image} height="200" alt="Can not load metadata." />
                                                 </div>
-                                                {!item.Onsell ?
-                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}} className="pixel button" onClick={() => {sell(item.Col, item.Id, item.Name, item.Image)}}>SELL NFT</div> :
-                                                    <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "120px", background: "gray"}} className="pixel button" onClick={() => {remove(item.Count)}}>REMOVE SELL</div>
-                                                }
+                                                <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                    <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                                                        <div style={{fontSize: "14px"}} className="emp bold">{item.Name}</div>
+                                                        <div style={{fontSize: "16px", margin: "5px 0 12px 0"}} className="pixel">
+                                                            {item.Col === 1 || item.Col === 3 ? <>{item.RewardPerSec} cmpow per sec</> : <>{item.RewardPerSec} bonus per sec</>}   
+                                                        </div>
+                                                        {!item.Onsell ?
+                                                            <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}} className="pixel button" onClick={() => {sell(item.Col, item.Id, item.Name, item.Image)}}>SELL NFT</div> :
+                                                            <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "120px", background: "gray"}} className="pixel button" onClick={() => {remove(item.Count)}}>REMOVE SELL</div>
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
+                                        ))}
+                                    </div> :
+                                    <>
+                                    {address !== undefined ?
+                                        <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                        </div> :
+                                        <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div> :
-                            <>
-                            {address !== undefined ?
-                                <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </div> :
-                                <div style={{justifyContent: "center", padding: "20px", margin: "10px 28px 15px 0px"}} className="nftCard">
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </div>
-                            }
-                            </>
+                                    }
+                                    </>
+                                }
+                            </div>
                         }
                     </div>
-                </div>
                 </> :
                 <div style={{padding: "20px", width: "800px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}} className="pixel">
                     <Oval stroke="#ff007a" strokeWidth="5px" />
