@@ -474,19 +474,22 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <><div>ADDRESS</div><div>-</div></>
                         }
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{allPower}</div></div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                            TOTAL CMPOW PER SEC 
+                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
-                                <div style={{marginLeft: "5px"}}>{Number(cuBalance).toFixed(3).toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER PENDING
                             <div style={{display: "flex", flexDirection: "row", color: isStakeNow ? "#ff007a" : "#5f6476"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
-                                <div style={{marginLeft: "5px"}}>{cuPending.toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(cuPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -498,7 +501,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 {gasselected === "BBQ" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }

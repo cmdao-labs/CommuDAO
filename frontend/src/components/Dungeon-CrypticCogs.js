@@ -710,19 +710,22 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <>ADDRESS <div>-</div></>
                             }
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL POWER PER SEC <div>{allPower}</div></div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                            TOTAL POWER PER SEC
+                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             EE BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
-                                <div style={{marginLeft: "5px"}}>{Number(eeBalance).toFixed(3).toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             EE PENDING
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                 <img src="https://nftstorage.link/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
-                                <div style={{marginLeft: "5px"}}>{angbPending.toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -734,7 +737,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 {gasselected === "II" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="20" alt="$II"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(iiBalance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }

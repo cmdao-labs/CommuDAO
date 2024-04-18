@@ -951,19 +951,22 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 <>ADDRESS <div>-</div></>
                             }
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>TOTAL CMPOW PER SEC <div>{allPower}</div></div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                            TOTAL CMPOW PER SEC 
+                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP BALANCE (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toFixed(3).toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP PENDING (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{jasperPending.toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
@@ -977,21 +980,21 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 {gasselected === "CTUNA" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }
                                 {gasselected === "SX31" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }
                                 {gasselected === "PIZZA" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }

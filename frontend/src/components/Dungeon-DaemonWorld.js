@@ -574,19 +574,22 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <>ADDRESS <div>-</div></>
                             }
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL POWER PER SEC <div>{allPower}</div></div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                            TOTAL POWER PER SEC
+                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             ANGB BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
-                                <div style={{marginLeft: "5px"}}>{Number(angbBalance).toFixed(3).toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             ANGB PENDING
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
-                                <div style={{marginLeft: "5px"}}>{angbPending.toLocaleString()}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -598,7 +601,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 {gasselected === "SWAR" ?
                                     <>
                                         <img src="https://nftstorage.link/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="20" alt="$SWAR"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toFixed(0)}</div>
+                                        <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                     </> :
                                     <></>
                                 }
