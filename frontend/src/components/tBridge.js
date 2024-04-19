@@ -12,6 +12,7 @@ const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const cmjb = '0xc5815d3ECA0AFBecB6687ffA9E6040D977a76F6D'
 const tao = '0x6527d3D38a7Ff4E62f98fE27dd9242a36227FE23'
 const jtao = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
+const cmd = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
 
 const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, tbridgeNFTABI }) => {
     const { address } = useAccount()
@@ -27,7 +28,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
     const [usdtBscBalance, setUsdtBscBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
-    const [cmjbBalance, setCmjbBalance] = React.useState(0)
+    const [cmdBalance, setCmdBalance] = React.useState(0)
     const [taoBalance, setTaoBalance] = React.useState(0)
     const [jtaoBalance, setJtaoBalance] = React.useState(0)
 
@@ -37,7 +38,6 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [withdrawValueDis, setWithdrawValueDis] = React.useState('')
 
     const [depositCMJ, setDepositCMJ] = React.useState('')
-    const [withdrawCMJ, setWithdrawCMJ] = React.useState('')
 
     const [depositTAO, setDepositTAO] = React.useState('')
     const [withdrawTAO, setWithdrawTAO] = React.useState('')
@@ -106,11 +106,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         chainId: 8899,
                     },
                     {
-                        address: cmjb,
+                        address: cmd,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
-                        chainId: 96,
+                        chainId: 10,
                     },
                     {
                         address: usdtBsc,
@@ -134,7 +134,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         chainId: 8899,
                     },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, ]
+            }) : [0, 0, 0, {result: 0}, 0, 0, 0, ]
             
             const Balance = data1[0]
             const Balance2 = data1[1]
@@ -144,12 +144,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             const kusdtBal = data2[0]
             const jusdtBal = data2[1]
             const cmjBal = data2[2]
-            const cmjbBal = data2[3]
+            const cmdBal = data2[3]
             const usdtBscBal = data2[4]
             const taoBal = data2[5]
             const jtaoBal = data2[6]
 
-            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmjbBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal ]
+            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, ]
         }
 
         const promise = fetch()
@@ -174,8 +174,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
             const cmjbalance = ethers.utils.formatEther(result[4].result)
             setCmjBalance(Math.floor(cmjbalance * 10000) / 10000)
-            const cmjbbalance = ethers.utils.formatEther(result[5].result)
-            setCmjbBalance(Math.floor(cmjbbalance * 10000) / 10000)
+            const cmdbalance = ethers.utils.formatEther(result[5].result)
+            setCmdBalance(Math.floor(cmdbalance * 10000) / 10000)
 
             const usdtBscbalance = ethers.utils.formatEther(result[6].result)
             setUsdtBscBalance(Math.floor(usdtBscbalance * 10000) / 10000)
@@ -240,18 +240,17 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
     const depositCmjHandle = async () => {
         setisLoading(true)
-        try {/*
+        try {
             const config = await prepareWriteContract({
                 address: cmj,
                 abi: erc20ABI,
                 functionName: 'transfer',
-                args: ["0x553819505D984EeE91aDD1DdCD60C82618d0CD5d", ethers.utils.parseEther(String(depositCMJ))],
+                args: ["0x0000000000000000000000000000000000000042", ethers.utils.parseEther(String(depositCMJ))],
                 chainId: 8899,
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-            */
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -525,7 +524,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "340px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
@@ -536,12 +535,13 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     value={depositCMJ}
                                     onChange={(event) => setDepositCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 10 && address !== null && address !== undefined ? 
+                                {chain.id === 8899 && address !== null && address !== undefined ? 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(37 99 235)", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(41 41 41)", color: "#bdc2c4", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositCMJ(cmjBalance)}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
-                                <div style={{width: "92%", margin: "10px 0", textAlign: "left"}}>Will receive: {Number(depositCMJ * 80).toFixed(3)} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0", textAlign: "left"}}>Will receive: {depositCMJ >= 80 ? Number((depositCMJ * 80 - 80)).toFixed(3) : 0} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0", textAlign: "left"}}>OP Mainnet Balance: {cmdBalance} CMD</div>
                                 <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>WARN: This operation is one-way bridging!</div>
                             </div>
                         </div>
