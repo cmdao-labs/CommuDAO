@@ -372,7 +372,8 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                             </div>
                             <div style={{width: "100%", marginTop: "35px", color: "#bdc2c4", fontSize: "16px", letterSpacing: "1px"}}>[1 CMJ to 80 CMD] Cross-chain bridging is now on service 24/7!</div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-               
+                            <div className='hashtag' style={{padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px"}} onClick={() => setMode(2)}><img src="https://bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly.ipfs.nftstorage.link" width="25" alt="OP" /></div>
+                                <div className='hashtag' style={{marginLeft: "10px", padding: "10px", border: "1px solid rgb(189, 194, 196)", borderRadius: "10px", cursor: "not-allowed"}}><img src="https://bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce.ipfs.nftstorage.link" width="25" alt="BBQ" /></div>
                             </div>
                         </>
                     }

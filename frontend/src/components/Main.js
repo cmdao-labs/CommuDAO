@@ -121,7 +121,7 @@ import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
 
 import TBridge from './tBridge'
 
-import { bsc, jbc } from 'wagmi/chains'
+import { optimism, bsc, jbc } from 'wagmi/chains'
 
 import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { walletConnectProvider, EIP6963Connector, EmailConnector } from '@web3modal/wagmi'
@@ -134,7 +134,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 const projectId = 'a7f5e2dc839576cee8ebf11b79d2b4ee'
 
 const { chains, publicClient } = configureChains(
-  [jbc, bkc, bsc, bbqchain],
+  [jbc, bkc, optimism, bsc, bbqchain],
   [walletConnectProvider({ projectId }), publicProvider()]
 )
 
@@ -173,7 +173,8 @@ createWeb3Modal({
         56: 'https://nftstorage.link/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte',
         96: 'https://nftstorage.link/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a',
         8899: 'https://nftstorage.link/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu',
-        190: 'https://bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce.ipfs.nftstorage.link/',
+        190: 'https://bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce.ipfs.nftstorage.link',
+        10: 'https://bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly.ipfs.nftstorage.link',
     }
 })
 
