@@ -118,6 +118,7 @@ import farmJdaoABI from './jsons/masterchefJdaoABI.json'
 import bkcOracleABI from './jsons/bkcOracleABI.json'
 
 import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
+import nativeBridgeABI from './jsons/nativeBridgeABI.json'
 
 import TBridge from './tBridge'
 
@@ -429,7 +430,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 8 ?
-                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} /> :
+                    <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} /> :
                     <></>
                 }
                 {mode === null ?

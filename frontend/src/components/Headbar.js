@@ -19,7 +19,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
 
   React.useEffect(() => {
     if (chain !== undefined) {
-      chain.id !== 8899 && chain.id !== 96 && chain.id !== 56 && chain.id !== 190 ? setIsChainInvalid(true) : setIsChainInvalid(false)
+      chain.id !== 8899 && chain.id !== 96 && chain.id !== 56 && chain.id !== 190 && chain.id !== 10 ? setIsChainInvalid(true) : setIsChainInvalid(false)
     }
 
     const thefetch = async () => {
@@ -94,7 +94,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
-          {chain !== undefined && chain.id === 56 &&
+          {chain !== undefined && (chain.id === 56 || chain.id === 10) &&
             <> 
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
@@ -102,6 +102,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
           {chain !== undefined && chain.id === 190 &&
             <> 
               <div className="funcList" onClick={() => {callMode(20000); navigate('/labs/bbqchain');}}>Labs</div>
+              <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
         </div>
