@@ -13,7 +13,7 @@ const Home = ({ callMode, navigate }) => {
         <div style={{overflow: "scroll", padding: 0, margin: 0, textAlign: "left", fontSize: "22px", flexFlow: "row wrap"}} className="collection noscroll welcome pixel">
             <div className="half welcomeText">
                 <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-                    <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect,<br></br>Play,<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
+                    <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect<br></br>Play<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
                     <div style={{marginTop: "20px"}} className='bold motto2'>The Web3 Multiverse of Crypto-community</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
                         <div style={{fontSize: "40px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">59,000,000+</div>

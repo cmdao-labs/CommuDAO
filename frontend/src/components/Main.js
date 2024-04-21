@@ -167,7 +167,7 @@ createWeb3Modal({
     themeVariables: {
         '--w3m-accent': '#ff007a',
         '--w3m-font-family': 'Inter',
-        '--w3m-font-size-master': '10px',
+        '--w3m-font-size-master': '8px',
         '--w3m-z-index': 1000, 
     },
     chainImages: {

@@ -177,7 +177,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               }
             >
               <div style={{letterSpacing: 0}} className="pixel">
-                <div>CONNECT WALLET</div>
+                CONNECT WALLET
               </div>
             </div>
           }
