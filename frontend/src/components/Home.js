@@ -57,8 +57,8 @@ const Home = ({ callMode, navigate }) => {
             </div>
             <div className='half'>
                 <div className='nftCard nftControl' style={{height: "fit-content", background: "#fff", margin: "80px 0", padding: 0, overflow: "hidden"}}>
-                    <img src="https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/23.png" width="100%" alt="NFT_GENESIS" />
-                    <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CM Hexa Cat Meaw JIB JIB, The OG NFT</div>
+                    <img src="https://bafkreiccasyhwimnwvkzdgxksjw7z5qr4eo5p4bsikg4osrqszemwtjxee.ipfs.nftstorage.link" width="100%" alt="Show-Off-NFT" />
+                    <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CRYPTO SULTAN PEPE JA - MEME Main Character NFTs</div>
                 </div>
             </div>
         </div>
