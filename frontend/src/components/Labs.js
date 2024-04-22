@@ -2115,7 +2115,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", fontSize: "14px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">
-                            [{Number(dataCraftBBQ_G.result[1])}/60] {dataCraftBBQ_G.status === 'success' && dataCraftBBQ_G.result[0].slice(0, 4) + "..." + dataCraftBBQ_G.result[0].slice(-4)}<br></br>
+                            [{dataCraftBBQ_G.status === 'success' ? Number(dataCraftBBQ_G.result[1]) : 0}/60] {dataCraftBBQ_G.status === 'success' && dataCraftBBQ_G.result[0].slice(0, 4) + "..." + dataCraftBBQ_G.result[0].slice(-4)}<br></br>
                             [Next] {dataCraftBBQ_G_Next.status === 'success' && dataCraftBBQ_G_Next.result[0].slice(0, 4) + "..." + dataCraftBBQ_G_Next.result[0].slice(-4)}
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
