@@ -409,7 +409,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftPZA = Number(ethers.utils.formatEther(String(stOPTBal))) >= 1 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 10 && Number(ethers.utils.formatEther(String(cuBal))) >= 50000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 200 && Number(ethers.utils.formatEther(String(silBal))) >= 2000 ? true : false
-            const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 500 ? true : false
+            const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 50 ? true : false
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 5 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
@@ -1121,7 +1121,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, goldLab2],
             })
-            if (mtAllow < (500 * 10**18)) {
+            if (mtAllow < (50 * 10**18)) {
                 const config2 = await prepareWriteContract({
                     address: mtToken,
                     abi: erc20ABI,
@@ -2391,10 +2391,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div style={{margin: "0 5px"}}>100M</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia" height="18" alt="$MT"/>
-                                <div style={{margin: "0 5px"}}>500</div>
+                                <div style={{margin: "0 5px"}}>50</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                <div style={{margin: "0 5px"}}>500</div>
+                                <div style={{margin: "0 5px"}}>50</div>
                             </div>
                         </div>
                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
