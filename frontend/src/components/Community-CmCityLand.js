@@ -604,10 +604,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[0].Name}</div>
                                                         <img src={nftStake[0].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[0].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[0].Reward).toFixed(4)} Pending $OS</div>
                                                         {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
                                                             <>
                                                                 {address.toUpperCase() === slot1Addr.toUpperCase() &&
-                                                                    <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                    <div style={{width: "100%", marginTop: "15px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                                         {nftStake !== null && nftStake[0] !== undefined &&
                                                                             <>
                                                                                 {nftStake[0].isStaked ?
@@ -619,13 +621,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                                     </div>
                                                                 }
                                                             </> :
-                                                            <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                            <div style={{height: "90px", marginTop: "25px"}}></div>
                                                         }
                                                     </> :
                                                     <>
-                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>Main Char SLOT1</div>
+                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px"}}>Main Char SLOT1</div>
                                                         <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                        <div style={{height: "90px", marginTop: "25px"}}></div>
                                                     </>
                                                 }
                                             </div>
@@ -636,10 +638,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[1].Name}</div>
                                                         <img src={nftStake[1].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[1].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[1].Reward).toFixed(4)} Pending $OS</div>
                                                         {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
                                                             <>
                                                                 {address.toUpperCase() === slot1Addr.toUpperCase() &&
-                                                                    <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                    <div style={{width: "100%", marginTop: "15px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                                         {nftStake !== null && nftStake[1] !== undefined &&
                                                                             <>
                                                                                 {nftStake[1].isStaked ?
@@ -651,13 +655,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                                     </div>
                                                                 }
                                                             </> :
-                                                            <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                            <div style={{height: "90px", marginTop: "25px"}}></div>
                                                         }
                                                     </> :
                                                     <>
-                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>Main Char SLOT2</div>
+                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px"}}>Main Char SLOT2</div>
                                                         <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                        <div style={{height: "90px", marginTop: "25px"}}></div>
                                                     </>
                                                 }
                                             </div>
@@ -668,10 +672,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[2].Name}</div>
                                                         <img src={nftStake[2].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[2].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[2].Reward).toFixed(4)} Pending $OS</div>
                                                         {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
                                                             <>
                                                                 {address.toUpperCase() === slot1Addr.toUpperCase() &&
-                                                                    <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                    <div style={{width: "100%", marginTop: "15px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                                         {nftStake !== null && nftStake[2] !== undefined &&
                                                                             <>
                                                                                 {nftStake[2].isStaked ?
@@ -683,13 +689,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                                     </div>
                                                                 }
                                                             </> :
-                                                            <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                            <div style={{height: "90px", marginTop: "25px"}}></div>
                                                         }
                                                     </> :
                                                     <>
-                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>Main Char SLOT3</div>
+                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px"}}>Main Char SLOT3</div>
                                                         <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                        <div style={{height: "90px", marginTop: "25px"}}></div>
                                                     </>
                                                 }
                                             </div>
@@ -698,12 +704,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             <div style={{marginLeft: "20px", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[3] !== undefined ?
                                                     <>
-                                                        <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[2].Name}</div>
+                                                        <div style={{width: "fit-content", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>{nftStake[3].Name}</div>
                                                         <img src={nftStake[3].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[3].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[3].Reward).toFixed(4)} Pending $OS</div>
                                                         {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
                                                             <>
                                                                 {address.toUpperCase() === slot1Addr.toUpperCase() &&
-                                                                    <div style={{width: "100%", marginTop: "25px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                    <div style={{width: "100%", marginTop: "15px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                                         {nftStake !== null && nftStake[3] !== undefined &&
                                                                             <>
                                                                                 {nftStake[3].isStaked ?
@@ -715,13 +723,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                                     </div>
                                                                 }
                                                             </> :
-                                                            <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                            <div style={{height: "90px", marginTop: "25px"}}></div>
                                                         }
                                                     </> :
                                                     <>
-                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px", textAlign: "center"}}>Main Char SLOT4</div>
+                                                        <div style={{width: "200px", marginBottom: "20px", fontSize: "16px"}}>Main Char SLOT4</div>
                                                         <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{height: "41px", marginTop: "25px"}}></div>
+                                                        <div style={{height: "90px", marginTop: "25px"}}></div>
                                                     </>
                                                 }
                                             </div>
