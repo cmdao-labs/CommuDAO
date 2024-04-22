@@ -405,7 +405,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
             const _canCraft2_2 = Number(ethers.utils.formatEther(String(miceBal))) >= 500 && Number(ethers.utils.formatEther(String(cmjBal))) >= 90 ? true : false
             const _canCraftBBQ = Number(ethers.utils.formatEther(String(woodBal))) >= 100 && Number(jbcBal.formatted) >= 0.01 ? true : false
-            const _canCraftBBQ_G = Number(ethers.utils.formatEther(String(woodBal))) >= 600000 && Number(cmjBal) >= 1 ? true : false
+            const _canCraftBBQ_G = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(cmjBal) >= 0.01 ? true : false
             const _canCraftPZA = Number(ethers.utils.formatEther(String(stOPTBal))) >= 1 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 1 && Number(ethers.utils.formatEther(String(cuBal))) >= 150000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 5 && Number(ethers.utils.formatEther(String(silBal))) >= 10000 ? true : false
@@ -837,7 +837,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, globalBbqLab],
             })
-            if (woodAllow < (600000 * 10**18)) {
+            if (woodAllow < (100000000 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: woodField,
                     abi: erc20ABI,
@@ -853,7 +853,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, globalBbqLab],
             })
-            if (jdaoAllow < (10 * 10**18)) {
+            if (jdaoAllow < (1 * 10**18)) {
                 const config2 = await prepareWriteContract({
                     address: jdaoToken,
                     abi: erc20ABI,
@@ -884,7 +884,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, globalBbqLab],
             })
-            if (cmjAllow < (1 * 10**18)) {
+            if (cmjAllow < (1 * 10**16)) {
                 const config = await prepareWriteContract({
                     address: cmjToken,
                     abi: erc20ABI,
@@ -2115,7 +2115,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", fontSize: "14px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">
-                            [{Number(dataCraftBBQ_G[1])}/60] {dataCraftBBQ_G.status === 'success' && dataCraftBBQ_G.result[0].slice(0, 4) + "..." + dataCraftBBQ_G.result[0].slice(-4)}<br></br>
+                            [{Number(dataCraftBBQ_G.result[1])}/60] {dataCraftBBQ_G.status === 'success' && dataCraftBBQ_G.result[0].slice(0, 4) + "..." + dataCraftBBQ_G.result[0].slice(-4)}<br></br>
                             [Next] {dataCraftBBQ_G_Next.status === 'success' && dataCraftBBQ_G_Next.result[0].slice(0, 4) + "..." + dataCraftBBQ_G_Next.result[0].slice(-4)}
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
@@ -2125,10 +2125,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
                                 <img src="https://nftstorage.link/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                                <div style={{margin: "0 5px"}}>600k</div>
+                                <div style={{margin: "0 5px"}}>100M</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
-                                <div style={{margin: "0 5px"}}>10</div>
+                                <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>6,000</div>
@@ -2144,7 +2144,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     {dataCraftBBQ_G.status === 'success' && Number(dataCraftBBQ_G.result[1]) !== 0 ?
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/> 1)</> : timetoClaimBBQ_G}</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/> 0.01)</> : timetoClaimBBQ_G}</div>
                                         </> :
                                         <>
                                             <div style={{width: "100px"}}></div>
