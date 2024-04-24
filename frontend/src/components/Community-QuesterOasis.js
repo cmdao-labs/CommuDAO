@@ -8,6 +8,7 @@ const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const quest01 = '0x3eB35884e8811188CCe3653fc67A3876d810E582'
+const questPlat01 = '0xd5EAb9A65b977a576c9a40a56c6C1dFFB750bF6b'
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 const jusdtToken = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const pvp01 = '0x11af8eD1783Be1a0Eb6Da5C3Bc11Fb5Cc29C9463'
@@ -27,6 +28,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
     const [canClaimSIL, setCanClaimSIL] = React.useState(null)
     const [rewardSIL, setRewardSIL] = React.useState(0)
+    const [canClaimPLAT, setCanClaimPLAT] = React.useState(null)
 
     const [isKYC, setIsKYC] = React.useState(null)
     const [ambass, setAmbass] = React.useState("")
@@ -144,7 +146,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         args: [address],
                     },
                 ],
-            }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0},  ]
+            }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0}, ]
             
             const jaspBal = data[0].result
             const reward = data[1].result[1] - data[2].result
@@ -154,6 +156,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const _gmStreak = Number(data[6].result)
 
             const _canClaimSIL = ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : false
+            const _canClaimPlat = ethers.utils.formatUnits(jaspBal, "gwei") >= 1 ? true : false
             const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
             const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
 
@@ -315,6 +318,21 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 quest3Arr.push(data2_3[i].result)
             }
 
+            const data2_4 = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: questPlat01,
+                        abi: quest01ABI,
+                        functionName: 'questComplete',
+                        args: [item],
+                    }
+                )),
+            })
+            const quest4Arr = []
+            for (let i = 0; i <= Number(data2_4.length - 1); i++) {
+                quest4Arr.push(data2_4[i].result)
+            }
+
             const enderFilter = await enderSC.filters.Participants(null, null, null)
             const enderEvent = await enderSC.queryFilter(enderFilter, 200737, 'latest')
             const enderMap = await Promise.all(enderEvent.map(async (obj) => {return {from: String(obj.args.participant), value: 1}}))
@@ -338,7 +356,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 return {
                     addr: item,
                     name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
-                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (jdaoFarmRemoveDup[i].value * 1000))
+                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (jdaoFarmRemoveDup[i].value * 1000) + (Number(quest4Arr[i]) * 200))
                 }
             })
 
@@ -411,7 +429,8 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             }, {})
 
             return [
-                _canClaimSIL, reward, _isKYC, _frens, _isJoin, _canClaimBBQ, _nextClaimBBQ, _gmStreak, data2, data3, spendRemoveDup, Object.values(moverValMerged),
+                _canClaimSIL, reward, _isKYC, _frens, _isJoin, _canClaimBBQ, _nextClaimBBQ, _gmStreak, _canClaimPlat, 
+                data2, data3, spendRemoveDup, Object.values(moverValMerged),
             ]
         }
 
@@ -433,10 +452,12 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setCanClaimBBQ(result[5])
             setNextClaimBBQ(result[6])
             setGmStreak(result[7])
-            setRank(result[8])
-            setRank2(result[9])
-            setRank3(result[10])
-            setRank4(result[11])
+            setCanClaimPLAT(result[8])
+
+            setRank(result[9])
+            setRank2(result[10])
+            setRank3(result[11])
+            setRank4(result[12])
         })
 
     }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI])
@@ -469,6 +490,37 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
+        setisLoading(false)
+    }
+
+    const claimPLATHandle = async () => {
+        setisLoading(true)
+        try {
+            const jaspAllow = await readContract({
+                address: jaspToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, questPlat01],
+            })
+            if (jaspAllow < 1000000000) {
+                const config = await prepareWriteContract({
+                    address: jaspToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [questPlat01, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: questPlat01,
+                abi: quest01ABI,
+                functionName: 'claim',
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {console.log(e)}
         setisLoading(false)
     }
 
@@ -722,7 +774,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                         <div style={{marginRight: "10px", color: "#fff"}}>1,500</div>
-                                        <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SILL"/>
+                                        <img src="https://nftstorage.link/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>
                                     </div>
                                 </div>
                                 <div>
@@ -734,6 +786,39 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 {canClaimSIL ?
                                     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={claimSILHandle}>CLAIM REWARD</div>
+                                    </div> :
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">You are not eligible to claim</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>200 CMXP</div>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
+                        </div>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Guardian Of The Multiverse</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://nftstorage.link/ipfs/bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i" height="300" alt="PVP_Quest2"/>
+                            </div>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">REWARDS</div>
+                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
+                                        <div style={{marginRight: "10px", color: "#fff"}}>1,000</div>
+                                        <img src="https://nftstorage.link/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="30px" alt="$PLAT"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Keep your bounty $JDAO higher than 20 as long as you can in Dungeon Arena</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 1.0 GWEI $JASP for each claim)</div>
+                                </div>
+                                {canClaimPLAT ?
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                        <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} onClick={claimPLATHandle} className="bold button">CLAIM REWARD</div>
                                     </div> :
                                     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">You are not eligible to claim</div>
                                 }
