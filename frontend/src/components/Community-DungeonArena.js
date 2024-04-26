@@ -208,39 +208,39 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 ],
             }) : [null, null, null, null, null, null, null, 0, {bountyAmount: 0, win: 0}, null, ]
 
-            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
-            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_1_Name = nft1.name
 
-            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
-            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_2_Name = nft2.name
             
-            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
-            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_3_Name = nft3.name
 
-            const response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
-            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_4_Name = nft4.name
 
-            const response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
-            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_5_Name = nft5.name
 
-            const response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
-            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_6_Name = nft6.name
 
-            const response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            const response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
-            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_7_Name = nft7.name
 
             const pvpStat = data[8].result
@@ -395,39 +395,39 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     ],
                 })
                 
-                const c_response1 = data3[0].status === 'success' ? await fetch(data3[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response1 = data3[0].status === 'success' ? await fetch(data3[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft1 = c_response1 !== null ? await c_response1.json() : {image: null, name: null}
-                const c_nftEQ_1 = c_nft1.image !== null ? c_nft1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_1 = c_nft1.image !== null ? c_nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_1_Name = c_nft1.name
 
-                const c_response2 = data3[1].status === 'success' ? await fetch(data3[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response2 = data3[1].status === 'success' ? await fetch(data3[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft2 = c_response2 !== null ? await c_response2.json() : {image: null, name: null}
-                const c_nftEQ_2_Img = c_nft2.image !== null ? c_nft2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_2_Img = c_nft2.image !== null ? c_nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_2_Name = c_nft2.name
                 
-                const c_response3 = data3[2].status === 'success' ? await fetch(data3[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response3 = data3[2].status === 'success' ? await fetch(data3[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft3 = c_response3 !== null ? await c_response3.json() : {image: null, name: null}
-                const c_nftEQ_3 = c_nft3.image !== null ? c_nft3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_3 = c_nft3.image !== null ? c_nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_3_Name = c_nft3.name
 
-                const c_response4 = data3[3].status === 'success' ? await fetch(data3[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response4 = data3[3].status === 'success' ? await fetch(data3[3].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft4 = c_response4 !== null ? await c_response4.json() : {image: null, name: null}
-                const c_nftEQ_4 = c_nft4.image !== null ? c_nft4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_4 = c_nft4.image !== null ? c_nft4.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_4_Name = c_nft4.name
 
-                const c_response5 = data3[4].status === 'success' ? await fetch(data3[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response5 = data3[4].status === 'success' ? await fetch(data3[4].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft5 = c_response5 !== null ? await c_response5.json() : {image: null, name: null}
-                const c_nftEQ_5 = c_nft5.image !== null ? c_nft5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_5 = c_nft5.image !== null ? c_nft5.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_5_Name = c_nft5.name
 
-                const c_response6 = data3[5].status === 'success' ? await fetch(data3[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response6 = data3[5].status === 'success' ? await fetch(data3[5].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft6 = c_response6 !== null ? await c_response6.json() : {image: null, name: null}
-                const c_nftEQ_6 = c_nft6.image !== null ? c_nft6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_6 = c_nft6.image !== null ? c_nft6.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_6_Name = c_nft6.name
 
-                const c_response7 = data3[6].status === 'success' ? await fetch(data3[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                const c_response7 = data3[6].status === 'success' ? await fetch(data3[6].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
                 const c_nft7 = c_response7 !== null ? await c_response7.json() : {image: null, name: null}
-                const c_nftEQ_7 = c_nft7.image !== null ? c_nft7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+                const c_nftEQ_7 = c_nft7.image !== null ? c_nft7.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
                 const c_nftEQ_7_Name = c_nft7.name
 
                 const c_allPow = Number(c_nftEQ[7])
@@ -674,16 +674,16 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                             <>
                                 {characterSlotC !== null ?
                                     <>
-                                        {Number(skinSlot1C) === 0 || (characterSlotC !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlotC !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
+                                        {Number(skinSlot1C) === 0 || (characterSlotC !== "https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlotC !== "https://cloudflare-ipfs.com/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
                                             <img src={characterSlotC} width="250px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlotC === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata." /> :
+                                        {characterSlotC === "https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlotC === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="250px" alt="Can not load metadata." /> :
+                                        {characterSlotC === "https://cloudflare-ipfs.com/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1C).slice(0, 1)) === 1 ?
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="250px" alt="Can not load metadata." /> :
                                             <></>
                                         }
                                     </> :
@@ -700,7 +700,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         <div style={{width: "80%", margin: "10px 0 5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>WIN: <div>{peerWin}</div></div>
                         <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>ATK: <div>{allPowerC * 1} - {allPowerC * 9}</div></div>
-                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bountyC * 10}</div></div>
+                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bountyC * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bountyC}</div></div>
                         {isStakeNow && isStakeNowC && bountyC !== 0 && Number(jdaoBalance) >= 10 && challenger[challengerSlot].toUpperCase() !== address.toUpperCase() ?
                             <div style={{alignSelf: "center", background: "#007aff"}} className="button" onClick={oneHit}>ONE-HIT CHALLENGE!</div> :
@@ -807,16 +807,16 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                             <>
                                 {characterSlot !== null ?
                                     <>
-                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
+                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://cloudflare-ipfs.com/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
                                             <img src={characterSlot} width="250px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata." /> :
+                                        {characterSlot === "https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="250px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="250px" alt="Can not load metadata." /> :
+                                        {characterSlot === "https://cloudflare-ipfs.com/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="250px" alt="Can not load metadata." /> :
                                             <></>
                                         }
                                     </> :
@@ -833,7 +833,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         <div style={{width: "80%", margin: "10px 0 5px 0", display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "space-between"}}>WIN: <div>{yourWin}</div></div>
                         <div style={{width: "80%", marginTop: "5px 0 10px 0", display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "space-between"}}>ATK: <div>{allPower * 1} - {allPower * 9}</div></div>
-                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
+                        <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bounty}</div></div>
                         {isStakeNow && challenger.indexOf(address) > -1 ?
                             <div style={{alignSelf: "center"}} className="button" onClick={addBounty}>ADD 1 BOUNTY (10 JDAO)</div> :

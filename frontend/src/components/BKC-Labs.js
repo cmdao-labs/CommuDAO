@@ -380,7 +380,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                             <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm"
+                                src="https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm"
                                 width="20"
                                 alt="$BST"
                                 style={{cursor: "crosshair"}}
@@ -393,7 +393,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                                 address: bstToken,
                                                 symbol: 'BST',
                                                 decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm',
+                                                image: 'https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm',
                                             },
                                         },
                                     })
@@ -404,7 +404,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
 
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                             <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
+                                src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
                                 width="20"
                                 alt="$SALM"
                                 style={{cursor: "crosshair"}}
@@ -417,7 +417,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                                 address: salmToken,
                                                 symbol: 'SALM',
                                                 decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
+                                                image: 'https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
                                             },
                                         },
                                     })
@@ -428,7 +428,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
 
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                             <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy"
+                                src="https://cloudflare-ipfs.com/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy"
                                 width="20"
                                 alt="$TIER"
                                 style={{cursor: "crosshair"}}
@@ -441,7 +441,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                                 address: tierToken,
                                                 symbol: 'TIER',
                                                 decimals: 0,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy',
+                                                image: 'https://cloudflare-ipfs.com/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy',
                                             },
                                         },
                                     })
@@ -452,7 +452,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
 
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                             <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
+                                src="https://cloudflare-ipfs.com/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
                                 width="20"
                                 alt="$AGUA"
                                 style={{cursor: "crosshair"}}
@@ -465,7 +465,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                                 address: aguaToken,
                                                 symbol: 'AGUA',
                                                 decimals: 0,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq',
+                                                image: 'https://cloudflare-ipfs.com/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq',
                                             },
                                         },
                                     })
@@ -531,10 +531,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                             <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                 <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" height="18" alt="$BST"/>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" height="18" alt="$BST"/>
                                     <div style={{margin: "0 5px"}}>10</div>
                                     <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
                                     <div style={{margin: "0 5px"}}>{Number(bstLabStake).toLocaleString('en-US', {maximumFractionDigits:0}) + ' Wei'}</div>
                                 </div>
                             </div>
@@ -547,7 +547,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                     <>
                                         <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
                                             <div style={{margin: "0 5px"}}>Upgradable soon!</div>
                                         </div>
                                     </>
@@ -633,10 +633,10 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                             <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                 <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" height="18" alt="$SALM"/>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" height="18" alt="$SALM"/>
                                     <div style={{margin: "0 5px"}}>10</div>
                                     <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq" height="18" alt="$AGUA"/>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq" height="18" alt="$AGUA"/>
                                     <div style={{margin: "0 5px"}}>{Number(salmLabStake).toLocaleString('en-US', {maximumFractionDigits:0}) + ' Wei'}</div>
                                 </div>
                             </div>
@@ -649,7 +649,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                     <>
                                         <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
                                             <div style={{margin: "0 5px"}}>Upgradable soon!</div>
                                         </div>
                                     </>

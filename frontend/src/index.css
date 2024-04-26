@@ -226,7 +226,7 @@ header::-webkit-scrollbar { display: none; }
   background: radial-gradient(55.49% 51.68% at 37.19% -5.61%, rgba(244, 174, 255, 0.13) 0%, rgba(244, 174, 255, 0.00) 100%), radial-gradient(82.67% 48.53% at 49% 104.97%, rgba(133, 238, 186, 0.15) 0%, rgba(133, 238, 186, 0.00) 100%), radial-gradient(100.48% 68.94% at 97.13% 122.42%, rgba(109, 87, 255, 0.35) 0%, rgba(165, 151, 255, 0.00) 100%), #F5F5F5;
   /*background-repeat: no-repeat;
   background-position: bottom center, 50%, 50%;
-  background-image: url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiekq7urjzx7lzxclt5b2ykfhnbvvrsvmzg6qa2jxhn4uyiglzfvha');*/
+  background-image: url('https://cloudflare-ipfs.com/ipfs/bafkreiekq7urjzx7lzxclt5b2ykfhnbvvrsvmzg6qa2jxhn4uyiglzfvha');*/
 }
 .motto {
   font-size: 84px;

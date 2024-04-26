@@ -13,7 +13,7 @@ const BKCFields = ({ callMode, navigate }) => {
 
         <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih6l2qo7pi2iulbi26wovgaq4dbilhncoyzweapznqzhbfqzgf7ji" height="230" alt="Field_BadMuseum" />
+                <img src="https://cloudflare-ipfs.com/ipfs/bafybeih6l2qo7pi2iulbi26wovgaq4dbilhncoyzweapznqzhbfqzgf7ji" height="230" alt="Field_BadMuseum" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -26,12 +26,12 @@ const BKCFields = ({ callMode, navigate }) => {
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
                         Earn
                     </div>
-                    <div className="emp pixel"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" style={{marginRight: "5px"}} width="12" alt="$BST"/>BST</div>
+                    <div className="emp pixel"><img src="https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" style={{marginRight: "5px"}} width="12" alt="$BST"/>BST</div>
                 </div>
                 <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(15); navigate('/fields/bkc-bad-museum');}}>Go to Bad Musuem</div>
             </div>
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieu6tyeea3bgzvvcxrylckaf674lqplpioghqvi2hudtfe4ux2fty" height="230" alt="Field_FraserRiver" />
+                <img src="https://cloudflare-ipfs.com/ipfs/bafybeieu6tyeea3bgzvvcxrylckaf674lqplpioghqvi2hudtfe4ux2fty" height="230" alt="Field_FraserRiver" />
                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                     <div className="pixel">
                         <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -45,9 +45,9 @@ const BKCFields = ({ callMode, navigate }) => {
                         Earn
                     </div>
                     <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" alt="$SALM"/>
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" alt="$SALM"/>
                         <div style={{margin: "0 5px"}}>SALMON &</div>
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="16" alt="$CMM"/>
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="16" alt="$CMM"/>
                         <div style={{marginLeft: "5px"}}>CMM</div>
                     </div>
                 </div>

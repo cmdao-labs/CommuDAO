@@ -69,14 +69,14 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
@@ -122,14 +122,14 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
@@ -215,7 +215,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 </div>
                 <div style={{margin: "30px 100px"}}>
                     <img
-                        src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm"
+                        src="https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm"
                         width="150"
                         alt="$BST"
                     />
@@ -250,14 +250,14 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                                 <div>
                                     Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                     &nbsp;
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
                                     BST/DAY
                                 </div>
                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
                                         Pending Rewards<br></br>
                                         <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
                                             {ethers.utils.formatEther(item.Reward)}
                                         </div>
                                     </div>

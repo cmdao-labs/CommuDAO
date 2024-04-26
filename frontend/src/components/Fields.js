@@ -22,7 +22,7 @@ const Fields = ({ callMode, navigate }) => {
             <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                 <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                     <div style={{position: "absolute", top: -15, right: -15, padding: "10px 20px", background: "#67BAA7", color: "#fff", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">FREE MINT</div>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="pixel">
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -36,16 +36,16 @@ const Fields = ({ callMode, navigate }) => {
                             Earn
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                             <div style={{margin: "0 5px"}}>WOOD & </div>
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                             <div style={{marginLeft: "5px"}}>CMJ</div>
                         </div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>Go to Ancient Forest</div>
                 </div>
                 <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibgjc2bzx42soeevrzn6ohlr44xly4sjhj6k6o2spcsia24qztyki" height="230" alt="Field_TheHeavenLand" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibgjc2bzx42soeevrzn6ohlr44xly4sjhj6k6o2spcsia24qztyki" height="230" alt="Field_TheHeavenLand" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="pixel">
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -59,9 +59,9 @@ const Fields = ({ callMode, navigate }) => {
                             Earn
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                             <div style={{margin: "0 5px"}}>GOLD & </div>
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
                             <div style={{marginLeft: "5px"}}>JBC (LIMITED)</div>
                         </div>                    
                     </div>
@@ -74,10 +74,10 @@ const Fields = ({ callMode, navigate }) => {
             <div style={{width: "95%", minHeight: 0, justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                 <div className="nftCard" style={{justifyContent: "center", margin: "20px", position: "relative"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
                         <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
                     </div>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicoxmgbobc6eockaevaqmk2f7pwnfmtll2wze2npd2nyrxii2dblu" height="230" alt="Field_TunaLake" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreicoxmgbobc6eockaevaqmk2f7pwnfmtll2wze2npd2nyrxii2dblu" height="230" alt="Field_TunaLake" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="pixel">
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -90,16 +90,16 @@ const Fields = ({ callMode, navigate }) => {
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
                             Earn
                         </div>
-                        <div className="emp pixel"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>TUNA</div>
+                        <div className="emp pixel"><img src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>TUNA</div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>Go to Tuna Lake</div>
                 </div>
                 <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
                         <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
                     </div>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaplfqhpcall6mr7swyaqyatfri7p4z56i7ttfvhjmootnett3f3m" height="230" alt="Fields_OldWarehouse" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreiaplfqhpcall6mr7swyaqyatfri7p4z56i7ttfvhjmootnett3f3m" height="230" alt="Fields_OldWarehouse" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="pixel">
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -112,16 +112,16 @@ const Fields = ({ callMode, navigate }) => {
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
                             Earn
                         </div>
-                        <div className="emp pixel"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/> MICE</div>
+                        <div className="emp pixel"><img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/> MICE</div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>Go to Old Warehouse</div>
                 </div>
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                         <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                     </div>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih4wlopgsgvw73dnjczn6un6sagasx6eyq57hzhj3l7gwlbuin75y" height="230" alt="Field_EasternFront" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeih4wlopgsgvw73dnjczn6un6sagasx6eyq57hzhj3l7gwlbuin75y" height="230" alt="Field_EasternFront" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div>
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -135,7 +135,7 @@ const Fields = ({ callMode, navigate }) => {
                             Earn
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp">
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="14" alt="$VABAG"/>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="14" alt="$VABAG"/>
                             <div style={{marginLeft: "5px"}}>Valuable Bag</div>
                         </div>                    
                     </div>
@@ -146,10 +146,10 @@ const Fields = ({ callMode, navigate }) => {
             <div style={{width: "95%", minHeight: 0, marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                         <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                     </div>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicly2zmib2gwjqv2p752php3ff4pqonllfiyuelcik366gqtsto7e" height="230" alt="Field_Mech_Harvest_Zone" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeicly2zmib2gwjqv2p752php3ff4pqonllfiyuelcik366gqtsto7e" height="230" alt="Field_Mech_Harvest_Zone" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div>
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -163,7 +163,7 @@ const Fields = ({ callMode, navigate }) => {
                             Earn
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp">
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="16" alt="$GEAR"/>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="16" alt="$GEAR"/>
                             <div style={{marginLeft: "5px"}}>Gear</div>
                         </div>                    
                     </div>

@@ -218,7 +218,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
                             }}
                         >
                             <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://storage.googleapis.com/static.bitkubnext.com/bitkub-next/token-icons/kub.png" alt="$KUB" />
-                            <img style={{width: "38px", height: "38px", marginLeft: "-10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" alt="$CMM" />
+                            <img style={{width: "38px", height: "38px", marginLeft: "-10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" alt="$CMM" />
                         </div>
                         <div
                             style={{cursor: "crosshair"}}
@@ -231,13 +231,13 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
                                             address: cmosToken,
                                             symbol: 'CMOS',
                                             decimals: 18,
-                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
                                         },
                                     },
                                 })
                             }}
                         >
-                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq" alt="$CMOS" />
+                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq" alt="$CMOS" />
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
