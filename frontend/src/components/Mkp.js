@@ -132,14 +132,14 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
                 for (let i = 0; i <= yournftwallet.length - 1; i++) {
                     const nftipfs = data3[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                     const nft = await response.json()
 
                     nfts.push({
                         Col: 1,
                         Id: yournftwallet[i].Id,
                         Name: nft.name + " #" + yournftwallet[i].Id,
-                        Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                        Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                         Description: nft.description,
                         Attribute: nft.attributes,
                         RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -194,7 +194,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                         Col: 2,
                         Id: yournftwallet2[i].Id,
                         Name: "CM Cat Meaw Ory JIBJIB #" + yournftwallet2[i].Id,
-                        Image: "https://bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu.ipfs.nftstorage.link/" + yournftwallet2[i].Id + ".png",
+                        Image: "https://gateway.pinata.cloud/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu" + yournftwallet2[i].Id + ".png",
                         Description: "",
                         Attribute: [],
                         RewardPerSec: bonus,
@@ -276,7 +276,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 console.log(yournftwallet4)
 
                 for (let i = 0; i <= yournftwallet4.length - 1; i++) {
-                    const response = await fetch("https://bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".json/")
+                    const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + yournftwallet4[i].Id + ".json/")
                     const nft = await response.json()
 
                     let bonus;
@@ -294,7 +294,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                         Col: 4,
                         Id: yournftwallet4[i].Id,
                         Name: nft.name + " #" + yournftwallet4[i].Id,
-                        Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + yournftwallet4[i].Id + ".png/",
+                        Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + yournftwallet4[i].Id + ".png/",
                         Description: nft.description,
                         Attribute: [],
                         RewardPerSec: bonus,
@@ -342,7 +342,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
                 for (let i = 0; i <= yournftwallet5.length - 1; i++) {
                     const nftipfs = data8[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                     const nft = await response.json()
 
                     let letter = ''
@@ -360,7 +360,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                         Col: 5,
                         Id: yournftwallet5[i].Id,
                         Name: nft.name + ' #' + letter + (yournftwallet5[i].Id % 1000),
-                        Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                        Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                         Description: nft.description,
                         Attribute: [],
                         RewardPerSec: 0,
@@ -408,14 +408,14 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
                 for (let i = 0; i <= yournftwallet6.length - 1; i++) {
                     const nftipfs = data10[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                     const nft = await response.json()
 
                     nfts.push({
                         Col: 6,
                         Id: yournftwallet6[i].Id,
                         Name: nft.name + " #" + yournftwallet6[i].Id,
-                        Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                        Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                         Description: nft.description,
                         Attribute: nft.attributes,
                         RewardPerSec: 0,
@@ -468,7 +468,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             for (let i = 0; i <= mkpwallet.length - 1; i++) {
                 const nftipfs = mkp_data3[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                 const nft = await response.json()
 
                 let count = null
@@ -492,7 +492,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 1,
                     Id: Number(mkpwallet[i].Id),
                     Name: nft.name + " #" + mkpwallet[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(mkpwallet[i].Id.slice(-5)),
@@ -515,7 +515,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 1,
                     Id: yournftsell1[i].Id,
                     Name: nft.name + " #" + yournftsell1[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(String(yournftsell1[i].Id).slice(-5)),
@@ -590,7 +590,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 2,
                     Id: Number(mkp2wallet[i].Id),
                     Name: "CM Cat Meaw Ory JIBJIB #" + mkp2wallet[i].Id,
-                    Image: "https://bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu.ipfs.nftstorage.link/" + mkp2wallet[i].Id + ".png",
+                    Image: "https://gateway.pinata.cloud/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu" + mkp2wallet[i].Id + ".png",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -626,7 +626,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 2,
                     Id: yournftsell2[i].Id,
                     Name: "CM Cat Meaw Ory JIBJIB #" + yournftsell2[i].Id,
-                    Image: "https://bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu.ipfs.nftstorage.link/" + yournftsell2[i].Id + ".png",
+                    Image: "https://gateway.pinata.cloud/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu" + yournftsell2[i].Id + ".png",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -791,7 +791,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 4,
                     Id: Number(mkp4wallet[i].Id),
                     Name: "CM Hexa Cat Meaw JIB JIB #" + mkp4wallet[i].Id,
-                    Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + mkp4wallet[i].Id + ".png/",
+                    Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + mkp4wallet[i].Id + ".png/",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -823,7 +823,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 4,
                     Id: yournftsell4[i].Id,
                     Name: "CM Hexa Cat Meaw JIB JIB #" + yournftsell4[i].Id,
-                    Image: "https://bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq.ipfs.nftstorage.link/" + yournftsell4[i].Id + ".png/",
+                    Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + yournftsell4[i].Id + ".png/",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -874,7 +874,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             for (let i = 0; i <= mkp5wallet.length - 1; i++) {
                 const nftipfs = mkp_data9[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                 const nft = await response.json()
 
                 let count = null
@@ -909,7 +909,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 5,
                     Id: Number(mkp5wallet[i].Id),
                     Name: nft.name + ' #' + letter + (mkp5wallet[i].Id % 1000),
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -943,7 +943,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 5,
                     Id: yournftsell5[i].Id,
                     Name: nft.name + ' #' + letter + (yournftsell5[i].Id % 1000),
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -994,7 +994,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             for (let i = 0; i <= mkp6wallet.length - 1; i++) {
                 const nftipfs = mkp_data11[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                 const nft = await response.json()
 
                 let count = null
@@ -1018,7 +1018,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 6,
                     Id: Number(mkp6wallet[i].Id),
                     Name: nft.name + " #" + mkp6wallet[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -1041,7 +1041,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 6,
                     Id: yournftsell6[i].Id,
                     Name: nft.name + " #" + yournftsell6[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -1208,13 +1208,13 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             <div style={{zIndex: "999"}} className="centermodal">
                 <div className="wrapper">
                     <div className="bold" style={{width: "500px", height: "400px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
-                        <img src={sellImage} width="120px" alt="sellnftpic"></img>
+                        <img src={sellImage} width="120px" alt="sellnftpic" />
                         <div style={{fontSize: "20px"}}>{sellName}</div>
                         <div style={{width: "80%", fontSize: "12px", textAlign: "left"}}>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{height: "30px", padding: "0 5px", marginRight: "10px", lineHeight: "32px"}} className="bold">SELL AS</div>
                                 <div style={{width: "fit-content", height: "30px", margin: 0, padding: "5px", border: "1px solid", borderRadius: "10px", fontSize: "12px"}} className="items bold">
-                                    {currencyselected === "CMJ" ? <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
+                                    {currencyselected === "CMJ" ? <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://gateway.pinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
                                     <select style={{padding: "5px", margin: "5px", fontSize: "16px", letterSpacing: "1px", border: "none"}} className="pixel" value={currencyselected} onChange={(event) => {setCurrencyselected(event.target.value)}}>
                                         <option value="CMJ">CMJ</option>
                                         <option value="JUSDT">JUSDT</option>
@@ -1357,7 +1357,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                                                     <div className="pixel emp">{item.Name}</div>
                                                     <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
                                                     <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                        {item.Currencyindex === 1 ? <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
+                                                        {item.Currencyindex === 1 ? <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://gateway.pinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
                                                         <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                     </div>
                                                     <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
@@ -1382,7 +1382,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                                                     <div className="pixel emp">{item.Name}</div>
                                                     <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
                                                     <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                        {item.Currencyindex === 1 ? <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
+                                                        {item.Currencyindex === 1 ? <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://gateway.pinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
                                                         <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                     </div>
                                                     <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
@@ -1410,11 +1410,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                             <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
                                 <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                    <img src="https://nftstorage.link/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/>
+                                    <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/>
                                     <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
                                 </div>
                                 <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                    <img src="https://nftstorage.link/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>
+                                    <img src="https://gateway.pinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>
                                     <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
                                 </div>
                             </div>

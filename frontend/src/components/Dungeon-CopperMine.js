@@ -122,9 +122,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let nfts = []
 
-            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
-            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
+            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
@@ -139,9 +139,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
-            const nftEQ_2 = nft2.image !== null ? nft2.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
+            const nftEQ_2 = nft2.image !== null ? nft2.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
@@ -156,9 +156,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
             
-            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/")) : null
+            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
-            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/") : null
+            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
@@ -218,14 +218,14 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                 const nft = await response.json()
 
                 nfts.push({
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://").concat(".ipfs.nftstorage.link/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -426,13 +426,13 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             </div> :
             <></>
         }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://nftstorage.link/ipfs/bafybeiebkzeoydzwinuqixopu4atccmlttr7abpuyfrpjrdvqyzc55lpxi')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.pinata.cloud/ipfs/bafybeiebkzeoydzwinuqixopu4atccmlttr7abpuyfrpjrdvqyzc55lpxi')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                 <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Copper Mine</div>
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring mine to collect $Copper.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="150" alt="$CU" />
+                <img src="https://gateway.pinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="150" alt="$CU" />
             </div>
         </div>
 
@@ -481,14 +481,14 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
+                                <img src="https://gateway.pinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             COPPER PENDING
                             <div style={{display: "flex", flexDirection: "row", color: isStakeNow ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://nftstorage.link/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
+                                <img src="https://gateway.pinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cuPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
@@ -500,7 +500,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "BBQ" ?
                                     <>
-                                        <img src="https://nftstorage.link/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
+                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
                                         <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
@@ -538,8 +538,8 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                         {hatSlot !== null ?
-                            <img src={hatSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot"></img>
+                            <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot" />
                         }
                         {hatSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
@@ -552,16 +552,16 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <>
                                 {characterSlot !== null ?
                                     <>
-                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && characterSlot !== "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/") ?
-                                            <img src={characterSlot} width="300px" alt="Can not load metadata."></img> :
+                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://gateway.pinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://gateway.pinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
+                                            <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlot === "https://bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://nftstorage.link/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata."></img> :
+                                        {characterSlot === "https://gateway.pinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://gateway.pinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlot === "https://bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia.ipfs.nftstorage.link/" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m.ipfs.nftstorage.link" width="300px" alt="Can not load metadata."></img> :
+                                        {characterSlot === "https://gateway.pinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src="https://gateway.pinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." /> :
                                             <></>
                                         }
                                     </> :
@@ -577,14 +577,14 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <></>
                         }
                         {isOp && isStakeNow && !lastedSTOPT ?
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)", display: "flex", alignItems: "center"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://nftstorage.link/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
+                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)", display: "flex", alignItems: "center"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://gateway.pinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
                             <></>
                         }
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                         {clothSlot !== null ?
-                            <img src={clothSlot} width="100px" alt="Can not load metadata."></img> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot"></img>
+                            <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot" />
                         }
                         {clothSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
