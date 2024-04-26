@@ -174,7 +174,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 _allReward1 += Number(ethers.utils.formatEther(data12[i].result))
@@ -183,7 +183,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                 nftstake.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerBlock: Number(String(yournftstake[i].Id).slice(-5)),
@@ -229,14 +229,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                 const nft = await response.json()
 
                 nfts.push({
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -466,14 +466,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                         <div style={{maxWidth: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'S HOUSE LV.{slot1Lv}</div>
                         <div style={{width: "100%", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
                             <div style={{width: "320px"}}>
-                                {slot1Lv === 0 && <img src="https://gateway.pinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" style={{filter: "grayscale(1)"}} height="200" alt="HOUSE.LV.1" />}
-                                {slot1Lv >= 1 && <img src="https://gateway.pinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1" />}
+                                {slot1Lv === 0 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" style={{filter: "grayscale(1)"}} height="200" alt="HOUSE.LV.1" />}
+                                {slot1Lv >= 1 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1" />}
                             </div>
                             <div style={{textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                 <div>
                                     <div className="bold">UPGRADE COSTS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
                                         <div style={{margin: "0 30px 0 10px"}}>
                                             {slot1Lv === 0 && '100M'}
                                             {slot1Lv === 1 && '200M'}
@@ -481,7 +481,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             {slot1Lv === 3 && '800M'}
                                             {slot1Lv === 4 && '1,600M'}
                                         </div>
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
                                         <div style={{marginLeft: "10px"}}>
                                             {slot1Lv === 0 && '50,000'}
                                             {slot1Lv === 1 && '100,000'}
@@ -582,14 +582,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     OVERSOUL PENDING
                                     <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
                                         <div style={{marginLeft: "5px"}}>{allPendingReward.toLocaleString()}</div>
                                     </div>
                                 </div>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     AVAILABLE OS IN POOL
                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
                                         <div style={{marginLeft: "5px"}}>{Number(osPool).toFixed(3).toLocaleString()}</div>
                                     </div>
                                 </div>

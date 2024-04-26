@@ -192,9 +192,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[10].status === 'success' && Number(nftSTAT[0]) === 2) {
                 charIpfs = data[10].result
             }
-            const response1 = charIpfs !== null ? await fetch(charIpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response1 = charIpfs !== null ? await fetch(charIpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
-            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
@@ -215,9 +215,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[11].status === 'success' && Number(nftSTAT[3]) === 2) {
                 accIpfs = data[11].result
             }
-            const response2 = accIpfs !== null ? await fetch(accIpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response2 = accIpfs !== null ? await fetch(accIpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
-            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
@@ -238,9 +238,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[12].status === 'success' && Number(nftSTAT[4]) === 2) {
                 backpfs = data[12].result
             }
-            const response3 = backpfs !== null ? await fetch(backpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response3 = backpfs !== null ? await fetch(backpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
-            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
@@ -261,9 +261,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[13].status === 'success' && Number(nftSTAT[5]) === 2) {
                 shoesIpfs = data[13].result
             }
-            const response4 = shoesIpfs !== null ? await fetch(shoesIpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response4 = shoesIpfs !== null ? await fetch(shoesIpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
-            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
@@ -284,9 +284,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[14].status === 'success' && Number(nftSTAT[6]) === 2) {
                 weaponIpfs = data[14].result
             }
-            const response5 = weaponIpfs !== null ? await fetch(weaponIpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response5 = weaponIpfs !== null ? await fetch(weaponIpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
-            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
@@ -307,9 +307,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[15].status === 'success' && Number(nftSTAT[2]) === 2) {
                 clothIpfs = data[15].result
             }
-            const response6 = clothIpfs !== null ? await fetch(clothIpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response6 = clothIpfs !== null ? await fetch(clothIpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
-            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
@@ -330,9 +330,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[16].status === 'success' && Number(nftSTAT[1]) === 2) {
                 hatIpfs = data[16].result
             }
-            const response7 = hatIpfs !== null ? await fetch(hatIpfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
+            const response7 = hatIpfs !== null ? await fetch(hatIpfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
-            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
+            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
@@ -392,7 +392,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -400,7 +400,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -445,7 +445,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 const nftipfs = data5[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -453,7 +453,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     Col: 2,
                     Id: yournftwallet2[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet2[i].Id.slice(-5)),
@@ -662,13 +662,13 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             </div> :
             <></>
         }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.pinata.cloud/ipfs/bafybeiehjcwrzylly7xunlan4xqwe2aynokqkgtj65bwxxqq5wfnz4hcnq')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiehjcwrzylly7xunlan4xqwe2aynokqkgtj65bwxxqq5wfnz4hcnq')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", padding: "10px 20px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Cryptic Cogs</div>
                 <div style={{fontSize: "17px", padding: "10px", width: "fit-content", marginTop: "30px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}} className="pixel">Exploring exotic cave to collect a rare token, $Enchant Engine.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://gateway.pinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="150" alt="$EE" />
+                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="150" alt="$EE" />
             </div>
         </div>
     
@@ -717,14 +717,14 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             EE BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://gateway.pinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
                                 <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             EE PENDING
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://gateway.pinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
                                 <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
@@ -736,7 +736,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "II" ?
                                     <>
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="20" alt="$II"/>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="20" alt="$II"/>
                                         <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>

@@ -334,7 +334,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
     return (
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                <img src="https://gateway.pinata.cloud/ipfs/bafkreiewvtce4l7hqx5aivvwdjpl2hbka7i2vpfwpa73idiqzckmum4mxq" width="260" alt="NPC_Degeno" />
+                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiewvtce4l7hqx5aivvwdjpl2hbka7i2vpfwpa73idiqzckmum4mxq" width="260" alt="NPC_Degeno" />
             </div>
             {mode === 1 ?
                 <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
@@ -348,8 +348,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                                 </select>
                                 <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                     &nbsp;1
-                                    {gasselected === "MEOW" ? <>&nbsp; <img src="https://gateway.pinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/> &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div></> : ''}
-                                    &nbsp;<img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                    {gasselected === "MEOW" ? <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/> &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div></> : ''}
+                                    &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                 </div>
                             </div>
                             <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -372,7 +372,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                             value={inputSwap}
                         ></input>
                         <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleSwapMEOW(bal);}}>
-                            <img src="https://gateway.pinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
                             <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                         </div>
                     </div>
@@ -414,7 +414,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                             value={inputSwap2}
                         ></input>
                         <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleSwapMEOW_2(bal);}}>
-                            <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                             <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                         </div>
                     </div>
@@ -481,7 +481,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                             value={meowAdd}
                         ></input>
                         <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleAddMeow(bal);}}>
-                            <img src="https://gateway.pinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
                             <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                         </div>
                     </div>
@@ -502,7 +502,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                             value={cmjAdd}
                         ></input>
                         <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddMeow2(bal);}}>
-                            <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                             <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                         </div>
                     </div>

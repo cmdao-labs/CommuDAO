@@ -64,7 +64,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             }) : [Array(yournftstake.length).fill(0)]
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + yournftstake[i].Id + ".json/")
+                const response = await fetch("https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + yournftstake[i].Id + ".json/")
                 const _nft = await response.json()
 
                 let bonus;
@@ -81,7 +81,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: Number(yournftstake[i].Id),
                     Name: _nft.name,
-                    Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + yournftstake[i].Id + ".png/",
+                    Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + yournftstake[i].Id + ".png/",
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: true,
@@ -96,7 +96,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 args: [address],
             }) : []
             for (let i = 0; i <= balanceofyou.length - 1; i++) {
-                const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + balanceofyou[i] + ".json/")
+                const response = await fetch("https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + balanceofyou[i] + ".json/")
                 const _nft = await response.json()
 
                 let bonus;
@@ -113,7 +113,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: Number(balanceofyou[i]),
                     Name: _nft.name,
-                    Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + balanceofyou[i] + ".png/",
+                    Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + balanceofyou[i] + ".png/",
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: false,
@@ -190,13 +190,13 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
     return (
     <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.pinata.cloud/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Tuna Lake</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw JIB JIB to earn $TUNA.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://gateway.pinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="150" alt="$TUNA" />
+                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="150" alt="$TUNA" />
             </div>
         </div>
 
@@ -228,13 +228,13 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             <div>
                                 Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                 &nbsp;
-                                <img src="https://gateway.pinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                 TUNA/DAY
                             </div>
                             <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                 <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
                                     Pending Rewards<br></br>
-                                    <img src="https://gateway.pinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                     {ethers.utils.formatEther(String(item.Reward))}
                                 </div>
                                 {item.Reward > 0 ?
