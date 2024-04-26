@@ -11,6 +11,7 @@ const beast = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
 const cm_ogjibjib = '0xb6aaD2B2f9fD5eA0356F49c60Ee599De56206251'
 const cmdao_ti = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const cmdao_ti_helper = '0xedB737Cde19f0Db1852261C24b182bA6551863bD'
+const cmdao_house_staking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
@@ -18,7 +19,7 @@ const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora721ABI, cmdaoMkpABI }) => {
+const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora721ABI, cmdaoMkpABI, houseStakingABI }) => {
     const { address } = useAccount()
     let sellerAddr = ''
     if (intrasubModetext === undefined) {
@@ -323,7 +324,16 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 let yournftwallet5 = []
                 for (let i = 0; i <= wallet5RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
                     if (data7[i].result.toUpperCase() === address.toUpperCase()) {
-                        yournftwallet5.push({Id: String(wallet5RemoveDup[i])})
+                        // Prevent sell while staking
+                        const slotUsage = await readContract({
+                            address: cmdao_house_staking,
+                            abi: houseStakingABI,
+                            functionName: 'slotUsage',
+                            args: [1, wallet5RemoveDup[i]],
+                        })
+                        if (slotUsage === 0) {                            
+                            yournftwallet5.push({Id: String(wallet5RemoveDup[i])})
+                        }
                     }
                 }
                 
