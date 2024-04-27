@@ -394,10 +394,10 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
                     <div style={{color: "#bdc2c4"}}>CHOOSE TOKEN/NFTs TO BRIDGE</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "1px solid #2e2c35"}}>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(1)}>USDT</div>
-                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(2)}>CMD</div>
-                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(3)}>TAO</div>
-                        <div className='hashtag' style={{marginLeft: "10px", color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
+                        <div className='hashtag' style={{margin: "10px 10px 10px 0", color: "#fff"}} onClick={() => setMode(1)}>USDT</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>CMD</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(3)}>TAO</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
@@ -470,7 +470,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>0.10 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px", background: "rgb(29 28 28)"}}>
+                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", boxShadow: "0 0 10px rgb(0 0 0 / 4%), 0 0 0 1px #2e2c35", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "rgb(29 28 28)", color: "#fff", border: "1px solid rgb(52 52 52)"}}
