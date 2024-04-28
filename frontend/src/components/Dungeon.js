@@ -82,7 +82,7 @@ const Dungeon = ({ callMode, navigate }) => {
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                     <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                        <img src="https://cloudflare-ipfs.com/ipfs/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                         <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                     </div>
                     <img src="https://cloudflare-ipfs.com/ipfs/bafybeibghshz6fd6vsc2is5egipg2wqwafpwztea4tfdbi6ajw6zxwfgfe" height="230" alt="Daemon_World" />
@@ -106,7 +106,7 @@ const Dungeon = ({ callMode, navigate }) => {
                         <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                         <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                     </div>
-                    <img src="https://cloudflare-ipfs.com/ipfs/ipfs/bafybeiehky27iaain3y76xwcrgy3vyvrojzexi3alts5ybdf7gqjbh3yua" height="230" alt="Cryptic-Cogs" />
+                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeiehky27iaain3y76xwcrgy3vyvrojzexi3alts5ybdf7gqjbh3yua" height="230" alt="Cryptic-Cogs" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
                         <div className="emp">Intermediate</div>
