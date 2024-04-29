@@ -64,7 +64,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             }) : [Array(yournftstake.length).fill(0)]
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const response = await fetch("https://cloudflare-ipfs.com/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + yournftstake[i].Id + ".json/")
+                const response = await fetch("https://cloudflare-ipfs.com/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftstake[i].Id + ".json")
                 const _nft = await response.json()
 
                 let bonus;
@@ -81,7 +81,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: Number(yournftstake[i].Id),
                     Name: _nft.name,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + yournftstake[i].Id + ".png/",
+                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftstake[i].Id + ".png",
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: true,
@@ -96,7 +96,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 args: [address],
             }) : []
             for (let i = 0; i <= balanceofyou.length - 1; i++) {
-                const response = await fetch("https://cloudflare-ipfs.com/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy" + balanceofyou[i] + ".json/")
+                const response = await fetch("https://cloudflare-ipfs.com/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + balanceofyou[i] + ".json")
                 const _nft = await response.json()
 
                 let bonus;
@@ -113,7 +113,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: Number(balanceofyou[i]),
                     Name: _nft.name,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq" + balanceofyou[i] + ".png/",
+                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + balanceofyou[i] + ".png",
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: false,

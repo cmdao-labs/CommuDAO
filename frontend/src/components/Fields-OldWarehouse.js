@@ -122,7 +122,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu" + nftid + ".png",
+                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + nftid + ".png",
                     Bonus: ethers.utils.formatEther(String(bonus * 10**14)),
                     Reward: ethers.utils.formatEther(String(data2[i].result)),
                     isStaked: true
@@ -173,7 +173,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu" + nftid + ".png",
+                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + nftid + ".png",
                     Bonus: ethers.utils.formatEther(String(bonus * 10**14)), 
                     Reward: "0.000",
                     isStaked: false
