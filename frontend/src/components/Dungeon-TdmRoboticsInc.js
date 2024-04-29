@@ -526,6 +526,18 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         {Number(item.Id) % 100000 === 30800 &&
                                                             <>
                                                                 <div>
+                                                                    <div>Level 3</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>Level 4</div>
+                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 6000} cmpow per sec</div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {Number(item.Id) % 100000 === 36800 &&
+                                                            <>
+                                                                <div>
                                                                     <div>Level 4</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                                 </div>
@@ -535,7 +547,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 </div>
                                                             </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 36800 &&
+                                                        {Number(item.Id) % 100000 === 42800 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 5</div>
@@ -547,7 +559,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 </div>
                                                             </>
                                                         }
-                                                        {Number(item.Id) % 100000 === 42800 &&
+                                                        {Number(item.Id) % 100000 === 48800 &&
                                                             <>
                                                                 <div>
                                                                     <div>Level 6</div>
@@ -555,18 +567,6 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 </div>
                                                                 <div>
                                                                     <div>Level 7</div>
-                                                                    <div style={{width: "150px"}}>{item.RewardPerSec + 6000} cmpow per sec</div>
-                                                                </div>
-                                                            </>
-                                                        }
-                                                        {Number(item.Id) % 100000 === 48800 &&
-                                                            <>
-                                                                <div>
-                                                                    <div>Level 7</div>
-                                                                    <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
-                                                                </div>
-                                                                <div>
-                                                                    <div>Level 8</div>
                                                                     <div style={{width: "150px"}}>{item.RewardPerSec + 8000} cmpow per sec</div>
                                                                 </div>
                                                             </>
