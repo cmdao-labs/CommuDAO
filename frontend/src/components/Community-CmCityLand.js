@@ -289,6 +289,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             } else if (_level === 4) {
                 woodUsage = 800000000
                 cuUsage = 400000
+            } else if (_level === 5) {
+                woodUsage = 1600000000
+                cuUsage = 800000
             }
             const woodAllow = await readContract({
                 address: wood,
@@ -480,6 +483,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             {slot1Lv === 2 && '400M'}
                                             {slot1Lv === 3 && '800M'}
                                             {slot1Lv === 4 && '1,600M'}
+                                            {slot1Lv === 5 && '3,200M'}
                                         </div>
                                         <img src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
                                         <div style={{marginLeft: "10px"}}>
@@ -488,28 +492,18 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                             {slot1Lv === 2 && '200,000'}
                                             {slot1Lv === 3 && '400,000'}
                                             {slot1Lv === 4 && '800,000'}
+                                            {slot1Lv === 5 && '1,600,000'}
                                         </div>
-                                        
                                     </div>
                                 </div>
                                 <div>
                                     {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
                                         <>
-                                            {(slot1Lv !== 0 && slot1Lv !== 4)  &&
+                                            {(slot1Lv !== 0 && slot1Lv !== 5)  &&
                                                 <div 
                                                     style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                     className="bold button" 
-                                                    onClick={
-                                                        () => {
-                                                            if (slot1Lv === 1) {
-                                                                upgradeHouseHandle(2)
-                                                            } else if (slot1Lv === 2) {
-                                                                upgradeHouseHandle(3)
-                                                            } else if (slot1Lv === 3) {
-                                                                upgradeHouseHandle(4)
-                                                            }
-                                                        }
-                                                    }
+                                                    onClick={() => upgradeHouseHandle(slot1Lv + 1)}
                                                 >
                                                     UPGRADE
                                                 </div>
@@ -518,13 +512,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                 <div 
                                                     style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                     className="bold button" 
-                                                    onClick={
-                                                        () => {
-                                                            if (slot1Lv === 0) {
-                                                                upgradeHouseHandle(1)
-                                                            }
-                                                        }
-                                                    }
+                                                    onClick={() => upgradeHouseHandle(1)}
                                                 >
                                                     CONSTRUCT
                                                 </div> :
@@ -556,7 +544,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                             </div>
                         </div>
                     </div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap", height: "fit-content", overflow: "scroll"}} className="pixel mainprofile">
                         <div style={{background: "rgb(0, 26, 44)", border: "none", justifyContent: "space-around", padding: "30px", maxWidth: "100%", width: "1140px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                             <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
@@ -742,12 +730,47 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                 }
                                             </div>
                                         }
+                                        {slot1Lv >= 5 && 
+                                            <div style={{marginTop: "20px", display: "flex", flexDirection: "column"}}>
+                                                {nftStake !== null && nftStake[4] !== undefined ?
+                                                    <>
+                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center"}}>{nftStake[4].Name}</div>
+                                                        <img src={nftStake[4].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[4].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[4].Reward).toFixed(4)} Pending $OS</div>
+                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined &&
+                                                            <>
+                                                                {address.toUpperCase() === slot1Addr.toUpperCase() &&
+                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                        {nftStake !== null && nftStake[4] !== undefined &&
+                                                                            <>
+                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[4].Id, 0)}>HARVEST</div>
+                                                                                <div className="button" onClick={() => unstakeNft(nftStake[4].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                            </>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>Main Char SLOT5</div>
+                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                        <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                            <div style={{background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                                            <div style={{background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                        </div>
+                                                    </>
+                                                }
+                                            </div>
+                                        }
                                     </> :
                                     <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                               
                             </div>
                         </div>
                     </div>
