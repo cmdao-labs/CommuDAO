@@ -48,24 +48,28 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
     const [priceSIL, setPriceSIL] = React.useState("0.000")
     const [reserveCmjSIL, setReserveCmjSIL] = React.useState("")
     const [reserveSIL, setReserveSIL] = React.useState("")
+    const [silLpBalance, setSilLpBalance] = React.useState("0")
 
     const [cmjBoughtGOLD, setCmjBoughtGOLD] = React.useState("0.000")
     const [tokenBoughtGOLD, setTokenBoughtGOLD] = React.useState("0.000")
     const [priceGOLD, setPriceGOLD] = React.useState("0.000")
     const [reserveCmjGOLD, setReserveCmjGOLD] = React.useState("")
     const [reserveGOLD, setReserveGOLD] = React.useState("")
+    const [goldLpBalance, setGoldLpBalance] = React.useState("0")
 
     const [cmjBoughtJASP, setCmjBoughtJASP] = React.useState("0.000")
     const [tokenBoughtJASP, setTokenBoughtJASP] = React.useState("0.000")
     const [priceJASP, setPriceJASP] = React.useState("0.000")
     const [reserveCmjJASP, setReserveCmjJASP] = React.useState("")
     const [reserveJASP, setReserveJASP] = React.useState("")
+    const [jaspLpBalance, setJaspLpBalance] = React.useState("0")
 
     const [cmjBoughtOS, setCmjBoughtOS] = React.useState("0.000")
     const [tokenBoughtOS, setTokenBoughtOS] = React.useState("0.000")
     const [priceOS, setPriceOS] = React.useState("0.000")
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
     const [reserveOS, setReserveOS] = React.useState("")
+    const [osLpBalance, setOsLpBalance] = React.useState("0")
 
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
@@ -303,10 +307,18 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
 
     const removeLpUni = async (index) => {
         let addr = '0x0000000000000000000000000000000000000000'
-        if (index === 4) {
+        if (index === 1) {
+            addr = jazziSIL
+        } else if (index === 2) {
+            addr = jazziGOLD
+        } else if (index === 3) {
+            addr = jazziJasp
+        } else if (index === 4) {
             addr = jazziJDAO
         } else if (index === 5) {
             addr = jazziCU
+        } else if (index === 6) {
+            addr = jazziOS
         }
         setisLoading(true)
         try {
@@ -325,13 +337,26 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
 
     const handleAddUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
-        if (index === 4) {
+        if (index === 1) {
+            addr = jazziSIL
+        } else if (index === 2) {
+            addr = jazziGOLD
+        } else if (index === 3) {
+            addr = jazziJasp
+        } else if (index === 4) {
             addr = jazziJDAO
         } else if (index === 5) {
             addr = jazziCU
+        } else if (index === 6) {
+            addr = jazziOS
         }
         setTokenAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        let _value = 0
+        if (index === 3) {
+            _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
+        } else {
+            _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        }
         const bigValue = ethers.BigNumber.from(_value)
         const _reserveToken = await readContract({
             address: addr,
@@ -349,10 +374,18 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
     }
     const handleAddUni_2 = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
-        if (index === 4) {
+        if (index === 1) {
+            addr = jazziSIL
+        } else if (index === 2) {
+            addr = jazziGOLD
+        } else if (index === 3) {
+            addr = jazziJasp
+        } else if (index === 4) {
             addr = jazziJDAO
         } else if (index === 5) {
             addr = jazziCU
+        } else if (index === 6) {
+            addr = jazziOS
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -369,18 +402,34 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             functionName: 'getReserveCurrency',
         })
         const bigCurrReserv = ethers.BigNumber.from(_reserveCurr)
-        event.target.value !== "" ? setTokenAdd(ethers.utils.formatEther(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)))) : setTokenAdd("")
+        if (index === 3) {
+            event.target.value !== "" ? setTokenAdd(ethers.utils.formatUnits(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)), "gwei")) : setTokenAdd("")
+        } else {
+            event.target.value !== "" ? setTokenAdd(ethers.utils.formatEther(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)))) : setTokenAdd("")
+        }
     }
     const addLpHandleUni = async (index) => {
         let lp = '0x0000000000000000000000000000000000000000'
         let token = '0x0000000000000000000000000000000000000000'
         let curr = cmjToken
-        if (index === 4) {
+        if (index === 1) {
+            lp = jazziSIL
+            token = silToken
+        } else if (index === 2) {
+            lp = jazziGOLD
+            token = goldToken
+        } else if (index === 3) {
+            lp = jazziJasp
+            token = jaspToken
+        } else if (index === 4) {
             lp = jazziJDAO
             token = jdaoToken
         } else if (index === 5) {
             lp = jazziCU
             token = cuToken
+        } else if (index === 6) {
+            lp = jazziOS
+            token = osToken
         }
         setisLoading(true)
         try {
@@ -419,12 +468,22 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                 const { hash: hash02 } = await writeContract(config2)
                 await waitForTransaction({ hash: hash02 })
             }
-            const config3 = await prepareWriteContract({
-                address: lp,
-                abi: cmdaoAmmNpcABI,
-                functionName: 'addLiquidity',
-                args: [ethers.utils.parseEther(tokenAdd), ethers.utils.parseEther(currAdd)],
-            })
+            let config3 = null
+            if (index === 3) {
+                config3 = await prepareWriteContract({
+                    address: lp,
+                    abi: cmdaoAmmNpcABI,
+                    functionName: 'addLiquidity',
+                    args: [ethers.utils.parseUnits(tokenAdd, "gwei"), ethers.utils.parseEther(currAdd)],
+                })
+            } else {
+                config3 = await prepareWriteContract({
+                    address: lp,
+                    abi: cmdaoAmmNpcABI,
+                    functionName: 'addLiquidity',
+                    args: [ethers.utils.parseEther(tokenAdd), ethers.utils.parseEther(currAdd)],
+                })
+            }
             const { hash: hash1 } = await writeContract(config3)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
@@ -574,11 +633,39 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: jazziSIL,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: jazziGOLD,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: jazziJasp,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: jazziOS,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0},]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
 
             const jdaolpBal = data3[0].result
             const culpBal = data3[1].result
+            const sillpBal = data3[2].result
+            const goldlpBal = data3[3].result
+            const jasplpBal = data3[4].result
+            const oslpBal = data3[5].result
 
             return [
                 tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, 
@@ -588,6 +675,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                 _reserveCmjOS, _reserveOS, tokensBoughtosTOcmj,
                 _reserveCmjGOLD, _reserveGOLD, tokensBoughtgoldTOcmj,
                 _reserveCmjSIL, _reserveSIL, tokensBoughtsilTOcmj,
+                sillpBal, goldlpBal, jasplpBal, oslpBal,
             ]
         }
 
@@ -630,6 +718,15 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             setReserveCmjSIL(ethers.utils.formatEther(result[17]))
             setReserveSIL(ethers.utils.formatEther(result[18]))
             result[19] !== null && setPriceSIL(Number(ethers.utils.formatEther(result[19])).toFixed(8))
+
+            const _sillpbalance = ethers.utils.formatEther(result[20])
+            setSilLpBalance(Math.floor(_sillpbalance * 100000) / 100000)
+            const _goldlpbalance = ethers.utils.formatEther(result[21])
+            setGoldLpBalance(Math.floor(_goldlpbalance * 100000) / 100000)
+            const _jasplpbalance = ethers.utils.formatEther(result[22])
+            setJaspLpBalance(Math.floor(_jasplpbalance * 100000) / 100000)
+            const _oslpbalance = ethers.utils.formatEther(result[23])
+            setOsLpBalance(Math.floor(_oslpbalance * 100000) / 100000)
         })
 
     }, [address, erc20ABI, cmdaoAmmNpcABI])
@@ -877,6 +974,10 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
                                         <option value="CU">CU</option>
+                                        <option value="SIL">SIL</option>
+                                        <option value="GOLD">GOLD</option>
+                                        <option value="JASP">JASP</option>
+                                        <option value="OS">OS</option>
                                     </select>
                                     <div
                                         style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}}
@@ -887,12 +988,24 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                                     setLpSell(String(jdaoLpBalance))
                                                 } else if (gasselected === "CU") {
                                                     setLpSell(String(cuLpBalance))
+                                                } else if (gasselected === "SIL") {
+                                                    setLpSell(String(silLpBalance))
+                                                } else if (gasselected === "GOLD") {
+                                                    setLpSell(String(goldLpBalance))
+                                                } else if (gasselected === "JASP") {
+                                                    setLpSell(String(jaspLpBalance))
+                                                } else if (gasselected === "OS") {
+                                                    setLpSell(String(osLpBalance))
                                                 }
                                             }
                                         }
                                     >
                                         {gasselected === "JDAO" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jdaoLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "CU" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(cuLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "SIL" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(silLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "GOLD" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(goldLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "JASP" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jaspLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "OS" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(osLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -910,6 +1023,14 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                             removeLpUni(4)
                                         } else if (gasselected === "CU") {
                                             removeLpUni(5)
+                                        } else if (gasselected === "SIL") {
+                                            removeLpUni(1)
+                                        } else if (gasselected === "GOLD") {
+                                            removeLpUni(2)
+                                        } else if (gasselected === "JASP") {
+                                            removeLpUni(3)
+                                        } else if (gasselected === "OS") {
+                                            removeLpUni(6)
                                         }
                                     }
                                 }
@@ -931,6 +1052,14 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleAddUni(4, event)
                                     } else if (gasselected === "CU") {
                                         handleAddUni(5, event)
+                                    } else if (gasselected === "SIL") {
+                                        handleAddUni(1, event)
+                                    } else if (gasselected === "GOLD") {
+                                        handleAddUni(2, event)
+                                    } else if (gasselected === "JASP") {
+                                        handleAddUni(3, event)
+                                    } else if (gasselected === "OS") {
+                                        handleAddUni(6, event)
                                     }
                                 }}
                                 value={tokenAdd}
@@ -945,6 +1074,30 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(cuBalance)}}; handleAddUni(5, bal);}}>
                                     <img src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
                                     <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
+                            {gasselected === "SIL" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(silBalance)}}; handleAddUni(1, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" width="22" alt="$SIL"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(silBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
+                            {gasselected === "GOLD" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(goldBalance)}}; handleAddUni(2, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="22" alt="$GOLD"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
+                            {gasselected === "JASP" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jaspBalance)}}; handleAddUni(3, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                            {gasselected === "OS" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(osBalance)}}; handleAddUni(6, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(osBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                         </div>
@@ -962,6 +1115,14 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleAddUni_2(4, event)
                                     } else if (gasselected === "CU") {
                                         handleAddUni_2(5, event)
+                                    } else if (gasselected === "SIL") {
+                                        handleAddUni_2(1, event)
+                                    } else if (gasselected === "GOLD") {
+                                        handleAddUni_2(2, event)
+                                    } else if (gasselected === "JASP") {
+                                        handleAddUni_2(3, event)
+                                    } else if (gasselected === "OS") {
+                                        handleAddUni_2(6, event)
                                     }
                                 }}
                                 value={currAdd}
@@ -970,11 +1131,19 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
                                 onClick={
                                     () => {
-                                        const bal = {target: {value: cmjBalance}}; 
+                                        const bal = {target: {value: cmjBalance}}
                                         if (gasselected === "JDAO") {
-                                            handleAddUni_2(4, bal);
+                                            handleAddUni_2(4, bal)
                                         } else if (gasselected === "CU") {
-                                            handleAddUni_2(5, bal);
+                                            handleAddUni_2(5, bal)
+                                        } else if (gasselected === "SIL") {
+                                            handleAddUni_2(1, bal)
+                                        } else if (gasselected === "GOLD") {
+                                            handleAddUni_2(2, bal)
+                                        } else if (gasselected === "JASP") {
+                                            handleAddUni_2(3, bal)
+                                        } else if (gasselected === "OS") {
+                                            handleAddUni_2(6, bal)
                                         }
                                     }
                                 }
@@ -994,6 +1163,14 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                                 addLpHandleUni(4)
                                             } else if (gasselected === "CU") {
                                                 addLpHandleUni(5)
+                                            } else if (gasselected === "SIL") {
+                                                addLpHandleUni(1)
+                                            } else if (gasselected === "GOLD") {
+                                                addLpHandleUni(2)
+                                            } else if (gasselected === "JASP") {
+                                                addLpHandleUni(3)
+                                            } else if (gasselected === "OS") {
+                                                addLpHandleUni(6)
                                             }
                                         }
                                     }
