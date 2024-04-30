@@ -41,6 +41,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
     const [priceCU, setPriceCU] = React.useState("0.000")
     const [reserveCmjCU, setReserveCmjCU] = React.useState("")
     const [reserveCU, setReserveCU] = React.useState("")
+    const [cuLpBalance, setCuLpBalance] = React.useState("0")
 
     const [cmjBoughtSIL, setCmjBoughtSIL] = React.useState("0.000")
     const [tokenBoughtSIL, setTokenBoughtSIL] = React.useState("0.000")
@@ -304,6 +305,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 4) {
             addr = jazziJDAO
+        } else if (index === 5) {
+            addr = jazziCU
         }
         setisLoading(true)
         try {
@@ -324,6 +327,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 4) {
             addr = jazziJDAO
+        } else if (index === 5) {
+            addr = jazziCU
         }
         setTokenAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -346,6 +351,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 4) {
             addr = jazziJDAO
+        } else if (index === 5) {
+            addr = jazziCU
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -367,11 +374,13 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
     const addLpHandleUni = async (index) => {
         let lp = '0x0000000000000000000000000000000000000000'
         let token = '0x0000000000000000000000000000000000000000'
-        let curr = '0x0000000000000000000000000000000000000000'
+        let curr = cmjToken
         if (index === 4) {
             lp = jazziJDAO
             token = jdaoToken
-            curr = cmjToken
+        } else if (index === 5) {
+            lp = jazziCU
+            token = cuToken
         }
         setisLoading(true)
         try {
@@ -551,18 +560,31 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const tokensBoughtgoldTOcmj = data2[4].result
             const tokensBoughtsilTOcmj = data2[5].result
 
-            const jdaolpBal = address !== null && address !== undefined ? await readContract({
-                address: jazziJDAO,
-                abi: erc20ABI,
-                functionName: 'balanceOf',
-                args: [address],
-            }) : 0
+            const data3 = address !== null && address !== undefined ? await readContracts({
+                contracts: [
+                    {
+                        address: jazziJDAO,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: jazziCU,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                ],
+            }) : [{result: 0}, {result: 0},]
+
+            const jdaolpBal = data3[0].result
+            const culpBal = data3[1].result
 
             return [
                 tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, 
                 _reserveCmjJDAO, _reserveJDAO, _reserveCmjCU, 
                 _reserveCU, _reserveCmjJASP, _reserveJASP, 
-                jdaolpBal, 
+                jdaolpBal, culpBal,
                 _reserveCmjOS, _reserveOS, tokensBoughtosTOcmj,
                 _reserveCmjGOLD, _reserveGOLD, tokensBoughtgoldTOcmj,
                 _reserveCmjSIL, _reserveSIL, tokensBoughtsilTOcmj,
@@ -594,18 +616,20 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
 
             const _jdaolpbalance = ethers.utils.formatEther(result[9])
             setJdaoLpBalance(Math.floor(_jdaolpbalance * 100000) / 100000)
+            const _culpbalance = ethers.utils.formatEther(result[10])
+            setCuLpBalance(Math.floor(_culpbalance * 100000) / 100000)
 
-            setReserveCmjOS(ethers.utils.formatEther(result[10]))
-            setReserveOS(ethers.utils.formatEther(result[11]))
-            setPriceOS(Number(ethers.utils.formatEther(result[12])).toFixed(3))
+            setReserveCmjOS(ethers.utils.formatEther(result[11]))
+            setReserveOS(ethers.utils.formatEther(result[12]))
+            setPriceOS(Number(ethers.utils.formatEther(result[13])).toFixed(3))
 
-            setReserveCmjGOLD(ethers.utils.formatEther(result[13]))
-            setReserveGOLD(ethers.utils.formatEther(result[14]))
-            setPriceGOLD(Number(ethers.utils.formatEther(result[15])).toFixed(3))
+            setReserveCmjGOLD(ethers.utils.formatEther(result[14]))
+            setReserveGOLD(ethers.utils.formatEther(result[15]))
+            setPriceGOLD(Number(ethers.utils.formatEther(result[16])).toFixed(3))
 
-            setReserveCmjSIL(ethers.utils.formatEther(result[16]))
-            setReserveSIL(ethers.utils.formatEther(result[17]))
-            result[18] !== null && setPriceSIL(Number(ethers.utils.formatEther(result[18])).toFixed(8))
+            setReserveCmjSIL(ethers.utils.formatEther(result[17]))
+            setReserveSIL(ethers.utils.formatEther(result[18]))
+            result[19] !== null && setPriceSIL(Number(ethers.utils.formatEther(result[19])).toFixed(8))
         })
 
     }, [address, erc20ABI, cmdaoAmmNpcABI])
@@ -622,7 +646,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                             <div style={{fontSize: "20px", width: "380px"}} className="pixel">JAZZI, THE LUXURY COLLECTOR</div>
                             <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BUY/SELL ${gasselected}</div>
                             <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
-                            <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <div style={{marginTop: "5px", width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                 <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
@@ -632,7 +656,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         <option value="JASP">JASP</option>
                                         <option value="OS">OS</option>
                                     </select>
-                                    <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
+                                    <div style={{fontSize: "16px", marginLeft: "1px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
                                         {gasselected === "JDAO" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/> &nbsp;=&nbsp; <div className="emp">{priceJDAO}</div></>}
                                         {gasselected === "CU" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/> &nbsp;=&nbsp; <div className="emp">{priceCU}</div></>}
@@ -643,7 +667,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                     </div>
                                 </div>
-                                {gasselected === "JDAO" && <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>}
+                                <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
                             </div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
@@ -842,7 +866,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                         </div>
                     </>
                 }
-                {mode === 2 ?
+                {mode === 2 &&
                     <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                         <div style={{maxHeight: "75px"}}>
                             <div style={{fontSize: "20px", width: "380px"}} className="pixel">JAZZI, THE LUXURY COLLECTOR</div>
@@ -852,9 +876,23 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
+                                        <option value="CU">CU</option>
                                     </select>
-                                    <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setLpSell(String(jdaoLpBalance))}>
+                                    <div
+                                        style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}}
+                                        className="pixel"
+                                        onClick={
+                                            () => {
+                                                if (gasselected === "JDAO") {
+                                                    setLpSell(String(jdaoLpBalance))
+                                                } else if (gasselected === "CU") {
+                                                    setLpSell(String(cuLpBalance))
+                                                }
+                                            }
+                                        }
+                                    >
                                         {gasselected === "JDAO" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jdaoLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "CU" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(cuLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -863,7 +901,21 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                             <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-CMJ LP"} className="bold" onChange={(event) => setLpSell(event.target.value)} value={lpSell}></input>
-                            <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => removeLpUni(4)}>REMOVE</div>
+                            <div
+                                style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}}
+                                className="button pixel"
+                                onClick={
+                                    () => {
+                                        if (gasselected === "JDAO") {
+                                            removeLpUni(4)
+                                        } else if (gasselected === "CU") {
+                                            removeLpUni(5)
+                                        }
+                                    }
+                                }
+                            >
+                                REMOVE
+                            </div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -877,14 +929,24 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
                                         handleAddUni(4, event)
+                                    } else if (gasselected === "CU") {
+                                        handleAddUni(5, event)
                                     }
                                 }}
                                 value={tokenAdd}
                             ></input>
-                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jdaoBalance)}}; handleAddUni(4, bal);}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                            </div>
+                            {gasselected === "JDAO" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jdaoBalance)}}; handleAddUni(4, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                            {gasselected === "CU" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(cuBalance)}}; handleAddUni(5, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -898,31 +960,52 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
                                         handleAddUni_2(4, event)
+                                    } else if (gasselected === "CU") {
+                                        handleAddUni_2(5, event)
                                     }
                                 }}
                                 value={currAdd}
                             ></input>
-                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddUni_2(4, bal);}}>
+                            <div
+                                style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
+                                onClick={
+                                    () => {
+                                        const bal = {target: {value: cmjBalance}}; 
+                                        if (gasselected === "JDAO") {
+                                            handleAddUni_2(4, bal);
+                                        } else if (gasselected === "CU") {
+                                            handleAddUni_2(5, bal);
+                                        }
+                                    }
+                                }
+                            >
                                 <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
-                                <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
-                                    () => {
-                                        if (gasselected === "JDAO") {
-                                            addLpHandleUni(4)
+                                <div 
+                                    style={{width: "30px", background: "#67BAA7"}}
+                                    className="pixel button"
+                                    onClick={
+                                        () => {
+                                            if (gasselected === "JDAO") {
+                                                addLpHandleUni(4)
+                                            } else if (gasselected === "CU") {
+                                                addLpHandleUni(5)
+                                            }
                                         }
                                     }
-                                }>ADD</div> :
+                                >
+                                    ADD
+                                </div> :
                                 <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ADD</div>
                             }
                             <div style={{height: "55px", textAlign: "left", marginLeft: "20px", fontSize: "16px"}} className="pixel bold">
                             </div>
                         </div>
-                    </div> :
-                    <></>
+                    </div>
                 }
             </div>
         </div>
