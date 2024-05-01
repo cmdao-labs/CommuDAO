@@ -263,9 +263,9 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             }
             result[2] !== null && result[2].slice(0, 7) === "SAPIENS" ? setIsOp(true) : setIsOp(false)
             setHatSlot(result[3])
-            result[4] !== null && Number(result[4].slice(-1)) > 0 ? setHatSlotLevel(result[4].slice(-1)) : setHatSlotLevel(null)
+            result[4] !== null && result[4].slice(-2, -1) === "+" ? setHatSlotLevel(result[4].slice(-1)) : setHatSlotLevel(null)
             setClothSlot(result[5])
-            result[6] !== null && Number(result[6].slice(-1)) > 0 ? setClothSlotLevel(result[6].slice(-1)) : setClothSlotLevel(null)
+            result[6] !== null && result[6].slice(-2, -1) === "+" ? setClothSlotLevel(result[6].slice(-1)) : setClothSlotLevel(null)
 
             setAllPower(result[7])
             setIsStakeNow(result[8])
