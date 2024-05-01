@@ -172,7 +172,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 nameArr3.push(data2_0011[i].result)
             }
             const walletAllFilter = await cmdaonftSC.filters.Transfer(null, '0x0000000000000000000000000000000000000001', null)
-            const walletAllEvent = await cmdaonftSC.queryFilter(walletAllFilter, 572243, "latest")
+            const walletAllEvent = await cmdaonftSC.queryFilter(walletAllFilter, 572243, 3103638)
             const walletAllMap = await Promise.all(walletAllEvent.map(async (obj) => {return {from: String(obj.args.from), value: String(obj.args.tokenId)}}))
 
             let allnft = []
