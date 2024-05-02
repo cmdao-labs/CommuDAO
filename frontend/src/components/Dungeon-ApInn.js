@@ -256,7 +256,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             })
 
             const spend1Filter = await angbFarmSC.filters.Claimed(null, null, null)
-            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 3103639, 'latest')
+            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 3189363, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.staker), value: Number(ethers.utils.formatEther(obj.args.rewardAmount))}}))
             const spend1Merged = spend1Map.reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
@@ -278,7 +278,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }
 
             const spend2Filter = await vabagUsageSC.filters.Transfer(null, '0x0000000000000000000000000000000000000001', null)
-            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 3103639, 'latest')
+            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 3189363, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
             const spend2Merged = spend2Map.reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
@@ -300,11 +300,11 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }
 
             const spend31Filter = await acnftSC.filters.Transfer('0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a', null, null)
-            const spend31Event = await acnftSC.queryFilter(spend31Filter, 3103639, 'latest')
+            const spend31Event = await acnftSC.queryFilter(spend31Filter, 3189363, 'latest')
             const spend31Map = await Promise.all(spend31Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
             const spend32Filter = await apDunSC.filters.Transfer('0x09e6a0A03afa27438c3f507de82b5f6061Ae1643', null, null)
-            const spend32Event = await apDunSC.queryFilter(spend32Filter, 3103639, 'latest')
+            const spend32Event = await apDunSC.queryFilter(spend32Filter, 3189363, 'latest')
             const spend32Map = await Promise.all(spend32Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
             const spend3Merged = spend31Map.concat(spend32Map).reduce((prev, curr) => {
