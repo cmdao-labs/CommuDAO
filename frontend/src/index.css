@@ -215,7 +215,7 @@ header::-webkit-scrollbar { display: none; }
   justify-content: center;
 }
 .welcomeText {
-  margin-top: 40px;
+  margin-top: 25px;
 }
 .welcome {
   margin-top: 100px;
