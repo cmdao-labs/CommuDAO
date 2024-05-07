@@ -13,10 +13,9 @@ const Home = ({ callMode, navigate }) => {
         <div style={{overflow: "scroll", padding: 0, margin: 0, textAlign: "left", fontSize: "22px", flexFlow: "row wrap"}} className="collection noscroll welcome pixel">
             <div className="half welcomeText">
                 <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-                    <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Collect<br></br>Play<br></br>Build<br></br><span className="emp">CommuDAO</span></div>
-                    <div style={{marginTop: "20px"}} className='bold motto2'>The Web3 Multiverse of Crypto-community</div>
+                    <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Multiverse<br></br>for all crypto<br></br>community</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
-                        <div style={{fontSize: "40px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">59,000,000+</div>
+                        <div style={{fontSize: "38px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">70,000,000+</div>
                         <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
                     {chain !== undefined ?
@@ -24,7 +23,7 @@ const Home = ({ callMode, navigate }) => {
                             {chain.id === 8899 &&
                                 <>
                                     <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO-verse now!</div>
-                                    <div style={{margin: "20px 0", maxWidth: "550px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                                    <div style={{margin: "20px 0", maxWidth: "600px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                         <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
                                             <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
                                             &nbsp;Ancient Forest
@@ -58,7 +57,7 @@ const Home = ({ callMode, navigate }) => {
             <div className='half'>
                 <div className='nftCard nftControl' style={{height: "fit-content", background: "#fff", margin: "80px 0", padding: 0, overflow: "hidden"}}>
                     <img src="https://cloudflare-ipfs.com/ipfs/bafkreiccasyhwimnwvkzdgxksjw7z5qr4eo5p4bsikg4osrqszemwtjxee" width="100%" alt="Show-Off-NFT" />
-                    <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CRYPTO SULTAN PEPE JA - MEME Main Character NFTs</div>
+                    <div style={{width: "90%", height: "fit-content", margin: "15px 0"}}>CRYPTO SULTAN PEPE JA - Main Character NFTs</div>
                 </div>
             </div>
         </div>

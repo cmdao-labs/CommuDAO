@@ -207,16 +207,15 @@ header::-webkit-scrollbar { display: none; }
 }
 
 .half {
-  width: 50%;
+  width: 40%;
   height: 100vh;
-  padding: 80px 0 240px 0;
+  padding: 80px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(20px);
 }
 .welcomeText {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 .welcome {
   margin-top: 100px;
@@ -229,10 +228,7 @@ header::-webkit-scrollbar { display: none; }
   background-image: url('https://cloudflare-ipfs.com/ipfs/bafkreiekq7urjzx7lzxclt5b2ykfhnbvvrsvmzg6qa2jxhn4uyiglzfvha');*/
 }
 .motto {
-  font-size: 84px;
-}
-.motto2 {
-  font-size: 20px;
+  font-size: 90px;
 }
 #showoff {
   min-width: 550px;
@@ -270,7 +266,7 @@ header::-webkit-scrollbar { display: none; }
   letter-spacing: 2px;
   color: #000;
   overflow: hidden;
-  border-right: 0.4em solid #000;
+  /*border-right: 0.4em solid #000;*/
   white-space: nowrap;
   font-size: 20px;
   width: 0;
