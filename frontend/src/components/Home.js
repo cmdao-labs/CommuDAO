@@ -48,7 +48,7 @@ const Home = ({ callMode, navigate }) => {
                                 </>
                             }
                         </> :
-                        <div style={{height: "215px", width: "410px", margin: "20px 0"}}>
+                        <div style={{height: "147.5px", width: "600px", margin: "20px 0"}}>
                             <div className='typed-out' style={{padding: "2px 8px"}}>PRESS CONNECT WALLET...</div>
                         </div>
                     }
