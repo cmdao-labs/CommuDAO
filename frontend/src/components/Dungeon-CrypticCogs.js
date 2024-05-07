@@ -828,36 +828,40 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
-                        {nft.map((item, index) => (
-                            <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
-                                <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                    <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                </div>
-                                <div className="emp bold">{item.Name}</div>
-                                <div className="bold">{item.RewardPerSec} power per sec</div>
-                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                {address === youraddr ?
-                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        {item.isStaked ?
-                                            <>
-                                                <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Id / 100000000000 | 0)}>UNEQUIP</div>
-                                            </> :
-                                            <>
-                                                {isStakeNow ?
-                                                    <>
-                                                    </> :
-                                                    <>
-                                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id)}>EQUIP</div>
-                                                    </>
-                                                }
-                                                <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                        ))}
+                            {nft.map((item, index) => (
+                                <>
+                                    {item.Id / 100000000000 <= 8 &&
+                                        <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
+                                            <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                            </div>
+                                            <div className="emp bold">{item.Name}</div>
+                                            <div className="bold">{item.RewardPerSec} power per sec</div>
+                                            <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                            {address === youraddr ?
+                                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                    {item.isStaked ?
+                                                        <>
+                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Id / 100000000000 | 0)}>UNEQUIP</div>
+                                                        </> :
+                                                        <>
+                                                            {isStakeNow ?
+                                                                <>
+                                                                </> :
+                                                                <>
+                                                                    <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id)}>EQUIP</div>
+                                                                </>
+                                                            }
+                                                            <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                        </>
+                                                    }
+                                                </div> :
+                                                <div style={{height: "41px"}}></div>
+                                            }
+                                        </div>
+                                    }
+                                </>
+                            ))}
                         </> :
                         <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
