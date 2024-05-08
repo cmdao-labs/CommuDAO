@@ -13,7 +13,7 @@ const Home = ({ callMode, navigate }) => {
         <div style={{overflow: "scroll", padding: 0, margin: 0, textAlign: "left", fontSize: "22px", flexFlow: "row wrap"}} className="collection noscroll welcome pixel">
             <div className="half welcomeText">
                 <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-                    <div style={{letterSpacing: "1px", color: "rgb(39, 56, 82)"}} className="bold motto">Multiverse<br></br>for all crypto<br></br>community</div>
+                    <div style={{letterSpacing: "1px", color: "#000"}} className="bold motto">Multiverse<br></br>for all crypto<br></br>community</div>
                     <div style={{padding: "30px 0", marginTop: "30px", flexDirection: "column"}} className="items" id="showoff">
                         <div style={{fontSize: "38px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">70,000,000+</div>
                         <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
