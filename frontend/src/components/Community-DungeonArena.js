@@ -544,6 +544,22 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
         } catch {}
         setisLoading(false)
     }
+    const withdrawBounty = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: pvp01,
+                abi: pvp01ABI,
+                functionName: 'fight',
+                args: [address],
+                gas: 3000000,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
 
     const nextChallenger = async (_index) => {
         setisLoading(true)
@@ -836,9 +852,16 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bounty}</div></div>
                         {isStakeNow && challenger.indexOf(address) > -1 ?
-                            <div style={{alignSelf: "center"}} className="button" onClick={addBounty}>ADD 1 BOUNTY (10 JDAO)</div> :
-                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">ADD 1 BOUNTY (10 JDAO)</div>
-                        }                    </div>
+                            <>
+                                <div style={{alignSelf: "center", background: "#67BAA7", width: "220px"}} className="button" onClick={addBounty}>ADD 10 BOUNTY JDAO</div> 
+                                <div style={{alignSelf: "center", margin: "10px 0", width: "220px"}} className="button" onClick={withdrawBounty}>SUICIDE (WITHDRAW JDAO)</div> 
+                            </> :
+                            <>
+                                <div style={{alignSelf: "center", background: "#e9eaeb", width: "220px", color: "#bdc2c4", cursor: "not-allowed"}} className="button">ADD 10 BOUNTY JDAO</div>
+                                <div style={{alignSelf: "center", margin: "10px 0", background: "#e9eaeb", width: "220px", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SUICIDE (WITHDRAW JDAO)</div>
+                            </>
+                        }                    
+                    </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
                             <img src={accSlot} width="100px" alt="Can not load metadata." /> :
