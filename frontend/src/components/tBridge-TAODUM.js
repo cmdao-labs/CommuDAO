@@ -234,7 +234,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     <div style={{fontSize: "30px"}}>From BKC 1 KUB/TX; From JBC 10 JBC/TX</div>
                 </div>
             </div>
-            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">BKC NFTs</div>
+            <div style={{width: "98%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">BKC NFTs</div>
             {nft.length > 0 ?
                 <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
@@ -274,7 +274,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                     </div>
                 </div>
             }
-            <div style={{width: "70%", margin: "40px 0", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left", paddingTop: "40px", borderTop: "1px solid #2e2c35"}} className="bold">JBC NFTs</div>
+            <div style={{width: "98%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">JBC NFTs</div>
             {nft2.length > 0 ?
                 <div style={{width: "1650px", marginBottom: "200px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft2[0] !== null ?
