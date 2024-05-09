@@ -310,7 +310,7 @@ header::-webkit-scrollbar { display: none; }
   }
   .welcomeText {
     height: fit-content;
-    margin-top: 100px;
+    margin: 100px 0 0 80px;
     padding: 0 20px;
   }
   .motto {
