@@ -156,7 +156,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const _gmStreak = Number(data[6].result)
 
             const _canClaimSIL = ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : false
-            const _canClaimPlat = ethers.utils.formatUnits(jaspBal, "gwei") >= 1 ? true : false
+            const _canClaimPlat = ethers.utils.formatUnits(jaspBal, "gwei") >= 1 && Number(data[1].result[0]) >= 2 ? true : false
             const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
             const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
 
