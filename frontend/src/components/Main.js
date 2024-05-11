@@ -94,6 +94,7 @@ import fusionABI from './jsons/fusionABI.json'
 import salonABI from './jsons/salonABI.json'
 import starterCMDSABI from './jsons/starterCMDSABI.json'
 import uplevelCMDSABI from './jsons/uplevelCMDSABI.json'
+import cmcityPointsABI from './jsons/cmcityPointsABI.json'
 import sx31voteABI from './jsons/sx31voteABI.json'
 import faucetABI from './jsons/faucetABI.json'
 import cmdaoNameABI from './jsons/cmdaoNameABI.json'
@@ -400,7 +401,7 @@ const Main = () => {
                     <></>
                 }
                 {mode === 41 ?
-                    <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} /> :
+                    <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} cmcityPointsABI={cmcityPointsABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} /> :
                     <></>
                 }
                 {mode === 42 ?
