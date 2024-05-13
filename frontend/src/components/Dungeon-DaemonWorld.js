@@ -28,6 +28,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
+    const [isSpecialModal, setIsSpecialModal] = React.useState(false)
+    const [specialModal, setSpecialModal] = React.useState(0)
 
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
@@ -424,6 +426,14 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
     const equipNft = async (_nftid) => {
         setisLoading(true)
+        if (Number(_nftid.slice(0, 7)) >= 8010001 && Number(_nftid.slice(0, 7)) <= 8010050) {
+            setSpecialModal(1)
+        } else if (Number(_nftid.slice(0, 7)) >= 8010051 && Number(_nftid.slice(0, 7)) <= 8010120) {
+            setSpecialModal(2)
+        } else if (Number(_nftid.slice(0, 7)) >= 8010121 && Number(_nftid.slice(0, 7)) <= 8010200) {
+            setSpecialModal(3)
+        }
+        setIsSpecialModal(true)
         try {
             const nftAllow = await readContract({
                 address: angelplus,
@@ -522,6 +532,20 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 </div>
             </div> :
             <></>
+        }
+        {isSpecialModal &&
+            <div style={{zIndex: "1000"}} className="centermodal">
+                <div className="wrapper">
+                    <div className="bold" style={{width: "500px", height: "700px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
+                        <video autoPlay loop width="400">
+                            {specialModal === 1 && <source src="https://cloudflare-ipfs.com/ipfs/bafybeie2iuhr7m6sd6knivqxev6bzhfbujfnbxtcudgb3jcy3jogjhztfu" type="video/mp4" />}
+                            {specialModal === 2 && <source src="https://cloudflare-ipfs.com/ipfs/bafybeibu3cbsmupwfxxni2k525h3gavrjyvtyk6i5xa3wx6k4t4gzk3bae" type="video/mp4" />}
+                            {specialModal === 3 && <source src="https://cloudflare-ipfs.com/ipfs/bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa" type="video/mp4" />}
+                        </video>
+                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsSpecialModal(false)}>CLOSE</div>
+                    </div>
+                </div>
+            </div>
         }
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafybeicatk66gnfauhbytqbqbxlbu47hg2j3wzxiatzfs4xjwfhaozvpne')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
