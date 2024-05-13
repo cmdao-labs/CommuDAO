@@ -180,7 +180,7 @@ createWeb3Modal({
     }
 })
 
-const v = '0.3.6'
+const v = '0.3.7'
 
 const Main = () => {    
     const navigate = useNavigate()
