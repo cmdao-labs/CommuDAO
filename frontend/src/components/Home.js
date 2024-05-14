@@ -18,35 +18,25 @@ const Home = ({ callMode, navigate }) => {
                         <div style={{fontSize: "38px", backgroundImage: "linear-gradient(270deg, #ff0420, #d9029d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "1px"}} className="bold">70,000,000+</div>
                         <div style={{fontSize: "14px", marginTop: "10px", color: "#000"}} className="light">Transactions on CommuDAO Ecosystem</div>
                     </div>
-                    {chain !== undefined ?
-                        <>
-                            {chain.id === 8899 &&
-                                <>
-                                    <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO Ecosystem!</div>
-                                    <div style={{margin: "20px 0", maxWidth: "600px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://line.me/ti/g/TyuETEymmH" target="_blank" rel="noreferrer">
-                                            &nbsp;CMDAO Alert
-                                        </a>
-                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://meowneon.app" target="_blank" rel="noreferrer">
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreifzs54ll7ckvhuvkp3v35yx4qyqpthia56r37cgqlnzlfplrfv7hm" height="30" alt=""/>
-                                            &nbsp;Meow Neon
-                                        </a>
-                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidlnozzbqrxqtdf54b32u3u7ri4svu7lcdpxujcnoa5x5biqcufpy" height="30" alt=""/>
-                                            &nbsp;Auto Web3 Tool
-                                        </a>
-                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreictqeaxecodh6wogk4eihkvyhzhk3hnyyftfvsjxi6m4yf4sm4nta" height="30" alt=""/>
-                                            &nbsp;DaoBuddy
-                                        </a>
-                                    </div>
-                                </>
-                            }
-                        </> :
-                        <div style={{height: "147.5px", width: "600px", margin: "20px 0"}}>
-                            <div className='typed-out' style={{padding: "2px 8px"}}>PRESS CONNECT WALLET...</div>
-                        </div>
-                    }
+                    <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO Ecosystem!</div>
+                    <div style={{margin: "20px 0", maxWidth: "600px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                        <a className="hashtag" style={{textDecoration: "none"}} href="https://line.me/ti/g/TyuETEymmH" target="_blank" rel="noreferrer">
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreihiezpvelzflcvavljsgzlwh27zfy4njqmcoidzz23ldtajdeo3vi" height="30" alt=""/>
+                            &nbsp;CMDAO Alert
+                        </a>
+                        <a className="hashtag" style={{textDecoration: "none"}} href="https://meowneon.app" target="_blank" rel="noreferrer">
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreifzs54ll7ckvhuvkp3v35yx4qyqpthia56r37cgqlnzlfplrfv7hm" height="30" alt=""/>
+                            &nbsp;Meow Neon
+                        </a>
+                        <a className="hashtag" style={{textDecoration: "none"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidlnozzbqrxqtdf54b32u3u7ri4svu7lcdpxujcnoa5x5biqcufpy" height="30" alt=""/>
+                            &nbsp;Auto Web3 Tool
+                        </a>
+                        <a className="hashtag" style={{textDecoration: "none"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreictqeaxecodh6wogk4eihkvyhzhk3hnyyftfvsjxi6m4yf4sm4nta" height="30" alt=""/>
+                            &nbsp;DaoBuddy
+                        </a>
+                    </div>
                 </div>
             </div>
             <div className='half'>
