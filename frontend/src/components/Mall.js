@@ -113,6 +113,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [roll5Remain, setRoll5Remain] = React.useState(1000)
     const [roll6Remain, setRoll6Remain] = React.useState(256)
     const [roll7Remain, setRoll7Remain] = React.useState(256)
+    const [roll101Remain, setRoll101Remain] = React.useState(200)
 
     const [ctunaBalance, setCTunaBalance] = React.useState(0)
     const [sx31Balance, setSx31Balance] = React.useState(0)
@@ -575,6 +576,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'colList',
                         args: [7],
                     },
+                    {
+                        address: cmdaoGasha02,
+                        abi: cmdaoGasha02ABI,
+                        functionName: 'colList',
+                        args: [101],
+                    },
                 ],
             })
             
@@ -622,12 +629,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll5 = data2[10].result
             const roll6 = data2[18].result
             const roll7 = data2[42].result
+            const roll101 = data2[101].result
 
             const sell1remain = (410003800000 - (Number(sell1Id[2]) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
             const sell2remain = (720061600000 - (Number(sell2Id[4]) - 250)) / 100000
             const _canBuy2 = _isKYC && !isBought2 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
-            const _canBuy3 = false
             const sell4remain = (130050100000 - (Number(sell4Id[2]) - 500)) / 100000
             const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
             const sell5remain = (100540100000 - (Number(sell5Id[4]) - 100)) / 100000
@@ -691,12 +698,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll5remain = Number(roll5[1])
             const roll6remain = Number(roll6[1])
             const roll7remain = Number(roll7[1])
+            const roll101remain = Number(roll101[1])
 
             const _canRoll1 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 15 ? true : false
             const _canRoll2 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
 
             return [
-                sell1remain, _canBuy1, sell2remain, _canBuy2, roll7remain, _canBuy3, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, 
+                sell1remain, _canBuy1, sell2remain, _canBuy2, roll7remain, roll101remain, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, 
                 _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, 
                 sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
                 sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14, sell15remain, sell16remain, sell17remain, sell18remain, _canBuy18, 
@@ -771,6 +779,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanRoll2(result[18])
             setRoll6Remain(result[33])
             setRoll7Remain(result[4])
+            setRoll101Remain(result[5])
 
             setCTunaBalance(ethers.utils.formatEther(String(result[54])))
             setSx31Balance(ethers.utils.formatEther(String(result[55])))
@@ -1406,7 +1415,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
             }
-            /*
             const config2 = await prepareWriteContract({
                 address: cmdaoGasha02,
                 abi: cmdaoGasha02ABI,
@@ -1416,7 +1424,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-            */
         } catch {}
         setisLoading(false)
     }
@@ -2860,10 +2867,10 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         </div>
                         {address !== null && address !== undefined ?
                             <>
-                                {false && roll7Remain > 0 ?
+                                {false && roll101Remain > 0 ?
                                     <>
                                         {canroll2 ?
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => rollHandle3(1)}>ROLL</div> :
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => rollHandle3(101)}>ROLL</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :

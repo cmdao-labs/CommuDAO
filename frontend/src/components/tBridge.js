@@ -466,7 +466,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>0.10 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "140px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
@@ -524,7 +524,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>0.50 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "140px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
@@ -568,7 +568,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "340px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "260px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
@@ -599,7 +599,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "140px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
@@ -643,7 +643,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                 <div style={{fontSize: "30px"}}>888 TAO/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "140px", marginBottom: "200px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{height: "140px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{width: "40%", padding: "40px 10px",  background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
@@ -687,6 +687,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         Please connect wallet!
                     </div>
                 }
+                <div style={{width: "70%", textAlign: "left", fontSize: "18px", letterSpacing: "1px", margin: "100px 0 200px 0"}}>🛟 <a style={{textDecoration: "underline", color: "#fff"}} href="https://discord.com/invite/k92ReT5EYy" target="_blank" rel="noreferrer">Get Help in CommmuDAO Discord</a></div>
             </div>
         </div>
     )

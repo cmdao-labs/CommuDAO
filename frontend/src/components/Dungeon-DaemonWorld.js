@@ -697,7 +697,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         {nft.length > 0 ?
                             <>
                                 {fairySlot !== null ?
-                                    <img src={fairySlot} width="300px" alt="Can not load metadata." /> :
+                                    <img src={fairySlot} width="250px" alt="Can not load metadata." /> :
                                     <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 }
                             </> :
