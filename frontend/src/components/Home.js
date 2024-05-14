@@ -22,28 +22,23 @@ const Home = ({ callMode, navigate }) => {
                         <>
                             {chain.id === 8899 &&
                                 <>
-                                    <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO-verse now!</div>
+                                    <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO Ecosystem!</div>
                                     <div style={{margin: "20px 0", maxWidth: "600px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                                        <div className="hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="20" alt="$WOOD"/>
-                                            &nbsp;Ancient Forest
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(11); navigate('/fields/tuna-lake');}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="20" alt="$TUNA"/>
-                                            &nbsp;Tuna Lake
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(12); navigate('/fields/old-warehouse');}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="20" alt="$MICE"/>
-                                            &nbsp;Old Warehouse
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(33); navigate('/dungeons/copper-mine');}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$COPPER"/>
-                                            &nbsp;Copper Mine
-                                        </div>
-                                        <div className="hashtag" onClick={() => {callMode(31); navigate('/dungeons/jasper-cave');}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASPER"/>
-                                            &nbsp;Jasper Cave
-                                        </div>
+                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://line.me/ti/g/TyuETEymmH" target="_blank" rel="noreferrer">
+                                            &nbsp;CMDAO Alert
+                                        </a>
+                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://meowneon.app" target="_blank" rel="noreferrer">
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreifzs54ll7ckvhuvkp3v35yx4qyqpthia56r37cgqlnzlfplrfv7hm" height="30" alt=""/>
+                                            &nbsp;Meow Neon
+                                        </a>
+                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidlnozzbqrxqtdf54b32u3u7ri4svu7lcdpxujcnoa5x5biqcufpy" height="30" alt=""/>
+                                            &nbsp;Auto Web3 Tool
+                                        </a>
+                                        <a className="hashtag" style={{textDecoration: "none"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
+                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreictqeaxecodh6wogk4eihkvyhzhk3hnyyftfvsjxi6m4yf4sm4nta" height="30" alt=""/>
+                                            &nbsp;DaoBuddy
+                                        </a>
                                     </div>
                                 </>
                             }
