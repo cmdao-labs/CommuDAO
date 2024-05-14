@@ -629,7 +629,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll5 = data2[10].result
             const roll6 = data2[18].result
             const roll7 = data2[42].result
-            const roll101 = data2[101].result
+            const roll101 = data2[43].result
 
             const sell1remain = (410003800000 - (Number(sell1Id[2]) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
