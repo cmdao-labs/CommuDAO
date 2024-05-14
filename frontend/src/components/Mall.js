@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
+import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 
 import Ammmerchant from  './Mall-Ammy'
@@ -40,12 +40,13 @@ const cmdaoGasha02 = '0x87A612709b36b575103C65a90cB3B16Cac2BC898'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI }) => {
+const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI, wjbcABI }) => {
     const { address } = useAccount()
 
     const [isWrappedModal, setIsWrappedModal] = React.useState(false)
     const [isSpecialModal, setIsSpecialModal] = React.useState(false)
     const [wrappedValue, setWrappedValue] = React.useState("")
+    const [unwrappedValue, setUnwrappedValue] = React.useState("")
 
     const [sell1Remain, setSell1Remain] = React.useState(37)
     const [canbuy1, setCanBuy1] = React.useState(false)
@@ -102,7 +103,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [roll3Remain, setRoll3Remain] = React.useState(256)
     const [roll4Remain, setRoll4Remain] = React.useState(256)
     const [canroll2, setCanRoll2] = React.useState(false)
-    const [roll5Remain, setRoll5Remain] = React.useState(1000)
     const [roll6Remain, setRoll6Remain] = React.useState(256)
     const [roll7Remain, setRoll7Remain] = React.useState(256)
     const [roll101Remain, setRoll101Remain] = React.useState(200)
@@ -119,6 +119,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [osBalance, setOsBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
+    const [jbcBalance, setJbcBalance] = React.useState(0)
     const [wjbcBalance, setWjbcBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
     const [angbBalance, setAngbBalance] = React.useState(0)
@@ -133,6 +134,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
         console.log("Connected to " + address)
 
         const thefetch = async () => {
+            const jbcBal = address !== null && address !== undefined ?
+                await fetchBalance({ address: address, }) :
+                {formatted: 0}
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: [
                     {
@@ -639,7 +643,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
             const sell9remain = (102066400000 - (Number(sell9Id[2]) - 19000)) / 100000
             const _canBuy9 = Number(ethers.utils.formatUnits(String(jaspBal), "gwei")) >= 100 ? true : false
-            const sell10remain = 0
             const _canBuy10 = false
             const sell11remain = 0
             const _canBuy11 = false
@@ -698,7 +701,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             return [
                 sell1remain, _canBuy1, sell2remain, _canBuy2, roll7remain, roll101remain, sell4remain, _canBuy4, sell5remain, _canBuy5, sell6remain, 
                 _canBuy6, roll1remain, _canRoll1, roll2remain, roll3remain, roll4remain, roll5remain, _canRoll2, sell7remain, _canBuy7, 
-                sell8remain, _canBuy8, sell9remain, _canBuy9, sell10remain, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
+                sell8remain, _canBuy8, sell9remain, _canBuy9, jbcBal, _canBuy10, sell11remain, _canBuy11, sell12remain, _canBuy12, 
                 sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14, sell15remain, sell16remain, sell17remain, sell18remain, _canBuy18, 
                 sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, sell25remain, sell26remain, sell27remain, sell28remain, sell29remain, sell30remain,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, jtaoBal, iiBal, eeBal, platBal, gearBal,
@@ -733,7 +736,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy8(result[22])
             setSell9Remain(result[23])
             setCanBuy9(result[24])
-            
+            setJbcBalance(result[25].formatted)
             setSell13Remain(result[31])
             setCanBuy13(result[32])
             
@@ -761,7 +764,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setRoll2Remain(result[14])
             setRoll3Remain(result[15])
             setRoll4Remain(result[16])
-            setRoll5Remain(result[17])
+
             setCanRoll2(result[18])
             setRoll6Remain(result[33])
             setRoll7Remain(result[4])
@@ -1348,15 +1351,29 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
         } catch {}
         setisLoading(false)
     }
-    console.log(roll5Remain)
 
     const sendHandle = async () => {
         setisLoading(true)
         try {
             const { hash: hash1 } = await sendTransaction({
                 to: wjbcToken,
-            value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
+                value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
             })
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+    const unwrapHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: wjbcToken,
+                abi: wjbcABI,
+                functionName: 'withdraw',
+                args: [ethers.utils.parseEther(unwrappedValue)]
+            })
+            const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
@@ -1365,25 +1382,32 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
     return (
     <>
-        {isWrappedModal ?
+        {isWrappedModal &&
             <div style={{zIndex: "999"}} className="centermodal">
                 <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "200px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
+                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "1px"}}>
                         <div style={{width: "80%", fontSize: "12px", textAlign: "left"}}>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{height: "30px", padding: "0 5px", marginRight: "10px", lineHeight: "32px"}} className="bold">WRAPPED</div>
-                                <div style={{width: "fit-content", height: "30px", margin: 0, padding: "5px", border: "1px solid", borderRadius: "10px", fontSize: "12px"}} className="items bold">
+                                <div style={{height: "30px", padding: "0 5px", lineHeight: "32px"}} className="bold">WRAPPED</div>
+                                <div style={{width: "fit-content", height: "30px", margin: 0, border: "none", fontSize: "12px"}} className="items bold">
                                     <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$WJBC"/>
                                 </div>
                             </div>
-                            <input style={{marginTop: "10px", width: "90%", padding: "10px"}} className="bold" type="number" min="0" step="0.1" placeholder="Enter $JBC to Wrap" value={wrappedValue} onChange={(event) => setWrappedValue(event.target.value)}></input>
+                            <div style={{margin: "10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                                <input style={{width: "300px", padding: "10px"}} className="bold" type="number" min="0" step="0.1" placeholder="Enter $JBC to Wrap" value={wrappedValue} onChange={(event) => setWrappedValue(event.target.value)}></input>
+                                <div className="button" style={{width: "80px", marginLeft: "10px"}} onClick={sendHandle}>WRAP</div>
+                            </div>
+                            <div style={{margin: "10px 0", cursor: "pointer"}} onClick={() => setWrappedValue(jbcBalance)}>Balance: {Number(jbcBalance).toFixed(4)}</div>
+                            <div style={{margin: "10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                                <input style={{width: "300px", padding: "10px"}} className="bold" type="number" min="0" step="0.1" placeholder="Enter $WJBC to Unwrap" value={unwrappedValue} onChange={(event) => setUnwrappedValue(event.target.value)}></input>
+                                <div className="button" style={{width: "100px", marginLeft: "10px"}} onClick={unwrapHandle}>UNWRAP</div>
+                            </div>
+                            <div style={{margin: "10px 0 20px 0", cursor: "pointer"}} onClick={() => setUnwrappedValue(wjbcBalance)}>Balance: {Number(wjbcBalance).toFixed(4)}</div>
                         </div>
-                        <div className="button" style={{width: "50%"}} onClick={sendHandle}>WRAP</div>
                         <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsWrappedModal(false)}>CLOSE</div>
                     </div>
                 </div>
-            </div> :
-            <></>
+            </div>
         }
         {isSpecialModal &&
             <div style={{zIndex: "1000"}} className="centermodal">
@@ -1432,7 +1456,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "10px"}}><div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "1px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setIsWrappedModal(true)}>WRAP</div> {Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                        <div style={{marginLeft: "5px"}}><div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "1px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setIsWrappedModal(true)}>WRAPPED</div> {Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
