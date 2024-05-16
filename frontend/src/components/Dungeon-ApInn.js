@@ -307,7 +307,11 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             const spend32Event = await apDunSC.queryFilter(spend32Filter, 3189363, 'latest')
             const spend32Map = await Promise.all(spend32Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
-            const spend3Merged = spend31Map.concat(spend32Map).reduce((prev, curr) => {
+            const spend33Filter = await apDunSC.filters.Transfer('0x87A612709b36b575103C65a90cB3B16Cac2BC898', null, null)
+            const spend33Event = await apDunSC.queryFilter(spend33Filter, 3189363, 'latest')
+            const spend33Map = await Promise.all(spend33Event.map(async (obj) => {return {from: String(obj.args.to), value: 20}}))
+
+            const spend3Merged = spend31Map.concat(spend32Map, spend33Map).reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
                    prev[curr.from.toUpperCase()].value += curr.value
                 } else {
