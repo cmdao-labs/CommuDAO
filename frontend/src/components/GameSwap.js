@@ -74,7 +74,7 @@ const inputStyle = {
     }),
 }
    
-const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, exchangeJulpABI, farmJdaoABI, swapABI, swapJulpABI, bkcOracleABI }) => {
+const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, exchangeJulpABI, farmJdaoABI, swapABI, swapJulpABI, bkcOracleABI, cmdaoAmmNpcABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
@@ -871,6 +871,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 cmjBalanceFull={cmjBalanceFull}
                 farmJdaoABI={farmJdaoABI}
                 priceTHB={priceTHB}
+                cmdaoAmmNpcABI={cmdaoAmmNpcABI}
             />}
             {mode === 3 &&
                 <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
