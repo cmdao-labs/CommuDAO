@@ -851,16 +851,14 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         <div style={{width: "80%", marginTop: "5px 0 10px 0", display: "flex", alignItems: "center", flexDirection: "row", justifyContent: "space-between"}}>ATK: <div>{allPower * 1} - {allPower * 9}</div></div>
                         <div style={{width: "80%", margin: "5px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>BOUNTY: <div style={{display: "flex", alignItems: "center"}}><img style={{marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/> {bounty * 10}</div></div>
                         <div style={{width: "80%", margin: "5px 0 10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>AVAILABLE CHALLENGE: <div>{bounty}</div></div>
-                        {isStakeNow && challenger.indexOf(address) > -1 ?
-                            <>
-                                <div style={{alignSelf: "center", background: "#67BAA7", width: "220px"}} className="button" onClick={addBounty}>ADD 10 BOUNTY JDAO</div> 
-                                <div style={{alignSelf: "center", margin: "10px 0", width: "220px"}} className="button" onClick={withdrawBounty}>SUICIDE (WITHDRAW JDAO)</div> 
-                            </> :
-                            <>
+                        {isStakeNow && Number(jdaoBalance) >= 10 && challenger.indexOf(address) > -1 ?
+                                <div style={{alignSelf: "center", background: "#67BAA7", width: "220px"}} className="button" onClick={addBounty}>ADD 10 BOUNTY JDAO</div> :
                                 <div style={{alignSelf: "center", background: "#e9eaeb", width: "220px", color: "#bdc2c4", cursor: "not-allowed"}} className="button">ADD 10 BOUNTY JDAO</div>
+                        }     
+                        {isStakeNow && bounty !== 0 && Number(jdaoBalance) >= 10 && challenger.indexOf(address) > -1 ?
+                                <div style={{alignSelf: "center", margin: "10px 0", width: "220px"}} className="button" onClick={withdrawBounty}>SUICIDE (WITHDRAW JDAO)</div> :
                                 <div style={{alignSelf: "center", margin: "10px 0", background: "#e9eaeb", width: "220px", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SUICIDE (WITHDRAW JDAO)</div>
-                            </>
-                        }                    
+                        }             
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
