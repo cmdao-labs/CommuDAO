@@ -6,6 +6,7 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const jusdtToken = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
+const jaspCmjLp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
    
 const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20ABI, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB }) => {
     const [jbcJdaoStaked, setJbcJdaoStaked] = React.useState(0)
@@ -25,6 +26,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [yourjusdtJdao3Staked, setYourJusdtJdao3Staked] = React.useState(0)
     const [farmJdao3Balance, setFarmJdao3Balance] = React.useState(null)
     const [jdao3Pending, setJdao3Pending] = React.useState(<>0.000</>)
+
+    const [jaspCmjBalance, setJaspCmjBalance] = React.useState(null)
+    const [farmJdao4Balance, setFarmJdao4Balance] = React.useState(null)
+    const [jdao4Pending, setJdao4Pending] = React.useState(<>0.000</>)
+    const [lpJdao4Withdraw, setLpJdao4Withdraw] = React.useState("")
+    const [lpJdao4Stake, setLpJdao4Stake] = React.useState("")
 
     const [swapfee24hour1, setSwapfee24hour1] = React.useState("")
     const [swapfee24hour2, setSwapfee24hour2] = React.useState("")
@@ -298,6 +305,81 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
         setisLoading(false)
     }
 
+    const addstakeHandleAll = async (_index) => {
+        setisLoading(true)
+        let lp = '0x0000000000000000000000000000000000000000'
+        let stake = ''
+        if (_index === 4) {
+            lp = jaspCmjLp
+            stake = lpJdao4Stake 
+        }
+        try {
+            const lpAllow = await readContract({
+                address: lp,
+                abi: exchangeJulpABI,
+                functionName: 'allowance',
+                args: [address, farmJdao],
+            })
+            const bigValue = stake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(stake)) : ethers.BigNumber.from(0)
+            const Hex = ethers.BigNumber.from(10**8)
+            const bigApprove = bigValue.mul(Hex)
+            if (Number(stake) > Number(lpAllow) / (10**18)) {
+                const config = await prepareWriteContract({
+                    address: lp,
+                    abi: exchangeJulpABI,
+                    functionName: 'approve',
+                    args: [farmJdao, bigApprove],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: farmJdao,
+                abi: farmJdaoABI,
+                functionName: 'deposit',
+                args: [_index, ethers.utils.parseEther(stake)],
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+    const withdrawstakeHandleAll = async (_index) => {
+        setisLoading(true)
+        let withdraw = ''
+        if (_index === 4) {
+            withdraw = lpJdao4Withdraw 
+        }
+        try {
+            const config = await prepareWriteContract({
+                address: farmJdao,
+                abi: farmJdaoABI,
+                functionName: 'withdraw',
+                args: [_index, ethers.utils.parseEther(withdraw)],
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+    const harvestHandleAll = async (_index) => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: farmJdao,
+                abi: farmJdaoABI,
+                functionName: 'withdraw',
+                args: [_index, 0],
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
     React.useEffect(() => {
         console.log("Connected to " + address)
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
@@ -307,21 +389,21 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const blockNumber = await providerJBC.getBlockNumber();
             const fee1Filter = await jusdtSC.filters.Transfer(null, "0x280608DD7712a5675041b95d0000B9089903B569", null)
             const fee1Event = await jusdtSC.queryFilter(fee1Filter, blockNumber - 7200, 'latest')
-            const fee1Map = await Promise.all(fee1Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+            const fee1Map = await Promise.all(fee1Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
 
             const fee2Filter = await jusdtSC.filters.Transfer("0x280608DD7712a5675041b95d0000B9089903B569", null, null)
             const fee2Event = await jusdtSC.queryFilter(fee2Filter, blockNumber - 7200, 'latest')
-            const fee2Map = await Promise.all(fee2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
+            const fee2Map = await Promise.all(fee2Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
 
             const sumFee = fee1Map.concat(fee2Map).reduce((partialSum, a) => partialSum + a, 0)
 
             const fee3Filter = await cmjSC.filters.Transfer(null, "0x472d0e2E9839c140786D38110b3251d5ED08DF41", null)
             const fee3Event = await cmjSC.queryFilter(fee3Filter, blockNumber - 7200, 'latest')
-            const fee3Map = await Promise.all(fee3Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
+            const fee3Map = await Promise.all(fee3Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
 
             const fee4Filter = await cmjSC.filters.Transfer("0x472d0e2E9839c140786D38110b3251d5ED08DF41", null, null)
             const fee4Event = await cmjSC.queryFilter(fee4Filter, blockNumber - 7200, 'latest')
-            const fee4Map = await Promise.all(fee4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
+            const fee4Map = await Promise.all(fee4Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
 
             const sumFee2 = fee3Map.concat(fee4Map).reduce((partialSum, a) => partialSum + a, 0);
 
@@ -363,8 +445,27 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         functionName: 'pendingCake',
                         args: [3, address],
                     },
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'userInfo',
+                        args: [4, address],
+                    },
+                    {
+                        address: jaspCmjLp,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'pendingCake',
+                        args: [4, address],
+                    },
+   
                 ],
-            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, ]
+            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]},]
 
             const farmJdaoBal = data[0]
             const jdaoPend = data[1]
@@ -372,6 +473,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const jdao202Pend = data[3]
             const farmJdao3Bal = data[4]
             const jdao3Pend = data[5]
+            const farmJdao4Bal = data[6]
+            const jaspcmjbal = data[7]
+            const jdao4Pend = data[8]
 
             const data2 = await readContracts({
                 contracts: [
@@ -414,7 +518,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             
             return [
                 jclpTotalSup, julpTotalSup, farmJdaoBal, farmJdaoTotalStake, jdaoPend, farmJdao202Bal, farmJdao202TotalStake, jdao202Pend, farmJdao3Bal, farmJdao3TotalStake, jdao3Pend,
-                sumFee, sumFee2, 
+                sumFee, sumFee2, farmJdao4Bal, jdao4Pend, jaspcmjbal, 
             ]
         }
 
@@ -458,6 +562,11 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
             setSwapfee24hour1(Number(result[11]).toFixed(0))
             setSwapfee24hour2(Number(result[12]).toFixed(0))
+
+            const _farmjdao4balance = ethers.utils.formatEther(result[13].result[0])
+            setFarmJdao4Balance(Number(_farmjdao4balance).toFixed(4))
+            setJdao4Pending(Number(ethers.utils.formatEther(result[14].result)).toFixed(4))
+            setJaspCmjBalance(ethers.utils.formatEther(result[15].result))
         })
     }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20ABI])
 
@@ -476,7 +585,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Daily Yield:</div>
-                        <div style={{textAlign: "right"}}><div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                        <div style={{textAlign: "right"}}><div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
@@ -534,7 +643,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Daily Yield:</div>
-                        <div style={{textAlign: "right"}}><div className='bold' style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/10) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                        <div style={{textAlign: "right"}}><div className='bold' style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/12) * (2000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
@@ -589,10 +698,10 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Daily Yield:</div>
-                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/10) * (400/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (300/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                        <div>Total Liquidity Locked:</div>
+                        <div>Total Value Locked:</div>
                         {jbcJuReserv !== 0 ? <div>~฿{Number((cmjJdao202Staked * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -604,7 +713,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                            <div style={{textAlign: "left", fontSize: "14px"}}>LP STAKED</div>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>STAKED</div>
                             {farmJdao202Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={maxWithdrawHandle202}>{Number(Math.floor(farmJdao202Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor(farmJdao202Balance * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -620,7 +729,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                            <div style={{textAlign: "left", fontSize: "14px"}}>LP BALANCE</div>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>BALANCE</div>
                             {typeof(cmjBalance) !== "object" ?
                                 <div style={{textAlign: "left", fontSize: "14px"}}>
                                     <span className="bold" style={{cursor: "pointer"}} onClick={maxAddHandle202}>{cmjBalance}</span>
@@ -655,44 +764,46 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Daily Yield:</div>
-                        <div style={{textAlign: "right"}}><div className='bold' style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>1% LP's Fee</div> + {Number(0).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                        <div style={{textAlign: "right"}}><div className='bold' style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>1% LP's Fee</div> + {Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                     </div>
                     
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
-                            <div className="bold">{'0.000'}</div>
+                            <div className="bold">{jdao4Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold">Harvest</div>
+                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(4)}>Harvest</div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <div style={{textAlign: "left", fontSize: "14px"}}>LP STAKED</div>
-                            {false && farmJdao3Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={maxWithdrawHandle3}>{Number(Math.floor(farmJdao3Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor(Number(yourjusdtJdao3Staked + Number(yourjbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                            {farmJdao4Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={() => setLpJdao4Withdraw(farmJdao4Balance)}>{Number(Math.floor(farmJdao4Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span></div> : <>0.000</>}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <input
                                 placeholder="0.0"
                                 className="bold"
                                 style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
-
+                                value={lpJdao4Withdraw}
+                                onChange={(event) => setLpJdao4Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold">Withdraw</div>
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(4)}>Withdraw</div>
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <div style={{textAlign: "left", fontSize: "14px"}}>LP BALANCE</div>
-                            {false && julpBalance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={maxAddHandle3}>{(Math.floor(Number(julpBalance) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{(Math.floor((Number(jusdtjuPooled) + Number(jbcjuPooled * (jusdtJuReserv/jbcJuReserv))) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                            {jaspCmjBalance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={() => setLpJdao4Stake(jaspCmjBalance)}>{(Math.floor(Number(jaspCmjBalance) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span></div> : <>0.000</>}
                         </div>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
                             <input
                                 placeholder="0.0"
                                 className="bold"
                                 style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
-
+                                value={lpJdao4Stake}
+                                onChange={(event) => setLpJdao4Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold">Stake</div>
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(4)}>Stake</div>
                         </div>
                     </div>
                 </div>
