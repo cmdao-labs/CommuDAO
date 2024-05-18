@@ -815,8 +815,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         <option value="CU">CU</option>
                                         <option value="SIL">SIL</option>
                                         <option value="GOLD">GOLD</option>
-                                        <option value="JASP">JASP</option>
                                         <option value="PLAT">PLAT</option>
+                                        <option value="JASP">JASP</option>
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "1px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
