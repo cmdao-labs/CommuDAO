@@ -921,7 +921,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         } else if (gasselected === "OS") {
                                             swapTokenHandleUni(6, true)
                                         } else if (gasselected === "PLAT") {
-                                            // swapTokenHandleUni(7, true)
+                                            swapTokenHandleUni(7, true)
                                         }
                                     }
                                 }>SELL</div> :
@@ -1019,7 +1019,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         } else if (gasselected === "OS") {
                                             swapTokenHandleUni(6, false)
                                         } else if (gasselected === "PLAT") {
-                                            // swapTokenHandleUni(7, false)
+                                            swapTokenHandleUni(7, false)
                                         }
                                     }
                                 }>BUY</div> :
