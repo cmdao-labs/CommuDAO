@@ -1122,7 +1122,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         } else if (gasselected === "OS") {
                                             removeLpUni(6)
                                         } else if (gasselected === "PLAT") {
-                                            // removeLpUni(7)
+                                            removeLpUni(7)
                                         }
                                     }
                                 }
@@ -1276,7 +1276,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                             } else if (gasselected === "OS") {
                                                 addLpHandleUni(6)
                                             } else if (gasselected === "PLAT") {
-                                                // addLpHandleUni(7)
+                                                addLpHandleUni(7)
                                             }
                                         }
                                     }
