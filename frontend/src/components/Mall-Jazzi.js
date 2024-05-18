@@ -7,6 +7,7 @@ const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const cuToken = '0x42f5213c7b6281fc6fb2d6f10576f70db0a4c841'
 const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
+const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
@@ -14,10 +15,11 @@ const jazziJDAO = '0x3C061eEce15C539CaE99FbE75B3044236Fa2eff0'
 const jazziCU = '0x1b70c95fD4EbF8920A624bd2ce22b6905eFBdF60'
 const jazziSIL = '0xf189c5B03694b70e5DFD8e8CAE84118Ed7616F19'
 const jazziGOLD = '0x7086EC7ED5D94ef503bE324B0aE8A3748A15fAE5'
+const jazziPLAT = '0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044'
 const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x329889325A555b217C41A4c2EADD529a0CfA4231'
 
-const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, cmjBalance }) => {
+const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("JDAO");
@@ -57,6 +59,13 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
     const [reserveGOLD, setReserveGOLD] = React.useState("")
     const [goldLpBalance, setGoldLpBalance] = React.useState("0")
 
+    const [cmjBoughtPLAT, setCmjBoughtPLAT] = React.useState("0.000")
+    const [tokenBoughtPLAT, setTokenBoughtPLAT] = React.useState("0.000")
+    const [pricePLAT, setPricePLAT] = React.useState("0.000")
+    const [reserveCmjPLAT, setReserveCmjPLAT] = React.useState("")
+    const [reservePLAT, setReservePLAT] = React.useState("")
+    const [platLpBalance, setPlatLpBalance] = React.useState("0")
+
     const [cmjBoughtJASP, setCmjBoughtJASP] = React.useState("0.000")
     const [tokenBoughtJASP, setTokenBoughtJASP] = React.useState("0.000")
     const [priceJASP, setPriceJASP] = React.useState("0.000")
@@ -85,6 +94,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             addr = jazziCU
         } else if (index === 6) {
             addr = jazziOS
+        } else if (index === 7) {
+            addr = jazziPLAT
         }
         setInputSwap(event.target.value)
         let _value = 0
@@ -127,6 +138,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             event.target.value !== "" ? setCmjBoughtCU(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtCU("0.000")
         } else if (index === 6) {
             event.target.value !== "" ? setCmjBoughtOS(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtOS("0.000")
+        } else if (index === 7) {
+            event.target.value !== "" ? setCmjBoughtPLAT(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPLAT("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -143,6 +156,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             addr = jazziCU
         } else if (index === 6) {
             addr = jazziOS
+        } else if (index === 7) {
+            addr = jazziPLAT
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -180,6 +195,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             event.target.value !== "" ? setTokenBoughtCU(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtCU("0.000")
         } else if (index === 6) {
             event.target.value !== "" ? setTokenBoughtOS(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtOS("0.000")
+        } else if (index === 7) {
+            event.target.value !== "" ? setTokenBoughtPLAT(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtPLAT("0.000")
         }
     }
 
@@ -219,6 +236,11 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             token = osToken
             currBoughtToken = cmjBoughtOS
             tokenBoughtCurr = tokenBoughtOS
+        } else if (index === 7) {
+            lp = jazziPLAT
+            token = platToken
+            currBoughtToken = cmjBoughtPLAT
+            tokenBoughtCurr = tokenBoughtPLAT
         }
         setisLoading(true)
         try {
@@ -319,6 +341,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             addr = jazziCU
         } else if (index === 6) {
             addr = jazziOS
+        } else if (index === 7) {
+            addr = jazziPLAT
         }
         setisLoading(true)
         try {
@@ -349,6 +373,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             addr = jazziCU
         } else if (index === 6) {
             addr = jazziOS
+        } else if (index === 7) {
+            addr = jazziPLAT
         }
         setTokenAdd(event.target.value)
         let _value = 0
@@ -386,6 +412,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             addr = jazziCU
         } else if (index === 6) {
             addr = jazziOS
+        } else if (index === 7) {
+            addr = jazziPLAT
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -430,6 +458,9 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         } else if (index === 6) {
             lp = jazziOS
             token = osToken
+        } else if (index === 7) {
+            lp = jazziPLAT
+            token = platToken
         }
         setisLoading(true)
         try {
@@ -555,6 +586,16 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
+                    {
+                        address: jazziPLAT,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: jazziPLAT,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -570,6 +611,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const _reserveGOLD = data[9].result
             const _reserveCmjSIL = data[10].result
             const _reserveSIL = data[11].result
+            const _reserveCmjPLAT = data[12].result
+            const _reservePLAT = data[13].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -609,6 +652,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                         functionName: 'getAmountOfTokens',
                         args: [String(10**18), String(_reserveSIL), String(_reserveCmjSIL)],
                     },
+                    {
+                        address: jazziPLAT,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getAmountOfTokens',
+                        args: [String(10**18), String(_reservePLAT), String(_reserveCmjPLAT)],
+                    },
                 ],
             })
 
@@ -618,6 +667,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const tokensBoughtosTOcmj = data2[3].result
             const tokensBoughtgoldTOcmj = data2[4].result
             const tokensBoughtsilTOcmj = data2[5].result
+            const tokensBoughtplatTOcmj = data2[6].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -657,8 +707,14 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: jazziPLAT,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
 
             const jdaolpBal = data3[0].result
             const culpBal = data3[1].result
@@ -666,6 +722,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const goldlpBal = data3[3].result
             const jasplpBal = data3[4].result
             const oslpBal = data3[5].result
+            const platlpBal = data3[6].result
 
             return [
                 tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, 
@@ -676,6 +733,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                 _reserveCmjGOLD, _reserveGOLD, tokensBoughtgoldTOcmj,
                 _reserveCmjSIL, _reserveSIL, tokensBoughtsilTOcmj,
                 sillpBal, goldlpBal, jasplpBal, oslpBal,
+                _reserveCmjPLAT, _reservePLAT, tokensBoughtplatTOcmj, platlpBal,
             ]
         }
 
@@ -727,6 +785,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             setJaspLpBalance(Math.floor(_jasplpbalance * 100000) / 100000)
             const _oslpbalance = ethers.utils.formatEther(result[23])
             setOsLpBalance(Math.floor(_oslpbalance * 100000) / 100000)
+
+            setReserveCmjPLAT(ethers.utils.formatEther(result[24]))
+            setReservePLAT(ethers.utils.formatEther(result[25]))
+            result[26] !== null && setPricePLAT(Number(ethers.utils.formatEther(result[26])).toFixed(3))
+            const _platlpbalance = ethers.utils.formatEther(result[27])
+            setPlatLpBalance(Math.floor(_platlpbalance * 100000) / 100000)
         })
 
     }, [address, erc20ABI, cmdaoAmmNpcABI])
@@ -747,11 +811,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
+                                        <option value="OS">OS</option>
                                         <option value="CU">CU</option>
                                         <option value="SIL">SIL</option>
                                         <option value="GOLD">GOLD</option>
                                         <option value="JASP">JASP</option>
-                                        <option value="OS">OS</option>
+                                        <option value="PLAT">PLAT</option>
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "1px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
@@ -761,6 +826,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         {gasselected === "GOLD" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="22" alt="$GOLD"/> &nbsp;=&nbsp; <div className="emp">{priceGOLD}</div></>}
                                         {gasselected === "JASP" && <>&nbsp;GWEI&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></>}
                                         {gasselected === "OS" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/> &nbsp;=&nbsp; <div className="emp">{priceOS}</div></>}
+                                        {gasselected === "PLAT" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/> &nbsp;=&nbsp; <div className="emp">{pricePLAT}</div></>}
                                         &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                     </div>
                                 </div>
@@ -789,6 +855,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleSwapUni(3, event)
                                     } else if (gasselected === "OS") {
                                         handleSwapUni(6, event)
+                                    } else if (gasselected === "PLAT") {
+                                        handleSwapUni(7, event)
                                     }
                                 }}
                                 value={inputSwap}
@@ -829,6 +897,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     <div style={{marginLeft: "5px"}}>{Number(osBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "PLAT" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: platBalance}}; handleSwapUni(7, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
@@ -846,6 +920,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                             swapTokenHandleUni(3, true)
                                         } else if (gasselected === "OS") {
                                             swapTokenHandleUni(6, true)
+                                        } else if (gasselected === "PLAT") {
+                                            // swapTokenHandleUni(7, true)
                                         }
                                     }
                                 }>SELL</div> :
@@ -859,6 +935,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     {gasselected === "GOLD" && Number(cmjBoughtGOLD).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "JASP" && Number(cmjBoughtJASP).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "OS" && Number(cmjBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "PLAT" && Number(cmjBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $CMJ (
                                     {gasselected === "JDAO" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</>}
@@ -867,6 +944,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     {gasselected === "GOLD" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjGOLD) - ((Number(reserveCmjGOLD) * Number(reserveGOLD)) / (Number(reserveGOLD) + Number(inputSwap))))) - (Number(reserveGOLD/reserveCmjGOLD))) / (Number(reserveGOLD/reserveCmjGOLD))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "JASP" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "OS" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjOS) - ((Number(reserveCmjOS) * Number(reserveOS)) / (Number(reserveOS) + Number(inputSwap))))) - (Number(reserveOS/reserveCmjOS))) / (Number(reserveOS/reserveCmjOS))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "PLAT" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjPLAT) - ((Number(reserveCmjPLAT) * Number(reservePLAT)) / (Number(reservePLAT) + Number(inputSwap))))) - (Number(reservePLAT/reserveCmjPLAT))) / (Number(reservePLAT/reserveCmjPLAT))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -893,6 +971,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleSwapUni_2(3, event)
                                     } else if (gasselected === "OS") {
                                         handleSwapUni_2(6, event)
+                                    } else if (gasselected === "PLAT") {
+                                        handleSwapUni_2(7, event)
                                     }
                                 }}
                                 value={inputSwap2}
@@ -913,6 +993,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleSwapUni_2(3, bal)
                                     } else if (gasselected === "OS") {
                                         handleSwapUni_2(6, bal)
+                                    } else if (gasselected === "PLAT") {
+                                        handleSwapUni_2(7, bal)
                                     }
                                 }}
                             >
@@ -936,6 +1018,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                             swapTokenHandleUni(3, false)
                                         } else if (gasselected === "OS") {
                                             swapTokenHandleUni(6, false)
+                                        } else if (gasselected === "PLAT") {
+                                            // swapTokenHandleUni(7, false)
                                         }
                                     }
                                 }>BUY</div> :
@@ -949,6 +1033,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     {gasselected === "GOLD" && Number(tokenBoughtGOLD).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "JASP" && Number(tokenBoughtJASP).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "OS" && Number(tokenBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "PLAT" && Number(tokenBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 ${gasselected} ( 
                                     {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</>}
@@ -957,6 +1042,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     {gasselected === "GOLD" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveGOLD) - ((Number(reserveGOLD) * Number(reserveCmjGOLD)) / (Number(reserveCmjGOLD) + Number(inputSwap2))))) - (Number(reserveCmjGOLD/reserveGOLD))) / (Number(reserveCmjGOLD/reserveGOLD))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "JASP" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "OS" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveOS) - ((Number(reserveOS) * Number(reserveCmjOS)) / (Number(reserveCmjOS) + Number(inputSwap2))))) - (Number(reserveCmjOS/reserveOS))) / (Number(reserveCmjOS/reserveOS))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "PLAT" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reservePLAT) - ((Number(reservePLAT) * Number(reserveCmjPLAT)) / (Number(reserveCmjPLAT) + Number(inputSwap2))))) - (Number(reserveCmjPLAT/reservePLAT))) / (Number(reserveCmjPLAT/reservePLAT))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap2) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -973,11 +1059,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                 <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="JDAO">JDAO</option>
+                                        <option value="OS">OS</option>
                                         <option value="CU">CU</option>
                                         <option value="SIL">SIL</option>
                                         <option value="GOLD">GOLD</option>
+                                        <option value="PLAT">PLAT</option>
                                         <option value="JASP">JASP</option>
-                                        <option value="OS">OS</option>
                                     </select>
                                     <div
                                         style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}}
@@ -996,6 +1083,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                                     setLpSell(String(jaspLpBalance))
                                                 } else if (gasselected === "OS") {
                                                     setLpSell(String(osLpBalance))
+                                                } else if (gasselected === "PLAT") {
+                                                    setLpSell(String(platLpBalance))
                                                 }
                                             }
                                         }
@@ -1006,6 +1095,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         {gasselected === "GOLD" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(goldLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "JASP" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jaspLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "OS" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(osLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "PLAT" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(platLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -1031,6 +1121,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                             removeLpUni(3)
                                         } else if (gasselected === "OS") {
                                             removeLpUni(6)
+                                        } else if (gasselected === "PLAT") {
+                                            // removeLpUni(7)
                                         }
                                     }
                                 }
@@ -1060,6 +1152,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleAddUni(3, event)
                                     } else if (gasselected === "OS") {
                                         handleAddUni(6, event)
+                                    } else if (gasselected === "PLAT") {
+                                        handleAddUni(7, event)
                                     }
                                 }}
                                 value={tokenAdd}
@@ -1100,6 +1194,12 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                     <div style={{marginLeft: "5px"}}>{Number(osBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "PLAT" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(platBalance)}}; handleAddUni(7, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -1123,6 +1223,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                         handleAddUni_2(3, event)
                                     } else if (gasselected === "OS") {
                                         handleAddUni_2(6, event)
+                                    } else if (gasselected === "PLAT") {
+                                        handleAddUni_2(7, event)
                                     }
                                 }}
                                 value={currAdd}
@@ -1144,6 +1246,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                             handleAddUni_2(3, bal)
                                         } else if (gasselected === "OS") {
                                             handleAddUni_2(6, bal)
+                                        } else if (gasselected === "PLAT") {
+                                            handleAddUni_2(7, bal)
                                         }
                                     }
                                 }
@@ -1171,6 +1275,8 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                                                 addLpHandleUni(3)
                                             } else if (gasselected === "OS") {
                                                 addLpHandleUni(6)
+                                            } else if (gasselected === "PLAT") {
+                                                // addLpHandleUni(7)
                                             }
                                         }
                                     }
