@@ -122,7 +122,10 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let nfts = []
 
-            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response1 = null
+            try {
+                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_1_Name = nft1.name
@@ -139,7 +142,10 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response2 = null
+            try {
+                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2 = nft2.image !== null ? nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_2_Name = nft2.name
@@ -156,7 +162,10 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
             
-            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response3 = null
+            try {
+                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_3_Name = nft3.name
@@ -218,8 +227,11 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    nft = await response.json()
+                } catch {}
 
                 nfts.push({
                     Col: 1,

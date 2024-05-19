@@ -478,9 +478,13 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             for (let i = 0; i <= mkpwallet.length - 1; i++) {
                 const nftipfs = mkp_data3[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
-                const nft = await response.json()
-
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    nft = await response.json()
+                } catch {}
+                const image = nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")
+                
                 let count = null
                 let currencyindex = null
                 let price = null
@@ -502,7 +506,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 1,
                     Id: Number(mkpwallet[i].Id),
                     Name: nft.name + " #" + mkpwallet[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: image,
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(mkpwallet[i].Id.slice(-5)),
@@ -514,7 +518,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 })
 
                 if (addrseller.toUpperCase() === address.toUpperCase() && address !== null && address !== undefined) {
-                    yournftsell1.push({Id: mkpwallet[i].Id, URI: nft, Count: count})
+                    yournftsell1.push({Id: mkpwallet[i].Id, URI: nft, Count: count, Image: image})
                 }
             }
 
@@ -525,7 +529,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                     Col: 1,
                     Id: yournftsell1[i].Id,
                     Name: nft.name + " #" + yournftsell1[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: yournftsell1[i].Image,
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(String(yournftsell1[i].Id).slice(-5)),
@@ -884,8 +888,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             for (let i = 0; i <= mkp5wallet.length - 1; i++) {
                 const nftipfs = mkp_data9[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    nft = await response.json()
+                } catch {}
 
                 let count = null
                 let currencyindex = null
@@ -1004,8 +1011,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             for (let i = 0; i <= mkp6wallet.length - 1; i++) {
                 const nftipfs = mkp_data11[i].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    nft = await response.json()
+                } catch {}
 
                 let count = null
                 let currencyindex = null
