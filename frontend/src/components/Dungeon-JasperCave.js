@@ -199,7 +199,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let nfts = []
 
-            const response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response1 = null
+            try {
+                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_1_Name = nft1.name
@@ -216,7 +219,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response2 = null
+            try {
+                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_2_Name = nft2.name
@@ -233,7 +239,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
             
-            const response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response3 = null
+            try {
+                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_3_Name = nft3.name
@@ -250,7 +259,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response4 = null
+            try {
+                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
             const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_4_Name = nft4.name
@@ -266,8 +278,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     isStaked: true
                 })
             }
-
-            const response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            
+            let response5 = null
+            try {
+                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
             const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_5_Name = nft5.name
@@ -284,7 +299,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response6 = null
+            try {
+                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
             const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_6_Name = nft6.name
@@ -301,7 +319,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            const response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response7 = null
+            try {
+                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
             const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_7_Name = nft7.name
