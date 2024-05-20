@@ -11,6 +11,7 @@ const bkcBridge = '0x519fF534E58A226c11566b0546f900766664B705'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
     let { address } = useAccount()
@@ -256,7 +257,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                         <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                     <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                 </> :
                                 <>
@@ -296,7 +297,7 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                         <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                     <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                 </> :
                                 <>

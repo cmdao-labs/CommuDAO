@@ -9,6 +9,7 @@ const fraserField = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const salmToken = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const cmmToken = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, salmFieldABI }) => {
     const { address } = useAccount()
@@ -281,19 +282,19 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafybeidi7nmlmmlr2zjf3mlqkmnaylvcpucdvx5q22dtimutsdt442jnm4')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('" + providerIPFS + "bafybeidi7nmlmmlr2zjf3mlqkmnaylvcpucdvx5q22dtimutsdt442jnm4')", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>Fraser River</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw NFT to earn $SALM & $CMM.</div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
                     <img
-                        src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla"
+                        src={providerIPFS + "bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla"}
                         width="150"
                         alt="$CMM"
                     />
                     <img
-                        src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
+                        src={providerIPFS + "bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"}
                         width="150"
                         style={{marginLeft: "-50px"}}
                         alt="$SALM"
@@ -311,35 +312,35 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px"}} className="emp">
                             {nft.length > 0 && nft[0] !== null ? allDaily1.toFixed(2) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="24" alt="$SALM"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"} width="24" alt="$SALM"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward1.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="24" alt="$SALM"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"} width="24" alt="$SALM"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>SALMON BALANCE</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(salmBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="24" alt="$SALM"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"} width="24" alt="$SALM"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward2.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="24" alt="$CMM"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla"} width="24" alt="$CMM"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>CMM BALANCE</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(cmmBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="24" alt="$CMM"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla"} width="24" alt="$CMM"/>
                         </div>
                     </div>
                 </div>
@@ -372,11 +373,11 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                                     <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                         Pending Rewards<br></br>
                                         <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" style={{marginRight: "5px"}} alt="$SALM"/>
+                                            <img src={providerIPFS + "bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"} width="12" style={{marginRight: "5px"}} alt="$SALM"/>
                                             {ethers.utils.formatEther(item.Reward)}
                                         </div>
                                         <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="12" style={{marginRight: "5px"}} alt="CMM"/>
+                                            <img src={providerIPFS + "bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla"} width="12" style={{marginRight: "5px"}} alt="CMM"/>
                                             {ethers.utils.formatEther(item.Reward2)}
                                         </div>
                                     </div>
@@ -395,7 +396,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                         <div className="nftCard" style={{justifyContent: "center"}}>
                             {address !== undefined ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                     <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                 </> :
                                 <>

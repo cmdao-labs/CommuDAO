@@ -6,6 +6,7 @@ const { ethereum } = window
 
 const bbqToken = '0x87dfDc26ff6e8986e2F773FAE3Bfa51C8f152cF0'
 const bbqLab = '0x2D2901B3c1A9770008AA38A095f71FB4e136c0f3'
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI }) => {
     const { address } = useAccount()
@@ -190,7 +191,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                            src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"}
                             width="20"
                             alt="$WOOD"
                         />
@@ -202,7 +203,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                            src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"}
                             width="20"
                             alt="$BBQ"
                             style={{cursor: "crosshair"}}
@@ -215,7 +216,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                                             address: bbqToken,
                                             symbol: 'BBQ',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                            image: providerIPFS + 'bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
                                         },
                                     },
                                 })
@@ -236,13 +237,13 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>0</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                 
                                 <div style={{margin: "0 5px"}}>$CMD 0.01</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>
                                     {isCraftBBQ !== null ?
                                         <>
@@ -274,7 +275,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                                <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="18" alt="$WOOD"/>
                                                 <div style={{margin: "0 5px"}}>
                                                     {isCraftBBQ !== null ?
                                                         <>

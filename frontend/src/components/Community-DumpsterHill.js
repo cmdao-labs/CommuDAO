@@ -14,6 +14,7 @@ const dumpster1 = '0x5ba216159169759a09151Cb017bb5a58a3b44e4c'
 const dumpster2 = '0xB6b281D2AB93D31757FF13D42147dF1B55c3dDb5'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, dumpster1ABI, dumpster2ABI }) => {
     const { address } = useAccount()
@@ -225,7 +226,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             <div style={{width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll bold">
                     <div style={{backgroundColor: "rgb(39, 56, 82)", color: "#fff", minWidth: "300px", height: "75px", margin: 0, border: "none", boxShadow: "3px 3px 0 #0d0a1f"}} className="items">
-                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" width="22" alt="$stOPT"/>
+                        <img src={providerIPFS + "bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"} width="22" alt="$stOPT"/>
                         <div style={{marginLeft: "10px"}}>{Number(stOPTBalance).toFixed(5)}</div>
                     </div>
                 </div>
@@ -233,7 +234,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 <div style={{display: "flex", flexDirection: "row"}}>
                     <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "40px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                         <div>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="100" alt="$WOOD"/>
+                            <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="100" alt="$WOOD"/>
                         </div>
                         <div style={{fontSize: "28px", marginTop: "40px"}} className="pixel">{Number(woodBalance).toFixed(0)}</div>
                         <input
@@ -255,7 +256,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
                     <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "40px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                         <div>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="100" alt="$MICE"/>
+                            <img src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} height="100" alt="$MICE"/>
                         </div>
                         <div style={{fontSize: "28px", marginTop: "40px"}} className="pixel">{Number(miceBalance).toFixed(0)}</div>
                         <input
@@ -300,7 +301,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         <>
                         {address !== undefined ?
                             <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "20px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                                <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                 <div style={{marginTop: "80px"}} className="bold">No Recyclable NFTs</div>
                             </div> :
                            <div style={{backgroundColor: "rgb(39, 56, 82)", border: "none", color: "#fff", justifyContent: "space-around", padding: "30px 0", marginRight: "20px", width: "300px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">

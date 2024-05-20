@@ -8,6 +8,8 @@ const { ethereum } = window
 const jdao = "0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88"
 const cmos = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
+
 const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
   const { open } = useWeb3Modal()
   const { address, isConnected } = useAccount()
@@ -111,7 +113,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(255, 255, 255, 0.4)", border: "0 solid #e2e8f0", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
               <div style={{display: "flex", flexDirection: "row"}}>
                 <img
-                  src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq"
+                  src={providerIPFS + "bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq"}
                   height="18"
                   alt="$JDAO"
                   style={{cursor: "crosshair"}}
@@ -124,7 +126,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
                           address: jdao,
                           symbol: 'JDAO',
                           decimals: 18,
-                          image: 'https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq',
+                          image: providerIPFS + 'bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq',
                         },
                       },
                     })
@@ -138,7 +140,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             <div id="jdaoBal" style={{width: "fit-content", height: "18px", border: "1px solid #5f6476", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
               <div style={{display: "flex", flexDirection: "row"}}>
                 <img
-                  src="https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
+                  src={providerIPFS + "bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"}
                   height="18"
                   alt="$CMOS"
                   style={{cursor: "crosshair"}}
@@ -151,7 +153,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
                                 address: cmos,
                                 symbol: 'CMOS',
                                 decimals: 18,
-                                image: 'https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                                image: providerIPFS + 'bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
                               },
                           },
                       })

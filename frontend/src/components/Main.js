@@ -137,6 +137,8 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 const projectId = 'a7f5e2dc839576cee8ebf11b79d2b4ee'
 
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
+
 const { chains, publicClient } = configureChains(
   [jbc, bkc, optimism, bsc, bbqchain],
   [walletConnectProvider({ projectId }), publicProvider()]
@@ -174,11 +176,11 @@ createWeb3Modal({
         '--w3m-z-index': 1000, 
     },
     chainImages: {
-        56: 'https://cloudflare-ipfs.com/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte',
-        96: 'https://cloudflare-ipfs.com/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a',
-        8899: 'https://cloudflare-ipfs.com/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu',
-        190: 'https://cloudflare-ipfs.com/ipfs/bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce',
-        10: 'https://cloudflare-ipfs.com/ipfs/bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly',
+        56: providerIPFS + 'bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte',
+        96: providerIPFS + 'bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a',
+        8899: providerIPFS + 'bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu',
+        190: providerIPFS + 'bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce',
+        10: providerIPFS + 'bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly',
     }
 })
 

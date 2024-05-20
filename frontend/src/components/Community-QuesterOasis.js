@@ -22,6 +22,7 @@ const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI }) => {
     const { address } = useAccount()
@@ -716,14 +717,14 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Let's Cook BBQ!</div>
                         <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
                             <div style={{height: "320px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
+                                <img src={providerIPFS + "bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim"} height="300" alt="GM_Quest"/>
                             </div>
                             <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 {/*<div>
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
                                         <div style={{marginRight: "10px", color: "#fff"}}>5</div>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
+                                        <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
                                     </div>
                                 </div>*/}
                                 <div>
@@ -747,7 +748,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
                         <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
                             <div style={{height: "320px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
+                                <img src={providerIPFS + "bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i"} height="300" alt="Ender_Quest"/>
                             </div>
                             <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
@@ -767,14 +768,14 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
                         <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
                             <div style={{height: "320px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
+                                <img src={providerIPFS + "bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu"} height="300" alt="PVP_Quest"/>
                             </div>
                             <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                         <div style={{marginRight: "10px", color: "#fff"}}>1,500</div>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>
+                                        <img src={providerIPFS + "bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"} height="30px" alt="$SIL"/>
                                     </div>
                                 </div>
                                 <div>
@@ -801,14 +802,14 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Guardian Of The Multiverse</div>
                         <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
                             <div style={{height: "320px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i" height="300" alt="PVP_Quest2"/>
+                                <img src={providerIPFS + "bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i"} height="300" alt="PVP_Quest2"/>
                             </div>
                             <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                         <div style={{marginRight: "10px", color: "#fff"}}>1,000</div>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="30px" alt="$PLAT"/>
+                                        <img src={providerIPFS + "bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"} height="30px" alt="$PLAT"/>
                                     </div>
                                 </div>
                                 <div>
@@ -834,7 +835,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">How To Win Frens!</div>
                         <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
                             <div style={{height: "320px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa" height="300" alt="PVP_Quest"/>
+                                <img src={providerIPFS + "bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa"} height="300" alt="PVP_Quest"/>
                             </div>
                             <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
                                 <div>

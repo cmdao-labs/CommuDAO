@@ -19,6 +19,7 @@ const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
 const vabagToken = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanterABI, erc721ABI, erc20ABI, questAmbassABI, cmdaoNameABI, dunAngbABI }) => {
     const { address } = useAccount()
@@ -115,14 +116,14 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'tokenURI',
                     args: [yournft[i].Id],
                 })
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", providerIPFS))
                 const nft = await response.json()
 
                 nfts.push({
                     Col: 1,
                     Id: Number(yournft[i].Id),
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", providerIPFS),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: null,
@@ -164,7 +165,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     functionName: 'tokenURI',
                     args: [yournft2[i].Id],
                 })
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", providerIPFS))
                 const nft = await response.json()
 
 
@@ -172,7 +173,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     Col: 2,
                     Id: Number(yournft2[i].Id),
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", providerIPFS),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: null,
@@ -511,7 +512,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeifrqslsoes7swzc3bnjl72x6sgsewcnx2w3zjsm5pzma7ku2onr6a" height="200" alt="AP-INN" />
+                    <img src={providerIPFS + "bafybeifrqslsoes7swzc3bnjl72x6sgsewcnx2w3zjsm5pzma7ku2onr6a"} height="200" alt="AP-INN" />
                 </div>
             </div>
 
@@ -520,15 +521,15 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                     <div style={{width: "250px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Tokens</div>
                     <div className="pixel">
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                            <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} width="22" alt="$CMJ"/>
                             <div style={{marginLeft: "10px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="22" alt="$ANGB"/>
+                            <img src={providerIPFS + "bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"} width="22" alt="$ANGB"/>
                             <div style={{marginLeft: "10px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" width="22" alt="$STAR"/>
+                            <img src={providerIPFS + "bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"} width="22" alt="$STAR"/>
                             <div style={{marginLeft: "10px"}}>{Number(starBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                         </div>
                     </div>
@@ -694,7 +695,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "101" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeifsfdjwelvtzg6nurhgterfyfw6fyvoessptriej4yip4vq3xt6ze' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeifsfdjwelvtzg6nurhgterfyfw6fyvoessptriej4yip4vq3xt6ze'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}1</div>
                                                             </div>
@@ -702,7 +703,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "102" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeig6nfhwxb6apgwjpina3w3ltlfss2vgmn7e6loguf3db7z6yp6ofe' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeig6nfhwxb6apgwjpina3w3ltlfss2vgmn7e6loguf3db7z6yp6ofe'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
@@ -710,7 +711,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "103" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeidvfdvw6mc2pln5wo7hstyl2pa6mwkvpdqi2onuam3uht6fnt23ui' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeidvfdvw6mc2pln5wo7hstyl2pa6mwkvpdqi2onuam3uht6fnt23ui'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
@@ -718,7 +719,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "104" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeiesy2tb3rk2xfnhe6sxpeoerwqfpelrjmeypisgr23ci7ifokjm5q' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeiesy2tb3rk2xfnhe6sxpeoerwqfpelrjmeypisgr23ci7ifokjm5q'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
@@ -726,7 +727,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "105" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeifqigkbjup3auor6puownvf2myhsxgogvp2rypacgpwi75juvqsae' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeifqigkbjup3auor6puownvf2myhsxgogvp2rypacgpwi75juvqsae'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -4)}C +0</div>
                                                             </div>
@@ -734,7 +735,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "201" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeigso6gthqx37ok66bhtn4iwva5a3dvfummbdgfj5kjfosusqohfpu' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeigso6gthqx37ok66bhtn4iwva5a3dvfummbdgfj5kjfosusqohfpu'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}1</div>
                                                             </div>
@@ -742,7 +743,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "202" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeidfn7btigokkuont2mjbwk377hp3ipgdffkqwp7etwhghvb7opspq' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeidfn7btigokkuont2mjbwk377hp3ipgdffkqwp7etwhghvb7opspq'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
@@ -750,7 +751,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "203" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeid37zvuwqumg45v4saisweceuxo7ukw4pa7rineghonfcndaa3yju' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeid37zvuwqumg45v4saisweceuxo7ukw4pa7rineghonfcndaa3yju'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
@@ -758,7 +759,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "204" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeig3ilnnbbu5leurojtvtj44md6vt7paubqcgzddggmvnrj2qs7pzy' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeig3ilnnbbu5leurojtvtj44md6vt7paubqcgzddggmvnrj2qs7pzy'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
@@ -766,7 +767,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "205" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeia22spf73265h7zwq3rlydayzhmksbmhpjn2ppncnpbuswigadj2e' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeia22spf73265h7zwq3rlydayzhmksbmhpjn2ppncnpbuswigadj2e'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -4)}B +0</div>
                                                             </div>
@@ -774,7 +775,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "301" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeihs2ydvod22xncp3264pvybcxi6njid7ncqbrz2e4qkl6mresb6yq' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeihs2ydvod22xncp3264pvybcxi6njid7ncqbrz2e4qkl6mresb6yq'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}1</div>
                                                             </div>
@@ -782,7 +783,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "302" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeifc7ffb7n2ytc7lfohcy3k6qgkfsz5t5jwbwpd552pkztamm7uuli' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeifc7ffb7n2ytc7lfohcy3k6qgkfsz5t5jwbwpd552pkztamm7uuli'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
@@ -790,7 +791,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "303" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeid2jukb33diwjv4p6ia4sg6zkdrd6rhbcy6nemlvnqhel3zesoqni' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeid2jukb33diwjv4p6ia4sg6zkdrd6rhbcy6nemlvnqhel3zesoqni'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
@@ -798,7 +799,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "304" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeigvvbgvxsluftnkedcw2vwfaw5rarbhyonrwsvqh2rr3du7ndxzwa' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeigvvbgvxsluftnkedcw2vwfaw5rarbhyonrwsvqh2rr3du7ndxzwa'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
@@ -806,7 +807,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         {String(item.Id).slice(0, 3) === "305" &&
                                                             <div>
                                                                 <video muted loop width="120" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                                                    <source src='https://cloudflare-ipfs.com/ipfs/bafybeigvqwas5ph2qwfmlo5riqvnul7stnw5fbg2igqto55fgkqijciezi' type="video/mp4" />
+                                                                    <source src={providerIPFS + 'bafybeigvqwas5ph2qwfmlo5riqvnul7stnw5fbg2igqto55fgkqijciezi'} type="video/mp4" />
                                                                 </video>
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -4)}A +0</div>
                                                             </div>
@@ -1001,7 +1002,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                                            <img src={providerIPFS + "bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"} height="18" alt="$STAR"/>
                                                             <div style={{margin: "0 5px"}}>1</div>
                                                         </div>
                                                     </div>
@@ -1079,25 +1080,25 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         }
                                                         {Number(item.Id) % 100000 === 300 &&
                                                             <div>
-                                                                <img src='https://cloudflare-ipfs.com/ipfs/bafybeia5odwzbuvz2obwvrau5jasz4vdalveei4vjypohy6hghy3i5py6i' width="120" alt="Can not load metadata." />
+                                                                <img src={providerIPFS + 'bafybeia5odwzbuvz2obwvrau5jasz4vdalveei4vjypohy6hghy3i5py6i'} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 500 &&
                                                             <div>
-                                                                <img src='https://cloudflare-ipfs.com/ipfs/bafybeiaoaneuefkfhvx4rhn4dclohrwettfn2amuedykhuc5o2t4dtpohu' width="120" alt="Can not load metadata." />
+                                                                <img src={providerIPFS + 'bafybeiaoaneuefkfhvx4rhn4dclohrwettfn2amuedykhuc5o2t4dtpohu'} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 700 &&
                                                             <div>
-                                                                <img src='https://cloudflare-ipfs.com/ipfs/bafybeiej4wn5irshklfurszij65hwzquap7xh2lzvx46fxkkjhcryz6zua' width="120" alt="Can not load metadata." />
+                                                                <img src={providerIPFS + 'bafybeiej4wn5irshklfurszij65hwzquap7xh2lzvx46fxkkjhcryz6zua'} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}7</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 900 &&
                                                             <div>
-                                                                <img src='https://cloudflare-ipfs.com/ipfs/bafybeift6v2ao2t4uyj6lghhnjh4xb7glphvmloyqdkeie2nu3hisf2pf4' width="120" alt="Can not load metadata." />
+                                                                <img src={providerIPFS + 'bafybeift6v2ao2t4uyj6lghhnjh4xb7glphvmloyqdkeie2nu3hisf2pf4'} width="120" alt="Can not load metadata." />
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
@@ -1119,10 +1120,10 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                                            <img src={providerIPFS + "bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"} height="18" alt="$ANGB"/>
                                                             <div style={{margin: "0 5px"}}>{(Number(item.Id) % 100000) / 1000}</div>
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                            <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                                             <div style={{margin: "0 5px"}}>1</div>
                                                         </div>
                                                     </div>
@@ -1185,100 +1186,100 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                         <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                                         {Number(item.Id) % 100000 === 250 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidxnerdssvoads33qf5klz2gxx6c5f3pjkwleyyasxkr4d2fhddo4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiavljudr364wnbra3glwvxx63emaawoti7o7uvdkfq6byre33k3by' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeifo6h2grxkhkhezqjpqj72dmwjwjumpglb75epnhkg5kmukkaegxa' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidkwd67x7cuggzykl2s7az7adadu657hjq3rthvkb7wtjqyno4sxq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibwn7pyxxduc54giiujmc2lm2kv7twwcbxkmyrtm24d74wz4auryu' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeigzllo7efbaroebrlp6uyi7j6xobyolgreimecdz2zumk5ft5scjy' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafybeidxnerdssvoads33qf5klz2gxx6c5f3pjkwleyyasxkr4d2fhddo4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeiavljudr364wnbra3glwvxx63emaawoti7o7uvdkfq6byre33k3by'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeifo6h2grxkhkhezqjpqj72dmwjwjumpglb75epnhkg5kmukkaegxa'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeidkwd67x7cuggzykl2s7az7adadu657hjq3rthvkb7wtjqyno4sxq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeibwn7pyxxduc54giiujmc2lm2kv7twwcbxkmyrtm24d74wz4auryu'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeigzllo7efbaroebrlp6uyi7j6xobyolgreimecdz2zumk5ft5scjy'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name} +1</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 300 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreib5o6ewz4uyjs4tnnwrwmc65phsro6iqkjo5zfny56huw76ew4jwu' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeid57rinqklnxolfiro5yq2izqgr43k7tpo5trmewstp6h7aurp3ma' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidex5aijsbmwidybwzjpbbnyxwmdpebehgmp2r5wlw3brg3c7zoeq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeihal22c662yiosvtnrh7fsoqpie3jusfsqmpeo4jhwthineclx7q4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeieh2jb2d527n4uummwxe7t36vjfhspv2opoxoqfrmxvzhziiukbs4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeihnkzlzlddkvsdgbcq2umejivaznqmdohng3vccvauwyc2bu7vt4q' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafkreib5o6ewz4uyjs4tnnwrwmc65phsro6iqkjo5zfny56huw76ew4jwu'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeid57rinqklnxolfiro5yq2izqgr43k7tpo5trmewstp6h7aurp3ma'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeidex5aijsbmwidybwzjpbbnyxwmdpebehgmp2r5wlw3brg3c7zoeq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeihal22c662yiosvtnrh7fsoqpie3jusfsqmpeo4jhwthineclx7q4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeieh2jb2d527n4uummwxe7t36vjfhspv2opoxoqfrmxvzhziiukbs4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeihnkzlzlddkvsdgbcq2umejivaznqmdohng3vccvauwyc2bu7vt4q'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 400 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreicfuyvprncafvvus4e7mpuqcmkqujznohke222tz5vzdqsnlqdvdu' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreifd45rhblhwe5qvkvpctaamqjdviijt4olae3266gosuw4mqgx7su' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidwsyrf52coy3xxqlpw5thnqaaztsx7cdrwr2lwogzkp4gd4cbuwi' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreia4n6c2srsjbqv555tewpo5hjt575fw2l4cjfwk64sqcwcvpdrebe' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreieo765chiflk5msgydn5wxcmtqlf2sjfw5cuwpegnzzllyqhzcyci' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreiftgfwgvdmbluidz5umixhvx5epxqpprtx3tq2dr2qh3gouoscgku' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafkreicfuyvprncafvvus4e7mpuqcmkqujznohke222tz5vzdqsnlqdvdu'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafkreifd45rhblhwe5qvkvpctaamqjdviijt4olae3266gosuw4mqgx7su'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeidwsyrf52coy3xxqlpw5thnqaaztsx7cdrwr2lwogzkp4gd4cbuwi'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafkreia4n6c2srsjbqv555tewpo5hjt575fw2l4cjfwk64sqcwcvpdrebe'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafkreieo765chiflk5msgydn5wxcmtqlf2sjfw5cuwpegnzzllyqhzcyci'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafkreiftgfwgvdmbluidz5umixhvx5epxqpprtx3tq2dr2qh3gouoscgku'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 500 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreictz33nfdbozdf67456m6ulo2mrcmsldpree744tyj7gsary42mge' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreihezeecmvuj6cgse2rnc2tbzqrzeadxliuc3zzy2wxpfog5yv3cau' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeicjghxuvreknriwduid7zw6zfsxj6px7te6m3ybpxhjglktldh5q4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreiedkyysocf56q2ykmmkismzvmlsp73b3e4wnxn2usmpislxvbfdue' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreigutlmirjgjy6nwgluv3sk4y6noqmxkqbmf5qk4zoh4tayz42rqzq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafkreiepekxjkzsd3xg425mcgnktf4m3y2d7xcqenzhkh7quawxhjnycxi' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafkreictz33nfdbozdf67456m6ulo2mrcmsldpree744tyj7gsary42mge'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafkreihezeecmvuj6cgse2rnc2tbzqrzeadxliuc3zzy2wxpfog5yv3cau'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeicjghxuvreknriwduid7zw6zfsxj6px7te6m3ybpxhjglktldh5q4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafkreiedkyysocf56q2ykmmkismzvmlsp73b3e4wnxn2usmpislxvbfdue'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafkreigutlmirjgjy6nwgluv3sk4y6noqmxkqbmf5qk4zoh4tayz42rqzq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafkreiepekxjkzsd3xg425mcgnktf4m3y2d7xcqenzhkh7quawxhjnycxi'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 600 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeia52i47ftizdlnx77ekw7a3ncs2ahxiegxrlmci37a75vqcyyru6a' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibbakqgfnshw3jyyvbmymkuf5pylzrzseksfoo2rdhry6p7rrcbaq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiglsjsqn6bibwx6s2ehtawhqwroxsmasguayvdl7tlujmvkvgks2q' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiho3m6yi3t45ljtufnlmq6xnkeeb4oz5lwjt5okwt5xkgwegb36v4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidmncmt75ansjbsrkvk3ujhquemej5nlime3cn2rmpsdwb7zrzi3e' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibg7nlydlf6wv5ar7fzxuevqxwnzt3m7hzh3bta3z5khfz34wna3e' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafybeia52i47ftizdlnx77ekw7a3ncs2ahxiegxrlmci37a75vqcyyru6a'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeibbakqgfnshw3jyyvbmymkuf5pylzrzseksfoo2rdhry6p7rrcbaq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeiglsjsqn6bibwx6s2ehtawhqwroxsmasguayvdl7tlujmvkvgks2q'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeiho3m6yi3t45ljtufnlmq6xnkeeb4oz5lwjt5okwt5xkgwegb36v4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeidmncmt75ansjbsrkvk3ujhquemej5nlime3cn2rmpsdwb7zrzi3e'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeibg7nlydlf6wv5ar7fzxuevqxwnzt3m7hzh3bta3z5khfz34wna3e'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}5</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 700 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibvhepypdky2enzjzlbqozpmwiq7wvuda2hah5g2umhefxudmn5iu' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiercameocvi6xiw5yuwvbhagk2ut7xa4pr3delbqg2fpfhsnwxwgu' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidgpxrzly3nqltvc4j6u4erni444th65szq2wsjrv66mas5qmcm34' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeigk3yjgpmtlbwrj7wwd6wnaamzym6lzmbogorb7wpgfkhxvr3auw4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeic25z3kgp4qkqnkuyohof5vwj5hmdace5d2acqfk5tcw3qt2wtfiq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeigsluheodrvsyvrdwqpuyhabyicazpr5cb3zjrv3k4twj6awxnl2y' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafybeibvhepypdky2enzjzlbqozpmwiq7wvuda2hah5g2umhefxudmn5iu'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeiercameocvi6xiw5yuwvbhagk2ut7xa4pr3delbqg2fpfhsnwxwgu'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeidgpxrzly3nqltvc4j6u4erni444th65szq2wsjrv66mas5qmcm34'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeigk3yjgpmtlbwrj7wwd6wnaamzym6lzmbogorb7wpgfkhxvr3auw4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeic25z3kgp4qkqnkuyohof5vwj5hmdace5d2acqfk5tcw3qt2wtfiq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeigsluheodrvsyvrdwqpuyhabyicazpr5cb3zjrv3k4twj6awxnl2y'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 800 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeif7siidbof5pzqmnpd337sksfaqhxd3f5iazcvne2nxv6rsoh2zum' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeihzcpnug3w4jpqmoznarvxbpdjdpnzibj7a2bzvh2af3js3lk4ani' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeifjnuyqckv6aalnd6mocxx6537gfrfixx2cswdq5oyqnyflm6qyuu' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibo5f5ceohspkwbgflpwcas5qfemgqtknpf4msuktkyaq7cxgvtji' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeifvnvbsb5ou7b2tijqag2hxbfyrum6kdywe4hq7eea3cx34vr5j34' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeigtt4qt7q2v4fyp6slkrl547aucsitljj6rpwcub5bhv237tp6zhu' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafybeif7siidbof5pzqmnpd337sksfaqhxd3f5iazcvne2nxv6rsoh2zum'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeihzcpnug3w4jpqmoznarvxbpdjdpnzibj7a2bzvh2af3js3lk4ani'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeifjnuyqckv6aalnd6mocxx6537gfrfixx2cswdq5oyqnyflm6qyuu'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeibo5f5ceohspkwbgflpwcas5qfemgqtknpf4msuktkyaq7cxgvtji'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeifvnvbsb5ou7b2tijqag2hxbfyrum6kdywe4hq7eea3cx34vr5j34'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeigtt4qt7q2v4fyp6slkrl547aucsitljj6rpwcub5bhv237tp6zhu'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}7</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 900 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiaxzem2d65p43oy2l53jkmcycwmdrqerglw2qvu2otmzmkve2uw3a' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiacng6l2biwvphdlz3dqh6rknnjppanxdx2srvbrgfv67do3mi7wq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeihmyw5fcjxcwv3afaefsv4twlkgmovozluiqiq3xvdr2tod6cztbi' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeicxcwrqutvfyjegcextgfq67txs7sg7dx33ck3huffeuq4x5ktmou' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeigevydzpebgfubwxoitzii5kfn64zma7npqd55j3cwnjp6w3hbm64' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibwk3ijxpynuu2lar6vea2xf2ixh6nj2knbf5v62xqelak4k4hbxu' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafybeiaxzem2d65p43oy2l53jkmcycwmdrqerglw2qvu2otmzmkve2uw3a'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeiacng6l2biwvphdlz3dqh6rknnjppanxdx2srvbrgfv67do3mi7wq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeihmyw5fcjxcwv3afaefsv4twlkgmovozluiqiq3xvdr2tod6cztbi'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeicxcwrqutvfyjegcextgfq67txs7sg7dx33ck3huffeuq4x5ktmou'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeigevydzpebgfubwxoitzii5kfn64zma7npqd55j3cwnjp6w3hbm64'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeibwk3ijxpynuu2lar6vea2xf2ixh6nj2knbf5v62xqelak4k4hbxu'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                             </div>
                                                         }
                                                         {Number(item.Id) % 100000 === 1000 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeicqf3zmvxmazfgmgcxyuv64t2mckpgfzz6pc4mnplltb2pvv7ez7u' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeifkfw2p65zmr3gop3p2uegldghj6vk455ezg33pelyl7jc3kuca3y' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeic7c6pjxrge36iwwsvhiw4rdzy6z3exlea3mnnsjkupzfvcqojdk4' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeib5wpqecdu2s65k4gktw7gdqgyxgrlpv44pszxxzyo65knnjwbwqi' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeieg2gz5jgwjqpbihfy4pns6mwkjajcxiy3paxsciriz7wduzghhdq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiaxljxw5nxp4gay4k3wtyra2axtird36gap6ekadxd2o5zaeqhx6i' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src={providerIPFS + 'bafybeicqf3zmvxmazfgmgcxyuv64t2mckpgfzz6pc4mnplltb2pvv7ez7u'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src={providerIPFS + 'bafybeifkfw2p65zmr3gop3p2uegldghj6vk455ezg33pelyl7jc3kuca3y'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src={providerIPFS + 'bafybeic7c6pjxrge36iwwsvhiw4rdzy6z3exlea3mnnsjkupzfvcqojdk4'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src={providerIPFS + 'bafybeib5wpqecdu2s65k4gktw7gdqgyxgrlpv44pszxxzyo65knnjwbwqi'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src={providerIPFS + 'bafybeieg2gz5jgwjqpbihfy4pns6mwkjajcxiy3paxsciriz7wduzghhdq'} width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src={providerIPFS + 'bafybeiaxljxw5nxp4gay4k3wtyra2axtird36gap6ekadxd2o5zaeqhx6i'} width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
@@ -1316,7 +1317,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                                            <img src={providerIPFS + "bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"} height="18" alt="$ANGB"/>
                                                             <div style={{margin: "0 5px"}}>
                                                                 {(Number(item.Id) % 100000 === 250 || Number(item.Id) % 100000 === 300) && '0.05'}
                                                                 {(Number(item.Id) % 100000 === 400 || Number(item.Id) % 100000 === 500) && '0.10'}
@@ -1325,7 +1326,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                                                                 {(Number(item.Id) % 100000 === 1000) && '0.25'}
                                                             </div>
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                            <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                                             <div style={{margin: "0 5px"}}>1</div>
                                                         </div>
                                                     </div>

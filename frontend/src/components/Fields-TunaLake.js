@@ -6,6 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const jibjib = '0xb6aaD2B2f9fD5eA0356F49c60Ee599De56206251'
 const tunaField = '0x09676315DC0c85F6bd5e866C5f1363A00Eec4381'
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
     let { address } = useAccount()
@@ -64,7 +65,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             }) : [Array(yournftstake.length).fill(0)]
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const response = await fetch("https://cloudflare-ipfs.com/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftstake[i].Id + ".json")
+                const response = await fetch(providerIPFS + "bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftstake[i].Id + ".json")
                 const _nft = await response.json()
 
                 let bonus;
@@ -81,7 +82,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: Number(yournftstake[i].Id),
                     Name: _nft.name,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftstake[i].Id + ".png",
+                    Image: providerIPFS + "bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftstake[i].Id + ".png",
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: true,
@@ -96,7 +97,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 args: [address],
             }) : []
             for (let i = 0; i <= balanceofyou.length - 1; i++) {
-                const response = await fetch("https://cloudflare-ipfs.com/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + balanceofyou[i] + ".json")
+                const response = await fetch(providerIPFS + "bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + balanceofyou[i] + ".json")
                 const _nft = await response.json()
 
                 let bonus;
@@ -113,7 +114,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: Number(balanceofyou[i]),
                     Name: _nft.name,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + balanceofyou[i] + ".png",
+                    Image: providerIPFS + "bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + balanceofyou[i] + ".png",
                     Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: false,
@@ -190,13 +191,13 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
     return (
     <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('" + providerIPFS + "bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Tuna Lake</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw JIB JIB to earn $TUNA.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="150" alt="$TUNA" />
+                <img src={providerIPFS + "bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"} width="150" alt="$TUNA" />
             </div>
         </div>
 
@@ -228,13 +229,13 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             <div>
                                 Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                 &nbsp;
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
+                                <img src={providerIPFS + "bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"} width="12" alt="$TUNA"/>
                                 TUNA/DAY
                             </div>
                             <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                 <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
                                     Pending Rewards<br></br>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
+                                    <img src={providerIPFS + "bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"} width="12" alt="$TUNA"/>
                                     {ethers.utils.formatEther(String(item.Reward))}
                                 </div>
                                 {item.Reward > 0 ?
@@ -252,7 +253,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     <div className="nftCard" style={{justifyContent: "center"}}>
                         {address !== undefined ?
                             <>
-                                <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                 <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                             </> :
                             <>

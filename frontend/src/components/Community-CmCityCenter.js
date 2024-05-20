@@ -9,6 +9,7 @@ const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 // const meritFaucet = '0x169816800f1eA9C5735937388aeb9C2A3bAca11F'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
+const providerIPFS = "https://w3storag.lazyplayerone.xyz/ipfs/"
 
 const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI }) => {
     const { address } = useAccount()
@@ -264,7 +265,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">CMDAO Name Service [ALPHA]</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                         <div style={{width: "30%", height: "320px"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeib5zwxjwwuyxjvs36j4s3giauppwehqyzthk4vob6egnpylm5obwm" height="200" alt="Can not load metadata."/>
+                            <img src={providerIPFS + "bafybeib5zwxjwwuyxjvs36j4s3giauppwehqyzthk4vob6egnpylm5obwm"} height="200" alt="Can not load metadata."/>
                         </div>
                         <div style={{width: "65%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                             <div>
@@ -306,7 +307,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                                 <div className="bold">JBC DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                     <div style={{marginRight: "10px", color: "#fff"}}>{Number(jbconFaucet).toFixed(2)}</div>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
+                                    <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
                                 </div>
                             </div>
                             <div>
@@ -335,14 +336,14 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">{cmVoting1[0]}</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                         <div style={{width: "30%", height: "320px"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" height="200" alt="Can not load metadata."/>
+                            <img src={providerIPFS + "bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm"} height="200" alt="Can not load metadata."/>
                         </div>
                         <div style={{width: "65%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                             <div>
                                 <div className="bold">WOOD DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="emp bold">
                                     <div style={{marginRight: "10px"}}>{Number(cmVoting1All).toFixed(0)} / 10B ({((Number(cmVoting1All) * 100) / 10000000000).toFixed(3)}%)</div>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                    <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="30px" alt="$WOOD"/>
                                 </div>
                             </div>
                             <div>
@@ -377,7 +378,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                                 <div className="bold">SX31 DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="emp bold">
                                     <div style={{marginRight: "10px"}}>{Number(sx31Voting1All).toFixed(2)} / 12,500 ({((Number(sx31Voting1All) * 100) / 12500).toFixed(3)}%)</div>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="30px" alt="$SX31"/>
+                                    <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} height="30px" alt="$SX31"/>
                                 </div>
                             </div>
                             <div>
