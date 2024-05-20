@@ -23,6 +23,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [supply, setSupply] = React.useState(0)
     const [reserve2, setReserve2] = React.useState(0)
     const [supply2, setSupply2] = React.useState(0)
+    const [burnedCmj, setBurnedCmj] = React.useState(0)
 
     const [kusdtBalance, setKusdtBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
@@ -86,6 +87,13 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         args: ['0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063'],
                         chainId: 8899,
                     },
+                    {
+                        address: cmj,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x0000000000000000000000000000000000000042'],
+                        chainId: 8899,
+                    },
                 ],
             })
 
@@ -147,6 +155,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             const Balance2 = data1[1]
             const Balance_2 = data1[2]
             const Balance2_2 = data1[3]
+            const _burnedCmj = data1[4]
 
             const kusdtBal = data2[0]
             const jusdtBal = data2[1]
@@ -156,7 +165,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             const taoBal = data2[5]
             const jtaoBal = data2[6]
 
-            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, ]
+            return [Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, _burnedCmj, ]
         }
 
         const promise = fetch()
@@ -199,6 +208,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
 
             const cmdbbqbalance = result[11].formatted
             setCmdBbqBalance(Math.floor(cmdbbqbalance * 10000) / 10000)
+            setBurnedCmj(ethers.utils.formatEther(result[12].result))
         })
     }, [address, txupdate, erc20ABI])
 
@@ -566,6 +576,18 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     <>
                         <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
+                                    Burned CMJ
+                                </div>
+                                <div style={{fontSize: "30px"}}>{Number(burnedCmj).toLocaleString('en-US', {maximumFractionDigits:2})} CMJ ({Number((burnedCmj*100)/1000000).toFixed(2)}%)</div>
+                            </div>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
+                                <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
+                                    Burned JDAO
+                                </div>
+                                <div style={{fontSize: "30px"}}>Not Open Yet</div>
+                            </div>
+                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                                 <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
@@ -585,10 +607,29 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
                                 }
-                                <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositCMJ(cmjBalance)}>JBC Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
-                                <div style={{width: "92%", margin: "10px 0", color: "#000", textAlign: "left"}}>Will receive: {depositCMJ >= 80 ? Number((depositCMJ * 80 - 80)).toFixed(3) : 0} CMD</div>
-                                <div style={{width: "92%", margin: "10px 0", color: "#000", textAlign: "left"}}>OP Mainnet Balance: {cmdBalance} CMD</div>
-                                <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>WARN: This operation is one-way bridging!</div>
+                                <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositCMJ(cmjBalance)}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
+                                <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {depositCMJ >= 80 ? Number((depositCMJ * 80 - 80)).toFixed(3) : 0} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {cmdBalance} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
+                            </div>
+
+                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                <input
+                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0.0 JDAO"
+                                    disabled
+                                ></input>
+                                {false && chain.id === 8899 && address !== null && address !== undefined ? 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
+                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
+                                }
+                                <div style={{width: "92%", margin: "17.5px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Not open yet</div>
+                                <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {0} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {cmdBalance} CMD</div>
+                                <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                             </div>
                         </div>
                     </>
