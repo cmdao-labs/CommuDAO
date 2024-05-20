@@ -42,6 +42,8 @@ const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
+
 const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, erc20ABI, kycABI }) => {
     const { address } = useAccount()
 
@@ -1505,7 +1507,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img 
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
+                            src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"}
                             width="20"
                             alt="$CMJ"
                             style={{cursor: "crosshair"}}
@@ -1518,7 +1520,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: cmjToken,
                                             symbol: 'CMJ',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
+                                            image: providerIPFS + 'bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
                                         },
                                     },
                                 })
@@ -1528,7 +1530,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img 
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
+                            src={providerIPFS + "bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"}
                             width="20"
                             alt="$JTAO"
                             style={{cursor: "crosshair"}}
@@ -1541,7 +1543,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: taomeme,
                                             symbol: 'JTAO',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
+                                            image: providerIPFS + 'bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
                                         },
                                     },
                                 })
@@ -1555,7 +1557,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                            src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"}
                             width="20"
                             alt="$WOOD"
                             style={{cursor: "crosshair"}}
@@ -1568,7 +1570,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: woodField,
                                             symbol: 'WOOD',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                            image: providerIPFS + 'bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
                                         },
                                     },
                                 })
@@ -1578,7 +1580,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"
+                            src={providerIPFS + "bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"}
                             width="20"
                             alt="$stOPT"
                             style={{cursor: "crosshair"}}
@@ -1591,7 +1593,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: stOPT,
                                             symbol: 'stOPT',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
+                                            image: providerIPFS + 'bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
                                         },
                                     },
                                 })
@@ -1601,7 +1603,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                            src={providerIPFS + "bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"}
                             width="20"
                             alt="$CU"
                             style={{cursor: "crosshair"}}
@@ -1614,7 +1616,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: cuToken,
                                             symbol: 'CU',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                            image: providerIPFS + 'bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
                                         },
                                     },
                                 })
@@ -1624,7 +1626,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                     <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia"
+                            src={providerIPFS + "bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia"}
                             width="20"
                             alt="$MT"
                             style={{cursor: "crosshair"}}
@@ -1637,7 +1639,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: mtToken,
                                             symbol: 'MT',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia',
+                                            image: providerIPFS + 'bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia',
                                         },
                                     },
                                 })
@@ -1651,7 +1653,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
+                            src={providerIPFS + "bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"}
                             width="20"
                             alt="$TUNA"
                             style={{cursor: "crosshair"}}
@@ -1664,7 +1666,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: tunaField,
                                             symbol: 'TUNA',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
+                                            image: providerIPFS + 'bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
                                         },
                                     },
                                 })
@@ -1674,7 +1676,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"
+                            src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"}
                             width="20"
                             alt="$MICE"
                             style={{cursor: "crosshair"}}
@@ -1687,7 +1689,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: fieldMice,
                                             symbol: 'MICE',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
+                                            image: providerIPFS + 'bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
                                         },
                                     },
                                 })
@@ -1697,7 +1699,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"
+                            src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"}
                             width="20"
                             alt="$VABAG"
                             style={{cursor: "crosshair"}}
@@ -1710,7 +1712,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: vabag,
                                             symbol: 'VABAG',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
+                                            image: providerIPFS + 'bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
                                         },
                                     },
                                 })
@@ -1720,7 +1722,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
+                            src={providerIPFS + "bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"}
                             width="20"
                             alt="$ANGB"
                             style={{cursor: "crosshair"}}
@@ -1733,7 +1735,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: dunANGB,
                                             symbol: 'ANGB',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                            image: providerIPFS + 'bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
                                         },
                                     },
                                 })
@@ -1743,7 +1745,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"
+                            src={providerIPFS + "bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"}
                             width="20"
                             alt="$GEAR"
                             style={{cursor: "crosshair"}}
@@ -1756,7 +1758,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: gearField,
                                             symbol: 'GEAR',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
+                                            image: providerIPFS + 'bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
                                         },
                                     },
                                 })
@@ -1770,7 +1772,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                            src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"}
                             width="20"
                             alt="$BBQ"
                             style={{cursor: "crosshair"}}
@@ -1783,7 +1785,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: bbqToken,
                                             symbol: 'BBQ',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                            image: providerIPFS + 'bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
                                         },
                                     },
                                 })
@@ -1793,7 +1795,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                            src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"}
                             width="20"
                             alt="$PZA"
                             style={{cursor: "crosshair"}}
@@ -1806,7 +1808,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: pzaLab,
                                             symbol: 'PZA',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                            image: providerIPFS + 'bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
                                         },
                                     },
                                 })
@@ -1816,7 +1818,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
+                            src={providerIPFS + "bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"}
                             width="20"
                             alt="$SIL"
                             style={{cursor: "crosshair"}}
@@ -1829,7 +1831,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: silToken,
                                             symbol: 'SIL',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
+                                            image: providerIPFS + 'bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
                                         },
                                     },
                                 })
@@ -1839,7 +1841,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                            src={providerIPFS + "bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"}
                             width="20"
                             alt="$GOLD"
                             style={{cursor: "crosshair"}}
@@ -1852,7 +1854,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: goldToken,
                                             symbol: 'GOLD',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                            image: providerIPFS + 'bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
                                         },
                                     },
                                 })
@@ -1862,7 +1864,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
+                            src={providerIPFS + "bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"}
                             width="20"
                             alt="$PLAT"
                             style={{cursor: "crosshair"}}
@@ -1875,7 +1877,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: platToken,
                                             symbol: 'PLAT',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
+                                            image: providerIPFS + 'bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
                                         },
                                     },
                                 })
@@ -1889,7 +1891,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
+                            src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"}
                             width="20"
                             alt="$CTUNA"
                             style={{cursor: "crosshair"}}
@@ -1902,7 +1904,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: ctunaLab,
                                             symbol: 'CTUNA',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
+                                            image: providerIPFS + 'bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
                                         },
                                     },
                                 })
@@ -1912,7 +1914,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
+                            src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"}
                             width="20"
                             alt="$SX31"
                             style={{cursor: "crosshair"}}
@@ -1925,7 +1927,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: sx31Lab,
                                             symbol: 'SX31',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
+                                            image: providerIPFS + 'bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
                                         },
                                     },
                                 })
@@ -1935,7 +1937,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
+                            src={providerIPFS + "bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"}
                             width="20"
                             alt="$SWAR"
                             style={{cursor: "crosshair"}}
@@ -1948,7 +1950,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: swarLab,
                                             symbol: 'SWAR',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
+                                            image: providerIPFS + 'bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
                                         },
                                     },
                                 })
@@ -1958,7 +1960,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"
+                            src={providerIPFS + "bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"}
                             width="20"
                             alt="$STAR"
                             style={{cursor: "crosshair"}}
@@ -1971,7 +1973,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: starLab,
                                             symbol: 'AP-STAR',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
+                                            image: providerIPFS + 'bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
                                         },
                                     },
                                 })
@@ -1981,7 +1983,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
+                            src={providerIPFS + "bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"}
                             width="20"
                             alt="$II"
                             style={{cursor: "crosshair"}}
@@ -1994,7 +1996,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: iiLab,
                                             symbol: 'TDM - II',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
+                                            image: providerIPFS + 'bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
                                         },
                                     },
                                 })
@@ -2004,7 +2006,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
+                            src={providerIPFS + "bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"}
                             width="20"
                             alt="$EE"
                             style={{cursor: "crosshair"}}
@@ -2017,7 +2019,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                             address: dunEE,
                                             symbol: 'TDM-EE',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
+                                            image: providerIPFS + 'bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
                                         },
                                     },
                                 })
@@ -2038,13 +2040,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>100</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
+                                <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} height="18" alt="$JBC"/>
                                 <div style={{margin: "0 5px"}}>0.01</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>
                                     {isCraftBBQ !== null ?
                                         <>
@@ -2079,7 +2081,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                                <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="18" alt="$WOOD"/>
                                                 <div style={{margin: "0 5px"}}>
                                                     {isCraftBBQ !== null ?
                                                         <>
@@ -2119,18 +2121,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             [Next] {dataCraftBBQ_G_Next.status === 'success' && dataCraftBBQ_G_Next.result[0].slice(0, 4) + "..." + dataCraftBBQ_G_Next.result[0].slice(-4)}
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidgivpl6pkbnimqngnyq7ovwnzrzbqnjwkclvcpzr4ypcfyxirwbu" width="290" alt="Large_BBQ_Factory"/>
+                            <img src={providerIPFS + "bafkreidgivpl6pkbnimqngnyq7ovwnzrzbqnjwkclvcpzr4ypcfyxirwbu"} width="290" alt="Large_BBQ_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>100M</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                <img src={providerIPFS + "bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq"} height="18" alt="$JDAO"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>6,000</div>
                             </div>
                         </div>
@@ -2144,7 +2146,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                     {dataCraftBBQ_G.status === 'success' && Number(dataCraftBBQ_G.result[1]) !== 0 ?
                                         <>
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/> 0.01)</> : timetoClaimBBQ_G}</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>{timetoClaimBBQ_G === 0 ? <>now (Obtain cost = <img style={{margin: "0 5px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/> 0.01)</> : timetoClaimBBQ_G}</div>
                                         </> :
                                         <>
                                             <div style={{width: "100px"}}></div>
@@ -2174,18 +2176,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreihbzubgndsg3y6j666b7i6mxky7fp7os5xtefrszzyslequkrnvta" width="280" alt="Pizza_Factory"/>
+                            <img src={providerIPFS + "bafkreihbzubgndsg3y6j666b7i6mxky7fp7os5xtefrszzyslequkrnvta"} width="280" alt="Pizza_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>10,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/>
+                                <img src={providerIPFS + "bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"} height="18" alt="$stOPT"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
+                                <img src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"} height="18" alt="$PZA"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
@@ -2227,18 +2229,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreidy3wavoltdphdhinuv5lpdevx7yao545xuzngiwqbtyyohr7jzuy" width="250" alt="$SIL_Factory"/>
+                            <img src={providerIPFS + "bafkreidy3wavoltdphdhinuv5lpdevx7yao545xuzngiwqbtyyohr7jzuy"} width="250" alt="$SIL_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
+                                <img src={providerIPFS + "bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"} height="18" alt="$CU"/>
                                 <div style={{margin: "0 5px"}}>150,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
+                                <img src={providerIPFS + "bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"} height="18" alt="$SIL"/>
                                 <div style={{margin: "0 5px"}}>5,000</div>
                             </div>
                         </div>
@@ -2278,18 +2280,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreicrxd4ah7pmi2gaemx73rd6msspxyzg5aglqf3iez4mkyocdh3nta" width="330" alt="$GOLD_Factory"/>
+                            <img src={providerIPFS + "bafkreicrxd4ah7pmi2gaemx73rd6msspxyzg5aglqf3iez4mkyocdh3nta"} width="330" alt="$GOLD_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
+                                <img src={providerIPFS + "bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"} height="18" alt="$SIL"/>
                                 <div style={{margin: "0 5px"}}>10,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} height="18" alt="$SX31"/>
                                 <div style={{margin: "0 5px"}}>5</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                <img src={providerIPFS + "bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"} height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
@@ -2329,18 +2331,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeidn2yecujkgvkuroqg6oh2nirgbd7xyhj3nfgqda7zas7hc5qmchy" width="300" alt="$GOLD_Mine"/>
+                            <img src={providerIPFS + "bafybeidn2yecujkgvkuroqg6oh2nirgbd7xyhj3nfgqda7zas7hc5qmchy"} width="300" alt="$GOLD_Mine"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>20,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
+                                <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} height="18" alt="$JBC"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                <img src={providerIPFS + "bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"} height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>6.25</div>
                             </div>
                         </div>
@@ -2382,18 +2384,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeigjhse2n7fm7o7mmodgpqs4ojd5n5wpfnzl5roegeoldrmujaimku" width="330" alt="$GOLD_Factory2"/>
+                            <img src={providerIPFS + "bafybeigjhse2n7fm7o7mmodgpqs4ojd5n5wpfnzl5roegeoldrmujaimku"} width="330" alt="$GOLD_Factory2"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                <img src={providerIPFS + "bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"} height="18" alt="$WOOD"/>
                                 <div style={{margin: "0 5px"}}>100M</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia" height="18" alt="$MT"/>
+                                <img src={providerIPFS + "bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia"} height="18" alt="$MT"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                <img src={providerIPFS + "bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"} height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                             </div>
                         </div>
@@ -2433,18 +2435,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeicrg6pt7nkzibtg4pwdw6vaipgcbpxhlnvt5hrqobmhlrnssqjiva" width="300" alt="$PLAT_Factory"/>
+                            <img src={providerIPFS + "bafybeicrg6pt7nkzibtg4pwdw6vaipgcbpxhlnvt5hrqobmhlrnssqjiva"} width="300" alt="$PLAT_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                <img src={providerIPFS + "bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"} height="18" alt="$GOLD"/>
                                 <div style={{margin: "0 5px"}}>300</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                <img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} height="18" alt="$CTUNA"/>
                                 <div style={{margin: "0 5px"}}>5</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                <img src={providerIPFS + "bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"} height="18" alt="$PLAT"/>
                                 <div style={{margin: "0 5px"}}>100</div>
                             </div>
                         </div>
@@ -2484,18 +2486,18 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="300" alt="$PLAT_Factory02"/>
+                            <img src={providerIPFS + "bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e"} width="300" alt="$PLAT_Factory02"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                <img src={providerIPFS + "bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"} height="18" alt="$EE"/>
                                 <div style={{margin: "0 5px"}}>888</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                <img src={providerIPFS + "bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"} height="18" alt="$PLAT"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                             </div>
                         </div>
@@ -2539,7 +2541,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                            <img src={providerIPFS + "bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4"} width="30px" alt="CM" />
                             <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
@@ -2548,13 +2550,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="18" alt="$TUNA"/>
+                                <img src={providerIPFS + "bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"} height="18" alt="$TUNA"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                <img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} height="18" alt="$CTUNA"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                             </div>
                         </div>
@@ -2594,7 +2596,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                            <img src={providerIPFS + "bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4"} width="30px" alt="CM" />
                             <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
@@ -2603,13 +2605,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
+                                <img src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} height="18" alt="$MICE"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>9</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} height="18" alt="$SX31"/>
                                 <div style={{margin: "0 5px"}}>50</div>
                             </div>
                         </div>
@@ -2649,22 +2651,22 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                            <img src={providerIPFS + "bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4"} width="30px" alt="CM" />
                             <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
                         </div>
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 2}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreibmo7hlkn73ltjvkrvjrjkztx74qosbzszsd2rjq42dgsrggvhy5i" width="310" alt="Large_SX31_Factory"/>
+                            <img src={providerIPFS + "bafkreibmo7hlkn73ltjvkrvjrjkztx74qosbzszsd2rjq42dgsrggvhy5i"} width="310" alt="Large_SX31_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
+                                <img src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} height="18" alt="$MICE"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>90</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} height="18" alt="$SX31"/>
                                 <div style={{margin: "0 5px"}}>500</div>
                             </div>
                         </div>
@@ -2706,22 +2708,22 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="270" alt="$SW_Factory"/>
+                            <img src={providerIPFS + "bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4"} width="270" alt="$SW_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="18" alt="$VABAG"/>
+                                <img src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} height="18" alt="$VABAG"/>
                                 <div style={{margin: "0 5px"}}>10</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
+                                <img src={providerIPFS + "bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"} height="18" alt="$SWAR"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                             </div>
                         </div>
@@ -2761,22 +2763,22 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="270" alt="$STAR_Factory"/>
+                            <img src={providerIPFS + "bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja"} width="270" alt="$STAR_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                <img src={providerIPFS + "bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"} height="18" alt="$ANGB"/>
                                 <div style={{margin: "0 5px"}}>40</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} height="18" alt="$CMJ"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                <img src={providerIPFS + "bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"} height="18" alt="$STAR"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                             </div>
                         </div>
@@ -2816,22 +2818,22 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="270" alt="$II_Factory"/>
+                            <img src={providerIPFS + "bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu"} width="270" alt="$II_Factory"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                <img src={providerIPFS + "bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"} height="18" alt="$GEAR"/>
                                 <div style={{margin: "0 5px"}}>888</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                <img src={providerIPFS + "bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"} height="18" alt="$JTAO"/>
                                 <div style={{margin: "0 5px"}}>8</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                <img src={providerIPFS + "bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"} height="18" alt="$II"/>
                                 <div style={{margin: "0 5px"}}>1</div>
                             </div>
                         </div>
@@ -2873,22 +2875,22 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibzjgibm5s45zoyxt563lqcxssxmgyfduxzprui6qdyujah33w7fq" width="340" alt="$II_Factory02"/>
+                            <img src={providerIPFS + "bafybeibzjgibm5s45zoyxt563lqcxssxmgyfduxzprui6qdyujah33w7fq"} width="340" alt="$II_Factory02"/>
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                <img src={providerIPFS + "bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"} height="18" alt="$GEAR"/>
                                 <div style={{margin: "0 5px"}}>88,888</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                <img src={providerIPFS + "bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"} height="18" alt="$JTAO"/>
                                 <div style={{margin: "0 5px"}}>128</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                <img src={providerIPFS + "bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"} height="18" alt="$II"/>
                                 <div style={{margin: "0 5px"}}>8</div>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ import { ThreeDots } from 'react-loading-icons'
 const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
 
 const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, fieldEfABI }) => {
     let { address } = useAccount()
@@ -113,7 +114,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", providerIPFS))
                     nft = await response.json()
                 } catch {}
 
@@ -158,7 +159,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name + " [" + yournftstake[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", providerIPFS),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
@@ -204,7 +205,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", providerIPFS))
                     nft = await response.json()
                 } catch {}
 
@@ -246,7 +247,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: yournftwallet[i].Id,
                     Name: nft.name + " [" + yournftwallet[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", providerIPFS),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
@@ -348,13 +349,13 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 </div> :
                 <></>
             }
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('" + providerIPFS + "bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>Eastern Front</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Adventurer Card to earn $Valuables-Bag.</div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="150" alt="$VABAG"/>
+                    <img src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} height="150" alt="$VABAG"/>
                 </div>
             </div>
 
@@ -368,21 +369,21 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}} className="emp">
                             {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} width="24" alt="$VABAG"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} width="24" alt="$VABAG"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(vabagBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} width="24" alt="$VABAG"/>
                         </div>
                     </div>
                 </div>
@@ -412,14 +413,14 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                     <div>
                                         Earn: {Number(item.RewardPerSec).toFixed(4)}
                                         &nbsp;
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                        <img src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} width="12" alt="$VABAG"/>
                                         &nbsp;VABAG/DAY
                                     </div>
                                     <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                         <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                             Pending Rewards<br></br>
                                             <div style={{display: "flex", alignItems: "center"}}>
-                                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                                <img src={providerIPFS + "bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"} width="12" alt="$VABAG"/>
                                                 &nbsp;{ethers.utils.formatEther(String(item.Reward))}
                                             </div>
                                         </div>
@@ -441,7 +442,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             <div className="nftCard" style={{justifyContent: "center"}}>
                                 {address !== undefined ?
                                     <>
-                                        <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                        <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                         <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                     </> :
                                     <>

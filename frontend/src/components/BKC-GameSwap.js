@@ -7,6 +7,7 @@ const { ethereum } = window
 const cmmkkubToken = "0x5Cced24E580586841f326d5088D288e6Ddd201dA"
 const cmosToken = "0x8b062b96Bb689833D7870a0133650FA22302496d"
 const farmCMOS = "0xe5B764566CB5b26fE7568e59370368ACf9c7c5c3"
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
 
 const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20ABI, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
     const { address } = useAccount()
@@ -218,7 +219,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
                             }}
                         >
                             <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://storage.googleapis.com/static.bitkubnext.com/bitkub-next/token-icons/kub.png" alt="$KUB" />
-                            <img style={{width: "38px", height: "38px", marginLeft: "-10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" alt="$CMM" />
+                            <img style={{width: "38px", height: "38px", marginLeft: "-10px"}} src={providerIPFS + "bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla"} alt="$CMM" />
                         </div>
                         <div
                             style={{cursor: "crosshair"}}
@@ -231,13 +232,13 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
                                             address: cmosToken,
                                             symbol: 'CMOS',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                                            image: providerIPFS + 'bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
                                         },
                                     },
                                 })
                             }}
                         >
-                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq" alt="$CMOS" />
+                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src={providerIPFS + "bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"} alt="$CMOS" />
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>

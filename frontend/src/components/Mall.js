@@ -40,6 +40,8 @@ const cmdaoGasha02 = '0x87A612709b36b575103C65a90cB3B16Cac2BC898'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
+
 const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI, wjbcABI }) => {
     const { address } = useAccount()
 
@@ -1390,7 +1392,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{height: "30px", padding: "0 5px", lineHeight: "32px"}} className="bold">WRAPPED</div>
                                 <div style={{width: "fit-content", height: "30px", margin: 0, border: "none", fontSize: "12px"}} className="items bold">
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$WJBC"/>
+                                    <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} width="20" alt="$WJBC"/>
                                 </div>
                             </div>
                             <div style={{margin: "10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
@@ -1414,7 +1416,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div className="wrapper">
                     <div className="bold" style={{width: "500px", height: "700px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
                         <video autoPlay loop width="400">
-                            <source src="https://cloudflare-ipfs.com/ipfs/bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa" type="video/mp4" />
+                            <source src={providerIPFS + "bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa"} type="video/mp4" />
                         </video>
                         <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsSpecialModal(false)}>CLOSE</div>
                     </div>
@@ -1437,7 +1439,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
+                            src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"}
                             width="20"
                             alt="$WJBC"
                             style={{cursor: "crosshair"}}
@@ -1450,7 +1452,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: wjbcToken,
                                             symbol: 'WJBC',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq',
+                                            image: providerIPFS + 'bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq',
                                         },
                                     },
                                 })
@@ -1460,7 +1462,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
+                            src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"}
                             width="20"
                             alt="$CMJ"
                             style={{cursor: "crosshair"}}
@@ -1473,7 +1475,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: cmjToken,
                                             symbol: 'CMJ',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
+                                            image: providerIPFS + 'bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
                                         },
                                     },
                                 })
@@ -1483,7 +1485,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"
+                            src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"}
                             width="20"
                             alt="$JUSDT"
                             style={{cursor: "crosshair"}}
@@ -1496,7 +1498,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: jusdtToken,
                                             symbol: 'JUSDT',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi',
+                                            image: providerIPFS + 'bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi',
                                         },
                                     },
                                 })
@@ -1506,7 +1508,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img 
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
+                            src={providerIPFS + "bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"}
                             width="20"
                             alt="$JTAO"
                             style={{cursor: "crosshair"}}
@@ -1519,7 +1521,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: taomeme,
                                             symbol: 'JTAO',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
+                                            image: providerIPFS + 'bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
                                         },
                                     },
                                 })
@@ -1533,7 +1535,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                            src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"}
                             width="20"
                             alt="$BBQ"
                             style={{cursor: "crosshair"}}
@@ -1546,7 +1548,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: bbqToken,
                                             symbol: 'BBQ',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                            image: providerIPFS + 'bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
                                         },
                                     },
                                 })
@@ -1556,7 +1558,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                            src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"}
                             width="20"
                             alt="$PZA"
                             style={{cursor: "crosshair"}}
@@ -1569,7 +1571,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: pzaLab,
                                             symbol: 'PZA',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                            image: providerIPFS + 'bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
                                         },
                                     },
                                 })
@@ -1579,7 +1581,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                            src={providerIPFS + "bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"}
                             width="20"
                             alt="$CU"
                             style={{cursor: "crosshair"}}
@@ -1592,7 +1594,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: dunCopper,
                                             symbol: 'CU',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                            image: providerIPFS + 'bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
                                         },
                                     },
                                 })
@@ -1602,7 +1604,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
+                            src={providerIPFS + "bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"}
                             width="20"
                             alt="$SIL"
                             style={{cursor: "crosshair"}}
@@ -1615,7 +1617,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: silToken,
                                             symbol: 'SIL',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
+                                            image: providerIPFS + 'bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
                                         },
                                     },
                                 })
@@ -1625,7 +1627,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                            src={providerIPFS + "bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"}
                             width="20"
                             alt="$GOLD"
                             style={{cursor: "crosshair"}}
@@ -1638,7 +1640,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: goldToken,
                                             symbol: 'GOLD',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                            image: providerIPFS + 'bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
                                         },
                                     },
                                 })
@@ -1648,7 +1650,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
+                            src={providerIPFS + "bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"}
                             width="20"
                             alt="$PLAT"
                             style={{cursor: "crosshair"}}
@@ -1661,7 +1663,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: platToken,
                                             symbol: 'PLAT',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
+                                            image: providerIPFS + 'bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
                                         },
                                     },
                                 })
@@ -1674,7 +1676,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
+                            src={providerIPFS + "bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"}
                             width="20"
                             alt="$JASP"
                             style={{cursor: "crosshair"}}
@@ -1687,7 +1689,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: dunJasper,
                                             symbol: 'JASP',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
+                                            image: providerIPFS + 'bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
                                         },
                                     },
                                 })
@@ -1697,7 +1699,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
+                            src={providerIPFS + "bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"}
                             width="20"
                             alt="$OS"
                             style={{cursor: "crosshair"}}
@@ -1710,7 +1712,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: osToken,
                                             symbol: 'OS',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
+                                            image: providerIPFS + 'bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
                                         },
                                     },
                                 })
@@ -1724,7 +1726,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
+                            src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"}
                             width="20"
                             alt="$CTUNA"
                             style={{cursor: "crosshair"}}
@@ -1737,7 +1739,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: ctunaLab,
                                             symbol: 'CTUNA',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
+                                            image: providerIPFS + 'bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
                                         },
                                     },
                                 })
@@ -1747,7 +1749,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
+                            src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"}
                             width="20"
                             alt="$SX31"
                             style={{cursor: "crosshair"}}
@@ -1760,7 +1762,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: sx31Lab,
                                             symbol: 'SX31',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
+                                            image: providerIPFS + 'bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
                                         },
                                     },
                                 })
@@ -1770,7 +1772,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
+                            src={providerIPFS + "bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"}
                             width="20"
                             alt="$SWAR"
                             style={{cursor: "crosshair"}}
@@ -1783,7 +1785,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: swarLab,
                                             symbol: 'SWAR',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
+                                            image: providerIPFS + 'bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
                                         },
                                     },
                                 })
@@ -1793,7 +1795,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
+                            src={providerIPFS + "bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"}
                             width="20"
                             alt="$ANGB"
                             style={{cursor: "crosshair"}}
@@ -1806,7 +1808,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: dunAngb,
                                             symbol: 'ANGB',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                            image: providerIPFS + 'bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
                                         },
                                     },
                                 })
@@ -1816,7 +1818,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
+                            src={providerIPFS + "bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"}
                             width="20"
                             alt="$II"
                             style={{cursor: "crosshair"}}
@@ -1829,7 +1831,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: iiLab,
                                             symbol: 'TDM - II',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
+                                            image: providerIPFS + 'bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
                                         },
                                     },
                                 })
@@ -1839,7 +1841,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
+                            src={providerIPFS + "bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"}
                             width="20"
                             alt="$EE"
                             style={{cursor: "crosshair"}}
@@ -1852,7 +1854,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: dunEE,
                                             symbol: 'TDM-EE',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
+                                            image: providerIPFS + 'bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
                                         },
                                     },
                                 })
@@ -1865,7 +1867,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0px 10px 20px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"
+                            src={providerIPFS + "bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"}
                             width="20"
                             alt="$GEAR"
                             style={{cursor: "crosshair"}}
@@ -1878,7 +1880,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                             address: gearToken,
                                             symbol: 'GEAR',
                                             decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
+                                            image: providerIPFS + 'bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
                                         },
                                     },
                                 })
@@ -1906,7 +1908,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Songkran Splasher</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreifz2fgy43d4qigdwp35r3izgyvwip2rugswdvkkcj4xl5cytxs5ti" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreifz2fgy43d4qigdwp35r3izgyvwip2rugswdvkkcj4xl5cytxs5ti"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", height: "200px", fontSize: "15px", marginTop: "10px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -1934,7 +1936,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
@@ -1958,7 +1960,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Armor </div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibgzv6zcq4yuj2n44dw6o7ydwllepwry5nulqzdx4s2c7poabxwxa" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreibgzv6zcq4yuj2n44dw6o7ydwllepwry5nulqzdx4s2c7poabxwxa"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -1986,7 +1988,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
@@ -2010,7 +2012,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Adventure's Muffler</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreigeuohgaw2jvgromogakix34kit2ab6pclreddmbzubp22nkqmpma" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreigeuohgaw2jvgromogakix34kit2ab6pclreddmbzubp22nkqmpma"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2038,7 +2040,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
@@ -2064,7 +2066,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Boots</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreif4fk7tqca2vdovvtwufxyx2snoolbwofvdvjoqi35y6mvaahhkve" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreif4fk7tqca2vdovvtwufxyx2snoolbwofvdvjoqi35y6mvaahhkve"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2092,7 +2094,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
@@ -2116,7 +2118,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Accessory</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiem7ixjm7xomcrhfkla73ye7ajah6d7xi7hw6a6seozclccaewipy" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiem7ixjm7xomcrhfkla73ye7ajah6d7xi7hw6a6seozclccaewipy"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2144,7 +2146,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
@@ -2168,7 +2170,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Guardian's Helm</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreigr33les3na44zns7nznxltedxluhor5klfsduzolpwinqzsrcc6q" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreigr33les3na44zns7nznxltedxluhor5klfsduzolpwinqzsrcc6q"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2196,7 +2198,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>15</div>
                                 </div>
                             </div>
@@ -2221,7 +2223,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">SAPIENS #04</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2237,7 +2239,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="$JUSDT"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2260,7 +2262,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Chō-Senjiryakketsu Vol.1</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreifgwtom3va2wm4wdur4eupbnoxjfvxr3765ebkpisron73ydmq3sa" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreifgwtom3va2wm4wdur4eupbnoxjfvxr3765ebkpisron73ydmq3sa"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2276,7 +2278,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="$JUSDT"/>
                                     <div style={{marginLeft: "7.5px"}}>1</div>
                                 </div>
                             </div>
@@ -2303,12 +2305,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Angel Plus - Adventurer Card D +0 Vol.4</div>
                         <video muted loop width="175" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                            <source src="https://cloudflare-ipfs.com/ipfs/bafybeia2c5qcwshxdqw6gvvezehsnn5r7u5d2oxkduwzydbzxxu3hfzzze" type="video/mp4" />
+                            <source src={providerIPFS + "bafybeia2c5qcwshxdqw6gvvezehsnn5r7u5d2oxkduwzydbzxxu3hfzzze"} type="video/mp4" />
                         </video>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -2325,7 +2327,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2348,11 +2350,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Hero (Character)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeiafeumwvilddqiakxaabht5bcu2khkeyjr275jtbwyryd6upbh6bm" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeiafeumwvilddqiakxaabht5bcu2khkeyjr275jtbwyryd6upbh6bm"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2368,7 +2370,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2391,11 +2393,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Claymore (Sword)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreigcv7pn4azsrjkzccyeyq6nkg6sntwnh3czrfth6ubwudo6imuhyu" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreigcv7pn4azsrjkzccyeyq6nkg6sntwnh3czrfth6ubwudo6imuhyu"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2411,7 +2413,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2436,11 +2438,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Shield (Shield)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreihdt2twkixgg27erb5rlawm37v4owvq2j5pq2753tmf55hhgjr7ia" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreihdt2twkixgg27erb5rlawm37v4owvq2j5pq2753tmf55hhgjr7ia"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2456,7 +2458,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2479,11 +2481,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Full Plate (Armor)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiehp5d2ccxovqmb7qtriafsnku7xlifr345zlsrmane3fvwoskhle" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiehp5d2ccxovqmb7qtriafsnku7xlifr345zlsrmane3fvwoskhle"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2499,7 +2501,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2522,11 +2524,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Helm (Helmet)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiepodq6oo7xlme6tjnjus3cberubwu4sfgdvbnou7tdtbrj4hzm2q" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiepodq6oo7xlme6tjnjus3cberubwu4sfgdvbnou7tdtbrj4hzm2q"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2542,7 +2544,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2567,11 +2569,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Crusader Boots (Boots)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreialnqwhhuikji7fov3tc73dv6qqb74okxkiihuogk3dekzotg3vni" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreialnqwhhuikji7fov3tc73dv6qqb74okxkiihuogk3dekzotg3vni"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2587,7 +2589,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2610,11 +2612,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Imperium Ring (Ring)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiagnfkgkzdazovsfu33d2v22eyotizgy4zg66okkmwwt7unswungi" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiagnfkgkzdazovsfu33d2v22eyotizgy4zg66okkmwwt7unswungi"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2630,7 +2632,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>10</div>
                                 </div>
                             </div>
@@ -2653,12 +2655,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                            <img src={providerIPFS + "bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4"} width="30px" alt="AngelPlus" />
                             <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                         </div>
                         <div style={{position: "absolute", top: 40, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Spirit of Rina (Fairy)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeien4iziizhs2xkaxsruphh5um7zvkuons2nj2bo775kckok2vyhey" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeien4iziizhs2xkaxsruphh5um7zvkuons2nj2bo775kckok2vyhey"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2686,7 +2688,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2711,11 +2713,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Naruta (Main Char)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2731,7 +2733,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2754,11 +2756,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - TD-88 Blaster (Weapon)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeiglw3a5wuszv7zkmfw55e2bcaoxinsjwjinckccg4lxg2juoeegmu" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeiglw3a5wuszv7zkmfw55e2bcaoxinsjwjinckccg4lxg2juoeegmu"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2774,7 +2776,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2797,11 +2799,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - X8 Haptic Bootsuit (Cloth)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeih5zbbv5tjdug5qbnzbmusaqwgy3z4ecs3uii7t6g7q7ynhnr3d5q" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeih5zbbv5tjdug5qbnzbmusaqwgy3z4ecs3uii7t6g7q7ynhnr3d5q"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2817,7 +2819,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2842,11 +2844,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Cosmo Crest (Hat)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeia3bm6ju5fhokrjnovbgbm3mw422jwxa72bnoo4ihgf2upsfrbmlm" height="150" alt='Can not load metadata.'/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeia3bm6ju5fhokrjnovbgbm3mw422jwxa72bnoo4ihgf2upsfrbmlm"} height="150" alt='Can not load metadata.'/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2862,7 +2864,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2885,11 +2887,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Prism Propel Wings (Back)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeicfyxqmdjjz3xispk7vil22asr4wnzffxbuh47dy42qofy4zxnfb4" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeicfyxqmdjjz3xispk7vil22asr4wnzffxbuh47dy42qofy4zxnfb4"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2905,7 +2907,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2928,11 +2930,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Phoenix Phalanx Ring (Accessory)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeifmkrjl457rtfkve2ktn3ynx4yev5oqygpsvppeo4csm26fqormha" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeifmkrjl457rtfkve2ktn3ynx4yev5oqygpsvppeo4csm26fqormha"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2948,7 +2950,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -2973,11 +2975,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Galactic Walkers (Shoes)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeicmgffdl5eb4op32ck2vvri5f4ruxzxk6nkmu6eqcxabu27glmvmu" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeicmgffdl5eb4op32ck2vvri5f4ruxzxk6nkmu6eqcxabu27glmvmu"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -2993,7 +2995,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                    <img src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} height="18" alt="jusdt"/>
                                     <div style={{marginLeft: "7.5px"}}>20</div>
                                 </div>
                             </div>
@@ -3021,7 +3023,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">KYC Shop</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Multiverse Traveller Vol.4</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreigc4ivgjqocp7dh7bh3upl4tidhpe2w76muckmzyvulevbkoxdnce" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreigc4ivgjqocp7dh7bh3upl4tidhpe2w76muckmzyvulevbkoxdnce"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3037,7 +3039,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                    <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                     <div style={{marginLeft: "7.5px"}}>40,000</div>
                                 </div>
                             </div>
@@ -3061,7 +3063,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">KYC Shop</div>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Novice Sword Vol.3</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiha7rbdsni6hvok2rs546zeowge2mwbfh3y75awlqv2u74zorltse" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiha7rbdsni6hvok2rs546zeowge2mwbfh3y75awlqv2u74zorltse"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3077,7 +3079,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                    <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                     <div style={{marginLeft: "7.5px"}}>40,000</div>
                                 </div>
                             </div>
@@ -3100,7 +3102,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">TSW Valentine Ring</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiacm6fn5rjctuxyiirlmr7awp6ckesgffamingak4pif3kp6vgbri" height="160" alt="valentineringpic"/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiacm6fn5rjctuxyiirlmr7awp6ckesgffamingak4pif3kp6vgbri"} height="160" alt="valentineringpic"/>
                         <div style={{alignSelf: "flex-start", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3116,7 +3118,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                    <img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} height="18" alt="$CTUNA"/>
                                     <div style={{marginLeft: "7.5px"}}>2500</div>
                                 </div>
                             </div>
@@ -3141,7 +3143,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Prophet of JBC</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreieoamtkrbgj3kd3cqrdcvwzoj7swmwegmoyvcs5gqv22psyzzhvre" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreieoamtkrbgj3kd3cqrdcvwzoj7swmwegmoyvcs5gqv22psyzzhvre"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3157,7 +3159,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                    <img src={providerIPFS + "bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq"} height="18" alt="$JDAO"/>
                                     <div style={{marginLeft: "7.5px"}}>1,000</div>
                                 </div>
                             </div>
@@ -3180,7 +3182,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Supreme God of JBC</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiayhubngbbxov2lyhxfziy7tr7pvdr5cwbi4fgn6rcdykpgnv3c4a" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreiayhubngbbxov2lyhxfziy7tr7pvdr5cwbi4fgn6rcdykpgnv3c4a"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3196,7 +3198,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                    <img src={providerIPFS + "bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"} height="18" alt="$JASP"/>
                                     <div style={{marginLeft: "7.5px"}}>100</div>
                                 </div>
                             </div>
@@ -3219,7 +3221,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">VK, King of Commu</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibl25he5u74rw2mi24xhjl4yurmhoe6upn4qcbi5kn75e5uaz2ksa" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreibl25he5u74rw2mi24xhjl4yurmhoe6upn4qcbi5kn75e5uaz2ksa"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3235,7 +3237,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                    <img src={providerIPFS + "bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"} height="18" alt="$OS"/>
                                     <div style={{marginLeft: "7.5px"}}>5,500</div>
                                 </div>
                             </div>
@@ -3260,7 +3262,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Chainsaw Pro Max</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibalc6if2y6qqp3kfxjkciabsdxxxpnx4djt6toap2c3n2bfcnfye" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreibalc6if2y6qqp3kfxjkciabsdxxxpnx4djt6toap2c3n2bfcnfye"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3276,7 +3278,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                    <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} height="18" alt="$BBQ"/>
                                     <div style={{marginLeft: "7.5px"}}>100M</div>
                                 </div>
                             </div>
@@ -3299,7 +3301,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Director's Chair</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia33b5b77t6hhmhnvlrnlooplurabhzeeuviv45vm6p4kja3z7dda" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafkreia33b5b77t6hhmhnvlrnlooplurabhzeeuviv45vm6p4kja3z7dda"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3315,7 +3317,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                    <img src={providerIPFS + "bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"} height="18" alt="$PLAT"/>
                                     <div style={{marginLeft: "7.5px"}}>180,000</div>
                                 </div>
                             </div>
@@ -3343,11 +3345,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Water gun (Weapon)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeihsvjagwtvlduxlca4pkbyafl3wjqlpuur5hijy5apmdn4ldiohtq" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeihsvjagwtvlduxlca4pkbyafl3wjqlpuur5hijy5apmdn4ldiohtq"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3363,7 +3365,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                    <img src={providerIPFS + "bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"} height="18" alt="$EE"/>
                                     <div style={{marginLeft: "7.5px"}}>444,444</div>
                                 </div>
                             </div>
@@ -3391,11 +3393,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Raincoat (Cloth)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeica72eipqfvbs67exg7s3duzacdxrr35puexg7vfmbcmkdtw6xuku" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeica72eipqfvbs67exg7s3duzacdxrr35puexg7vfmbcmkdtw6xuku"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3411,7 +3413,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                    <img src={providerIPFS + "bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"} height="18" alt="$II"/>
                                     <div style={{marginLeft: "7.5px"}}>22,222</div>
                                 </div>
                             </div>
@@ -3439,11 +3441,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Goggles (Hat)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeihcaime52xjf7b2ysgsfvsrg2jb5bmwa72grvnm5yqimaar44cnv4" height="150" alt='Can not load metadata.'/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeihcaime52xjf7b2ysgsfvsrg2jb5bmwa72grvnm5yqimaar44cnv4"} height="150" alt='Can not load metadata.'/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3459,7 +3461,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                    <img src={providerIPFS + "bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"} height="18" alt="$GEAR"/>
                                     <div style={{marginLeft: "7.5px"}}>999,999,999</div>
                                 </div>
                             </div>
@@ -3489,11 +3491,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll", marginBottom: "80px"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Ring (Accessory)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeiftowtfdkgeriogbaaoj7dhgnx5hcx2izqla3f4vnwrwtifbu2yoa" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeiftowtfdkgeriogbaaoj7dhgnx5hcx2izqla3f4vnwrwtifbu2yoa"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3509,7 +3511,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                    <img src={providerIPFS + "bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"} height="18" alt="$EE"/>
                                     <div style={{marginLeft: "7.5px"}}>444,444</div>
                                 </div>
                             </div>
@@ -3537,11 +3539,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Backpacks (ฺBack)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeihyxgadmjould366mopsqqypsvckajxp22lyjbeye3vwclngubqfu" height="150" alt="Can not load metadata."/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeihyxgadmjould366mopsqqypsvckajxp22lyjbeye3vwclngubqfu"} height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3557,7 +3559,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                    <img src={providerIPFS + "bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"} height="18" alt="$II"/>
                                     <div style={{marginLeft: "7.5px"}}>22,222</div>
                                 </div>
                             </div>
@@ -3585,11 +3587,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                            <img src={providerIPFS + "bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce"} width="30px" alt="TAODUM-TAOMEME" />
                             <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                         </div>
                         <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Boots (ฺShoes)</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafybeiajrhbrxzhfkcsb6pazkrvgxamoij3jnlvljggi27wbidavtsbese" height="150" alt='Can not load metadata.'/>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src={providerIPFS + "bafybeiajrhbrxzhfkcsb6pazkrvgxamoij3jnlvljggi27wbidavtsbese"} height="150" alt='Can not load metadata.'/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
@@ -3605,7 +3607,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                    <img src={providerIPFS + "bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"} height="18" alt="$GEAR"/>
                                     <div style={{marginLeft: "7.5px"}}>999,999,999</div>
                                 </div>
                             </div>

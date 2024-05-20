@@ -15,6 +15,8 @@ const ammySX31 = '0xda558EE93B466aEb4F59fBf95D25d410318be43A'
 const ammyBBQ = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const ammyPZA = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
 
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
+
 const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
@@ -557,7 +559,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeihcyrsclfqjwflnaf4jtaylpvevgzhe5wwf2bqrih4vm3r2kyhmh4" width="260" alt="NPC_Ammy" />
+                    <img src={providerIPFS + "bafybeihcyrsclfqjwflnaf4jtaylpvevgzhe5wwf2bqrih4vm3r2kyhmh4"} width="260" alt="NPC_Ammy" />
                 </div>
                 {mode === 1 &&
                     <>
@@ -575,11 +577,11 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
-                                        {gasselected === "CTUNA" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
-                                        {gasselected === "SX31" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
-                                        {gasselected === "BBQ" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
-                                        {gasselected === "PZA" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
-                                        &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                        {gasselected === "CTUNA" ? <>&nbsp;<img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
+                                        {gasselected === "SX31" ? <>&nbsp;<img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
+                                        {gasselected === "BBQ" ? <>&nbsp;<img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
+                                        {gasselected === "PZA" ? <>&nbsp;<img src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"} width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
+                                        &nbsp;<img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} width="22" alt="$CMJ"/>
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -609,25 +611,25 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                             ></input>
                             {gasselected === "CTUNA" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: ctunaBalance}}; handleSwapUni(2, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/>
+                                    <img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} width="22" alt="$CTUNA"/>
                                     <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "SX31" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: sx31Balance}}; handleSwapUni(3, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/>
+                                    <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} width="22" alt="$SX31"/>
                                     <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "BBQ" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: bbqBalance}}; handleSwapUni(1, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/>
+                                    <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} width="22" alt="$BBQ"/>
                                     <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "PZA" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: pzaBalance}}; handleSwapUni(4, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/>
+                                    <img src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"} width="22" alt="$PZA"/>
                                     <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
@@ -702,7 +704,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     }
                                 }}
                             >
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} width="22" alt="$CMJ"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
@@ -828,25 +830,25 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                             ></input>
                             {gasselected === "CTUNA" &&
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(ctunaBalance)}}; handleAddUni(2, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/>
+                                    <img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} width="22" alt="$CTUNA"/>
                                     <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "SX31" &&
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(sx31Balance)}}; handleAddUni(3, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/>
+                                    <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} width="22" alt="$SX31"/>
                                     <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "BBQ" &&
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(bbqBalance)}}; handleAddUni(1, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/>
+                                    <img src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} width="22" alt="$BBQ"/>
                                     <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "PZA" &&
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(pzaBalance)}}; handleAddUni(4, bal);}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/>
+                                    <img src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"} width="22" alt="$PZA"/>
                                     <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
@@ -890,7 +892,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     }
                                 }
                             >
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                <img src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} width="22" alt="$CMJ"/>
                                 <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>

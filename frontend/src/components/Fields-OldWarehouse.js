@@ -8,6 +8,7 @@ const ory = '0xD492E20Ecf3Ae85Fe3E3159BB064442b86D6DC02'
 const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
 
 const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
     let { address } = useAccount()
@@ -122,7 +123,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + nftid + ".png",
+                    Image: providerIPFS + "bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + nftid + ".png",
                     Bonus: ethers.utils.formatEther(String(bonus * 10**14)),
                     Reward: ethers.utils.formatEther(String(data2[i].result)),
                     isStaked: true
@@ -173,7 +174,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
-                    Image: "https://cloudflare-ipfs.com/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + nftid + ".png",
+                    Image: providerIPFS + "bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + nftid + ".png",
                     Bonus: ethers.utils.formatEther(String(bonus * 10**14)), 
                     Reward: "0.000",
                     isStaked: false
@@ -276,13 +277,13 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             <></>
         }
 
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('" + providerIPFS + "bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "65px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Old Warehouse</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw ORY to earn $MICE.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="150" alt="$MICE" />
+                <img src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} width="150" alt="$MICE" />
             </div>
         </div>
 
@@ -296,21 +297,21 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                     <div style={{fontSize: "24px"}} className="emp">
                         {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                        <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                        <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} width="24" alt="$MICE"/>
                     </div>
                 </div>
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                     <div style={{fontSize: "24px"}}>
                         {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                        <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                        <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} width="24" alt="$MICE"/>
                     </div>
                 </div>
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>MICE BALANCE</div>
                     <div style={{fontSize: "24px"}}>
                         {nft.length > 0 && nft[0] !== null ? Number(miceBalance).toFixed(3) : 0}
-                        <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                        <img style={{marginLeft: "10px"}} src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} width="24" alt="$MICE"/>
                     </div>
                 </div>
             </div>
@@ -338,13 +339,13 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 <div>
                                     Earn: {item.Bonus * 86400}
                                     &nbsp;
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
+                                    <img src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} width="12" alt="micepic"/>
                                     &nbsp;MICE/DAY
                                 </div>
                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 2, textAlign: "left"}}>
                                         Pending Rewards<br></br>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
+                                        <img src={providerIPFS + "bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"} width="12" alt="$MICE"/>
                                         &nbsp;{item.Reward}
                                     </div>
                                     {item.Reward > 0 ?
@@ -365,7 +366,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
                             {address !== undefined ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                     <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                 </> :
                                 <>

@@ -19,6 +19,7 @@ const mintStOPT_Router = '0xC61E48947ec282C44D950B58e89D11AE848AdBc8'
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
 
 const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI }) => {
     let { address } = useAccount()
@@ -201,10 +202,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let response1 = null
             try {
-                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
-            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
@@ -221,10 +222,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let response2 = null
             try {
-                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
-            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
@@ -241,10 +242,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             
             let response3 = null
             try {
-                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
-            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
@@ -261,10 +262,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let response4 = null
             try {
-                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
-            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
@@ -281,10 +282,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             
             let response5 = null
             try {
-                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
-            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
@@ -301,10 +302,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let response6 = null
             try {
-                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
-            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
@@ -321,10 +322,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             let response7 = null
             try {
-                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", providerIPFS)) : null
             } catch {}
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
-            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", providerIPFS) : null
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
@@ -388,7 +389,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", providerIPFS))
                     nft = await response.json()
                 } catch {}
 
@@ -396,7 +397,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", providerIPFS),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -434,14 +435,14 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 functionName: 'tokenURI',
                 args: [String(data[12].servantId)],
             }) : null
-            const responsenft2 = nftipfs2 !== null ? await fetch(nftipfs2.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            const responsenft2 = nftipfs2 !== null ? await fetch(nftipfs2.replace("ipfs://", providerIPFS)) : null
             const nft02 = responsenft2 !== null ? await responsenft2.json() : null
             if (Number(data[12].servantId) !== 0) {
                 nfts.push({
                     Col: 3,
                     Id: Number(data[12].servantId),
                     Name: nft02.name,
-                    Image: nft02.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft02.image.replace("ipfs://", providerIPFS),
                     Description: nft02.description,
                     Attribute: nft02.attributes,
                     RewardPerSec: 100,
@@ -454,7 +455,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             const L2_Follower_Id = Number(data[12].followerId)
             const nftEQ_L2_Follower = Number(data[12].followerId) !== 0 && nft !== null ? nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/") : null
             const L2_Servant_Id = Number(data[12].servantId)
-            const nftEQ_L2_Servant = Number(data[12].servantId) !== 0 && nft02 !== null ? nft02.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_L2_Servant = Number(data[12].servantId) !== 0 && nft02 !== null ? nft02.image.replace("ipfs://", providerIPFS) : null
             const isStakeL2 = Number(nftEQ_L2.cmpow) > 0
             const cmpow_L2 = Number(nftEQ_L2.cmpow)
             const jbcPend = isStakeL2 ? data[14] : 0
@@ -551,14 +552,14 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             for (let i = 0; i <= yournftwallet3.length - 1 && yournftwallet3[i].Id.slice(0, 7) === "1000004"; i++) {
                 const nftipfs = data7[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", providerIPFS))
                 const nft = await response.json()
 
                 nfts.push({
                     Col: 3,
                     Id: yournftwallet3[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", providerIPFS),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 100,
@@ -924,13 +925,13 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             </div> :
             <></>
         }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('" + providerIPFS + "bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Jasper Cave</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $Jasper.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="150" alt="$JASP" />
+                <img src={providerIPFS + "bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"} width="150" alt="$JASP" />
             </div>
         </div>
 
@@ -979,14 +980,14 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP BALANCE (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
+                                <img src={providerIPFS + "bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"} height="20" alt="$JASP"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP PENDING (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
+                                <img src={providerIPFS + "bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"} height="20" alt="$JASP"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
@@ -1000,21 +1001,21 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "CTUNA" ?
                                     <>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
+                                        <img src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} height="20" alt="$CTUNA"/>
                                         <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }
                                 {gasselected === "SX31" ?
                                     <>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
+                                        <img src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} height="20" alt="$SX31"/>
                                         <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
                                 }
                                 {gasselected === "PIZZA" ?
                                     <>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
+                                        <img src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"} height="20" alt="$PZA"/>
                                         <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </> :
                                     <></>
@@ -1082,16 +1083,16 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <>
                                 {characterSlot !== null ?
                                     <>
-                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://cloudflare-ipfs.com/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
+                                        {Number(skinSlot1) === 0 || (characterSlot !== providerIPFS + "bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== providerIPFS + "bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
                                             <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlot === "https://cloudflare-ipfs.com/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." /> :
+                                        {characterSlot === providerIPFS + "bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src={providerIPFS + "bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm"} width="300px" alt="Can not load metadata." /> :
                                             <></>
                                         }
-                                        {characterSlot === "https://cloudflare-ipfs.com/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." /> :
+                                        {characterSlot === providerIPFS + "bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
+                                            <img src={providerIPFS + "bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m"} width="300px" alt="Can not load metadata." /> :
                                             <></>
                                         }
                                     </> :
@@ -1107,7 +1108,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <></>
                         }
                         {isOp && isStakeNow && !lastedSTOPT ?
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
+                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src={providerIPFS + "bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"} height="18" alt="$stOPT"/></div> :
                             <></>
                         }
                     </div>
@@ -1176,21 +1177,21 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JBC BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
+                                <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toFixed(3)}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JBC PENDING
                             <div style={{display: "flex", flexDirection: "row", color: isStakeL2Now ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
+                                <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
                                 <div style={{marginLeft: "5px"}}>Reward has been depleted!</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             AVAILABLE JBC IN POOL
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
+                                <img src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jbcPool).toFixed(3)}</div>
                             </div>
                         </div>
@@ -1300,7 +1301,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                    <img src={providerIPFS + "QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA"} width="150" alt="No_NFTs" />
                                     <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                 </> :
                                 <>

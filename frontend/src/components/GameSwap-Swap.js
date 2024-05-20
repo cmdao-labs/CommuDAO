@@ -2,6 +2,8 @@ import React from 'react'
 import Select from 'react-select'
 import { fetchBalance, readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
+
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
    
 const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20ABI, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
     const [inputSwap, setInputSwap] = React.useState("")
@@ -309,9 +311,9 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Instant Swap</div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 || swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" /> : <></>}
-                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /> : <></>}
-                            {swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" /> : <></>}
+                            {swapMode === 0 || swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" /> : <></>}
+                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" /> : <></>}
+                            {swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} alt="$JUSDT" /> : <></>}
                             {swapMode === 0 || swapMode === 3 ?
                                 <Select
                                     options={[]}
@@ -370,9 +372,9 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
                     <div style={{cursor: "pointer"}} className="fa fa-arrow-down" onClick={swapModeChange}></div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /> : <></>}
-                            {swapMode === 1 || swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" /> : <></>}
-                            {swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" /> : <></>}
+                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" /> : <></>}
+                            {swapMode === 1 || swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" /> : <></>}
+                            {swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} alt="$JUSDT" /> : <></>}
                             {swapMode === 0 ?
                                 <>
                                     <Select

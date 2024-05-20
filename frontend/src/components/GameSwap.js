@@ -24,6 +24,7 @@ const juSwap = "0x7417b256b306578b627797f7b002363397772603"
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
+const providerIPFS = "https://cloudflare-ipfs.com/ipfs/"
 
 const inputStyle = {
     control: (styles, state) => ({
@@ -622,7 +623,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Add LP</div>
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <div style={{display: "flex"}}>
-                                <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
+                                <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" />
                                 <Select
                                     options={[]}
                                     value={options[0]}
@@ -659,8 +660,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         <div className="fa fa-plus"></div>
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <div style={{display: "flex"}}>
-                                {liquidMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /> : <></>}
-                                {liquidMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" /> : <></>}
+                                {liquidMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" /> : <></>}
+                                {liquidMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} alt="$JUSDT" /> : <></>}
                                 {liquidMode === 0 ?
                                     <>
                                         <Select
@@ -727,7 +728,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                         <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
-                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" />
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}} className='bold'>
                                         {jbcPooled !== null ? <>{jbcPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -736,7 +737,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                         <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
-                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 1.75}} className='bold'>
                                         {cmjPooled !== null ? <>{cmjPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -749,7 +750,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                         <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
-                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" />
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}} className='bold'>
                                         {jbcjuPooled !== null ? <>{jbcjuPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -758,7 +759,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                         <div style={{height: "25px", lineHeight: 1.75}}>POOLED</div>
-                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />
+                                        <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} alt="$JUSDT" />
                                     </div>
                                     <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}} className='bold'>
                                         {jusdtjuPooled !== null ? <>{jusdtjuPooled.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -793,8 +794,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         {liquidMode === 0 &&
                             <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                 <div style={{marginLeft: "5px", height: "25px"}}>
-                                    <img style={{width: "28px", height: "28px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
-                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                    <img style={{width: "28px", height: "28px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" />
+                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                                 </div>
                                 <div className='bold' style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
                                     {lpBalance !== null ? <>Balance: {lpBalance.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -804,8 +805,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         {liquidMode === 1 ?
                             <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                                <div style={{marginLeft: "5px", height: "25px"}}>
-                                    <img style={{width: "28px", height: "28px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />
-                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />
+                                    <img style={{width: "28px", height: "28px"}} src={providerIPFS + "bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"} alt="$JBC" />
+                                    <img style={{width: "28px", height: "28px", marginLeft: "7.5px"}} src={providerIPFS + "bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"} alt="$JUSDT" />
                                 </div>
                                 <div className='bold' style={{marginLeft: "5px", height: "25px", lineHeight: 2.5}}>
                                     {julpBalance !== null ? <>Balance: {julpBalance.toLocaleString('en-US', {minimumFractionDigits:3})}</> : <>0.000</>}
@@ -882,61 +883,61 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                                 <div style={{fontSize: "10px", color: "rgb(126, 128, 145)", marginTop: "5px"}}>Stake CommuDAO Tokens/LP</div>
                                 <div style={{fontSize: "10px", color: "rgb(126, 128, 145)"}}>(⚡️ Powered by Meow Neon)</div>
                             </div>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="50" alt="$MEOW"/>
+                            <img src={providerIPFS + "bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy"} width="50" alt="$MEOW"/>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "25px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq"} alt="$JDAO" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0015 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" alt="$MEOW" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy"} alt="$MEOW" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>3 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" alt="$CTUNA" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"} alt="$CTUNA" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0012 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" alt="$SX31" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"} alt="$SX31" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.0012 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" alt="$BBQ" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"} alt="$BBQ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" alt="$PZA" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"} alt="$PZA" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", marginTop: "10px", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" alt="$CU" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"} alt="$CU" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.00024 MEOW/LP/HOUR</div>
                         </div>
                         <div style={{width: "85%", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px", margin: "10px 0", borderBottom: "1px solid #d9d8df"}}>
                             <div style={{height: "25px"}}>
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" alt="$JASP" />
-                                <img style={{width: "24px", height: "24px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"} alt="$JASP" />
+                                <img style={{width: "24px", height: "24px"}} src={providerIPFS + "bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"} alt="$CMJ" />
                             </div>
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.012 MEOW/LP/HOUR</div>
                         </div>
