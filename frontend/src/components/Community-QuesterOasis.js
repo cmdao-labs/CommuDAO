@@ -719,16 +719,16 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 <img src="https://cloudflare-ipfs.com/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
                             </div>
                             <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
+                                {/*<div>
                                     <div className="bold">REWARDS</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
                                         <div style={{marginRight: "10px", color: "#fff"}}>5</div>
                                         <img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
                                     </div>
-                                </div>
+                                </div>*/}
                                 <div>
                                     <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Craft a $BBQ in LABS and say GM!</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Just say GM and go to craft BBQ!</div>
                                     <div style={{marginTop: "10px"}} className="bold">GM STREAKS: {gmStreak}</div>
                                 </div>
                                 {canClaimBBQ ?
