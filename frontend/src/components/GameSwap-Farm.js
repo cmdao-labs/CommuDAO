@@ -202,7 +202,6 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
         setisLoading(false)
     }
     const [lpJdaoStake, setLpJdaoStake] = React.useState("")
-    const [lpJdao202Stake, setLpJdao202Stake] = React.useState("")
     const [lpJdao3Stake, setLpJdao3Stake] = React.useState("")
     const handleStake = (event) => { setLpJdaoStake(event.target.value) }
     const maxAddHandle1 = async () => {
@@ -243,52 +242,6 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 abi: farmJdaoABI,
                 functionName: 'deposit',
                 args: [1, ethers.utils.parseEther(lpJdaoStake)],
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-    const handleStake202 = (event) => { setLpJdao202Stake(event.target.value) }
-    const maxAddHandle202 = async () => {
-        const cmjBal = address !== undefined ? await readContract({
-            address: cmjToken,
-            abi: erc20ABI,
-            functionName: 'balanceOf',
-            args: [address],
-        }) : 0
-        setLpJdao202Stake(ethers.utils.formatEther(cmjBal))
-    }
-    const addstakeHandle202 = async () => {
-        setisLoading(true)
-        const cmAllow = await readContract({
-            address: cmjToken,
-            abi: erc20ABI,
-            functionName: 'allowance',
-            args: [address, farmJdao],
-        })
-        const bigValue = lpJdao202Stake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdao202Stake)) : ethers.BigNumber.from(0)
-        const Hex = ethers.BigNumber.from(10**8)
-        const bigApprove = bigValue.mul(Hex)
-        if (Number(lpJdao202Stake) > Number(cmAllow) / (10**18)) {
-            try {
-                const config = await prepareWriteContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [farmJdao, bigApprove],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
-                address: farmJdao,
-                abi: farmJdaoABI,
-                functionName: 'deposit',
-                args: [2, ethers.utils.parseEther(lpJdao202Stake)],
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -1010,69 +963,6 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
-                        <a href="https://exp-l1.jibchain.net/token/0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /></a>                       
-                        <a href="https://exp-l1.jibchain.net/token/0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" /></a>
-                    </div>
-                    <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
-                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                        <div>Total Daily Yield:</div>
-                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (0/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
-                    </div>
-                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                        <div>Total Value Locked:</div>
-                        {jbcJuReserv !== 0 ? <div>~฿{Number((cmjJdao202Staked * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
-                    </div>
-                    <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
-                        <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
-                            <div>JDAO EARNED:</div>
-                            <div className="bold">{jdao202Pending}</div>
-                        </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle202}>Harvest</div>
-                    </div>
-                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
-                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                            <div style={{textAlign: "left", fontSize: "14px"}}>STAKED</div>
-                            {farmJdao202Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={maxWithdrawHandle202}>{Number(Math.floor(farmJdao202Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor(farmJdao202Balance * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
-                        </div>
-                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                            <input
-                                placeholder="0.0"
-                                className="bold"
-                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
-                                onChange={handleWithdraw202}
-                                value={lpJdao202Withdraw}
-                            />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle202}>Withdraw</div>
-                        </div>
-                    </div>
-                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
-                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                            <div style={{textAlign: "left", fontSize: "14px"}}>BALANCE</div>
-                            {typeof(cmjBalance) !== "object" ?
-                                <div style={{textAlign: "left", fontSize: "14px"}}>
-                                    <span className="bold" style={{cursor: "pointer"}} onClick={maxAddHandle202}>{cmjBalance}</span>
-                                    <span> (~฿{Number(Math.floor(cmjBalanceFull * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span>
-                                </div> :
-                                <>0.000</>
-                            }
-                        </div>
-                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
-                            <input
-                                placeholder="0.0"
-                                className="bold"
-                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
-                                onChange={handleStake202}
-                                value={lpJdao202Stake}
-                            />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle202}>Stake</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
-                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
-                    <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x3C061eEce15C539CaE99FbE75B3044236Fa2eff0" target="_blank" rel="noreferrer">
                             <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" />
                             <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />            
@@ -1142,7 +1032,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x329889325A555b217C41A4c2EADD529a0CfA4231" target="_blank" rel="noreferrer">
@@ -1244,7 +1136,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {reserveCmjJASP !== 0 ? <div>~฿{Number(((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {reserveCmjCU !== 0 ? <div>~฿{Number(((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -1286,9 +1178,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xc19DE37d5e14b387BCda8e62aB4934591315901D" target="_blank" rel="noreferrer">
@@ -1360,7 +1250,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xf189c5B03694b70e5DFD8e8CAE84118Ed7616F19" target="_blank" rel="noreferrer">
@@ -1384,9 +1276,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{height: "80%"}}></div>
                 </div>
-            </div>
 
-            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044" target="_blank" rel="noreferrer">
@@ -1398,7 +1288,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{height: "80%"}}></div>
                 </div>
+            </div>
 
+            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x6F93F16cF86205C5BB9145078d584c354758D6DB" target="_blank" rel="noreferrer">
@@ -1422,9 +1314,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{height: "80%"}}></div>
                 </div>
-            </div>
 
-            <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x7801F8cdBABE6999331d1Bf37d74aAf713C3722F" target="_blank" rel="noreferrer">
@@ -1436,7 +1326,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{height: "80%"}}></div>
                 </div>
+            </div>
 
+            <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>                
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xda558EE93B466aEb4F59fBf95D25d410318be43A" target="_blank" rel="noreferrer">
@@ -1459,6 +1351,71 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     </div>
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{height: "80%"}}></div>
+                </div>
+
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                    <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
+                        <a href="https://exp-l1.jibchain.net/token/0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /></a>                       
+                        <a href="https://exp-l1.jibchain.net/token/0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" /></a>
+                    </div>
+                    <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div className="bold" style={{padding: "2px 6px", background: "orange", color: "red"}}>[Deprecated]</div>
+                        <div></div>
+                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>Total Daily Yield:</div>
+                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (0/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>Total Value Locked:</div>
+                        {jbcJuReserv !== 0 ? <div>~฿{Number((cmjJdao202Staked * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                    </div>
+                    <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
+                            <div>JDAO EARNED:</div>
+                            <div className="bold">{jdao202Pending}</div>
+                        </div>
+                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle202}>Harvest</div>
+                    </div>
+                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>STAKED</div>
+                            {farmJdao202Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={maxWithdrawHandle202}>{Number(Math.floor(farmJdao202Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor(farmJdao202Balance * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                        </div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <input
+                                placeholder="0.0"
+                                className="bold"
+                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                onChange={handleWithdraw202}
+                                value={lpJdao202Withdraw}
+                            />
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle202}>Withdraw</div>
+                        </div>
+                    </div>
+                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>BALANCE</div>
+                            {typeof(cmjBalance) !== "object" ?
+                                <div style={{textAlign: "left", fontSize: "14px"}}>
+                                    <span className="bold">{cmjBalance}</span>
+                                    <span> (~฿{Number(Math.floor(cmjBalanceFull * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span>
+                                </div> :
+                                <>0.000</>
+                            }
+                        </div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <input
+                                placeholder="0.0"
+                                className="bold"
+                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                value="Unable to stake"
+                                disabled
+                            />
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", cursor: "not-allowed"}} className="bold">Stake</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
