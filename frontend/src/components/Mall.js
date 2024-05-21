@@ -22,6 +22,7 @@ const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 const gearToken = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
+const doijibToken = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
@@ -128,6 +129,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [eeBalance, setEeBalance] = React.useState(0)
     const [jdaoBalance, setJdaoBalance] = React.useState(0)
     const [gearBalance, setGearBalance] = React.useState(0)
+    const [doijibBalance, setDoijibBalance] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -283,8 +285,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'wl',
                         args: [address, 6],
                     },
+                    {
+                        address: doijibToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {result: 0}, {result: false},  ]
+            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {result: 0}, {result: false}, {result: 0},]
             
             const _isKYC = data[0].result
             const cmjBal = data[1].result
@@ -311,6 +319,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const gearBal = data[22].result
 
             const _isWL6 = data[23].result
+
+            const doijibBal = data[24].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -705,7 +715,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 sell13remain, _canBuy13, roll6remain, sell14remain, _canBuy14, sell15remain, sell16remain, sell17remain, sell18remain, _canBuy18, 
                 sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, sell25remain, sell26remain, sell27remain, sell28remain, sell29remain, sell30remain,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, jtaoBal, iiBal, eeBal, platBal, gearBal,
-                sell31remain, sell32remain, sell33remain, sell34remain, sell35remain, sell36remain, _canBuy31, _canBuy32, _canBuy33, _isWL6,
+                sell31remain, sell32remain, sell33remain, sell34remain, sell35remain, sell36remain, _canBuy31, _canBuy32, _canBuy33, _isWL6, doijibBal,
             ]
         }
 
@@ -790,6 +800,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setEeBalance(ethers.utils.formatEther(String(result[71])))
             setPlatBalance(ethers.utils.formatEther(String(result[72])))
             setGearBalance(ethers.utils.formatEther(String(result[73])))
+            setDoijibBalance(ethers.utils.formatEther(String(result[84])))
 
             setSell31Remain(result[74])
             setSell32Remain(result[75])
@@ -1885,6 +1896,30 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             }}
                         />
                         <div style={{marginLeft: "5px"}}>{Number(gearBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
+
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0px 10px 20px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi"
+                            width="20"
+                            alt="$DOIJIB"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: doijibToken,
+                                            symbol: 'DOIJIB',
+                                            decimals: 18,
+                                            image: 'https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
