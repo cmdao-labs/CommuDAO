@@ -45,6 +45,8 @@ import farmCmosABI from './jsons/farmcmosABI.json'
 
 import BBQLabs from './BBQ-Labs'
 
+import OpGameSwap from  './OP-GameSwap'
+
 import { bkc } from './chains/bkc.ts'
 import { bbqchain } from './chains/bbqchain.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
@@ -122,6 +124,8 @@ import bkcOracleABI from './jsons/bkcOracleABI.json'
 
 import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
 import nativeBridgeABI from './jsons/nativeBridgeABI.json'
+
+import veloPoolABI from './jsons/veloPoolABI.json'
 
 import TBridge from './tBridge'
 
@@ -300,6 +304,9 @@ const Main = () => {
                 if (modeText.toUpperCase() === "GAMESWAP" && subModeText.toUpperCase() === "BKC") {
                     preset = 700
                     document.title = "Gameswap [BKC] | CommuDAO"
+                } else if (modeText.toUpperCase() === "GAMESWAP" && subModeText.toUpperCase() === "OP") {
+                    preset = 701
+                    document.title = "Gameswap [OP] | CommuDAO"
                 }
             } else {
                 preset = 7
@@ -426,6 +433,7 @@ const Main = () => {
                     <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} /> :
                     <></>
                 }
+                {mode === 701 && <OpGameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} veloPoolABI={veloPoolABI} bkcOracleABI={bkcOracleABI} />}
                 {mode === 8 ?
                     <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} /> :
                     <></>

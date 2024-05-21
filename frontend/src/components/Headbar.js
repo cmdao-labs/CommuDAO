@@ -94,8 +94,14 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
-          {chain !== undefined && (chain.id === 56 || chain.id === 10) &&
+          {chain !== undefined && (chain.id === 56) &&
             <> 
+              <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
+            </>
+          }
+          {chain !== undefined && (chain.id === 10) &&
+            <> 
+              <div className="funcList" onClick={() => {callMode(701); navigate('/gameswap/op');}}>GameSwap</div>
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }
