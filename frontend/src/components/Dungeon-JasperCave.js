@@ -14,7 +14,7 @@ const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const dunJasperL2 = '0xDe5770c72cEEE0d73503E827973cfD200431ABd4'
 
-const mintStOPT_Router = '0xC61E48947ec282C44D950B58e89D11AE848AdBc8'
+const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
 
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
@@ -168,7 +168,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         address: mintStOPT_Router,
                         abi: mintStOPTABI,
                         functionName: 'userTimeStamp',
-                        args: [address],
+                        args: [address, 2],
                     },
                     {
                         address: dunJasperL2,
@@ -900,7 +900,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 address: mintStOPT_Router,
                 abi: mintStOPTABI,
                 functionName: 'mintST',
-                args: []
+                args: [2]
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -1106,7 +1106,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div> :
                             <></>
                         }
-                        {isOp && isStakeNow && !lastedSTOPT ?
+                        {isOp && isStakeNow && !lastedSTOPT && isRunout ?
                             <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
                             <></>
                         }

@@ -9,7 +9,7 @@ const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 
-const mintStOPT_Router = '0x35c4fa3ac13386f67eE6584C2311aBEB19a22636'
+const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
@@ -97,7 +97,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         address: mintStOPT_Router,
                         abi: mintStOPTABI,
                         functionName: 'userTimeStamp',
-                        args: [address],
+                        args: [address, 1],
                     },
                     {
                         address: bbqToken,
@@ -414,7 +414,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 address: mintStOPT_Router,
                 abi: mintStOPTABI,
                 functionName: 'mintST',
-                args: []
+                args: [1]
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -588,7 +588,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px"}}>Lv.{characterSlotLevel}</div> :
                             <></>
                         }
-                        {isOp && isStakeNow && !lastedSTOPT ?
+                        {isOp && isStakeNow && !lastedSTOPT && isRunout ?
                             <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)", display: "flex", alignItems: "center"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://cloudflare-ipfs.com/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
                             <></>
                         }
