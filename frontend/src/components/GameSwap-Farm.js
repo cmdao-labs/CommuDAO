@@ -966,7 +966,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const _farmjdao9totalstake = ethers.utils.formatEther(result[54].result)
             setCmjGoldStaked((Number(_cmjgoldreserve) * Number(_farmjdao9totalstake)) / Number(_goldcmjtotalsupply))
             setCmjGoldPooled((Number(_cmjgoldreserve) * Number(ethers.utils.formatEther(result[51].result))) / Number(_goldcmjtotalsupply))
-            setYourCmjGoldStaked((Number(_cmjgoldreserve) * Number(_farmjdao9totalstake)) / Number(_goldcmjtotalsupply))
+            setYourCmjGoldStaked((Number(_cmjgoldreserve) * Number(_farmjdao9balance)) / Number(_goldcmjtotalsupply))
             setSwapfee24hour8(Number(result[55]).toFixed(0))
         })
     }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20ABI, cmdaoAmmNpcABI])
