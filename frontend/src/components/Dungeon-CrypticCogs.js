@@ -192,7 +192,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[10].status === 'success' && Number(nftSTAT[0]) === 2) {
                 charIpfs = data[10].result
             }
-            const response1 = charIpfs !== null ? await fetch(charIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response1 = null
+            try {
+                response1 = charIpfs !== null ? await fetch(charIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
             const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_1_Name = nft1.name
@@ -215,7 +218,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[11].status === 'success' && Number(nftSTAT[3]) === 2) {
                 accIpfs = data[11].result
             }
-            const response2 = accIpfs !== null ? await fetch(accIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response2 = null
+            try {
+                response2 = accIpfs !== null ? await fetch(accIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
             const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_2_Name = nft2.name
@@ -238,7 +244,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[12].status === 'success' && Number(nftSTAT[4]) === 2) {
                 backpfs = data[12].result
             }
-            const response3 = backpfs !== null ? await fetch(backpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response3 = null
+            try {
+                response3 = backpfs !== null ? await fetch(backpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
             const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_3_Name = nft3.name
@@ -261,7 +270,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[13].status === 'success' && Number(nftSTAT[5]) === 2) {
                 shoesIpfs = data[13].result
             }
-            const response4 = shoesIpfs !== null ? await fetch(shoesIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response4 = null
+            try {
+                response4 = shoesIpfs !== null ? await fetch(shoesIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
             const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_4_Name = nft4.name
@@ -284,7 +296,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[14].status === 'success' && Number(nftSTAT[6]) === 2) {
                 weaponIpfs = data[14].result
             }
-            const response5 = weaponIpfs !== null ? await fetch(weaponIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response5 = null
+            try {
+                response5 = weaponIpfs !== null ? await fetch(weaponIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
             const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_5_Name = nft5.name
@@ -307,7 +322,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[15].status === 'success' && Number(nftSTAT[2]) === 2) {
                 clothIpfs = data[15].result
             }
-            const response6 = clothIpfs !== null ? await fetch(clothIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response6 = null
+            try {
+                response6 = clothIpfs !== null ? await fetch(clothIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
             const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_6_Name = nft6.name
@@ -330,7 +348,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[16].status === 'success' && Number(nftSTAT[1]) === 2) {
                 hatIpfs = data[16].result
             }
-            const response7 = hatIpfs !== null ? await fetch(hatIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            let response7 = null
+            try {
+                response7 = hatIpfs !== null ? await fetch(hatIpfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+            } catch {}
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
             const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
             const nftEQ_7_Name = nft7.name
