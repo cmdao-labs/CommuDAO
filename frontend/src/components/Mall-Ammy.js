@@ -9,13 +9,15 @@ const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const pzaToken = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
+const woodToken = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 
 const ammyCTUNA = "0x7801F8cdBABE6999331d1Bf37d74aAf713C3722F"
 const ammySX31 = '0xda558EE93B466aEb4F59fBf95D25d410318be43A'
 const ammyBBQ = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const ammyPZA = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
+const ammyWOOD = ''
 
-const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, cmjBalance }) => {
+const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, woodBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("BBQ");
@@ -55,6 +57,13 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
     const [reservePZA, setReservePZA] = React.useState("")
     const [pzaLpBalance, setPzaLpBalance] = React.useState("0")
 
+    const [cmjBoughtWOOD, setCmjBoughtWOOD] = React.useState("0.000")
+    const [tokenBoughtWOOD, setTokenBoughtWOOD] = React.useState("0.000")
+    const [priceWOOD, setPriceWOOD] = React.useState("0.000")
+    const [reserveCmjWOOD, setReserveCmjWOOD] = React.useState("")
+    const [reserveWOOD, setReserveWOOD] = React.useState("")
+    const [woodLpBalance, setWoodLpBalance] = React.useState("0")
+
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
@@ -65,6 +74,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             addr = ammySX31
         } else if (index === 4) {
             addr = ammyPZA
+        } else if (index === 5) {
+            addr = ammyWOOD
         }
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -98,6 +109,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             event.target.value !== "" ? setCmjBought2(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBought2("0.000")
         } else if (index === 4) {
             event.target.value !== "" ? setCmjBoughtPZA(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPZA("0.000")
+        } else if (index === 5) {
+            event.target.value !== "" ? setCmjBoughtWOOD(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtWOOD("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -110,6 +123,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             addr = ammySX31
         } else if (index === 4) {
             addr = ammyPZA
+        } else if (index === 5) {
+            addr = ammyWOOD
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -143,6 +158,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             event.target.value !== "" ? setTokenBought(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBought("0.000")
         } else if (index === 4) {
             event.target.value !== "" ? setTokenBoughtPZA(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtPZA("0.000")
+        } else if (index === 5) {
+            event.target.value !== "" ? setTokenBoughtWOOD(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtWOOD("0.000")
         }
     }
 
@@ -172,6 +189,11 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             token = pzaToken
             currBoughtToken = cmjBoughtPZA
             tokenBoughtCurr = tokenBoughtPZA
+        } else if (index === 5) {
+            lp = ammyWOOD
+            token = woodToken
+            currBoughtToken = cmjBoughtWOOD
+            tokenBoughtCurr = tokenBoughtWOOD
         }
         setisLoading(true)
         try {
@@ -248,6 +270,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             addr = ammySX31
         } else if (index === 4) {
             addr = ammyPZA
+        } else if (index === 5) {
+            addr = ammyWOOD
         }
         setisLoading(true)
         try {
@@ -274,6 +298,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             addr = ammySX31
         } else if (index === 4) {
             addr = ammyPZA
+        } else if (index === 5) {
+            addr = ammyWOOD
         }
         setTokenAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -302,6 +328,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             addr = ammySX31
         } else if (index === 4) {
             addr = ammyPZA
+        } else if (index === 5) {
+            addr = ammyWOOD
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -336,6 +364,9 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
         } else if (index === 4) {
             lp = ammyPZA
             token = pzaToken
+        } else if (index === 5) {
+            lp = ammyWOOD
+            token = woodToken
         }
         setisLoading(true)
         try {
@@ -442,6 +473,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             const _reserveBBQ = data[5].result
             const _reserveCmj4 = data[6].result
             const _reservePZA = data[7].result
+            const _reserveCmj5 = 0
+            const _reserveWOOD = 0
 
             const data2 = await readContracts({
                 contracts: [
@@ -476,6 +509,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             const tokensBoughtsx31TOcmj = data2[1].result
             const tokensBoughtbbqTOcmj = data2[2].result
             const tokensBoughtpzaTOcmj = data2[3].result
+            const tokensBoughtwoodTOcmj = 0
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -504,16 +538,18 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                         args: [address],
                     },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0},]
-
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            
             const ctunalpBal = data3[0].result
             const sx31lpBal = data3[1].result
             const bbqlpBal = data3[2].result
             const pzalpBal = data3[3].result
+            const woodlpBal = 0
 
             return [
                 tokensBoughtctunaTOcmj, tokensBoughtsx31TOcmj, tokensBoughtbbqTOcmj, tokensBoughtpzaTOcmj, _reserveCmj, _reserveCtuna, _reserveCmj2, _reserveSX31, _reserveCmj3, _reserveBBQ, _reserveCmj4, _reservePZA, 
                 ctunalpBal, sx31lpBal, bbqlpBal, pzalpBal,
+                tokensBoughtwoodTOcmj, _reserveCmj5, _reserveWOOD, woodlpBal,
             ]
         }
 
@@ -529,8 +565,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
         getAsync().then(result => {
             setPriceCTUNA(Number(ethers.utils.formatEther(result[0])).toFixed(3))
             setPriceSX31(Number(ethers.utils.formatEther(result[1])).toFixed(3))
-            setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(8))
-            setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(8))
+            setPriceBBQ(Number(ethers.utils.formatEther(result[2])).toFixed(7))
+            setPricePZA(Number(ethers.utils.formatEther(result[3])).toFixed(7))
 
             setReserveCmjCTUNA(ethers.utils.formatEther(result[4]))
             setReserveCTUNA(ethers.utils.formatEther(result[5]))
@@ -549,6 +585,12 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             setBbqLpBalance(Math.floor(_bbqlpbalance * 100000) / 100000)
             const _pzalpbalance = ethers.utils.formatEther(result[15])
             setPzaLpBalance(Math.floor(_pzalpbalance * 100000) / 100000)
+
+            setPriceWOOD(Number(ethers.utils.formatEther(result[16])).toFixed(7))
+            setReserveCmjWOOD(ethers.utils.formatEther(result[17]))
+            setReserveWOOD(ethers.utils.formatEther(result[18]))
+            const _woodlpbalance = ethers.utils.formatEther(result[19])
+            setWoodLpBalance(Math.floor(_woodlpbalance * 100000) / 100000)
         })
 
     }, [address, erc20ABI, cmdaoAmmNpcABI])
@@ -570,6 +612,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="CTUNA">CTUNA</option>
                                         <option value="SX31">SX31</option>
+                                        <option value="WOOD">WOOD</option>
                                         <option value="BBQ">BBQ</option>
                                         <option value="PZA">PZA</option>
                                     </select>
@@ -577,6 +620,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         &nbsp;1
                                         {gasselected === "CTUNA" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
                                         {gasselected === "SX31" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
+                                        {gasselected === "WOOD" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/> &nbsp;=&nbsp; <div className="emp">{priceWOOD}</div></>}
                                         {gasselected === "BBQ" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
                                         {gasselected === "PZA" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
                                         &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
@@ -603,6 +647,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         handleSwapUni(1, event)
                                     } else if (gasselected === "PZA") {
                                         handleSwapUni(4, event)
+                                    } else if (gasselected === "WOOD") {
+                                        handleSwapUni(5, event)
                                     }
                                 }}
                                 value={inputSwap}
@@ -631,6 +677,12 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "WOOD" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: woodBalance}}; handleSwapUni(5, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
@@ -644,6 +696,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                             swapTokenHandleUni(1, true)
                                         } else if (gasselected === "PZA") {
                                             swapTokenHandleUni(4, true)
+                                        } else if (gasselected === "WOOD") {
+                                            swapTokenHandleUni(5, true)
                                         }
                                     }
                                 }>SELL</div> :
@@ -655,12 +709,14 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     {gasselected === "SX31" && Number(cmjBought2).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "BBQ" && Number(cmjBought3).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PZA" && Number(cmjBoughtPZA).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "WOOD" && Number(cmjBoughtWOOD).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $CMJ (
                                     {gasselected === "CTUNA" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjCTUNA) - ((Number(reserveCmjCTUNA) * Number(reserveCTUNA)) / (Number(reserveCTUNA) + Number(inputSwap))))) - (Number(reserveCTUNA/reserveCmjCTUNA))) / (Number(reserveCTUNA/reserveCmjCTUNA))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "SX31" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjSX31) - ((Number(reserveCmjSX31) * Number(reserveSX31)) / (Number(reserveSX31) + Number(inputSwap))))) - (Number(reserveSX31/reserveCmjSX31))) / (Number(reserveSX31/reserveCmjSX31))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "BBQ" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjBBQ) - ((Number(reserveCmjBBQ) * Number(reserveBBQ)) / (Number(reserveBBQ) + Number(inputSwap))))) - (Number(reserveBBQ/reserveCmjBBQ))) / (Number(reserveBBQ/reserveCmjBBQ))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "PZA" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjPZA) - ((Number(reserveCmjPZA) * Number(reservePZA)) / (Number(reservePZA) + Number(inputSwap))))) - (Number(reservePZA/reserveCmjPZA))) / (Number(reservePZA/reserveCmjPZA))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "WOOD" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjWOOD) - ((Number(reserveCmjWOOD) * Number(reserveWOOD)) / (Number(reserveWOOD) + Number(inputSwap))))) - (Number(reserveWOOD/reserveCmjWOOD))) / (Number(reserveWOOD/reserveCmjWOOD))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -683,6 +739,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         handleSwapUni_2(1, event)
                                     } else if (gasselected === "PZA") {
                                         handleSwapUni_2(4, event)
+                                    } else if (gasselected === "WOOD") {
+                                        handleSwapUni_2(5, event)
                                     }
                                 }}
                                 value={inputSwap2}
@@ -699,6 +757,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         handleSwapUni_2(1, bal)
                                     } else if (gasselected === "PZA") {
                                         handleSwapUni_2(4, bal)
+                                    } else if (gasselected === "WOOD") {
+                                        handleSwapUni_2(5, bal)
                                     }
                                 }}
                             >
@@ -718,6 +778,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                             swapTokenHandleUni(1, false)
                                         } else if (gasselected === "PZA") {
                                             swapTokenHandleUni(4, false)
+                                        } else if (gasselected === "WOOD") {
+                                            swapTokenHandleUni(5, false)
                                         }
                                     }
                                 }>BUY</div> :
@@ -729,12 +791,14 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     {gasselected === "SX31" && Number(tokenBought).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "BBQ" && Number(tokenBought3).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PZA" && Number(tokenBoughtPZA).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "WOOD" && Number(tokenBoughtWOOD).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 ${gasselected} (
                                     {gasselected === "CTUNA" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveCTUNA) - ((Number(reserveCTUNA) * Number(reserveCmjCTUNA)) / (Number(reserveCmjCTUNA) + Number(inputSwap2))))) - (Number(reserveCmjCTUNA/reserveCTUNA))) / (Number(reserveCmjCTUNA/reserveCTUNA))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "SX31" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveSX31) - ((Number(reserveSX31) * Number(reserveCmjSX31)) / (Number(reserveCmjSX31) + Number(inputSwap2))))) - (Number(reserveCmjSX31/reserveSX31))) / (Number(reserveCmjSX31/reserveSX31))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "BBQ" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveBBQ) - ((Number(reserveBBQ) * Number(reserveCmjBBQ)) / (Number(reserveCmjBBQ) + Number(inputSwap2))))) - (Number(reserveCmjBBQ/reserveBBQ))) / (Number(reserveCmjBBQ/reserveBBQ))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "PZA" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reservePZA) - ((Number(reservePZA) * Number(reserveCmjPZA)) / (Number(reserveCmjPZA) + Number(inputSwap2))))) - (Number(reserveCmjPZA/reservePZA))) / (Number(reserveCmjPZA/reservePZA))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "WOOD" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveWOOD) - ((Number(reserveWOOD) * Number(reserveCmjWOOD)) / (Number(reserveCmjWOOD) + Number(inputSwap2))))) - (Number(reserveCmjWOOD/reserveWOOD))) / (Number(reserveCmjWOOD/reserveWOOD))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap2) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -752,6 +816,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                         <option value="CTUNA">CTUNA</option>
                                         <option value="SX31">SX31</option>
+                                        <option value="WOOD">WOOD</option>
                                         <option value="BBQ">BBQ</option>
                                         <option value="PZA">PZA</option>
                                     </select>
@@ -768,6 +833,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                                     setLpSell(String(bbqLpBalance))
                                                 } else if (gasselected === "PZA") {
                                                     setLpSell(String(pzaLpBalance))
+                                                } else if (gasselected === "WOOD") {
+                                                    setLpSell(String(woodLpBalance))
                                                 }
                                             }
                                         }
@@ -776,6 +843,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         {gasselected === "SX31" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(sx31LpBalance).toFixed(4)}</div></>}
                                         {gasselected === "BBQ" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(bbqLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "PZA" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(pzaLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "WOOD" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(woodLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -797,6 +865,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                             removeLpUni(1)
                                         } else if (gasselected === "PZA") {
                                             removeLpUni(4)
+                                        } else if (gasselected === "WOOD") {
+                                            removeLpUni(5)
                                         }
                                     }
                                 }
@@ -822,6 +892,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         handleAddUni(1, event)
                                     } else if (gasselected === "PZA") {
                                         handleAddUni(4, event)
+                                    } else if (gasselected === "WOOD") {
+                                        handleAddUni(5, event)
                                     }
                                 }}
                                 value={tokenAdd}
@@ -850,6 +922,12 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                     <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "WOOD" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(pzaBalance)}}; handleAddUni(4, bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -869,6 +947,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         handleAddUni_2(1, event)
                                     } else if (gasselected === "PZA") {
                                         handleAddUni_2(4, event)
+                                    } else if (gasselected === "WOOD") {
+                                        handleAddUni_2(5, event)
                                     }
                                 }}
                                 value={currAdd}
@@ -886,6 +966,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                             handleAddUni_2(1, bal)
                                         } else if (gasselected === "PZA") {
                                             handleAddUni_2(4, bal)
+                                        } else if (gasselected === "WOOD") {
+                                            handleAddUni_2(5, bal)
                                         }
                                     }
                                 }
@@ -909,6 +991,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                                 addLpHandleUni(1)
                                             } else if (gasselected === "PZA") {
                                                 addLpHandleUni(4)
+                                            } else if (gasselected === "WOOD") {
+                                                addLpHandleUni(5)
                                             }
                                         }
                                     }
