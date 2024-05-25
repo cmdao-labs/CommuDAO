@@ -6,8 +6,8 @@ import { ThreeDots } from 'react-loading-icons'
 
 const herocatBKC = '0x2F022D4Ef37847304eCd167303aeaA9699F73663'
 const herocatBBQ = '0x9cD236a18D1792993beCff9E525902a5B6ef4483'
-const bbqBridge = '0xf51F20D135b1Aa8A6d27eA61Bba47A453c8ee6D2'
-const bkcBridge = '0x519fF534E58A226c11566b0546f900766664B705'
+const bbqBridge = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
+const bkcBridge = '0x03088437f7bE4342e17a9492EBaAAE23d6f96208'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
@@ -113,7 +113,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 
 const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
     let { address } = useAccount()
-    // let address = '0x0972cc063fe7265a61c593cd55ce925d4d47ac42'
+    // let address = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
     const { chain } = useNetwork()
 
     const [nft, setNft] = React.useState([])
@@ -223,14 +223,14 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 const nftipfs = data4[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs)
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
                 nfts2.push({
                     Id: yournftwallet2[i].Id,
                     Name: nft.name + ' #' + yournftwallet2[i].Id,
-                    Image: nft.image,
+                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                 })
@@ -259,7 +259,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
 
     }, [address, txupdate, erc721ABI])
 
-    const depositTaoHandle = async (_nftId) => {
+    const depositHRMHandle = async (_nftId) => {
         setisLoading(true)
         try {
             const nftAllow = await readContract({
@@ -292,7 +292,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
         } catch {}
         setisLoading(false)
     }
-    const withdrawTaoHandle = async (_nftId) => {
+    const withdrawHRMHandle = async (_nftId) => {
         setisLoading(true)
         try {
             const nftAllow = await readContract({
@@ -316,8 +316,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
                 args: [_nftId],
-                value: ethers.utils.parseEther('10'),
-                chainId: 8899,
+                value: ethers.utils.parseEther('800'),
+                chainId: 190,
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -348,8 +348,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                                             </div>
                                             <div className="emp bold">{item.Name}</div>
                                             <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                            {false && chain.id === 96 ?
-                                                <div style={{alignSelf: "center"}} className="pixel button" onClick={() => depositTaoHandle(item.Id)}>BRIDGE TO BBQ</div> :
+                                            {chain.id === 96 ?
+                                                <div style={{alignSelf: "center"}} className="pixel button" onClick={() => depositHRMHandle(item.Id)}>BRIDGE TO BBQ</div> :
                                                 <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BRIDGE TO BBQ</div>
                                             }
                                         </div>
@@ -390,8 +390,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                                     </div>
                                     <div className="emp bold">{item.Name}</div>
                                     <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                    {false && chain.id === 190 ?
-                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => withdrawTaoHandle(item.Id)}>BRIDGE TO BKC</div> :
+                                    {chain.id === 190 ?
+                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => withdrawHRMHandle(item.Id)}>BRIDGE TO BKC</div> :
                                         <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BRIDGE TO BKC</div>
                                     }
                                 </div>
@@ -412,7 +412,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     }
                 </div> :
                 <div style={{width: "72%", marginBottom: "20px", display: "flex", flexDirection: "row", alignItems: "flex-start", padding: "15px", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
+                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", padding: "15px", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
