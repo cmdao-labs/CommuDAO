@@ -15,7 +15,7 @@ const ammyCTUNA = "0x7801F8cdBABE6999331d1Bf37d74aAf713C3722F"
 const ammySX31 = '0xda558EE93B466aEb4F59fBf95D25d410318be43A'
 const ammyBBQ = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const ammyPZA = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
-const ammyWOOD = ''
+const ammyWOOD = '0x466C3b32538eB0DB9f6c88ee2Fa9c72C495cE08F'
 
 const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, woodBalance, cmjBalance }) => {
     const { address } = useAccount()
@@ -461,7 +461,17 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                         address: ammyPZA,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
-                    }
+                    },
+                    {
+                        address: ammyWOOD,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: ammyWOOD,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -473,8 +483,8 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             const _reserveBBQ = data[5].result
             const _reserveCmj4 = data[6].result
             const _reservePZA = data[7].result
-            const _reserveCmj5 = 0
-            const _reserveWOOD = 0
+            const _reserveCmj5 = data[8].result
+            const _reserveWOOD = data[9].result
 
             const data2 = await readContracts({
                 contracts: [
@@ -501,6 +511,12 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
                         args: [String(10**18), String(_reservePZA), String(_reserveCmj4)],
+                    },
+                    {
+                        address: ammyWOOD,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getAmountOfTokens',
+                        args: [String(10**18), String(_reservePZA), String(_reserveCmj4)],
                     }
                 ],
             })
@@ -509,7 +525,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             const tokensBoughtsx31TOcmj = data2[1].result
             const tokensBoughtbbqTOcmj = data2[2].result
             const tokensBoughtpzaTOcmj = data2[3].result
-            const tokensBoughtwoodTOcmj = 0
+            const tokensBoughtwoodTOcmj = data2[4].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -537,14 +553,20 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: ammyWOOD,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
             
             const ctunalpBal = data3[0].result
             const sx31lpBal = data3[1].result
             const bbqlpBal = data3[2].result
             const pzalpBal = data3[3].result
-            const woodlpBal = 0
+            const woodlpBal = data3[4].result
 
             return [
                 tokensBoughtctunaTOcmj, tokensBoughtsx31TOcmj, tokensBoughtbbqTOcmj, tokensBoughtpzaTOcmj, _reserveCmj, _reserveCtuna, _reserveCmj2, _reserveSX31, _reserveCmj3, _reserveBBQ, _reserveCmj4, _reservePZA, 
