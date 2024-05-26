@@ -608,7 +608,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
             const _pzalpbalance = ethers.utils.formatEther(result[15])
             setPzaLpBalance(Math.floor(_pzalpbalance * 100000) / 100000)
 
-            setPriceWOOD(Number(ethers.utils.formatEther(result[16])).toFixed(7))
+            setPriceWOOD(Number(ethers.utils.formatEther(result[16])).toFixed(10))
             setReserveCmjWOOD(ethers.utils.formatEther(result[17]))
             setReserveWOOD(ethers.utils.formatEther(result[18]))
             const _woodlpbalance = ethers.utils.formatEther(result[19])
@@ -642,7 +642,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                                         &nbsp;1
                                         {gasselected === "CTUNA" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" width="22" alt="$CTUNA"/> &nbsp;=&nbsp; <div className="emp">{priceCTUNA}</div></> : ''}
                                         {gasselected === "SX31" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" width="22" alt="$SX31"/> &nbsp;=&nbsp; <div className="emp">{priceSX31}</div></> : ''}
-                                        {gasselected === "WOOD" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/> &nbsp;=&nbsp; <div className="emp">{priceWOOD}</div></>}
+                                        {gasselected === "WOOD" && <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/> &nbsp;=&nbsp; <div style={{letterSpacing: '-1.25px'}} className="emp">{priceWOOD}</div></>}
                                         {gasselected === "BBQ" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" width="22" alt="$BBQ"/> &nbsp;=&nbsp; <div className="emp">{priceBBQ}</div></> : ''}
                                         {gasselected === "PZA" ? <>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" width="22" alt="$PZA"/> &nbsp;=&nbsp; <div className="emp">{pricePZA}</div></> : ''}
                                         &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
