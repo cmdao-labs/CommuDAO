@@ -65,8 +65,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [canbuy7, setCanBuy7] = React.useState(false)
     const [sell8Remain, setSell8Remain] = React.useState(333)
     const [canbuy8, setCanBuy8] = React.useState(false)
-    const [sell9Remain, setSell9Remain] = React.useState(333)
-    const [canbuy9, setCanBuy9] = React.useState(false)
     const [sell13Remain, setSell13Remain] = React.useState(333)
     const [canbuy13, setCanBuy13] = React.useState(false)
     const [sell15Remain, setSell15Remain] = React.useState(100)
@@ -78,8 +76,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [sell20Remain, setSell20Remain] = React.useState(100)
     const [sell21Remain, setSell21Remain] = React.useState(100)
     const [sell22Remain, setSell22Remain] = React.useState(100)
-    const [sell23Remain, setSell23Remain] = React.useState(100)
-    const [canbuy23, setCanBuy23] = React.useState(false)
     const [sell24Remain, setSell24Remain] = React.useState(250)
     const [sell25Remain, setSell25Remain] = React.useState(250)
     const [sell26Remain, setSell26Remain] = React.useState(250)
@@ -607,7 +603,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell6Id = data2[5].result
             const sell7Id = data2[11].result
             const sell8Id = data2[12].result
-            const sell9Id = data2[13].result
+            // const sell9Id = data2[13].result
             // const sell10Id = data2[14].result
             // const sell11Id = data2[15].result
             // const sell12Id = data2[16].result
@@ -621,7 +617,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell20Id = data2[25].result
             const sell21Id = data2[26].result
             const sell22Id = data2[27].result
-            const sell23Id = data2[28].result
+            // const sell23Id = data2[28].result
             const sell24Id = data2[29].result
             const sell25Id = data2[30].result
             const sell26Id = data2[31].result
@@ -660,8 +656,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
             const sell8remain = (102033400000 - (Number(sell8Id[2]) - 8000)) / 100000
             const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
-            const sell9remain = (102066400000 - (Number(sell9Id[2]) - 19000)) / 100000
-            const _canBuy9 = Number(ethers.utils.formatUnits(String(jaspBal), "gwei")) >= 100 ? true : false
+            const sell9remain = 0
+            const _canBuy9 = false
             const _canBuy10 = false
             const sell11remain = 0
             const _canBuy11 = false
@@ -683,8 +679,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell21remain = (600010100000 - (Number(sell21Id[3]) - 250)) / 100000
             const sell22remain = (400010100000 - (Number(sell22Id[3]) - 250)) / 100000
 
-            const sell23remain = (400040000000 - (Number(sell23Id[2]) - 10900)) / 100000
-            const _canBuy23 = Number(ethers.utils.formatEther(String(platBal))) >= 180000 ? true : false
+            const sell23remain = 0
+            const _canBuy23 = false
 
             const sell24remain = (100025100000 - (Number(sell24Id[3]) - 18800)) / 100000
             const sell25remain = (700025100000 - (Number(sell25Id[3]) - 18800)) / 100000
@@ -753,8 +749,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy7(result[20])
             setSell8Remain(result[21])
             setCanBuy8(result[22])
-            setSell9Remain(result[23])
-            setCanBuy9(result[24])
+
             setJbcBalance(result[25].formatted)
             setSell13Remain(result[31])
             setCanBuy13(result[32])
@@ -768,8 +763,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setSell20Remain(result[42])
             setSell21Remain(result[43])
             setSell22Remain(result[44])
-            setSell23Remain(result[45])
-            setCanBuy23(result[46])
+
             setSell24Remain(result[47])
             setSell25Remain(result[48])
             setSell26Remain(result[49])
@@ -1052,38 +1046,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
         setisLoading(false)
     }
 
-    const buyHandle9 = async () => {
-        setisLoading(true)
-        try {
-            const jaspAllow = await readContract({
-                address: dunJasper,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, cmdaoMerchant],
-            })
-            if (jaspAllow < (100 * 10**9)) {
-                const config = await prepareWriteContract({
-                    address: dunJasper,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            }
-            const config2 = await prepareWriteContract({
-                address: cmdaoMerchant,
-                abi: cmdaoMerchantABI,
-                functionName: 'buy',
-                args: [7]
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
     const buyHandle13 = async () => {
         setisLoading(true)
         try {
@@ -1172,38 +1134,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [10]
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const buyHandle23 = async () => {
-        setisLoading(true)
-        try {
-            const platAllow = await readContract({
-                address: platToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, cmdaoMerchant],
-            })
-            if (platAllow < (180000 * 10**18)) {
-                const config = await prepareWriteContract({
-                    address: platToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            }
-            const config2 = await prepareWriteContract({
-                address: cmdaoMerchant,
-                abi: cmdaoMerchantABI,
-                functionName: 'buy',
-                args: [11]
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -1573,7 +1503,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 })
                             }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
@@ -3247,45 +3177,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Supreme God of JBC</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreiayhubngbbxov2lyhxfziy7tr7pvdr5cwbi4fgn6rcdykpgnv3c4a" height="150" alt="Can not load metadata."/>
-                        <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
-                            <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                <div>Limited</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>
-                                    <div className="emp">{sell9Remain}</div>
-                                    /333 EA
-                                </div>
-                            </div>
-                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                <div>Status</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>19,000 CMPOW</div>
-                            </div>
-                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                <div>Price</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
-                                    <div style={{marginLeft: "7.5px"}}>100</div>
-                                </div>
-                            </div>
-                        </div>
-                        {address !== null && address !== undefined ?
-                            <>
-                                {sell9Remain > 0 ?
-                                    <>
-                                        {canbuy9 ?
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle9}>REDEEM</div> :
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
-                                        }
-                                    </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
-                                }
-                            </> :
-                            <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                        }
-                    </div>
-
-                    <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">VK, King of Commu</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibl25he5u74rw2mi24xhjl4yurmhoe6upn4qcbi5kn75e5uaz2ksa" height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
@@ -3323,9 +3214,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                         }
                     </div>
-                </div>
 
-                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                         <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Chainsaw Pro Max</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibalc6if2y6qqp3kfxjkciabsdxxxpnx4djt6toap2c3n2bfcnfye" height="150" alt="Can not load metadata."/>
@@ -3355,45 +3244,6 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                     <>
                                         {canbuy18 ?
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle18}>REDEEM</div> :
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
-                                        }
-                                    </> :
-                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
-                                }
-                            </> :
-                            <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                        }
-                    </div>
-
-                    <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Director's Chair</div>
-                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia33b5b77t6hhmhnvlrnlooplurabhzeeuviv45vm6p4kja3z7dda" height="150" alt="Can not load metadata."/>
-                        <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
-                            <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                <div>Limited</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>
-                                    <div className="emp">{sell23Remain}</div>
-                                    /100 EA
-                                </div>
-                            </div>
-                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                <div>Status</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>10,900 CMPOW</div>
-                            </div>
-                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                <div>Price</div>
-                                <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
-                                    <div style={{marginLeft: "7.5px"}}>180,000</div>
-                                </div>
-                            </div>
-                        </div>
-                        {address !== null && address !== undefined ?
-                            <>
-                                {sell23Remain > 0 ?
-                                    <>
-                                        {canbuy23 ?
-                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={buyHandle23}>REDEEM</div> :
                                             <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                         }
                                     </> :
