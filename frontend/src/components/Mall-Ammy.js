@@ -516,7 +516,7 @@ const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, ctun
                         address: ammyWOOD,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
-                        args: [String(10**18), String(_reservePZA), String(_reserveCmj4)],
+                        args: [String(10**18), String(_reserveWOOD), String(_reserveCmj5)],
                     }
                 ],
             })
