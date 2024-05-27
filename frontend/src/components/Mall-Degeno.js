@@ -7,7 +7,7 @@ const meowToken = '0x04052384166fC30D03929eE328805eC084776843'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const degenoMeow = '0xdB16eCc5d2c27F67B4a4dc1e25f1e6e20BAcAFD0'
 
-const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBalance }) => {
+const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBalance, doijibBalance, wjbcBalance, woodBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)
@@ -25,7 +25,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
     const [meowBalance, setMeowBalance] = React.useState("0")
     const [meowLpBalance, setMeowLpBalance] = React.useState("0")
 
-    const [meowLpSell, setMeowLpSell] = React.useState("")
+    const [lpSell, setLpSell] = React.useState("")
     const [meowAdd, setMeowAdd] = React.useState("")
     const [cmjAdd, setCmjAdd] = React.useState("")
 
@@ -157,7 +157,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 address: degenoMeow,
                 abi: ammyStdABI,
                 functionName: 'removeLiquidity',
-                args: [ethers.utils.parseEther(meowLpSell)],
+                args: [ethers.utils.parseEther(lpSell)],
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -340,16 +340,20 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                     <div style={{maxHeight: "75px"}}>
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
-                        <div style={{fontSize: "10px"}} className="light">"BUY/SELL ${gasselected} - 5% TAX"</div>
+                        <div style={{fontSize: "10px"}} className="light">"ARE YOU DEGEN ENOUGH?</div>
+                        <div style={{fontSize: "10px"}} className="light">BUY/SELL ${gasselected} - 5% TAX"</div>
                         <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
-                                <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                    <option value="MEOW">MEOW</option>
+                                <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "12px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                    <option value="MEOW">MEOW-CMJ</option>
+                                    <option value="DOIJIB.wjbc">WJBC-DOIJIB</option>
+                                    <option value="DOIJIB.wood">WOOD-DOIJIB</option>
                                 </select>
                                 <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                     &nbsp;1
-                                    {gasselected === "MEOW" ? <>&nbsp; <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/> &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div></> : ''}
-                                    &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                    {gasselected === "MEOW" && <>&nbsp; <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/> &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/></>}
+                                    {gasselected === "DOIJIB.wjbc" && <>&nbsp; <img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{0}</div>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/></>}
+                                    {gasselected === "DOIJIB.wood" && <>&nbsp; <img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{0}</div>&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/></>}
                                 </div>
                             </div>
                             <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -363,18 +367,34 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                             type="number"
                             step="1"
                             min="1"
-                            placeholder={"0 $" + gasselected}
+                            placeholder="0.00"
                             onChange={(event) => {
                                 if (gasselected === "MEOW") {
                                     handleSwapMEOW(event)
+                                } else {
+                                    setInputSwap(event.target.value)
                                 }
                             }}
                             value={inputSwap}
                         ></input>
-                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleSwapMEOW(bal);}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
-                            <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                        </div>
+                        {gasselected === "MEOW" && 
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleSwapMEOW(bal);}}>
+                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
+                                <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        }
+                        {gasselected === "DOIJIB.wjbc" && 
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; setInputSwap(doijibBalance);}}>
+                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        }
+                        {gasselected === "DOIJIB.wood" && 
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; setInputSwap(doijibBalance);}}>
+                                <img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        }
                     </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                         {address !== null && address !== undefined ?
@@ -382,19 +402,45 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                                 () => {
                                     if (gasselected === "MEOW") {
                                         swapTokenHandleMEOW(true)
+                                    } else {
+                                        alert('open to swap in 01/06.')
                                     }
                                 }
                             }>SELL</div> :
                             <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
                         }
                         <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
-                            <div className="emp">
-                                {gasselected === "MEOW" && Number(cmjBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
-                            </div>
-                            $CMJ (
-                                {gasselected === "MEOW" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjMeow) - ((Number(reserveCmjMeow) * Number(reserveMeow)) / (Number(reserveMeow) + Number(inputSwap))))) - (Number(reserveMeow/reserveCmjMeow))) / (Number(reserveMeow/reserveCmjMeow))) * 100)).toFixed(2)}%</>}
-                                {Number(inputSwap) === 0 && <>0.00%</>}
-                            )
+                            {gasselected === "MEOW" && 
+                                <>
+                                    <div className="emp">
+                                        {Number(cmjBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    </div>
+                                    $CMJ (
+                                        {Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjMeow) - ((Number(reserveCmjMeow) * Number(reserveMeow)) / (Number(reserveMeow) + Number(inputSwap))))) - (Number(reserveMeow/reserveCmjMeow))) / (Number(reserveMeow/reserveCmjMeow))) * 100)).toFixed(2)}%</>}
+                                        {Number(inputSwap) === 0 && <>0.00%</>}
+                                    )
+                                </>
+                            }
+                            {gasselected === "DOIJIB.wjbc" && 
+                                <>
+                                    <div className="emp">
+                                        {Number(0).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    </div>
+                                    $WJBC (
+                                        {<>0.00%</>}
+                                    )
+                                </>
+                            }
+                            {gasselected === "DOIJIB.wood" && 
+                                <>
+                                    <div className="emp">
+                                        {Number(0).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    </div>
+                                    $WOOD (
+                                        {<>0.00%</>}
+                                    )
+                                </>
+                            }
                         </div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
@@ -405,18 +451,34 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                             type="number"
                             step="1"
                             min="1"
-                            placeholder="0 $CMJ"
+                            placeholder="0.00"
                             onChange={(event) => {
                                 if (gasselected === "MEOW") {
                                     handleSwapMEOW_2(event)
+                                } else {
+                                    setInputSwap2(event.target.value)
                                 }
                             }}
                             value={inputSwap2}
                         ></input>
-                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleSwapMEOW_2(bal);}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
-                            <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                        </div>
+                        {gasselected === "MEOW" && 
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleSwapMEOW_2(bal);}}>
+                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        }
+                        {gasselected === "DOIJIB.wjbc" && 
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: wjbcBalance}}; setInputSwap2(wjbcBalance);}}>
+                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                            </div>
+                        }
+                        {gasselected === "DOIJIB.wood" && 
+                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: woodBalance}}; setInputSwap2(woodBalance);}}>
+                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/>
+                                <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                        }
                     </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                         {address !== null && address !== undefined ?
@@ -424,19 +486,45 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                                 () => {
                                     if (gasselected === "MEOW") {
                                         swapTokenHandleMEOW(false)
+                                    } else {
+                                        alert('open to swap in 01/06.')
                                     }
                                 }
                             }>BUY</div> :
                             <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
                         }
                         <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
-                            <div style={{color: "#67BAA7"}}>
-                                {gasselected === "MEOW" && Number(tokenBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
-                            </div>
-                            ${gasselected} ( 
-                                {gasselected === "MEOW" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveMeow) - ((Number(reserveMeow) * Number(reserveCmjMeow)) / (Number(reserveCmjMeow) + Number(inputSwap2))))) - (Number(reserveCmjMeow/reserveMeow))) / (Number(reserveCmjMeow/reserveMeow))) * 100)).toFixed(2)}%</>}
-                                {Number(inputSwap2) === 0 && <>0.00%</>}
-                            )
+                            {gasselected === "MEOW" && 
+                                <>
+                                    <div style={{color: "#67BAA7"}}>
+                                        {Number(tokenBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    </div>
+                                    $MEOW ( 
+                                        {Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveMeow) - ((Number(reserveMeow) * Number(reserveCmjMeow)) / (Number(reserveCmjMeow) + Number(inputSwap2))))) - (Number(reserveCmjMeow/reserveMeow))) / (Number(reserveCmjMeow/reserveMeow))) * 100)).toFixed(2)}%</>}
+                                        {Number(inputSwap2) === 0 && <>0.00%</>}
+                                    )
+                                </>
+                            }
+                            {gasselected === "DOIJIB.wjbc" && 
+                                <>
+                                    <div style={{color: "#67BAA7"}}>
+                                        {Number(0).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    </div>
+                                    $DOIJIB ( 
+                                        {<>0.00%</>}
+                                    )
+                                </>
+                            }
+                            {gasselected === "DOIJIB.wood" && 
+                                <>
+                                    <div style={{color: "#67BAA7"}}>
+                                        {Number(0).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    </div>
+                                    $DOIJIB ( 
+                                        {<>0.00%</>}
+                                    )
+                                </>
+                            }
                         </div>
                     </div>
                 </div> :
@@ -446,14 +534,19 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                 <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                     <div style={{maxHeight: "75px"}}>
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
-                        <div style={{fontSize: "10px"}} className="light">"ADD/REMOVE {gasselected}-CMJ LP"</div>
+                        <div style={{fontSize: "10px"}} className="light">"ARE YOU DEGEN ENOUGH?</div>
+                        <div style={{fontSize: "10px"}} className="light">ADD/REMOVE {gasselected}-CMJ LP"</div>
                         <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
-                                <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                    <option value="MEOW">MEOW</option>
+                                <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "12px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                    <option value="MEOW">MEOW-CMJ</option>
+                                    <option value="DOIJIB.wjbc">WJBC-DOIJIB</option>
+                                    <option value="DOIJIB.wood">WOOD-DOIJIB</option>
                                 </select>
-                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setMeowLpSell(String(meowLpBalance))}>
-                                    {gasselected === "MEOW" ? <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(meowLpBalance).toFixed(4)}</div></> : ''}
+                                <div style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}} className="pixel" onClick={() => setLpSell(String(meowLpBalance))}>
+                                    {gasselected === "MEOW" && <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(meowLpBalance).toFixed(4)}</div></>}
+                                    {gasselected === "DOIJIB.wjbc" && <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(0).toFixed(4)}</div></>}
+                                    {gasselected === "DOIJIB.wood" && <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(0).toFixed(4)}</div></>}
                                 </div>
                             </div>
                             <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -461,50 +554,164 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                     <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-CMJ LP"} className="bold" onChange={(event) => setMeowLpSell(event.target.value)} value={meowLpSell}></input>
-                        <div style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={removeMeowLp}>REMOVE</div>
+                        {gasselected === "MEOW" && 
+                            <input 
+                                style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} 
+                                type="number" 
+                                placeholder={"0 MEOW-CMJ LP"} 
+                                className="bold" 
+                                onChange={(event) => setLpSell(event.target.value)}
+                                value={lpSell}
+                            >
+                            </input>
+                        }
+                        {gasselected === "DOIJIB.wjbc" && 
+                            <input 
+                                style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} 
+                                type="number" 
+                                placeholder={"0 DOIJIB-WJBC LP"} 
+                                className="bold" 
+                                onChange={(event) => setLpSell(event.target.value)}
+                                value={lpSell}
+                            >
+                            </input>
+                        }
+                        {gasselected === "DOIJIB.wood" && 
+                            <input 
+                                style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} 
+                                type="number" 
+                                placeholder={"0 DOIJIB-WOOD LP"} 
+                                className="bold" 
+                                onChange={(event) => setLpSell(event.target.value)}
+                                value={lpSell}
+                            >
+                            </input>
+                        }
+                        <div
+                            style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}}
+                            className="button pixel"
+                            onClick={() => {
+                                if (gasselected === "MEOW") {
+                                    removeMeowLp()
+                                } else {
+                                    alert('open to manage LP in 01/06.')
+                                }
+                            }}
+                        >REMOVE</div>
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                        <input
-                            style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder={"0 $" + gasselected}
-                            onChange={(event) => {
-                                if (gasselected === "MEOW") {
-                                    handleAddMeow(event)
-                                }
-                            }}
-                            value={meowAdd}
-                        ></input>
-                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleAddMeow(bal);}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
-                            <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                        </div>
+                        {gasselected === "MEOW" && 
+                            <>
+                                <input
+                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                    className="bold"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0 $MEOW"
+                                    onChange={(event) => {handleAddMeow(event)}}
+                                    value={meowAdd}
+                                ></input>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleAddMeow(bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            </>
+                        }
+                        {gasselected === "DOIJIB.wjbc" && 
+                            <>
+                                <input
+                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                    className="bold"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0 $DOIJIB"
+                                    onChange={(event) => setMeowAdd(event.target.value)}
+                                    value={meowAdd}
+                                ></input>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; setMeowAdd(doijibBalance);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            </>
+                        }
+                        {gasselected === "DOIJIB.wood" && 
+                            <>
+                                <input
+                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                    className="bold"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0 $DOIJIB"
+                                    onChange={(event) => setMeowAdd(event.target.value)}
+                                    value={meowAdd}
+                                ></input>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; setMeowAdd(doijibBalance);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            </>
+                        }
                     </div>
                     <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                        <input
-                            style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                            className="bold"
-                            type="number"
-                            step="1"
-                            min="1"
-                            placeholder="0 $CMJ"
-                            onChange={(event) => {
-                                if (gasselected === "MEOW") {
-                                    handleAddMeow2(event)
-                                }
-                            }}
-                            value={cmjAdd}
-                        ></input>
-                        <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddMeow2(bal);}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
-                            <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                        </div>
+                        {gasselected === "MEOW" && 
+                            <>
+                                <input
+                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                    className="bold"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0 $CMJ"
+                                    onChange={(event) => handleAddMeow2(event)}
+                                    value={cmjAdd}
+                                ></input>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddMeow2(bal);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            </>
+                        }
+                        {gasselected === "DOIJIB.wjbc" && 
+                            <>
+                                <input
+                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                    className="bold"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0 $WJBC"
+                                    onChange={(event) => setCmjAdd(event.target.value)}
+                                    value={cmjAdd}
+                                ></input>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: wjbcBalance}}; setCmjAdd(wjbcBalance);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            </>
+                        }
+                        {gasselected === "DOIJIB.wood" && 
+                            <>
+                                <input
+                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
+                                    className="bold"
+                                    type="number"
+                                    step="1"
+                                    min="1"
+                                    placeholder="0 $WJBC"
+                                    onChange={(event) => setCmjAdd(event.target.value)}
+                                    value={cmjAdd}
+                                ></input>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: woodBalance}}; setCmjAdd(woodBalance);}}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            </>
+                        }
                     </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                         {address !== null && address !== undefined ?
@@ -512,6 +719,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, ammyStdABI, erc20ABI, cmjBala
                                 () => {
                                     if (gasselected === "MEOW") {
                                         addMeowLpHandle()
+                                    } else {
+                                        alert('open to manage LP in 01/06.')
                                     }
                                 }
                             }>ADD</div> :

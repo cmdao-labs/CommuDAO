@@ -129,6 +129,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [gearBalance, setGearBalance] = React.useState(0)
     const [doijibBalance, setDoijibBalance] = React.useState(0)
 
+    const [tokenselected, setTokenselected] = React.useState("DOIJIB");
+    const [inputBuy, setInputBuy] = React.useState("")
+
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
@@ -1891,11 +1894,81 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} ctunaBalance={ctunaBalance} sx31Balance={sx31Balance} bbqBalance={bbqBalance} pzaBalance={pzaBalance} woodBalance={woodBalance} cmjBalance={cmjBalance} />
                     <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} platBalance={platBalance} cmjBalance={cmjBalance} />
-                    <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} />
+                    <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} doijibBalance={doijibBalance} wjbcBalance={wjbcBalance} woodBalance={woodBalance} />
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
                     <Ammmerchant5 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} iiBalance={iiBalance} eeBalance={eeBalance} jtaoBalance={jtaoBalance} />
+                </div>
+
+                <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
+                <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Another NPC</div>
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                    <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                        <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreifid22c4xzlomymxik5kru5ymeunnd62rxkncrai7hnne7bnucuhi" width="220" alt="NPC_Gamy" />
+                        </div>
+                        <div style={{maxHeight: "95px"}}>
+                            <div style={{fontSize: "20px", width: "380px"}} className="pixel">GAMY, THE PRESALE AGENT</div>
+                            <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BRo, i seLL ${tokenselected}, giVE mE MONeY bRo!</div>
+                            <div style={{fontSize: "10px"}} className="light">Presale Round 1: 2B / 100B, (2% of max supply); Pls DYOR."</div>
+                            <div style={{marginTop: "5px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
+                                    <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={tokenselected} onChange={(event) => {setTokenselected(event.target.value)}}>
+                                        <option value="DOIJIB">DOIJIB</option>
+                                    </select>
+                                    <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
+                                        &nbsp;
+                                        {tokenselected === "DOIJIB" && <>10,000.00&nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">1</div></>}
+                                        &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{margin: "10px 0", fontSize: "10px"}} className="bold">Presale Round 1 Remaining: <span className='emp'>{Number(2000000000).toLocaleString('en-US', {maximumFractionDigits:4})}</span> / 2,000,000,000</div>
+                        </div>
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
+                        <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "18px"}}
+                                className="bold"
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder={"0 $WJBC"}
+                                onChange={(event) => {
+                                    setInputBuy(event.target.value)
+                                }}
+                                value={inputBuy}
+                            ></input>
+                            {tokenselected === "DOIJIB" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => setInputBuy(wjbcBalance)}>
+                                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
+                        </div>
+                        <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+                            {false && address !== null && address !== undefined ?
+                                <div style={{width: "30px"}} className="pixel button" onClick={
+                                    () => {
+                                        if (tokenselected === "CTUNA") {
+                                            console.log(2, true)
+                                        }
+                                    }
+                                }>BUY</div> :
+                                <div style={{width: "190px", fontSize: "14px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OPEN TO SALE AT 10PM, 01/06</div>
+                            }
+                            <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
+                                <div className="emp">
+                                    {tokenselected === "DOIJIB" && Number(inputBuy * 10000).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                </div>
+                                ${tokenselected}
+                            </div>
+                        </div>
+                        <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "10px 0"}}></div>
+                    </div>
+                </div>
                 </div>
 
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
