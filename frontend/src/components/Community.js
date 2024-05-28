@@ -696,9 +696,9 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
                     </div>
                     <div style={{marginTop: "10px"}}>{yourName !== null && yourName[45] !== undefined ? <span style={{color: "rgb(0, 227, 180)"}}>{String(yourName[45]) + "'s Land [Z02]"}</span> : 'Land Z02 (Reserved)'}</div>
                 </div>
-                <div id="tile5" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
-                    <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://cloudflare-ipfs.com/ipfs/bafybeiecefc3xbwj7mjd5pkpf7vb3mzu2xmce5t2h7ch4fq3xnz6gojclu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
-                    <div style={{marginTop: "10px", fontSize: "12px"}}>Land Z03 (Reserved)</div>
+                <div id="tile5" className="emp tile" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "pointer", color: "rgb(0, 227, 180)"}} onClick={() => {callMode(46); navigate('/community/bigbro-analytica');}}>
+                    <div style={{height: "100px", display: "flex", alignItems: "flex-end"}}><img src="https://cloudflare-ipfs.com/ipfs/bafybeigbpmyjxigrzff356fq7pxv2755772trrky3tnxzh7zqyjiiv4qvi" width="120" alt="Can't load metadata" /></div>
+                    <div style={{marginTop: "5px"}}>BigBro Analytica</div>
                 </div>
                 <div id="tile6" style={{width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "not-allowed"}}>
                     <div style={{height: "80px", display: "flex", alignItems: "flex-end"}}><img src="https://cloudflare-ipfs.com/ipfs/bafybeiecefc3xbwj7mjd5pkpf7vb3mzu2xmce5t2h7ch4fq3xnz6gojclu" style={{filter: "grayscale(1)"}} width="120" alt="Can't load metadata" /></div>
