@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContracts } from '@wagmi/core'
+import { fetchBalance, readContracts } from '@wagmi/core'
 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const wood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
@@ -21,6 +21,7 @@ const cmd = '0x399fe73bb0ee60670430fd92fe25a0fdd308e142'
 const BigBroAnalytica = ({ erc20ABI }) => {
     const [cmdBbq, setCmdBbq] = React.useState(0)
     const [cmdGov, setCmdGov] = React.useState(0)
+    const [cmdRev, setCmdRev] = React.useState(0)
     const [cmdCirculation, setCmdCirculation] = React.useState(0)
 
     const [cmjLocked, setCmjLocked] = React.useState(0)
@@ -497,7 +498,12 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, ]
+            const bbqCmdBal1 = await fetchBalance({ address: '0x1BeedD97fCD4E21754465d21c757A9DF43733187', chainId: 190 })
+            const bbqCmdBal2 = await fetchBalance({ address: '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f', chainId: 190 })
+            
+
+            return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
+            (bbqCmdBal1.formatted + bbqCmdBal2.formatted), ]
         }
 
         const promise = thefetch()
@@ -567,6 +573,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
             setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
+            setCmdRev(result[14])
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][0].result))))
         })
 
@@ -604,7 +611,10 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>On BBQ-chain:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdBbq).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdBbq/1000000).toFixed(2)}%)</div>
                             </div>
-                            
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Epoch 1 Revenue:</div>
+                                <div style={{color: "#fff"}}>{Number(cmdRev).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdRev/1000000).toFixed(2)}%)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
