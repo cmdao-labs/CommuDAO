@@ -310,7 +310,7 @@ header::-webkit-scrollbar { display: none; }
   }
   .welcomeText {
     height: fit-content;
-    margin: 100px 0 0 80px;
+    margin: 100px 0 0 10px;
     padding: 0 20px;
   }
   .motto {
@@ -321,6 +321,9 @@ header::-webkit-scrollbar { display: none; }
   }
   #showoff {
     min-width: 350px;
+  }
+  .typed-out {
+    font-size: 12px;
   }
   .hashtag {
     width: fit-content;
@@ -358,5 +361,19 @@ header::-webkit-scrollbar { display: none; }
   }
   .welcomeText {
     padding-top: 50px;
+  }
+  .motto {
+    margin-top: 30px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .motto {
+    font-size: 70px;
+  }
+  #showoff {
+    min-width: 450px;
+  }
+  .nftControl {
+    width: 380px;
   }
 }
