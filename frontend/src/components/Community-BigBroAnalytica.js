@@ -16,7 +16,12 @@ const jasp = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
+const cmd = '0x399fe73bb0ee60670430fd92fe25a0fdd308e142'
+
 const BigBroAnalytica = ({ erc20ABI }) => {
+    const [cmdBbq, setCmdBbq] = React.useState(0)
+    const [cmdGov, setCmdGov] = React.useState(0)
+    const [cmdCirculation, setCmdCirculation] = React.useState(0)
 
     const [cmjLocked, setCmjLocked] = React.useState(0)
     const [cmjReward, setCmjReward] = React.useState(0)
@@ -84,24 +89,28 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xA6d974BD59F97e49465c6995a11022CA044c001A'],
+                        chainId: 8899,
                     },
                     {
                         address: cmj,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x94EaDb7e678Ba7A78CADe66A1ABfa5c12dc8Cd7b'],
+                        chainId: 8899,
                     },
                     {
                         address: cmj,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000042'],
+                        chainId: 8899,
                     },
                     {
                         address: cmj,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xFF19990569739e79aFF8549d8dE087Ab79De8dc7'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -112,24 +121,28 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: wood,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: wood,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: wood,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x000000000000000000000000000000000000dEaD'],
+                        chainId: 8899,
                     },
                     {
                         address: wood,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -140,24 +153,28 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: jdao,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: jdao,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: jdao,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                     {
                         address: jdao,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -168,24 +185,28 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: bbq,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: bbq,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: bbq,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                     {
                         address: bbq,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -196,30 +217,35 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: pza,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: pza,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: pza,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                     {
                         address: pza,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'],
+                        chainId: 8899,
                     },
                     {
                         address: pza,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -230,18 +256,21 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: ctuna,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: ctuna,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: ctuna,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -252,18 +281,21 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: sx31,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: sx31,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: sx31,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     }
                 ],
             })
@@ -274,18 +306,21 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: cu,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: cu,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: cu,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     }
                 ],
             })
@@ -296,18 +331,21 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: sil,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: sil,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: sil,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     }
                 ],
             })
@@ -318,18 +356,21 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: gold,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: gold,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: gold,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     }
                 ],
             })
@@ -340,24 +381,28 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: plat,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: plat,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: plat,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                     {
                         address: plat,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -368,18 +413,21 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: jasp,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: jasp,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: jasp,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                 ],
             })
@@ -390,36 +438,66 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'totalSupply',
+                        chainId: 8899,
                     },
                     {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000001'],
+                        chainId: 8899,
                     },
                     {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
                     },
                     {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
+                        chainId: 8899,
                     },
                     {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: ['0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'],
+                        chainId: 8899,
                     },
                 ],
             })
             
+            const dataCMD = await readContracts({
+                contracts: [
+                    {
+                        address: cmd,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x84bbfa70a60bB31fB00F2E2241E3a87C63F8734f'],
+                        chainId: 10,
+                    },
+                    {
+                        address: cmd,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0xaA3Caad9e335a133d96EA3D5D73df2dcF9e360d4'],
+                        chainId: 10,
+                    },
+                    {
+                        address: cmd,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'],
+                        chainId: 10,
+                    },
+                ],
+            })
 
-            return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, ]
+            return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, ]
         }
 
         const promise = thefetch()
@@ -486,6 +564,10 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             setOsLocked(ethers.utils.formatEther(String(result[12][4].result)))
             setOsBurn(Number(ethers.utils.formatEther(String(result[12][1].result))) + Number(ethers.utils.formatEther(String(result[12][2].result))) + Number(ethers.utils.formatEther(String(result[12][3].result))))
             setOsCirculation(Number(ethers.utils.formatEther(String(result[12][0].result))) - (Number(ethers.utils.formatEther(String(result[12][1].result))) + Number(ethers.utils.formatEther(String(result[12][2].result))) + Number(ethers.utils.formatEther(String(result[12][3].result))) + Number(ethers.utils.formatEther(String(result[12][4].result)))))
+
+            setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
+            setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
+            setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][0].result))))
         })
 
     }, [erc20ABI])
@@ -502,6 +584,31 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             </div>
 
             <div style={{background: "rgb(0, 19, 33", width: "100%", margin: "0", padding: "75px 0", minHeight: "fit-content", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "row wrap", overflow: "scroll"}} className="collection noscroll">
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "15px", border: "1px solid rgb(54, 77, 94)", width: "400px", height: "300px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">$CMD Tracker</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Max Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(100000000).toLocaleString('en-US', {maximumFractionDigits:2})} (100%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Circulating Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(cmdCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdCirculation/1000000).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>In CMDAO Governance (CMD-ETH LP):</div>
+                                <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>On BBQ-chain:</div>
+                                <div style={{color: "#fff"}}>{Number(cmdBbq).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdBbq/1000000).toFixed(2)}%)</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
                 <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "15px", border: "1px solid rgb(54, 77, 94)", width: "400px", height: "300px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">$CMJ Tracker</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", fontSize: "14px"}}>
