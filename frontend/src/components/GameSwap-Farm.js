@@ -3,6 +3,7 @@ import { readContract, readContracts, prepareWriteContract, waitForTransaction, 
 import { ethers } from 'ethers'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const merchant = '0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'
 
 const jusdtToken = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
@@ -40,6 +41,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
     const [jaspCmjBalance, setJaspCmjBalance] = React.useState(null)
     const [reserveCmjJASP, setReserveCmjJASP] = React.useState("")
+    const [reserveJASP, setReserveJASP] = React.useState("")
     const [cmjJaspStaked, setCmjJaspStaked] = React.useState(0)
     const [cmjJaspPooled, setCmjJaspPooled] = React.useState(0)
     const [yourcmjJaspStaked, setYourCmjJaspStaked] = React.useState(0)
@@ -61,6 +63,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
     const [osCmjBalance, setOsCmjBalance] = React.useState(null)
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
+    const [reserveOS, setReserveOS] = React.useState("")
     const [cmjOsStaked, setCmjOsStaked] = React.useState(0)
     const [cmjOsPooled, setCmjOsPooled] = React.useState(0)
     const [yourcmjOsStaked, setYourCmjOsStaked] = React.useState(0)
@@ -71,6 +74,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
 
     const [cuCmjBalance, setCuCmjBalance] = React.useState(null)
     const [reserveCmjCU, setReserveCmjCU] = React.useState("")
+    const [reserveCU, setReserveCU] = React.useState("")
     const [cmjCuStaked, setCmjCuStaked] = React.useState(0)
     const [cmjCuPooled, setCmjCuPooled] = React.useState(0)
     const [yourcmjCuStaked, setYourCmjCuStaked] = React.useState(0)
@@ -80,6 +84,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao7Stake, setLpJdao7Stake] = React.useState("")
 
     const [silCmjBalance, setSilCmjBalance] = React.useState(null)
+    const [reserveCmjSIL, setReserveCmjSIL] = React.useState("")
+    const [reserveSIL, setReserveSIL] = React.useState("")
     const [cmjSilStaked, setCmjSilStaked] = React.useState(0)
     const [cmjSilPooled, setCmjSilPooled] = React.useState(0)
     const [yourcmjSilStaked, setYourCmjSilStaked] = React.useState(0)
@@ -89,6 +95,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao8Stake, setLpJdao8Stake] = React.useState("")
 
     const [goldCmjBalance, setGoldCmjBalance] = React.useState(null)
+    const [reserveCmjGOLD, setReserveCmjGOLD] = React.useState("")
+    const [reserveGOLD, setReserveGOLD] = React.useState("")
     const [cmjGoldStaked, setCmjGoldStaked] = React.useState(0)
     const [cmjGoldPooled, setCmjGoldPooled] = React.useState(0)
     const [yourcmjGoldStaked, setYourCmjGoldStaked] = React.useState(0)
@@ -98,6 +106,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao9Stake, setLpJdao9Stake] = React.useState("")
 
     const [platCmjBalance, setPlatCmjBalance] = React.useState(null)
+    const [reserveCmjPLAT, setReserveCmjPLAT] = React.useState("")
+    const [reservePLAT, setReservePLAT] = React.useState("")
     const [cmjPlatStaked, setCmjPlatStaked] = React.useState(0)
     const [cmjPlatPooled, setCmjPlatPooled] = React.useState(0)
     const [yourcmjPlatStaked, setYourCmjPlatStaked] = React.useState(0)
@@ -107,6 +117,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao10Stake, setLpJdao10Stake] = React.useState("")
 
     const [ctunaCmjBalance, setCtunaCmjBalance] = React.useState(null)
+    const [reserveCmjCTUNA, setReserveCmjCTUNA] = React.useState("")
+    const [reserveCTUNA, setReserveCTUNA] = React.useState("")
     const [cmjCtunaStaked, setCmjCtunaStaked] = React.useState(0)
     const [cmjCtunaPooled, setCmjCtunaPooled] = React.useState(0)
     const [yourcmjCtunaStaked, setYourCmjCtunaStaked] = React.useState(0)
@@ -116,6 +128,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao11Stake, setLpJdao11Stake] = React.useState("")
 
     const [sx31CmjBalance, setSx31CmjBalance] = React.useState(null)
+    const [reserveCmjSX31, setReserveCmjSX31] = React.useState("")
+    const [reserveSX31, setReserveSX31] = React.useState("")
     const [cmjSx31Staked, setCmjSx31Staked] = React.useState(0)
     const [cmjSx31Pooled, setCmjSx31Pooled] = React.useState(0)
     const [yourcmjSx31Staked, setYourCmjSx31Staked] = React.useState(0)
@@ -125,6 +139,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao12Stake, setLpJdao12Stake] = React.useState("")
 
     const [bbqCmjBalance, setBbqCmjBalance] = React.useState(null)
+    const [reserveCmjBBQ, setReserveCmjBBQ] = React.useState("")
+    const [reserveBBQ, setReserveBBQ] = React.useState("")
     const [cmjBbqStaked, setCmjBbqStaked] = React.useState(0)
     const [cmjBbqPooled, setCmjBbqPooled] = React.useState(0)
     const [yourcmjBbqStaked, setYourCmjBbqStaked] = React.useState(0)
@@ -134,6 +150,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao13Stake, setLpJdao13Stake] = React.useState("")
 
     const [pzaCmjBalance, setPzaCmjBalance] = React.useState(null)
+    const [reserveCmjPZA, setReserveCmjPZA] = React.useState("")
+    const [reservePZA, setReservePZA] = React.useState("")
     const [cmjPzaStaked, setCmjPzaStaked] = React.useState(0)
     const [cmjPzaPooled, setCmjPzaPooled] = React.useState(0)
     const [yourcmjPzaStaked, setYourCmjPzaStaked] = React.useState(0)
@@ -143,6 +161,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao14Stake, setLpJdao14Stake] = React.useState("")
 
     const [woodCmjBalance, setWoodCmjBalance] = React.useState(null)
+    const [reserveCmjWOOD, setReserveCmjWOOD] = React.useState("")
+    const [reserveWOOD, setReserveWOOD] = React.useState("")
     const [cmjWoodStaked, setCmjWoodStaked] = React.useState(0)
     const [cmjWoodPooled, setCmjWoodPooled] = React.useState(0)
     const [yourcmjWoodStaked, setYourCmjWoodStaked] = React.useState(0)
@@ -154,17 +174,29 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [swapfee24hour1, setSwapfee24hour1] = React.useState("")
     const [swapfee24hour2, setSwapfee24hour2] = React.useState("")
     const [swapfee24hour3, setSwapfee24hour3] = React.useState("")
+    const [swapfee24hour3_2, setSwapfee24hour3_2] = React.useState("")
     const [swapfee24hour4, setSwapfee24hour4] = React.useState("")
+    const [swapfee24hour4_2, setSwapfee24hour4_2] = React.useState("")
     const [swapfee24hour5, setSwapfee24hour5] = React.useState("")
+    const [swapfee24hour5_2, setSwapfee24hour5_2] = React.useState("")
     const [swapfee24hour6, setSwapfee24hour6] = React.useState("")
+    const [swapfee24hour6_2, setSwapfee24hour6_2] = React.useState("")
     const [swapfee24hour7, setSwapfee24hour7] = React.useState("")
+    const [swapfee24hour7_2, setSwapfee24hour7_2] = React.useState("")
     const [swapfee24hour8, setSwapfee24hour8] = React.useState("")
+    const [swapfee24hour8_2, setSwapfee24hour8_2] = React.useState("")
     const [swapfee24hour9, setSwapfee24hour9] = React.useState("")
+    const [swapfee24hour9_2, setSwapfee24hour9_2] = React.useState("")
     const [swapfee24hour10, setSwapfee24hour10] = React.useState("")
+    const [swapfee24hour10_2, setSwapfee24hour10_2] = React.useState("")
     const [swapfee24hour11, setSwapfee24hour11] = React.useState("")
+    const [swapfee24hour11_2, setSwapfee24hour11_2] = React.useState("")
     const [swapfee24hour12, setSwapfee24hour12] = React.useState("")
+    const [swapfee24hour12_2, setSwapfee24hour12_2] = React.useState("")
     const [swapfee24hour13, setSwapfee24hour13] = React.useState("")
+    const [swapfee24hour13_2, setSwapfee24hour13_2] = React.useState("")
     const [swapfee24hour14, setSwapfee24hour14] = React.useState("")
+    const [swapfee24hour14_2, setSwapfee24hour14_2] = React.useState("")
 
     const harvestHandle = async () => {
         setisLoading(true)
@@ -518,6 +550,18 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
         console.log("Connected to " + address)
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
         const cmjSC = new ethers.Contract(cmjToken, erc20ABI, providerJBC)
+        const bbqSC = new ethers.Contract('0x7004757e595409568Bd728736e1b0c79FDc94e1c', erc20ABI, providerJBC)
+        const pzaSC = new ethers.Contract('0x09DcdCFc6C48803681a3422997c679E773656763', erc20ABI, providerJBC)
+        const woodSC = new ethers.Contract('0xc2744Ff255518a736505cF9aC1996D9adDec69Bd', erc20ABI, providerJBC)
+        const sx31SC = new ethers.Contract('0xd431d826d7a4380b9259612176f00528b88840a7', erc20ABI, providerJBC)
+        const ctunaSC = new ethers.Contract('0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0', erc20ABI, providerJBC)
+        const platSC = new ethers.Contract('0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD', erc20ABI, providerJBC)
+        const goldSC = new ethers.Contract('0x7d5346E33889580528e6F79f48BdEE94D8A9E144', erc20ABI, providerJBC)
+        const silSC = new ethers.Contract('0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f', erc20ABI, providerJBC)
+        const cuSC = new ethers.Contract('0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841', erc20ABI, providerJBC)
+        const osSC = new ethers.Contract('0xAc5299D92373E9352636559cca497d7683A47655', erc20ABI, providerJBC)
+        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20ABI, providerJBC)
+        const jaspSC = new ethers.Contract('0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860', erc20ABI, providerJBC)
 
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber()
@@ -538,101 +582,113 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const fee4Map = await Promise.all(fee4Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
             const sumFee2 = fee3Map.concat(fee4Map).reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee5Filter = await cmjSC.filters.Transfer(null, jaspCmjLp, null)
+            const fee5Filter = await cmjSC.filters.Transfer(jaspCmjLp, merchant, null)
             const fee5Event = await cmjSC.queryFilter(fee5Filter, blockNumber - 7200, 'latest')
-            const fee5Map = await Promise.all(fee5Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee6Filter = await cmjSC.filters.Transfer(jaspCmjLp, null, null)
-            const fee6Event = await cmjSC.queryFilter(fee6Filter, blockNumber - 7200, 'latest')
-            const fee6Map = await Promise.all(fee6Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee3 = fee5Map.concat(fee6Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee5Map = await Promise.all(fee5Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee6Filter = await jaspSC.filters.Transfer(jaspCmjLp, merchant, null)
+            const fee6Event = await jaspSC.queryFilter(fee6Filter, blockNumber - 7200, 'latest')
+            const fee6Map = await Promise.all(fee6Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee3 = fee5Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee3_2 = fee6Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee7Filter = await cmjSC.filters.Transfer(null, jdaoCmjLp, null)
+            const fee7Filter = await cmjSC.filters.Transfer(jdaoCmjLp, merchant, null)
             const fee7Event = await cmjSC.queryFilter(fee7Filter, blockNumber - 7200, 'latest')
-            const fee7Map = await Promise.all(fee7Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee8Filter = await cmjSC.filters.Transfer(jdaoCmjLp, null, null)
-            const fee8Event = await cmjSC.queryFilter(fee8Filter, blockNumber - 7200, 'latest')
-            const fee8Map = await Promise.all(fee8Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee4 = fee7Map.concat(fee8Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee7Map = await Promise.all(fee7Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee8Filter = await jdaoSC.filters.Transfer(jdaoCmjLp, merchant, null)
+            const fee8Event = await jdaoSC.queryFilter(fee8Filter, blockNumber - 7200, 'latest')
+            const fee8Map = await Promise.all(fee8Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee4 = fee7Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee4_2 = fee8Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee9Filter = await cmjSC.filters.Transfer(null, osCmjLp, null)
+            const fee9Filter = await cmjSC.filters.Transfer(osCmjLp, merchant, null)
             const fee9Event = await cmjSC.queryFilter(fee9Filter, blockNumber - 7200, 'latest')
-            const fee9Map = await Promise.all(fee9Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee10Filter = await cmjSC.filters.Transfer(osCmjLp, null, null)
-            const fee10Event = await cmjSC.queryFilter(fee10Filter, blockNumber - 7200, 'latest')
-            const fee10Map = await Promise.all(fee10Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee5 = fee9Map.concat(fee10Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee9Map = await Promise.all(fee9Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee10Filter = await osSC.filters.Transfer(osCmjLp, merchant, null)
+            const fee10Event = await osSC.queryFilter(fee10Filter, blockNumber - 7200, 'latest')
+            const fee10Map = await Promise.all(fee10Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee5 = fee9Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee5_2 = fee10Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee11Filter = await cmjSC.filters.Transfer(null, cuCmjLp, null)
+            const fee11Filter = await cmjSC.filters.Transfer(cuCmjLp, merchant, null)
             const fee11Event = await cmjSC.queryFilter(fee11Filter, blockNumber - 7200, 'latest')
-            const fee11Map = await Promise.all(fee11Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee12Filter = await cmjSC.filters.Transfer(cuCmjLp, null, null)
-            const fee12Event = await cmjSC.queryFilter(fee12Filter, blockNumber - 7200, 'latest')
-            const fee12Map = await Promise.all(fee12Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee6 = fee11Map.concat(fee12Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee11Map = await Promise.all(fee11Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee12Filter = await cuSC.filters.Transfer(cuCmjLp, merchant, null)
+            const fee12Event = await cuSC.queryFilter(fee12Filter, blockNumber - 7200, 'latest')
+            const fee12Map = await Promise.all(fee12Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))  * (1/4)}))
+            const sumFee6 = fee11Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee6_2 = fee12Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee13Filter = await cmjSC.filters.Transfer(null, silCmjLp, null)
+            const fee13Filter = await cmjSC.filters.Transfer(silCmjLp, merchant, null)
             const fee13Event = await cmjSC.queryFilter(fee13Filter, blockNumber - 7200, 'latest')
-            const fee13Map = await Promise.all(fee13Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee14Filter = await cmjSC.filters.Transfer(silCmjLp, null, null)
-            const fee14Event = await cmjSC.queryFilter(fee14Filter, blockNumber - 7200, 'latest')
-            const fee14Map = await Promise.all(fee14Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee7 = fee13Map.concat(fee14Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee13Map = await Promise.all(fee13Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee14Filter = await silSC.filters.Transfer(silCmjLp, merchant, null)
+            const fee14Event = await silSC.queryFilter(fee14Filter, blockNumber - 7200, 'latest')
+            const fee14Map = await Promise.all(fee14Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee7 = fee13Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee7_2 = fee14Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee15Filter = await cmjSC.filters.Transfer(null, goldCmjLp, null)
+            const fee15Filter = await cmjSC.filters.Transfer(goldCmjLp, merchant, null)
             const fee15Event = await cmjSC.queryFilter(fee15Filter, blockNumber - 7200, 'latest')
-            const fee15Map = await Promise.all(fee15Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee16Filter = await cmjSC.filters.Transfer(goldCmjLp, null, null)
-            const fee16Event = await cmjSC.queryFilter(fee16Filter, blockNumber - 7200, 'latest')
-            const fee16Map = await Promise.all(fee16Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee8 = fee15Map.concat(fee16Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee15Map = await Promise.all(fee15Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee16Filter = await goldSC.filters.Transfer(goldCmjLp, merchant, null)
+            const fee16Event = await goldSC.queryFilter(fee16Filter, blockNumber - 7200, 'latest')
+            const fee16Map = await Promise.all(fee16Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee8 = fee15Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee8_2 = fee16Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee17Filter = await cmjSC.filters.Transfer(null, platCmjLp, null)
+            const fee17Filter = await cmjSC.filters.Transfer(platCmjLp, merchant, null)
             const fee17Event = await cmjSC.queryFilter(fee17Filter, blockNumber - 7200, 'latest')
-            const fee17Map = await Promise.all(fee17Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee18Filter = await cmjSC.filters.Transfer(platCmjLp, null, null)
-            const fee18Event = await cmjSC.queryFilter(fee18Filter, blockNumber - 7200, 'latest')
-            const fee18Map = await Promise.all(fee18Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee9 = fee17Map.concat(fee18Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee17Map = await Promise.all(fee17Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee18Filter = await platSC.filters.Transfer(platCmjLp, merchant, null)
+            const fee18Event = await platSC.queryFilter(fee18Filter, blockNumber - 7200, 'latest')
+            const fee18Map = await Promise.all(fee18Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee9 = fee17Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee9_2 = fee18Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee19Filter = await cmjSC.filters.Transfer(null, ctunaCmjLp, null)
+            const fee19Filter = await cmjSC.filters.Transfer(ctunaCmjLp, merchant, null)
             const fee19Event = await cmjSC.queryFilter(fee19Filter, blockNumber - 7200, 'latest')
-            const fee19Map = await Promise.all(fee19Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee20Filter = await cmjSC.filters.Transfer(ctunaCmjLp, null, null)
-            const fee20Event = await cmjSC.queryFilter(fee20Filter, blockNumber - 7200, 'latest')
-            const fee20Map = await Promise.all(fee20Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee10 = fee19Map.concat(fee20Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee19Map = await Promise.all(fee19Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee20Filter = await ctunaSC.filters.Transfer(ctunaCmjLp, merchant, null)
+            const fee20Event = await ctunaSC.queryFilter(fee20Filter, blockNumber - 7200, 'latest')
+            const fee20Map = await Promise.all(fee20Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee10 = fee19Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee10_2 = fee20Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee21Filter = await cmjSC.filters.Transfer(null, sx31CmjLp, null)
+            const fee21Filter = await cmjSC.filters.Transfer(sx31CmjLp, merchant, null)
             const fee21Event = await cmjSC.queryFilter(fee21Filter, blockNumber - 7200, 'latest')
-            const fee21Map = await Promise.all(fee21Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee22Filter = await cmjSC.filters.Transfer(sx31CmjLp, null, null)
-            const fee22Event = await cmjSC.queryFilter(fee22Filter, blockNumber - 7200, 'latest')
-            const fee22Map = await Promise.all(fee22Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee11 = fee21Map.concat(fee22Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee21Map = await Promise.all(fee21Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee22Filter = await sx31SC.filters.Transfer(sx31CmjLp, merchant, null)
+            const fee22Event = await sx31SC.queryFilter(fee22Filter, blockNumber - 7200, 'latest')
+            const fee22Map = await Promise.all(fee22Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee11 = fee21Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee11_2 = fee22Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee23Filter = await cmjSC.filters.Transfer(null, bbqCmjLp, null)
+            const fee23Filter = await cmjSC.filters.Transfer(bbqCmjLp, merchant, null)
             const fee23Event = await cmjSC.queryFilter(fee23Filter, blockNumber - 7200, 'latest')
-            const fee23Map = await Promise.all(fee23Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee24Filter = await cmjSC.filters.Transfer(bbqCmjLp, null, null)
-            const fee24Event = await cmjSC.queryFilter(fee24Filter, blockNumber - 7200, 'latest')
-            const fee24Map = await Promise.all(fee24Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee12 = fee23Map.concat(fee24Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee23Map = await Promise.all(fee23Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee24Filter = await bbqSC.filters.Transfer(bbqCmjLp, merchant, null)
+            const fee24Event = await bbqSC.queryFilter(fee24Filter, blockNumber - 7200, 'latest')
+            const fee24Map = await Promise.all(fee24Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee12 = fee23Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee12_2 = fee24Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee25Filter = await cmjSC.filters.Transfer(null, pzaCmjLp, null)
+            const fee25Filter = await cmjSC.filters.Transfer(pzaCmjLp, merchant, null)
             const fee25Event = await cmjSC.queryFilter(fee25Filter, blockNumber - 7200, 'latest')
-            const fee25Map = await Promise.all(fee25Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee26Filter = await cmjSC.filters.Transfer(pzaCmjLp, null, null)
-            const fee26Event = await cmjSC.queryFilter(fee26Filter, blockNumber - 7200, 'latest')
-            const fee26Map = await Promise.all(fee26Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee13 = fee25Map.concat(fee26Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee25Map = await Promise.all(fee25Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee26Filter = await pzaSC.filters.Transfer(pzaCmjLp, merchant, null)
+            const fee26Event = await pzaSC.queryFilter(fee26Filter, blockNumber - 7200, 'latest')
+            const fee26Map = await Promise.all(fee26Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee13 = fee25Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee13_2 = fee26Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const fee27Filter = await cmjSC.filters.Transfer(null, woodCmjLp, null)
+            const fee27Filter = await cmjSC.filters.Transfer(woodCmjLp, merchant, null)
             const fee27Event = await cmjSC.queryFilter(fee27Filter, blockNumber - 7200, 'latest')
-            const fee27Map = await Promise.all(fee27Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
-            const fee28Filter = await cmjSC.filters.Transfer(woodCmjLp, null, null)
-            const fee28Event = await cmjSC.queryFilter(fee28Filter, blockNumber - 7200, 'latest')
-            const fee28Map = await Promise.all(fee28Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
-            const sumFee14 = fee27Map.concat(fee28Map).reduce((partialSum, a) => partialSum + a, 0)
+            const fee27Map = await Promise.all(fee27Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee28Filter = await woodSC.filters.Transfer(woodCmjLp, merchant, null)
+            const fee28Event = await woodSC.queryFilter(fee28Filter, blockNumber - 7200, 'latest')
+            const fee28Map = await Promise.all(fee28Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee14 = fee27Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee14_2 = fee28Map.reduce((partialSum, a) => partialSum + a, 0)
 
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: [
@@ -1161,6 +1217,61 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
+                    {
+                        address: bbqCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: pzaCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: woodCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: sx31CmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: ctunaCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: platCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: goldCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: silCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: cuCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: osCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
+                    {
+                        address: jaspCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -1206,6 +1317,18 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const _reserveCmjWOOD = data2[39]
             const woodCmjTotalSup = data2[40]
             const farmJdao15TotalStake = data2[41]
+
+            const _reserveBBQ = data2[42]
+            const _reservePZA = data2[43]
+            const _reserveWOOD = data2[44]
+            const _reserveSX31 = data2[45]
+            const _reserveCTUNA = data2[46]
+            const _reservePLAT = data2[47]
+            const _reserveGOLD = data2[48]
+            const _reserveSIL = data2[49]
+            const _reserveCU = data2[50]
+            const _reserveOS = data2[51]
+            const _reserveJASP = data2[52]
             
             return [
                 jclpTotalSup, julpTotalSup, farmJdaoBal, farmJdaoTotalStake, jdaoPend, farmJdao202Bal, farmJdao202TotalStake, jdao202Pend, farmJdao3Bal, farmJdao3TotalStake, jdao3Pend,
@@ -1221,6 +1344,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                 farmJdao13Bal, jdao13Pend, bbqcmjbal, _reserveCmjBBQ, bbqCmjTotalSup, farmJdao13TotalStake, sumFee12,
                 farmJdao14Bal, jdao14Pend, pzacmjbal, _reserveCmjPZA, pzaCmjTotalSup, farmJdao14TotalStake, sumFee13,
                 farmJdao15Bal, jdao15Pend, woodcmjbal, _reserveCmjWOOD, woodCmjTotalSup, farmJdao15TotalStake, sumFee14,
+                _reserveBBQ, sumFee12_2, _reservePZA, sumFee13_2, _reserveWOOD, sumFee14_2, _reserveSX31, sumFee11_2, _reserveCTUNA, sumFee10_2, _reservePLAT, sumFee9_2, _reserveGOLD, sumFee8_2, _reserveSIL, sumFee7_2, _reserveCU, sumFee6_2,  _reserveOS, sumFee5_2,  sumFee4_2, _reserveJASP, sumFee3_2,
             ]
         }
 
@@ -1277,6 +1401,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             setCmjJaspPooled((Number(_cmjjaspreserve) * Number(ethers.utils.formatEther(result[15].result))) / Number(_jaspcmjtotalsupply))
             setYourCmjJaspStaked((Number(_cmjjaspreserve) * Number(_farmjdao4balance)) / Number(_jaspcmjtotalsupply))
             setSwapfee24hour3(Number(result[19]).toFixed(0))
+            setReserveJASP(ethers.utils.formatEther(result[119].result))
+            setSwapfee24hour3_2(Number(result[120]).toFixed(0))
 
             const _farmjdao5balance = ethers.utils.formatEther(result[20].result[0])
             setFarmJdao5Balance(_farmjdao5balance)
@@ -1290,6 +1416,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             setCmjJdaoPooled((Number(_cmjjdaoreserve) * Number(ethers.utils.formatEther(result[22].result))) / Number(_jdaocmjtotalsupply))
             setYourCmjJdaoLpStaked((Number(_cmjjdaoreserve) * Number(_farmjdao5balance)) / Number(_jdaocmjtotalsupply))
             setSwapfee24hour4(Number(result[26]).toFixed(0))
+            setReserveJDAO(ethers.utils.formatEther(result[34].result))
+            setSwapfee24hour4_2(Number(result[118]).toFixed(0))
 
             const _farmjdao6balance = ethers.utils.formatEther(result[27].result[0])
             setFarmJdao6Balance(_farmjdao6balance)
@@ -1303,9 +1431,8 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             setCmjOsPooled((Number(_cmjosreserve) * Number(ethers.utils.formatEther(result[29].result))) / Number(_oscmjtotalsupply))
             setYourCmjOsStaked((Number(_cmjosreserve) * Number(_farmjdao6balance)) / Number(_oscmjtotalsupply))
             setSwapfee24hour5(Number(result[33]).toFixed(0))
-
-            const _jdaoreserve = ethers.utils.formatEther(result[34].result)
-            setReserveJDAO(_jdaoreserve)
+            setReserveOS(ethers.utils.formatEther(result[116].result))
+            setSwapfee24hour5_2(Number(result[117]).toFixed(0))
 
             const _farmjdao7balance = ethers.utils.formatEther(result[35].result[0])
             setFarmJdao7Balance(_farmjdao7balance)
@@ -1319,102 +1446,128 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             setCmjCuPooled((Number(_cmjcureserve) * Number(ethers.utils.formatEther(result[37].result))) / Number(_cucmjtotalsupply))
             setYourCmjCuStaked((Number(_cmjcureserve) * Number(_farmjdao7balance)) / Number(_cucmjtotalsupply))
             setSwapfee24hour6(Number(result[41]).toFixed(0))
+            setReserveCU(ethers.utils.formatEther(result[114].result))
+            setSwapfee24hour6_2(Number(result[115]).toFixed(0))
 
             const _farmjdao8balance = ethers.utils.formatEther(result[42].result[0])
             setFarmJdao8Balance(_farmjdao8balance)
             setJdao8Pending(Number(ethers.utils.formatEther(result[43].result)).toFixed(4))
             setSilCmjBalance(ethers.utils.formatEther(result[44].result))
             const _cmjsilreserve = ethers.utils.formatEther(result[45].result)
+            setReserveCmjSIL(_cmjsilreserve)
             const _silcmjtotalsupply = ethers.utils.formatEther(result[46].result)
             const _farmjdao8totalstake = ethers.utils.formatEther(result[47].result)
             setCmjSilStaked((Number(_cmjsilreserve) * Number(_farmjdao8totalstake)) / Number(_silcmjtotalsupply))
             setCmjSilPooled((Number(_cmjsilreserve) * Number(ethers.utils.formatEther(result[44].result))) / Number(_silcmjtotalsupply))
             setYourCmjSilStaked((Number(_cmjsilreserve) * Number(_farmjdao8balance)) / Number(_silcmjtotalsupply))
             setSwapfee24hour7(Number(result[48]).toFixed(0))
+            setReserveSIL(ethers.utils.formatEther(result[112].result))
+            setSwapfee24hour7_2(Number(result[113]).toFixed(0))
 
             const _farmjdao9balance = ethers.utils.formatEther(result[49].result[0])
             setFarmJdao9Balance(_farmjdao9balance)
             setJdao9Pending(Number(ethers.utils.formatEther(result[50].result)).toFixed(4))
             setGoldCmjBalance(ethers.utils.formatEther(result[51].result))
             const _cmjgoldreserve = ethers.utils.formatEther(result[52].result)
+            setReserveCmjGOLD(_cmjgoldreserve)
             const _goldcmjtotalsupply = ethers.utils.formatEther(result[53].result)
             const _farmjdao9totalstake = ethers.utils.formatEther(result[54].result)
             setCmjGoldStaked((Number(_cmjgoldreserve) * Number(_farmjdao9totalstake)) / Number(_goldcmjtotalsupply))
             setCmjGoldPooled((Number(_cmjgoldreserve) * Number(ethers.utils.formatEther(result[51].result))) / Number(_goldcmjtotalsupply))
             setYourCmjGoldStaked((Number(_cmjgoldreserve) * Number(_farmjdao9balance)) / Number(_goldcmjtotalsupply))
             setSwapfee24hour8(Number(result[55]).toFixed(0))
+            setReserveGOLD(ethers.utils.formatEther(result[110].result))
+            setSwapfee24hour8_2(Number(result[111]).toFixed(0))
 
             const _farmjdao10balance = ethers.utils.formatEther(result[56].result[0])
             setFarmJdao10Balance(_farmjdao10balance)
             setJdao10Pending(Number(ethers.utils.formatEther(result[57].result)).toFixed(4))
             setPlatCmjBalance(ethers.utils.formatEther(result[58].result))
             const _cmjplatreserve = ethers.utils.formatEther(result[59].result)
+            setReserveCmjPLAT(_cmjplatreserve)
             const _platcmjtotalsupply = ethers.utils.formatEther(result[60].result)
             const _farmjdao10totalstake = ethers.utils.formatEther(result[61].result)
             setCmjPlatStaked((Number(_cmjplatreserve) * Number(_farmjdao10totalstake)) / Number(_platcmjtotalsupply))
             setCmjPlatPooled((Number(_cmjplatreserve) * Number(ethers.utils.formatEther(result[58].result))) / Number(_platcmjtotalsupply))
             setYourCmjPlatStaked((Number(_cmjplatreserve) * Number(_farmjdao10balance)) / Number(_platcmjtotalsupply))
             setSwapfee24hour9(Number(result[62]).toFixed(0))
+            setReservePLAT(ethers.utils.formatEther(result[108].result))
+            setSwapfee24hour9_2(Number(result[109]).toFixed(0))
 
             const _farmjdao11balance = ethers.utils.formatEther(result[63].result[0])
             setFarmJdao11Balance(_farmjdao11balance)
             setJdao11Pending(Number(ethers.utils.formatEther(result[64].result)).toFixed(4))
             setCtunaCmjBalance(ethers.utils.formatEther(result[65].result))
             const _cmjctunareserve = ethers.utils.formatEther(result[66].result)
+            setReserveCmjCTUNA(_cmjctunareserve)
             const _ctunacmjtotalsupply = ethers.utils.formatEther(result[67].result)
             const _farmjdao11totalstake = ethers.utils.formatEther(result[68].result)
             setCmjCtunaStaked((Number(_cmjctunareserve) * Number(_farmjdao11totalstake)) / Number(_ctunacmjtotalsupply))
             setCmjCtunaPooled((Number(_cmjctunareserve) * Number(ethers.utils.formatEther(result[65].result))) / Number(_ctunacmjtotalsupply))
             setYourCmjCtunaStaked((Number(_cmjctunareserve) * Number(_farmjdao11balance)) / Number(_ctunacmjtotalsupply))
             setSwapfee24hour10(Number(result[69]).toFixed(0))
+            setReserveCTUNA(ethers.utils.formatEther(result[106].result))
+            setSwapfee24hour10_2(Number(result[107]).toFixed(0))
 
             const _farmjdao12balance = ethers.utils.formatEther(result[70].result[0])
             setFarmJdao12Balance(_farmjdao12balance)
             setJdao12Pending(Number(ethers.utils.formatEther(result[71].result)).toFixed(4))
             setSx31CmjBalance(ethers.utils.formatEther(result[72].result))
             const _cmjsx31reserve = ethers.utils.formatEther(result[73].result)
+            setReserveCmjSX31(_cmjsx31reserve)
             const _sx31cmjtotalsupply = ethers.utils.formatEther(result[74].result)
             const _farmjdao12totalstake = ethers.utils.formatEther(result[75].result)
             setCmjSx31Staked((Number(_cmjsx31reserve) * Number(_farmjdao12totalstake)) / Number(_sx31cmjtotalsupply))
             setCmjSx31Pooled((Number(_cmjsx31reserve) * Number(ethers.utils.formatEther(result[72].result))) / Number(_sx31cmjtotalsupply))
             setYourCmjSx31Staked((Number(_cmjsx31reserve) * Number(_farmjdao12balance)) / Number(_sx31cmjtotalsupply))
             setSwapfee24hour11(Number(result[76]).toFixed(0))
+            setReserveSX31(ethers.utils.formatEther(result[104].result))
+            setSwapfee24hour11_2(Number(result[105]).toFixed(0))
 
             const _farmjdao13balance = ethers.utils.formatEther(result[77].result[0])
             setFarmJdao13Balance(_farmjdao13balance)
             setJdao13Pending(Number(ethers.utils.formatEther(result[78].result)).toFixed(4))
             setBbqCmjBalance(ethers.utils.formatEther(result[79].result))
             const _cmjbbqreserve = ethers.utils.formatEther(result[80].result)
+            setReserveCmjBBQ(_cmjbbqreserve)
             const _bbqcmjtotalsupply = ethers.utils.formatEther(result[81].result)
             const _farmjdao13totalstake = ethers.utils.formatEther(result[82].result)
             setCmjBbqStaked((Number(_cmjbbqreserve) * Number(_farmjdao13totalstake)) / Number(_bbqcmjtotalsupply))
             setCmjBbqPooled((Number(_cmjbbqreserve) * Number(ethers.utils.formatEther(result[79].result))) / Number(_bbqcmjtotalsupply))
             setYourCmjBbqStaked((Number(_cmjbbqreserve) * Number(_farmjdao13balance)) / Number(_bbqcmjtotalsupply))
             setSwapfee24hour12(Number(result[83]).toFixed(0))
+            setReserveBBQ(ethers.utils.formatEther(result[98].result))
+            setSwapfee24hour12_2(Number(result[99]).toFixed(0))
 
             const _farmjdao14balance = ethers.utils.formatEther(result[84].result[0])
             setFarmJdao14Balance(_farmjdao14balance)
             setJdao14Pending(Number(ethers.utils.formatEther(result[85].result)).toFixed(4))
             setPzaCmjBalance(ethers.utils.formatEther(result[86].result))
             const _cmjpzareserve = ethers.utils.formatEther(result[87].result)
+            setReserveCmjPZA(_cmjpzareserve)
             const _pzacmjtotalsupply = ethers.utils.formatEther(result[88].result)
             const _farmjdao14totalstake = ethers.utils.formatEther(result[89].result)
             setCmjPzaStaked((Number(_cmjpzareserve) * Number(_farmjdao14totalstake)) / Number(_pzacmjtotalsupply))
             setCmjPzaPooled((Number(_cmjpzareserve) * Number(ethers.utils.formatEther(result[86].result))) / Number(_pzacmjtotalsupply))
             setYourCmjPzaStaked((Number(_cmjpzareserve) * Number(_farmjdao14balance)) / Number(_pzacmjtotalsupply))
             setSwapfee24hour13(Number(result[90]).toFixed(0))
+            setReservePZA(ethers.utils.formatEther(result[100].result))
+            setSwapfee24hour13_2(Number(result[101]).toFixed(0))
 
             const _farmjdao15balance = ethers.utils.formatEther(result[91].result[0])
             setFarmJdao15Balance(_farmjdao15balance)
             setJdao15Pending(Number(ethers.utils.formatEther(result[92].result)).toFixed(4))
             setWoodCmjBalance(ethers.utils.formatEther(result[93].result))
             const _cmjwoodreserve = ethers.utils.formatEther(result[94].result)
+            setReserveCmjWOOD(_cmjwoodreserve)
             const _woodcmjtotalsupply = ethers.utils.formatEther(result[95].result)
             const _farmjdao15totalstake = ethers.utils.formatEther(result[96].result)
             setCmjWoodStaked((Number(_cmjwoodreserve) * Number(_farmjdao15totalstake)) / Number(_woodcmjtotalsupply))
             setCmjWoodPooled((Number(_cmjwoodreserve) * Number(ethers.utils.formatEther(result[93].result))) / Number(_woodcmjtotalsupply))
             setYourCmjWoodStaked((Number(_cmjwoodreserve) * Number(_farmjdao15balance)) / Number(_woodcmjtotalsupply))
             setSwapfee24hour14(Number(result[97]).toFixed(0))
+            setReserveWOOD(ethers.utils.formatEther(result[102].result))
+            setSwapfee24hour14_2(Number(result[103]).toFixed(0))
         })
     }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20ABI, cmdaoAmmNpcABI])
 
@@ -1442,15 +1595,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {jbcReserv !== 0 ? <div>~฿{Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(jbcJdaoStaked) !== 0 ? <div>~฿{Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -1514,15 +1667,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {jbcJuReserv !== 0 ? <div>~฿{((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(jusdtJdao3Staked) !== 0 ? <div>~฿{((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -1578,7 +1731,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour4) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1586,15 +1739,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour4 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {reserveCmjJDAO !== 0 ? <div>~฿{Number(((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjJdaoLpStaked) !== 0 ? <div>~฿{Number(((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -1652,7 +1805,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour5) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1660,15 +1813,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour5 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {reserveCmjOS !== 0 ? <div>~฿{Number(((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjOsStaked) !== 0 ? <div>~฿{Number(((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -1724,7 +1877,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour6) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1732,15 +1885,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour6 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {reserveCmjCU !== 0 ? <div>~฿{Number(((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjCuStaked) !== 0 ? <div>~฿{Number(((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -1796,7 +1949,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour7) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSilStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSilStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1804,9 +1957,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour7 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -1870,7 +2023,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour8) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjGoldStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjGoldStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1878,9 +2031,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour8 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -1942,7 +2095,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour9) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlatStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlatStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1950,9 +2103,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour9 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -2014,7 +2167,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour3) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2022,15 +2175,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour3 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {reserveCmjJASP !== 0 ? <div>~฿{Number(((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjJaspStaked) !== 0 ? <div>~฿{Number(((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
@@ -2088,7 +2241,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour10) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2096,9 +2249,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour10 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)))  * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -2160,7 +2313,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour11) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2168,9 +2321,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour11 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -2232,7 +2385,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour14) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2240,9 +2393,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour14 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -2306,7 +2459,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour12) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2314,9 +2467,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour12 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
@@ -2378,7 +2531,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour13) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2386,9 +2539,9 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(Math.floor(swapfee24hour13 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})} (24hr Fee)
+                                ~฿{Number((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(Math.floor(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})}
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
