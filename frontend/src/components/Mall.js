@@ -39,10 +39,11 @@ const cmdaoMerchantV2 = "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a"
 const cmdaoMerchantKYC = "0xF67761e0E72fea7bD176686a242f1535879be8aB"
 const cmdaoMerchantWL = '0x010EbE14315F976967E6aE408Af5881617b86E09'
 const cmdaoGasha02 = '0x87A612709b36b575103C65a90cB3B16Cac2BC898'
+const cmdaoPresale = '0xbf9C07f7223D09899c1BEC25f8Db559828166E78'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI, wjbcABI }) => {
+const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI, wjbcABI, presaleABI }) => {
     const { address } = useAccount()
 
     const [isWrappedModal, setIsWrappedModal] = React.useState(false)
@@ -131,6 +132,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
     const [tokenselected, setTokenselected] = React.useState("DOIJIB");
     const [inputBuy, setInputBuy] = React.useState("")
+    const [doijibRemain, setDoijibRemain] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -596,6 +598,12 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         functionName: 'colList',
                         args: [101],
                     },
+                    {
+                        address: cmdaoPresale,
+                        abi: presaleABI,
+                        functionName: 'sellList',
+                        args: [1],
+                    },
                 ],
             })
             
@@ -644,6 +652,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const roll6 = data2[18].result
             const roll7 = data2[42].result
             const roll101 = data2[43].result
+            const presale01 = data2[44].result
 
             const sell1remain = (410003800000 - (Number(sell1Id[2]) - 150)) / 100000
             const _canBuy1 = Number(ethers.utils.formatEther(String(ctunaBal))) >= 2500 ? true : false
@@ -724,6 +733,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, sell25remain, sell26remain, sell27remain, sell28remain, sell29remain, sell30remain,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, jtaoBal, iiBal, eeBal, platBal, gearBal,
                 sell31remain, sell32remain, sell33remain, sell34remain, sell35remain, sell36remain, _canBuy31, _canBuy32, _canBuy33, _isWL6, doijibBal, woodBal,
+                presale01[3],
             ]
         }
 
@@ -819,9 +829,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy32(result[81])
             setCanBuy33(result[82])
             setIsWL6(result[83])
+            setDoijibRemain(result[86])
         })
-
-    }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20ABI])
+    }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20ABI, presaleABI])
 
     const buyHandle = async () => {
         setisLoading(true)
@@ -1298,6 +1308,38 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 abi: cmdaoGasha02ABI,
                 functionName: 'roll',
                 args: [_colIndex]
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const buyPresaleHandle = async (_sellIndex) => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: doijibToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, cmdaoPresale],
+            })
+            if (tokenAllow < (inputBuy * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: doijibToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [cmdaoPresale, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: cmdaoPresale,
+                abi: presaleABI,
+                functionName: 'buy',
+                args: [_sellIndex, ethers.utils.parseEther(inputBuy)]
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -1894,7 +1936,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} ctunaBalance={ctunaBalance} sx31Balance={sx31Balance} bbqBalance={bbqBalance} pzaBalance={pzaBalance} woodBalance={woodBalance} cmjBalance={cmjBalance} />
                     <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} platBalance={platBalance} cmjBalance={cmjBalance} />
-                    <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} doijibBalance={doijibBalance} wjbcBalance={wjbcBalance} woodBalance={woodBalance} />
+                    <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} doijibBalance={doijibBalance} wjbcBalance={wjbcBalance} woodBalance={woodBalance} />
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
@@ -1949,11 +1991,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                             }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {false && address !== null && address !== undefined ?
+                            {Number(doijibRemain) > 0 && address !== null && address !== undefined ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
                                     () => {
-                                        if (tokenselected === "CTUNA") {
-                                            console.log(2, true)
+                                        if (tokenselected === "DOIJIB") {
+                                            buyPresaleHandle(1)
                                         }
                                     }
                                 }>BUY</div> :
