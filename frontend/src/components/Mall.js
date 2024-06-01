@@ -829,7 +829,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy32(result[81])
             setCanBuy33(result[82])
             setIsWL6(result[83])
-            setDoijibRemain(result[86])
+            setDoijibRemain(ethers.utils.formatEther(String(result[86])))
         })
     }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20ABI, presaleABI])
 
@@ -1967,7 +1967,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                     </div>
                                 </div>
                             </div>
-                            <div style={{margin: "10px 0", fontSize: "10px"}} className="bold">Presale Round 1 Remaining: <span className='emp'>{Number(2000000000).toLocaleString('en-US', {maximumFractionDigits:4})}</span> / 2,000,000,000</div>
+                            <div style={{margin: "10px 0", fontSize: "10px"}} className="bold">Presale Round 1 Remaining: <span className='emp'>{Number(doijibRemain).toLocaleString('en-US', {maximumFractionDigits:4})}</span> / 2,000,000,000</div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
