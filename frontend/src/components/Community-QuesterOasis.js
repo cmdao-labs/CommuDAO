@@ -96,57 +96,74 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: pvp01,
                         abi: pvp01ABI,
                         functionName: 'userInfo',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: quest01,
                         abi: quest01ABI,
                         functionName: 'questComplete',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: kyc,
                         abi: kycABI,
                         functionName: 'kyc',
                         args: [0, address],
+                        chainId: 8899,
                     },
                     {
                         address: questAmbass,
                         abi: questAmbassABI,
                         functionName: 'frenCount',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: questAmbass,
                         abi: questAmbassABI,
                         functionName: 'registIndex',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: questBBQ,
                         abi: questBBQABI,
                         functionName: 'questComplete',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: questBBQ,
                         abi: questBBQABI,
                         functionName: 'questLastStamp',
                         args: [address],
+                        chainId: 8899,
                     },
                     {
                         address: bbqLab,
                         abi: bbqLab01ABI,
                         functionName: 'supplier',
                         args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: '0x399fe73bb0ee60670430fd92fe25a0fdd308e142',
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 10,
                     },
                 ],
-            }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0}, ]
+            }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0}, {result: 0} ]
+
             
             const jaspBal = data[0].result
             const reward = data[1].result[1] - data[2].result
@@ -256,7 +273,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
             const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 3371322, 'latest')
             const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-            const jdaoFarmAllMerged = jdaoFarmMap.concat(jdaoFarmMap).reduce((prev, curr) => {
+            const jdaoFarmAllMerged = jdaoFarmMap.reduce((prev, curr) => {
                 if (prev[curr.to.toUpperCase()]) {
                    prev[curr.to.toUpperCase()].value += curr.value
                 } else {
@@ -352,11 +369,28 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 }
             }
+
+            const dataOP = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49',
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [item],
+                        chainId: 10,
+                    }
+                )),
+            })
+            const opLpArr = []
+            for (let i = 0; i <= Number(dataOP.length - 1); i++) {
+                opLpArr.push(ethers.utils.formatEther(dataOP[i].result))
+            }
+
             const data2 = ranker.map((item, i) => {
                 return {
                     addr: item,
                     name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
-                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (jdaoFarmRemoveDup[i].value * 1000000) + (Number(quest4Arr[i]) * 200))
+                    cmxp: ((Number(questArr[i]) * 100) + (Number(quest2Arr[i]) * 500) + (Number(quest3Arr[i]) * 5) + (enderRemoveDup[i].value * 5) + (jdaoFarmRemoveDup[i].value * 1000000) + (Number(quest4Arr[i]) * 200) + (Number(opLpArr[i]) * 100000))
                 }
             })
 
@@ -618,7 +652,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{item.cmxp | 0} CMXP</div>
+                                                <div>{Number(item.cmxp).toLocaleString('en-US', {maximumFractionDigits:0})} CMXP</div>
                                             </div>
                                         ))}
                                     </div> :
@@ -643,7 +677,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{item.cmpow} CMPOW</div>
+                                                <div>{Number(item.cmpow).toLocaleString('en-US', {maximumFractionDigits:0})} CMPOW</div>
                                             </div>
                                         ))}
                                     </div> :
@@ -668,7 +702,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{Number(item.value).toFixed(2)} USDT</div>
+                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT</div>
                                             </div>
                                         ))}
                                     </div> :
@@ -693,7 +727,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{Number(item.value).toFixed(2)} USDT</div>
+                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT</div>
                                             </div>
                                         ))}
                                     </div> :
