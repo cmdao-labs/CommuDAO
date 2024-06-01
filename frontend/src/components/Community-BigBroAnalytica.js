@@ -18,6 +18,10 @@ const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
 const cmd = '0x399fe73bb0ee60670430fd92fe25a0fdd308e142'
 
+const genesis = '0x0000000000000000000000000000000000000000'
+const burn = '0x0000000000000000000000000000000000000001'
+const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+
 const BigBroAnalytica = ({ erc20ABI }) => {
     const [cmdBbq, setCmdBbq] = React.useState(0)
     const [cmdGov, setCmdGov] = React.useState(0)
@@ -32,57 +36,206 @@ const BigBroAnalytica = ({ erc20ABI }) => {
     const [woodSupply, setWoodSupply] = React.useState(0)
     const [woodBurn, setWoodBurn] = React.useState(0)
     const [woodCirculation, setWoodCirculation] = React.useState(0)
+    const [woodStat, setWoodStat] = React.useState([0, 0])
 
     const [bbqSupply, setBbqSupply] = React.useState(0)
     const [bbqBurn, setBbqBurn] = React.useState(0)
     const [bbqCirculation, setBbqCirculation] = React.useState(0)
+    const [bbqStat, setBbqStat] = React.useState([0, 0])
 
     const [pzaSupply, setPzaSupply] = React.useState(0)
     const [pzaBurn, setPzaBurn] = React.useState(0)
     const [pzaCirculation, setPzaCirculation] = React.useState(0)
+    const [pzaStat, setPzaStat] = React.useState([0, 0])
 
     const [ctunaSupply, setCtunaSupply] = React.useState(0)
     const [ctunaBurn, setCtunaBurn] = React.useState(0)
     const [ctunaCirculation, setCtunaCirculation] = React.useState(0)
+    const [ctunaStat, setCtunaStat] = React.useState([0, 0])
 
     const [sx31Supply, setSx31Supply] = React.useState(0)
     const [sx31Burn, setSx31Burn] = React.useState(0)
     const [sx31Circulation, setSx31Circulation] = React.useState(0)
+    const [sx31Stat, setSx31Stat] = React.useState([0, 0])
 
     const [cuSupply, setCuSupply] = React.useState(0)
     const [cuBurn, setCuBurn] = React.useState(0)
     const [cuCirculation, setCuCirculation] = React.useState(0)
+    const [cuStat, setCuStat] = React.useState([0, 0])
 
     const [silSupply, setSilSupply] = React.useState(0)
     const [silBurn, setSilBurn] = React.useState(0)
     const [silCirculation, setSilCirculation] = React.useState(0)
+    const [silStat, setSilStat] = React.useState([0, 0])
 
     const [goldSupply, setGoldSupply] = React.useState(0)
     const [goldBurn, setGoldBurn] = React.useState(0)
     const [goldCirculation, setGoldCirculation] = React.useState(0)
+    const [goldStat, setGoldStat] = React.useState([0, 0])
 
     const [platSupply, setPlatSupply] = React.useState(0)
     const [platLocked, setPlatLocked] = React.useState(0)
     const [platBurn, setPlatBurn] = React.useState(0)
     const [platCirculation, setPlatCirculation] = React.useState(0)
+    const [platStat, setPlatStat] = React.useState([0, 0])
 
     const [jaspSupply, setJaspSupply] = React.useState(0)
     const [jaspBurn, setJaspBurn] = React.useState(0)
     const [jaspCirculation, setJaspCirculation] = React.useState(0)
+    const [jaspStat, setJaspStat] = React.useState([0, 0])
 
     const [osSupply, setOsSupply] = React.useState(0)
     const [osLocked, setOsLocked] = React.useState(0)
     const [osBurn, setOsBurn] = React.useState(0)
     const [osCirculation, setOsCirculation] = React.useState(0)
+    const [osStat, setOsStat] = React.useState([0, 0])
 
     const [jdaoSupply, setJdaoSupply] = React.useState(0)
     const [jdaoBurn, setJdaoBurn] = React.useState(0)
     const [jdaoCirculation, setJdaoCirculation] = React.useState(0)
+    const [jdaoStat, setJdaoStat] = React.useState([0, 0])
 
     React.useEffect(() => {  
         window.scrollTo(0, 0)
+        const woodSC = new ethers.Contract(wood, erc20ABI, providerJBC)
+        const bbqSC = new ethers.Contract(bbq, erc20ABI, providerJBC)
+        const pzaSC = new ethers.Contract(pza, erc20ABI, providerJBC)
+        const ctunaSC = new ethers.Contract(ctuna, erc20ABI, providerJBC)
+        const sx31SC = new ethers.Contract(sx31, erc20ABI, providerJBC)
+        const cuSC = new ethers.Contract(cu, erc20ABI, providerJBC)
+        const silSC = new ethers.Contract(sil, erc20ABI, providerJBC)
+        const goldSC = new ethers.Contract(gold, erc20ABI, providerJBC)
+        const platSC = new ethers.Contract(plat, erc20ABI, providerJBC)
+        const jaspSC = new ethers.Contract(jasp, erc20ABI, providerJBC)
+        const osSC = new ethers.Contract(os, erc20ABI, providerJBC)
+        const jdaoSC = new ethers.Contract(jdao, erc20ABI, providerJBC)
               
         const thefetch = async () => {
+            const blockNumber = await providerJBC.getBlockNumber()
+
+            const woodFilter = await woodSC.filters.Transfer(genesis, null, null)
+            const woodEvent = await woodSC.queryFilter(woodFilter, blockNumber - 7200, 'latest')
+            const woodMap = await Promise.all(woodEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const woodMint = woodMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const woodFilter2 = await woodSC.filters.Transfer(null, burn, null)
+            const woodEvent2 = await woodSC.queryFilter(woodFilter2, blockNumber - 7200, 'latest')
+            const woodMap2 = await Promise.all(woodEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const woodBurn = woodMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const jdaoFilter = await jdaoSC.filters.Transfer(genesis, null, null)
+            const jdaoEvent = await jdaoSC.queryFilter(jdaoFilter, blockNumber - 7200, 'latest')
+            const jdaoMap = await Promise.all(jdaoEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const jdaoMint = jdaoMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const jdaoFilter2 = await jdaoSC.filters.Transfer(null, burn, null)
+            const jdaoEvent2 = await jdaoSC.queryFilter(jdaoFilter2, blockNumber - 7200, 'latest')
+            const jdaoMap2 = await Promise.all(jdaoEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const jdaoBurn = jdaoMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const osFilter = await osSC.filters.Transfer(genesis, null, null)
+            const osEvent = await osSC.queryFilter(osFilter, blockNumber - 7200, 'latest')
+            const osMap = await Promise.all(osEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const osMint = osMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const osFilter2 = await osSC.filters.Transfer(null, burn, null)
+            const osEvent2 = await osSC.queryFilter(osFilter2, blockNumber - 7200, 'latest')
+            const osMap2 = await Promise.all(osEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const osBurn = osMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const bbqFilter = await bbqSC.filters.Transfer(genesis, null, null)
+            const bbqEvent = await bbqSC.queryFilter(bbqFilter, blockNumber - 7200, 'latest')
+            const bbqMap = await Promise.all(bbqEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const bbqMint = bbqMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const bbqFilter2 = await bbqSC.filters.Transfer(null, burn, null)
+            const bbqEvent2 = await bbqSC.queryFilter(bbqFilter2, blockNumber - 7200, 'latest')
+            const bbqMap2 = await Promise.all(bbqEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const bbqFilter3 = await bbqSC.filters.Transfer(null, cu, null)
+            const bbqEvent3 = await bbqSC.queryFilter(bbqFilter3, blockNumber - 7200, 'latest')
+            const bbqMap3 = await Promise.all(bbqEvent3.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const bbqBurn = bbqMap2.concat(bbqMap3).reduce((partialSum, a) => partialSum + a, 0)
+
+            const pzaFilter = await pzaSC.filters.Transfer(genesis, null, null)
+            const pzaEvent = await pzaSC.queryFilter(pzaFilter, blockNumber - 7200, 'latest')
+            const pzaMap = await Promise.all(pzaEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const pzaMint = pzaMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const pzaFilter2 = await pzaSC.filters.Transfer(null, jasp, null)
+            const pzaEvent2 = await pzaSC.queryFilter(pzaFilter2, blockNumber - 7200, 'latest')
+            const pzaMap2 = await Promise.all(pzaEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const pzaBurn = pzaMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const ctunaFilter = await ctunaSC.filters.Transfer(genesis, null, null)
+            const ctunaEvent = await ctunaSC.queryFilter(ctunaFilter, blockNumber - 7200, 'latest')
+            const ctunaMap = await Promise.all(ctunaEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const ctunaMint = ctunaMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const ctunaFilter2 = await ctunaSC.filters.Transfer(null, burn, null)
+            const ctunaEvent2 = await ctunaSC.queryFilter(ctunaFilter2, blockNumber - 7200, 'latest')
+            const ctunaMap2 = await Promise.all(ctunaEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const ctunaBurn = ctunaMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const sx31Filter = await sx31SC.filters.Transfer(genesis, null, null)
+            const sx31Event = await sx31SC.queryFilter(sx31Filter, blockNumber - 7200, 'latest')
+            const sx31Map = await Promise.all(sx31Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const sx31Mint = sx31Map.reduce((partialSum, a) => partialSum + a, 0)
+
+            const sx31Filter2 = await sx31SC.filters.Transfer(null, burn, null)
+            const sx31Event2 = await sx31SC.queryFilter(sx31Filter2, blockNumber - 7200, 'latest')
+            const sx31Map2 = await Promise.all(sx31Event2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const sx31Burn = sx31Map2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const cuFilter = await cuSC.filters.Transfer(genesis, null, null)
+            const cuEvent = await cuSC.queryFilter(cuFilter, blockNumber - 7200, 'latest')
+            const cuMap = await Promise.all(cuEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const cuMint = cuMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const cuFilter2 = await cuSC.filters.Transfer(null, burn, null)
+            const cuEvent2 = await cuSC.queryFilter(cuFilter2, blockNumber - 7200, 'latest')
+            const cuMap2 = await Promise.all(cuEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const cuBurn = cuMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const silFilter = await silSC.filters.Transfer(genesis, null, null)
+            const silEvent = await silSC.queryFilter(silFilter, blockNumber - 7200, 'latest')
+            const silMap = await Promise.all(silEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const silMint = silMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const silFilter2 = await silSC.filters.Transfer(null, burn, null)
+            const silEvent2 = await silSC.queryFilter(silFilter2, blockNumber - 7200, 'latest')
+            const silMap2 = await Promise.all(silEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const silBurn = silMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const goldFilter = await goldSC.filters.Transfer(genesis, null, null)
+            const goldEvent = await goldSC.queryFilter(goldFilter, blockNumber - 7200, 'latest')
+            const goldMap = await Promise.all(goldEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const goldMint = goldMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const goldFilter2 = await goldSC.filters.Transfer(null, burn, null)
+            const goldEvent2 = await goldSC.queryFilter(goldFilter2, blockNumber - 7200, 'latest')
+            const goldMap2 = await Promise.all(goldEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const goldBurn = goldMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const platFilter = await platSC.filters.Transfer(genesis, null, null)
+            const platEvent = await platSC.queryFilter(platFilter, blockNumber - 7200, 'latest')
+            const platMap = await Promise.all(platEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const platMint = platMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const platFilter2 = await platSC.filters.Transfer(null, burn, null)
+            const platEvent2 = await platSC.queryFilter(platFilter2, blockNumber - 7200, 'latest')
+            const platMap2 = await Promise.all(platEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const platBurn = platMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const jaspFilter = await jaspSC.filters.Transfer(genesis, null, null)
+            const jaspEvent = await jaspSC.queryFilter(jaspFilter, blockNumber - 7200, 'latest')
+            const jaspMap = await Promise.all(jaspEvent.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
+            const jaspMint = jaspMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const jaspFilter2 = await jaspSC.filters.Transfer(null, burn, null)
+            const jaspEvent2 = await jaspSC.queryFilter(jaspFilter2, blockNumber - 7200, 'latest')
+            const jaspMap2 = await Promise.all(jaspEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
+            const jaspBurn = jaspMap2.reduce((partialSum, a) => partialSum + a, 0)
+
             const dataCMJ = await readContracts({
                 contracts: [
                     {
@@ -128,7 +281,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: wood,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -160,7 +313,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: jdao,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -192,7 +345,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: bbq,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -224,7 +377,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: pza,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -263,7 +416,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: ctuna,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -288,7 +441,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: sx31,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -313,7 +466,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: cu,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -338,7 +491,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: sil,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -363,7 +516,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: gold,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -388,7 +541,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: plat,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -420,7 +573,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: jasp,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -445,7 +598,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x0000000000000000000000000000000000000001'],
+                        args: [burn],
                         chainId: 8899,
                     },
                     {
@@ -503,7 +656,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             
 
             return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
-            (bbqCmdBal1.formatted + bbqCmdBal2.formatted), ]
+            (bbqCmdBal1.formatted + bbqCmdBal2.formatted), [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
         }
 
         const promise = thefetch()
@@ -575,8 +728,20 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
             setCmdRev(result[14])
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][0].result))))
-        })
 
+            setWoodStat(result[15])
+            setJdaoStat(result[16])
+            setOsStat(result[17])
+            setBbqStat(result[18])
+            setPzaStat(result[19])
+            setCtunaStat(result[20])
+            setSx31Stat(result[21])
+            setCuStat(result[22])
+            setSilStat(result[23])
+            setGoldStat(result[24])
+            setPlatStat(result[25])
+            setJaspStat(result[26])
+        })
     }, [erc20ABI])
 
     return (
@@ -661,9 +826,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(jdaoBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((jdaoBurn/jdaoSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(jdaoCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((jdaoCirculation/jdaoSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(jdaoStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(jdaoStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(jdaoStat[0] - jdaoStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((jdaoStat[0] - jdaoStat[1])/jdaoSupply)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((jdaoStat[0] - jdaoStat[1]) * 365)/jdaoCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -685,9 +866,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Reward Locked:</div>
                                 <div style={{color: "#fff"}}>{Number(osLocked).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((osLocked/osSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(osCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((osCirculation/osSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(osStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(osStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(osStat[0] - osStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((osStat[0] - osStat[1])/osCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((osStat[0] - osStat[1]) * 365)/osCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -705,9 +902,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(woodBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((woodBurn/woodSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(woodCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((woodCirculation/woodSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(woodStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(woodStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(woodStat[0] - woodStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((woodStat[0] - woodStat[1])/woodCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((woodStat[0] - woodStat[1]) * 365)/woodCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -725,9 +938,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(bbqBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((bbqBurn/bbqSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(bbqCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((bbqCirculation/bbqSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(bbqStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(bbqStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(bbqStat[0] - bbqStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((bbqStat[0] - bbqStat[1])/bbqCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((bbqStat[0] - bbqStat[1]) * 365)/bbqCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -745,9 +974,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(pzaBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((pzaBurn/pzaSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(pzaCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((pzaCirculation/pzaSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(pzaStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(pzaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(pzaStat[0] - pzaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((pzaStat[0] - pzaStat[1])/pzaCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((pzaStat[0] - pzaStat[1]) * 365)/pzaCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -765,9 +1010,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(ctunaBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((ctunaBurn/ctunaSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(ctunaCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((ctunaCirculation/ctunaSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(ctunaStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(ctunaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(ctunaStat[0] - ctunaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((ctunaStat[0] - ctunaStat[1])/ctunaCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((ctunaStat[0] - ctunaStat[1]) * 365)/ctunaCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -785,9 +1046,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(sx31Burn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((sx31Burn/sx31Supply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(sx31Circulation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((sx31Circulation/sx31Supply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(sx31Stat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(sx31Stat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(sx31Stat[0] - sx31Stat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((sx31Stat[0] - sx31Stat[1])/sx31Circulation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((sx31Stat[0] - sx31Stat[1]) * 365)/sx31Circulation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -805,9 +1082,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(cuBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((cuBurn/cuSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(cuCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((cuCirculation/cuSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(cuStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(cuStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(cuStat[0] - cuStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((cuStat[0] - cuStat[1])/cuCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((cuStat[0] - cuStat[1]) * 365)/cuCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -825,9 +1118,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(silBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((silBurn/silSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(silCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((silCirculation/silSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(silStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(silStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(silStat[0] - silStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((silStat[0] - silStat[1])/silCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((silStat[0] - silStat[1]) * 365)/silCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -845,9 +1154,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(goldBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((goldBurn/goldSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(goldCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((goldCirculation/goldSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(goldStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(goldStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(goldStat[0] - goldStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((goldStat[0] - goldStat[1])/goldCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((goldStat[0] - goldStat[1]) * 365)/goldCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -869,9 +1194,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Reward Locked:</div>
                                 <div style={{color: "#fff"}}>{Number(platLocked).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((platLocked/platSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(platCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((platCirculation/platSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(platStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(platStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(platStat[0] - platStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((platStat[0] - platStat[1])/platCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((platStat[0] - platStat[1]) * 365)/platCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
@@ -889,9 +1230,25 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(jaspBurn).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI ({Number((jaspBurn/jaspSupply)*100).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(jaspCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI ({Number((jaspCirculation/jaspSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(jaspStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(jaspStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(jaspStat[0] - jaspStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((jaspStat[0] - jaspStat[1])/jaspCirculation)*100).toFixed(6)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((jaspStat[0] - jaspStat[1]) * 365)/jaspCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
