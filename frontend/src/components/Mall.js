@@ -1999,7 +1999,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                         }
                                     }
                                 }>BUY</div> :
-                                <div style={{width: "190px", fontSize: "14px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OPEN TO SALE AT 10PM, 01/06</div>
+                                <div style={{width: "190px", fontSize: "14px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SOLD OUT</div>
                             }
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div className="emp">
