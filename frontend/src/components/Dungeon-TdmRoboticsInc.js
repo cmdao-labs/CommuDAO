@@ -333,11 +333,11 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
 
                 <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "70%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                     <div style={{padding: "50px", margin: "50px 0", backdropFilter: "blur(20px)", border: "none", minWidth: "940px", width: "80%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "14px"}} className="nftCard">
-                        <div style={{fontSize: "40px"}}>May 2024 Prize Pool 🎁</div>
+                        <div style={{fontSize: "40px"}}>June 2024 Prize Pool 🎁</div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                             <div style={{width: "220px", marginRight: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top TAO Superpower</div>
-                                <div>3,551,613 JTAO</div>
+                                <div>X.XX JTAO</div>
                             </div>
                         </div>
                         <div>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 30 for each leaderboard.</div>
