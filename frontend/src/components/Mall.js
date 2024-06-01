@@ -1320,14 +1320,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
         setisLoading(true)
         try {
             const tokenAllow = await readContract({
-                address: doijibToken,
+                address: wjbcToken,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, cmdaoPresale],
             })
             if (tokenAllow < (inputBuy * 10**18)) {
                 const config = await prepareWriteContract({
-                    address: doijibToken,
+                    address: wjbcToken,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [cmdaoPresale, ethers.utils.parseEther(String(10**8))],
