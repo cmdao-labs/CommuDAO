@@ -17,8 +17,6 @@ const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const silLab = '0xfEe9af37FBee37DbA1A830080b20Caa99b41741A'
 const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const goldLab = '0xc69F46334a86F4617Fa17432F430c641c2e10139'
-const mtToken = '0x169816800f1eA9C5735937388aeb9C2A3bAca11F'
-const goldLab2 = '0x47FA364aDafa7d78c0e4A4bF66D389d2D01A6b05'
 const goldMine = '0x28d8c3c2C0199Ff6E73eb7c4321F43E0e7F80ad8'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const platLab = '0xFFBADf348b97055cA8E60a848718cAEf29df50A7'
@@ -58,7 +56,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [platBalance, setPlatBalance] = React.useState(0)
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
-    const [mtBalance, setMtBalance] = React.useState(0)
     const [vabagBalance, setVabagBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
     const [angbBalance, setAngbBalance] = React.useState(0)
@@ -90,10 +87,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isCraftGOLD, setIsCraftGOLD] = React.useState(null)
     const [timetoClaimGOLD, setTimeToClaimGOLD] = React.useState(0)
     const [canCraftGOLD, setCanCraftGOLD] = React.useState(false)
-
-    const [isCraftGOLD2, setIsCraftGOLD2] = React.useState(null)
-    const [timetoClaimGOLD2, setTimeToClaimGOLD2] = React.useState(0)
-    const [canCraftGOLD2, setCanCraftGOLD2] = React.useState(false)
 
     const [isCraftPLAT, setIsCraftPLAT] = React.useState(null)
     const [timetoClaimPLAT, setTimeToClaimPLAT] = React.useState(0)
@@ -266,13 +259,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         args: [address],
                     },
                     {
-                        address: goldLab2,
+                        address: goldMine,
                         abi: pzaLabABI,
                         functionName: 'supplier',
                         args: [address],
                     },
                     {
-                        address: mtToken,
+                        address: platToken,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
@@ -384,8 +377,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const labLogSIL = data[17].result
             const labLogGOLD = data[18].result
             const mineGold = data[19].result
-            const labLogGOLD2 = data[20].result
-            const mtBal = data[21].result
+            const labLogGOLD2 = null
+            const mtBal = null
             const platBal = data[22].result
             const labLogPLAT = data[23].result
             const vaBagBal = data[24].result
@@ -409,7 +402,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftPZA = Number(ethers.utils.formatEther(String(stOPTBal))) >= 1 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 1 && Number(ethers.utils.formatEther(String(cuBal))) >= 150000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 5 && Number(ethers.utils.formatEther(String(silBal))) >= 10000 ? true : false
-            const _canCraftGOLD2 = Number(ethers.utils.formatEther(String(woodBal))) >= 100000000 && Number(ethers.utils.formatEther(String(mtBal))) >= 50 ? true : false
+            const _canCraftGOLD2 = false
             const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 5 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
@@ -545,13 +538,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimMineGold(0)
             setCanMineGold(result[31])
 
-            setMtBalance(ethers.utils.formatEther(result[32]))
-            setIsCraftGOLD2(Number(result[33][0]) > 0)
-            const nextHourGOLD2 = new Date((Number(result[33][1]) * 1000) + (3600 * 1 * 1000))
-            Date.now() - (Number(result[33][1]) * 1000) <= (3600 * 1 * 1000) ?
-                setTimeToClaimGOLD2(nextHourGOLD2.toLocaleString('es-CL')) :
-                setTimeToClaimGOLD2(0)
-            setCanCraftGOLD2(result[34])
+
 
             setPlatBalance(ethers.utils.formatEther(result[35]))
             setIsCraftPLAT(Number(result[36][0]) > 0)
@@ -1096,69 +1083,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
         setisLoading(false)
     }
 
-    const craftGOLDHandle2 = async (_machine) => {
-        setisLoading(true)
-        try {
-            const woodAllow = await readContract({
-                address: woodField,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, goldLab2],
-            })
-            if (woodAllow < (100000000 * 10**18)) {
-                const config = await prepareWriteContract({
-                    address: woodField,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [goldLab2, ethers.utils.parseEther(String(10**8))],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            }
-            const mtAllow = await readContract({
-                address: mtToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, goldLab2],
-            })
-            if (mtAllow < (50 * 10**18)) {
-                const config2 = await prepareWriteContract({
-                    address: mtToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [goldLab2, ethers.utils.parseEther(String(10**8))],
-                })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
-            }
-            const config3 = await prepareWriteContract({
-                address: goldLab2,
-                abi: pzaLabABI,
-                functionName: 'craft',
-                args: [_machine],
-            })
-            const { hash: hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const obtainGOLDHandle2 = async () => {
-        setisLoading(true)
-        try {
-            const config = await prepareWriteContract({
-                address: goldLab2,
-                abi: pzaLabABI,
-                functionName: 'obtain',
-            })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
     const mineGOLDHandle = async (_machine) => {
         setisLoading(true)
         try {
@@ -1621,29 +1545,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             }}
                         />
                         <div style={{marginLeft: "5px"}}>{Number(copperBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                    </div>
-                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                    <img
-                            src="https://cloudflare-ipfs.com/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia"
-                            width="20"
-                            alt="$MT"
-                            style={{cursor: "crosshair"}}
-                            onClick={async () => {
-                                await ethereum.request({
-                                    method: 'wallet_watchAsset',
-                                    params: {
-                                        type: 'ERC20',
-                                        options: {
-                                            address: mtToken,
-                                            symbol: 'MT',
-                                            decimals: 18,
-                                            image: 'https://cloudflare-ipfs.com/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia',
-                                        },
-                                    },
-                                })
-                            }}
-                        />
-                        <div style={{marginLeft: "5px"}}>{Number(mtBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
                 </div>
 
@@ -2380,57 +2281,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 </div>
 
                 <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
-                        <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeigjhse2n7fm7o7mmodgpqs4ojd5n5wpfnzl5roegeoldrmujaimku" width="330" alt="$GOLD_Factory2"/>
-                        </div>
-                        <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                            <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                                <div style={{margin: "0 5px"}}>100M</div>
-                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreihqaivu4woi3ibymi4w5lrgv6dnylnuasa4qjkpgqmm655et2lpia" height="18" alt="$MT"/>
-                                <div style={{margin: "0 5px"}}>50</div>
-                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                <div style={{margin: "0 5px"}}>50</div>
-                            </div>
-                        </div>
-                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                            <div>1 hour</div>
-                        </div>
-                        {isCraftGOLD2 ?
-                            <>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                    <div>{timetoClaimGOLD2 === 0 ? "now" : timetoClaimGOLD2}</div>
-                                </div>
-                                {timetoClaimGOLD2 === 0 ?
-                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainGOLDHandle2}>Obtain</div> :
-                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                }
-                            </> :
-                            <>
-                                {address !== null && address !== undefined ?
-                                    <>
-                                        {isCraftGOLD2 !== null ?
-                                            <>
-                                                {canCraftGOLD2 ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftGOLDHandle2(1)}>Craft Gold</div> :
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                }
-                                            </> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Gold</div>
-                                        }
-                                    </> :
-                                    <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                }
-                            </>
-                        }
-                    </div>
-
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
                             <img src="https://cloudflare-ipfs.com/ipfs/bafybeicrg6pt7nkzibtg4pwdw6vaipgcbpxhlnvt5hrqobmhlrnssqjiva" width="300" alt="$PLAT_Factory"/>
