@@ -479,7 +479,6 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                     <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Labs & Factories</div>
                     <div style={{width: "100%", margin: "10px 0 80px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                         <div className="nftCard" style={{position: "relative", justifyContent: "space-around", margin: "20px", paddingTop: "60px"}}>
-                            <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                                 <div>Total Staking Power:</div>
                                 <div className="bold">{Number(bstLabStake).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
@@ -543,45 +542,35 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                 <div>1 hour</div>
                             </div>
                             <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                {Number(bstLabLog[1]) === 0 &&
-                                    <>
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
-                                        <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
-                                            <div style={{margin: "0 5px"}}>Upgradable soon!</div>
-                                        </div>
-                                    </>
-                                }
-                                {Number(bstLabLog[1]) !== 0 && 
+                                {Number(bstLabLog[1]) !== 0 ?
                                     <>
                                         <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
                                         <div>{Date.now() - (Number(bstLabLog[2]) * 1000) > (3600 * 1000) ? "now" : (new Date((Number(bstLabLog[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
-                                    </>
+                                    </> :
+                                    <div style={{height: "20.5px"}}></div>
                                 }
                             </div>
                             <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                 {Number(bstLabLog[1]) === 0 && 
                                     <>
                                         {Number(bstLabStake) > 0 && Number(bstBalance) > 10 ?
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromBST(1)}>Craft TIERRA</div> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TIERRA</div>
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromBST(1)}>Craft TIERRA</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TIERRA</div>
                                         }
                                     </>
                                 }
                                 {Number(bstLabLog[1]) !== 0 && 
                                     <>
                                         {Date.now() - (Number(bstLabLog[2]) * 1000) > (3600 * 1000) ?
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromBST}>Obtain TIERRA</div> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain TIERRA</div>
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromBST}>Obtain TIERRA</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain TIERRA</div>
                                         }
                                     </>
                                 }
-                                <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
                             </div>
-                        </div>
-
+                        </div>                    
+                    
                         <div className="nftCard" style={{position: "relative", justifyContent: "space-around", margin: "20px", paddingTop: "60px"}}>
-                            <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {0}</div>
                             <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
                                 <div>Total Staking Power:</div>
                                 <div className="bold">{Number(salmLabStake).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
@@ -645,41 +634,118 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                 <div>1 hour</div>
                             </div>
                             <div style={{marginTop: "5px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                {Number(salmLabLog[1]) === 0 &&
-                                    <>
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
-                                        <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreig4iub6bvecuksnma4a2s6wz5se2p3agupaz46bi7oyyksaq3zx4a" height="18" alt="$CMJ.b"/>
-                                            <div style={{margin: "0 5px"}}>Upgradable soon!</div>
-                                        </div>
-                                    </>
-                                }
-                                {Number(salmLabLog[1]) !== 0 && 
+                                {Number(salmLabLog[1]) !== 0 ?
                                     <>
                                         <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
                                         <div>{Date.now() - (Number(salmLabLog[2]) * 1000) > (3600 * 1000) ? "now" : (new Date((Number(salmLabLog[2]) + 3600) * 1000).toLocaleString('es-CL'))}</div>
-                                    </>
+                                    </> :
+                                    <div style={{height: "20.5px"}}></div>
                                 }
                             </div>
                             <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                 {Number(salmLabLog[1]) === 0 && 
                                     <>
                                         {Number(salmLabStake) > 0 && Number(salmBalance) > 10 ?
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromSALM(1)}>Craft AGUA</div> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft AGUA</div>
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftfromSALM(1)}>Craft AGUA</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft AGUA</div>
                                         }
                                     </>
                                 }
                                 {Number(salmLabLog[1]) !== 0 && 
                                     <>
                                         {Date.now() - (Number(salmLabLog[2]) * 1000) > (3600 * 1000) ?
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromSALM}>Obtain AGUA</div> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain AGUA</div>
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={obtainfromSALM}>Obtain AGUA</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "340px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain AGUA</div>
                                         }
                                     </>
                                 }
-                                <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
+                    <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">NFT Crafting</div>
+                    <div style={{width: "100%", margin: "10px 0 80px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                        <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                            <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">TONO from Bitkub Chain</div>
+                            <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreigifnk2mvo75xqrds4c3zbc4odgo2og2jidat46vr55xx4ug7rtqu" height="150" alt="Can not load metadata."/>
+                            <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
+                                <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>Limited</div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                    <div className="emp">{250}</div>
+                                        /250 EA
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>Status</div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>9900 CMPOW</div>
+                                </div>
+                                <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>Price</div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
+                                        <div style={{marginLeft: "7.5px"}}>700,000 WEI +</div>
+                                        &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq" height="18" alt="$CMOS"/>
+                                        <div style={{marginLeft: "7.5px"}}>7,000</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {false && address !== null && address !== undefined ?
+                                <>
+                                    {/*sell4Remain > 0 ?
+                                        <>
+                                            {canbuy4 ?
+                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle3(4)}>BUY</div> :
+                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
+                                            }
+                                        </> :
+                                        <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
+                                        */}
+                                </> :
+                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">On Redeem 05/06</div>
+                            }
+                        </div>
+
+                        <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                            <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">KAI of Bitkub Chain</div>
+                            <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreibxqb6evipcsgrb5cddgd7hyi73cgjj3mxkxt3dvcmrxkvqllxftq" height="150" alt="Can not load metadata."/>
+                            <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
+                                <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>Limited</div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                    <div className="emp">{250}</div>
+                                        /250 EA
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>Status</div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>9900 CMPOW</div>
+                                </div>
+                                <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>Price</div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
+                                        <div style={{marginLeft: "7.5px"}}>700,000 WEI + </div>
+                                        &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq" height="18" alt="$CMOS"/>
+                                        <div style={{marginLeft: "7.5px"}}>7,000</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {false && address !== null && address !== undefined ?
+                                <>
+                                    {/*sell4Remain > 0 ?
+                                        <>
+                                            {canbuy4 ?
+                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle3(4)}>BUY</div> :
+                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
+                                            }
+                                        </> :
+                                        <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
+                                        */}
+                                </> :
+                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">On Redeem 05/06</div>
+                            }
                         </div>
                     </div>
                 </div>
