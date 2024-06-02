@@ -672,7 +672,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             setCmjLocked(ethers.utils.formatEther(String(result[0][0].result)))
             setCmjReward(ethers.utils.formatEther(String(result[0][1].result)))
             setCmjBurn(Number(ethers.utils.formatEther(String(result[0][2].result))) + Number(ethers.utils.formatEther(String(result[0][3].result))))
-            setCmjCirculation(1000000 - (Number(ethers.utils.formatEther(String(result[0][0].result))) + Number(ethers.utils.formatEther(String(result[0][1].result))) + Number(ethers.utils.formatEther(String(result[0][2].result))) + Number(ethers.utils.formatEther(String(result[0][3].result)))))
+            setCmjCirculation(1000000 - (Number(ethers.utils.formatEther(String(result[0][0].result))) + Number(ethers.utils.formatEther(String(result[0][2].result))) + Number(ethers.utils.formatEther(String(result[0][3].result)))))
 
             setWoodSupply(ethers.utils.formatEther(String(result[1][0].result)))
             setWoodBurn(Number(ethers.utils.formatEther(String(result[1][1].result))) + Number(ethers.utils.formatEther(String(result[1][2].result))) + Number(ethers.utils.formatEther(String(result[1][3].result))))
@@ -764,7 +764,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>Max Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(100000000).toLocaleString('en-US', {maximumFractionDigits:2})} (100%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdCirculation/1000000).toFixed(2)}%)</div>
                             </div>
@@ -793,22 +793,20 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div style={{color: "#fff"}}>{Number(1000000).toLocaleString('en-US', {maximumFractionDigits:2})} (100%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div>Total Burn:</div>
-                                <div style={{color: "#fff"}}>{Number(cmjBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmjBurn/10000).toFixed(2)}%)</div>
-                            </div>
-                            
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div>Leaderboard Reward:</div>
-                                <div style={{color: "#fff"}}>{Number(cmjReward).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmjReward/10000).toFixed(2)}%)</div>
-                            </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Total Locked:</div>
                                 <div style={{color: "#fff"}}>{Number(cmjLocked).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmjLocked/10000).toFixed(2)}%)</div>
                             </div>
-
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(cmjBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmjBurn/10000).toFixed(2)}%)</div>
+                            </div>                            
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(cmjCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmjCirculation/10000).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Leaderboard Reward:</div>
+                                <div style={{color: "#fff"}}>{Number(cmjReward).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmjReward/10000).toFixed(2)}%)</div>
                             </div>
                         </div>
                     </div>
