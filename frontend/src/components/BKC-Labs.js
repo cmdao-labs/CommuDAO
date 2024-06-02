@@ -725,7 +725,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                 <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                     <div>Price</div>
                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreih75ehweqjdk6u6xowwdxs5hmdohib7sen2vlnuekzttzo2jk64iy" height="18" alt="$TIER"/>
+                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq" height="18" alt="$AGUA"/>
                                         <div style={{marginLeft: "7.5px"}}>700,000 WEI + </div>
                                         &nbsp;<img src="https://cloudflare-ipfs.com/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq" height="18" alt="$CMOS"/>
                                         <div style={{marginLeft: "7.5px"}}>7,000</div>
