@@ -5,6 +5,7 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import TBridgeTAODUM from  './tBridge-TAODUM'
 import TBridgeHEROMINER from  './tBridge-HEROMINER'
+import TBridgeCMDAONFT from  './tBridge-CMDAONFT'
 
 const jusdt = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
@@ -405,11 +406,12 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
                     <div style={{color: "#bdc2c4", fontSize: "18px"}}>{'// CHOOSE TOKEN/NFTs TO BRIDGE'}</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "2px solid #fff"}}>
-                        <div className='hashtag' style={{margin: "10px 10px 10px 0", color: "#fff"}} onClick={() => setMode(1)}>USDT</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>CMD</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(3)}>TAOMEME</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(4)}>TAODUM</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HERO-MINER</div>
+                        <div className='hashtag' style={{margin: "10px 10px 10px 0", color: "#fff"}} onClick={() => setMode(1)}>$USDT</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>$CMD</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(3)}>$TAOMEME</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HERO-MINER NFT</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(6)}>CMDAO NFT</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
@@ -739,6 +741,9 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 }
                 {mode === 5 && chain !== undefined &&
                     <TBridgeHEROMINER setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />
+                }
+                {mode === 6 && chain !== undefined &&
+                    <TBridgeCMDAONFT setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {chain === undefined && 
                     <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>
