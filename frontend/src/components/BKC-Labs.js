@@ -415,6 +415,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     }
 
     const redeem = async (_index) => {
+        setisLoading(true)
         let tokenA = '0x0000000000000000000000000000000000000000'
         let tokenB = '0x8b062b96bb689833d7870a0133650fa22302496d'
         let redeem = '0x0000000000000000000000000000000000000000'
@@ -434,14 +435,14 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                     address: tokenA,
                     abi: erc20ABI,
                     functionName: 'allowance',
-                    args: [address, redeemToken1],
+                    args: [address, redeem],
                 })
                 if (Number(tokenAAllow) < 700000) {
                     const config = await prepareWriteContract({
                         address: tokenA,
                         abi: erc20ABI,
                         functionName: 'approve',
-                        args: [redeemToken1, ethers.utils.parseEther(String(10**8))],
+                        args: [redeem, ethers.utils.parseEther(String(10**8))],
                     })
                     const { hash: hash00 } = await writeContract(config)
                     await waitForTransaction({ hash: hash00 })
@@ -450,20 +451,20 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                     address: tokenB,
                     abi: erc20ABI,
                     functionName: 'allowance',
-                    args: [address, redeemToken1],
+                    args: [address, redeem],
                 })
                 if (Number(tokenBAllow) < Number(ethers.utils.parseEther('7000'))) {
                     const config = await prepareWriteContract({
                         address: tokenB,
                         abi: erc20ABI,
                         functionName: 'approve',
-                        args: [redeemToken1, ethers.utils.parseEther(String(10**8))],
+                        args: [redeem, ethers.utils.parseEther(String(10**8))],
                     })
                     const { hash: hash01 } = await writeContract(config)
                     await waitForTransaction({ hash: hash01 })
                 }
                 const config02 = await prepareWriteContract({
-                    address: redeemMerchant,
+                    address: redeem,
                     abi: redeemTokenABI,
                     functionName: 'buyRedeem',
                 })
@@ -499,6 +500,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
             setisError(true)
             setErrMsg(String(e))
         }
+        setisLoading(false)
     }
 
     return (
