@@ -866,7 +866,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                     </div>
                                 </div>
                             </div>
-                            {false && address !== null && address !== undefined ?
+                            {address !== null && address !== undefined ?
                                 <>
                                     {redeemRemain2 > 0 ?
                                         <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => redeem(2)}>BUY</div> :
