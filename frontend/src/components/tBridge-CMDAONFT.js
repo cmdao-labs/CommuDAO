@@ -5,13 +5,12 @@ import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaoBKC = '0x84bbfa70a60bB31fB00F2E2241E3a87C63F8734f'
-const bkcBridge = ''
+const bkcBridge = '0x95cC0C5fDBE5B3d3c2a8cAabc109bcdb67A081dC'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
 const TBridgeCMDAONFT = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
     let { address } = useAccount()
-    // let address = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
     const { chain } = useNetwork()
 
     const [nft, setNft] = React.useState([])

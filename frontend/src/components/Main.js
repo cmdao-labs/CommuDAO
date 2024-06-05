@@ -90,6 +90,7 @@ import angeloStdABI from './jsons/angeloStdABI.json'
 import cmdaoAmmNpcABI from './jsons/cmdaoAmmNpcABI.json'
 import wjbcABI from './jsons/wjbcABI.json'
 import presaleABI from './jsons/presaleABI.json'
+import RedeemTokenABI from './jsons/RedeemTokenABI.json'
 
 import enchantNABI from './jsons/enchantNABI.json'
 import enchantRABI from './jsons/enchantRABI.json'
@@ -382,10 +383,7 @@ const Main = () => {
                     <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                     <></>
                 }
-                {mode === 200 ?
-                    <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} /> :
-                    <></>
-                }
+                {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} RedeemTokenABI={RedeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
                 {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} />}
                 {mode === 3 ?
                     <Dungeon callMode={callMode} navigate={navigate} /> :

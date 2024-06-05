@@ -15,7 +15,12 @@ const salmMachine = '0x43e4550A5c8E690511A5503eE030B552C582B74F'
 const tierToken = '0x6d01445CB38F252516C0F0cFf43F2bF490ccD702'
 const aguaToken = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 
-const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20ABI, stakerMachineABI }) => {
+const redeemToken1 = '0x339d46c3D92C974C7C16C50f2fDa46fB5b5812d6'
+const redeemToken2 = '0xABaB4f130e282aF569905651d5c997B91E6c3D28'
+
+const redeemMerchant = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
+
+const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20ABI, stakerMachineABI, redeemTokenABI, cmdaoMerchantABI }) => {
     const { address } = useAccount()
 
     const [bstBalance, setBstBalance] = React.useState(0)
@@ -30,6 +35,11 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
 
     const [salmLabStake, setSalmLabStake] = React.useState(0)
     const [salmLabLog, setSalmLabLog] = React.useState([0, 0, 0])
+
+    const [redeemRemain1, setRedeemRemain1] = React.useState(0)
+    const [canRedeem1, setCanRedeem1] = React.useState(0)
+    const [redeemRemain2, setRedeemRemain2] = React.useState(0)
+    const [canRedeem2, setCanRedeem2] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -97,8 +107,20 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: redeemToken1,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: redeemToken2,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: [0, 0, 0]}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: [0, 0, 0]}, {result: 0}]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: [0, 0, 0]}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: [0, 0, 0]}, {result: 0}, {result: 0}, {result: 0}]
 
             const _bstBal = data[0].result 
             const _trashBal = data[1].result
@@ -110,10 +132,35 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
             const _labSalmStaker = data[7].result 
             const _labSalmLog = data[8].result 
             const _aguaBal = data[9].result 
+            const _redeem1Bal = data[10].result 
+            const _redeem2Bal = data[11].result 
+
+            const data2 = await readContracts({
+                contracts: [
+                    {
+                        address: redeemMerchant,
+                        abi: cmdaoMerchantABI,
+                        functionName: 'sellList',
+                        args: [1],
+                    },
+                    {
+                        address: redeemMerchant,
+                        abi: cmdaoMerchantABI,
+                        functionName: 'sellList',
+                        args: [2],
+                    },
+                ],
+            })
+            const _redeem1 = data2[0].result 
+            const _redeem2 = data2[1].result 
+
+            const _redeemRemain1 = (111025100000 - (Number(_redeem1[3]) - 9900)) / 100000
+            const _redeemRemain2 = (111050100000 - (Number(_redeem2[3]) - 9900)) / 100000
 
             return [
                 _bstBal, _trashBal, _tierBal, _salmBal, _cmmBal, _aguaBal,
                 _labBstStaker, _labBstLog, _labSalmStaker, _labSalmLog,
+                _redeem1Bal, _redeem2Bal, _redeemRemain1, _redeemRemain2
             ]
         }
 
@@ -139,9 +186,14 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
 
             setSalmLabStake(ethers.utils.formatEther(result[8]))
             setSalmLabLog(result[9])
+
+            setCanRedeem1(result[10])
+            setCanRedeem2(result[11])
+            setRedeemRemain1(result[12])
+            setRedeemRemain2(result[13])
         })
 
-    }, [address, txupdate, erc20ABI, stakerMachineABI])
+    }, [address, txupdate, erc20ABI, stakerMachineABI, cmdaoMerchantABI])
 
     const [inputTrash, setInputTrash] = React.useState('')
     const [inputStakedTrash, setInputStakeTrash] = React.useState('')
@@ -360,6 +412,93 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
             setErrMsg(String(e))
         }
         setisLoading(false)
+    }
+
+    const redeem = async (_index) => {
+        let tokenA = '0x0000000000000000000000000000000000000000'
+        let tokenB = '0x8b062b96bb689833d7870a0133650fa22302496d'
+        let redeem = '0x0000000000000000000000000000000000000000'
+        let redeemAmount = 0
+        if (_index === 1) {
+            tokenA = '0x6d01445cb38f252516c0f0cff43f2bf490ccd702'
+            redeem = redeemToken1
+            redeemAmount = canRedeem1
+        } else if (_index === 2) {
+            tokenA = '0x024c5bbf60b3d89ab64ac49936e9fe384f781c4b'
+            redeem = redeemToken2
+            redeemAmount = canRedeem2
+        }
+        try {
+            if (redeemAmount < 1) {
+                const tokenAAllow = await readContract({
+                    address: tokenA,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, redeemToken1],
+                })
+                if (Number(tokenAAllow) < 700000) {
+                    const config = await prepareWriteContract({
+                        address: tokenA,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [redeemToken1, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash00 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash00 })
+                }
+                const tokenBAllow = await readContract({
+                    address: tokenB,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, redeemToken1],
+                })
+                if (Number(tokenBAllow) < Number(ethers.utils.parseEther('7000'))) {
+                    const config = await prepareWriteContract({
+                        address: tokenB,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [redeemToken1, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash01 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash01 })
+                }
+                const config02 = await prepareWriteContract({
+                    address: redeemMerchant,
+                    abi: redeemTokenABI,
+                    functionName: 'buyRedeem',
+                })
+                const { hash: hash10 } = await writeContract(config02)
+                await waitForTransaction({ hash: hash10 })
+            }
+            const redeemAllow = await readContract({
+                address: redeem,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, redeemMerchant],
+            })
+            if (Number(redeemAllow) < 1) {
+                const config = await prepareWriteContract({
+                    address: redeem,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [redeemMerchant, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: redeemMerchant,
+                abi: cmdaoMerchantABI,
+                functionName: 'buy',
+                args: [1]
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
     }
 
     return (
@@ -691,19 +830,19 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                     </div>
                                 </div>
                             </div>
-                            {false && address !== null && address !== undefined ?
+                            {address !== null && address !== undefined ?
                                 <>
-                                    {/*sell4Remain > 0 ?
+                                    {redeemRemain1 > 0 ?
                                         <>
-                                            {canbuy4 ?
-                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle3(4)}>BUY</div> :
+                                            {false ?
+                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => redeem(1)}>BUY</div> :
                                                 <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                             }
                                         </> :
-                                        <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
-                                        */}
+                                        <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">On Redeem 05/06</div>
+                                    }
                                 </> :
-                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">On Redeem 05/06</div>
+                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                             }
                         </div>
 
@@ -734,17 +873,17 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                             </div>
                             {false && address !== null && address !== undefined ?
                                 <>
-                                    {/*sell4Remain > 0 ?
+                                    {redeemRemain2 > 0 ?
                                         <>
-                                            {canbuy4 ?
-                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle3(4)}>BUY</div> :
+                                            {false ?
+                                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => redeem(2)}>BUY</div> :
                                                 <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
                                             }
                                         </> :
-                                        <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
-                                        */}
+                                        <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">On Redeem 05/06</div>
+                                    }
                                 </> :
-                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">On Redeem 05/06</div>
+                                <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                             }
                         </div>
                     </div>
