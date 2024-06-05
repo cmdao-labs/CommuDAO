@@ -491,7 +491,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                 address: redeemMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
-                args: [1]
+                args: [_index]
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -814,7 +814,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                 <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                     <div>Limited</div>
                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                    <div className="emp">{250}</div>
+                                    <div className="emp">{redeemRemain1}</div>
                                         /250 EA
                                     </div>
                                 </div>
@@ -850,7 +850,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                                 <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                     <div>Limited</div>
                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                    <div className="emp">{250}</div>
+                                    <div className="emp">{redeemRemain2}</div>
                                         /250 EA
                                     </div>
                                 </div>
