@@ -99,7 +99,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     functionName: 'tokenURI',
                     args: [yournft[i].Id],
                 })
-                const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                 const nft = await response.json()
 
                 const bonus = Number(String(yournft[i].Id).slice(-5))
@@ -107,7 +107,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                 nfts.push({
                     Id: Number(yournft[i].Id),
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: bonus,
@@ -308,7 +308,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="https://cloudflare-ipfs.com/ipfs/bafybeigac5ws4lgz5pqdt45bdyiqrhsbohguyqng6d7jxsed2c5m3dehe4" height="230" alt="TDM-ROBOTICS-INC" />
+                    <img src="https://gateway.pinata.cloud/ipfs/bafybeigac5ws4lgz5pqdt45bdyiqrhsbohguyqng6d7jxsed2c5m3dehe4" height="230" alt="TDM-ROBOTICS-INC" />
                 </div>
             </div>
 
@@ -317,15 +317,15 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                     <div style={{width: "250px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Tokens</div>
                     <div className="pixel">
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                            <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                             <div style={{marginLeft: "10px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" width="22" alt="$II"/>
+                            <img src="https://gateway.pinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" width="22" alt="$II"/>
                             <div style={{marginLeft: "10px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="22" alt="$EE"/>
+                            <img src="https://gateway.pinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="22" alt="$EE"/>
                             <div style={{marginLeft: "10px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                         </div>
                     </div>
@@ -427,13 +427,13 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         }
                                                         {Number(item.Id) % 100000 === 26800 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "100" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeichx3l6sfsqot3gbk3hzhlbmupsani25zh57dd4ymxwse7mlrfdgy' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiefq2r3t5z7d5yt6gwbckkr2qvrgdgjgd4g764d25nficw2knnrai' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeign7h3qhvt3lgconngdstzlwexyo3hgulntvlygvpqzqbgu3haeem' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeif4amlgguwmct6dkcu6whcrbrz4lxir6tvyvuxp5dwi6vdoft3zgi' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeieljlh4zog6hzjvktizkb6xdswswzxys7rlj4xm7fp47ytizglxpi' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiem3jns3i4lkot6hqe5zxpwj6cnvojukggplenmtsnenqitnk6wki' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeieckgtj7nitlnjoiwgy4bzmnnponwlr2h7delw5pfueruz73ztvy4' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "100" && <img src='https://gateway.pinata.cloud/ipfs/bafybeichx3l6sfsqot3gbk3hzhlbmupsani25zh57dd4ymxwse7mlrfdgy' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://gateway.pinata.cloud/ipfs/bafybeiefq2r3t5z7d5yt6gwbckkr2qvrgdgjgd4g764d25nficw2knnrai' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://gateway.pinata.cloud/ipfs/bafybeign7h3qhvt3lgconngdstzlwexyo3hgulntvlygvpqzqbgu3haeem' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://gateway.pinata.cloud/ipfs/bafybeif4amlgguwmct6dkcu6whcrbrz4lxir6tvyvuxp5dwi6vdoft3zgi' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://gateway.pinata.cloud/ipfs/bafybeieljlh4zog6hzjvktizkb6xdswswzxys7rlj4xm7fp47ytizglxpi' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://gateway.pinata.cloud/ipfs/bafybeiem3jns3i4lkot6hqe5zxpwj6cnvojukggplenmtsnenqitnk6wki' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://gateway.pinata.cloud/ipfs/bafybeieckgtj7nitlnjoiwgy4bzmnnponwlr2h7delw5pfueruz73ztvy4' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                             </div>
                                                         }
@@ -451,13 +451,13 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         }
                                                         {Number(item.Id) % 100000 === 42800 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "100" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidlmxivvz4k3ws2kpanq3nob7himsgzagna7sgxxaopcgigvxyove' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeihi5ty2pn5b3hridcszupaelj2lm4y5fctfirrp4f5457puemrdsa' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidcqi7ca55k67oeslkcrdqvgs4qul63ezjg6mq542buik4kl6vz7q' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeifriz3jssqcl7uzwjexv3chn56awmnmvjklmgdy5uabaovhqlwmwy' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiad4vswhlfjemiylp5r4mlghz4tqag6dn7bimnd5qysnkidlaieai' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeifi34uh6hsohnd47wfcynesrwmxot63c65vj4rnwqsc74sjdb7vke' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeidkvucspmzjq635okuui5raaozne5bsm7i73cynztbwqlc5uso27u' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "100" && <img src='https://gateway.pinata.cloud/ipfs/bafybeidlmxivvz4k3ws2kpanq3nob7himsgzagna7sgxxaopcgigvxyove' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://gateway.pinata.cloud/ipfs/bafybeihi5ty2pn5b3hridcszupaelj2lm4y5fctfirrp4f5457puemrdsa' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://gateway.pinata.cloud/ipfs/bafybeidcqi7ca55k67oeslkcrdqvgs4qul63ezjg6mq542buik4kl6vz7q' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://gateway.pinata.cloud/ipfs/bafybeifriz3jssqcl7uzwjexv3chn56awmnmvjklmgdy5uabaovhqlwmwy' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://gateway.pinata.cloud/ipfs/bafybeiad4vswhlfjemiylp5r4mlghz4tqag6dn7bimnd5qysnkidlaieai' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://gateway.pinata.cloud/ipfs/bafybeifi34uh6hsohnd47wfcynesrwmxot63c65vj4rnwqsc74sjdb7vke' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://gateway.pinata.cloud/ipfs/bafybeidkvucspmzjq635okuui5raaozne5bsm7i73cynztbwqlc5uso27u' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                             </div>
                                                         }
@@ -475,13 +475,13 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                         }
                                                         {Number(item.Id) % 100000 === 64800 &&
                                                             <div>
-                                                                {String(item.Id).slice(0, 3) === "100" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeici6yhhom3u4unmxfiquzgp6f5iod46pz6mwsyujnseeu5szhwdfq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeibrg3peklun2ednncyqftjduu64atrckm5qqdx5dlk5io6rjetxei' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeica72phth3kgec4f66t6zla7qu5wgbmezjuvt6ic4sr6zasyy6b6q' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeiflj5c5xdevsg5odxepmqrvtpvukntaudqcahrtjwl6fdaeyauiny' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeig5hgcjimmkvjanskq6aofpmkhufarvnthqbddekeuygwpofewh2m' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeienx6ko3j7mptpootmcdt556z5hud5jyq4vgwibmnxvpmlacsvdvq' width="120" alt="Can not load metadata." />}
-                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://cloudflare-ipfs.com/ipfs/bafybeicf6zi22f5nrurejd26qp7vcqq7bjuiil4jya3276qnvpn27mxtwq' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "100" && <img src='https://gateway.pinata.cloud/ipfs/bafybeici6yhhom3u4unmxfiquzgp6f5iod46pz6mwsyujnseeu5szhwdfq' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "700" && <img src='https://gateway.pinata.cloud/ipfs/bafybeibrg3peklun2ednncyqftjduu64atrckm5qqdx5dlk5io6rjetxei' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "500" && <img src='https://gateway.pinata.cloud/ipfs/bafybeica72phth3kgec4f66t6zla7qu5wgbmezjuvt6ic4sr6zasyy6b6q' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "300" && <img src='https://gateway.pinata.cloud/ipfs/bafybeiflj5c5xdevsg5odxepmqrvtpvukntaudqcahrtjwl6fdaeyauiny' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "200" && <img src='https://gateway.pinata.cloud/ipfs/bafybeig5hgcjimmkvjanskq6aofpmkhufarvnthqbddekeuygwpofewh2m' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "600" && <img src='https://gateway.pinata.cloud/ipfs/bafybeienx6ko3j7mptpootmcdt556z5hud5jyq4vgwibmnxvpmlacsvdvq' width="120" alt="Can not load metadata." />}
+                                                                {String(item.Id).slice(0, 3) === "400" && <img src='https://gateway.pinata.cloud/ipfs/bafybeicf6zi22f5nrurejd26qp7vcqq7bjuiil4jya3276qnvpn27mxtwq' width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                             </div>
                                                         }
@@ -603,7 +603,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                             Enchanted resource
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                                            <img src="https://gateway.pinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
                                                             <div style={{margin: "0 5px"}}>
                                                                 {Number(item.Id) % 100000 === 18800 && '888'}
                                                                 {Number(item.Id) % 100000 === 22800 && '1,888'}
@@ -616,7 +616,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {Number(item.Id) % 100000 === 64800 && '8,888'}
                                                             </div>
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                                            <img src="https://gateway.pinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
                                                             <div style={{margin: "0 5px"}}>
                                                                 {Number(item.Id) % 100000 === 18800 && '18,800'}
                                                                 {Number(item.Id) % 100000 === 22800 && '28,800'}
@@ -629,7 +629,7 @@ const TdmRoboticsInc = ({ setisLoading, txupdate, setTxupdate, uniEnchanterABI, 
                                                                 {Number(item.Id) % 100000 === 64800 && '481,800'}
                                                             </div>
                                                             <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                            <img src="https://gateway.pinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                             <div style={{margin: "0 5px"}}>1</div>
                                                         </div>
                                                     </div>

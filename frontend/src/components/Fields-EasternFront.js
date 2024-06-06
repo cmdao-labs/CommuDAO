@@ -113,7 +113,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -158,7 +158,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name + " [" + yournftstake[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
@@ -204,7 +204,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -246,7 +246,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nfts.push({
                     Id: yournftwallet[i].Id,
                     Name: nft.name + " [" + yournftwallet[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(ethers.utils.formatEther(String(_reward * 3171296000 * 86400))),
@@ -348,13 +348,13 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 </div> :
                 <></>
             }
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://gateway.pinata.cloud/ipfs/bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>Eastern Front</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Adventurer Card to earn $Valuables-Bag.</div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="150" alt="$VABAG"/>
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="150" alt="$VABAG"/>
                 </div>
             </div>
 
@@ -368,21 +368,21 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}} className="emp">
                             {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src="https://gateway.pinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src="https://gateway.pinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(vabagBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{marginLeft: "10px"}} src="https://gateway.pinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>
                 </div>
@@ -412,14 +412,14 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                     <div>
                                         Earn: {Number(item.RewardPerSec).toFixed(4)}
                                         &nbsp;
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
                                         &nbsp;VABAG/DAY
                                     </div>
                                     <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                         <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                             Pending Rewards<br></br>
                                             <div style={{display: "flex", alignItems: "center"}}>
-                                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
+                                                <img src="https://gateway.pinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="12" alt="$VABAG"/>
                                                 &nbsp;{ethers.utils.formatEther(String(item.Reward))}
                                             </div>
                                         </div>

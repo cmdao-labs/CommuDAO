@@ -147,10 +147,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response1 = null
             try {
-                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
-            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
@@ -167,10 +167,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response2 = null
             try {
-                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
-            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
@@ -187,10 +187,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             
             let response3 = null
             try {
-                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
-            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
@@ -207,10 +207,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response4 = null
             try {
-                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
-            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
@@ -227,10 +227,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response5 = null
             try {
-                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
-            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
@@ -247,10 +247,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response6 = null
             try {
-                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
-            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
@@ -267,10 +267,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response7 = null
             try {
-                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
-            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
@@ -287,10 +287,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             let response8 = null
             try {
-                response8 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")) : null
+                response8 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")) : null
             } catch {}
             const nft8 = response8 !== null ? await response8.json() : {image: null, name: null}
-            const nftEQ_8 = nft8.image !== null ? nft8.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/") : null
+            const nftEQ_8 = nft8.image !== null ? nft8.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : null
             const nftEQ_8_Name = nft8.name
             if (response8 !== null) {
                 nfts.push({
@@ -350,7 +350,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -358,7 +358,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -562,22 +562,22 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 <div className="wrapper">
                     <div className="bold" style={{width: "500px", height: "700px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
                         <video autoPlay loop width="400">
-                            {specialModal === 1 && <source src="https://cloudflare-ipfs.com/ipfs/bafybeie2iuhr7m6sd6knivqxev6bzhfbujfnbxtcudgb3jcy3jogjhztfu" type="video/mp4" />}
-                            {specialModal === 2 && <source src="https://cloudflare-ipfs.com/ipfs/bafybeibu3cbsmupwfxxni2k525h3gavrjyvtyk6i5xa3wx6k4t4gzk3bae" type="video/mp4" />}
-                            {specialModal === 3 && <source src="https://cloudflare-ipfs.com/ipfs/bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa" type="video/mp4" />}
+                            {specialModal === 1 && <source src="https://gateway.pinata.cloud/ipfs/bafybeie2iuhr7m6sd6knivqxev6bzhfbujfnbxtcudgb3jcy3jogjhztfu" type="video/mp4" />}
+                            {specialModal === 2 && <source src="https://gateway.pinata.cloud/ipfs/bafybeibu3cbsmupwfxxni2k525h3gavrjyvtyk6i5xa3wx6k4t4gzk3bae" type="video/mp4" />}
+                            {specialModal === 3 && <source src="https://gateway.pinata.cloud/ipfs/bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa" type="video/mp4" />}
                         </video>
                         <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsSpecialModal(false)}>CLOSE</div>
                     </div>
                 </div>
             </div>
         }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://cloudflare-ipfs.com/ipfs/bafybeicatk66gnfauhbytqbqbxlbu47hg2j3wzxiatzfs4xjwfhaozvpne')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.pinata.cloud/ipfs/bafybeicatk66gnfauhbytqbqbxlbu47hg2j3wzxiatzfs4xjwfhaozvpne')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Daemon World</div>
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $Angel Blessing.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="150" alt="$ANGB" />
+                <img src="https://gateway.pinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="150" alt="$ANGB" />
             </div>
         </div>
     
@@ -629,14 +629,14 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             ANGB BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
+                                <img src="https://gateway.pinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
                                 <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                             ANGB PENDING
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
+                                <img src="https://gateway.pinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="20" alt="$ANGB"/>
                                 <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
@@ -648,7 +648,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "SWAR" ?
                                     <>
-                                        <img src="https://cloudflare-ipfs.com/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="20" alt="$SWAR"/>
+                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="20" alt="$SWAR"/>
                                         <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                     </> :
                                     <></>
