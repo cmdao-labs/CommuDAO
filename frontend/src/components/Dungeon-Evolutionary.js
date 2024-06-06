@@ -163,12 +163,15 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             }) : [Array(yournft.length).fill('')]
 
             for (let i = 0; i <= yournft.length - 1; i++) {
-                const response = await fetch(data3[i].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {                    
+                    const response = await fetch(data3[i].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    nft = await response.json()
+                } catch {}
 
                 const bonus = Number(String(yournft[i].Id).slice(-5))
 
-                nfts.push({Id: Number(yournft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"), Description: nft.description, Attribute: nft.attributes, RewardPerSec: bonus, Onsell: false, Count: null})
+                nfts.push({Id: Number(yournft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"), Description: nft.description, Attribute: nft.attributes, RewardPerSec: bonus, Onsell: false, Count: null})
             }
             if (nfts.length === 0) { nfts.push(null) }
 
@@ -208,12 +211,15 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             }) : [Array(yoursalonnft.length).fill('')]
 
             for (let i = 0; i <= yoursalonnft.length - 1; i++) {
-                const response = await fetch(data5[i].result.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
-                const nft = await response.json()
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {                    
+                    const response = await fetch(data5[i].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    nft = await response.json()
+                } catch {}
 
                 const bonus = Number(String(yoursalonnft[i].Id).slice(-5))
 
-                salonNfts.push({Id: Number(yoursalonnft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"), Description: nft.description, Attribute: nft.attributes, RewardPerSec: bonus, Onsell: false, Count: null})
+                salonNfts.push({Id: Number(yoursalonnft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"), Description: nft.description, Attribute: nft.attributes, RewardPerSec: bonus, Onsell: false, Count: null})
             }
             if (salonNfts.length === 0) { salonNfts.push(null) }
 
