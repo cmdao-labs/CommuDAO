@@ -133,14 +133,14 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
                 for (let i = 0; i <= yournftwallet.length - 1; i++) {
                     const nftipfs = data3[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     const nft = await response.json()
 
                     nfts.push({
                         Col: 1,
                         Id: yournftwallet[i].Id,
                         Name: nft.name + " #" + yournftwallet[i].Id,
-                        Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                        Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                         Description: nft.description,
                         Attribute: nft.attributes,
                         RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -480,10 +480,10 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 const nftipfs = mkp_data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
-                const image = nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")
+                const image = nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
                 
                 let count = null
                 let currencyindex = null
