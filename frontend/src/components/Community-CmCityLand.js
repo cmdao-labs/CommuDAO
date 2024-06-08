@@ -22,8 +22,7 @@ const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI }) => {
-    //const { address } = useAccount()
-    let address = '0x77464A935A30f83Bf000C4277ec5d75Efa292c6A'
+    const { address } = useAccount()
     
     let code = ''
     if (intrasubModetext.slice(0, 1).toUpperCase() === 'Z') {
