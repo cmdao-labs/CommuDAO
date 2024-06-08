@@ -21,7 +21,7 @@ const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, houseStakingABI, wlMkpABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI }) => {
     const { address } = useAccount()
     
     let code = ''
@@ -42,6 +42,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
     const [slot1Owner, setSlot1Owner] = React.useState('...')
     const [slot1Lv, setSlot1Lv] = React.useState(0)
     const [nft, setNft] = React.useState([])
+    const [delegateAddr, setDelegateAddr] = React.useState(null)
 
     const [osPool, setOsPool] = React.useState(null)
     const [allPendingReward, setAllPendingReward] = React.useState(0)
@@ -351,21 +352,21 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
         setisLoading(false)
     }
 
-    /*const registHouseHandle = async () => {
+    const registHouseHandle = async () => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: slot1,
-                abi: slot1ABI,
-                functionName: 'delegateOwner',
-                args: [0, address, houseId]
+                address: '0x10fE5e2C49572De41ED4e0D57091DC1D8fBCf632',
+                abi: delegateOwner01ABI,
+                functionName: 'delegateOwnerCall',
+                args: [houseId, delegateAddr]
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
-    }*/
+    }
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -468,7 +469,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
 
             {mode === 0 &&
                 <div style={{background: "rgb(0, 19, 33", width: "100%", margin: "0", padding: "75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll">
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", maxWidth: "70%", width: "880px", height: "420px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", maxWidth: "70%", width: "880px", height: "460px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
                         <div style={{maxWidth: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'S HOUSE LV.{slot1Lv}</div>
                         <div style={{width: "100%", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
                             <div style={{width: "320px"}}>
@@ -511,26 +512,20 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     UPGRADE
                                                 </div>
                                             }
-                                            {slot1Lv === 0 ?
+                                            {slot1Lv === 0 &&
                                                 <div 
                                                     style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                     className="bold button" 
                                                     onClick={() => upgradeHouseHandle(1)}
                                                 >
                                                     CONSTRUCT
-                                                </div> :
-                                                <>
-                                                    {/*{slot1Addr.toUpperCase() !== address.toUpperCase() ?
-                                                        <div 
-                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
-                                                            className="bold button" 
-                                                            onClick={registHouseHandle}
-                                                        >
-                                                            REGISTER HOUSE'S OWNER
-                                                        </div> :
-                                                        <></>
-                                                    */}
-                                                </>
+                                                </div>
+                                            }
+                                            {nft.length === 0 &&
+                                                <div style={{width: "65%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                    <input style={{width: "250px", padding: "10px 40px", fontSize: "18px"}} className="bold" type="string" placeholder="Input New House Owner" value={delegateAddr} onChange={(event) => {setDelegateAddr(event.target.value)}}></input>
+                                                    <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={registHouseHandle}>DELIGATE</div>
+                                                </div>
                                             }
                                         </>                                   
                                     }
@@ -586,7 +581,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 </div>
                                 <div style={{height: "41px"}}></div>
                             </div>
-                            <div className="noscroll" style={{position: "relative", width: "80%", height: "400px", display: "flex", flexWrap: "row wrap", alignItems: "center", justifyContent: "flex-start", overflow: "scroll", flexWrap: "wrap", height: "fit-content"}}>
+                            <div className="noscroll" style={{position: "relative", width: "80%", height: "400px", display: "flex", flexWrap: "row wrap", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
                                 {nft.length > 0 ?
                                     <>
                                         {slot1Lv >= 1 &&
