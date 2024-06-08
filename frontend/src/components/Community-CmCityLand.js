@@ -22,7 +22,8 @@ const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI }) => {
-    const { address } = useAccount()
+    //const { address } = useAccount()
+    let address = '0x77464A935A30f83Bf000C4277ec5d75Efa292c6A'
     
     let code = ''
     if (intrasubModetext.slice(0, 1).toUpperCase() === 'Z') {
@@ -521,7 +522,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                                     CONSTRUCT
                                                 </div>
                                             }
-                                            {nft.length === 0 &&
+                                            {nftStake.length === 0 &&
                                                 <div style={{width: "65%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                     <input style={{width: "250px", padding: "10px 40px", fontSize: "18px"}} className="bold" type="string" placeholder="Input New House Owner" value={delegateAddr} onChange={(event) => {setDelegateAddr(event.target.value)}}></input>
                                                     <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={registHouseHandle}>DELIGATE</div>
@@ -581,7 +582,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
                                 </div>
                                 <div style={{height: "41px"}}></div>
                             </div>
-                            <div className="noscroll" style={{position: "relative", width: "80%", height: "400px", display: "flex", flexWrap: "row wrap", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
+                            <div className="noscroll" style={{position: "relative", width: "80%", flexWrap: "wrap", height: "fit-content", display: "flex", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
                                 {nft.length > 0 ?
                                     <>
                                         {slot1Lv >= 1 &&
