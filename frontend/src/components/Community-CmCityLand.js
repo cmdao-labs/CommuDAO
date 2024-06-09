@@ -21,7 +21,7 @@ const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI }) => {
     const { address } = useAccount()
     
     let code = ''
@@ -348,7 +348,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             const { hash: hash04 } = await writeContract(config4)
             await waitForTransaction({ hash: hash04 })
             setTxupdate(hash04)
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -364,7 +367,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -396,7 +402,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -412,7 +421,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, navigate, intrasubMod
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
