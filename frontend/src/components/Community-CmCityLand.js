@@ -359,7 +359,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: '0x10fE5e2C49572De41ED4e0D57091DC1D8fBCf632',
+                address: '0x786200541C307B5e6F414193D250752a999375C4',
                 abi: delegateOwner01ABI,
                 functionName: 'delegateOwnerCall',
                 args: [houseId, delegateAddr]
