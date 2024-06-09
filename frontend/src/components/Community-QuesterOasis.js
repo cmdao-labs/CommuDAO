@@ -26,9 +26,9 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
-    const [canClaimSIL, setCanClaimSIL] = React.useState(null)
+    /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)
     const [rewardSIL, setRewardSIL] = React.useState(0)
-    const [canClaimPLAT, setCanClaimPLAT] = React.useState(null)
+    const [canClaimPLAT, setCanClaimPLAT] = React.useState(null)*/
 
     const [isKYC, setIsKYC] = React.useState(null)
     const [ambass, setAmbass] = React.useState("")
@@ -165,15 +165,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0}, {result: 0} ]
 
             
-            const jaspBal = data[0].result
-            const reward = data[1].result[1] - data[2].result
+            //const jaspBal = data[0].result
+            const reward = /*data[1].result[1] - data[2].result*/0
             const _isKYC = data[3].result
             const _frens = Number(data[4].result)
             const _isJoin = Number(data[5].result) !== 0 ? true : false
             const _gmStreak = Number(data[6].result)
 
-            const _canClaimSIL = ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : false
-            const _canClaimPlat = ethers.utils.formatUnits(jaspBal, "gwei") >= 1 && Number(data[1].result[0]) >= 2 ? true : false
+            const _canClaimSIL = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : */false
+            const _canClaimPlat = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 1 && Number(data[1].result[0]) >= 2 ? true : */false
             const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
             const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
 
@@ -478,15 +478,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             )
 
         getAsync().then(result => {
-            setCanClaimSIL(result[0])
-            setRewardSIL(result[1])
+            //setCanClaimSIL(result[0])
+            //setRewardSIL(result[1])
             setIsKYC(result[2])
             setFrens(result[3])
             setIsJoin(result[4])
             setCanClaimBBQ(result[5])
             setNextClaimBBQ(result[6])
             setGmStreak(result[7])
-            setCanClaimPLAT(result[8])
+            //setCanClaimPLAT(result[8])
 
             setRank(result[9])
             setRank2(result[10])
@@ -496,7 +496,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
     }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI])
 
-    const claimSILHandle = async () => {
+    /*const claimSILHandle = async () => {
         setisLoading(true)
         try {
             const jaspAllow = await readContract({
@@ -556,7 +556,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setTxupdate(hash1)
         } catch (e) {console.log(e)}
         setisLoading(false)
-    }
+    }*/
 
     const joinHandle = async () => {
         setisLoading(true)
@@ -794,73 +794,6 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     </div>
 
                     <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>100 CMXP</div>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://gateway.pinata.cloud/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
-                            </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
-                                    <div className="bold">REWARDS</div>
-                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                        <div style={{marginRight: "10px", color: "#fff"}}>1,500</div>
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
-                                    <div style={{marginTop: "20px", fontSize: "16px"}} className="bold">Your Claimable Rewards : {1500 * Number(rewardSIL)} $SIL</div>
-                                </div>
-                                {canClaimSIL ?
-                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={claimSILHandle}>CLAIM REWARD</div>
-                                    </div> :
-                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">You are not eligible to claim</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>200 CMXP</div>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Guardian Of The Multiverse</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://gateway.pinata.cloud/ipfs/bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i" height="300" alt="PVP_Quest2"/>
-                            </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
-                                    <div className="bold">REWARDS</div>
-                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                        <div style={{marginRight: "10px", color: "#fff"}}>1,000</div>
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="30px" alt="$PLAT"/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Keep your bounty $JDAO higher than 20 as long as you can in Dungeon Arena</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 1.0 GWEI $JASP for each claim)</div>
-                                </div>
-                                {canClaimPLAT ?
-                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} onClick={claimPLATHandle} className="bold button">CLAIM REWARD</div>
-                                    </div> :
-                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">You are not eligible to claim</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
                         <div style={{width: "160px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                             <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>500 CMXP</div>
                             <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Once</div>
@@ -893,6 +826,58 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                         }
                                     </>
                                 }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Sunset</div>
+                        </div>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://gateway.pinata.cloud/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
+                            </div>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">REWARDS</div>
+                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
+                                        <div style={{marginRight: "10px", color: "#fff"}}>Sunset</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
+                                </div>
+                                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">Stay tuned for more quest!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Sunset</div>
+                        </div>
+                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Guardian Of The Multiverse</div>
+                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                            <div style={{height: "320px"}}>
+                                <img src="https://gateway.pinata.cloud/ipfs/bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i" height="300" alt="PVP_Quest2"/>
+                            </div>
+                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                <div>
+                                    <div className="bold">REWARDS</div>
+                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
+                                        <div style={{marginRight: "10px", color: "#fff"}}>Sunset</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="bold">QUEST DETAIL</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Keep your bounty $JDAO higher than 20 as long as you can in Dungeon Arena</div>
+                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 1.0 GWEI $JASP for each claim)</div>
+                                </div>
+                                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">Stay tuned for more quest!</div>
                             </div>
                         </div>
                     </div>
