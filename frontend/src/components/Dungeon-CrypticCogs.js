@@ -413,7 +413,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -421,7 +421,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -466,7 +466,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 const nftipfs = data5[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -474,7 +474,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     Col: 2,
                     Id: yournftwallet2[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet2[i].Id.slice(-5)),
