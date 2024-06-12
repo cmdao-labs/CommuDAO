@@ -137,7 +137,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 _allDaily += Number(ethers.utils.formatEther(String(1 * 10**14)))
@@ -146,7 +146,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name + " [" + yournftstake[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
@@ -204,14 +204,14 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
                     Name: nft.name + " [" + yournftwallet[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 1,
@@ -325,19 +325,19 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 </div> :
                 <></>
             }
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://gateway.pinata.cloud/ipfs/bafybeife7qt3dj7usydykw657jm6dabtgjfsyvkblb3h3be4rh5gr2sqga')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeife7qt3dj7usydykw657jm6dabtgjfsyvkblb3h3be4rh5gr2sqga')", overflow: "scroll"}}>
                 <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>The Heaven Land</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake The Mythical Guardians to earn $GOLD & $JBC (LIMITED).</div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
                     <img
-                        src="https://gateway.pinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
+                        src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
                         width="150"
                         alt="$JBC"
                     />
                     <img
-                        src="https://gateway.pinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                        src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
                         width="150"
                         style={{marginLeft: "-50px"}}
                         alt="$GOLD"
@@ -355,21 +355,21 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                         <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                         <div style={{fontSize: "24px"}} className="emp">
                             {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://gateway.pinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://gateway.pinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>GOLD BALANCE</div>
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(goldBalance).toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://gateway.pinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
                         </div>
                     </div>
                 </div>
@@ -401,18 +401,18 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                                     <div>
                                         Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                         &nbsp;
-                                        <img src="https://gateway.pinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
                                         GOLD/DAY
                                     </div>
                                     <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                         <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                             Pending Rewards<br></br>
                                             <div style={{display: "flex", alignItems: "center"}}>
-                                                <img src="https://gateway.pinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="12" style={{marginRight: "5px"}} alt="$GOLD"/>
                                                 {ethers.utils.formatEther(String(item.Reward))}
                                             </div>
                                             <div style={{display: "flex", alignItems: "center"}}>
-                                                <img src="https://gateway.pinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="12" style={{marginRight: "5px"}} alt="$JBC"/>
                                                 {!item.isJbcOut ?
                                                     <>
                                                         {Number(item.Reward2) < 86400 ? ((500 * Number(item.Reward2)) / 86400) + " [NOT YET CLAIMABLE]" : "500.000 [MAX; CLAIMABLE]"}

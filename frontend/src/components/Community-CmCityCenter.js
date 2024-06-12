@@ -264,7 +264,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">CMDAO Name Service [ALPHA]</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                         <div style={{width: "30%", height: "320px"}}>
-                            <img src="https://gateway.pinata.cloud/ipfs/bafybeib5zwxjwwuyxjvs36j4s3giauppwehqyzthk4vob6egnpylm5obwm" height="200" alt="Can not load metadata."/>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5zwxjwwuyxjvs36j4s3giauppwehqyzthk4vob6egnpylm5obwm" height="200" alt="Can not load metadata."/>
                         </div>
                         <div style={{width: "65%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                             <div>
@@ -306,7 +306,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                                 <div className="bold">JBC DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                     <div style={{marginRight: "10px", color: "#fff"}}>{Number(jbconFaucet).toFixed(2)}</div>
-                                    <img src="https://gateway.pinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
                                 </div>
                             </div>
                             <div>
@@ -335,14 +335,14 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">{cmVoting1[0]}</div>
                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                         <div style={{width: "30%", height: "320px"}}>
-                            <img src="https://gateway.pinata.cloud/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" height="200" alt="Can not load metadata."/>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" height="200" alt="Can not load metadata."/>
                         </div>
                         <div style={{width: "65%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                             <div>
                                 <div className="bold">WOOD DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="emp bold">
                                     <div style={{marginRight: "10px"}}>{Number(cmVoting1All).toFixed(0)} / 10B ({((Number(cmVoting1All) * 100) / 10000000000).toFixed(3)}%)</div>
-                                    <img src="https://gateway.pinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
                                 </div>
                             </div>
                             <div>
@@ -377,7 +377,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                                 <div className="bold">SX31 DELEGATED</div>
                                 <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="emp bold">
                                     <div style={{marginRight: "10px"}}>{Number(sx31Voting1All).toFixed(2)} / 12,500 ({((Number(sx31Voting1All) * 100) / 12500).toFixed(3)}%)</div>
-                                    <img src="https://gateway.pinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="30px" alt="$SX31"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="30px" alt="$SX31"/>
                                 </div>
                             </div>
                             <div>

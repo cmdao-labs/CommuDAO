@@ -223,14 +223,14 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 const nftipfs = data4[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
                 nfts2.push({
                     Id: yournftwallet2[i].Id,
                     Name: nft.name + ' #' + yournftwallet2[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                 })

@@ -38,7 +38,7 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
                             {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://raw.githubusercontent.com/SmolDapp/tokenAssets/main/tokens/10/0x4200000000000000000000000000000000000006/logo.svg" alt="$WETH" /> : <></>}
-                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://gateway.pinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" alt="$CMD" /> : <></>}
+                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" alt="$CMD" /> : <></>}
                             <Select
                                 onChange={swapModeSelect}
                                 options={options}
@@ -67,7 +67,7 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                     <div style={{cursor: "pointer"}} className="fa fa-arrow-down" onClick={swapModeChange}></div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://gateway.pinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" alt="$CMD" /> : <></>}
+                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" alt="$CMD" /> : <></>}
                             {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://raw.githubusercontent.com/SmolDapp/tokenAssets/main/tokens/10/0x4200000000000000000000000000000000000006/logo.svg" alt="$WETH" /> : <></>}
                             {swapMode === 0 &&
                                 <Select
