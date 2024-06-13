@@ -37,7 +37,7 @@ const Fields = ({ callMode, navigate }) => {
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                            <div style={{margin: "0 5px"}}>WOOD & </div>
+                            <div style={{margin: "0 5px"}}>WOOD,  </div>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                             <div style={{marginLeft: "5px"}}>CMJ</div>
                         </div>
@@ -60,7 +60,7 @@ const Fields = ({ callMode, navigate }) => {
                         </div>
                         <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                            <div style={{margin: "0 5px"}}>GOLD & </div>
+                            <div style={{margin: "0 5px"}}>GOLD,  </div>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
                             <div style={{marginLeft: "5px"}}>JBC (LIMITED)</div>
                         </div>                    
@@ -147,7 +147,7 @@ const Fields = ({ callMode, navigate }) => {
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                        <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                        <div className='light' style={{marginLeft: "10px"}}>TAODUM,  TAOMEME</div>
                     </div>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicly2zmib2gwjqv2p752php3ff4pqonllfiyuelcik366gqtsto7e" height="230" alt="Field_Mech_Harvest_Zone" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
@@ -155,7 +155,7 @@ const Fields = ({ callMode, navigate }) => {
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
                             Eligible Collection
                         </div>
-                        <div className="emp" style={{fontSize: "12px"}}>TAODUM NFT & TAOMEME TOKEN</div>
+                        <div className="emp" style={{fontSize: "12px"}}>TAODUM NFT,  TAOMEME TOKEN</div>
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div>
