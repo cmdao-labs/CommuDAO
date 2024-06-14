@@ -282,7 +282,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw ORY to earn $MICE.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/https://apricot-secure-ferret-190.mypinata.cloud/ipfs/https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="150" alt="$MICE" />
+                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="150" alt="$MICE" />
             </div>
         </div>
 
