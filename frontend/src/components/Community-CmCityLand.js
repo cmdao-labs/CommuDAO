@@ -536,7 +536,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                 </div>
                                             </div>
                                             <div>                                        
-                                                {(slot1Lv !== 0 && slot1Lv !== 5)  &&
+                                                {(slot1Lv !== 0 && slot1Lv !== 6)  &&
                                                     <div 
                                                         style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                         className="bold button" 
