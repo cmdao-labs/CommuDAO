@@ -511,27 +511,31 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                         <div style={{textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                             <div>
                                                 <div className="bold">UPGRADE COSTS</div>
-                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
-                                                    <div style={{margin: "0 30px 0 10px"}}>
-                                                        {slot1Lv === 0 && '100M'}
-                                                        {slot1Lv === 1 && '200M'}
-                                                        {slot1Lv === 2 && '400M'}
-                                                        {slot1Lv === 3 && '800M'}
-                                                        {slot1Lv === 4 && '1,600M'}
-                                                        {slot1Lv === 5 && '3,200M'}
-                                                        {slot1Lv === 6 && '6,400M'}
+                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px", flexWrap: "wrap"}} className="bold">
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                                        <div style={{margin: "0 30px 0 10px"}}>
+                                                            {slot1Lv === 0 && '100M'}
+                                                            {slot1Lv === 1 && '200M'}
+                                                            {slot1Lv === 2 && '400M'}
+                                                            {slot1Lv === 3 && '800M'}
+                                                            {slot1Lv === 4 && '1,600M'}
+                                                            {slot1Lv === 5 && '3,200M'}
+                                                            {slot1Lv === 6 && '6,400M'}
+                                                        </div>
                                                     </div>
-                                                    {slot1Lv <= 4 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>}
-                                                    {(slot1Lv >= 5 && slot1Lv <= 10) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>}
-                                                    <div style={{marginLeft: "10px"}}>
-                                                        {slot1Lv === 0 && '50,000'}
-                                                        {slot1Lv === 1 && '100,000'}
-                                                        {slot1Lv === 2 && '200,000'}
-                                                        {slot1Lv === 3 && '400,000'}
-                                                        {slot1Lv === 4 && '800,000'}
-                                                        {slot1Lv === 5 && '100,000'}
-                                                        {slot1Lv === 6 && '200,000'}
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        {slot1Lv <= 4 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>}
+                                                        {(slot1Lv >= 5 && slot1Lv <= 10) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>}
+                                                        <div style={{marginLeft: "10px"}}>
+                                                            {slot1Lv === 0 && '50,000'}
+                                                            {slot1Lv === 1 && '100,000'}
+                                                            {slot1Lv === 2 && '200,000'}
+                                                            {slot1Lv === 3 && '400,000'}
+                                                            {slot1Lv === 4 && '800,000'}
+                                                            {slot1Lv === 5 && '100,000'}
+                                                            {slot1Lv === 6 && '200,000'}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -615,7 +619,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                 {nft.length > 0 ?
                                     <>
                                         {slot1Lv >= 1 &&
-                                            <div style={{ display: "flex", flexDirection: "column"}}>
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[0] !== undefined ?
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[0].Name}</div>
@@ -650,7 +654,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         }
                                         {slot1Lv >= 2 && 
-                                            <div style={{marginLeft: "20px", display: "flex", flexDirection: "column"}}>
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[1] !== undefined ?
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[1].Name}</div>
@@ -685,7 +689,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         }
                                         {slot1Lv >= 3 && 
-                                            <div style={{marginLeft: "20px", display: "flex", flexDirection: "column"}}>
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[2] !== undefined ?
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[2].Name}</div>
@@ -720,7 +724,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         }
                                         {slot1Lv >= 4 && 
-                                            <div style={{marginLeft: "20px", display: "flex", flexDirection: "column"}}>
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[3] !== undefined ?
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[3].Name}</div>
@@ -755,7 +759,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         }
                                         {slot1Lv >= 5 && 
-                                            <div style={{marginTop: "20px", display: "flex", flexDirection: "column"}}>
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[4] !== undefined ?
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[4].Name}</div>
@@ -790,7 +794,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         }
                                         {slot1Lv >= 6 && 
-                                            <div style={{marginTop: "20px", display: "flex", flexDirection: "column"}}>
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
                                                 {nftStake !== null && nftStake[5] !== undefined ?
                                                     <>
                                                         <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[5].Name}</div>
