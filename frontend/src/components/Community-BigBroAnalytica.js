@@ -838,7 +838,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(jdaoStat[0] - jdaoStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((jdaoStat[0] - jdaoStat[1])/jdaoSupply)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(jdaoStat[0] - jdaoStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((jdaoStat[0] - jdaoStat[1])/jdaoSupply)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -878,7 +878,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(osStat[0] - osStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((osStat[0] - osStat[1])/osCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(osStat[0] - osStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((osStat[0] - osStat[1])/osCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -914,7 +914,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(woodStat[0] - woodStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((woodStat[0] - woodStat[1])/woodCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(woodStat[0] - woodStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((woodStat[0] - woodStat[1])/woodCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -950,7 +950,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(bbqStat[0] - bbqStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((bbqStat[0] - bbqStat[1])/bbqCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(bbqStat[0] - bbqStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((bbqStat[0] - bbqStat[1])/bbqCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -986,7 +986,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(pzaStat[0] - pzaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((pzaStat[0] - pzaStat[1])/pzaCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(pzaStat[0] - pzaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((pzaStat[0] - pzaStat[1])/pzaCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1022,7 +1022,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(ctunaStat[0] - ctunaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((ctunaStat[0] - ctunaStat[1])/ctunaCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(ctunaStat[0] - ctunaStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((ctunaStat[0] - ctunaStat[1])/ctunaCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1058,7 +1058,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(sx31Stat[0] - sx31Stat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((sx31Stat[0] - sx31Stat[1])/sx31Circulation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(sx31Stat[0] - sx31Stat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((sx31Stat[0] - sx31Stat[1])/sx31Circulation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1094,7 +1094,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(cuStat[0] - cuStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((cuStat[0] - cuStat[1])/cuCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(cuStat[0] - cuStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((cuStat[0] - cuStat[1])/cuCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1130,7 +1130,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(silStat[0] - silStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((silStat[0] - silStat[1])/silCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(silStat[0] - silStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((silStat[0] - silStat[1])/silCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1166,7 +1166,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(goldStat[0] - goldStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((goldStat[0] - goldStat[1])/goldCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(goldStat[0] - goldStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((goldStat[0] - goldStat[1])/goldCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1206,7 +1206,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(platStat[0] - platStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((platStat[0] - platStat[1])/platCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(platStat[0] - platStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((platStat[0] - platStat[1])/platCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
@@ -1242,7 +1242,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>1D Issurance:</div>
-                                <div style={{color: "#fff"}}>{Number(jaspStat[0] - jaspStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((jaspStat[0] - jaspStat[1])/jaspCirculation)*100).toFixed(6)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(jaspStat[0] - jaspStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI ({Number(((jaspStat[0] - jaspStat[1])/jaspCirculation)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
