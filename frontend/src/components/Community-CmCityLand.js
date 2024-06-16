@@ -311,6 +311,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 woodUsage = 6400000000
                 secondUsage = 200000
                 secondToken = sil
+            } else if (_level === 8) {
+                woodUsage = 9999000000
+                secondUsage = 400000
+                secondToken = sil
             }
             const woodAllow = await readContract({
                 address: wood,
@@ -503,19 +507,19 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 <div style={{background: "rgb(0, 19, 33", width: "100%", margin: "0", padding: "75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll">
                     <div style={{width: "100%", marginBottom: "20px", display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap", height: "fit-content", overflow: "scroll"}} className="pixel mainprofile">
                         <div style={{background: "rgb(0, 26, 44)", border: "none", justifyContent: "space-around", padding: "30px", maxWidth: "100%", width: "1140px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                            <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", border: "1px dotted", padding: "30px 50px", maxWidth: "70%", width: "800px", height: "460px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                                <div style={{maxWidth: "100%", paddingBottom: "10px", borderBottom: "1px solid #d9d8df", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s house Lv.{slot1Lv}</div>
-                                <div style={{width: "100%", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
+                            <div style={{background: "transparent", padding: "30px 50px", maxWidth: "95%", width: "1000px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
+                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
+                                    <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s house Lv.{slot1Lv}</div>
                                     <div style={{width: "320px"}}>
                                         {slot1Lv === 0 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" style={{filter: "grayscale(1)"}} height="200" alt="HOUSE.LV.1" />}
                                         {(slot1Lv >= 1 && slot1Lv <= 5) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1" />}
                                         {(slot1Lv >= 6 && slot1Lv <= 10) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmf7bVQFwz8tQ1eVJBqcMkq3jY4BQvDfdnZgLBY26Fb5RX" height="200" alt="HOUSE.LV.6" />}
                                     </div>
                                     {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
-                                        <div style={{textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                        <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                             <div>
-                                                <div className="bold">UPGRADE COSTS</div>
-                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px", flexWrap: "wrap"}} className="bold">
+                                                <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
+                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
                                                     <div style={{display: "flex", flexDirection: "row"}}>
                                                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
                                                         <div style={{margin: "0 30px 0 10px"}}>
@@ -549,9 +553,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                 </div>
                                             </div>
                                             <div>                                        
-                                                {(slot1Lv !== 0 && slot1Lv !== 7)  &&
+                                                {(slot1Lv !== 0 && slot1Lv !== 8)  &&
                                                     <div 
-                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
+                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                         className="bold button" 
                                                         onClick={() => upgradeHouseHandle(slot1Lv + 1)}
                                                     >
@@ -560,19 +564,20 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                 }
                                                 {slot1Lv === 0 &&
                                                     <div 
-                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
+                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                         className="bold button" 
                                                         onClick={() => upgradeHouseHandle(1)}
                                                     >
                                                         CONSTRUCT
                                                     </div>
                                                 }
-                                                {nftStake.length === 0 &&
-                                                    <div style={{width: "65%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                                        <input style={{width: "250px", padding: "10px 40px", fontSize: "18px"}} className="bold" type="string" placeholder="Input New House Owner" value={delegateAddr} onChange={(event) => {setDelegateAddr(event.target.value)}}></input>
-                                                        <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={registHouseHandle}>DELIGATE</div>
-                                                    </div>
-                                                }
+                                                <div style={{width: "95%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                    <input style={{width: "180px", padding: "10px 20px", marginRight: "10px", fontSize: "10px"}} className="bold" type="string" placeholder="New House Owner Addr" value={delegateAddr} onChange={(event) => {setDelegateAddr(event.target.value)}}></input>
+                                                    {nftStake.length === 0 ?
+                                                        <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={registHouseHandle}>DELIGATE</div> :
+                                                        <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed", fontSize: "10px"}} className="bold button">UNSTAKE ALL NFT FIRST</div>
+                                                    }
+                                                </div>
                                                 {/*Number(houseId) === 10026011 &&
                                                     <div 
                                                         style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", marginTop: "20px", color: "rgb(0, 26, 44)", fontSize: "12px"}}
@@ -582,6 +587,94 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                         CLAIM LAND
                                                     </div>
                                                 */}
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
+                                    <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s weapon depot Lv.{0}</div>
+                                    <div style={{width: "320px"}}>
+                                        {true && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcabCcVqCQhcXk19LFueSRDc62Z67aqfArTTWVb8shr7c" style={{filter: "grayscale(1)"}} height="200" alt="WEAPONDEPOT.LV.1" />}
+                                    </div>
+                                    {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
+                                        <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                            <div>
+                                                <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
+                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                                        <div style={{margin: "0 30px 0 10px"}}>
+                                                            {true && '100M'}
+                                                        </div>
+                                                    </div>
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
+                                                        <div style={{marginLeft: "10px"}}>
+                                                            {true && '500,000'}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div style={{marginTop: "20px",fontSize: "12px"}} className="bold">REQUIREMENT</div>
+                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                    House LV.6
+                                                </div>
+                                            </div>
+                                            <div>                                        
+                                                {true &&
+                                                    <div 
+                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
+                                                        className="bold button" 
+                                                    >
+                                                        CONSTRUCT
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div style={{background: "transparent", padding: "0 50px 30px 50px", maxWidth: "95%", width: "1000px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
+                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
+                                    <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s transport hub Lv.{0}</div>
+                                    <div style={{width: "320px"}}>
+                                        {true && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" style={{filter: "grayscale(1)"}} height="200" alt="TRANSPORTHUB.LV.1" />}
+                                    </div>
+                                    {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
+                                        <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                            <div>
+                                                <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
+                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                                        <div style={{margin: "0 30px 0 10px"}}>
+                                                            {true && '3,200M'}
+                                                        </div>
+                                                    </div>
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
+                                                        <div style={{marginLeft: "10px"}}>
+                                                            {true && '1.6M'}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div style={{marginTop: "20px",fontSize: "12px"}} className="bold">REQUIREMENT</div>
+                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                    House LV.1
+                                                </div>
+                                            </div>
+                                            <div>                                        
+                                                {true &&
+                                                    <div 
+                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
+                                                        className="bold button" 
+                                                    >
+                                                        CONSTRUCT
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     }
@@ -864,6 +957,41 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                     </> :
                                                     <>
                                                         <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT7</div>
+                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                        <div style={{height: "105px"}}></div>
+                                                    </>
+                                                }
+                                            </div>
+                                        }
+                                        {slot1Lv >= 8 && 
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                {nftStake !== null && nftStake[7] !== undefined ?
+                                                    <>
+                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[7].Name}</div>
+                                                        <img src={nftStake[7].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[7].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[7].Reward).toFixed(4)} Pending $OS</div>
+                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                            <>
+                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                        {nftStake !== null && nftStake[7] !== undefined &&
+                                                                            <>
+                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[7].Id, 0)}>HARVEST</div>
+                                                                                <div className="button" onClick={() => unstakeNft(nftStake[7].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                            </>
+                                                                        }
+                                                                    </div> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <div style={{height: "105px"}}></div>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT8</div>
                                                         <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                                         <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
                                                         <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
