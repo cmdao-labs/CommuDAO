@@ -309,7 +309,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>MICE BALANCE</div>
                     <div style={{fontSize: "24px"}}>
-                        {nft.length > 0 && nft[0] !== null ? Number(miceBalance).toFixed(3) : 0}
+                        {nft.length > 0 ? Number(miceBalance).toFixed(3) : 0}
                         <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
                     </div>
                 </div>
