@@ -66,6 +66,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const [canbuy7, setCanBuy7] = React.useState(false)
     const [sell8Remain, setSell8Remain] = React.useState(333)
     const [canbuy8, setCanBuy8] = React.useState(false)
+    const [sell9Remain, setSell9Remain] = React.useState(1000)
+    const [canbuy9, setCanBuy9] = React.useState(false)
     const [sell13Remain, setSell13Remain] = React.useState(333)
     const [canbuy13, setCanBuy13] = React.useState(false)
     const [sell15Remain, setSell15Remain] = React.useState(100)
@@ -413,10 +415,10 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         args: [6],
                     },
                     {
-                        address: cmdaoMerchant,
-                        abi: cmdaoMerchantABI,
+                        address: cmdaoMerchantV2,
+                        abi: cmdaoMerchantV2ABI,
                         functionName: 'sellList',
-                        args: [7],
+                        args: [6],
                     },
                     {
                         address: cmdaoMerchantV2,
@@ -614,7 +616,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const sell6Id = data2[5].result
             const sell7Id = data2[11].result
             const sell8Id = data2[12].result
-            // const sell9Id = data2[13].result
+            const sell9Id = data2[13].result
             // const sell10Id = data2[14].result
             // const sell11Id = data2[15].result
             // const sell12Id = data2[16].result
@@ -668,8 +670,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
             const sell8remain = (102033400000 - (Number(sell8Id[2]) - 8000)) / 100000
             const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
-            const sell9remain = 0
-            const _canBuy9 = false
+                const sell9remain = 0
+            const _canBuy9 = Number(ethers.utils.formatEther(String(wjbcBal))) >= 500 ? true : false
             const _canBuy10 = false
             const sell11remain = 0
             const _canBuy11 = false
@@ -762,7 +764,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setCanBuy7(result[20])
             setSell8Remain(result[21])
             setCanBuy8(result[22])
-
+            setSell9Remain(result[23])
+            setCanBuy9(result[24])
             setJbcBalance(result[25].formatted)
             setSell13Remain(result[31])
             setCanBuy13(result[32])
@@ -1051,6 +1054,38 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [6]
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const buyHandle9 = async (_index) => {
+        setisLoading(true)
+        try {
+            const wjbcAllow = await readContract({
+                address: wjbcToken,
+                abi: ctunaLabABI,
+                functionName: 'allowance',
+                args: [address, cmdaoMerchantV2],
+            })
+            if (wjbcAllow < (500 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: wjbcToken,
+                    abi: ctunaLabABI,
+                    functionName: 'approve',
+                    args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: cmdaoMerchantV2,
+                abi: cmdaoMerchantV2ABI,
+                functionName: 'buy',
+                args: [_index]
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -3121,6 +3156,49 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                         }
                                     </> :
                                     <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">OUT OF STOCK</div>
+                                }
+                            </> :
+                            <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                        }
+                    </div>
+
+                    <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+                        <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30px" alt="DOIJIB" />
+                            <div className='light' style={{marginLeft: "10px"}}>DOIJIB</div>
+                        </div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">DOIJIB NFT - BB</div>
+                        <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZPNdmmD86o1VmQK4tpW952FH53LZbyngYrziCW4vwYXb" height="150" alt="Can not load metadata."/>
+                        <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
+                            <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Limited</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <div className="emp">{1000}</div>
+                                    /1000 EA
+                                </div>
+                            </div>
+                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Status</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>5000 Power</div>
+                            </div>
+                            <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                <div>Price</div>
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
+                                    <div style={{marginLeft: "7.5px"}}>500</div>
+                                </div>
+                            </div>
+                        </div>
+                        {address !== null && address !== undefined ?
+                            <>
+                                {false && sell9Remain > 0 ?
+                                    <>
+                                        {canbuy9 ?
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center"}} className="pixel button" onClick={() => buyHandle9(5)}>BUY</div> :
+                                            <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">INADEQUATE BALANCE</div>
+                                        }
+                                    </> :
+                                    <div style={{borderRadius: "12px", alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">ON STOCK AT 10PM, 19.06</div>
                                 }
                             </> :
                             <div style={{borderRadius: "12px",alignSelf: "flex-start", padding: "15px", fontSize: "16px", marginTop: "25px", width: "180px", display: "flex", justifyContent: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>

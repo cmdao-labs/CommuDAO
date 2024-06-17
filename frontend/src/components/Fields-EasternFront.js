@@ -381,7 +381,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
                         <div style={{fontSize: "24px", display: "flex"}}>
-                            {nft.length > 0 && nft[0] !== null ? Number(vabagBalance).toFixed(3) : 0}
+                            {nft.length > 0 ? Number(vabagBalance).toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                         </div>
                     </div>

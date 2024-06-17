@@ -10,6 +10,7 @@ import RatHuntingField from './Fields-OldWarehouse'
 import TheHeavenLand from './Fields-TheHeavenLand'
 import EasternFront from './Fields-EasternFront'
 import MechHarvestZone from './Fields-MechHarvestZone'
+import DjMining from './Fields-DjMining'
 import Labs from './Labs'
 
 import Dungeon from './Dungeon'
@@ -218,6 +219,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "MECH-HARVEST-ZONE") {
                     preset = 100
                     document.title = "Mech Harvest Zone | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "DOIJIB-MINING") {
+                    preset = 101
+                    document.title = "DOIJIB Mining | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
                     document.title = "Fields [BKC] | CommuDAO"
@@ -380,6 +384,7 @@ const Main = () => {
                 {mode === 17 && <TheHeavenLand intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} />}
                 {mode === 19 && <EasternFront intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldEfABI={fieldEfABI} />}
                 {mode === 100 && <MechHarvestZone intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
+                {mode === 101 && <DjMining intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldEfABI={fieldEfABI} />}
                 {mode === 2 ?
                     <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} goldMineABI={goldMineABI} erc20ABI={erc20ABI} kycABI={kycABI} /> :
                     <></>
