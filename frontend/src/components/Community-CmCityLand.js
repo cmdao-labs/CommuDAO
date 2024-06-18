@@ -319,6 +319,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 woodUsage = 9999000000
                 secondUsage = 800000
                 secondToken = sil
+            } else if (_level === 10) {
+                woodUsage = 9999000000
+                secondUsage = 1600000
+                secondToken = sil
             }
             const woodAllow = await readContract({
                 address: wood,
@@ -539,7 +543,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                     </div>
                                                     <div style={{display: "flex", flexDirection: "row"}}>
                                                         {slot1Lv <= 4 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>}
-                                                        {(slot1Lv >= 5 && slot1Lv <= 10) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>}
+                                                        {(slot1Lv >= 5 && slot1Lv <= 9) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="30px" alt="$SIL"/>}
                                                         <div style={{marginLeft: "10px"}}>
                                                             {slot1Lv === 0 && '50,000'}
                                                             {slot1Lv === 1 && '100,000'}
@@ -551,13 +555,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                             {slot1Lv === 7 && '400,000'}
                                                             {slot1Lv === 8 && '800,000'}
                                                             {slot1Lv === 9 && '1,600,000'}
-                                                            {slot1Lv === 10 && '3,200,000'}
+                                                            {slot1Lv === 10 && 'TBD'}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>                                        
-                                                {(slot1Lv !== 0 && slot1Lv !== 9)  &&
+                                                {(slot1Lv !== 0 && slot1Lv !== 10)  &&
                                                     <div 
                                                         style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                         className="bold button" 
@@ -1031,6 +1035,41 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                     </> :
                                                     <>
                                                         <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT9</div>
+                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                        <div style={{height: "105px"}}></div>
+                                                    </>
+                                                }
+                                            </div>
+                                        }
+                                        {slot1Lv >= 10 && 
+                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                {nftStake !== null && nftStake[9] !== undefined ?
+                                                    <>
+                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[9].Name}</div>
+                                                        <img src={nftStake[9].Image} width="200px" alt="Can not load metadata." />
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[9].RewardPerBlock} cmpow/block</div>
+                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[9].Reward).toFixed(4)} Pending $OS</div>
+                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                            <>
+                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                        {nftStake !== null && nftStake[9] !== undefined &&
+                                                                            <>
+                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[9].Id, 0)}>HARVEST</div>
+                                                                                <div className="button" onClick={() => unstakeNft(nftStake[9].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                            </>
+                                                                        }
+                                                                    </div> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <div style={{height: "105px"}}></div>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT10</div>
                                                         <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                                         <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
                                                         <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
