@@ -670,7 +670,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
             const sell8remain = (102033400000 - (Number(sell8Id[2]) - 8000)) / 100000
             const _canBuy8 = Number(ethers.utils.formatEther(String(jdaoBal))) >= 1000 ? true : false
-            const sell9remain = 100001000 - Number(sell9Id[3])
+            const sell9remain = 100001001 - Number(sell9Id[3])
             const _canBuy9 = Number(ethers.utils.formatEther(String(wjbcBal))) >= 500 ? true : false
             const _canBuy10 = false
             const sell11remain = 0
