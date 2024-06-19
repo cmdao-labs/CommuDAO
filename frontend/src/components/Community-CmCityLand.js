@@ -16,6 +16,7 @@ const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
+const transporthub = '0x1c56BC081f50F3da01b3838FC889756B0912E395'
 
 //const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
 //const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
@@ -688,9 +689,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                     }
                                 </div>
                             </div>
+                            <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                             <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLEEP TO EARN</div>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>SLEEP TO EARN</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
                                         {nftStake !== null && nftStake[0] !== undefined &&
                                             <>
@@ -724,6 +726,58 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                     </div>
                                 </div>
                                 <div style={{height: "41px"}}></div>
+                            </div>
+                            <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>TRANSPORT HUB STAT</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
+                                        {true &&
+                                            <>
+                                                {true ?
+                                                    <>
+                                                        <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Full</div>
+                                                    </> :
+                                                    <>
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Active</div>
+                                                    </>
+                                                }
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    $BBQ DAILY CAPACITY
+                                    <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
+                                        <div style={{marginLeft: "5px"}}>0.00/{(0).toLocaleString()}</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        RESET ON:
+                                        <div style={{marginLeft: "5px", color: "#ff007a"}}>null</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    HUB FEE
+                                    <input
+                                        style={{maxHeight: "10px", width: "100px", maxWidth: "30%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                                        type="number"
+                                        step="1"
+                                        min="1"
+                                        placeholder="0.00%"
+                                        disabled
+                                    ></input>
+                                    {false && address !== null && address !== undefined ? 
+                                        <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">SET HUB FEE</div> : 
+                                        <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">SET HUB FEE</div>
+                                    }
+                                </div>
+                                <div style={{height: "41px"}}></div>
+                            </div>
                             </div>
                             <div className="noscroll" style={{position: "relative", width: "80%", flexWrap: "wrap", height: "fit-content", display: "flex", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
                                 {nft.length > 0 ?

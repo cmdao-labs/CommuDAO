@@ -1,0 +1,488 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_sender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_baseAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_realAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_resAddr",
+				"type": "address"
+			}
+		],
+		"name": "mintResByTBridge",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_slot1",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "OwnableInvalidOwner",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "OwnableUnauthorizedAccount",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_hubFee",
+				"type": "uint256"
+			}
+		],
+		"name": "setHubFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landBonus",
+				"type": "uint256"
+			}
+		],
+		"name": "setLandBonus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_resource",
+				"type": "address"
+			}
+		],
+		"name": "setResource",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_newLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource1Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource2Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource3Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource4Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource5Req",
+				"type": "uint256"
+			}
+		],
+		"name": "setUplevel01",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_newLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource1Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource2Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource3Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource4Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_resource5Req",
+				"type": "uint256"
+			}
+		],
+		"name": "setUplevel02",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "upgrade01",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "upgrade02",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "baseCapacity",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cmcitySlot1",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "hubState",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "level",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "currentCap",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "hubFee",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "landBonus",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "resources",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "upLevel01",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "newLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource1Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource2Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource3Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource4Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource5Req",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "upLevel02",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "newLevel",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource1Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource2Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource3Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource4Req",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "resource5Req",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
