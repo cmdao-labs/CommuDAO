@@ -6,10 +6,10 @@ import { ThreeDots } from 'react-loading-icons'
 
 const bbNft = '0xc304195Ad2F55810EcD1e63d9D975e29138Dbd4E'
 const doijib = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
+const fieldDJ = '0x372191741EEF36a69C489B305632a390e0753101'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, fieldEfABI }) => {
-    //38580246900000
+const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, fieldDjABI }) => {
     let { address } = useAccount()
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/doijib-mining/' + address)
@@ -52,7 +52,10 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -64,16 +67,15 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
         
         const thefetch = async () => {
             let nfts = []
-            /*
-            const stakeFilter = await bbNftSC.filters.Transfer(address, doijib, null)
-            const stakeEvent = await bbNftSC.queryFilter(stakeFilter, 3478177, "latest")
+            const stakeFilter = await bbNftSC.filters.Transfer(address, fieldDJ, null)
+            const stakeEvent = await bbNftSC.queryFilter(stakeFilter, 3489173, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
                     {
-                        address: doijib,
-                        abi: fieldEfABI,
+                        address: fieldDJ,
+                        abi: fieldDjABI,
                         functionName: 'nftStake',
                         args: [String(item)],
                     }
@@ -101,28 +103,29 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             const data11 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftstake.map((item) => (
                     {
-                        address: doijib,
-                        abi: fieldEfABI,
+                        address: fieldDJ,
+                        abi: fieldDjABI,
                         functionName: 'calculateRewards',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill(0)]
-            */
 
             let _allDaily = 0
             let _allReward = 0
-            /*
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
-                } catch {}
+                } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
 
-                _allDaily += (0.1929012345 * 86400 * 30)
-                _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
+                _allDaily += (0.1929012345 * 86400 * 30) + 500000
+                _allReward += Number(ethers.utils.formatEther(String(data11[i].result))) + 500000
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -135,7 +138,6 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                     Reward: String(data11[i].result),
                 })
             }
-            */
 
             const walletFilter = await bbNftSC.filters.Transfer(null, address, null)
             const walletEvent = await bbNftSC.queryFilter(walletFilter, 3478177, "latest")
@@ -176,7 +178,10 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
-                } catch {}
+                } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
@@ -218,9 +223,9 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             setDoijibBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, fieldEfABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, fieldDjABI])
 
-    /*const stakeNft = async (_nftid) => {
+    const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
             const nftAllow = await readContract({
@@ -229,44 +234,50 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                 functionName: 'getApproved',
                 args: [_nftid],
             })
-            if (nftAllow.toUpperCase() !== .toUpperCase()) {
+            if (nftAllow.toUpperCase() !== fieldDJ.toUpperCase()) {
                 const config = await prepareWriteContract({
                     address: bbNft,
                     abi: erc721ABI,
                     functionName: 'approve',
-                    args: [, _nftid],
+                    args: [fieldDJ, _nftid],
                 })
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
             }        
             const config2 = await prepareWriteContract({
-                address: ,
-                abi: fieldEfABI,
+                address: fieldDJ,
+                abi: fieldDjABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     
-    const unstakeNft = async (_nftid, _unstake) => {
+    const unstakeNft = async (_nftid, _isNeedHarvest) => {
         setisLoading(true)
         try {
             const config2 = await prepareWriteContract({
-                address: ,
-                abi: fieldEfABI,
+                address: fieldDJ,
+                abi: fieldDjABI,
                 functionName: 'unstake',
-                args: [_nftid, _unstake],
+                args: [_nftid, _isNeedHarvest],
             })
             const { hash: hash12 } = await writeContract(config2)
             await waitForTransaction({ hash: hash12 })
             setTxupdate(hash12)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
-    }*/
+    }
 
     return (
         <>
@@ -356,17 +367,20 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                                         <div style={{lineHeight: 1.5, fontSize: "12px", textAlign: "left"}}>
                                             Pending Rewards<br></br>
                                             <div style={{display: "flex", alignItems: "center"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="12" alt="$DOIJIB"/>
-                                                &nbsp;{ethers.utils.formatEther(String(item.Reward))}
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
+                                                <div style={{display: "flex", flexDirection: "column", marginLeft: "5px"}}>
+                                                    <span>&nbsp;{item.Reward * 0.1929012345}</span>
+                                                    <span>+ 500,000 (Burn Reward)</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        {item.Reward > 0 && false ?
-                                            <div style={{fontSize: "14px", lineHeight: 2}} className="button" /*onClick={() => {unstakeNft(item.Id, true)}}*/>HARVEST & BURN</div> :
-                                            <div style={{fontSize: "14px", lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & BURN</div>
+                                        {item.isStaked && Number(item.Reward) >= 86400 * 30 ?
+                                            <div style={{fontSize: "14px", lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>HARVEST & BURN</div> :
+                                            <div style={{fontSize: "12px", lineHeight: 2, padding: "10px 0"}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>BURN NOW (LOSS ALL HARVEST)</div>
                                         }
                                     </div>
-                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        <div style={{fontSize: "14px", lineHeight: "20px"}} className="button" /*onClick={() => {stakeNft(item.Id)}}*/>STAKE 30 DAYS</div>
+                                    <div style={{width: "85%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                        <div style={{fontSize: "14px", lineHeight: "20px"}} className="button" onClick={() => {stakeNft(item.Id)}}>STAKE 30 DAYS</div>
                                         <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
                                     </div>
                                 </div>
