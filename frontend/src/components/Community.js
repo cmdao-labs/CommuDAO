@@ -689,9 +689,10 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
                 <div id="tile3" className="emp tile" style={{position: "relative", width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", cursor: "pointer", color: "rgb(0, 227, 180)"}} onClick={() => {callMode(41); navigate('/community/cmcity-citycenter');}}>
                     <div style={{height: "100px", display: "flex", alignItems: "flex-end", overflow: "visible"}}>
                         {/*<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidtpeph5ix5phlf2et2i665lesc76pidjxiazlamumn6ncidpumle" width="120" alt="Can't load metadata" />*/}
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" width="120" alt="Can't load metadata" />
+                        {/*<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" width="120" alt="Can't load metadata" />*/}
+                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmURSfHpQCMYbBBHGbzqkjGh8edPa7z2rVQhNVZHecXxfX" width="120" alt="Can't load metadata" />
                     </div>
-                    <div style={{position: "absolute", top: "5px", right: "5px", padding: "2px", fontSize: "16px"}} className='emp'>lv.2</div>
+                    <div style={{position: "absolute", top: "5px", right: "5px", padding: "2px", fontSize: "16px"}} className='emp'>lv.3</div>
                     <div style={{marginTop: "5px"}}>City Center</div>
                 </div>
                 <div id="tile4" className='emp tile' style={{position: "relative", width: "150px", height: "150px", border: "1px solid rgb(54, 77, 94)", background: "rgb(0, 26, 44)", display: "flex", flexDirection: "column",  justifyContent: "center", alignItems: "center", cursor: "pointer", color: "rgb(0, 227, 180)"}} onClick={() => {callMode(45); navigate('/community/cm-city/z02');}}>
