@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { /*fetchBalance,*/ readContract, prepareWriteContract, waitForTransaction, writeContract, /*sendTransaction*/ } from '@wagmi/core'
+import { /*fetchBalance,*/ readContracts, readContract, prepareWriteContract, waitForTransaction, writeContract, /*sendTransaction*/ } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 
 const cmcityPoints = '0xDEf1B2C59E116E5A63227af25CeED359EB489463'
@@ -20,6 +20,11 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
     const [cmVoting1, setCmVoting1] = React.useState(['Loading...', 'Loading...', 0, 'Loading...'])
     const [cmVoting1All, setCmVoting1All] = React.useState(0)
     const [vote2Amount, setVote2Amount] = React.useState("")
+    const [cmVoting2, setCmVoting2] = React.useState(['Loading...', 'Loading...', 0, 'Loading...'])
+    const [cmVoting2All, setCmVoting2All] = React.useState(0)
+    const [cmVoting3All, setCmVoting3All] = React.useState(0)
+    const [vote3Amount, setVote3Amount] = React.useState("")
+    const [vote4Amount, setVote4Amount] = React.useState("")
 
     // const [jbconFaucet, setJbconFaucet] = React.useState(0)
     // const [delegateAmount, setDelegateAmount] = React.useState("")
@@ -46,31 +51,68 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
         window.scrollTo(0, 0)
               
         const thefetch = async () => {
-            const sx31Proposal1 = await readContract({
-                address: sx31Vote,
-                abi: sx31voteABI,
-                functionName: 'proposals',
-                args: [1],
-            })
-            const sx31Proposal1All = await readContract({
-                address: sx31Vote,
-                abi: sx31voteABI,
-                functionName: 'votes',
-                args: [1],
-            })
+            const data = await readContracts({
+                contracts: [
+                    {
+                        address: sx31Vote,
+                        abi: sx31voteABI,
+                        functionName: 'proposals',
+                        args: [1],
+                    },
+                    {
+                        address: sx31Vote,
+                        abi: sx31voteABI,
+                        functionName: 'votes',
+                        args: [1],
+                    },
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [address],
+                    },
+                    {
+                        address: cmcityPoints,
+                        abi: cmcityPointsABI,
+                        functionName: 'proposals',
+                        args: [1],
+                    },
+                    {
+                        address: cmcityPoints,
+                        abi: cmcityPointsABI,
+                        functionName: 'votes',
+                        args: [1],
+                    },
+                    {
+                        address: cmcityPoints,
+                        abi: cmcityPointsABI,
+                        functionName: 'proposals',
+                        args: [2],
+                    },
+                    {
+                        address: cmcityPoints,
+                        abi: cmcityPointsABI,
+                        functionName: 'votes',
+                        args: [2],
+                    },
+                    {
+                        address: cmcityPoints,
+                        abi: cmcityPointsABI,
+                        functionName: 'votes',
+                        args: [3],
+                    },
+                ],
+            }) 
+            const sx31Proposal1 = data[0].result
+            const sx31Proposal1All = data[1].result
 
-            const cmcityProposal1 = await readContract({
-                address: cmcityPoints,
-                abi: cmcityPointsABI,
-                functionName: 'proposals',
-                args: [1],
-            })
-            const cmcityProposal1All = await readContract({
-                address: cmcityPoints,
-                abi: cmcityPointsABI,
-                functionName: 'votes',
-                args: [1],
-            })
+            const id = data[2].result
+
+            const cmcityProposal1 = data[3].result
+            const cmcityProposal1All = data[4].result
+            const cmcityProposal2 = data[5].result
+            const cmcityProposal2All = data[6].result
+            const cmcityProposal3All = data[7].result
 
             /*const jbcFaucet = await fetchBalance({ address: meritFaucet, })
             const allowtoClaim = address !== undefined && address !== null ? await readContract({
@@ -80,12 +122,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                 args: [address],
             }) : false*/
 
-            const id = await readContract({
-                address: cmdaoName,
-                abi: cmdaoNameABI,
-                functionName: 'yourName',
-                args: [address]
-            })
+            
             const name = await readContract({
                 address: cmdaoName,
                 abi: cmdaoNameABI,
@@ -93,7 +130,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                 args: [id]
             })
 
-            return [sx31Proposal1, sx31Proposal1All, /*jbcFaucet, allowtoClaim,*/ name, cmcityProposal1, cmcityProposal1All]
+            return [sx31Proposal1, sx31Proposal1All, /*jbcFaucet, allowtoClaim,*/ name, cmcityProposal1, cmcityProposal1All, cmcityProposal2, cmcityProposal2All, cmcityProposal3All, ]
         }
 
         const promise = thefetch()
@@ -113,6 +150,9 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
             setYourName(String(result[2]))
             setCmVoting1(result[3])
             setCmVoting1All(ethers.utils.formatEther(String(result[4])))
+            setCmVoting2(result[5])
+            setCmVoting2All(ethers.utils.formatEther(String(result[6])))
+            setCmVoting3All(ethers.utils.formatEther(String(result[7])))
         })
 
     }, [address, txupdate, erc20ABI, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI])
@@ -156,6 +196,12 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
         if (_proposal === 1) {
             addr = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
             vote = vote2Amount
+        } else if (_proposal === 2) {
+            addr = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
+            vote = vote3Amount
+        } else if (_proposal === 3) {
+            addr = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
+            vote = vote4Amount
         }
         try {
             const tokenAllow = await readContract({
@@ -178,12 +224,14 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                 address: cmcityPoints,
                 abi: cmcityPointsABI,
                 functionName: 'vote',
-                args: [_proposal, ethers.utils.parseEther(vote2Amount)]
+                args: [_proposal, ethers.utils.parseEther(vote)]
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            console.log(e)
+        }
         setisLoading(false)
     }
 
@@ -330,6 +378,54 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
                     </div>
                 </div>
                 */}
+
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "720px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">{cmVoting2[0]}</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                        <div style={{width: "30%", height: "320px"}}>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmURSfHpQCMYbBBHGbzqkjGh8edPa7z2rVQhNVZHecXxfX" height="200" alt="Can not load metadata."/>
+                        </div>
+                        <div style={{width: "65%", height: "600px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                            <div>
+                                <div className="bold">WOOD DELEGATED</div>
+                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="emp bold">
+                                    <div style={{marginRight: "10px"}}>{Number(Number(cmVoting2All) + Number(cmVoting3All)).toFixed(0)} / 20B ({((Number(Number(cmVoting2All) + Number(cmVoting3All)) * 100) / 10000000000).toFixed(3)}%)</div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                </div>
+                            </div>
+                            <div style={{marginBottom: "10px"}}>
+                                <div className="bold">PROPOSAL DETAIL</div>
+                                <div style={{marginTop: "10px", color: "#fff", fontSize: "12px"}} className="bold" dangerouslySetInnerHTML={{__html: cmVoting2[1]}}></div>
+                                <div style={{marginTop: "10px", color: "#fff", fontSize: "12px"}} className="bold">โดยหากการระดมทุนครั้งนี้สำเร็จ จะทำให้ CITY CENTER ถูกอัพเกรดขึ้น 1 เลเวล และมีผลทำให้ $OS Reward ของผู้พักอาศัยในบ้านบนที่ดิน CM CITY เพิ่มขึ้น 1 เท่าตัว!</div>
+                                <div style={{marginTop: "20px", fontSize: "12px"}} className="bold">ผู้เสนอ Proposal: {cmVoting2[5]}</div>
+                            </div>
+                            {Number(Number(cmVoting2All) + Number(cmVoting3All)) < 20000000000 ?
+                                <>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                        <input style={{width: "220px", padding: "10px 20px", fontSize: "18px"}} className="bold" type="number" placeholder="Enter $WOOD Amount" value={vote3Amount} onChange={(event) => {setVote3Amount(event.target.value)}}></input>
+                                        <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={() => {voteUniHandle(2)}}>VOTE YES</div>
+                                        <div style={{color: "rgb(0, 227, 180)"}} className='bold'>{Number(cmVoting2All)} VOTE ({Number(Number(cmVoting2All) / (Number(cmVoting2All) + Number(cmVoting3All)) * 100).toFixed(2)}%)</div>
+                                    </div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: "15px"}}>
+                                        <input style={{width: "220px", padding: "10px 20px", fontSize: "18px"}} className="bold" type="number" placeholder="Enter $WOOD Amount" value={vote4Amount} onChange={(event) => {setVote4Amount(event.target.value)}}></input>
+                                        <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={() => {voteUniHandle(3)}}>VOTE NO</div>
+                                        <div className='bold emp'>{Number(cmVoting3All)} VOTE ({Number(Number(cmVoting3All) / (Number(cmVoting2All) + Number(cmVoting3All)) * 100).toFixed(2)}%)</div>
+                                    </div> 
+                                </> :
+                                <>
+                                    {Number(cmVoting2All) + Number(cmVoting3All) === 0 ?
+                                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", color: "rgb(0, 227, 180)"}} className="bold">Loading...</div> :
+                                        <div style={{color: "rgb(0, 227, 180)"}}>
+                                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold">DELEGATION COMPLETE, PROPOSAL TERMINATED. VOTE RESULT:</div>
+                                            <div className='bold'>YES: {Number(cmVoting2All)} VOTE ({Number(Number(cmVoting2All) / (Number(cmVoting2All) + Number(cmVoting3All)) * 100).toFixed(2)}%)</div>
+                                            <div className='bold'>NO: {Number(cmVoting3All)} VOTE ({Number(Number(cmVoting3All) / (Number(cmVoting2All) + Number(cmVoting3All)) * 100).toFixed(2)}%)</div>
+                                        </div>
+                                    }
+                                </>
+                            }
+                        </div>
+                    </div>
+                </div>
 
                 <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", border: "1px solid rgb(54, 77, 94)", minWidth: "880px", width: "55%", height: "420px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
                     <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">{cmVoting1[0]}</div>

@@ -17,6 +17,8 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
     const [timetoClaimBBQ, setTimeToClaimBBQ] = React.useState(0)
     const [canCraftBBQ, setCanCraftBBQ] = React.useState(false)
 
+    const [houseSelected, setHouseSelected] = React.useState('')
+
     React.useEffect(() => {    
         window.scrollTo(0, 0)  
         console.log("Connected to " + address)
@@ -303,6 +305,46 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                                 }
                             </>
                         }
+                    </div>
+                </div>
+
+                <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
+                <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Transport Services</div>
+                <div style={{width: "100%", margin: "10px 0 80px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                        <div style={{width: "100%", textAlign: "left"}} className='emp'>
+                            SELECT TRANSPORT HUB [ALPHA]
+                        </div>
+                        <div style={{height: "80%", overflow: "scroll"}} className="pixel">
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z10')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div className='emp'>Land Z10</div>
+                                    <div>FEE: null</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: null</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div>DESTINATION: <span className='emp'>{houseSelected}</span></div>
+                            <div>tBridge fee: 80 CMD</div>
+                        </div>
+                        <div style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{maxHeight: "10px", width: "180px", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder="0.00 $BBQ"
+                                disabled
+                            ></input>
+                            {false && address !== null && address !== undefined ? 
+                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">TRANSPORT</div> : 
+                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">TRANSPORT</div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

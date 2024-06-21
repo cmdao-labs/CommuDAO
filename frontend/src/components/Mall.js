@@ -1986,7 +1986,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifid22c4xzlomymxik5kru5ymeunnd62rxkncrai7hnne7bnucuhi" width="220" alt="NPC_Gamy" />
                         </div>
-                        <div style={{maxHeight: "95px"}}>
+                        <div style={{maxHeight: "110px"}}>
                             <div style={{fontSize: "20px", width: "380px"}} className="pixel">GAMY, THE PRESALE AGENT</div>
                             <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"BRo, i seLL ${tokenselected}, giVE mE MONeY bRo!</div>
                             <div style={{fontSize: "10px"}} className="light">Presale Round 1: 2B / 100B, (2% of max supply); Pls DYOR."</div>
@@ -2003,6 +2003,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 </div>
                             </div>
                             <div style={{margin: "10px 0", fontSize: "10px"}} className="bold">Presale Round 1 Remaining: <span className='emp'>{Number(doijibRemain).toLocaleString('en-US', {maximumFractionDigits:4})}</span> / 2,000,000,000</div>
+                            <div style={{margin: "10px 0", fontSize: "10px"}} className="bold">Round 1 End: <span className='emp'>10PM, 30/06</span></div>
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
