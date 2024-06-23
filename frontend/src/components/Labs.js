@@ -107,10 +107,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [canCraft2, setCanCraft2] = React.useState(false)
     const [canCraft2_2, setCanCraft2_2] = React.useState(false)
 
-    const [isMineGold, setIsMineGold] = React.useState(null)
-    const [timetoClaimMineGold, setTimeToClaimMineGold] = React.useState(0)
-    const [canMineGold, setCanMineGold] = React.useState(false)
-
     const [isCraftSWAR, setIsCraftSWAR] = React.useState(null)
     const [timetoClaimSWAR, setTimeToClaimSWAR] = React.useState(0)
     const [canCraftSWAR, setCanCraftSWAR] = React.useState(false)
@@ -376,7 +372,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const labLogPZA = data[16].result
             const labLogSIL = data[17].result
             const labLogGOLD = data[18].result
-            const mineGold = data[19].result
+            const mineGold = null
             const labLogGOLD2 = null
             const mtBal = null
             const platBal = data[22].result
@@ -403,7 +399,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 1 && Number(ethers.utils.formatEther(String(cuBal))) >= 150000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 5 && Number(ethers.utils.formatEther(String(silBal))) >= 10000 ? true : false
             const _canCraftGOLD2 = false
-            const _canMineGold = Number(ethers.utils.formatEther(String(bbqBal))) >= 20000 && Number(jbcBal.formatted) >= 1 ? true : false
+            const _canMineGold = false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 5 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
@@ -530,13 +526,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimGOLD(nextHourGOLD.toLocaleString('es-CL')) :
                 setTimeToClaimGOLD(0)
             setCanCraftGOLD(result[29])
-
-            setIsMineGold(Number(result[30][0]) > 0)
-            const nextMineGOLD = new Date((Number(result[30][1]) * 1000) + (60 * 15 * 1000))
-            Date.now() - (Number(result[30][1]) * 1000) <= (60 * 15 * 1000) ?
-                setTimeToClaimMineGold(nextMineGOLD.toLocaleString('es-CL')) :
-                setTimeToClaimMineGold(0)
-            setCanMineGold(result[31])
 
 
 
@@ -1074,54 +1063,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const config = await prepareWriteContract({
                 address: goldLab,
                 abi: pzaLabABI,
-                functionName: 'obtain',
-            })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const mineGOLDHandle = async (_machine) => {
-        setisLoading(true)
-        try {
-            const bbqAllow = await readContract({
-                address: bbqToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, goldMine],
-            })
-            if (bbqAllow < (20000 * 10**18)) {
-                const config = await prepareWriteContract({
-                    address: bbqToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [goldMine, ethers.utils.parseEther(String(10**8))],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            }
-            const config2 = await prepareWriteContract({
-                address: goldMine,
-                abi: goldMineABI,
-                functionName: 'mine',
-                args: [_machine],
-                value: ethers.utils.parseEther('1'),
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const obtainMineGOLDHandle = async () => {
-        setisLoading(true)
-        try {
-            const config = await prepareWriteContract({
-                address: goldMine,
-                abi: goldMineABI,
                 functionName: 'obtain',
             })
             const { hash: hash1 } = await writeContract(config)
@@ -2229,59 +2170,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     </div>
 
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                        <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidn2yecujkgvkuroqg6oh2nirgbd7xyhj3nfgqda7zas7hc5qmchy" width="300" alt="$GOLD_Mine"/>
-                        </div>
-                        <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                            <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
-                                <div style={{margin: "0 5px"}}>20,000</div>
-                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
-                                <div style={{margin: "0 5px"}}>1</div>
-                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                <div style={{margin: "0 5px"}}>6.25</div>
-                            </div>
-                        </div>
-                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                            <div>15 minutes</div>
-                        </div>
-                        {isMineGold ?
-                            <>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                    <div>{timetoClaimMineGold === 0 ? "now" : timetoClaimMineGold}</div>
-                                </div>
-                                {timetoClaimMineGold === 0 ?
-                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainMineGOLDHandle}>Obtain</div> :
-                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                }
-                            </> :
-                            <>
-                                {address !== null && address !== undefined ?
-                                    <>
-                                        {isMineGold !== null ?
-                                            <>
-                                                {canMineGold ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => mineGOLDHandle(1)}>Mine Gold</div> :
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                }
-                                            </> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Mine Gold</div>
-                                        }
-                                    </> :
-                                    <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                }
-                            </>
-                        }
-                    </div>
-                </div>
-
-                <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicrg6pt7nkzibtg4pwdw6vaipgcbpxhlnvt5hrqobmhlrnssqjiva" width="300" alt="$PLAT_Factory"/>
                         </div>
@@ -2331,7 +2219,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             </>
                         }
                     </div>
+                </div>
 
+                <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">                    
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                         <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="300" alt="$PLAT_Factory02"/>
