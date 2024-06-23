@@ -55,6 +55,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const [nextDayThub, setNextDayThub] = React.useState(0)
     const [thubCap, setThubCap] = React.useState(0)
     const [thubFee, setThubFee] = React.useState(0)
+    const [changeThubFee, setChangeThubFee] = React.useState(0)
 
     React.useEffect(() => {        
         window.scrollTo(0, 0)
@@ -299,7 +300,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             Number(result[9][1]) !== 0 ?
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
                 setNextDayThub('null')
-            setThubFee(Number(result[9][3]) / 10000)
+            setThubFee(Number(result[9][3]) / 100)
             setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
         })
 
@@ -524,6 +525,25 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
         } catch {}
         setisLoading(false)
     }*/
+
+    const changeThubFeeHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: transporthub,
+                abi: transportHubABI,
+                functionName: 'setHubFee',
+                args: [houseId, String(Number(changeThubFee * 100).toFixed(0))],
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
 
     const upgradeTHubHandle = async (_level) => {
         setisLoading(true)
@@ -868,12 +888,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                         style={{maxHeight: "10px", width: "100px", maxWidth: "30%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                         type="number"
                                         step="1"
-                                        min="1"
+                                        min="0"
+                                        max="100"
                                         placeholder="0.00%"
-                                        disabled
+                                        value={changeThubFee}
+                                        onChange={(event) => setChangeThubFee(event.target.value)}
                                     ></input>
-                                    {false && address !== null && address !== undefined ? 
-                                        <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">SET HUB FEE</div> : 
+                                    {thubLv !== 0 && address !== null && address !== undefined ? 
+                                        <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} onClick={changeThubFeeHandle} className="button">SET HUB FEE</div> : 
                                         <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">SET HUB FEE</div>
                                     }
                                 </div>
