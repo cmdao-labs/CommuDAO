@@ -875,7 +875,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             />}
             {mode === 3 &&
                 <div style={{margin: "20px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
-                    <div style={{margin: "20px", padding: "20px 0", height: "420px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                    {/*<div style={{margin: "20px", padding: "20px 0", height: "420px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                         <div style={{width: "85%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{textAlign: "left"}}>
                                 <div style={{fontSize: "20px"}} className="bold">EARN $MEOW</div>
@@ -941,7 +941,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                             <div style={{marginLeft: "5px", height: "25px", lineHeight: 2.5, width: "70%", textAlign: "right", display: "flex", flexDirection: "column"}}>0.012 MEOW/LP/HOUR</div>
                         </div>
                         <a href="https://meowneon.app/pools" target="_blank" rel="noreferrer" style={{textDecoration: "none"}}><div style={{letterSpacing: "1px", width: "240px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "12px"}} className="bold">Explore Pool on Meowneon.app</div></a>
-                    </div>
+                    </div>*/}
                 </div>
             }
         </div>
