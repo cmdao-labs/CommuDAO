@@ -299,7 +299,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const _nextDayThub = new Date((Number(result[9][1]) * 1000) + (86400 * 1000))
             Number(result[9][1]) !== 0 ?
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
-                setNextDayThub('null')
+                setNextDayThub('not yet initiate')
             setThubFee(Number(result[9][3]) / 100)
             setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
         })

@@ -21,10 +21,6 @@ const Home = ({ callMode, navigate }) => {
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihiezpvelzflcvavljsgzlwh27zfy4njqmcoidzz23ldtajdeo3vi" height="30" alt="Can not load metadata."/>
                             &nbsp;CMDAO Alert
                         </a>
-                        <a className="hashtag" style={{textDecoration: "none"}} href="https://meowneon.app" target="_blank" rel="noreferrer">
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifzs54ll7ckvhuvkp3v35yx4qyqpthia56r37cgqlnzlfplrfv7hm" height="30" alt="Can not load metadata."/>
-                            &nbsp;Meow Neon
-                        </a>
                         <a className="hashtag" style={{textDecoration: "none"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidlnozzbqrxqtdf54b32u3u7ri4svu7lcdpxujcnoa5x5biqcufpy" height="30" alt="Can not load metadata."/>
                             &nbsp;Auto Web3 Tool

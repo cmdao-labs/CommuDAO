@@ -7,7 +7,13 @@ const { ethereum } = window
 const bbqToken = '0x87dfDc26ff6e8986e2F773FAE3Bfa51C8f152cF0'
 const bbqLab = '0x2D2901B3c1A9770008AA38A095f71FB4e136c0f3'
 
-const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI }) => {
+const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
+const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
+const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
+const transporthub = '0x1c56BC081f50F3da01b3838FC889756B0912E395'
+const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+
+const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI }) => {
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -18,10 +24,16 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
     const [canCraftBBQ, setCanCraftBBQ] = React.useState(false)
 
     const [houseSelected, setHouseSelected] = React.useState('')
+    const [allPowZ10, setAllPowZ10] = React.useState(0)
+    const [thubLvZ10, setThubLvZ10] = React.useState(0)
+    const [nextDayThubZ10, setNextDayThubZ10] = React.useState(0)
+    const [thubCapZ10, setThubCapZ10] = React.useState(0)
+    const [thubFeeZ10, setThubFeeZ10] = React.useState(0)
 
     React.useEffect(() => {    
         window.scrollTo(0, 0)  
         console.log("Connected to " + address)
+        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
         
         const thefetch = async () => {
             const cmdBal = address !== null && address !== undefined ?
@@ -49,9 +61,58 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
            
             const _canCraftBBQ = /*Number(ethers.utils.formatEther(String(woodBal))) >= 100 &&*/ Number(cmdBal.formatted) >= 0.01 ? true : false
 
+            const data2 = await readContracts({
+                contracts: [
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10026010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10026010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10026010'],
+                        chainId: 8899,
+                    },
+                ],
+            }) 
+
+            const stakeFilter = await cmdaonftSC.filters.Transfer(data2[0].result, houseStaking, null)
+            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const data0 = await readContracts({
+                contracts: stakeRemoveDup.map((item) => (
+                    {
+                        address: houseStaking,
+                        abi: houseStakingABI,
+                        functionName: 'nftStake',
+                        args: [1, String(item)],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            let _allPowZ10 = 0
+            for (let i = 0; i <= stakeRemoveDup.length - 1; i++) {
+                if (data0[i].result[0].toUpperCase() === data2[0].result.toUpperCase()) {
+                    _allPowZ10 += Number(String(stakeRemoveDup[i]).slice(-5))
+                }
+            }
+
             return [
                 bbqBal,
                 labLogBBQ, _canCraftBBQ,
+                data2[1].result, data2[2].result, _allPowZ10,
             ]
         }
 
@@ -74,9 +135,18 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                 setTimeToClaimBBQ(nextObtainBBQ.toLocaleString('es-CL')) :
                 setTimeToClaimBBQ(0)
             setCanCraftBBQ(result[2])
+
+            setThubLvZ10(Number(result[3][0]))
+            const _nextDayThubZ10 = new Date((Number(result[3][1]) * 1000) + (86400 * 1000))
+            Number(result[3][1]) !== 0 ?
+                setNextDayThubZ10(_nextDayThubZ10.toLocaleString('es-CL')) :
+                setNextDayThubZ10('not yet initiate')
+            setThubFeeZ10(Number(result[3][3]) / 100)
+            setThubCapZ10(Number(ethers.utils.formatEther(String(result[4]))))
+            setAllPowZ10(Number(result[5]))
         })
 
-    }, [address, txupdate, erc20ABI, bbqLab01ABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI])
 
     const craftBBQHandle = async (_machine) => {
         setisLoading(true)
@@ -318,12 +388,16 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI })
                         <div style={{height: "80%", overflow: "scroll"}} className="pixel">
                             <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z10')}>
                                 <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div className='emp'>Land Z10</div>
-                                    <div>FEE: null</div>
+                                    <div className='emp'>T.HUB Z10 Lv.{thubLvZ10}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ10}%</span></div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: null</div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ10 * allPowZ10}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: <span style={{color: "#000"}}>{nextDayThubZ10}</span></div>
                                 </div>
                             </div>
                         </div>
