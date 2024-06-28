@@ -296,8 +296,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setNftStake(result[8])
 
             setThubLv(Number(result[9][0]))
-            const _nextDayThub = new Date((Number(result[9][1]) * 1000) + (86400 * 1000))
-            Number(result[9][1]) !== 0 ?
+            const _nextDayThub = new Date((Number(result[9][2]) * 1000) + (86400 * 1000))
+            Number(result[9][2]) !== 0 ?
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
                 setNextDayThub('not yet initiate')
             setThubFee(Number(result[9][3]) / 100)
