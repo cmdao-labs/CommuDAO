@@ -4,7 +4,7 @@ pragma solidity 0.8.23;
 import "./cmcity_slot1.sol";
 import "./BBQ.sol";
 
-contract CMCITY_TRANSPORT_HUB01 is Ownable {
+contract CMCITY_TRANSPORT_HUB01_V2 is Ownable {
     address public cmcitySlot1;
     mapping(uint256 => address) public resources;
     struct UpLevel01 {
@@ -26,7 +26,7 @@ contract CMCITY_TRANSPORT_HUB01 is Ownable {
     mapping(uint256 => HubState) public hubState;
     mapping(uint256 => uint256) public landBonus;
 
-    constructor(address _slot1) {
+    constructor(address _slot1) Ownable(msg.sender) {
         cmcitySlot1 = _slot1;
     }
 
@@ -36,6 +36,10 @@ contract CMCITY_TRANSPORT_HUB01 is Ownable {
 
     function setLandBonus(uint256 _index, uint256 _landBonus) external onlyOwner {
         landBonus[_index] = _landBonus;
+    }
+
+    function setLandLv(uint256 _index, uint256 _level) external onlyOwner {
+        hubState[_index].level = _level;
     }
 
     function setUplevel01(
@@ -125,7 +129,7 @@ contract CMCITY_TRANSPORT_HUB01 is Ownable {
 
     function baseCapacity(uint256 _tokenId) public view returns (uint256) {
         uint256 _transfer;
-        if (block.number > hubState[_tokenId].timestamp + 1 days) {
+        if (block.timestamp > hubState[_tokenId].timestamp + 1 days) {
             _transfer = hubState[_tokenId].level * landBonus[_tokenId] * 1 ether;
         } else {
             _transfer = hubState[_tokenId].currentCap;
@@ -140,7 +144,7 @@ contract CMCITY_TRANSPORT_HUB01 is Ownable {
         uint256 _realAmount,
         address _resAddr
     ) external onlyOwner {
-        if (block.number > hubState[_tokenId].timestamp + 1 days) {
+        if (block.timestamp > hubState[_tokenId].timestamp + 1 days) {
             hubState[_tokenId].currentCap = baseCapacity(_tokenId);
             hubState[_tokenId].timestamp = block.timestamp;
         }

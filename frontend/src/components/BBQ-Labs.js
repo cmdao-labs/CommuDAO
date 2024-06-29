@@ -10,7 +10,7 @@ const bbqLab = '0x2D2901B3c1A9770008AA38A095f71FB4e136c0f3'
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
-const transporthub = '0x1c56BC081f50F3da01b3838FC889756B0912E395'
+const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI }) => {
@@ -892,6 +892,468 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                         args: ['10026011'],
                         chainId: 8899,
                     },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003012'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003012'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003012'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003013'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003013'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003013'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003014'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003014'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003014'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003015'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003015'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003015'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003016'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003016'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003016'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003017'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003017'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003017'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003018'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003018'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003018'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003019'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003019'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003019'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003020'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003020'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003020'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003021'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003021'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003021'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003022'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'hubState',
+                        args: ['10003022'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: transporthub,
+                        abi: transportHubABI,
+                        functionName: 'baseCapacity',
+                        args: ['10003022'],
+                        chainId: 8899,
+                    },
                 ],
             }) 
 
@@ -1012,6 +1474,50 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                     _allPowB11 += Number(String(stakeRemoveDup[i]).slice(-5))
                 } else if (data0[i].result[0].toUpperCase() === data2[75].result.toUpperCase()) {
                     _allPowZ11 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[78].result.toUpperCase()) {
+                    _allPowC01 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[81].result.toUpperCase()) {
+                    _allPowC02 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[84].result.toUpperCase()) {
+                    _allPowC03 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[87].result.toUpperCase()) {
+                    _allPowC04 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[90].result.toUpperCase()) {
+                    _allPowC05 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[93].result.toUpperCase()) {
+                    _allPowC06 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[96].result.toUpperCase()) {
+                    _allPowC07 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[99].result.toUpperCase()) {
+                    _allPowC08 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[102].result.toUpperCase()) {
+                    _allPowC09 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[105].result.toUpperCase()) {
+                    _allPowC10 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[108].result.toUpperCase()) {
+                    _allPowC11 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[111].result.toUpperCase()) {
+                    _allPowC12 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[114].result.toUpperCase()) {
+                    _allPowC13 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[117].result.toUpperCase()) {
+                    _allPowC14 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[120].result.toUpperCase()) {
+                    _allPowC15 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[123].result.toUpperCase()) {
+                    _allPowC16 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[126].result.toUpperCase()) {
+                    _allPowC17 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[129].result.toUpperCase()) {
+                    _allPowC18 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[132].result.toUpperCase()) {
+                    _allPowC19 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[135].result.toUpperCase()) {
+                    _allPowC20 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[138].result.toUpperCase()) {
+                    _allPowC21 += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === data2[141].result.toUpperCase()) {
+                    _allPowC22 += Number(String(stakeRemoveDup[i]).slice(-5))
                 }
             }
 
@@ -1021,7 +1527,8 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                 data2[1].result, data2[2].result, _allPowZ10, 
                 data2[4].result, data2[5].result, _allPowZ02, data2[7].result, data2[8].result, _allPowA01, data2[10].result, data2[11].result, _allPowA02, data2[13].result, data2[14].result, _allPowA03, data2[16].result, data2[17].result, _allPowA04, data2[19].result, data2[20].result, _allPowA05, data2[22].result, data2[23].result, _allPowA06, data2[25].result, data2[26].result, _allPowA07, data2[28].result, data2[29].result, _allPowA08, data2[31].result, data2[32].result, _allPowA09, data2[34].result, data2[35].result, _allPowA10, data2[37].result, data2[38].result, _allPowA11, 
                 data2[40].result, data2[41].result, _allPowZ06, data2[43].result, data2[44].result, _allPowB01, data2[46].result, data2[47].result, _allPowB02, data2[49].result, data2[50].result, _allPowB03, data2[52].result, data2[53].result, _allPowB04, data2[55].result, data2[56].result, _allPowB05, data2[58].result, data2[59].result, _allPowB06, data2[61].result, data2[62].result, _allPowB07, data2[64].result, data2[65].result, _allPowB08, data2[67].result, data2[68].result, _allPowB09, data2[70].result, data2[71].result, _allPowB10, data2[73].result, data2[74].result, _allPowB11,
-                data2[76].result, data2[77].result, _allPowZ11,
+                data2[76].result, data2[77].result, _allPowZ11, data2[79].result, data2[80].result, _allPowC01, data2[82].result, data2[83].result, _allPowC02, data2[85].result, data2[86].result, _allPowC03, data2[88].result, data2[89].result, _allPowC04, data2[91].result, data2[92].result, _allPowC05, data2[94].result, data2[95].result, _allPowC06, data2[97].result, data2[98].result, _allPowC07, data2[100].result, data2[101].result, _allPowC08, data2[103].result, data2[104].result, _allPowC09, data2[106].result, data2[107].result, _allPowC10, data2[109].result, data2[110].result, _allPowC11,
+                data2[112].result, data2[113].result, _allPowC12, data2[115].result, data2[116].result, _allPowC13, data2[118].result, data2[119].result, _allPowC14, data2[121].result, data2[122].result, _allPowC15, data2[124].result, data2[125].result, _allPowC16, data2[127].result, data2[128].result, _allPowC17, data2[130].result, data2[131].result, _allPowC18, data2[133].result, data2[134].result, _allPowC19, data2[136].result, data2[137].result, _allPowC20, data2[139].result, data2[140].result, _allPowC21, data2[142].result, data2[143].result, _allPowC22,
             ]
         }
 
@@ -1046,238 +1553,436 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             setCanCraftBBQ(result[2])
 
             setThubLvZ10(Number(result[3][0]))
-            const _nextDayThubZ10 = new Date((Number(result[3][2]) * 1000) + (86400 * 1000))
-            Number(result[3][2]) !== 0 ?
+            const _nextDayThubZ10 = new Date((Number(result[3][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[3][2]) <= (86400 * 1000) && Number(result[3][2]) !== 0) ?
                 setNextDayThubZ10(_nextDayThubZ10.toLocaleString('es-CL')) :
-                setNextDayThubZ10('not yet initiate')
+                setNextDayThubZ10('now')
             setThubFeeZ10(Number(result[3][3]) / 100)
             setThubCapZ10(Number(ethers.utils.formatEther(String(result[4]))))
             setAllPowZ10(Number(result[5]))
 
             setThubLvZ02(Number(result[6][0]))
-            const _nextDayThubZ02 = new Date((Number(result[6][2]) * 1000) + (86400 * 1000))
-            Number(result[6][2]) !== 0 ?
+            const _nextDayThubZ02 = new Date((Number(result[6][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[6][2]) <= (86400 * 1000) && Number(result[6][2]) !== 0) ?
                 setNextDayThubZ02(_nextDayThubZ02.toLocaleString('es-CL')) :
-                setNextDayThubZ02('not yet initiate')
+                setNextDayThubZ02('now')
             setThubFeeZ02(Number(result[6][3]) / 100)
             setThubCapZ02(Number(ethers.utils.formatEther(String(result[7]))))
             setAllPowZ02(Number(result[8]))
 
             setThubLvA01(Number(result[9][0]))
-            const _nextDayThubA01 = new Date((Number(result[9][2]) * 1000) + (86400 * 1000))
-            Number(result[9][2]) !== 0 ?
+            const _nextDayThubA01 = new Date((Number(result[9][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[9][2]) <= (86400 * 1000) && Number(result[6][2]) !== 0) ?
                 setNextDayThubA01(_nextDayThubA01.toLocaleString('es-CL')) :
-                setNextDayThubA01('not yet initiate')
+                setNextDayThubA01('now')
             setThubFeeA01(Number(result[9][3]) / 100)
             setThubCapA01(Number(ethers.utils.formatEther(String(result[10]))))
             setAllPowA01(Number(result[11]))
 
             setThubLvA02(Number(result[12][0]))
-            const _nextDayThubA02 = new Date((Number(result[12][2]) * 1000) + (86400 * 1000))
-            Number(result[12][2]) !== 0 ?
+            const _nextDayThubA02 = new Date((Number(result[12][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[12][2]) <= (86400 * 1000) && Number(result[12][2]) !== 0) ?
                 setNextDayThubA02(_nextDayThubA02.toLocaleString('es-CL')) :
-                setNextDayThubA02('not yet initiate')
+                setNextDayThubA02('now')
             setThubFeeA02(Number(result[12][3]) / 100)
             setThubCapA02(Number(ethers.utils.formatEther(String(result[13]))))
             setAllPowA02(Number(result[14]))
 
             setThubLvA03(Number(result[15][0]))
-            const _nextDayThubA03 = new Date((Number(result[15][2]) * 1000) + (86400 * 1000))
-            Number(result[15][2]) !== 0 ?
+            const _nextDayThubA03 = new Date((Number(result[15][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[15][2]) <= (86400 * 1000) && Number(result[15][2]) !== 0) ?
                 setNextDayThubA03(_nextDayThubA03.toLocaleString('es-CL')) :
-                setNextDayThubA03('not yet initiate')
+                setNextDayThubA03('now')
             setThubFeeA03(Number(result[15][3]) / 100)
             setThubCapA03(Number(ethers.utils.formatEther(String(result[16]))))
             setAllPowA03(Number(result[17]))
 
             setThubLvA04(Number(result[18][0]))
-            const _nextDayThubA04 = new Date((Number(result[18][2]) * 1000) + (86400 * 1000))
-            Number(result[18][2]) !== 0 ?
+            const _nextDayThubA04 = new Date((Number(result[18][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[18][2]) <= (86400 * 1000) && Number(result[18][2]) !== 0) ?
                 setNextDayThubA04(_nextDayThubA04.toLocaleString('es-CL')) :
-                setNextDayThubA04('not yet initiate')
+                setNextDayThubA04('now')
             setThubFeeA04(Number(result[18][3]) / 100)
             setThubCapA04(Number(ethers.utils.formatEther(String(result[19]))))
             setAllPowA04(Number(result[20]))
 
             setThubLvA05(Number(result[21][0]))
-            const _nextDayThubA05 = new Date((Number(result[21][2]) * 1000) + (86400 * 1000))
-            Number(result[21][2]) !== 0 ?
+            const _nextDayThubA05 = new Date((Number(result[21][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[21][2]) <= (86400 * 1000) && Number(result[21][2]) !== 0) ?
                 setNextDayThubA05(_nextDayThubA05.toLocaleString('es-CL')) :
-                setNextDayThubA05('not yet initiate')
+                setNextDayThubA05('now')
             setThubFeeA05(Number(result[21][3]) / 100)
             setThubCapA05(Number(ethers.utils.formatEther(String(result[22]))))
             setAllPowA05(Number(result[23]))
 
             setThubLvA06(Number(result[24][0]))
-            const _nextDayThubA06 = new Date((Number(result[24][2]) * 1000) + (86400 * 1000))
-            Number(result[24][2]) !== 0 ?
+            const _nextDayThubA06 = new Date((Number(result[24][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[24][2]) <= (86400 * 1000) && Number(result[24][2]) !== 0) ?
                 setNextDayThubA06(_nextDayThubA06.toLocaleString('es-CL')) :
-                setNextDayThubA06('not yet initiate')
+                setNextDayThubA06('now')
             setThubFeeA06(Number(result[24][3]) / 100)
             setThubCapA06(Number(ethers.utils.formatEther(String(result[25]))))
             setAllPowA06(Number(result[26]))
 
             setThubLvA07(Number(result[27][0]))
-            const _nextDayThubA07 = new Date((Number(result[27][2]) * 1000) + (86400 * 1000))
-            Number(result[27][2]) !== 0 ?
+            const _nextDayThubA07 = new Date((Number(result[27][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[27][2]) <= (86400 * 1000) && Number(result[27][2]) !== 0) ?
                 setNextDayThubA07(_nextDayThubA07.toLocaleString('es-CL')) :
-                setNextDayThubA07('not yet initiate')
+                setNextDayThubA07('now')
             setThubFeeA07(Number(result[27][3]) / 100)
             setThubCapA07(Number(ethers.utils.formatEther(String(result[28]))))
             setAllPowA07(Number(result[29]))
 
             setThubLvA08(Number(result[30][0]))
-            const _nextDayThubA08 = new Date((Number(result[30][2]) * 1000) + (86400 * 1000))
-            Number(result[30][2]) !== 0 ?
+            const _nextDayThubA08 = new Date((Number(result[30][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[30][2]) <= (86400 * 1000) && Number(result[30][2]) !== 0) ?
                 setNextDayThubA08(_nextDayThubA08.toLocaleString('es-CL')) :
-                setNextDayThubA08('not yet initiate')
+                setNextDayThubA08('now')
             setThubFeeA08(Number(result[30][3]) / 100)
             setThubCapA08(Number(ethers.utils.formatEther(String(result[31]))))
             setAllPowA08(Number(result[32]))
 
             setThubLvA09(Number(result[33][0]))
-            const _nextDayThubA09 = new Date((Number(result[33][2]) * 1000) + (86400 * 1000))
-            Number(result[33][2]) !== 0 ?
+            const _nextDayThubA09 = new Date((Number(result[33][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[33][2]) <= (86400 * 1000) && Number(result[33][2]) !== 0) ?
                 setNextDayThubA09(_nextDayThubA09.toLocaleString('es-CL')) :
-                setNextDayThubA09('not yet initiate')
+                setNextDayThubA09('now')
             setThubFeeA09(Number(result[33][3]) / 100)
             setThubCapA09(Number(ethers.utils.formatEther(String(result[34]))))
             setAllPowA09(Number(result[35]))
 
             setThubLvA10(Number(result[36][0]))
-            const _nextDayThubA10 = new Date((Number(result[36][2]) * 1000) + (86400 * 1000))
-            Number(result[36][2]) !== 0 ?
+            const _nextDayThubA10 = new Date((Number(result[36][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[36][2]) <= (86400 * 1000) && Number(result[36][2]) !== 0) ?
                 setNextDayThubA10(_nextDayThubA10.toLocaleString('es-CL')) :
-                setNextDayThubA10('not yet initiate')
+                setNextDayThubA10('now')
             setThubFeeA10(Number(result[36][3]) / 100)
             setThubCapA10(Number(ethers.utils.formatEther(String(result[37]))))
             setAllPowA10(Number(result[38]))
 
             setThubLvA11(Number(result[39][0]))
-            const _nextDayThubA11 = new Date((Number(result[39][2]) * 1000) + (86400 * 1000))
-            Number(result[39][2]) !== 0 ?
+            const _nextDayThubA11 = new Date((Number(result[39][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[39][2]) <= (86400 * 1000) && Number(result[39][2]) !== 0) ?
                 setNextDayThubA11(_nextDayThubA11.toLocaleString('es-CL')) :
-                setNextDayThubA11('not yet initiate')
+                setNextDayThubA11('now')
             setThubFeeA11(Number(result[39][3]) / 100)
             setThubCapA11(Number(ethers.utils.formatEther(String(result[40]))))
             setAllPowA11(Number(result[41]))
 
             setThubLvZ06(Number(result[42][0]))
-            const _nextDayThubZ06 = new Date((Number(result[42][2]) * 1000) + (86400 * 1000))
-            Number(result[42][2]) !== 0 ?
+            const _nextDayThubZ06 = new Date((Number(result[42][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[42][2]) <= (86400 * 1000) && Number(result[42][2]) !== 0) ?
                 setNextDayThubZ06(_nextDayThubZ06.toLocaleString('es-CL')) :
-                setNextDayThubZ06('not yet initiate')
+                setNextDayThubZ06('now')
             setThubFeeZ06(Number(result[42][3]) / 100)
             setThubCapZ06(Number(ethers.utils.formatEther(String(result[43]))))
             setAllPowZ06(Number(result[44]))
 
             setThubLvB01(Number(result[45][0]))
-            const _nextDayThubB01 = new Date((Number(result[45][2]) * 1000) + (86400 * 1000))
-            Number(result[45][2]) !== 0 ?
+            const _nextDayThubB01 = new Date((Number(result[45][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[45][2]) <= (86400 * 1000) && Number(result[45][2]) !== 0) ?
                 setNextDayThubB01(_nextDayThubB01.toLocaleString('es-CL')) :
-                setNextDayThubB01('not yet initiate')
+                setNextDayThubB01('now')
             setThubFeeB01(Number(result[45][3]) / 100)
             setThubCapB01(Number(ethers.utils.formatEther(String(result[46]))))
             setAllPowB01(Number(result[47]))
 
             setThubLvB02(Number(result[48][0]))
-            const _nextDayThubB02 = new Date((Number(result[48][2]) * 1000) + (86400 * 1000))
-            Number(result[48][2]) !== 0 ?
+            const _nextDayThubB02 = new Date((Number(result[48][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[48][2]) <= (86400 * 1000) && Number(result[48][2]) !== 0) ?
                 setNextDayThubB02(_nextDayThubB02.toLocaleString('es-CL')) :
-                setNextDayThubB02('not yet initiate')
+                setNextDayThubB02('now')
             setThubFeeB02(Number(result[48][3]) / 100)
             setThubCapB02(Number(ethers.utils.formatEther(String(result[49]))))
             setAllPowB02(Number(result[50]))
 
             setThubLvB03(Number(result[51][0]))
-            const _nextDayThubB03 = new Date((Number(result[51][2]) * 1000) + (86400 * 1000))
-            Number(result[51][2]) !== 0 ?
+            const _nextDayThubB03 = new Date((Number(result[51][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[51][2]) <= (86400 * 1000) && Number(result[51][2]) !== 0) ?
                 setNextDayThubB03(_nextDayThubB03.toLocaleString('es-CL')) :
-                setNextDayThubB03('not yet initiate')
+                setNextDayThubB03('now')
             setThubFeeB03(Number(result[51][3]) / 100)
             setThubCapB03(Number(ethers.utils.formatEther(String(result[52]))))
             setAllPowB03(Number(result[53]))
 
             setThubLvB04(Number(result[54][0]))
-            const _nextDayThubB04 = new Date((Number(result[54][2]) * 1000) + (86400 * 1000))
-            Number(result[54][2]) !== 0 ?
+            const _nextDayThubB04 = new Date((Number(result[54][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[54][2]) <= (86400 * 1000) && Number(result[54][2]) !== 0) ?
                 setNextDayThubB04(_nextDayThubB04.toLocaleString('es-CL')) :
-                setNextDayThubB04('not yet initiate')
+                setNextDayThubB04('now')
             setThubFeeB04(Number(result[54][3]) / 100)
             setThubCapB04(Number(ethers.utils.formatEther(String(result[55]))))
             setAllPowB04(Number(result[56]))
 
             setThubLvB05(Number(result[57][0]))
-            const _nextDayThubB05 = new Date((Number(result[57][2]) * 1000) + (86400 * 1000))
-            Number(result[57][2]) !== 0 ?
+            const _nextDayThubB05 = new Date((Number(result[57][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[57][2]) <= (86400 * 1000) && Number(result[57][2]) !== 0) ?
                 setNextDayThubB05(_nextDayThubB05.toLocaleString('es-CL')) :
-                setNextDayThubB05('not yet initiate')
+                setNextDayThubB05('now')
             setThubFeeB05(Number(result[57][3]) / 100)
             setThubCapB05(Number(ethers.utils.formatEther(String(result[58]))))
             setAllPowB05(Number(result[59]))
 
             setThubLvB06(Number(result[60][0]))
-            const _nextDayThubB06 = new Date((Number(result[60][2]) * 1000) + (86400 * 1000))
-            Number(result[60][2]) !== 0 ?
+            const _nextDayThubB06 = new Date((Number(result[60][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[60][2]) <= (86400 * 1000) && Number(result[60][2]) !== 0) ?
                 setNextDayThubB06(_nextDayThubB06.toLocaleString('es-CL')) :
-                setNextDayThubB06('not yet initiate')
+                setNextDayThubB06('now')
             setThubFeeB06(Number(result[60][3]) / 100)
             setThubCapB06(Number(ethers.utils.formatEther(String(result[61]))))
             setAllPowB06(Number(result[62]))
 
             setThubLvB07(Number(result[63][0]))
-            const _nextDayThubB07 = new Date((Number(result[63][2]) * 1000) + (86400 * 1000))
-            Number(result[63][2]) !== 0 ?
+            const _nextDayThubB07 = new Date((Number(result[63][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[63][2]) <= (86400 * 1000) && Number(result[63][2]) !== 0) ?
                 setNextDayThubB07(_nextDayThubB07.toLocaleString('es-CL')) :
-                setNextDayThubB07('not yet initiate')
+                setNextDayThubB07('now')
             setThubFeeB07(Number(result[63][3]) / 100)
             setThubCapB07(Number(ethers.utils.formatEther(String(result[64]))))
             setAllPowB07(Number(result[65]))
 
             setThubLvB08(Number(result[66][0]))
-            const _nextDayThubB08 = new Date((Number(result[66][2]) * 1000) + (86400 * 1000))
-            Number(result[66][2]) !== 0 ?
+            const _nextDayThubB08 = new Date((Number(result[66][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[66][2]) <= (86400 * 1000) && Number(result[66][2]) !== 0) ?
                 setNextDayThubB08(_nextDayThubB08.toLocaleString('es-CL')) :
-                setNextDayThubB08('not yet initiate')
+                setNextDayThubB08('now')
             setThubFeeB08(Number(result[66][3]) / 100)
             setThubCapB08(Number(ethers.utils.formatEther(String(result[67]))))
             setAllPowB08(Number(result[68]))
 
             setThubLvB09(Number(result[69][0]))
-            const _nextDayThubB09 = new Date((Number(result[69][2]) * 1000) + (86400 * 1000))
-            Number(result[69][2]) !== 0 ?
+            const _nextDayThubB09 = new Date((Number(result[69][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[69][2]) <= (86400 * 1000) && Number(result[69][2]) !== 0) ?
                 setNextDayThubB09(_nextDayThubB09.toLocaleString('es-CL')) :
-                setNextDayThubB09('not yet initiate')
+                setNextDayThubB09('now')
             setThubFeeB09(Number(result[69][3]) / 100)
             setThubCapB09(Number(ethers.utils.formatEther(String(result[70]))))
             setAllPowB09(Number(result[71]))
 
             setThubLvB10(Number(result[72][0]))
-            const _nextDayThubB10 = new Date((Number(result[72][2]) * 1000) + (86400 * 1000))
-            Number(result[72][2]) !== 0 ?
+            const _nextDayThubB10 = new Date((Number(result[72][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[72][2]) <= (86400 * 1000) && Number(result[72][2]) !== 0) ?
                 setNextDayThubB10(_nextDayThubB10.toLocaleString('es-CL')) :
-                setNextDayThubB10('not yet initiate')
+                setNextDayThubB10('now')
             setThubFeeB10(Number(result[72][3]) / 100)
             setThubCapB10(Number(ethers.utils.formatEther(String(result[73]))))
             setAllPowB10(Number(result[74]))
 
             setThubLvB11(Number(result[75][0]))
-            const _nextDayThubB11 = new Date((Number(result[75][2]) * 1000) + (86400 * 1000))
-            Number(result[75][2]) !== 0 ?
+            const _nextDayThubB11 = new Date((Number(result[75][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[75][2]) <= (86400 * 1000) && Number(result[75][2]) !== 0) ?
                 setNextDayThubB11(_nextDayThubB11.toLocaleString('es-CL')) :
-                setNextDayThubB11('not yet initiate')
+                setNextDayThubB11('now')
             setThubFeeB11(Number(result[75][3]) / 100)
             setThubCapB11(Number(ethers.utils.formatEther(String(result[76]))))
             setAllPowB11(Number(result[77]))
 
             setThubLvZ11(Number(result[78][0]))
-            const _nextDayThubZ11 = new Date((Number(result[78][2]) * 1000) + (86400 * 1000))
-            Number(result[78][2]) !== 0 ?
+            const _nextDayThubZ11 = new Date((Number(result[78][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[78][2]) <= (86400 * 1000) && Number(result[78][2]) !== 0) ?
                 setNextDayThubZ11(_nextDayThubZ11.toLocaleString('es-CL')) :
-                setNextDayThubZ11('not yet initiate')
+                setNextDayThubZ11('now')
             setThubFeeZ11(Number(result[78][3]) / 100)
             setThubCapZ11(Number(ethers.utils.formatEther(String(result[79]))))
             setAllPowZ11(Number(result[80]))
+
+            setThubLvC01(Number(result[81][0]))
+            const _nextDayThubC01 = new Date((Number(result[81][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[81][2]) <= (86400 * 1000) && Number(result[81][2]) !== 0) ?
+                setNextDayThubC01(_nextDayThubC01.toLocaleString('es-CL')) :
+                setNextDayThubC01('now')
+            setThubFeeC01(Number(result[81][3]) / 100)
+            setThubCapC01(Number(ethers.utils.formatEther(String(result[82]))))
+            setAllPowC01(Number(result[83]))
+
+            setThubLvC02(Number(result[84][0]))
+            const _nextDayThubC02 = new Date((Number(result[84][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[84][2]) <= (86400 * 1000) && Number(result[84][2]) !== 0) ?
+                setNextDayThubC02(_nextDayThubC02.toLocaleString('es-CL')) :
+                setNextDayThubC02('now')
+            setThubFeeC02(Number(result[84][3]) / 100)
+            setThubCapC02(Number(ethers.utils.formatEther(String(result[85]))))
+            setAllPowC02(Number(result[86]))
+
+            setThubLvC03(Number(result[87][0]))
+            const _nextDayThubC03 = new Date((Number(result[87][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[87][2]) <= (86400 * 1000) && Number(result[87][2]) !== 0) ?
+                setNextDayThubC03(_nextDayThubC03.toLocaleString('es-CL')) :
+                setNextDayThubC03('now')
+            setThubFeeC03(Number(result[87][3]) / 100)
+            setThubCapC03(Number(ethers.utils.formatEther(String(result[88]))))
+            setAllPowC03(Number(result[89]))
+
+            setThubLvC04(Number(result[90][0]))
+            const _nextDayThubC04 = new Date((Number(result[90][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[90][2]) <= (86400 * 1000) && Number(result[90][2]) !== 0) ?
+                setNextDayThubC04(_nextDayThubC04.toLocaleString('es-CL')) :
+                setNextDayThubC04('now')
+            setThubFeeC04(Number(result[90][3]) / 100)
+            setThubCapC04(Number(ethers.utils.formatEther(String(result[91]))))
+            setAllPowC04(Number(result[92]))
+
+            setThubLvC05(Number(result[93][0]))
+            const _nextDayThubC05 = new Date((Number(result[93][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[93][2]) <= (86400 * 1000) && Number(result[93][2]) !== 0) ?
+                setNextDayThubC05(_nextDayThubC05.toLocaleString('es-CL')) :
+                setNextDayThubC05('now')
+            setThubFeeC05(Number(result[93][3]) / 100)
+            setThubCapC05(Number(ethers.utils.formatEther(String(result[94]))))
+            setAllPowC05(Number(result[95]))
+
+            setThubLvC06(Number(result[96][0]))
+            const _nextDayThubC06 = new Date((Number(result[96][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[96][2]) <= (86400 * 1000) && Number(result[96][2]) !== 0) ?
+                setNextDayThubC06(_nextDayThubC06.toLocaleString('es-CL')) :
+                setNextDayThubC06('now')
+            setThubFeeC06(Number(result[96][3]) / 100)
+            setThubCapC06(Number(ethers.utils.formatEther(String(result[97]))))
+            setAllPowC06(Number(result[98]))
+
+            setThubLvC07(Number(result[99][0]))
+            const _nextDayThubC07 = new Date((Number(result[99][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[99][2]) <= (86400 * 1000) && Number(result[99][2]) !== 0) ?
+                setNextDayThubC07(_nextDayThubC07.toLocaleString('es-CL')) :
+                setNextDayThubC07('now')
+            setThubFeeC07(Number(result[99][3]) / 100)
+            setThubCapC07(Number(ethers.utils.formatEther(String(result[100]))))
+            setAllPowC07(Number(result[101]))
+
+            setThubLvC08(Number(result[102][0]))
+            const _nextDayThubC08 = new Date((Number(result[102][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[102][2]) <= (86400 * 1000) && Number(result[102][2]) !== 0) ?
+                setNextDayThubC08(_nextDayThubC08.toLocaleString('es-CL')) :
+                setNextDayThubC08('now')
+            setThubFeeC08(Number(result[102][3]) / 100)
+            setThubCapC08(Number(ethers.utils.formatEther(String(result[103]))))
+            setAllPowC08(Number(result[104]))
+
+            setThubLvC09(Number(result[105][0]))
+            const _nextDayThubC09 = new Date((Number(result[105][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[105][2]) <= (86400 * 1000) && Number(result[105][2]) !== 0) ?
+                setNextDayThubC09(_nextDayThubC09.toLocaleString('es-CL')) :
+                setNextDayThubC09('now')
+            setThubFeeC09(Number(result[105][3]) / 100)
+            setThubCapC09(Number(ethers.utils.formatEther(String(result[106]))))
+            setAllPowC09(Number(result[107]))
+
+            setThubLvC10(Number(result[108][0]))
+            const _nextDayThubC10 = new Date((Number(result[108][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[108][2]) <= (86400 * 1000) && Number(result[108][2]) !== 0) ?
+                setNextDayThubC10(_nextDayThubC10.toLocaleString('es-CL')) :
+                setNextDayThubC10('now')
+            setThubFeeC10(Number(result[108][3]) / 100)
+            setThubCapC10(Number(ethers.utils.formatEther(String(result[109]))))
+            setAllPowC10(Number(result[110]))
+
+            setThubLvC11(Number(result[111][0]))
+            const _nextDayThubC11 = new Date((Number(result[111][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[111][2]) <= (86400 * 1000) && Number(result[111][2]) !== 0) ?
+                setNextDayThubC11(_nextDayThubC11.toLocaleString('es-CL')) :
+                setNextDayThubC11('now')
+            setThubFeeC11(Number(result[111][3]) / 100)
+            setThubCapC11(Number(ethers.utils.formatEther(String(result[112]))))
+            setAllPowC11(Number(result[113]))
+
+            setThubLvC12(Number(result[114][0]))
+            const _nextDayThubC12 = new Date((Number(result[114][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[114][2]) <= (86400 * 1000) && Number(result[114][2]) !== 0) ?
+                setNextDayThubC12(_nextDayThubC12.toLocaleString('es-CL')) :
+                setNextDayThubC12('now')
+            setThubFeeC12(Number(result[114][3]) / 100)
+            setThubCapC12(Number(ethers.utils.formatEther(String(result[115]))))
+            setAllPowC12(Number(result[116]))
+
+            setThubLvC13(Number(result[117][0]))
+            const _nextDayThubC13 = new Date((Number(result[117][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[117][2]) <= (86400 * 1000) && Number(result[117][2]) !== 0) ?
+                setNextDayThubC13(_nextDayThubC13.toLocaleString('es-CL')) :
+                setNextDayThubC13('now')
+            setThubFeeC13(Number(result[117][3]) / 100)
+            setThubCapC13(Number(ethers.utils.formatEther(String(result[118]))))
+            setAllPowC13(Number(result[119]))
+
+            setThubLvC14(Number(result[120][0]))
+            const _nextDayThubC14 = new Date((Number(result[120][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[120][2]) <= (86400 * 1000) && Number(result[120][2]) !== 0) ?
+                setNextDayThubC14(_nextDayThubC14.toLocaleString('es-CL')) :
+                setNextDayThubC14('now')
+            setThubFeeC14(Number(result[120][3]) / 100)
+            setThubCapC14(Number(ethers.utils.formatEther(String(result[121]))))
+            setAllPowC14(Number(result[122]))
+
+            setThubLvC15(Number(result[123][0]))
+            const _nextDayThubC15 = new Date((Number(result[123][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[123][2]) <= (86400 * 1000) && Number(result[123][2]) !== 0) ?
+                setNextDayThubC15(_nextDayThubC15.toLocaleString('es-CL')) :
+                setNextDayThubC15('now')
+            setThubFeeC15(Number(result[123][3]) / 100)
+            setThubCapC15(Number(ethers.utils.formatEther(String(result[124]))))
+            setAllPowC15(Number(result[125]))
+
+            setThubLvC16(Number(result[126][0]))
+            const _nextDayThubC16 = new Date((Number(result[126][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[126][2]) <= (86400 * 1000) && Number(result[126][2]) !== 0) ?
+                setNextDayThubC16(_nextDayThubC16.toLocaleString('es-CL')) :
+                setNextDayThubC16('now')
+            setThubFeeC16(Number(result[126][3]) / 100)
+            setThubCapC16(Number(ethers.utils.formatEther(String(result[127]))))
+            setAllPowC16(Number(result[128]))
+
+            setThubLvC17(Number(result[129][0]))
+            const _nextDayThubC17 = new Date((Number(result[129][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[129][2]) <= (86400 * 1000) && Number(result[129][2]) !== 0) ?
+                setNextDayThubC17(_nextDayThubC17.toLocaleString('es-CL')) :
+                setNextDayThubC17('now')
+            setThubFeeC17(Number(result[129][3]) / 100)
+            setThubCapC17(Number(ethers.utils.formatEther(String(result[130]))))
+            setAllPowC17(Number(result[131]))
+
+            setThubLvC18(Number(result[132][0]))
+            const _nextDayThubC18 = new Date((Number(result[132][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[132][2]) <= (86400 * 1000) && Number(result[132][2]) !== 0) ?
+                setNextDayThubC18(_nextDayThubC18.toLocaleString('es-CL')) :
+                setNextDayThubC18('now')
+            setThubFeeC18(Number(result[132][3]) / 100)
+            setThubCapC18(Number(ethers.utils.formatEther(String(result[133]))))
+            setAllPowC18(Number(result[134]))
+
+            setThubLvC19(Number(result[135][0]))
+            const _nextDayThubC19 = new Date((Number(result[135][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[135][2]) <= (86400 * 1000) && Number(result[135][2]) !== 0) ?
+                setNextDayThubC19(_nextDayThubC19.toLocaleString('es-CL')) :
+                setNextDayThubC19('now')
+            setThubFeeC19(Number(result[135][3]) / 100)
+            setThubCapC19(Number(ethers.utils.formatEther(String(result[136]))))
+            setAllPowC19(Number(result[137]))
+
+            setThubLvC20(Number(result[138][0]))
+            const _nextDayThubC20 = new Date((Number(result[138][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[138][2]) <= (86400 * 1000) && Number(result[138][2]) !== 0) ?
+                setNextDayThubC20(_nextDayThubC20.toLocaleString('es-CL')) :
+                setNextDayThubC20('now')
+            setThubFeeC20(Number(result[138][3]) / 100)
+            setThubCapC20(Number(ethers.utils.formatEther(String(result[139]))))
+            setAllPowC20(Number(result[140]))
+
+            setThubLvC21(Number(result[141][0]))
+            const _nextDayThubC21 = new Date((Number(result[141][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[141][2]) <= (86400 * 1000) && Number(result[141][2]) !== 0) ?
+                setNextDayThubC21(_nextDayThubC21.toLocaleString('es-CL')) :
+                setNextDayThubC21('now')
+            setThubFeeC21(Number(result[141][3]) / 100)
+            setThubCapC21(Number(ethers.utils.formatEther(String(result[142]))))
+            setAllPowC21(Number(result[143]))
+
+            setThubLvC22(Number(result[144][0]))
+            const _nextDayThubC22 = new Date((Number(result[144][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[144][2]) <= (86400 * 1000) && Number(result[144][2]) !== 0) ?
+                setNextDayThubC22(_nextDayThubC22.toLocaleString('es-CL')) :
+                setNextDayThubC22('now')
+            setThubFeeC22(Number(result[144][3]) / 100)
+            setThubCapC22(Number(ethers.utils.formatEther(String(result[145]))))
+            setAllPowC22(Number(result[146]))
         })
     }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI])
 
@@ -1575,7 +2280,132 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                     <div>RESET ON: {nextDayThubA03}</div>
                                 </div>
                             </div>
-
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A04')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA04 * allPowA04 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A04 Lv.{thubLvA04}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA04}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA04 * allPowA04}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA04}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A05')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA05 * allPowA05 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A05 Lv.{thubLvA05}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA05}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA05 * allPowA05}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA05}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A06')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA06 * allPowA06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A06 Lv.{thubLvA06}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA06}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA06 * allPowA06}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA06}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A07')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA07 * allPowA07 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A07 Lv.{thubLvA07}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA07}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA07 * allPowA07}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA07}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A08')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA08 * allPowA08 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A08 Lv.{thubLvA08}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA08}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA08 * allPowA08}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA08}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A09')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA09 * allPowA09 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A09 Lv.{thubLvA09}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA09}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA09 * allPowA09}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA09}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A10')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA10 * allPowA10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A10 Lv.{thubLvA10}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA10}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA10 * allPowA10}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA10}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A11')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapA11 * allPowA11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A11 Lv.{thubLvA11}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA11}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA11 * allPowA11}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubA11}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z06')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapZ06 * allPowZ06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z06 Lv.{thubLvZ06}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ06}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ06 * allPowZ06}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubZ06}</div>
+                                </div>
+                            </div>
                             <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z10')}>
                                 <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div>{thubCapZ10 * allPowZ10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z10 Lv.{thubLvZ10}</div>
@@ -1588,6 +2418,482 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
                                     <div>RESET ON: {nextDayThubZ10}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B01')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB01 * allPowB01 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B01 Lv.{thubLvB01}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB01}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB01 * allPowB01}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB01}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B02')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB02 * allPowB02 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B02 Lv.{thubLvB02}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB02}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB02 * allPowB02}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB02}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B03')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB03 * allPowB03 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B03 Lv.{thubLvB03}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB03}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB03 * allPowB03}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB03}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B04')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB04 * allPowB04 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B04 Lv.{thubLvB04}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB04}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB04 * allPowB04}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB04}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B05')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB05 * allPowB05 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B05 Lv.{thubLvB05}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB05}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB05 * allPowB05}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB05}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B06')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB06 * allPowB06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B06 Lv.{thubLvB06}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB06}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB06 * allPowB06}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB06}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B07')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB07 * allPowB07 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B07 Lv.{thubLvB07}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB07}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB07 * allPowB07}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB07}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B08')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB08 * allPowB08 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B08 Lv.{thubLvB08}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB08}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB08 * allPowB08}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB08}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B09')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB09 * allPowB09 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B09 Lv.{thubLvB09}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB09}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB09 * allPowB09}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB09}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B10')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB10 * allPowB10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B10 Lv.{thubLvB10}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB10}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB10 * allPowB10}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB10}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B11')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapB11 * allPowB11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B11 Lv.{thubLvB11}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB11}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB11 * allPowB11}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubB11}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z11')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapZ11 * allPowZ11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z11 Lv.{thubLvZ11}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ11}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ11 * allPowZ11}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubZ11}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C01')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC01 * allPowC01 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C01 Lv.{thubLvC01}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC01}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC01 * allPowC01}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC01}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C02')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC02 * allPowC02 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C02 Lv.{thubLvC02}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC02}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC02 * allPowC02}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC02}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C03')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC03 * allPowC03 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C03 Lv.{thubLvC03}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC03}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC03 * allPowC03}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC03}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C04')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC04 * allPowC04 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C04 Lv.{thubLvC04}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC04}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC04 * allPowC04}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC04}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C05')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC05 * allPowC05 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C05 Lv.{thubLvC05}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC05}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC05 * allPowC05}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC05}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C06')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC06 * allPowC06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C06 Lv.{thubLvC06}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC06}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC06 * allPowC06}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC06}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C07')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC07 * allPowC07 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C07 Lv.{thubLvC07}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC07}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC07 * allPowC07}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC07}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C08')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC08 * allPowC08 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C08 Lv.{thubLvC08}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC08}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC08 * allPowC08}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC08}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C09')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC09 * allPowC09 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C09 Lv.{thubLvC09}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC09}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC09 * allPowC09}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC09}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C10')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC10 * allPowC10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C10 Lv.{thubLvC10}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC10}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC10 * allPowC10}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC10}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C11')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC11 * allPowC11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C11 Lv.{thubLvC11}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC11}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC11 * allPowC11}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC11}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C12' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C12')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC12 * allPowC12 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C12 Lv.{thubLvC12}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC12}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC12 * allPowC12}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC12}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C13' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C13')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC13 * allPowC13 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C13 Lv.{thubLvC13}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC13}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC13 * allPowC13}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC13}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C14' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C14')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC14 * allPowC14 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C14 Lv.{thubLvC14}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC14}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC14 * allPowC14}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC14}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C15' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C15')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC15 * allPowC15 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C15 Lv.{thubLvC15}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC15}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC15 * allPowC15}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC15}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C16' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C16')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC16 * allPowC16 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C16 Lv.{thubLvC16}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC16}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC16 * allPowC16}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC16}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C17' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C17')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC17 * allPowC17 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C17 Lv.{thubLvC17}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC17}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC17 * allPowC17}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC17}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C18' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C18')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC18 * allPowC18 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C18 Lv.{thubLvC18}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC18}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC18 * allPowC18}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC18}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C19' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C19')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC19 * allPowC19 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C19 Lv.{thubLvC19}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC19}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC19 * allPowC19}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC19}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C20' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C20')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC20 * allPowC20 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C20 Lv.{thubLvC20}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC20}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC20 * allPowC20}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC20}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C21' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C21')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC21 * allPowC21 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C21 Lv.{thubLvC21}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC21}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC21 * allPowC21}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC21}</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C22' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C22')}>
+                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div>{thubCapC22 * allPowC22 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C22 Lv.{thubLvC22}</div>
+                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC22}%</span></div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC22 * allPowC22}</span> $BBQ</div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    <div></div>
+                                    <div>RESET ON: {nextDayThubC22}</div>
                                 </div>
                             </div>
                         </div>

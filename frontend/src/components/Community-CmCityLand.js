@@ -16,7 +16,7 @@ const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
-const transporthub = '0x1c56BC081f50F3da01b3838FC889756B0912E395'
+const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 
 //const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
 //const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
@@ -296,10 +296,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setNftStake(result[8])
 
             setThubLv(Number(result[9][0]))
-            const _nextDayThub = new Date((Number(result[9][2]) * 1000) + (86400 * 1000))
-            Number(result[9][2]) !== 0 ?
+            const _nextDayThub = new Date((Number(result[9][2]) * 1000) + (86400 * 1000));
+            (Date.now() - Number(result[9][2]) <= (86400 * 1000) && Number(result[9][2]) !== 0) ?
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
-                setNextDayThub('not yet initiate')
+                setNextDayThub('now')
             setThubFee(Number(result[9][3]) / 100)
             setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
         })
