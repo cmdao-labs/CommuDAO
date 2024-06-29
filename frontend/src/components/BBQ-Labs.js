@@ -1359,7 +1359,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                 ],
             }) 
 
-            const stakeFilter = await cmdaonftSC.filters.Transfer(data2[0].result, houseStaking, null)
+            const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
