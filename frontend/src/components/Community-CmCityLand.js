@@ -793,7 +793,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                         UPGRADE
                                                     </div>
                                                 }                                     
-                                                {(false && slot1Lv >= 1 && thubLv === 0) &&
+                                                {(slot1Lv >= 1 && thubLv === 0) &&
                                                     <div 
                                                         style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                         className="bold button" 

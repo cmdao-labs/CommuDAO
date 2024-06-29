@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 const { ethereum } = window
 
@@ -11,9 +11,10 @@ const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
+const sourcethub = '0xf623B7164cb81DCfC3836492fb09Ae005be57322'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI }) => {
+const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI, sourceThubABI }) => {
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -24,6 +25,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
     const [canCraftBBQ, setCanCraftBBQ] = React.useState(false)
 
     const [houseSelected, setHouseSelected] = React.useState('')
+    const [transportValue, setTransportValue] = React.useState('')
 
     const [allPowZ02, setAllPowZ02] = React.useState(0)
     const [thubLvZ02, setThubLvZ02] = React.useState(0)
@@ -2042,6 +2044,140 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
         setisLoading(false)
     }
 
+    const transportHandle = async () => {
+        setisLoading(true)
+        try {
+            const bbqAllow = await readContract({
+                address: bbqToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, sourcethub],
+            })
+            if (bbqAllow < ethers.utils.parseEther(String(transportValue))) {
+                const config = await prepareWriteContract({
+                    address: bbqToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [sourcethub, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            let _target = null
+            if (houseSelected === 'Z02') {
+                _target = 10026002
+            } else if (houseSelected === 'A01') {
+                _target = 10001001
+            } else if (houseSelected === 'A02') {
+                _target = 10001002
+            } else if (houseSelected === 'A03') {
+                _target = 10001003
+            } else if (houseSelected === 'A04') {
+                _target = 10001004
+            } else if (houseSelected === 'A05') {
+                _target = 10001005
+            } else if (houseSelected === 'A06') {
+                _target = 10001006
+            } else if (houseSelected === 'A07') {
+                _target = 10001007
+            } else if (houseSelected === 'A08') {
+                _target = 10001008
+            } else if (houseSelected === 'A09') {
+                _target = 10001009
+            } else if (houseSelected === 'A10') {
+                _target = 10001010
+            } else if (houseSelected === 'A11') {
+                _target = 10001011
+            } else if (houseSelected === 'Z06') {
+                _target = 10026006
+            } else if (houseSelected === 'Z10') {
+                _target = 10026010
+            } else if (houseSelected === 'B01') {
+                _target = 10002001
+            } else if (houseSelected === 'B02') {
+                _target = 10002002
+            } else if (houseSelected === 'B03') {
+                _target = 10002003
+            } else if (houseSelected === 'B04') {
+                _target = 10002004
+            } else if (houseSelected === 'B05') {
+                _target = 10002005
+            } else if (houseSelected === 'B06') {
+                _target = 10002006
+            } else if (houseSelected === 'B07') {
+                _target = 10002007
+            } else if (houseSelected === 'B08') {
+                _target = 10002008
+            } else if (houseSelected === 'B09') {
+                _target = 10002009
+            } else if (houseSelected === 'B10') {
+                _target = 10002010
+            } else if (houseSelected === 'B11') {
+                _target = 10002011
+            } else if (houseSelected === 'Z11') {
+                _target = 10026011
+            } else if (houseSelected === 'C01') {
+                _target = 10003001
+            } else if (houseSelected === 'C02') {
+                _target = 10003002
+            } else if (houseSelected === 'C03') {
+                _target = 10003003
+            } else if (houseSelected === 'C04') {
+                _target = 10003004
+            } else if (houseSelected === 'C05') {
+                _target = 10003005
+            } else if (houseSelected === 'C06') {
+                _target = 10003006
+            } else if (houseSelected === 'C07') {
+                _target = 10003007
+            } else if (houseSelected === 'C08') {
+                _target = 10003008
+            } else if (houseSelected === 'C09') {
+                _target = 10003009
+            } else if (houseSelected === 'C10') {
+                _target = 10003010
+            } else if (houseSelected === 'C11') {
+                _target = 10003011
+            } else if (houseSelected === 'C12') {
+                _target = 10003012
+            } else if (houseSelected === 'C13') {
+                _target = 10003013
+            } else if (houseSelected === 'C14') {
+                _target = 10003014
+            } else if (houseSelected === 'C15') {
+                _target = 10003015
+            } else if (houseSelected === 'C16') {
+                _target = 10003016
+            } else if (houseSelected === 'C17') {
+                _target = 10003017
+            } else if (houseSelected === 'C18') {
+                _target = 10003018
+            } else if (houseSelected === 'C19') {
+                _target = 10003019
+            } else if (houseSelected === 'C20') {
+                _target = 10003020
+            } else if (houseSelected === 'C21') {
+                _target = 10003021
+            } else if (houseSelected === 'C22') {
+                _target = 10003022
+            }
+            
+            const config2 = await prepareWriteContract({
+                address: sourcethub,
+                abi: sourceThubABI,
+                functionName: 'sendBBQ',
+                args: [_target, ethers.utils.parseEther(String(transportValue))],
+                value: ethers.utils.parseEther('80'),
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            console.log(e)
+        }
+        setisLoading(false)
+    }
+
     const upgradeBBQHandle = async (_level) => {
         setisLoading(true)
         try {
@@ -2908,10 +3044,11 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 step="1"
                                 min="1"
                                 placeholder="0.00 $BBQ"
-                                disabled
+                                value={transportValue}
+                                onChange={(event) => setTransportValue(event.target.value)}
                             ></input>
-                            {false && address !== null && address !== undefined ? 
-                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">TRANSPORT</div> : 
+                            {address !== null && address !== undefined ? 
+                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={transportHandle}>TRANSPORT</div> : 
                                 <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">TRANSPORT</div>
                             }
                         </div>
