@@ -3,9 +3,7 @@ import { readContract, readContracts, prepareWriteContract, waitForTransaction, 
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
-const meowToken = '0x04052384166fC30D03929eE328805eC084776843'
-const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
-const degenoMeow = '0xdB16eCc5d2c27F67B4a4dc1e25f1e6e20BAcAFD0'
+// const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const doijibToken = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
 const wjbcToken = '0xC4B7C87510675167643e3DE6EEeD4D2c06A9e747'
 const woodToken = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
@@ -16,19 +14,10 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)
-    const [gasselected, setGasselected] = React.useState("MEOW")
+    const [gasselected, setGasselected] = React.useState("DOIJIB.wjbc")
 
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
-
-    const [reserveCmjMeow, setReserveCmjMeow] = React.useState("")
-    const [reserveMeow, setReserveMeow] = React.useState("")
-
-    const [cmjBoughtMEOW, setCmjBoughtMEOW] = React.useState("0.000")
-    const [tokenBoughtMEOW, setTokenBoughtMEOW] = React.useState("0.000")
-    const [priceMEOW, setPriceMEOW] = React.useState("0.000")
-    const [meowBalance, setMeowBalance] = React.useState("0")
-    const [meowLpBalance, setMeowLpBalance] = React.useState("0")
 
     const [lpSell, setLpSell] = React.useState("")
     const [meowAdd, setMeowAdd] = React.useState("")
@@ -47,230 +36,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
     const [reserveDoijibWOOD, setReserveDoijibWOOD] = React.useState("")
     const [reserveWoodDoijib, setReserveWoodDoijib] = React.useState("")
     const [doijibWOODLpBalance, setDoijibWOODLpBalance] = React.useState("0")
-
-    const handleSwapMEOW = async (event) => {
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: degenoMeow,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: degenoMeow,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                },
-            ],
-        })
-        const _reserveCmj = data[0].result
-        const _reserveToken = data[1].result
-        const tokensBoughttokenTOcmj = await readContract({
-            address: degenoMeow,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveToken), String(_reserveCmj)],
-        })
-        event.target.value !== "" ? setCmjBoughtMEOW(ethers.utils.formatEther(tokensBoughttokenTOcmj)) : setCmjBoughtMEOW("0.000")
-    }
-    const handleSwapMEOW_2 = async (event) => {
-        setInputSwap2(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
-            contracts: [
-                {
-                    address: degenoMeow,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveCMJ',
-                },
-                {
-                    address: degenoMeow,
-                    abi: ammyStdABI,
-                    functionName: 'getReserveToken',
-                },
-            ],
-        })
-        const _reserveCmj = data[0].result
-        const _reserveToken = data[1].result
-        const tokensBoughtcmjTOtoken = await readContract({
-            address: degenoMeow,
-            abi: ammyStdABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveCmj), String(_reserveToken)],
-        })
-        event.target.value !== "" ? setTokenBoughtMEOW(ethers.utils.formatEther(tokensBoughtcmjTOtoken)) : setTokenBoughtMEOW("0.000")
-    }
-
-    const swapTokenHandleMEOW = async (_sell) => {
-        setisLoading(true)
-        try {
-            if (_sell) {
-                const tokenAllow = await readContract({
-                    address: meowToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, degenoMeow],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
-                    const config = await prepareWriteContract({
-                        address: meowToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [degenoMeow, bigApprove],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                }
-                const config = await prepareWriteContract({
-                    address: degenoMeow,
-                    abi: ammyStdABI,
-                    functionName: 'tokenTOcmj',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(cmjBoughtMEOW)],
-                })
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            } else {
-                const cmjAllow = await readContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [address, degenoMeow],
-                })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(cmjAllow)) {
-                    const config = await prepareWriteContract({
-                        address: cmjToken,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [degenoMeow, bigApprove],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                }
-                const config2 = await prepareWriteContract({
-                    address: degenoMeow,
-                    abi: ammyStdABI,
-                    functionName: 'cmjTOtoken',
-                    args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtMEOW)],
-                })
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            }
-        } catch {}
-        setisLoading(false)
-    }
-
-    const removeMeowLp = async () => {
-        setisLoading(true)
-        try {
-            const config = await prepareWriteContract({
-                address: degenoMeow,
-                abi: ammyStdABI,
-                functionName: 'removeLiquidity',
-                args: [ethers.utils.parseEther(lpSell)],
-            })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const handleAddMeow = async (event) => {
-        setMeowAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveMeow = await readContract({
-            address: degenoMeow,
-            abi: ammyStdABI,
-            functionName: 'getReserveToken',
-        })
-        const bigMeowReserv = ethers.BigNumber.from(_reserveMeow)
-        const _reserveCmj = await readContract({
-            address: degenoMeow,
-            abi: ammyStdABI,
-            functionName: 'getReserveCMJ',
-        })
-        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
-        event.target.value !== "" ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigMeowReserv)))) : setCmjAdd("")
-    }
-    const handleAddMeow2 = async (event) => {
-        setCmjAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveMeow = await readContract({
-            address: degenoMeow,
-            abi: ammyStdABI,
-            functionName: 'getReserveToken',
-        })
-        const bigMeowReserv = ethers.BigNumber.from(_reserveMeow)
-        const _reserveCmj = await readContract({
-            address: degenoMeow,
-            abi: ammyStdABI,
-            functionName: 'getReserveCMJ',
-        })
-        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
-        event.target.value !== "" ? setMeowAdd(ethers.utils.formatEther(((bigValue.mul(bigMeowReserv)).div(bigCmjReserv)))) : setMeowAdd("")
-    }
-    const addMeowLpHandle = async () => {
-        setisLoading(true)
-        try {
-            const cmjAllow = await readContract({
-                address: cmjToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, degenoMeow],
-            })
-            const bigValue = cmjAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(cmjAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(cmjAdd) > Number(cmjAllow) / (10**18)) {
-                const config = await prepareWriteContract({
-                    address: cmjToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [degenoMeow, bigApprove],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            }
-            const meowAllow = await readContract({
-                address: meowToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, degenoMeow],
-            })
-            if (Number(meowAdd) > Number(meowAllow) / (10**18)) {
-                const config2 = await prepareWriteContract({
-                    address: meowToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [degenoMeow, bigApprove],
-                })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
-            }
-            const config3 = await prepareWriteContract({
-                address: degenoMeow,
-                abi: ammyStdABI,
-                functionName: 'addLiquidity',
-                args: [ethers.utils.parseEther(meowAdd), ethers.utils.parseEther(cmjAdd)],
-            })
-            const { hash: hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
 
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
@@ -565,16 +330,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
             const data = await readContracts({
                 contracts: [
                     {
-                        address: degenoMeow,
-                        abi: ammyStdABI,
-                        functionName: 'getReserveCMJ',
-                    },
-                    {
-                        address: degenoMeow,
-                        abi: ammyStdABI,
-                        functionName: 'getReserveToken',
-                    },
-                    {
                         address: degenoDoijibWJBC,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
@@ -597,21 +352,15 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                 ],
             })
 
-            const _reserveCmjMEOW = data[0].result
-            const _reserveMEOW = data[1].result
-            const _reserveWjbcDoijib = data[2].result
-            const _reserveDoijibWJBC = data[3].result
-            const _reserveWoodDoijib = data[4].result
-            const _reserveDoijibWOOD = data[5].result
+            const _reserveCmjMEOW = 0
+            const _reserveMEOW = 0
+            const _reserveWjbcDoijib = data[0].result
+            const _reserveDoijibWJBC = data[1].result
+            const _reserveWoodDoijib = data[2].result
+            const _reserveDoijibWOOD = data[3].result
 
             const data2 = await readContracts({
                 contracts: [
-                    {
-                        address: degenoMeow,
-                        abi: ammyStdABI,
-                        functionName: 'getAmountOfTokens',
-                        args: [String(10**18), String(_reserveMEOW), String(_reserveCmjMEOW)],
-                    },
                     {
                         address: degenoDoijibWJBC,
                         abi: cmdaoAmmNpcABI,
@@ -627,24 +376,12 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                 ],
             })
 
-            const tokensBoughtbbqTOcmj = data2[0].result
-            const tokensBoughtdoijibTOwjbc = data2[1].result
-            const tokensBoughtdoijibTOwood = data2[2].result
+            const tokensBoughtbbqTOcmj = 0
+            const tokensBoughtdoijibTOwjbc = data2[0].result
+            const tokensBoughtdoijibTOwood = data2[1].result
 
             const data3 = address !== null && address !== undefined ? await readContracts({
                 contracts: [
-                    {
-                        address: meowToken,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },
-                    {
-                        address: degenoMeow,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },    
                     {
                         address: degenoDoijibWJBC,
                         abi: erc20ABI,
@@ -660,10 +397,10 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                 ],
             }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0},]
 
-            const meowBal = data3[0].result
-            const meowlpBal = data3[1].result
-            const doijibWjbclpBal = data3[2].result
-            const doijibWoodlpBal = data3[3].result
+            const meowBal = 0
+            const meowlpBal = 0
+            const doijibWjbclpBal = data3[0].result
+            const doijibWoodlpBal = data3[1].result
 
             return [
                 tokensBoughtbbqTOcmj, meowBal, meowlpBal, _reserveCmjMEOW, _reserveMEOW,
@@ -682,11 +419,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
             )
 
         getAsync().then(result => {
-            setPriceMEOW(Number(ethers.utils.formatEther(result[0])).toFixed(3))
-            setMeowBalance(Math.floor(ethers.utils.formatEther(result[1]) * 100000) / 100000)
-            setMeowLpBalance(Math.floor(ethers.utils.formatEther(result[2]) * 100000) / 100000)
-            setReserveCmjMeow(ethers.utils.formatEther(result[3]))
-            setReserveMeow(ethers.utils.formatEther(result[4]))
+
 
             setPriceDoijibWJBC(Number(ethers.utils.formatEther(result[5])).toFixed(3))
             setDoijibWJBCLpBalance(Math.floor(ethers.utils.formatEther(result[6]) * 100000) / 100000)
@@ -715,13 +448,11 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "12px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                    <option value="MEOW">MEOW-CMJ</option>
                                     <option value="DOIJIB.wjbc">DOIJIB-WJBC</option>
                                     <option value="DOIJIB.wood">DOIJIB-WOOD</option>
                                 </select>
                                 <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                     &nbsp;1
-                                    {gasselected === "MEOW" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/> &nbsp;=&nbsp; <div className="emp">{priceMEOW}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/></>}
                                     {gasselected === "DOIJIB.wjbc" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{priceDoijibWJBC}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/></>}
                                     {gasselected === "DOIJIB.wood" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{priceDoijibWOOD}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/></>}
                                 </div>
@@ -739,9 +470,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             min="1"
                             placeholder="0.00"
                             onChange={(event) => {
-                                if (gasselected === "MEOW") {
-                                    handleSwapMEOW(event)
-                                } else if (gasselected === "DOIJIB.wjbc") {
+                                if (gasselected === "DOIJIB.wjbc") {
                                     handleSwapUni(1, event)
                                 } else if (gasselected === "DOIJIB.wood") {
                                     handleSwapUni(2, event)
@@ -749,12 +478,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             }}
                             value={inputSwap}
                         ></input>
-                        {gasselected === "MEOW" && 
-                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleSwapMEOW(bal);}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
-                                <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                            </div>
-                        }
                         {gasselected === "DOIJIB.wjbc" && 
                             <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; handleSwapUni(1, bal);}}>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
@@ -772,9 +495,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         {address !== null && address !== undefined ?
                             <div style={{width: "30px"}} className="pixel button" onClick={
                                 () => {
-                                    if (gasselected === "MEOW") {
-                                        swapTokenHandleMEOW(true)
-                                    } else if (gasselected === "DOIJIB.wjbc") {
+                                    if (gasselected === "DOIJIB.wjbc") {
                                         swapTokenHandleUni(1, true)
                                     } else if (gasselected === "DOIJIB.wood") {
                                         swapTokenHandleUni(2, true)
@@ -784,17 +505,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">SELL</div>
                         }
                         <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
-                            {gasselected === "MEOW" && 
-                                <>
-                                    <div className="emp">
-                                        {Number(cmjBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
-                                    </div>
-                                    $CMJ (
-                                        {Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjMeow) - ((Number(reserveCmjMeow) * Number(reserveMeow)) / (Number(reserveMeow) + Number(inputSwap))))) - (Number(reserveMeow/reserveCmjMeow))) / (Number(reserveMeow/reserveCmjMeow))) * 100)).toFixed(2)}%</>}
-                                        {Number(inputSwap) === 0 && <>0.00%</>}
-                                    )
-                                </>
-                            }
                             {gasselected === "DOIJIB.wjbc" && 
                                 <>
                                     <div className="emp">
@@ -829,9 +539,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             min="1"
                             placeholder="0.00"
                             onChange={(event) => {
-                                if (gasselected === "MEOW") {
-                                    handleSwapMEOW_2(event)
-                                } else if (gasselected === "DOIJIB.wjbc") {
+                                if (gasselected === "DOIJIB.wjbc") {
                                     handleSwapUni_2(1, event)
                                 } else if (gasselected === "DOIJIB.wood") {
                                     handleSwapUni_2(2, event)
@@ -839,12 +547,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             }}
                             value={inputSwap2}
                         ></input>
-                        {gasselected === "MEOW" && 
-                            <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleSwapMEOW_2(bal);}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
-                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                            </div>
-                        }
                         {gasselected === "DOIJIB.wjbc" && 
                             <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: wjbcBalance}}; handleSwapUni_2(1, bal);}}>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
@@ -862,9 +564,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         {address !== null && address !== undefined ?
                             <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                 () => {
-                                    if (gasselected === "MEOW") {
-                                        swapTokenHandleMEOW(false)
-                                    } else if (gasselected === "DOIJIB.wjbc") {
+                                    if (gasselected === "DOIJIB.wjbc") {
                                         swapTokenHandleUni(1, false)
                                     } else if (gasselected === "DOIJIB.wood") {
                                         swapTokenHandleUni(2, false)
@@ -874,17 +574,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             <div style={{width: "30px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BUY</div>
                         }
                         <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
-                            {gasselected === "MEOW" && 
-                                <>
-                                    <div style={{color: "#67BAA7"}}>
-                                        {Number(tokenBoughtMEOW).toLocaleString('en-US', {maximumFractionDigits:3})}
-                                    </div>
-                                    $MEOW ( 
-                                        {Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveMeow) - ((Number(reserveMeow) * Number(reserveCmjMeow)) / (Number(reserveCmjMeow) + Number(inputSwap2))))) - (Number(reserveCmjMeow/reserveMeow))) / (Number(reserveCmjMeow/reserveMeow))) * 100)).toFixed(2)}%</>}
-                                        {Number(inputSwap2) === 0 && <>0.00%</>}
-                                    )
-                                </>
-                            }
                             {gasselected === "DOIJIB.wjbc" && 
                                 <>
                                     <div style={{color: "#67BAA7"}}>
@@ -921,7 +610,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "12px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                    <option value="MEOW">MEOW-CMJ</option>
                                     <option value="DOIJIB.wjbc">DOIJIB-WJBC</option>
                                     <option value="DOIJIB.wood">DOIJIB-WOOD</option>
                                 </select>
@@ -930,9 +618,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                                     className="pixel" 
                                     onClick={
                                         () => {
-                                            if (gasselected === "MEOW") {
-                                                setLpSell(String(meowLpBalance))
-                                            } else if (gasselected === "DOIJIB.wjbc") {
+                                            if (gasselected === "DOIJIB.wjbc") {
                                                 setLpSell(String(doijibWJBCLpBalance))
                                             } else if (gasselected === "DOIJIB.wood") {
                                                 setLpSell(String(doijibWOODLpBalance))
@@ -940,7 +626,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                                         }
                                     }
                                 >
-                                    {gasselected === "MEOW" && <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(meowLpBalance).toFixed(4)}</div></>}
                                     {gasselected === "DOIJIB.wjbc" && <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(doijibWJBCLpBalance).toFixed(4)}</div></>}
                                     {gasselected === "DOIJIB.wood" && <>&nbsp;LP BALANCE:&nbsp; <div className='emp'>{Number(doijibWOODLpBalance).toFixed(4)}</div></>}
                                 </div>
@@ -950,17 +635,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                     <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        {gasselected === "MEOW" && 
-                            <input 
-                                style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} 
-                                type="number" 
-                                placeholder={"0 MEOW-CMJ LP"} 
-                                className="bold" 
-                                onChange={(event) => setLpSell(event.target.value)}
-                                value={lpSell}
-                            >
-                            </input>
-                        }
                         {gasselected === "DOIJIB.wjbc" && 
                             <input 
                                 style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} 
@@ -987,9 +661,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                             style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}}
                             className="button pixel"
                             onClick={() => {
-                                if (gasselected === "MEOW") {
-                                    removeMeowLp()
-                                } else if (gasselected === "DOIJIB.wjbc") {
+                                if (gasselected === "DOIJIB.wjbc") {
                                     removeLpUni(1)
                                 } else if (gasselected === "DOIJIB.wood") {
                                     removeLpUni(2)
@@ -999,24 +671,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                     </div>
                     <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                        {gasselected === "MEOW" && 
-                            <>
-                                <input
-                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                                    className="bold"
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0 $MEOW"
-                                    onChange={(event) => {handleAddMeow(event)}}
-                                    value={meowAdd}
-                                ></input>
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(meowBalance)}}; handleAddMeow(bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictvxugfipr3awpjv7kugj6i2xpmifmh6wp33ljcmwnvvw56zigdy" width="22" alt="$MEOW"/>
-                                    <div style={{marginLeft: "5px"}}>{Number(meowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                </div>
-                            </>
-                        }
                         {gasselected === "DOIJIB.wjbc" && 
                             <>
                                 <input
@@ -1056,24 +710,6 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                     </div>
                     <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                        {gasselected === "MEOW" && 
-                            <>
-                                <input
-                                    style={{width: "55%", padding: "5px 10px", border: "1px solid #dddade", fontSize: "14px"}}
-                                    className="bold"
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0 $CMJ"
-                                    onChange={(event) => handleAddMeow2(event)}
-                                    value={cmjAdd}
-                                ></input>
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cmjBalance}}; handleAddMeow2(bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
-                                    <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                </div>
-                            </>
-                        }
                         {gasselected === "DOIJIB.wjbc" && 
                             <>
                                 <input
@@ -1115,9 +751,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         {address !== null && address !== undefined ?
                             <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                 () => {
-                                    if (gasselected === "MEOW") {
-                                        addMeowLpHandle()
-                                    } else if (gasselected === "DOIJIB.wjbc") {
+                                    if (gasselected === "DOIJIB.wjbc") {
                                         addLpHandleUni(1)
                                     } else if (gasselected === "DOIJIB.wood") {
                                         addLpHandleUni(2)
