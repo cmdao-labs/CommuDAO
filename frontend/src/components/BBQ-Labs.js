@@ -1556,7 +1556,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvZ10(Number(result[3][0]))
             const _nextDayThubZ10 = new Date((Number(result[3][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[3][2]) <= (86400 * 1000) && Number(result[3][2]) !== 0) ?
+            (Date.now() <= _nextDayThubZ10 && Number(result[3][2]) !== 0) ?
                 setNextDayThubZ10(_nextDayThubZ10.toLocaleString('es-CL')) :
                 setNextDayThubZ10('now')
             setThubFeeZ10(Number(result[3][3]) / 100)
@@ -1565,7 +1565,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvZ02(Number(result[6][0]))
             const _nextDayThubZ02 = new Date((Number(result[6][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[6][2]) <= (86400 * 1000) && Number(result[6][2]) !== 0) ?
+            (Date.now() <= _nextDayThubZ02 && Number(result[6][2]) !== 0) ?
                 setNextDayThubZ02(_nextDayThubZ02.toLocaleString('es-CL')) :
                 setNextDayThubZ02('now')
             setThubFeeZ02(Number(result[6][3]) / 100)
@@ -1574,7 +1574,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA01(Number(result[9][0]))
             const _nextDayThubA01 = new Date((Number(result[9][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[9][2]) <= (86400 * 1000) && Number(result[6][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA01 && Number(result[6][2]) !== 0) ?
                 setNextDayThubA01(_nextDayThubA01.toLocaleString('es-CL')) :
                 setNextDayThubA01('now')
             setThubFeeA01(Number(result[9][3]) / 100)
@@ -1583,7 +1583,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA02(Number(result[12][0]))
             const _nextDayThubA02 = new Date((Number(result[12][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[12][2]) <= (86400 * 1000) && Number(result[12][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA02 && Number(result[12][2]) !== 0) ?
                 setNextDayThubA02(_nextDayThubA02.toLocaleString('es-CL')) :
                 setNextDayThubA02('now')
             setThubFeeA02(Number(result[12][3]) / 100)
@@ -1592,7 +1592,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA03(Number(result[15][0]))
             const _nextDayThubA03 = new Date((Number(result[15][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[15][2]) <= (86400 * 1000) && Number(result[15][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA03 && Number(result[15][2]) !== 0) ?
                 setNextDayThubA03(_nextDayThubA03.toLocaleString('es-CL')) :
                 setNextDayThubA03('now')
             setThubFeeA03(Number(result[15][3]) / 100)
@@ -1601,7 +1601,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA04(Number(result[18][0]))
             const _nextDayThubA04 = new Date((Number(result[18][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[18][2]) <= (86400 * 1000) && Number(result[18][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA04 && Number(result[18][2]) !== 0) ?
                 setNextDayThubA04(_nextDayThubA04.toLocaleString('es-CL')) :
                 setNextDayThubA04('now')
             setThubFeeA04(Number(result[18][3]) / 100)
@@ -1610,7 +1610,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA05(Number(result[21][0]))
             const _nextDayThubA05 = new Date((Number(result[21][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[21][2]) <= (86400 * 1000) && Number(result[21][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA05 && Number(result[21][2]) !== 0) ?
                 setNextDayThubA05(_nextDayThubA05.toLocaleString('es-CL')) :
                 setNextDayThubA05('now')
             setThubFeeA05(Number(result[21][3]) / 100)
@@ -1619,7 +1619,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA06(Number(result[24][0]))
             const _nextDayThubA06 = new Date((Number(result[24][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[24][2]) <= (86400 * 1000) && Number(result[24][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA06 && Number(result[24][2]) !== 0) ?
                 setNextDayThubA06(_nextDayThubA06.toLocaleString('es-CL')) :
                 setNextDayThubA06('now')
             setThubFeeA06(Number(result[24][3]) / 100)
@@ -1628,7 +1628,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA07(Number(result[27][0]))
             const _nextDayThubA07 = new Date((Number(result[27][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[27][2]) <= (86400 * 1000) && Number(result[27][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA07 && Number(result[27][2]) !== 0) ?
                 setNextDayThubA07(_nextDayThubA07.toLocaleString('es-CL')) :
                 setNextDayThubA07('now')
             setThubFeeA07(Number(result[27][3]) / 100)
@@ -1637,7 +1637,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA08(Number(result[30][0]))
             const _nextDayThubA08 = new Date((Number(result[30][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[30][2]) <= (86400 * 1000) && Number(result[30][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA08 && Number(result[30][2]) !== 0) ?
                 setNextDayThubA08(_nextDayThubA08.toLocaleString('es-CL')) :
                 setNextDayThubA08('now')
             setThubFeeA08(Number(result[30][3]) / 100)
@@ -1646,7 +1646,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA09(Number(result[33][0]))
             const _nextDayThubA09 = new Date((Number(result[33][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[33][2]) <= (86400 * 1000) && Number(result[33][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA09 && Number(result[33][2]) !== 0) ?
                 setNextDayThubA09(_nextDayThubA09.toLocaleString('es-CL')) :
                 setNextDayThubA09('now')
             setThubFeeA09(Number(result[33][3]) / 100)
@@ -1655,7 +1655,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA10(Number(result[36][0]))
             const _nextDayThubA10 = new Date((Number(result[36][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[36][2]) <= (86400 * 1000) && Number(result[36][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA10 && Number(result[36][2]) !== 0) ?
                 setNextDayThubA10(_nextDayThubA10.toLocaleString('es-CL')) :
                 setNextDayThubA10('now')
             setThubFeeA10(Number(result[36][3]) / 100)
@@ -1664,7 +1664,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvA11(Number(result[39][0]))
             const _nextDayThubA11 = new Date((Number(result[39][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[39][2]) <= (86400 * 1000) && Number(result[39][2]) !== 0) ?
+            (Date.now() <= _nextDayThubA11 && Number(result[39][2]) !== 0) ?
                 setNextDayThubA11(_nextDayThubA11.toLocaleString('es-CL')) :
                 setNextDayThubA11('now')
             setThubFeeA11(Number(result[39][3]) / 100)
@@ -1673,7 +1673,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvZ06(Number(result[42][0]))
             const _nextDayThubZ06 = new Date((Number(result[42][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[42][2]) <= (86400 * 1000) && Number(result[42][2]) !== 0) ?
+            (Date.now() <= _nextDayThubZ06 && Number(result[42][2]) !== 0) ?
                 setNextDayThubZ06(_nextDayThubZ06.toLocaleString('es-CL')) :
                 setNextDayThubZ06('now')
             setThubFeeZ06(Number(result[42][3]) / 100)
@@ -1682,7 +1682,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB01(Number(result[45][0]))
             const _nextDayThubB01 = new Date((Number(result[45][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[45][2]) <= (86400 * 1000) && Number(result[45][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB01 && Number(result[45][2]) !== 0) ?
                 setNextDayThubB01(_nextDayThubB01.toLocaleString('es-CL')) :
                 setNextDayThubB01('now')
             setThubFeeB01(Number(result[45][3]) / 100)
@@ -1691,7 +1691,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB02(Number(result[48][0]))
             const _nextDayThubB02 = new Date((Number(result[48][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[48][2]) <= (86400 * 1000) && Number(result[48][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB02 && Number(result[48][2]) !== 0) ?
                 setNextDayThubB02(_nextDayThubB02.toLocaleString('es-CL')) :
                 setNextDayThubB02('now')
             setThubFeeB02(Number(result[48][3]) / 100)
@@ -1700,7 +1700,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB03(Number(result[51][0]))
             const _nextDayThubB03 = new Date((Number(result[51][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[51][2]) <= (86400 * 1000) && Number(result[51][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB03 && Number(result[51][2]) !== 0) ?
                 setNextDayThubB03(_nextDayThubB03.toLocaleString('es-CL')) :
                 setNextDayThubB03('now')
             setThubFeeB03(Number(result[51][3]) / 100)
@@ -1709,7 +1709,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB04(Number(result[54][0]))
             const _nextDayThubB04 = new Date((Number(result[54][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[54][2]) <= (86400 * 1000) && Number(result[54][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB04 && Number(result[54][2]) !== 0) ?
                 setNextDayThubB04(_nextDayThubB04.toLocaleString('es-CL')) :
                 setNextDayThubB04('now')
             setThubFeeB04(Number(result[54][3]) / 100)
@@ -1718,7 +1718,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB05(Number(result[57][0]))
             const _nextDayThubB05 = new Date((Number(result[57][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[57][2]) <= (86400 * 1000) && Number(result[57][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB05 && Number(result[57][2]) !== 0) ?
                 setNextDayThubB05(_nextDayThubB05.toLocaleString('es-CL')) :
                 setNextDayThubB05('now')
             setThubFeeB05(Number(result[57][3]) / 100)
@@ -1727,7 +1727,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB06(Number(result[60][0]))
             const _nextDayThubB06 = new Date((Number(result[60][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[60][2]) <= (86400 * 1000) && Number(result[60][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB06 && Number(result[60][2]) !== 0) ?
                 setNextDayThubB06(_nextDayThubB06.toLocaleString('es-CL')) :
                 setNextDayThubB06('now')
             setThubFeeB06(Number(result[60][3]) / 100)
@@ -1736,7 +1736,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB07(Number(result[63][0]))
             const _nextDayThubB07 = new Date((Number(result[63][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[63][2]) <= (86400 * 1000) && Number(result[63][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB07 && Number(result[63][2]) !== 0) ?
                 setNextDayThubB07(_nextDayThubB07.toLocaleString('es-CL')) :
                 setNextDayThubB07('now')
             setThubFeeB07(Number(result[63][3]) / 100)
@@ -1745,7 +1745,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB08(Number(result[66][0]))
             const _nextDayThubB08 = new Date((Number(result[66][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[66][2]) <= (86400 * 1000) && Number(result[66][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB08 && Number(result[66][2]) !== 0) ?
                 setNextDayThubB08(_nextDayThubB08.toLocaleString('es-CL')) :
                 setNextDayThubB08('now')
             setThubFeeB08(Number(result[66][3]) / 100)
@@ -1754,7 +1754,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB09(Number(result[69][0]))
             const _nextDayThubB09 = new Date((Number(result[69][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[69][2]) <= (86400 * 1000) && Number(result[69][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB09 && Number(result[69][2]) !== 0) ?
                 setNextDayThubB09(_nextDayThubB09.toLocaleString('es-CL')) :
                 setNextDayThubB09('now')
             setThubFeeB09(Number(result[69][3]) / 100)
@@ -1763,7 +1763,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB10(Number(result[72][0]))
             const _nextDayThubB10 = new Date((Number(result[72][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[72][2]) <= (86400 * 1000) && Number(result[72][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB10 && Number(result[72][2]) !== 0) ?
                 setNextDayThubB10(_nextDayThubB10.toLocaleString('es-CL')) :
                 setNextDayThubB10('now')
             setThubFeeB10(Number(result[72][3]) / 100)
@@ -1772,7 +1772,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvB11(Number(result[75][0]))
             const _nextDayThubB11 = new Date((Number(result[75][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[75][2]) <= (86400 * 1000) && Number(result[75][2]) !== 0) ?
+            (Date.now() <= _nextDayThubB11 && Number(result[75][2]) !== 0) ?
                 setNextDayThubB11(_nextDayThubB11.toLocaleString('es-CL')) :
                 setNextDayThubB11('now')
             setThubFeeB11(Number(result[75][3]) / 100)
@@ -1781,7 +1781,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvZ11(Number(result[78][0]))
             const _nextDayThubZ11 = new Date((Number(result[78][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[78][2]) <= (86400 * 1000) && Number(result[78][2]) !== 0) ?
+            (Date.now() <= _nextDayThubZ11 && Number(result[78][2]) !== 0) ?
                 setNextDayThubZ11(_nextDayThubZ11.toLocaleString('es-CL')) :
                 setNextDayThubZ11('now')
             setThubFeeZ11(Number(result[78][3]) / 100)
@@ -1790,7 +1790,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC01(Number(result[81][0]))
             const _nextDayThubC01 = new Date((Number(result[81][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[81][2]) <= (86400 * 1000) && Number(result[81][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC01 && Number(result[81][2]) !== 0) ?
                 setNextDayThubC01(_nextDayThubC01.toLocaleString('es-CL')) :
                 setNextDayThubC01('now')
             setThubFeeC01(Number(result[81][3]) / 100)
@@ -1799,7 +1799,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC02(Number(result[84][0]))
             const _nextDayThubC02 = new Date((Number(result[84][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[84][2]) <= (86400 * 1000) && Number(result[84][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC02 && Number(result[84][2]) !== 0) ?
                 setNextDayThubC02(_nextDayThubC02.toLocaleString('es-CL')) :
                 setNextDayThubC02('now')
             setThubFeeC02(Number(result[84][3]) / 100)
@@ -1808,7 +1808,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC03(Number(result[87][0]))
             const _nextDayThubC03 = new Date((Number(result[87][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[87][2]) <= (86400 * 1000) && Number(result[87][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC03 && Number(result[87][2]) !== 0) ?
                 setNextDayThubC03(_nextDayThubC03.toLocaleString('es-CL')) :
                 setNextDayThubC03('now')
             setThubFeeC03(Number(result[87][3]) / 100)
@@ -1817,7 +1817,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC04(Number(result[90][0]))
             const _nextDayThubC04 = new Date((Number(result[90][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[90][2]) <= (86400 * 1000) && Number(result[90][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC04 && Number(result[90][2]) !== 0) ?
                 setNextDayThubC04(_nextDayThubC04.toLocaleString('es-CL')) :
                 setNextDayThubC04('now')
             setThubFeeC04(Number(result[90][3]) / 100)
@@ -1826,7 +1826,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC05(Number(result[93][0]))
             const _nextDayThubC05 = new Date((Number(result[93][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[93][2]) <= (86400 * 1000) && Number(result[93][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC05 && Number(result[93][2]) !== 0) ?
                 setNextDayThubC05(_nextDayThubC05.toLocaleString('es-CL')) :
                 setNextDayThubC05('now')
             setThubFeeC05(Number(result[93][3]) / 100)
@@ -1835,7 +1835,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC06(Number(result[96][0]))
             const _nextDayThubC06 = new Date((Number(result[96][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[96][2]) <= (86400 * 1000) && Number(result[96][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC06 && Number(result[96][2]) !== 0) ?
                 setNextDayThubC06(_nextDayThubC06.toLocaleString('es-CL')) :
                 setNextDayThubC06('now')
             setThubFeeC06(Number(result[96][3]) / 100)
@@ -1844,7 +1844,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC07(Number(result[99][0]))
             const _nextDayThubC07 = new Date((Number(result[99][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[99][2]) <= (86400 * 1000) && Number(result[99][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC07 && Number(result[99][2]) !== 0) ?
                 setNextDayThubC07(_nextDayThubC07.toLocaleString('es-CL')) :
                 setNextDayThubC07('now')
             setThubFeeC07(Number(result[99][3]) / 100)
@@ -1853,7 +1853,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC08(Number(result[102][0]))
             const _nextDayThubC08 = new Date((Number(result[102][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[102][2]) <= (86400 * 1000) && Number(result[102][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC08 && Number(result[102][2]) !== 0) ?
                 setNextDayThubC08(_nextDayThubC08.toLocaleString('es-CL')) :
                 setNextDayThubC08('now')
             setThubFeeC08(Number(result[102][3]) / 100)
@@ -1862,7 +1862,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC09(Number(result[105][0]))
             const _nextDayThubC09 = new Date((Number(result[105][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[105][2]) <= (86400 * 1000) && Number(result[105][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC09 && Number(result[105][2]) !== 0) ?
                 setNextDayThubC09(_nextDayThubC09.toLocaleString('es-CL')) :
                 setNextDayThubC09('now')
             setThubFeeC09(Number(result[105][3]) / 100)
@@ -1871,7 +1871,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC10(Number(result[108][0]))
             const _nextDayThubC10 = new Date((Number(result[108][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[108][2]) <= (86400 * 1000) && Number(result[108][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC10 && Number(result[108][2]) !== 0) ?
                 setNextDayThubC10(_nextDayThubC10.toLocaleString('es-CL')) :
                 setNextDayThubC10('now')
             setThubFeeC10(Number(result[108][3]) / 100)
@@ -1880,7 +1880,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC11(Number(result[111][0]))
             const _nextDayThubC11 = new Date((Number(result[111][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[111][2]) <= (86400 * 1000) && Number(result[111][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC11 && Number(result[111][2]) !== 0) ?
                 setNextDayThubC11(_nextDayThubC11.toLocaleString('es-CL')) :
                 setNextDayThubC11('now')
             setThubFeeC11(Number(result[111][3]) / 100)
@@ -1889,7 +1889,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC12(Number(result[114][0]))
             const _nextDayThubC12 = new Date((Number(result[114][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[114][2]) <= (86400 * 1000) && Number(result[114][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC12 && Number(result[114][2]) !== 0) ?
                 setNextDayThubC12(_nextDayThubC12.toLocaleString('es-CL')) :
                 setNextDayThubC12('now')
             setThubFeeC12(Number(result[114][3]) / 100)
@@ -1898,7 +1898,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC13(Number(result[117][0]))
             const _nextDayThubC13 = new Date((Number(result[117][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[117][2]) <= (86400 * 1000) && Number(result[117][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC13 && Number(result[117][2]) !== 0) ?
                 setNextDayThubC13(_nextDayThubC13.toLocaleString('es-CL')) :
                 setNextDayThubC13('now')
             setThubFeeC13(Number(result[117][3]) / 100)
@@ -1907,7 +1907,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC14(Number(result[120][0]))
             const _nextDayThubC14 = new Date((Number(result[120][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[120][2]) <= (86400 * 1000) && Number(result[120][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC14 && Number(result[120][2]) !== 0) ?
                 setNextDayThubC14(_nextDayThubC14.toLocaleString('es-CL')) :
                 setNextDayThubC14('now')
             setThubFeeC14(Number(result[120][3]) / 100)
@@ -1916,7 +1916,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC15(Number(result[123][0]))
             const _nextDayThubC15 = new Date((Number(result[123][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[123][2]) <= (86400 * 1000) && Number(result[123][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC15 && Number(result[123][2]) !== 0) ?
                 setNextDayThubC15(_nextDayThubC15.toLocaleString('es-CL')) :
                 setNextDayThubC15('now')
             setThubFeeC15(Number(result[123][3]) / 100)
@@ -1925,7 +1925,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC16(Number(result[126][0]))
             const _nextDayThubC16 = new Date((Number(result[126][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[126][2]) <= (86400 * 1000) && Number(result[126][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC16 && Number(result[126][2]) !== 0) ?
                 setNextDayThubC16(_nextDayThubC16.toLocaleString('es-CL')) :
                 setNextDayThubC16('now')
             setThubFeeC16(Number(result[126][3]) / 100)
@@ -1934,7 +1934,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC17(Number(result[129][0]))
             const _nextDayThubC17 = new Date((Number(result[129][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[129][2]) <= (86400 * 1000) && Number(result[129][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC17 && Number(result[129][2]) !== 0) ?
                 setNextDayThubC17(_nextDayThubC17.toLocaleString('es-CL')) :
                 setNextDayThubC17('now')
             setThubFeeC17(Number(result[129][3]) / 100)
@@ -1943,7 +1943,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC18(Number(result[132][0]))
             const _nextDayThubC18 = new Date((Number(result[132][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[132][2]) <= (86400 * 1000) && Number(result[132][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC18 && Number(result[132][2]) !== 0) ?
                 setNextDayThubC18(_nextDayThubC18.toLocaleString('es-CL')) :
                 setNextDayThubC18('now')
             setThubFeeC18(Number(result[132][3]) / 100)
@@ -1952,7 +1952,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC19(Number(result[135][0]))
             const _nextDayThubC19 = new Date((Number(result[135][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[135][2]) <= (86400 * 1000) && Number(result[135][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC19 && Number(result[135][2]) !== 0) ?
                 setNextDayThubC19(_nextDayThubC19.toLocaleString('es-CL')) :
                 setNextDayThubC19('now')
             setThubFeeC19(Number(result[135][3]) / 100)
@@ -1961,7 +1961,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC20(Number(result[138][0]))
             const _nextDayThubC20 = new Date((Number(result[138][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[138][2]) <= (86400 * 1000) && Number(result[138][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC20 && Number(result[138][2]) !== 0) ?
                 setNextDayThubC20(_nextDayThubC20.toLocaleString('es-CL')) :
                 setNextDayThubC20('now')
             setThubFeeC20(Number(result[138][3]) / 100)
@@ -1970,7 +1970,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC21(Number(result[141][0]))
             const _nextDayThubC21 = new Date((Number(result[141][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[141][2]) <= (86400 * 1000) && Number(result[141][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC21 && Number(result[141][2]) !== 0) ?
                 setNextDayThubC21(_nextDayThubC21.toLocaleString('es-CL')) :
                 setNextDayThubC21('now')
             setThubFeeC21(Number(result[141][3]) / 100)
@@ -1979,7 +1979,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
 
             setThubLvC22(Number(result[144][0]))
             const _nextDayThubC22 = new Date((Number(result[144][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[144][2]) <= (86400 * 1000) && Number(result[144][2]) !== 0) ?
+            (Date.now() <= _nextDayThubC22 && Number(result[144][2]) !== 0) ?
                 setNextDayThubC22(_nextDayThubC22.toLocaleString('es-CL')) :
                 setNextDayThubC22('now')
             setThubFeeC22(Number(result[144][3]) / 100)

@@ -297,7 +297,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
             setThubLv(Number(result[9][0]))
             const _nextDayThub = new Date((Number(result[9][2]) * 1000) + (86400 * 1000));
-            (Date.now() - Number(result[9][2]) <= (86400 * 1000) && Number(result[9][2]) !== 0) ?
+            (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
                 setNextDayThub('now')
             setThubFee(Number(result[9][3]) / 100)
