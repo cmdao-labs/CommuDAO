@@ -890,7 +890,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= ranker.length -1; i++) {
                 for (let i2 = 0; i2 <= dataHouse.length -1; i2++) {
                     if (ranker[i].toUpperCase() === dataHouse[i2].result.toUpperCase()) {
-                        powHouse[i] = dataHouse2[i2]
+                        powHouse[i] += dataHouse2[i2]
                     }
                 }
             }
