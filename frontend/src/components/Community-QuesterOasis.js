@@ -20,10 +20,13 @@ const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
 
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
+const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
+const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
+const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI }) => {
     const { address } = useAccount()
 
     /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -50,34 +53,35 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
         const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
         const enderSC = new ethers.Contract(ender, enderPotteryABI, providerJBC)
         const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
-            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 3371322, 'latest')
+            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 3559442, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
-            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 3371322, 'latest')
+            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 3559442, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
-            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 3371322, 'latest')
+            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 3559442, 'latest')
             const spend3Map = await Promise.all(spend3Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
-            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 3371322, 'latest')
+            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 3559442, 'latest')
             const spend4Map = await Promise.all(spend4Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
 
             const spend5Filter = await jusdtSC.filters.Transfer(null, "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a", null)
-            const spend5Event = await jusdtSC.queryFilter(spend5Filter, 3371322, 'latest')
+            const spend5Event = await jusdtSC.queryFilter(spend5Filter, 3559442, 'latest')
             const spend5Map = await Promise.all(spend5Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend6Filter = await jusdtSC.filters.Transfer(null, "0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5", null)
-            const spend6Event = await jusdtSC.queryFilter(spend6Filter, 3371322, 'latest')
+            const spend6Event = await jusdtSC.queryFilter(spend6Filter, 3559442, 'latest')
             const spend6Map = await Promise.all(spend6Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend7Filter = await jusdtSC.filters.Transfer(null, "0x09e6a0A03afa27438c3f507de82b5f6061Ae1643", null)
-            const spend7Event = await jusdtSC.queryFilter(spend7Filter, 3371322, 'latest')
+            const spend7Event = await jusdtSC.queryFilter(spend7Filter, 3559442, 'latest')
             const spend7Map = await Promise.all(spend7Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
@@ -271,7 +275,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             }
 
             const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
-            const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 3371322, 'latest')
+            const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 3559442, 'latest')
             const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
             const jdaoFarmAllMerged = jdaoFarmMap.reduce((prev, curr) => {
                 if (prev[curr.to.toUpperCase()]) {
@@ -422,11 +426,476 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= Number(data3_2.length - 1); i++) {
                 powJaspArr.push(data3_2[i].result[7])
             }
+            const dataHouse = await readContracts({
+                contracts: [
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10026010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10026002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10001011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10026006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10002011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10026011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003012'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003013'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003014'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003015'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003016'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003017'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003018'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003019'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003020'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003021'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotOwner',
+                        args: ['10003022'],
+                        chainId: 8899,
+                    },
+                ],
+            }) 
+
+            const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
+            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
+            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const data0 = await readContracts({
+                contracts: stakeRemoveDup.map((item) => (
+                    {
+                        address: houseStaking,
+                        abi: houseStakingABI,
+                        functionName: 'nftStake',
+                        args: [1, String(item)],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            let dataHouse2 = new Array(4 + 11 + 11 + 22).fill(0)
+
+            for (let i = 0; i <= stakeRemoveDup.length - 1; i++) {
+                if (data0[i].result[0].toUpperCase() === dataHouse[1].result.toUpperCase()) {
+                    dataHouse2[1] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[2].result.toUpperCase()) {
+                    dataHouse2[2] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[3].result.toUpperCase()) {
+                    dataHouse2[3] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[4].result.toUpperCase()) {
+                    dataHouse2[4] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[5].result.toUpperCase()) {
+                    dataHouse2[5] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[6].result.toUpperCase()) {
+                    dataHouse2[6] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[7].result.toUpperCase()) {
+                    dataHouse2[7] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[8].result.toUpperCase()) {
+                    dataHouse2[8] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[9].result.toUpperCase()) {
+                    dataHouse2[9] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[10].result.toUpperCase()) {
+                    dataHouse2[10] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[11].result.toUpperCase()) {
+                    dataHouse2[11] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[12].result.toUpperCase()) {
+                    dataHouse2[12] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[13].result.toUpperCase()) {
+                    dataHouse2[13] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[0].result.toUpperCase()) {
+                    dataHouse2[0] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[14].result.toUpperCase()) {
+                    dataHouse2[14] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[15].result.toUpperCase()) {
+                    dataHouse2[15] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[16].result.toUpperCase()) {
+                    dataHouse2[16] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[17].result.toUpperCase()) {
+                    dataHouse2[17] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[18].result.toUpperCase()) {
+                    dataHouse2[18] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[19].result.toUpperCase()) {
+                    dataHouse2[19] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[20].result.toUpperCase()) {
+                    dataHouse2[20] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[21].result.toUpperCase()) {
+                    dataHouse2[21] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[22].result.toUpperCase()) {
+                    dataHouse2[22] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[23].result.toUpperCase()) {
+                    dataHouse2[23] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[24].result.toUpperCase()) {
+                    dataHouse2[24] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[25].result.toUpperCase()) {
+                    dataHouse2[25] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[26].result.toUpperCase()) {
+                    dataHouse2[26] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[27].result.toUpperCase()) {
+                    dataHouse2[27] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[28].result.toUpperCase()) {
+                    dataHouse2[28] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[29].result.toUpperCase()) {
+                    dataHouse2[29] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[30].result.toUpperCase()) {
+                    dataHouse2[30] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[31].result.toUpperCase()) {
+                    dataHouse2[31] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[32].result.toUpperCase()) {
+                    dataHouse2[32] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[33].result.toUpperCase()) {
+                    dataHouse2[33] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[34].result.toUpperCase()) {
+                    dataHouse2[34] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[35].result.toUpperCase()) {
+                    dataHouse2[35] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[36].result.toUpperCase()) {
+                    dataHouse2[36] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[37].result.toUpperCase()) {
+                    dataHouse2[37] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[38].result.toUpperCase()) {
+                    dataHouse2[38] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[39].result.toUpperCase()) {
+                    dataHouse2[39] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[40].result.toUpperCase()) {
+                    dataHouse2[40] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[41].result.toUpperCase()) {
+                    dataHouse2[41] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[42].result.toUpperCase()) {
+                    dataHouse2[42] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[43].result.toUpperCase()) {
+                    dataHouse2[43] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[44].result.toUpperCase()) {
+                    dataHouse2[44] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[45].result.toUpperCase()) {
+                    dataHouse2[45] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[46].result.toUpperCase()) {
+                    dataHouse2[46] += Number(String(stakeRemoveDup[i]).slice(-5))
+                } else if (data0[i].result[0].toUpperCase() === dataHouse[47].result.toUpperCase()) {
+                    dataHouse2[47] += Number(String(stakeRemoveDup[i]).slice(-5))
+                }
+            }
+            let powHouse = new Array(ranker.length).fill(0)
+            for (let i = 0; i <= ranker.length -1; i++) {
+                for (let i2 = 0; i2 <= dataHouse.length -1; i2++) {
+                    if (ranker[i].toUpperCase() === dataHouse[i2].result.toUpperCase()) {
+                        powHouse[i] = dataHouse2[i2]
+                    }
+                }
+            }
             const data3 = ranker.map((item, i) => {
                 return {
                     addr: item,
                     name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
-                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i])
+                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i])
                 }
             })
 
@@ -494,7 +963,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setRank4(result[12])
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI])
+    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI])
 
     /*const claimSILHandle = async () => {
         setisLoading(true)
@@ -603,39 +1072,28 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
             <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
                 <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px"}} className="nftCard">
-                    <div style={{fontSize: "40px", color: "#fff"}}>June 2024 Prize Pool 🎁</div>
+                    <div style={{fontSize: "40px", color: "#fff"}}>July 2024 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Questers</div>
-                            <div>8,490.50 CMJ</div>
+                            <div>X CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Strongest</div>
-                            <div>8,490.50 CMJ</div>
+                            <div>X CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Spender</div>
-                            <div>8,490.50 CMJ</div>
+                            <div>X CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Money Mover</div>
-                            <div>8,490.50 CMJ</div>
+                            <div>X CMJ</div>
                         </div>
                     </div>
                     <div style={{color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
-                    <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top 1-3</div>
-                            <div>40% of prize pool</div>
-                        </div>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top 4-10</div>
-                            <div>30% of prize pool</div>
-                        </div>
-                        <div style={{width: "250px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top 11-20</div>
-                            <div>30% of prize pool</div>
-                        </div>
+                    <div style={{width: "98%"}}>
+                        The reward will be directly proportional to the achieved score.
                     </div>
                 </div>
 

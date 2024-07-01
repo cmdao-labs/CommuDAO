@@ -115,16 +115,18 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
     const swapTokenHandleUni = async (index, _sell) => {
         let lp = '0x0000000000000000000000000000000000000000'
         let token = '0x0000000000000000000000000000000000000000'
-        const curr = doijibToken
+        let curr = '0x0000000000000000000000000000000000000000'
         let currBoughtToken = '0'
         let tokenBoughtCurr = '0'
         if (index === 1) {
             lp = degenoDoijibWJBC
-            token = wjbcToken
+            curr = wjbcToken
+            token = doijibToken
             currBoughtToken = doijibBoughtWJBC
             tokenBoughtCurr = tokenBoughtDoijibWJBC
         } else if (index === 2) {
             lp = degenoDoijibWood
+            curr = wjbcToken
             token = woodToken
             currBoughtToken = doijibBoughtWOOD
             tokenBoughtCurr = tokenBoughtDoijibWOOD
