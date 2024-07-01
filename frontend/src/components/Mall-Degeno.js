@@ -126,8 +126,8 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
             tokenBoughtCurr = tokenBoughtDoijibWJBC
         } else if (index === 2) {
             lp = degenoDoijibWood
-            curr = wjbcToken
-            token = woodToken
+            curr = woodToken
+            token = doijibToken
             currBoughtToken = doijibBoughtWOOD
             tokenBoughtCurr = tokenBoughtDoijibWOOD
         }
