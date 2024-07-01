@@ -47,6 +47,9 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     const [rank3, setRank3] = React.useState([])
     const [rank4, setRank4] = React.useState([])
 
+    const [sumArrRank1, setSumArrRank1] = React.useState(0)
+    const [sumArrRank2, setSumArrRank2] = React.useState(0)
+
     React.useEffect(() => {      
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
@@ -961,6 +964,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setRank2(result[10])
             setRank3(result[11])
             setRank4(result[12])
+
+            const arrRank1 = result[9].slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).slice(0, 20)
+            let _sumArrRank1 = 0
+            for (let i = 0; i <= arrRank1.length - 1; i++) { _sumArrRank1 += Number(arrRank1[i].cmxp) }
+            setSumArrRank1(_sumArrRank1)
+            const arrRank2 = result[10].slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).slice(0, 20)
+            let _sumArrRank2 = 0
+            for (let i = 0; i <= arrRank2.length - 1; i++) { _sumArrRank2 += Number(arrRank2[i].cmpow) }
+            setSumArrRank2(_sumArrRank2)
         })
 
     }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI])
@@ -1105,12 +1117,12 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 {rank[0] !== null ?
                                     <div style={{width: "100%"}}>
                                         {rank.slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{Number(item.cmxp).toLocaleString('en-US', {maximumFractionDigits:0})} CMXP</div>
+                                                <div style={{display: "flex"}}>{Number(item.cmxp).toLocaleString('en-US', {maximumFractionDigits:0})} CMXP {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmxp / sumArrRank1) * 100).toFixed(2)}%)</span>}</div>
                                             </div>
                                         ))}
                                     </div> :
@@ -1130,12 +1142,12 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 {rank2[0] !== null ?
                                     <div style={{width: "100%"}}>
                                         {rank2.slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{Number(item.cmpow).toLocaleString('en-US', {maximumFractionDigits:0})} CMPOW</div>
+                                                <div>{Number(item.cmpow).toLocaleString('en-US', {maximumFractionDigits:0})} CMPOW {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmpow / sumArrRank2) * 100).toFixed(2)}%)</span>}</div>
                                             </div>
                                         ))}
                                     </div> :
@@ -1155,8 +1167,8 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 {rank3[0] !== null ?
                                     <div style={{width: "100%", height: "inherit"}}>
                                         {rank3.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
@@ -1180,8 +1192,8 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                 {rank4[0] !== null ?
                                     <div style={{width: "100%", height: "inherit"}}>
                                         {rank4.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}} key={index}>
-                                                <div style={{width: "200px", display: "flex", flexDirection: "row"}}>
+                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
