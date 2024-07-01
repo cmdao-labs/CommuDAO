@@ -423,12 +423,12 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
         getAsync().then(result => {
 
 
-            setPriceDoijibWJBC(Number(ethers.utils.formatEther(result[5])).toFixed(3))
+            setPriceDoijibWJBC(Number(ethers.utils.formatEther(result[5])).toFixed(5))
             setDoijibWJBCLpBalance(Math.floor(ethers.utils.formatEther(result[6]) * 100000) / 100000)
             setReserveWjbcDoijib(ethers.utils.formatEther(result[7]))
             setReserveDoijibWJBC(ethers.utils.formatEther(result[8]))
             
-            setPriceDoijibWOOD(Number(ethers.utils.formatEther(result[9])).toFixed(3))
+            setPriceDoijibWOOD(Number(ethers.utils.formatEther(result[9])).toFixed(0))
             setDoijibWOODLpBalance(Math.floor(ethers.utils.formatEther(result[10]) * 100000) / 100000)
             setReserveWoodDoijib(ethers.utils.formatEther(result[11]))
             setReserveDoijibWOOD(ethers.utils.formatEther(result[12]))
@@ -447,7 +447,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"ARE YOU DEGEN ENOUGH?</div>
                         <div style={{fontSize: "10px"}} className="light">BUY/SELL ${gasselected} - 5% TAX"</div>
-                        <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <div style={{marginTop: "5px", width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "12px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                     <option value="DOIJIB.wjbc">DOIJIB-WJBC</option>
@@ -609,7 +609,7 @@ const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, e
                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">DEGENO, THE CRYPTO TRADER</div>
                         <div style={{fontSize: "10px"}} className="light">"ARE YOU DEGEN ENOUGH?</div>
                         <div style={{fontSize: "10px"}} className="light">ADD/REMOVE {gasselected}-CMJ LP"</div>
-                        <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <div style={{marginTop: "5px", width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                             <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
                                 <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "12px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                     <option value="DOIJIB.wjbc">DOIJIB-WJBC</option>
