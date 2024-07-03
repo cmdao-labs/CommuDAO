@@ -49,6 +49,8 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
     const [sumArrRank1, setSumArrRank1] = React.useState(0)
     const [sumArrRank2, setSumArrRank2] = React.useState(0)
+    const [sumArrRank3, setSumArrRank3] = React.useState(0)
+    const [sumArrRank4, setSumArrRank4] = React.useState(0)
 
     React.useEffect(() => {      
         window.scrollTo(0, 0)
@@ -973,6 +975,14 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             let _sumArrRank2 = 0
             for (let i = 0; i <= arrRank2.length - 1; i++) { _sumArrRank2 += Number(arrRank2[i].cmpow) }
             setSumArrRank2(_sumArrRank2)
+            const arrRank3 = result[11].slice(0).sort((a, b) => {return b.value-a.value}).slice(0, 20)
+            let _sumArrRank3 = 0
+            for (let i = 0; i <= arrRank3.length - 1; i++) { _sumArrRank3 += Number(arrRank3[i].value) }
+            setSumArrRank3(_sumArrRank3)
+            const arrRank4 = result[12].slice(0).sort((a, b) => {return b.value-a.value}).slice(0, 20)
+            let _sumArrRank4 = 0
+            for (let i = 0; i <= arrRank4.length - 1; i++) { _sumArrRank4 += Number(arrRank4[i].value) }
+            setSumArrRank4(_sumArrRank4)
         })
 
     }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI])
@@ -1114,7 +1124,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Questers 🗺️</div>
                         {rank.length > 0 ?
                             <>
-                                {rank[0] !== null ?
+                                {rank[0] !== null &&
                                     <div style={{width: "100%"}}>
                                         {rank.slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
@@ -1125,8 +1135,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                 <div style={{display: "flex"}}>{Number(item.cmxp).toLocaleString('en-US', {maximumFractionDigits:0})} CMXP {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmxp / sumArrRank1) * 100).toFixed(2)}%)</span>}</div>
                                             </div>
                                         ))}
-                                    </div> :
-                                    <></>
+                                    </div>
                                 }
                             </> :
                             <div style={{width: "100%", height: "inherit"}}>
@@ -1139,7 +1148,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Strongest 💥</div>
                         {rank2.length > 0 ?
                             <>
-                                {rank2[0] !== null ?
+                                {rank2[0] !== null &&
                                     <div style={{width: "100%"}}>
                                         {rank2.slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
@@ -1150,8 +1159,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                 <div>{Number(item.cmpow).toLocaleString('en-US', {maximumFractionDigits:0})} CMPOW {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmpow / sumArrRank2) * 100).toFixed(2)}%)</span>}</div>
                                             </div>
                                         ))}
-                                    </div> :
-                                    <></>
+                                    </div>
                                 }
                             </> :
                             <div style={{width: "100%", height: "inherit"}}>
@@ -1164,7 +1172,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Spender 💰</div>
                         {rank3.length > 0 ?
                             <>
-                                {rank3[0] !== null ?
+                                {rank3[0] !== null &&
                                     <div style={{width: "100%", height: "inherit"}}>
                                         {rank3.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
@@ -1172,11 +1180,10 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT</div>
+                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.value / sumArrRank3) * 100).toFixed(2)}%)</span>}</div>
                                             </div>
                                         ))}
-                                    </div> :
-                                    <></>
+                                    </div>
                                 }
                             </> :
                             <div style={{width: "100%", height: "inherit"}}>
@@ -1189,7 +1196,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                         <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Money Mover 💸</div>
                         {rank4.length > 0 ?
                             <>
-                                {rank4[0] !== null ?
+                                {rank4[0] !== null &&
                                     <div style={{width: "100%", height: "inherit"}}>
                                         {rank4.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
                                             <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
@@ -1197,11 +1204,10 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                                                     <div>{index+1}</div>
                                                     <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
                                                 </div>
-                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT</div>
+                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.value / sumArrRank4) * 100).toFixed(2)}%)</span>}</div>
                                             </div>
                                         ))}
-                                    </div> :
-                                    <></>
+                                    </div>
                                 }
                             </> :
                             <div style={{width: "100%", height: "inherit"}}>
