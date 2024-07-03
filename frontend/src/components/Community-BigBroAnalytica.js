@@ -664,7 +664,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             const bbqCmdBal4 = await fetchBalance({ address: '0x494c102E557F5b8F1a5EaC7481d160EbA4413934', chainId: 190 })
 
             return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
-            (Number(bbqCmdBal1.formatted) + Number(bbqCmdBal2.formatted) + Number(bbqCmdBal3.formatted) + Number(bbqCmdBal4.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
+            (Number(bbqCmdBal1.formatted) + Number(bbqCmdBal2.formatted) + Number(bbqCmdBal3.formatted) + (Number(bbqCmdBal4.formatted) / 2) + Number(ethers.utils.formatEther(String(dataCMD[3].result)) / 2)), [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
         }
 
         const promise = thefetch()
