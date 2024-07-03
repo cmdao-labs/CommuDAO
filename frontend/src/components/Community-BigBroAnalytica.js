@@ -648,15 +648,23 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         args: ['0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'],
                         chainId: 10,
                     },
+                    {
+                        address: cmd,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x494c102E557F5b8F1a5EaC7481d160EbA4413934'],
+                        chainId: 10,
+                    },
                 ],
             })
 
             const bbqCmdBal1 = await fetchBalance({ address: '0x1BeedD97fCD4E21754465d21c757A9DF43733187', chainId: 190 })
             const bbqCmdBal2 = await fetchBalance({ address: '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f', chainId: 190 })
-            
+            const bbqCmdBal3 = await fetchBalance({ address: '0xf623B7164cb81DCfC3836492fb09Ae005be57322', chainId: 190 })
+            const bbqCmdBal4 = await fetchBalance({ address: '0x494c102E557F5b8F1a5EaC7481d160EbA4413934', chainId: 190 })
 
             return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
-            (bbqCmdBal1.formatted + bbqCmdBal2.formatted), [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
+            (Number(bbqCmdBal1.formatted) + Number(bbqCmdBal2.formatted) + Number(bbqCmdBal3.formatted) + Number(bbqCmdBal4.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
         }
 
         const promise = thefetch()
@@ -726,7 +734,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
             setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
-            setCmdRev(result[14])
+            setCmdRev(Number(result[14]) - 10)
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][0].result))))
 
             setWoodStat(result[15])
