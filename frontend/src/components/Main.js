@@ -18,6 +18,8 @@ import Npcblacksmith from './Dungeon-Blacksmith'
 import NpcEvolutionary from './Dungeon-Evolutionary'
 import ApInn from './Dungeon-ApInn'
 import TdmRoboticsInc from './Dungeon-TdmRoboticsInc.js'
+import BBQDungeon from './BBQ-Dungeon'
+import TheEndlessTower from './Dungeon-TheEndlessTower.js'
 
 import Coppermine from './Dungeon-CopperMine'
 import Jaspercave from './Dungeon-JasperCave'
@@ -278,6 +280,12 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "TDM-ROBOTICS-INC") {
                     preset = 38
                     document.title = "TDM Robotics Inc. | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "BBQCHAIN") {
+                    preset = 30000
+                    document.title = "Dungeon [BBQ-CHAIN] | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "THE-ENDLESS-TOWER") {
+                    preset = 30001
+                    document.title = "The Endless Tower | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -401,7 +409,9 @@ const Main = () => {
                 
                 {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} dunAngbABI={dunAngbABI} />}
                 {mode === 38 && <TdmRoboticsInc setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} dunEEABI={dunEEABI} />}
-                
+
+                {mode === 30000 && <BBQDungeon callMode={callMode} navigate={navigate} />}
+                {mode === 30001 && <TheEndlessTower intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} />}
                 
                 {mode === 4 && <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} />}
                 {mode === 41 && <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} cmcityPointsABI={cmcityPointsABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} />}
