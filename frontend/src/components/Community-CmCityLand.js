@@ -630,7 +630,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                         {(slot1Lv >= 1 && slot1Lv <= 5) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeielpogfiry6r54yhzalsu2wmrp37oergq7v7r4w2qoljsesy6eoom" height="200" alt="HOUSE.LV.1" />}
                                         {(slot1Lv >= 6 && slot1Lv <= 10) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmf7bVQFwz8tQ1eVJBqcMkq3jY4BQvDfdnZgLBY26Fb5RX" height="200" alt="HOUSE.LV.6" />}
                                     </div>
-                                    {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
+                                    {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
                                         <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                             <div>
                                                 <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
@@ -711,7 +711,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                     <div style={{width: "320px"}}>
                                         {true && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcabCcVqCQhcXk19LFueSRDc62Z67aqfArTTWVb8shr7c" style={{filter: "grayscale(1)"}} height="200" alt="WEAPONDEPOT.LV.1" />}
                                     </div>
-                                    {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
+                                    {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
                                         <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                             <div>
                                                 <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
@@ -757,7 +757,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                         {thubLv === 0 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" style={{filter: "grayscale(1)"}} height="200" alt="TRANSPORTHUB.LV.1" />}
                                         {thubLv >= 1 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" height="200" alt="TRANSPORTHUB.LV.1" />}
                                     </div>
-                                    {llAddr !== null && String(llAddr).toUpperCase() === address.toUpperCase() &&
+                                    {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
                                         <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                             <div>
                                                 <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
