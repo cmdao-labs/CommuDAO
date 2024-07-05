@@ -611,7 +611,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd5r9efGEgrBPRd7UxkGuR4HcTSt3afGeDEa8suEHpoy2')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>The Endless Tower</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $HRM-GOLD & $HRM-DM.</div>
+                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $GEMSTONE.</div>
             </div>
             <div style={{margin: "30px 100px"}}>
             </div>
@@ -660,13 +660,13 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                             <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            . BALANCE
+                            GEMSTONE BALANCE
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            . PENDING
+                            GEMSTONE PENDING
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                 <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
@@ -1594,75 +1594,75 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot[4] !== null ?
-                                    <img src={cardWeaponSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlot[5] !== null ?
+                                    <img src={cardWeaponSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardWeaponSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[4]}</div>}
-                                {jewelSlot[4] !== null ?
-                                    <img src={jewelSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[5]}</div>}
+                                {jewelSlot[5] !== null ?
+                                    <img src={jewelSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {jewelSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[4]}</div>}
-                                {cardShieldSlot[4] !== null ?
-                                    <img src={cardShieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {jewelSlotLevel[5] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[5]}</div>}
+                                {cardShieldSlot[5] !== null ?
+                                    <img src={cardShieldSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardShieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[4]}</div>}
-                                {daemonSlot[4] !== null ?
-                                    <img src={daemonSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardShieldSlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[5]}</div>}
+                                {daemonSlot[5] !== null ?
+                                    <img src={daemonSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {daemonSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[4]}</div>}
-                                {cardAccessorySlot[4] !== null ?
-                                    <img src={cardAccessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {daemonSlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[5]}</div>}
+                                {cardAccessorySlot[5] !== null ?
+                                    <img src={cardAccessorySlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardAccessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[4]}</div>}
-                                {talismanTwoSlot[4] !== null ?
-                                    <img src={talismanTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardAccessorySlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[5]}</div>}
+                                {talismanTwoSlot[5] !== null ?
+                                    <img src={talismanTwoSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[4]}</div>}
+                                {talismanTwoSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[5]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot[4] !== null ?
-                                    <img src={weaponOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlot[5] !== null ?
+                                    <img src={weaponOneSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[4]}</div>}
-                                {weaponTwoSlot[4] !== null ?
-                                    <img src={weaponTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlotLevel[5] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[5]}</div>}
+                                {weaponTwoSlot[5] !== null ?
+                                    <img src={weaponTwoSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[4]}</div>}
-                                {shieldSlot[4] !== null ?
-                                    <img src={shieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponTwoSlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[5]}</div>}
+                                {shieldSlot[5] !== null ?
+                                    <img src={shieldSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {shieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[4]}</div>}
-                                {wingSlot[4] !== null ?
-                                    <img src={wingSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {shieldSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[5]}</div>}
+                                {wingSlot[5] !== null ?
+                                    <img src={wingSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {wingSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[4]}</div>}
-                                {accessorySlot[4] !== null ?
-                                    <img src={accessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {wingSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[5]}</div>}
+                                {accessorySlot[5] !== null ?
+                                    <img src={accessorySlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {accessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[4]}</div>}
-                                {talismanOneSlot[4] !== null ?
-                                    <img src={talismanOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {accessorySlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[5]}</div>}
+                                {talismanOneSlot[5] !== null ?
+                                    <img src={talismanOneSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[4]}</div>}
+                                {talismanOneSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[5]}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 6</div>
                                 {nft.length > 0 ?
                                     <>
-                                        {characterSlot[4] !== null ?
-                                            <img src={characterSlot[4]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
+                                        {characterSlot[5] !== null ?
+                                            <img src={characterSlot[5]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
                                         }
                                     </> :
@@ -1670,145 +1670,145 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {characterSlotLevel[4] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[4]}</div>}
+                                {characterSlotLevel[5] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[5]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot[4] !== null ?
-                                    <img src={headUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlot[5] !== null ?
+                                    <img src={headUpperSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[4]}</div>}
-                                {headMiddleSlot[4] !== null ?
-                                    <img src={headMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlotLevel[5] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[5]}</div>}
+                                {headMiddleSlot[5] !== null ?
+                                    <img src={headMiddleSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[4]}</div>}
-                                {headLowerSlot[4] !== null ?
-                                    <img src={headLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headMiddleSlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[5]}</div>}
+                                {headLowerSlot[5] !== null ?
+                                    <img src={headLowerSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[4]}</div>}
-                                {armorSlot[4] !== null ?
-                                    <img src={armorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headLowerSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[5]}</div>}
+                                {armorSlot[5] !== null ?
+                                    <img src={armorSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {armorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[4]}</div>}
-                                {garmentSlot[4] !== null ?
-                                    <img src={garmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {armorSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[5]}</div>}
+                                {garmentSlot[5] !== null ?
+                                    <img src={garmentSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {garmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[4]}</div>}
-                                {footgearSlot[4] !== null ?
-                                    <img src={footgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {garmentSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[5]}</div>}
+                                {footgearSlot[5] !== null ?
+                                    <img src={footgearSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {footgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[4]}</div>}
+                                {footgearSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[5]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot[4] !== null ?
-                                    <img src={cardHeadUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlot[5] !== null ?
+                                    <img src={cardHeadUpperSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[4]}</div>}
-                                {cardHeadMiddleSlot[4] !== null ?
-                                    <img src={cardHeadMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlotLevel[5] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[5]}</div>}
+                                {cardHeadMiddleSlot[5] !== null ?
+                                    <img src={cardHeadMiddleSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[4]}</div>}
-                                {cardHeadLowerSlot[4] !== null ?
-                                    <img src={cardHeadLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadMiddleSlotLevel[5] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[5]}</div>}
+                                {cardHeadLowerSlot[5] !== null ?
+                                    <img src={cardHeadLowerSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[4]}</div>}
-                                {cardArmorSlot[4] !== null ?
-                                    <img src={cardArmorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadLowerSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[5]}</div>}
+                                {cardArmorSlot[5] !== null ?
+                                    <img src={cardArmorSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardArmorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[4]}</div>}
-                                {cardGarmentSlot[4] !== null ?
-                                    <img src={cardGarmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardArmorSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[5]}</div>}
+                                {cardGarmentSlot[5] !== null ?
+                                    <img src={cardGarmentSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardGarmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[4]}</div>}
-                                {cardFootgearSlot[4] !== null ?
-                                    <img src={cardFootgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardGarmentSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[5]}</div>}
+                                {cardFootgearSlot[5] !== null ?
+                                    <img src={cardFootgearSlot[5]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardFootgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[4]}</div>}
+                                {cardFootgearSlotLevel[5] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[5]}</div>}
                             </div>
                         </div>
 
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot[4] !== null ?
-                                    <img src={cardWeaponSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlot[6] !== null ?
+                                    <img src={cardWeaponSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardWeaponSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[4]}</div>}
-                                {jewelSlot[4] !== null ?
-                                    <img src={jewelSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[6]}</div>}
+                                {jewelSlot[6] !== null ?
+                                    <img src={jewelSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {jewelSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[4]}</div>}
-                                {cardShieldSlot[4] !== null ?
-                                    <img src={cardShieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {jewelSlotLevel[6] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[6]}</div>}
+                                {cardShieldSlot[6] !== null ?
+                                    <img src={cardShieldSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardShieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[4]}</div>}
-                                {daemonSlot[4] !== null ?
-                                    <img src={daemonSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardShieldSlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[6]}</div>}
+                                {daemonSlot[6] !== null ?
+                                    <img src={daemonSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {daemonSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[4]}</div>}
-                                {cardAccessorySlot[4] !== null ?
-                                    <img src={cardAccessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {daemonSlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[6]}</div>}
+                                {cardAccessorySlot[6] !== null ?
+                                    <img src={cardAccessorySlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardAccessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[4]}</div>}
-                                {talismanTwoSlot[4] !== null ?
-                                    <img src={talismanTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardAccessorySlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[6]}</div>}
+                                {talismanTwoSlot[6] !== null ?
+                                    <img src={talismanTwoSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[4]}</div>}
+                                {talismanTwoSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[6]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot[4] !== null ?
-                                    <img src={weaponOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlot[6] !== null ?
+                                    <img src={weaponOneSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[4]}</div>}
-                                {weaponTwoSlot[4] !== null ?
-                                    <img src={weaponTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlotLevel[6] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[6]}</div>}
+                                {weaponTwoSlot[6] !== null ?
+                                    <img src={weaponTwoSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[4]}</div>}
-                                {shieldSlot[4] !== null ?
-                                    <img src={shieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponTwoSlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[6]}</div>}
+                                {shieldSlot[6] !== null ?
+                                    <img src={shieldSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {shieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[4]}</div>}
-                                {wingSlot[4] !== null ?
-                                    <img src={wingSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {shieldSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[6]}</div>}
+                                {wingSlot[6] !== null ?
+                                    <img src={wingSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {wingSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[4]}</div>}
-                                {accessorySlot[4] !== null ?
-                                    <img src={accessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {wingSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[6]}</div>}
+                                {accessorySlot[6] !== null ?
+                                    <img src={accessorySlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {accessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[4]}</div>}
-                                {talismanOneSlot[4] !== null ?
-                                    <img src={talismanOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {accessorySlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[6]}</div>}
+                                {talismanOneSlot[6] !== null ?
+                                    <img src={talismanOneSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[4]}</div>}
+                                {talismanOneSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[6]}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 7</div>
                                 {nft.length > 0 ?
                                     <>
-                                        {characterSlot[4] !== null ?
-                                            <img src={characterSlot[4]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
+                                        {characterSlot[6] !== null ?
+                                            <img src={characterSlot[6]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
                                         }
                                     </> :
@@ -1816,145 +1816,145 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {characterSlotLevel[4] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[4]}</div>}
+                                {characterSlotLevel[6] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[6]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot[4] !== null ?
-                                    <img src={headUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlot[6] !== null ?
+                                    <img src={headUpperSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[4]}</div>}
-                                {headMiddleSlot[4] !== null ?
-                                    <img src={headMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlotLevel[6] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[6]}</div>}
+                                {headMiddleSlot[6] !== null ?
+                                    <img src={headMiddleSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[4]}</div>}
-                                {headLowerSlot[4] !== null ?
-                                    <img src={headLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headMiddleSlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[6]}</div>}
+                                {headLowerSlot[6] !== null ?
+                                    <img src={headLowerSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[4]}</div>}
-                                {armorSlot[4] !== null ?
-                                    <img src={armorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headLowerSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[6]}</div>}
+                                {armorSlot[6] !== null ?
+                                    <img src={armorSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {armorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[4]}</div>}
-                                {garmentSlot[4] !== null ?
-                                    <img src={garmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {armorSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[6]}</div>}
+                                {garmentSlot[6] !== null ?
+                                    <img src={garmentSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {garmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[4]}</div>}
-                                {footgearSlot[4] !== null ?
-                                    <img src={footgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {garmentSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[6]}</div>}
+                                {footgearSlot[6] !== null ?
+                                    <img src={footgearSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {footgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[4]}</div>}
+                                {footgearSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[6]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot[4] !== null ?
-                                    <img src={cardHeadUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlot[6] !== null ?
+                                    <img src={cardHeadUpperSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[4]}</div>}
-                                {cardHeadMiddleSlot[4] !== null ?
-                                    <img src={cardHeadMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlotLevel[6] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[6]}</div>}
+                                {cardHeadMiddleSlot[6] !== null ?
+                                    <img src={cardHeadMiddleSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[4]}</div>}
-                                {cardHeadLowerSlot[4] !== null ?
-                                    <img src={cardHeadLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadMiddleSlotLevel[6] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[6]}</div>}
+                                {cardHeadLowerSlot[6] !== null ?
+                                    <img src={cardHeadLowerSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[4]}</div>}
-                                {cardArmorSlot[4] !== null ?
-                                    <img src={cardArmorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadLowerSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[6]}</div>}
+                                {cardArmorSlot[6] !== null ?
+                                    <img src={cardArmorSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardArmorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[4]}</div>}
-                                {cardGarmentSlot[4] !== null ?
-                                    <img src={cardGarmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardArmorSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[6]}</div>}
+                                {cardGarmentSlot[6] !== null ?
+                                    <img src={cardGarmentSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardGarmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[4]}</div>}
-                                {cardFootgearSlot[4] !== null ?
-                                    <img src={cardFootgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardGarmentSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[6]}</div>}
+                                {cardFootgearSlot[6] !== null ?
+                                    <img src={cardFootgearSlot[6]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardFootgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[4]}</div>}
+                                {cardFootgearSlotLevel[6] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[6]}</div>}
                             </div>
                         </div>
 
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot[4] !== null ?
-                                    <img src={cardWeaponSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlot[7] !== null ?
+                                    <img src={cardWeaponSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardWeaponSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[4]}</div>}
-                                {jewelSlot[4] !== null ?
-                                    <img src={jewelSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[7]}</div>}
+                                {jewelSlot[7] !== null ?
+                                    <img src={jewelSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {jewelSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[4]}</div>}
-                                {cardShieldSlot[4] !== null ?
-                                    <img src={cardShieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {jewelSlotLevel[7] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[7]}</div>}
+                                {cardShieldSlot[7] !== null ?
+                                    <img src={cardShieldSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardShieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[4]}</div>}
-                                {daemonSlot[4] !== null ?
-                                    <img src={daemonSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardShieldSlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[7]}</div>}
+                                {daemonSlot[7] !== null ?
+                                    <img src={daemonSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {daemonSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[4]}</div>}
-                                {cardAccessorySlot[4] !== null ?
-                                    <img src={cardAccessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {daemonSlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[7]}</div>}
+                                {cardAccessorySlot[7] !== null ?
+                                    <img src={cardAccessorySlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardAccessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[4]}</div>}
-                                {talismanTwoSlot[4] !== null ?
-                                    <img src={talismanTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardAccessorySlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[7]}</div>}
+                                {talismanTwoSlot[7] !== null ?
+                                    <img src={talismanTwoSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[4]}</div>}
+                                {talismanTwoSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[7]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot[4] !== null ?
-                                    <img src={weaponOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlot[7] !== null ?
+                                    <img src={weaponOneSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[4]}</div>}
-                                {weaponTwoSlot[4] !== null ?
-                                    <img src={weaponTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlotLevel[7] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[7]}</div>}
+                                {weaponTwoSlot[7] !== null ?
+                                    <img src={weaponTwoSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[4]}</div>}
-                                {shieldSlot[4] !== null ?
-                                    <img src={shieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponTwoSlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[7]}</div>}
+                                {shieldSlot[7] !== null ?
+                                    <img src={shieldSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {shieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[4]}</div>}
-                                {wingSlot[4] !== null ?
-                                    <img src={wingSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {shieldSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[7]}</div>}
+                                {wingSlot[7] !== null ?
+                                    <img src={wingSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {wingSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[4]}</div>}
-                                {accessorySlot[4] !== null ?
-                                    <img src={accessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {wingSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[7]}</div>}
+                                {accessorySlot[7] !== null ?
+                                    <img src={accessorySlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {accessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[4]}</div>}
-                                {talismanOneSlot[4] !== null ?
-                                    <img src={talismanOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {accessorySlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[7]}</div>}
+                                {talismanOneSlot[7] !== null ?
+                                    <img src={talismanOneSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[4]}</div>}
+                                {talismanOneSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[7]}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 8</div>
                                 {nft.length > 0 ?
                                     <>
-                                        {characterSlot[4] !== null ?
-                                            <img src={characterSlot[4]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
+                                        {characterSlot[7] !== null ?
+                                            <img src={characterSlot[7]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
                                         }
                                     </> :
@@ -1962,145 +1962,145 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {characterSlotLevel[4] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[4]}</div>}
+                                {characterSlotLevel[7] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[7]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot[4] !== null ?
-                                    <img src={headUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlot[7] !== null ?
+                                    <img src={headUpperSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[4]}</div>}
-                                {headMiddleSlot[4] !== null ?
-                                    <img src={headMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlotLevel[7] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[7]}</div>}
+                                {headMiddleSlot[7] !== null ?
+                                    <img src={headMiddleSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[4]}</div>}
-                                {headLowerSlot[4] !== null ?
-                                    <img src={headLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headMiddleSlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[7]}</div>}
+                                {headLowerSlot[7] !== null ?
+                                    <img src={headLowerSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[4]}</div>}
-                                {armorSlot[4] !== null ?
-                                    <img src={armorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headLowerSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[7]}</div>}
+                                {armorSlot[7] !== null ?
+                                    <img src={armorSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {armorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[4]}</div>}
-                                {garmentSlot[4] !== null ?
-                                    <img src={garmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {armorSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[7]}</div>}
+                                {garmentSlot[7] !== null ?
+                                    <img src={garmentSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {garmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[4]}</div>}
-                                {footgearSlot[4] !== null ?
-                                    <img src={footgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {garmentSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[7]}</div>}
+                                {footgearSlot[7] !== null ?
+                                    <img src={footgearSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {footgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[4]}</div>}
+                                {footgearSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[7]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot[4] !== null ?
-                                    <img src={cardHeadUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlot[7] !== null ?
+                                    <img src={cardHeadUpperSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[4]}</div>}
-                                {cardHeadMiddleSlot[4] !== null ?
-                                    <img src={cardHeadMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlotLevel[7] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[7]}</div>}
+                                {cardHeadMiddleSlot[7] !== null ?
+                                    <img src={cardHeadMiddleSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[4]}</div>}
-                                {cardHeadLowerSlot[4] !== null ?
-                                    <img src={cardHeadLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadMiddleSlotLevel[7] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[7]}</div>}
+                                {cardHeadLowerSlot[7] !== null ?
+                                    <img src={cardHeadLowerSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[4]}</div>}
-                                {cardArmorSlot[4] !== null ?
-                                    <img src={cardArmorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadLowerSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[7]}</div>}
+                                {cardArmorSlot[7] !== null ?
+                                    <img src={cardArmorSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardArmorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[4]}</div>}
-                                {cardGarmentSlot[4] !== null ?
-                                    <img src={cardGarmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardArmorSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[7]}</div>}
+                                {cardGarmentSlot[7] !== null ?
+                                    <img src={cardGarmentSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardGarmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[4]}</div>}
-                                {cardFootgearSlot[4] !== null ?
-                                    <img src={cardFootgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardGarmentSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[7]}</div>}
+                                {cardFootgearSlot[7] !== null ?
+                                    <img src={cardFootgearSlot[7]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardFootgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[4]}</div>}
+                                {cardFootgearSlotLevel[7] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[7]}</div>}
                             </div>
                         </div>
 
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot[4] !== null ?
-                                    <img src={cardWeaponSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlot[8] !== null ?
+                                    <img src={cardWeaponSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardWeaponSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[4]}</div>}
-                                {jewelSlot[4] !== null ?
-                                    <img src={jewelSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[8]}</div>}
+                                {jewelSlot[8] !== null ?
+                                    <img src={jewelSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {jewelSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[4]}</div>}
-                                {cardShieldSlot[4] !== null ?
-                                    <img src={cardShieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {jewelSlotLevel[8] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[8]}</div>}
+                                {cardShieldSlot[8] !== null ?
+                                    <img src={cardShieldSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardShieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[4]}</div>}
-                                {daemonSlot[4] !== null ?
-                                    <img src={daemonSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardShieldSlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[8]}</div>}
+                                {daemonSlot[8] !== null ?
+                                    <img src={daemonSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {daemonSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[4]}</div>}
-                                {cardAccessorySlot[4] !== null ?
-                                    <img src={cardAccessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {daemonSlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[8]}</div>}
+                                {cardAccessorySlot[8] !== null ?
+                                    <img src={cardAccessorySlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardAccessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[4]}</div>}
-                                {talismanTwoSlot[4] !== null ?
-                                    <img src={talismanTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardAccessorySlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[8]}</div>}
+                                {talismanTwoSlot[8] !== null ?
+                                    <img src={talismanTwoSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[4]}</div>}
+                                {talismanTwoSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[8]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot[4] !== null ?
-                                    <img src={weaponOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlot[8] !== null ?
+                                    <img src={weaponOneSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[4]}</div>}
-                                {weaponTwoSlot[4] !== null ?
-                                    <img src={weaponTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlotLevel[8] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[8]}</div>}
+                                {weaponTwoSlot[8] !== null ?
+                                    <img src={weaponTwoSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[4]}</div>}
-                                {shieldSlot[4] !== null ?
-                                    <img src={shieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponTwoSlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[8]}</div>}
+                                {shieldSlot[8] !== null ?
+                                    <img src={shieldSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {shieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[4]}</div>}
-                                {wingSlot[4] !== null ?
-                                    <img src={wingSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {shieldSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[8]}</div>}
+                                {wingSlot[8] !== null ?
+                                    <img src={wingSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {wingSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[4]}</div>}
-                                {accessorySlot[4] !== null ?
-                                    <img src={accessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {wingSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[8]}</div>}
+                                {accessorySlot[8] !== null ?
+                                    <img src={accessorySlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {accessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[4]}</div>}
-                                {talismanOneSlot[4] !== null ?
-                                    <img src={talismanOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {accessorySlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[8]}</div>}
+                                {talismanOneSlot[8] !== null ?
+                                    <img src={talismanOneSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[4]}</div>}
+                                {talismanOneSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[8]}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 9</div>
                                 {nft.length > 0 ?
                                     <>
-                                        {characterSlot[4] !== null ?
-                                            <img src={characterSlot[4]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
+                                        {characterSlot[8] !== null ?
+                                            <img src={characterSlot[8]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
                                         }
                                     </> :
@@ -2108,145 +2108,145 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {characterSlotLevel[4] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[4]}</div>}
+                                {characterSlotLevel[8] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[8]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot[4] !== null ?
-                                    <img src={headUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlot[8] !== null ?
+                                    <img src={headUpperSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[4]}</div>}
-                                {headMiddleSlot[4] !== null ?
-                                    <img src={headMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlotLevel[8] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[8]}</div>}
+                                {headMiddleSlot[8] !== null ?
+                                    <img src={headMiddleSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[4]}</div>}
-                                {headLowerSlot[4] !== null ?
-                                    <img src={headLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headMiddleSlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[8]}</div>}
+                                {headLowerSlot[8] !== null ?
+                                    <img src={headLowerSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[4]}</div>}
-                                {armorSlot[4] !== null ?
-                                    <img src={armorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headLowerSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[8]}</div>}
+                                {armorSlot[8] !== null ?
+                                    <img src={armorSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {armorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[4]}</div>}
-                                {garmentSlot[4] !== null ?
-                                    <img src={garmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {armorSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[8]}</div>}
+                                {garmentSlot[8] !== null ?
+                                    <img src={garmentSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {garmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[4]}</div>}
-                                {footgearSlot[4] !== null ?
-                                    <img src={footgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {garmentSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[8]}</div>}
+                                {footgearSlot[8] !== null ?
+                                    <img src={footgearSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {footgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[4]}</div>}
+                                {footgearSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[8]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot[4] !== null ?
-                                    <img src={cardHeadUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlot[8] !== null ?
+                                    <img src={cardHeadUpperSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[4]}</div>}
-                                {cardHeadMiddleSlot[4] !== null ?
-                                    <img src={cardHeadMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlotLevel[8] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[8]}</div>}
+                                {cardHeadMiddleSlot[8] !== null ?
+                                    <img src={cardHeadMiddleSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[4]}</div>}
-                                {cardHeadLowerSlot[4] !== null ?
-                                    <img src={cardHeadLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadMiddleSlotLevel[8] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[8]}</div>}
+                                {cardHeadLowerSlot[8] !== null ?
+                                    <img src={cardHeadLowerSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[4]}</div>}
-                                {cardArmorSlot[4] !== null ?
-                                    <img src={cardArmorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadLowerSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[8]}</div>}
+                                {cardArmorSlot[8] !== null ?
+                                    <img src={cardArmorSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardArmorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[4]}</div>}
-                                {cardGarmentSlot[4] !== null ?
-                                    <img src={cardGarmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardArmorSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[8]}</div>}
+                                {cardGarmentSlot[8] !== null ?
+                                    <img src={cardGarmentSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardGarmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[4]}</div>}
-                                {cardFootgearSlot[4] !== null ?
-                                    <img src={cardFootgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardGarmentSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[8]}</div>}
+                                {cardFootgearSlot[8] !== null ?
+                                    <img src={cardFootgearSlot[8]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardFootgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[4]}</div>}
+                                {cardFootgearSlotLevel[8] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[8]}</div>}
                             </div>
                         </div>
 
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot[4] !== null ?
-                                    <img src={cardWeaponSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlot[9] !== null ?
+                                    <img src={cardWeaponSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardWeaponSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[4]}</div>}
-                                {jewelSlot[4] !== null ?
-                                    <img src={jewelSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardWeaponSlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlotLevel[9]}</div>}
+                                {jewelSlot[9] !== null ?
+                                    <img src={jewelSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {jewelSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[4]}</div>}
-                                {cardShieldSlot[4] !== null ?
-                                    <img src={cardShieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {jewelSlotLevel[9] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlotLevel[9]}</div>}
+                                {cardShieldSlot[9] !== null ?
+                                    <img src={cardShieldSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardShieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[4]}</div>}
-                                {daemonSlot[4] !== null ?
-                                    <img src={daemonSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardShieldSlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlotLevel[9]}</div>}
+                                {daemonSlot[9] !== null ?
+                                    <img src={daemonSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {daemonSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[4]}</div>}
-                                {cardAccessorySlot[4] !== null ?
-                                    <img src={cardAccessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {daemonSlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlotLevel[9]}</div>}
+                                {cardAccessorySlot[9] !== null ?
+                                    <img src={cardAccessorySlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardAccessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[4]}</div>}
-                                {talismanTwoSlot[4] !== null ?
-                                    <img src={talismanTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardAccessorySlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlotLevel[9]}</div>}
+                                {talismanTwoSlot[9] !== null ?
+                                    <img src={talismanTwoSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[4]}</div>}
+                                {talismanTwoSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlotLevel[9]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot[4] !== null ?
-                                    <img src={weaponOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlot[9] !== null ?
+                                    <img src={weaponOneSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[4]}</div>}
-                                {weaponTwoSlot[4] !== null ?
-                                    <img src={weaponTwoSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponOneSlotLevel[9] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlotLevel[9]}</div>}
+                                {weaponTwoSlot[9] !== null ?
+                                    <img src={weaponTwoSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {weaponTwoSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[4]}</div>}
-                                {shieldSlot[4] !== null ?
-                                    <img src={shieldSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {weaponTwoSlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlotLevel[9]}</div>}
+                                {shieldSlot[9] !== null ?
+                                    <img src={shieldSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {shieldSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[4]}</div>}
-                                {wingSlot[4] !== null ?
-                                    <img src={wingSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {shieldSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel[9]}</div>}
+                                {wingSlot[9] !== null ?
+                                    <img src={wingSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {wingSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[4]}</div>}
-                                {accessorySlot[4] !== null ?
-                                    <img src={accessorySlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {wingSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlotLevel[9]}</div>}
+                                {accessorySlot[9] !== null ?
+                                    <img src={accessorySlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {accessorySlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[4]}</div>}
-                                {talismanOneSlot[4] !== null ?
-                                    <img src={talismanOneSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {accessorySlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlotLevel[9]}</div>}
+                                {talismanOneSlot[9] !== null ?
+                                    <img src={talismanOneSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {talismanOneSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[4]}</div>}
+                                {talismanOneSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlotLevel[9]}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot X</div>
                                 {nft.length > 0 ?
                                     <>
-                                        {characterSlot[4] !== null ?
-                                            <img src={characterSlot[4]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
+                                        {characterSlot[9] !== null ?
+                                            <img src={characterSlot[9]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
                                         }
                                     </> :
@@ -2254,71 +2254,71 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
-                                {characterSlotLevel[4] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[4]}</div>}
+                                {characterSlotLevel[9] !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel[9]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot[4] !== null ?
-                                    <img src={headUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlot[9] !== null ?
+                                    <img src={headUpperSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[4]}</div>}
-                                {headMiddleSlot[4] !== null ?
-                                    <img src={headMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headUpperSlotLevel[9] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlotLevel[9]}</div>}
+                                {headMiddleSlot[9] !== null ?
+                                    <img src={headMiddleSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[4]}</div>}
-                                {headLowerSlot[4] !== null ?
-                                    <img src={headLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headMiddleSlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlotLevel[9]}</div>}
+                                {headLowerSlot[9] !== null ?
+                                    <img src={headLowerSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {headLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[4]}</div>}
-                                {armorSlot[4] !== null ?
-                                    <img src={armorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {headLowerSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlotLevel[9]}</div>}
+                                {armorSlot[9] !== null ?
+                                    <img src={armorSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {armorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[4]}</div>}
-                                {garmentSlot[4] !== null ?
-                                    <img src={garmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {armorSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel[9]}</div>}
+                                {garmentSlot[9] !== null ?
+                                    <img src={garmentSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {garmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[4]}</div>}
-                                {footgearSlot[4] !== null ?
-                                    <img src={footgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {garmentSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlotLevel[9]}</div>}
+                                {footgearSlot[9] !== null ?
+                                    <img src={footgearSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {footgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[4]}</div>}
+                                {footgearSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlotLevel[9]}</div>}
                             </div>
                             <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot[4] !== null ?
-                                    <img src={cardHeadUpperSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlot[9] !== null ?
+                                    <img src={cardHeadUpperSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadUpperSlotLevel[4] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[4]}</div>}
-                                {cardHeadMiddleSlot[4] !== null ?
-                                    <img src={cardHeadMiddleSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadUpperSlotLevel[9] !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlotLevel[9]}</div>}
+                                {cardHeadMiddleSlot[9] !== null ?
+                                    <img src={cardHeadMiddleSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadMiddleSlotLevel[4] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[4]}</div>}
-                                {cardHeadLowerSlot[4] !== null ?
-                                    <img src={cardHeadLowerSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadMiddleSlotLevel[9] !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlotLevel[9]}</div>}
+                                {cardHeadLowerSlot[9] !== null ?
+                                    <img src={cardHeadLowerSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardHeadLowerSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[4]}</div>}
-                                {cardArmorSlot[4] !== null ?
-                                    <img src={cardArmorSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardHeadLowerSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlotLevel[9]}</div>}
+                                {cardArmorSlot[9] !== null ?
+                                    <img src={cardArmorSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardArmorSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[4]}</div>}
-                                {cardGarmentSlot[4] !== null ?
-                                    <img src={cardGarmentSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardArmorSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlotLevel[9]}</div>}
+                                {cardGarmentSlot[9] !== null ?
+                                    <img src={cardGarmentSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardGarmentSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[4]}</div>}
-                                {cardFootgearSlot[4] !== null ?
-                                    <img src={cardFootgearSlot[4]} width="100px" alt="Can not load metadata." /> :
+                                {cardGarmentSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlotLevel[9]}</div>}
+                                {cardFootgearSlot[9] !== null ?
+                                    <img src={cardFootgearSlot[9]} width="100px" alt="Can not load metadata." /> :
                                     <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
                                 }
-                                {cardFootgearSlotLevel[4] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[4]}</div>}
+                                {cardFootgearSlotLevel[9] !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlotLevel[9]}</div>}
                             </div>
                         </div>
                     </div>

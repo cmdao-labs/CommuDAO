@@ -36,7 +36,7 @@ const BBQDungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
-                        <div className="emp">HRM-GOLD, HRM-DM</div>
+                        <div className="emp">GEMSTONE</div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(30001); navigate('/dungeon/the-endless-tower');}}>Go to The Endless Tower</div>
                 </div>

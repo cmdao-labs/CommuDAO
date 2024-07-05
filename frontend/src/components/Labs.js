@@ -21,6 +21,9 @@ const goldMine = '0x28d8c3c2C0199Ff6E73eb7c4321F43E0e7F80ad8'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const platLab = '0xFFBADf348b97055cA8E60a848718cAEf29df50A7'
 const platLab2 = '0xB080353ccD9CC565C0844Bb22e2997EdB2b6B7f0'
+const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
+const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
+const plutoLab = '0x907bcCa99052c195BA8181aca07181D18E1C7555'
 
 const tunaField = "0x09676315DC0c85F6bd5e866C5f1363A00Eec4381"
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
@@ -55,6 +58,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [silverBalance, setSilverBalance] = React.useState(0)
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [platBalance, setPlatBalance] = React.useState(0)
+    const [jaspBalance, setJaspBalance] = React.useState(0)
+    const [plutoBalance, setPlutoBalance] = React.useState(0)
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
     const [vabagBalance, setVabagBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
@@ -95,6 +100,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [isCraftPLAT2, setIsCraftPLAT2] = React.useState(null)
     const [timetoClaimPLAT2, setTimeToClaimPLAT2] = React.useState(0)
     const [canCraftPLAT2, setCanCraftPLAT2] = React.useState(false)
+
+    const [isCraftPLUTO, setIsCraftPLUTO] = React.useState(null)
+    const [timetoClaimPLUTO, setTimeToClaimPLUTO] = React.useState(0)
+    const [canCraftPLUTO, setCanCraftPLUTO] = React.useState(false)
 
     const [isCraft1, setIsCraft1] = React.useState(null)
     const [timetoClaim1, setTimeToClaim1] = React.useState(0)
@@ -249,19 +258,19 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         args: [address],
                     },
                     {
-                        address: goldMine,
-                        abi: goldMineABI,
-                        functionName: 'supplier',
-                        args: [address],
-                    },
-                    {
-                        address: goldMine,
+                        address: plutoLab,
                         abi: pzaLabABI,
                         functionName: 'supplier',
                         args: [address],
                     },
                     {
-                        address: platToken,
+                        address: plutoLab,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
+                    {
+                        address: plutoToken,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
@@ -350,8 +359,14 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         functionName: 'supplier',
                         args: [address],
                     },
+                    {
+                        address: dunJasper,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, 0, {isCraft: false, laststamp: 0}, 0, {isCraft: false, laststamp: 0}, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, {isCraft: false, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, machineIndex: 0, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, {isCraft: false, laststamp: 0}, 0, 0, 0, {isCraft: false, laststamp: 0}, 0, {isCraft: false, laststamp: 0}, {result: 0}, ]
             
             const cmjBal = data[0].result
             const woodBal = data[1].result
@@ -372,9 +387,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const labLogPZA = data[16].result
             const labLogSIL = data[17].result
             const labLogGOLD = data[18].result
-            const mineGold = null
-            const labLogGOLD2 = null
-            const mtBal = null
+            const wait = null
+            const labLogPLUTO = data[20].result
+            const plutoBal = data[21].result
             const platBal = data[22].result
             const labLogPLAT = data[23].result
             const vaBagBal = data[24].result
@@ -389,6 +404,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const labLogII = data[33].result
             const eeBal = data[34].result
             const labLogPlat2 = data[35].result
+            const jaspBal = data[36].result
 
             const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
@@ -398,8 +414,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const _canCraftPZA = Number(ethers.utils.formatEther(String(stOPTBal))) >= 1 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
             const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 1 && Number(ethers.utils.formatEther(String(cuBal))) >= 150000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 5 && Number(ethers.utils.formatEther(String(silBal))) >= 10000 ? true : false
-            const _canCraftGOLD2 = false
-            const _canMineGold = false
+            const _canCraftPLUTO = Number(ethers.utils.formatUnits(String(jaspBal), "gwei")) >= 100 && Number(ethers.utils.formatEther(String(cmjBal))) >= 5 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 5 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
             const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
@@ -412,7 +427,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 abi: bbqLab02ABI,
                 functionName: 'currentQueue',
             })
-
             const data2 = await readContracts({
                 contracts: [
                     {
@@ -429,16 +443,15 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     },
                 ],
             })
-            
             const labLogBBQ_G = data2[0]
             const labLogBBQ_G_Next = data2[1]
 
             return [
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
                 labLog, _canCraft1, labLog2, _canCraft2, _canCraft2_2, labLogBBQ, _canCraftBBQ,
-                labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, mineGold, _canMineGold,
-                mtBal, labLogGOLD2, _canCraftGOLD2, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR, angbBal, starBal, labLogSTAR, _canCraftSTAR,
-                tmBal, gearBal, iiBal, labLogII, _canCraftII, _canCraftII2, eeBal, labLogPlat2, _canCraftPLAT2,
+                labLogBBQ_G, labLogBBQ_G_Next, _canCraftBBQ_G, labLogPZA, _canCraftPZA, labLogSIL, _canCraftSIL, labLogGOLD, _canCraftGOLD, null, false,
+                plutoBal, labLogPLUTO, _canCraftPLUTO, platBal, labLogPLAT, _canCraftPLAT, vaBagBal, swarBal, labLogSWAR, _canCraftSWAR, angbBal, starBal, labLogSTAR, _canCraftSTAR,
+                tmBal, gearBal, iiBal, labLogII, _canCraftII, _canCraftII2, eeBal, labLogPlat2, _canCraftPLAT2, jaspBal, 
             ]
         }
 
@@ -527,7 +540,13 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimGOLD(0)
             setCanCraftGOLD(result[29])
 
-
+            setPlutoBalance(ethers.utils.formatUnits(String(result[32]), "gwei"))
+            setIsCraftPLUTO(Number(result[33][0]) > 0)
+            const nextHourPLUTO = new Date((Number(result[33][1]) * 1000) + (3600 * 8 * 1000))
+            Date.now() - (Number(result[33][1]) * 1000) <= (3600 * 8 * 1000) ?
+                setTimeToClaimPLUTO(nextHourPLUTO.toLocaleString('es-CL')) :
+                setTimeToClaimPLUTO(0)
+            setCanCraftPLUTO(result[34])
 
             setPlatBalance(ethers.utils.formatEther(result[35]))
             setIsCraftPLAT(Number(result[36][0]) > 0)
@@ -582,6 +601,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimPLAT2(nextHourPLAT2.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT2(0)
             setCanCraftPLAT2(result[54])
+
+            setJaspBalance(ethers.utils.formatUnits(String(result[55]), "gwei"))
         })
 
     }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, kycABI])
@@ -1196,6 +1217,68 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
         setisLoading(false)
     }
 
+    const craftPLUTOHandle = async (_machine) => {
+        setisLoading(true)
+        try {
+            const jaspAllow = await readContract({
+                address: dunJasper,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, plutoLab],
+            })
+            if (jaspAllow < (100 * 10**9)) {
+                const config = await prepareWriteContract({
+                    address: dunJasper,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [plutoLab, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const cmjAllow = await readContract({
+                address: cmjToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, plutoLab],
+            })
+            if (cmjAllow < (5 * 10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: cmjToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [plutoLab, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
+            }
+            const config3 = await prepareWriteContract({
+                address: plutoLab,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            const { hash: hash1 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+    const obtainPLUTOHandle = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: plutoLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
     const craftSWARHandle = async (_machine) => {
         setisLoading(true)
         try {
@@ -1487,6 +1570,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         />
                         <div style={{marginLeft: "5px"}}>{Number(copperBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
+                            width="20"
+                            alt="$JASP"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cuToken,
+                                            symbol: 'JASP',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                    </div>
                 </div>
 
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Partner Resources</div>
@@ -1724,6 +1830,29 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             }}
                         />
                         <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
+                            width="20"
+                            alt="$PLUTO"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: plutoToken,
+                                            symbol: 'PLUTO',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
                     </div>
                 </div>
                
@@ -2265,6 +2394,57 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                                 }
                                             </> :
                                             <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
+                                        }
+                                    </> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                }
+                            </>
+                        }
+                    </div>
+
+                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
+                        <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbM9zQ2g1PmTnqn2nZznjCHzXSrpcc1Eey4rbawSNyayS" width="200" alt="$PLUTO_Factory"/>
+                        </div>
+                        <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                            <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                <div style={{margin: "0 5px"}}>100 GWEI</div>
+                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                <div style={{margin: "0 5px"}}>5</div>
+                                <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
+                                <div style={{margin: "0 5px"}}>5 GWEI</div>
+                            </div>
+                        </div>
+                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                            <div>2 hour</div>
+                        </div>
+                        {isCraftPLUTO ?
+                            <>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                    <div>{timetoClaimPLUTO === 0 ? "now" : timetoClaimPLUTO}</div>
+                                </div>
+                                {timetoClaimPLUTO === 0 ?
+                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLUTOHandle}>Obtain</div> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                }
+                            </> :
+                            <>
+                                {address !== null && address !== undefined ?
+                                    <>
+                                        {isCraftPLUTO !== null ?
+                                            <>
+                                                {canCraftPLUTO ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLUTOHandle(1)}>Craft Plutonium</div> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Plutonium</div>
                                         }
                                     </> :
                                     <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
