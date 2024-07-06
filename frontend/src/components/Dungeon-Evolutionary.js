@@ -13,6 +13,7 @@ const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const platToken = '0xFFBADf348b97055cA8E60a848718cAEf29df50A7'
 const pzaToken = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
+const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const evolutionaryV2 = '0xEDad050528b5E0F351c9D3150B8C3Eb3da1E7b08'
@@ -36,6 +37,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
     const [silBalance, setSilBalance] = React.useState(0)
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [osBalance, setOsBalance] = React.useState(0)
+    const [platBalance, setPlatBalance] = React.useState(0)
+    const [jaspBalance, setJaspBalance] = React.useState(0)
 
     const [skinSlot1, setSkinSlot1] = React.useState(null)
 
@@ -117,8 +120,20 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                         functionName: 'skin',
                         args: [address, 1],
                     },
+                    {
+                        address: platToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: jaspToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {result: 0}, {result: 0}]
 
             const cmjBal = data[1].result
             const bbqBal = data[2].result
@@ -127,6 +142,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             const silBal = data[5].result
             const goldBal = data[6].result
             const osBal = data[7].result
+            const platBal = data[8].result
+            const jaspBal = data[9].result
 
             const nftbal = data[0].result
             let count = 0
@@ -223,7 +240,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             }
             if (salonNfts.length === 0) { salonNfts.push(null) }
 
-            return [nfts, cmjBal, bbqBal, cuBal, pzaBal, silBal, goldBal, osBal, salonNfts, skinslot1, ]
+            return [nfts, cmjBal, bbqBal, cuBal, pzaBal, silBal, goldBal, osBal, salonNfts, skinslot1, platBal, jaspBal, ]
         }
 
         const promise = thefetch()
@@ -246,6 +263,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             setOsBalance(ethers.utils.formatEther(String(result[7])))
             setSalonNft(result[8])
             setSkinSlot1(result[9])
+            setPlatBalance(ethers.utils.formatEther(String(result[10])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[11]), "gwei"))
         })
 
     }, [address, erc20ABI, erc721ABI, txupdate, salonABI])
@@ -385,14 +404,14 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     const { hash: hash02 } = await writeContract(config2)
                     await waitForTransaction({ hash: hash02 })
                 }
-            } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030 || Number(_enchantindex) === 4010 || Number(_enchantindex) === 4020 || Number(_enchantindex) === 4030) {
+            } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 1040 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 2040 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030 || Number(_enchantindex) === 3040 || Number(_enchantindex) === 4010 || Number(_enchantindex) === 4020 || Number(_enchantindex) === 4030 || Number(_enchantindex) === 4040) {
                 const pzaAllow = await readContract({
                     address: pzaToken,
                     abi: erc20ABI,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
-                if (pzaAllow < (593440 * 10**18)) {
+                if (pzaAllow < (3674420 * 10**18)) {
                     const config = await prepareWriteContract({
                         address: pzaToken,
                         abi: erc20ABI,
@@ -408,7 +427,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
-                if (jdaoAllow < (450 * 10**18)) {
+                if (jdaoAllow < (1350 * 10**18)) {
                     const config2 = await prepareWriteContract({
                         address: jdaoToken,
                         abi: erc20ABI,
@@ -510,6 +529,39 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 if (platAllow < (6150937 * 10**18)) {
                     const config2 = await prepareWriteContract({
                         address: platToken,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash02 } = await writeContract(config2)
+                    await waitForTransaction({ hash: hash02 })
+                }
+            } else if (Number(_enchantindex) <= 1049 || (Number(_enchantindex) >= 2041 && Number(_enchantindex) <= 2049) || (Number(_enchantindex) >= 3041 && Number(_enchantindex) <= 3049) || (Number(_enchantindex) >= 4041 && Number(_enchantindex) <= 4049)) {
+                const pzaAllow = await readContract({
+                    address: pzaToken,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, evolutionaryV2],
+                })
+                if (pzaAllow < (1895924 * 10**18)) {
+                    const config = await prepareWriteContract({
+                        address: pzaToken,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
+                }
+                const jaspAllow = await readContract({
+                    address: jaspToken,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, evolutionaryV2],
+                })
+                if (jaspAllow < (12807 * 10**9)) {
+                    const config2 = await prepareWriteContract({
+                        address: jaspToken,
                         abi: erc20ABI,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
@@ -865,6 +917,14 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                             <div style={{marginLeft: "10px"}}>{Number(goldBalance).toFixed(3)}</div>
                         </div>
                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/>
+                            <div style={{marginLeft: "10px"}}>{Number(platBalance).toFixed(3)}</div>
+                        </div>
+                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
+                            <div style={{marginLeft: "10px"}}>{Number(jaspBalance).toFixed(0)}</div>
+                        </div>
+                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
                             <div style={{marginLeft: "10px"}}>{Number(osBalance).toFixed(3)}</div>
                         </div>
@@ -1053,6 +1113,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 {Number(item.Id) % 100000 === 1500 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" width="120" alt="Can not load metadata." />}
                                                                 {Number(item.Id) % 100000 === 4500 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiew47pd67c3l5whmj6vhzullkqvrrsmtlssarwf5s54tnehejaxdu" width="120" alt="Can not load metadata." />}
                                                                 {Number(item.Id) % 100000 === 9500 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihvuvksuylcjqb37rsgkr5z2l26iliyestxikmjsq7va6xtnnusxe" width="120" alt="Can not load metadata." />}
+                                                                {Number(item.Id) % 100000 === 16500 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQbfG6ZVqHcfSPuPyhdu9fy3UjsRuUnkRJNu9g6YWLKz7" width="120" alt="Can not load metadata." />}
                                                                 <div style={{width: "150px"}} className="emp pixel">
                                                                     {Number(item.Id) % 100000 === 500 ? 
                                                                         <>{item.Name} [Lv.1]</> :
@@ -1096,6 +1157,16 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                             {Number(item.Id) % 100000 === 14180 && 37}
                                                                             {Number(item.Id) % 100000 === 14940 && 38}
                                                                             {Number(item.Id) % 100000 === 15700 && 39}
+                                                                            {Number(item.Id) % 100000 === 16500 && 40}
+                                                                            {Number(item.Id) % 100000 === 17300 && 41}
+                                                                            {Number(item.Id) % 100000 === 18140 && 42}
+                                                                            {Number(item.Id) % 100000 === 18980 && 43}
+                                                                            {Number(item.Id) % 100000 === 19860 && 44}
+                                                                            {Number(item.Id) % 100000 === 20740 && 45}
+                                                                            {Number(item.Id) % 100000 === 21660 && 46}
+                                                                            {Number(item.Id) % 100000 === 22580 && 47}
+                                                                            {Number(item.Id) % 100000 === 23540 && 48}
+                                                                            {Number(item.Id) % 100000 === 24500 && 49}
                                                                             ]
                                                                         </>
                                                                     }
@@ -1145,6 +1216,16 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 14180 && 36}
                                                                     {Number(item.Id) % 100000 === 14940 && 37}
                                                                     {Number(item.Id) % 100000 === 15700 && 38}
+                                                                    {Number(item.Id) % 100000 === 16500 && 39}
+                                                                    {Number(item.Id) % 100000 === 17300 && 40}
+                                                                    {Number(item.Id) % 100000 === 18140 && 41}
+                                                                    {Number(item.Id) % 100000 === 18980 && 42}
+                                                                    {Number(item.Id) % 100000 === 19860 && 43}
+                                                                    {Number(item.Id) % 100000 === 20740 && 44}
+                                                                    {Number(item.Id) % 100000 === 21660 && 45}
+                                                                    {Number(item.Id) % 100000 === 22580 && 46}
+                                                                    {Number(item.Id) % 100000 === 23540 && 47}
+                                                                    {Number(item.Id) % 100000 === 24500 && 48}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>{item.RewardPerSec} cmpow per sec</div>
                                                             </div>
@@ -1190,6 +1271,16 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 14180 && 37}
                                                                     {Number(item.Id) % 100000 === 14940 && 38}
                                                                     {Number(item.Id) % 100000 === 15700 && 39}
+                                                                    {Number(item.Id) % 100000 === 16500 && 40}
+                                                                    {Number(item.Id) % 100000 === 17300 && 41}
+                                                                    {Number(item.Id) % 100000 === 18140 && 42}
+                                                                    {Number(item.Id) % 100000 === 18980 && 43}
+                                                                    {Number(item.Id) % 100000 === 19860 && 44}
+                                                                    {Number(item.Id) % 100000 === 20740 && 45}
+                                                                    {Number(item.Id) % 100000 === 21660 && 46}
+                                                                    {Number(item.Id) % 100000 === 22580 && 47}
+                                                                    {Number(item.Id) % 100000 === 23540 && 48}
+                                                                    {Number(item.Id) % 100000 === 24500 && 49}
                                                                 </div>
                                                                 <div style={{width: "150px"}}>
                                                                     {Number(item.Id) % 100000 <= 540 && item.RewardPerSec + 40}
@@ -1211,7 +1302,12 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {(Number(item.Id) % 100000 === 11380 || Number(item.Id) % 100000 === 12060) && item.RewardPerSec + 680}
                                                                     {(Number(item.Id) % 100000 === 12740 || Number(item.Id) % 100000 === 13460) && item.RewardPerSec + 720}
                                                                     {(Number(item.Id) % 100000 === 14180 || Number(item.Id) % 100000 === 14940) && item.RewardPerSec + 760}
-                                                                    {(Number(item.Id) % 100000 === 15700) && item.RewardPerSec + 800}
+                                                                    {(Number(item.Id) % 100000 === 15700 || Number(item.Id) % 100000 === 16500) && item.RewardPerSec + 800}
+                                                                    {(Number(item.Id) % 100000 === 17300 || Number(item.Id) % 100000 === 18140) && item.RewardPerSec + 840}
+                                                                    {(Number(item.Id) % 100000 === 18980 || Number(item.Id) % 100000 === 19860) && item.RewardPerSec + 880}
+                                                                    {(Number(item.Id) % 100000 === 20740 || Number(item.Id) % 100000 === 21660) && item.RewardPerSec + 920}
+                                                                    {(Number(item.Id) % 100000 === 22580 || Number(item.Id) % 100000 === 23540) && item.RewardPerSec + 960}
+                                                                    {(Number(item.Id) % 100000 === 24500) && item.RewardPerSec + 1000}
                                                                     &nbsp;cmpow per sec
                                                                 </div>
                                                             </div>
@@ -1264,6 +1360,16 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 14180 && '212,640'}
                                                                     {Number(item.Id) % 100000 === 14940 && '255,168'}
                                                                     {Number(item.Id) % 100000 === 15700 && '306,202'}
+                                                                    {Number(item.Id) % 100000 === 16500 && '3,674,420'}
+                                                                    {Number(item.Id) % 100000 === 17300 && '440,931'}
+                                                                    {Number(item.Id) % 100000 === 18140 && '529,117'}
+                                                                    {Number(item.Id) % 100000 === 18980 && '634,941'}
+                                                                    {Number(item.Id) % 100000 === 19860 && '761,929'}
+                                                                    {Number(item.Id) % 100000 === 20740 && '914,315'}
+                                                                    {Number(item.Id) % 100000 === 21660 && '1,097,178'}
+                                                                    {Number(item.Id) % 100000 === 22580 && '1,316,614'}
+                                                                    {Number(item.Id) % 100000 === 23540 && '1,579,937'}
+                                                                    {Number(item.Id) % 100000 === 24500 && '1,895,924'}
                                                                 </div>
                                                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
                                                                 {Number(item.Id) % 100000 <= 1300 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>}
@@ -1271,6 +1377,7 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                 {(Number(item.Id) % 100000 >= 4900 && Number(item.Id) % 100000 <= 8900) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>}
                                                                 {(Number(item.Id) % 100000 === 1500 || Number(item.Id) % 100000 === 4500 || Number(item.Id) % 100000 === 9500) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>}
                                                                 {(Number(item.Id) % 100000 >= 10100 && Number(item.Id) % 100000 <= 15700) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>}
+                                                                {(Number(item.Id) % 100000 >= 16500 && Number(item.Id) % 100000 <= 24500) && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>}
                                                                 <div style={{margin: "0 5px"}}>
                                                                     {Number(item.Id) % 100000 === 500 && 0}
                                                                     {Number(item.Id) % 100000 === 540 && 500}
@@ -1311,6 +1418,16 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 14180 && '2,733,750'}
                                                                     {Number(item.Id) % 100000 === 14940 && '4,100,625'}
                                                                     {Number(item.Id) % 100000 === 15700 && '6,150,937'}
+                                                                    {Number(item.Id) % 100000 === 16500 && 1350}
+                                                                    {Number(item.Id) % 100000 === 17300 && '500'}
+                                                                    {Number(item.Id) % 100000 === 18140 && '750'}
+                                                                    {Number(item.Id) % 100000 === 18980 && '1125'}
+                                                                    {Number(item.Id) % 100000 === 19860 && '1687'}
+                                                                    {Number(item.Id) % 100000 === 20740 && '2530'}
+                                                                    {Number(item.Id) % 100000 === 21660 && '3795'}
+                                                                    {Number(item.Id) % 100000 === 22580 && '5692'}
+                                                                    {Number(item.Id) % 100000 === 23540 && '8538'}
+                                                                    {Number(item.Id) % 100000 === 24500 && '12807'}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1407,6 +1524,26 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     ind = 38
                                                                 } else if (Number(item.Id) % 100000 === 15700) {
                                                                     ind = 39
+                                                                } else if (Number(item.Id) % 100000 === 16500) {
+                                                                    ind = 40
+                                                                } else if (Number(item.Id) % 100000 === 17300) {
+                                                                    ind = 41
+                                                                } else if (Number(item.Id) % 100000 === 18140) {
+                                                                    ind = 42
+                                                                } else if (Number(item.Id) % 100000 === 18980) {
+                                                                    ind = 43
+                                                                } else if (Number(item.Id) % 100000 === 19860) {
+                                                                    ind = 44
+                                                                } else if (Number(item.Id) % 100000 === 20740) {
+                                                                    ind = 45
+                                                                } else if (Number(item.Id) % 100000 === 21660) {
+                                                                    ind = 46
+                                                                } else if (Number(item.Id) % 100000 === 22580) {
+                                                                    ind = 47
+                                                                } else if (Number(item.Id) % 100000 === 23540) {
+                                                                    ind = 48
+                                                                } else if (Number(item.Id) % 100000 === 24500) {
+                                                                    ind = 49
                                                                 }
                                                                 evolutionV2Handle(item.Id, arg + ind)
                                                             }}
