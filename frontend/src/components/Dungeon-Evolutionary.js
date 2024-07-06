@@ -1419,15 +1419,15 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                                                                     {Number(item.Id) % 100000 === 14940 && '4,100,625'}
                                                                     {Number(item.Id) % 100000 === 15700 && '6,150,937'}
                                                                     {Number(item.Id) % 100000 === 16500 && 1350}
-                                                                    {Number(item.Id) % 100000 === 17300 && '500'}
-                                                                    {Number(item.Id) % 100000 === 18140 && '750'}
-                                                                    {Number(item.Id) % 100000 === 18980 && '1125'}
-                                                                    {Number(item.Id) % 100000 === 19860 && '1687'}
-                                                                    {Number(item.Id) % 100000 === 20740 && '2530'}
-                                                                    {Number(item.Id) % 100000 === 21660 && '3795'}
-                                                                    {Number(item.Id) % 100000 === 22580 && '5692'}
-                                                                    {Number(item.Id) % 100000 === 23540 && '8538'}
-                                                                    {Number(item.Id) % 100000 === 24500 && '12807'}
+                                                                    {Number(item.Id) % 100000 === 17300 && '500 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 18140 && '750 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 18980 && '1,125 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 19860 && '1,687 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 20740 && '2,530 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 21660 && '3,795 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 22580 && '5,692 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 23540 && '8,538 GWEI'}
+                                                                    {Number(item.Id) % 100000 === 24500 && '12,807 GWEI'}
                                                                 </div>
                                                             </div>
                                                         </div>
