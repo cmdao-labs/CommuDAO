@@ -374,15 +374,20 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                                                 </div>
                                             </div>
                                         </div>
-                                        {item.isStaked && Number(item.Reward) >= 86400 * 30 ?
-                                            <div style={{fontSize: "14px", lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>HARVEST & BURN</div> :
-                                            <div style={{fontSize: "12px", lineHeight: 2, padding: "10px 0"}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>BURN NOW (LOSS ALL HARVEST)</div>
-                                        }
+                                        
                                     </div>
-                                    <div style={{width: "85%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        <div style={{fontSize: "14px", lineHeight: "20px"}} className="button" onClick={() => {stakeNft(item.Id)}}>STAKE 30 DAYS</div>
-                                        <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
-                                    </div>
+                                    {!item.isStaked ?
+                                        <div style={{width: "85%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                            <div style={{fontSize: "14px", lineHeight: "20px"}} className="button" onClick={() => {stakeNft(item.Id)}}>STAKE 30 DAYS</div>
+                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                        </div> :
+                                        <>
+                                            {Number(item.Reward) >= 86400 * 30 ?
+                                                <div style={{fontSize: "14px", lineHeight: "20px"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>HARVEST & BURN</div> :
+                                                <div style={{fontSize: "12px", lineHeight: "20px"}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>BURN NOW (LOSS ALL HARVEST)</div>
+                                            }
+                                        </>
+                                    }
                                 </div>
                             ))}
                             </> :
