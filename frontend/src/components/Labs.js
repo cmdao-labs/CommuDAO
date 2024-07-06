@@ -542,8 +542,8 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
             setPlutoBalance(ethers.utils.formatUnits(String(result[32]), "gwei"))
             setIsCraftPLUTO(Number(result[33][0]) > 0)
-            const nextHourPLUTO = new Date((Number(result[33][1]) * 1000) + (3600 * 8 * 1000))
-            Date.now() - (Number(result[33][1]) * 1000) <= (3600 * 8 * 1000) ?
+            const nextHourPLUTO = new Date((Number(result[33][1]) * 1000) + (3600 * 2 * 1000))
+            Date.now() - (Number(result[33][1]) * 1000) <= (3600 * 2 * 1000) ?
                 setTimeToClaimPLUTO(nextHourPLUTO.toLocaleString('es-CL')) :
                 setTimeToClaimPLUTO(0)
             setCanCraftPLUTO(result[34])
