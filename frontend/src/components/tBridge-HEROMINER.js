@@ -119,6 +119,11 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
     const [nft, setNft] = React.useState([])
     const [nft2, setNft2] = React.useState([])
 
+    const [substanceSelected, setSubstanceSelected] = React.useState("SALM")
+    const [depositGas, setDepositGas] = React.useState('')
+    const [productSelected, setProductSelected] = React.useState("DM")
+    const [depositProduct, setDepositProduct] = React.useState('')
+
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const herocatBKCSC = new ethers.Contract(herocatBKC, erc721ABI, providerBKC)
@@ -332,6 +337,56 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                     <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                     <div style={{fontSize: "30px"}}>From BKC 1 KUB/TX; From BBQ 800 CMD/TX</div>
+                </div>
+            </div>
+            <div style={{height: "420px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                    <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={substanceSelected} onChange={(event) => {setSubstanceSelected(event.target.value)}}>
+                        <option value="SALM">SALMON</option>
+                        <option value="AGUA">AGUA</option>
+                        <option value="COSMOS">COSMOS</option>
+                    </select>
+                    <input
+                        style={{width: "175px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder={"0.0 " + substanceSelected}
+                        value={depositGas}
+                        onChange={(event) => setDepositGas(event.target.value)}
+                    ></input>
+                    {false && chain.id === 96 && address !== null && address !== undefined ? 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} {substanceSelected}</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {substanceSelected === "SALM" && Number((depositGas / 100)).toFixed(3)}{substanceSelected === "AGUA" && Number((depositGas / 100000)).toFixed(3)}{substanceSelected === "COSMOS" && Number((depositGas / 1000)).toFixed(3)} ENGY</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {0} ENGY</div>
+                    <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
+                </div>
+
+                <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                    <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={productSelected} onChange={(event) => {setProductSelected(event.target.value)}}>
+                        <option value="DM">DIAMOND</option>
+                        <option value="GOLD">GOLD</option>
+                    </select>
+                    <input
+                        style={{width: "175px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder="0.0 GEMSTONE"
+                        value={depositProduct}
+                        onChange={(event) => setDepositProduct(event.target.value)}
+                    ></input>
+                    {false && chain.id === 190 && address !== null && address !== undefined ? 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">BRIDGE TO BITKUB CHAIN</div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BITKUB CHAIN</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} </div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {/*depositCMJ >= 80 ? Number((depositCMJ * 80 - 80)).toFixed(3) : 0*/} {productSelected}</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BKC Mainnet Balance: {0} {productSelected}</div>
+                    <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
             </div>
             <div style={{width: "72%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">BKC NFTs</div>

@@ -410,7 +410,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>$CMD</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(3)}>$TAOMEME</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HERO-MINER NFT</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HERO-MINER</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(6)}>CMDAO NFT</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
