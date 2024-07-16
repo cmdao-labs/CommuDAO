@@ -9,10 +9,9 @@ import { ethers } from 'ethers'
 import OpSwap from './Op-GameSwap-Swap'
 
 const options = [
-    {value: 0, label: 'WETH'},
+    {value: 0, label: 'ETH'},
     {value: 1, label: 'CMD'},
 ]
-
 const wethToken = "0x4200000000000000000000000000000000000006"
 const cmdToken = "0x399fe73bb0ee60670430fd92fe25a0fdd308e142"
 const cmdethExchange = "0xA41F70B283b8f097112ca3Bb63cB2718EE662e49"
@@ -68,16 +67,16 @@ const inputStyle = {
     }),
 }
    
-const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI, bkcOracleABI }) => {
+const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI, velodromeCallerABI, bkcOracleABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
 
     const [cmdBalance, setCmdBalance] = React.useState(<>0.000</>)
-    const [wethBalance, setWethBalance] = React.useState(<>0.000</>)
+    const [ethBalance, setEthBalance] = React.useState(<>0.000</>)
 
     const [cmdReserv, setCmdReserv] = React.useState(0)
-    const [wethReserv, setWethReserv] = React.useState(0)
+    const [ethReserv, setEthReserv] = React.useState(0)
 
     const [priceTHB, setPriceTHB] = React.useState(0)
 
@@ -86,16 +85,13 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         console.log("Connected to " + address)
 
         const thefetch = async () => {
+            const ethBal = address !== null && address !== undefined ?
+                await fetchBalance({ address: address, }) :
+                {formatted: 0}
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: [
                     {
                         address: cmdToken,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },
-                    {
-                        address: wethToken,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
@@ -107,11 +103,10 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                         args: [address],
                     },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, ]
+            }) : [{result: 0}, {result: 0}, ]
             
             const cmdBal = data[0]
-            const wethBal = data[1]
-            const cmdWethBal = data[2]
+            const cmdWethBal = data[1]
 
             const data2 = await readContracts({
                 contracts: [
@@ -131,7 +126,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
             const usdtToTHB = await oracleTHB.latestAnswer()
             
             return [
-                cmdBal, wethBal, CmdWethReserv,
+                cmdBal, ethBal, CmdWethReserv,
                 ((ethToUSD / 1e8) * (usdtToTHB / 1e8)),
             ]
         }
@@ -146,21 +141,15 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
             )
 
         getAsync().then(result => {
-            setCmdBalance(Number(Math.floor(ethers.utils.formatEther(result[0].result) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
-            
-            const _jusdtbalance = ethers.utils.formatEther(result[1].result)
-            setWethBalance(Number(Math.floor(_jusdtbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
+            setCmdBalance(ethers.utils.formatEther(result[0].result))
+            setEthBalance(result[1].formatted)
 
-            setWethReserv(ethers.utils.formatEther(result[2].result[1]))
+            setEthReserv(ethers.utils.formatEther(result[2].result[1]))
             setCmdReserv(ethers.utils.formatEther(result[2].result[0]))
 
             setPriceTHB(result[3])
         })
     }, [address, txupdate, erc20ABI, veloPoolABI, bkcOracleABI])
-
-    console.log(cmdBalance, wethBalance)
-    console.log(wethReserv, cmdReserv)
-    console.log(priceTHB)
 
     return (
         <div style={{flexDirection: "column", alignItems: "center", justifyContent: "flex-start", background: "#e6e4f6"}} className="collection">
@@ -196,10 +185,11 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                         wethToken={wethToken}
                         erc20ABI={erc20ABI}
                         cmdBalance={cmdBalance}
-                        wethBalance={wethBalance}
-                        wethReserv={wethReserv}
+                        ethBalance={ethBalance}
+                        ethReserv={ethReserv}
                         cmdReserv={cmdReserv}
                         priceTHB={priceTHB}
+                        velodromeCallerABI={velodromeCallerABI}
                     />
                 </>
             }

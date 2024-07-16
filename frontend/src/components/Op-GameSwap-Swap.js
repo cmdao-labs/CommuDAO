@@ -1,33 +1,111 @@
 import React from 'react'
 import Select from 'react-select'
-import { fetchBalance, readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
 
-const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20ABI, cmdBalance, wethBalance, wethReserv, cmdReserv, priceTHB }) => {
+const factory = "0xF1046053aa5682b4F9a81b5481394DA16BE5FF5a"
+const swapCaller = '0x3C72Fb1658E7A64fd4C88394De4474186A13460A'
+
+const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20ABI, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
     const [inputSwap, setInputSwap] = React.useState("")
-    const [wethBought, setWethBought] = React.useState("")
+    const [ethBought, setEthBought] = React.useState("")
     const [cmdBought, setCmdBought] = React.useState("")
+    const [delaySwap, setDelaySwap] = React.useState(false)
 
     const [swapMode, setSwapMode] = React.useState(0)
     const swapModeChange = () => {
         if (swapMode === 0) { setSwapMode(1) }
         if (swapMode === 1) { setSwapMode(0) }
         setInputSwap("")
-        setWethBought("")
+        setEthBought("")
         setCmdBought("")
     }
     const swapModeSelect = (option) => {
         setSwapMode(option.value)
         setInputSwap("")
         setCmdBought("")
-        setWethBought("")
+        setEthBought("")
     }
     const swapModeSelect2 = (option) => {
         if (swapMode === 0 && option.value === 0) { setSwapMode(1) }
         if (swapMode === 1 && option.value === 1) { setSwapMode(0) }
         setInputSwap("")
         setCmdBought("")
-        setWethBought("")
+        setEthBought("")
+    }
+
+    const handleSwap = async (event) => {
+        setDelaySwap(true)
+        setInputSwap(event.target.value)
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        if (swapMode === 0) {
+            const _tokenOut = await readContract({
+                address: cmdethExchange,
+                abi: veloPoolABI,
+                functionName: 'getAmountOut',
+                args: [_value * 0.997, wethToken],
+            })
+            event.target.value !== "" ? setCmdBought(Number(ethers.utils.formatEther(_tokenOut))) : setCmdBought("")
+        } else if (swapMode === 1) {
+            const _tokenOut = await readContract({
+                address: cmdethExchange,
+                abi: veloPoolABI,
+                functionName: 'getAmountOut',
+                args: [_value * 0.997, cmdToken],
+            })
+            event.target.value !== "" ? setEthBought(Number(ethers.utils.formatEther(_tokenOut))) : setEthBought("")
+        }
+        setDelaySwap(false)
+    }
+    const swapTokenHandle = async () => {
+        setisLoading(true)
+        const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
+        try {
+            if (swapMode === 0) {
+                const config2 = await prepareWriteContract({
+                    address: swapCaller,
+                    abi: velodromeCallerABI,
+                    functionName: 'callForToken',
+                    args: [ethers.utils.parseEther(String(cmdBought * 0.99)), [[wethToken, cmdToken, false, factory]], deadline],
+                    value: ethers.utils.parseEther(inputSwap),
+                })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
+                setTxupdate(hash1)
+            } else if (swapMode === 1) {
+                const token0Allow = await readContract({
+                    address: cmdToken,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, swapCaller],
+                })
+                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
+                const Hex = ethers.BigNumber.from(10**8)
+                const bigApprove = bigValue.mul(Hex)
+                if (inputSwap > Number(token0Allow) / (10**18)) {
+                    const config = await prepareWriteContract({
+                        address: cmdToken,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [swapCaller, bigApprove],
+                    })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
+                }
+                const config2 = await prepareWriteContract({
+                    address: swapCaller,
+                    abi: velodromeCallerABI,
+                    functionName: 'callForETH',
+                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(cmdBought * 0.99)), [[cmdToken, wethToken, false, factory]], deadline],
+                })
+                const { hash: hash1 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash1 })
+                setTxupdate(hash1)
+            }
+        } catch (e) {
+            console.log(e)
+        }
+        setisLoading(false)
     }
 
     return (
@@ -37,7 +115,7 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                     <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Instant Swap</div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://raw.githubusercontent.com/SmolDapp/tokenAssets/main/tokens/10/0x4200000000000000000000000000000000000006/logo.svg" alt="$WETH" /> : <></>}
+                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://raw.githubusercontent.com/SmolDapp/tokenAssets/main/tokens/10/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/logo.svg" alt="$ETH" /> : <></>}
                             {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" alt="$CMD" /> : <></>}
                             <Select
                                 onChange={swapModeSelect}
@@ -47,28 +125,37 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                                 isSearchable={false}
                             />
                         </div>
-                        {swapMode === 0 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {wethBalance}</div> : <></>}
-                        {swapMode === 1 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {cmdBalance}</div> : <></>}
+                        {swapMode === 0 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {Number(ethBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div> : <></>}
+                        {swapMode === 1 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {Number(cmdBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div> : <></>}
                     </div>
-                    {swapMode === 0 || swapMode === 1 ?
-                        <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
-                            <input
-                                style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade", cursor: "not-allowed"}}
-                                placeholder="0.0"
-                                type='number'
-                                disabled
-                            />
-                            {swapMode === 0 ?
-                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "not-allowed"}} className="bold">Max</div> :
-                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "not-allowed"}} className="bold">Max</div>}
-                        </div> :
-                        <></>
-                    }
+                    <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
+                        <input
+                            style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
+                            placeholder="0.0"
+                            type='number'
+                            onChange={handleSwap}
+                            value={inputSwap}
+                            readOnly={delaySwap}
+                        />
+                        <div 
+                            style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} 
+                            onClick={() => {
+                                if (swapMode === 0) {
+                                    handleSwap({target: {value: ethBalance}})
+                                } else if (swapMode === 1) {
+                                    handleSwap({target: {value: cmdBalance}})
+                                }
+                            }} 
+                            className="bold"
+                        >
+                            Max
+                        </div>
+                    </div>
                     <div style={{cursor: "pointer"}} className="fa fa-arrow-down" onClick={swapModeChange}></div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
                             {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" alt="$CMD" /> : <></>}
-                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://raw.githubusercontent.com/SmolDapp/tokenAssets/main/tokens/10/0x4200000000000000000000000000000000000006/logo.svg" alt="$WETH" /> : <></>}
+                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://raw.githubusercontent.com/SmolDapp/tokenAssets/main/tokens/10/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/logo.svg" alt="$ETH" /> : <></>}
                             {swapMode === 0 &&
                                 <Select
                                     onChange={swapModeSelect2}
@@ -88,13 +175,14 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                                 />
                             }
                         </div>
-                        {swapMode === 0 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {cmdBalance}</div> : <></>}
-                        {swapMode === 1 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {wethBalance}</div> : <></>}
+                        {swapMode === 0 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {Number(cmdBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div> : <></>}
+                        {swapMode === 1 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {Number(ethBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div> : <></>}
                     </div>
                     {(swapMode === 0 || swapMode === 1) &&
                         <input
                             style={{marginTop: 0, width: "260px", height: "40px", padding: "5px 20px", border: "1px solid #dddade", cursor: "not-allowed"}}
                             placeholder="0.0"
+                            value={swapMode === 0 ? cmdBought : ethBought}
                             readOnly
                             disabled
                         />
@@ -104,14 +192,14 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                             <div style={{width: "80%", lineHeight: 1.5, fontSize: "10px", display: "flex", justifyContent: "space-between"}}>
                                 <div>CMD Price :</div>
                                 {cmdReserv !== 0 ?
-                                    <div>{Number(wethReserv/cmdReserv).toLocaleString('en-US', {maximumFractionDigits:10})} WETH <span className="tokenNormText">(~{(Math.floor((wethReserv/cmdReserv) * priceTHB * 100) / 100).toLocaleString('en-US', {maximumFractionDigits:3})} THB)</span></div> :
+                                    <div>{Number(ethReserv/cmdReserv).toLocaleString('en-US', {maximumFractionDigits:10})} ETH <span className="tokenNormText">(~{(Math.floor((ethReserv/cmdReserv) * priceTHB * 100) / 100).toLocaleString('en-US', {maximumFractionDigits:3})} THB)</span></div> :
                                     <>Loading...</>
                                 }
                             </div>
                             <div style={{width: "80%", lineHeight: 1.5, fontSize: "10px", display: "flex", justifyContent: "space-between"}}>
                                 <div>Price Impact :</div>
                                 {cmdBought !== "" && Number(inputSwap) !== 0 ? 
-                                    <div>{Number(((((Number(inputSwap) / (Number(cmdReserv) - ((Number(cmdReserv) * Number(wethReserv)) / (Number(wethReserv) + Number(inputSwap))))) - (Number(wethReserv/cmdReserv))) / (Number(wethReserv/cmdReserv))) * 100)).toFixed(2)}%</div> :
+                                    <div>{Number(((((Number(inputSwap) / (Number(cmdReserv) - ((Number(cmdReserv) * Number(ethReserv)) / (Number(ethReserv) + Number(inputSwap))))) - (Number(ethReserv/cmdReserv))) / (Number(ethReserv/cmdReserv))) * 100)).toFixed(2)}%</div> :
                                     <div>0.00%</div>
                                 }
                             </div>
@@ -120,23 +208,23 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                     {swapMode === 1 &&
                         <>
                             <div style={{width: "80%", lineHeight: 1.5, fontSize: "10px", display: "flex", justifyContent: "space-between"}}>
-                                <div>WETH Price :</div>
+                                <div>ETH Price :</div>
                                 {cmdReserv !== 0 ? 
-                                    <div>{Number(cmdReserv/wethReserv).toLocaleString('en-US', {maximumFractionDigits:0})} CMD <span className="tokenNormText">(~{(Math.floor((cmdReserv/wethReserv) * ((wethReserv/cmdReserv) * priceTHB) * 100) / 100).toLocaleString('en-US', {maximumFractionDigits:0})} THB)</span></div> :
+                                    <div>{Number(cmdReserv/ethReserv).toLocaleString('en-US', {maximumFractionDigits:0})} CMD <span className="tokenNormText">(~{(Math.floor((cmdReserv/ethReserv) * ((ethReserv/cmdReserv) * priceTHB) * 100) / 100).toLocaleString('en-US', {maximumFractionDigits:0})} THB)</span></div> :
                                     <>Loading...</>
                                 }
                             </div>
                             <div style={{width: "80%", lineHeight: 1.5, fontSize: "10px", display: "flex", justifyContent: "space-between"}}>
                                 <div>Price Impact :</div>
-                                {wethBought !== "" && Number(inputSwap) !== 0 ?
-                                    <div>{Number(((((Number(inputSwap) / (Number(wethReserv) - ((Number(cmdReserv) * Number(wethReserv)) / (Number(cmdReserv) + Number(inputSwap))))) - (Number(cmdReserv/wethReserv))) / (Number(cmdReserv/wethReserv))) * 100)).toFixed(2)}%</div> :
+                                {ethBought !== "" && Number(inputSwap) !== 0 ?
+                                    <div>{Number(((((Number(inputSwap) / (Number(ethReserv) - ((Number(cmdReserv) * Number(ethReserv)) / (Number(cmdReserv) + Number(inputSwap))))) - (Number(cmdReserv/ethReserv))) / (Number(cmdReserv/ethReserv))) * 100)).toFixed(2)}%</div> :
                                     <div>0.00%</div>
                                 }
                             </div>
                         </>
                     }
                     {(swapMode === 0 || swapMode === 1) &&
-                        <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px", cursor: "not-allowed"}} className="bold">Swap</div>
+                        <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px", cursor: "pointer"}} className="bold" onClick={swapTokenHandle}>Swap</div>
                     }
                 </div>
             </div>
