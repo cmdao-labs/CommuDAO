@@ -37,13 +37,13 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
     const handleSwap = async (event) => {
         setDelaySwap(true)
         setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        const _value = event.target.value !== "" ? ethers.utils.parseEther(String(Number(event.target.value * 0.997).toFixed(18))) : 0
         if (swapMode === 0) {
             const _tokenOut = await readContract({
                 address: cmdethExchange,
                 abi: veloPoolABI,
                 functionName: 'getAmountOut',
-                args: [_value * 0.997, wethToken],
+                args: [_value , wethToken],
             })
             event.target.value !== "" ? setCmdBought(Number(ethers.utils.formatEther(_tokenOut))) : setCmdBought("")
         } else if (swapMode === 1) {
@@ -51,7 +51,7 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                 address: cmdethExchange,
                 abi: veloPoolABI,
                 functionName: 'getAmountOut',
-                args: [_value * 0.997, cmdToken],
+                args: [_value, cmdToken],
             })
             event.target.value !== "" ? setEthBought(Number(ethers.utils.formatEther(_tokenOut))) : setEthBought("")
         }
