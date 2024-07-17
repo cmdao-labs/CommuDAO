@@ -23,10 +23,11 @@ const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
+const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI, constructionStakingABI }) => {
     const { address } = useAccount()
 
     /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -896,11 +897,138 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 }
             }
+
+            const stakeFilterWD = await cmdaonftSC.filters.Transfer(null, weaponDepotStaking, null)
+            const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3660870, "latest")
+            const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
+            const data0WD = await readContracts({
+                contracts: stakeRemoveDupWD.map((item) => (
+                    {
+                        address: weaponDepotStaking,
+                        abi: constructionStakingABI,
+                        functionName: 'nftStake',
+                        args: [1, String(item)],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            let dataHouse2WD = new Array(4 + 11 + 11 + 22).fill(0)
+
+            for (let i = 0; i <= stakeRemoveDupWD.length - 1; i++) {
+                if (data0WD[i].result[0].toUpperCase() === dataHouse[1].result.toUpperCase()) {
+                    dataHouse2WD[1] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[2].result.toUpperCase()) {
+                    dataHouse2WD[2] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[3].result.toUpperCase()) {
+                    dataHouse2WD[3] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[4].result.toUpperCase()) {
+                    dataHouse2WD[4] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[5].result.toUpperCase()) {
+                    dataHouse2WD[5] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[6].result.toUpperCase()) {
+                    dataHouse2WD[6] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[7].result.toUpperCase()) {
+                    dataHouse2WD[7] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[8].result.toUpperCase()) {
+                    dataHouse2WD[8] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[9].result.toUpperCase()) {
+                    dataHouse2WD[9] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[10].result.toUpperCase()) {
+                    dataHouse2WD[10] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[11].result.toUpperCase()) {
+                    dataHouse2WD[11] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[12].result.toUpperCase()) {
+                    dataHouse2WD[12] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[13].result.toUpperCase()) {
+                    dataHouse2WD[13] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[0].result.toUpperCase()) {
+                    dataHouse2WD[0] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[14].result.toUpperCase()) {
+                    dataHouse2WD[14] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[15].result.toUpperCase()) {
+                    dataHouse2WD[15] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[16].result.toUpperCase()) {
+                    dataHouse2WD[16] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[17].result.toUpperCase()) {
+                    dataHouse2WD[17] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[18].result.toUpperCase()) {
+                    dataHouse2WD[18] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[19].result.toUpperCase()) {
+                    dataHouse2WD[19] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[20].result.toUpperCase()) {
+                    dataHouse2WD[20] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[21].result.toUpperCase()) {
+                    dataHouse2WD[21] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[22].result.toUpperCase()) {
+                    dataHouse2WD[22] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[23].result.toUpperCase()) {
+                    dataHouse2WD[23] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[24].result.toUpperCase()) {
+                    dataHouse2WD[24] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 5
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[25].result.toUpperCase()) {
+                    dataHouse2WD[25] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[26].result.toUpperCase()) {
+                    dataHouse2WD[26] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[27].result.toUpperCase()) {
+                    dataHouse2WD[27] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[28].result.toUpperCase()) {
+                    dataHouse2WD[28] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[29].result.toUpperCase()) {
+                    dataHouse2WD[29] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[30].result.toUpperCase()) {
+                    dataHouse2WD[30] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[31].result.toUpperCase()) {
+                    dataHouse2WD[31] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[32].result.toUpperCase()) {
+                    dataHouse2WD[32] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[33].result.toUpperCase()) {
+                    dataHouse2WD[33] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[34].result.toUpperCase()) {
+                    dataHouse2WD[34] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[35].result.toUpperCase()) {
+                    dataHouse2WD[35] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[36].result.toUpperCase()) {
+                    dataHouse2WD[36] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[37].result.toUpperCase()) {
+                    dataHouse2WD[37] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[38].result.toUpperCase()) {
+                    dataHouse2WD[38] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[39].result.toUpperCase()) {
+                    dataHouse2WD[39] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[40].result.toUpperCase()) {
+                    dataHouse2WD[40] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[41].result.toUpperCase()) {
+                    dataHouse2WD[41] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[42].result.toUpperCase()) {
+                    dataHouse2WD[42] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[43].result.toUpperCase()) {
+                    dataHouse2WD[43] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[44].result.toUpperCase()) {
+                    dataHouse2WD[44] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[45].result.toUpperCase()) {
+                    dataHouse2WD[45] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[46].result.toUpperCase()) {
+                    dataHouse2WD[46] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                } else if (data0WD[i].result[0].toUpperCase() === dataHouse[47].result.toUpperCase()) {
+                    dataHouse2WD[47] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 1
+                }
+            }
+            let powHouseWD = new Array(ranker.length).fill(0)
+            for (let i = 0; i <= ranker.length -1; i++) {
+                for (let i2 = 0; i2 <= dataHouse.length -1; i2++) {
+                    if (ranker[i].toUpperCase() === dataHouse[i2].result.toUpperCase()) {
+                        powHouseWD[i] += dataHouse2WD[i2]
+                    }
+                }
+            }
+            console.log(powHouseWD)
+
             const data3 = ranker.map((item, i) => {
                 return {
                     addr: item,
                     name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
-                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i])
+                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i]) + Number(powHouseWD[i])
                 }
             })
 
@@ -985,7 +1113,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setSumArrRank4(_sumArrRank4)
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI])
+    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI, constructionStakingABI])
 
     /*const claimSILHandle = async () => {
         setisLoading(true)
