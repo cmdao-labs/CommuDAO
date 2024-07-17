@@ -17,13 +17,15 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
+const weaponDepot = '0xcCbD8B881Dd8e137d41a6A02aBA2Db94f3049B35'
+const weaponDepotStaking = '0x9a10C9C00160BD90Aef7970e412eF4d5C5a671E8'
 
 //const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
 //const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI, transportHubABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI, transportHubABI, constructionABI, constructionStakingABI }) => {
     const { address } = useAccount()
     
     let code = ''
@@ -51,6 +53,13 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const [allPendingReward, setAllPendingReward] = React.useState(0)
     const [allPow, setAllPow] = React.useState(0)
     const [nftStake, setNftStake] = React.useState([])
+
+    const [wdLv, setWdLv] = React.useState(0)
+    const [nftStakedWD, setNftStakedWD] = React.useState([])
+    const [osPoolWD, setOsPoolWD] = React.useState(null)
+    const [allPendingRewardWD, setAllPendingRewardWD] = React.useState(0)
+    const [allPowWD, setAllPowWD] = React.useState(0)
+    const [nftStakeWD, setNftStakeWD] = React.useState([])
 
     const [thubLv, setThubLv] = React.useState(0)
     const [nextDayThub, setNextDayThub] = React.useState(0)
@@ -101,6 +110,18 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                         functionName: 'baseCapacity',
                         args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
                     },
+                    {
+                        address: weaponDepot,
+                        abi: constructionABI,
+                        functionName: 'slotLevel',
+                        args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+                    },
+                    {
+                        address: os,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [weaponDepotStaking],
+                    },
                 ],
             }) 
             
@@ -110,6 +131,8 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const ospool = data[3].result
             const thubState = data[4].result
             const thubCap = data[5].result
+            const wdlevel = data[6].result
+            const ospoolWD = data[7].result
 
             const id = data[0].status === 'success' && data[1].status === 'success' ? await readContracts({
                 contracts: [
@@ -147,7 +170,6 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             }) : [0, 0]
 
             let nftstake = []
-
             const stakeFilter = await cmdaonftSC.filters.Transfer(slot1owner, houseStaking, null)
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -217,8 +239,78 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             }
             if (nftstake.length === 0) { nftstake.push(null) }
 
-            let nfts = []
+            let nftstakeWD = []
+            const stakeFilterWD = await cmdaonftSC.filters.Transfer(slot1owner, weaponDepotStaking, null)
+            const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3659125, "latest")
+            const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const data0WD = await readContracts({
+                contracts: stakeRemoveDupWD.map((item) => (
+                    {
+                        address: weaponDepotStaking,
+                        abi: constructionStakingABI,
+                        functionName: 'nftStake',
+                        args: [1, String(item)],
+                    }
+                ))
+            })
 
+            let yournftstakeWD = []
+            for (let i = 0; i <= stakeRemoveDupWD.length - 1; i++) {
+                if ((data0WD[i].result[0].toUpperCase() === slot1owner.toUpperCase()) && Number(data0WD[i].result[4]) === Number('100' + code + '0' + intrasubModetext.slice(1, 3))) {
+                    yournftstakeWD.push({Id: String(stakeRemoveDupWD[i])})
+                }
+            }
+            console.log(yournftstakeWD)
+
+            /*const data1 = await readContracts({
+                contracts: yournftstake.map((item) => (
+                    {
+                        address: cmdaoNft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            })
+
+            const data12 = await readContracts({
+                contracts: yournftstake.map((item) => (
+                    {
+                        address: houseStaking,
+                        abi: houseStakingABI,
+                        functionName: 'pendingReward',
+                        args: [1, String(item.Id)],
+                    }
+                ))
+            })
+
+            let _allReward1 = 0
+            let _allPow = 0
+            for (let i = 0; i <= yournftstake.length - 1; i++) {
+                const nftipfs = data1[i].result
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    nft = await response.json()
+                } catch {}
+                _allReward1 += Number(ethers.utils.formatEther(data12[i].result))
+                _allPow += Number(String(yournftstake[i].Id).slice(-5))
+
+                nftstake.push({
+                    Id: yournftstake[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerBlock: Number(String(yournftstake[i].Id).slice(-5)),
+                    isStaked: true,
+                    Reward: Number(ethers.utils.formatEther(data12[i].result)),
+                })
+            }*/
+            if (nftstakeWD.length === 0) { nftstakeWD.push(null) }
+
+            let nfts = []
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -273,7 +365,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, nftstake, ]
+            return [
+                landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, nftstake, 
+                wdlevel, ospoolWD, 
+            ]
         }
 
         const promise = thefetch()
@@ -305,6 +400,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setThubFee(Number(result[9][3]) / 100)
             setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
             setNftStaked(result[11])
+
+            setWdLv(Number(result[12]))
+            setOsPoolWD(ethers.utils.formatEther(String(result[13])))
         })
 
     }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI])
@@ -548,6 +646,65 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
         setisLoading(false)
     }
 
+    const upgradeWeaponDepotHandle = async (_level) => {
+        setisLoading(true)
+        try {
+            let woodUsage = 0
+            let secondUsage = 0
+            let secondToken = '0x0000000000000000000000000000000000000000'
+            if (_level === 1) {
+                woodUsage = 100000000
+                secondUsage = 500000
+                secondToken = cu
+            }
+            const woodAllow = await readContract({
+                address: wood,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, weaponDepot],
+            })
+            if (woodAllow < (woodUsage * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: wood,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [weaponDepot, ethers.utils.parseEther(String(10**10))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const secondAllow = await readContract({
+                address: secondToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, weaponDepot],
+            })
+            if (secondAllow < (secondUsage * 10**18)) {
+                const config2 = await prepareWriteContract({
+                    address: secondToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [weaponDepot, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash02 } = await writeContract(config2)
+                await waitForTransaction({ hash: hash02 })
+            }
+            const config4 = await prepareWriteContract({
+                address: weaponDepot,
+                abi: constructionABI,
+                functionName: 'upgrade01',
+                args: [_level, houseId]
+            })
+            const { hash: hash04 } = await writeContract(config4)
+            await waitForTransaction({ hash: hash04 })
+            setTxupdate(hash04)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
     const upgradeTHubHandle = async (_level) => {
         setisLoading(true)
         try {
@@ -713,18 +870,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                     <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                         <div style={{fontSize: "22px", lineHeight: "15px"}}>SLEEP TO EARN</div>
                                         <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
-                                            {nftStake !== null && nftStake[0] !== undefined &&
+                                            {nftStake[0] !== null ?
                                                 <>
-                                                    {nftStake[0].isStaked ?
-                                                        <>
-                                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                            <div>On Staking</div>
-                                                        </> :
-                                                        <>
-                                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                            <div>Available for stake</div>
-                                                        </>
-                                                    }
+                                                    <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                    <div>On Staking</div>
+                                                </> :
+                                                <>
+                                                    <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                    <div>Available for stake</div>
                                                 </>
                                             }
                                         </div>
@@ -752,7 +905,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             <>
                                                 {slot1Lv >= 1 &&
                                                     <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                        {nftStake !== null && nftStake[0] !== undefined ?
+                                                        {nftStake[0] !== null ?
                                                             <>
                                                                 <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[0].Name}</div>
                                                                 <img src={nftStake[0].Image} width="200px" alt="Can not load metadata." />
@@ -1108,7 +1261,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                     </div>
                                 </div>
                                 <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
-                                    <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s weapon depot Lv.{0}</div>
+                                    <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s weapon depot Lv.{wdLv}</div>
                                         <div style={{width: "320px"}}>
                                             {true && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcabCcVqCQhcXk19LFueSRDc62Z67aqfArTTWVb8shr7c" style={{filter: "grayscale(1)"}} height="200" alt="WEAPONDEPOT.LV.1" />}
                                         </div>
@@ -1120,13 +1273,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                         <div style={{display: "flex", flexDirection: "row"}}>
                                                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
                                                             <div style={{margin: "0 30px 0 10px"}}>
-                                                                {true && '100M'}
+                                                                {wdLv === 0 && '100M'}
+                                                                {wdLv === 1 && 'TBD'}
                                                             </div>
                                                         </div>
                                                         <div style={{display: "flex", flexDirection: "row"}}>
                                                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
                                                             <div style={{marginLeft: "10px"}}>
-                                                                {true && '500,000'}
+                                                                {wdLv === 0 && '500,000'}
+                                                                {wdLv === 1 && 'TBD'}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1138,10 +1293,11 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                     </div>
                                                 </div>
                                                 <div>                                        
-                                                    {true &&
+                                                    {(slot1Lv >= 6) &&
                                                         <div 
-                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
+                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                             className="bold button" 
+                                                            onClick={() => upgradeWeaponDepotHandle(1)}
                                                         >
                                                             CONSTRUCT
                                                         </div>
@@ -1182,7 +1338,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             AVAILABLE OS IN POOL
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(0).toFixed(3).toLocaleString()}</div>
+                                                <div style={{marginLeft: "5px"}}>{Number(osPoolWD).toFixed(3).toLocaleString()}</div>
                                             </div>
                                         </div>
                                         <div style={{height: "41px"}}></div>

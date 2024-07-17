@@ -122,6 +122,8 @@ import houseABI from './jsons/houseABI.json'
 import houseStakingABI from './jsons/houseStakingABI.json'
 import transportHubABI from './jsons/transportHubABI.json'
 import sourceThubABI from './jsons/sourceThubABI.json'
+import constructionABI from './jsons/constructionABI.json'
+import constructionStakingABI from './jsons/constructionStakingABI.json'
 
 import questBBQABI from './jsons/questBBQABI.json'
 import dumpster1ABI from './jsons/dumpster1ABI.json'
@@ -421,7 +423,7 @@ const Main = () => {
                 {mode === 42 && <DungeonArena navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} questAmbassABI={questAmbassABI} dunJasperABI={dunJasperABI} pvp01ABI={pvp01ABI} salonABI={salonABI} />}
                 {mode === 43 && <DumpsterHill navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} dumpster1ABI={dumpster1ABI} dumpster2ABI={dumpster2ABI} />}
                 {mode === 44 && <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} cmdaoNameABI={cmdaoNameABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} />}
-                {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} intrasubModetext={intrasubModetext} erc20ABI={erc20ABI} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} houseABI={houseABI} houseStakingABI={houseStakingABI} delegateOwner01ABI={delegateOwner01ABI} wlMkpABI={wlMkpABI} transportHubABI={transportHubABI} />}
+                {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} intrasubModetext={intrasubModetext} erc20ABI={erc20ABI} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} houseABI={houseABI} houseStakingABI={houseStakingABI} delegateOwner01ABI={delegateOwner01ABI} wlMkpABI={wlMkpABI} transportHubABI={transportHubABI} constructionABI={constructionABI} constructionStakingABI={constructionStakingABI} />}
                 {mode === 46 && <BigBroAnalytica erc20ABI={erc20ABI} />}
                 
                 
