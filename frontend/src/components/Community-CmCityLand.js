@@ -1584,7 +1584,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                                             <img src={item.Image} height="100%" alt="Can not load metadata." />
                                                                         </div>
                                                                         <div className="emp bold">{item.Name}</div>
-                                                                        <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                                                        <div className="bold">{Number(item.RewardPerSec) * Number(wdBonus)} cmpow per sec</div>
                                                                         <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
                                                                         <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                                                             <div 
