@@ -44,6 +44,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const [slot1Owner, setSlot1Owner] = React.useState('...')
     const [slot1Lv, setSlot1Lv] = React.useState(0)
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
     const [delegateAddr, setDelegateAddr] = React.useState(null)
 
     const [osPool, setOsPool] = React.useState(null)
@@ -214,6 +215,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                     Reward: Number(ethers.utils.formatEther(data12[i].result)),
                 })
             }
+            if (nftstake.length === 0) { nftstake.push(null) }
 
             let nfts = []
 
@@ -271,7 +273,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, ]
+            return [landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, nftstake, ]
         }
 
         const promise = thefetch()
@@ -302,6 +304,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 setNextDayThub('now')
             setThubFee(Number(result[9][3]) / 100)
             setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
+            setNftStaked(result[11])
         })
 
     }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI])
@@ -706,617 +709,706 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                         </div>
                                     }
                                 </div>
+                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLEEP TO EARN</div>
+                                        <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
+                                            {nftStake !== null && nftStake[0] !== undefined &&
+                                                <>
+                                                    {nftStake[0].isStaked ?
+                                                        <>
+                                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                            <div>On Staking</div>
+                                                        </> :
+                                                        <>
+                                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                            <div>Available for stake</div>
+                                                        </>
+                                                    }
+                                                </>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{allPow}</div></div>
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        OVERSOUL PENDING
+                                        <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
+                                            <div style={{marginLeft: "5px"}}>{allPendingReward.toLocaleString()}</div>
+                                        </div>
+                                    </div>
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        AVAILABLE OS IN POOL
+                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
+                                            <div style={{marginLeft: "5px"}}>{Number(osPool).toFixed(3).toLocaleString()}</div>
+                                        </div>
+                                    </div>
+                                    <div style={{height: "41px"}}></div>
+                                </div>
+                                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                    <div className="noscroll" style={{position: "relative", width: "100%", flexWrap: "wrap", height: "fit-content", display: "flex", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
+                                        {nft.length > 0 ?
+                                            <>
+                                                {slot1Lv >= 1 &&
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[0] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[0].Name}</div>
+                                                                <img src={nftStake[0].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[0].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[0].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[0] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[0].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[0].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT1</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 2 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[1] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[1].Name}</div>
+                                                                <img src={nftStake[1].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[1].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[1].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[1] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[1].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[1].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT2</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 3 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[2] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[2].Name}</div>
+                                                                <img src={nftStake[2].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[2].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[2].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[2] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[2].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[2].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT3</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 4 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[3] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[3].Name}</div>
+                                                                <img src={nftStake[3].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[3].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[3].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[3] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[3].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[3].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT4</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 5 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[4] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[4].Name}</div>
+                                                                <img src={nftStake[4].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[4].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[4].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[4] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[4].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[4].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT5</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 6 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[5] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[5].Name}</div>
+                                                                <img src={nftStake[5].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[5].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[5].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[5] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[5].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[5].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT6</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 7 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[6] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[6].Name}</div>
+                                                                <img src={nftStake[6].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[6].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[6].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[6] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[6].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[6].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT7</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 8 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[7] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[7].Name}</div>
+                                                                <img src={nftStake[7].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[7].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[7].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[7] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[7].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[7].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT8</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 9 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[8] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[8].Name}</div>
+                                                                <img src={nftStake[8].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[8].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[8].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[8] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[8].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[8].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT9</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {slot1Lv >= 10 && 
+                                                    <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                        {nftStake !== null && nftStake[9] !== undefined ?
+                                                            <>
+                                                                <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[9].Name}</div>
+                                                                <img src={nftStake[9].Image} width="200px" alt="Can not load metadata." />
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[9].RewardPerBlock} cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[9].Reward).toFixed(4)} Pending $OS</div>
+                                                                {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                    <>
+                                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                            <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                {nftStake !== null && nftStake[9] !== undefined &&
+                                                                                    <>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[9].Id, 0)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[9].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                    </>
+                                                                                }
+                                                                            </div> :
+                                                                            <div style={{height: "105px"}}></div>
+                                                                        }
+                                                                    </> :
+                                                                    <div style={{height: "105px"}}></div>
+                                                                }
+                                                            </> :
+                                                            <>
+                                                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT10</div>
+                                                                <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                <div style={{height: "105px"}}></div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                            </> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                                <ThreeDots fill="#5f6476" />
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
                                 <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
                                     <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s weapon depot Lv.{0}</div>
-                                    <div style={{width: "320px"}}>
-                                        {true && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcabCcVqCQhcXk19LFueSRDc62Z67aqfArTTWVb8shr7c" style={{filter: "grayscale(1)"}} height="200" alt="WEAPONDEPOT.LV.1" />}
-                                    </div>
-                                    {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
-                                        <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                            <div>
-                                                <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
-                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
-                                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
-                                                        <div style={{margin: "0 30px 0 10px"}}>
-                                                            {true && '100M'}
-                                                        </div>
-                                                    </div>
-                                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
-                                                        <div style={{marginLeft: "10px"}}>
-                                                            {true && '500,000'}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div style={{marginTop: "20px",fontSize: "12px"}} className="bold">REQUIREMENT</div>
-                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
-                                                    House LV.6
-                                                </div>
-                                            </div>
-                                            <div>                                        
-                                                {true &&
-                                                    <div 
-                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
-                                                        className="bold button" 
-                                                    >
-                                                        CONSTRUCT
-                                                    </div>
-                                                }
-                                            </div>
+                                        <div style={{width: "320px"}}>
+                                            {true && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcabCcVqCQhcXk19LFueSRDc62Z67aqfArTTWVb8shr7c" style={{filter: "grayscale(1)"}} height="200" alt="WEAPONDEPOT.LV.1" />}
                                         </div>
-                                    }
-                                </div>
-                            </div>
-                            <div style={{background: "transparent", padding: "0 50px 30px 50px", maxWidth: "95%", width: "1000px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
-                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
-                                    <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s transport hub Lv.{thubLv}</div>
-                                    <div style={{width: "320px"}}>
-                                        {thubLv === 0 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" style={{filter: "grayscale(1)"}} height="200" alt="TRANSPORTHUB.LV.1" />}
-                                        {thubLv >= 1 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" height="200" alt="TRANSPORTHUB.LV.1" />}
+                                        {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
+                                            <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                <div>
+                                                    <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
+                                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                                            <div style={{margin: "0 30px 0 10px"}}>
+                                                                {true && '100M'}
+                                                            </div>
+                                                        </div>
+                                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
+                                                            <div style={{marginLeft: "10px"}}>
+                                                                {true && '500,000'}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div style={{marginTop: "20px",fontSize: "12px"}} className="bold">REQUIREMENT</div>
+                                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                        House LV.6
+                                                    </div>
+                                                </div>
+                                                <div>                                        
+                                                    {true &&
+                                                        <div 
+                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
+                                                            className="bold button" 
+                                                        >
+                                                            CONSTRUCT
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
-                                    {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
-                                        <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                            <div>
-                                                <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
-                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
-                                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
-                                                        <div style={{margin: "0 30px 0 10px"}}>
-                                                            {thubLv === 0 && '3,200M'}
-                                                            {thubLv === 1 && 'TBD'}
-                                                        </div>
-                                                    </div>
-                                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
-                                                        <div style={{marginLeft: "10px"}}>
-                                                            {thubLv === 0 && '1.6M'}
-                                                            {thubLv === 1 && 'TBD'}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div style={{marginTop: "20px",fontSize: "12px"}} className="bold">REQUIREMENT</div>
-                                                <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
-                                                    House LV.1
-                                                </div>
-                                            </div>
-                                            <div>   
-                                                {thubLv !== 0 &&
-                                                    <div 
-                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
-                                                        className="bold button" 
-                                                    >
-                                                        UPGRADE
-                                                    </div>
-                                                }                                     
-                                                {(slot1Lv >= 1 && thubLv === 0) &&
-                                                    <div 
-                                                        style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
-                                                        className="bold button" 
-                                                        onClick={() => upgradeTHubHandle(1)}
-                                                    >
-                                                        CONSTRUCT
-                                                    </div>
-                                                }
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                            <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                            <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>SLEEP TO EARN</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
-                                        {nftStake !== null && nftStake[0] !== undefined &&
-                                            <>
-                                                {nftStake[0].isStaked ?
+                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                            <div style={{fontSize: "22px", lineHeight: "15px"}}>COLLECT TO EARN</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
+                                                {/*nftStake !== null && nftStake[0] !== undefined &&
                                                     <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
+                                                        {nftStake[0].isStaked ?
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                */}
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{0}</div></div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            OVERSOUL PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
+                                                <div style={{marginLeft: "5px"}}>{String(0).toLocaleString()}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            AVAILABLE OS IN POOL
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(0).toFixed(3).toLocaleString()}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{height: "41px"}}></div>
+                                    </div>
+                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
+                                        <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s transport hub Lv.{thubLv}</div>
+                                        <div style={{width: "320px"}}>
+                                            {thubLv === 0 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" style={{filter: "grayscale(1)"}} height="200" alt="TRANSPORTHUB.LV.1" />}
+                                            {thubLv >= 1 && <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZMqFMzQwMcSBs7i8eemVRA2TgQ92L3Zh4xgfemAX1SFH" height="200" alt="TRANSPORTHUB.LV.1" />}
+                                        </div>
+                                        {llAddr !== null && (String(llAddr).toUpperCase() === address.toUpperCase() || String(slot1Addr).toUpperCase() === address.toUpperCase()) &&
+                                            <div style={{width: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                <div>
+                                                    <div style={{fontSize: "12px"}} className="bold">BUILDING COSTS</div>
+                                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                                            <div style={{margin: "0 30px 0 10px"}}>
+                                                                {thubLv === 0 && '3,200M'}
+                                                                {thubLv === 1 && 'TBD'}
+                                                            </div>
+                                                        </div>
+                                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="30px" alt="$CU"/>
+                                                            <div style={{marginLeft: "10px"}}>
+                                                                {thubLv === 0 && '1.6M'}
+                                                                {thubLv === 1 && 'TBD'}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div style={{marginTop: "20px",fontSize: "12px"}} className="bold">REQUIREMENT</div>
+                                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px", flexWrap: "wrap"}} className="bold">
+                                                        House LV.1
+                                                    </div>
+                                                </div>
+                                                <div>   
+                                                    {thubLv !== 0 &&
+                                                        <div 
+                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
+                                                            className="bold button" 
+                                                        >
+                                                            UPGRADE
+                                                        </div>
+                                                    }                                     
+                                                    {(slot1Lv >= 1 && thubLv === 0) &&
+                                                        <div 
+                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
+                                                            className="bold button" 
+                                                            onClick={() => upgradeTHubHandle(1)}
+                                                        >
+                                                            CONSTRUCT
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                            <div style={{fontSize: "22px", lineHeight: "15px"}}>TRANSPORT HUB STAT</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
+                                                {thubCap === 0 ?
+                                                    <>
+                                                        <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Full</div>
                                                     </> :
                                                     <>
                                                         <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
+                                                        <div>Active</div>
                                                     </>
                                                 }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{allPow}</div></div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    OVERSOUL PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                        <div style={{marginLeft: "5px"}}>{allPendingReward.toLocaleString()}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    AVAILABLE OS IN POOL
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(osPool).toFixed(3).toLocaleString()}</div>
-                                    </div>
-                                </div>
-                                <div style={{height: "41px"}}></div>
-                            </div>
-                            <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>TRANSPORT HUB STAT</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
-                                        {thubCap === 0 ?
-                                            <>
-                                                <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Full</div>
-                                            </> :
-                                            <>
-                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Active</div>
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    $BBQ CURRENT CAPACITY
-                                    <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
-                                        <div style={{marginLeft: "5px"}}>{(thubCap * allPow).toLocaleString()}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        RESET ON:
-                                        <div style={{marginLeft: "5px", color: "#ff007a"}}>{nextDayThub}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        HUB FEE:
-                                        <div style={{marginLeft: "5px", color: "#ff007a"}}>{Number(thubFee).toFixed(2)}%</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    HUB FEE
-                                    <input
-                                        style={{maxHeight: "10px", width: "100px", maxWidth: "30%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
-                                        type="number"
-                                        step="1"
-                                        min="0"
-                                        max="100"
-                                        placeholder="0.00%"
-                                        value={changeThubFee}
-                                        onChange={(event) => setChangeThubFee(event.target.value)}
-                                    ></input>
-                                    {thubLv !== 0 && address !== null && address !== undefined ? 
-                                        <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} onClick={changeThubFeeHandle} className="button">SET HUB FEE</div> : 
-                                        <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">SET HUB FEE</div>
-                                    }
-                                </div>
-                                <div style={{height: "41px"}}></div>
-                            </div>
-                            </div>
-                            <div className="noscroll" style={{position: "relative", width: "80%", flexWrap: "wrap", height: "fit-content", display: "flex", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {slot1Lv >= 1 &&
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[0] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[0].Name}</div>
-                                                        <img src={nftStake[0].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[0].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[0].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[0] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[0].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[0].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT1</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 2 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[1] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[1].Name}</div>
-                                                        <img src={nftStake[1].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[1].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[1].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[1] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[1].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[1].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT2</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 3 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[2] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[2].Name}</div>
-                                                        <img src={nftStake[2].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[2].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[2].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[2] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[2].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[2].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT3</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 4 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[3] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[3].Name}</div>
-                                                        <img src={nftStake[3].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[3].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[3].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[3] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[3].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[3].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT4</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 5 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[4] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[4].Name}</div>
-                                                        <img src={nftStake[4].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[4].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[4].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[4] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[4].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[4].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT5</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 6 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[5] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[5].Name}</div>
-                                                        <img src={nftStake[5].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[5].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[5].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[5] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[5].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[5].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT6</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 7 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[6] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[6].Name}</div>
-                                                        <img src={nftStake[6].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[6].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[6].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[6] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[6].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[6].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT7</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 8 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[7] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[7].Name}</div>
-                                                        <img src={nftStake[7].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[7].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[7].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[7] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[7].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[7].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT8</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 9 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[8] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[8].Name}</div>
-                                                        <img src={nftStake[8].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[8].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[8].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[8] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[8].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[8].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT9</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                        {slot1Lv >= 10 && 
-                                            <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                                                {nftStake !== null && nftStake[9] !== undefined ?
-                                                    <>
-                                                        <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStake[9].Name}</div>
-                                                        <img src={nftStake[9].Image} width="200px" alt="Can not load metadata." />
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStake[9].RewardPerBlock} cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStake[9].Reward).toFixed(4)} Pending $OS</div>
-                                                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
-                                                            <>
-                                                                {address.toUpperCase() === slot1Addr.toUpperCase() ?
-                                                                    <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                                        {nftStake !== null && nftStake[9] !== undefined &&
-                                                                            <>
-                                                                                <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[9].Id, 0)}>HARVEST</div>
-                                                                                <div className="button" onClick={() => unstakeNft(nftStake[9].Id, 1)}>HARVEST & UNSTAKE</div>
-                                                                            </>
-                                                                        }
-                                                                    </div> :
-                                                                    <div style={{height: "105px"}}></div>
-                                                                }
-                                                            </> :
-                                                            <div style={{height: "105px"}}></div>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Main Char SLOT10</div>
-                                                        <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
-                                                        <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
-                                                        <div style={{height: "105px"}}></div>
-                                                    </>
-                                                }
-                                            </div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined &&
-                        <>
-                            {address.toUpperCase() === slot1Addr.toUpperCase() &&
-                                <>
-                                    {nft.length > 0 ?
-                                        <div style={{maxWidth: "100%", width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                                            {nft[0] !== null ?
-                                                <>
-                                                    {nft.map((item, index) => (
-                                                        <div key={index}>
-                                                            {String(item.Id).slice(0, 1) === "1" && String(item.Id).length !== 13 &&
-                                                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
-                                                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                                                    </div>
-                                                                    <div className="emp bold">{item.Name}</div>
-                                                                    <div className="bold">{item.RewardPerSec} cmpow per sec</div>
-                                                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                                                        {item.isStaked ?
-                                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => console.log('yo')}>UNEQUIP</div>:
-                                                                            <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeNft(item.Id)}>STAKE</div>
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                            }
-                                                        </div>
-                                                    ))}
-                                                </> :
-                                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
-                                                    {address !== undefined ?
-                                                        <>
-                                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                                        </> :
-                                                        <>
-                                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                                            <div className="bold">Please connect wallet to view your NFTs.</div>
-                                                        </>
-                                                    }
-                                                </div>
-                                            }
-                                        </div> :
-                                        <div style={{width: "1640px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                                            <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
-                                                <ThreeDots fill="#fff" />
-                                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                                             </div>
                                         </div>
-                                    }
-                                </>
-                            }
-                        </>
-                    }
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            $BBQ CURRENT CAPACITY
+                                            <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
+                                                <div style={{marginLeft: "5px"}}>{(thubCap * allPow).toLocaleString()}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            <div></div>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                RESET ON:
+                                                <div style={{marginLeft: "5px", color: "#ff007a"}}>{nextDayThub}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            <div></div>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                HUB FEE:
+                                                <div style={{marginLeft: "5px", color: "#ff007a"}}>{Number(thubFee).toFixed(2)}%</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            HUB FEE
+                                            <input
+                                                style={{maxHeight: "10px", width: "100px", maxWidth: "30%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                                                type="number"
+                                                step="1"
+                                                min="0"
+                                                max="100"
+                                                placeholder="0.00%"
+                                                value={changeThubFee}
+                                                onChange={(event) => setChangeThubFee(event.target.value)}
+                                            ></input>
+                                            {thubLv !== 0 && address !== null && address !== undefined ? 
+                                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} onClick={changeThubFeeHandle} className="button">SET HUB FEE</div> : 
+                                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">SET HUB FEE</div>
+                                            }
+                                        </div>
+                                        <div style={{height: "41px"}}></div>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                        {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined &&
+                            <>
+                                {address.toUpperCase() === slot1Addr.toUpperCase() &&
+                                    <>
+                                        {nft.length > 0 || nftStaked > 0 ?
+                                            <div style={{maxWidth: "100%", width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                                                {nft[0] !== null ?
+                                                    <>
+                                                        {nft.map((item, index) => (
+                                                            <div key={index}>
+                                                                {((String(item.Id).slice(0, 1) === "1" && String(item.Id).length !== 13) || String(item.Id).slice(0, 1) === "7") &&
+                                                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
+                                                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                                        </div>
+                                                                        <div className="emp bold">{item.Name}</div>
+                                                                        <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                                            <div 
+                                                                                style={{alignSelf: "center"}}
+                                                                                className="pixel button"
+                                                                                onClick={() => {
+                                                                                    if (String(item.Id).slice(0, 1) === "1") {
+                                                                                        stakeNft(item.Id)
+                                                                                    } else if (String(item.Id).slice(0, 1) === "7") {
+                                                                                        alert('stay tuned!')
+                                                                                    }
+                                                                                }}
+                                                                            >
+                                                                                STAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        ))}
+                                                    </> :
+                                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                                                        {address !== undefined ?
+                                                            <>
+                                                                <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                                                <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                                            </> :
+                                                            <>
+                                                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                                                <div className="bold">Please connect wallet to view your NFTs.</div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                                {nftStaked[0] !== null ?
+                                                    <>
+                                                        {nftStaked.map((item, index) => (
+                                                            <div key={index}>
+                                                                {((String(item.Id).slice(0, 1) === "1" && String(item.Id).length !== 13) || String(item.Id).slice(0, 1) === "7") &&
+                                                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
+                                                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                                        </div>
+                                                                        <div className="emp bold">{item.Name}</div>
+                                                                        <div className="bold">{item.Reward} cmpow per sec</div>
+                                                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                                            <div 
+                                                                                style={{alignSelf: "center", background: "gray"}}
+                                                                                className="pixel button"
+                                                                                onClick={() => {
+                                                                                    if (String(item.Id).slice(0, 1) === "1") {
+                                                                                        unstakeNft(item.Id, 2)
+                                                                                    } else if (String(item.Id).slice(0, 1) === "7") {
+                                                                                        alert('stay tuned!')
+                                                                                    }
+                                                                                }}
+                                                                            >
+                                                                                UNSTAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        ))}
+                                                    </> :
+                                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                                                        {address !== undefined ?
+                                                            <>
+                                                                <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                                                <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                                            </> :
+                                                            <>
+                                                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                                                <div className="bold">Please connect wallet to view your NFTs.</div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div> :
+                                            <div style={{width: "1640px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                                                <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
+                                                    <ThreeDots fill="#fff" />
+                                                    <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </>
+                                }
+                            </>
+                        }
                 </div>
             }
         </>
