@@ -18,7 +18,7 @@ const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const weaponDepot = '0xcCbD8B881Dd8e137d41a6A02aBA2Db94f3049B35'
-const weaponDepotStaking = '0xe72a58Cd0a0b91A89eBD5D45e9D1C032D8521D7c'
+const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 //const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
 //const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
@@ -1396,7 +1396,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             OVERSOUL PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
                                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                                <div style={{marginLeft: "5px"}}>{String(allPendingRewardWD).toLocaleString()}</div>
+                                                <div style={{marginLeft: "5px"}}>{String(Number(allPendingRewardWD) * Number(wdBonus)).toLocaleString()}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
