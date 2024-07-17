@@ -18,7 +18,7 @@ const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const weaponDepot = '0xcCbD8B881Dd8e137d41a6A02aBA2Db94f3049B35'
-const weaponDepotStaking = '0x953149a45fB5F8327c43B6cf6135457C1Ca5B0df'
+const weaponDepotStaking = '0xe72a58Cd0a0b91A89eBD5D45e9D1C032D8521D7c'
 
 //const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
 //const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
@@ -55,6 +55,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const [nftStake, setNftStake] = React.useState([])
 
     const [wdLv, setWdLv] = React.useState(0)
+    const [wdBonus, setWdBonus] = React.useState(0)
     const [osPoolWD, setOsPoolWD] = React.useState(null)
     const [allPendingRewardWD, setAllPendingRewardWD] = React.useState(0)
     const [allPowWD, setAllPowWD] = React.useState(0)
@@ -121,6 +122,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                         functionName: 'balanceOf',
                         args: [weaponDepotStaking],
                     },
+                    {
+                        address: weaponDepot,
+                        abi: constructionABI,
+                        functionName: 'landBonus',
+                        args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
+                    },
                 ],
             }) 
             
@@ -132,6 +139,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const thubCap = data[5].result
             const wdlevel = data[6].result
             const ospoolWD = data[7].result
+            const wdBonus = data[8].result
 
             const id = data[0].status === 'success' && data[1].status === 'success' ? await readContracts({
                 contracts: [
@@ -364,7 +372,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
             return [
                 landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, nftstake, 
-                wdlevel, ospoolWD, _allReward1WD, _allPowWD, nftstakeWD,
+                wdlevel, ospoolWD, _allReward1WD, _allPowWD, nftstakeWD, wdBonus, 
             ]
         }
 
@@ -403,6 +411,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setAllPendingRewardWD(result[14])
             setAllPowWD(result[15])
             setNftStakeWD(result[16])
+            setWdBonus(result[17])
         })
 
     }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
@@ -1382,7 +1391,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                 }
                                             </div>
                                         </div>
-                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{allPowWD}</div></div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{Number(allPowWD) * Number(wdBonus)} [land multiplier x{Number(wdBonus)}]</div></div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             OVERSOUL PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
@@ -1644,7 +1653,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                                         <img src={item.Image} height="100%" alt="Can not load metadata." />
                                                                     </div>
                                                                     <div className="emp bold">{item.Name}</div>
-                                                                    <div className="bold">{item.RewardPerBlock} cmpow per sec</div>
+                                                                    <div className="bold">{Number(item.RewardPerBlock) * Number(wdBonus)} cmpow per sec [land multiplier x{Number(wdBonus)}]</div>
                                                                     <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
                                                                     <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                                                         <div 
