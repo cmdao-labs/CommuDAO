@@ -18,7 +18,7 @@ const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
 const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const weaponDepot = '0xcCbD8B881Dd8e137d41a6A02aBA2Db94f3049B35'
-const weaponDepotStaking = '0x9a10C9C00160BD90Aef7970e412eF4d5C5a671E8'
+const weaponDepotStaking = '0x953149a45fB5F8327c43B6cf6135457C1Ca5B0df'
 
 //const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
 //const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
@@ -55,7 +55,6 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const [nftStake, setNftStake] = React.useState([])
 
     const [wdLv, setWdLv] = React.useState(0)
-    const [nftStakedWD, setNftStakedWD] = React.useState([])
     const [osPoolWD, setOsPoolWD] = React.useState(null)
     const [allPendingRewardWD, setAllPendingRewardWD] = React.useState(0)
     const [allPowWD, setAllPowWD] = React.useState(0)
@@ -113,7 +112,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                     {
                         address: weaponDepot,
                         abi: constructionABI,
-                        functionName: 'slotLevel',
+                        functionName: 'constructionLevel',
                         args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
                     },
                     {
@@ -243,7 +242,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const stakeFilterWD = await cmdaonftSC.filters.Transfer(slot1owner, weaponDepotStaking, null)
             const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3659125, "latest")
             const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
-            const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
             const data0WD = await readContracts({
                 contracts: stakeRemoveDupWD.map((item) => (
                     {
@@ -254,17 +253,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                     }
                 ))
             })
-
             let yournftstakeWD = []
             for (let i = 0; i <= stakeRemoveDupWD.length - 1; i++) {
                 if ((data0WD[i].result[0].toUpperCase() === slot1owner.toUpperCase()) && Number(data0WD[i].result[4]) === Number('100' + code + '0' + intrasubModetext.slice(1, 3))) {
                     yournftstakeWD.push({Id: String(stakeRemoveDupWD[i])})
                 }
             }
-            console.log(yournftstakeWD)
 
-            /*const data1 = await readContracts({
-                contracts: yournftstake.map((item) => (
+            const data1WD = await readContracts({
+                contracts: yournftstakeWD.map((item) => (
                     {
                         address: cmdaoNft,
                         abi: erc721ABI,
@@ -274,40 +271,40 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 ))
             })
 
-            const data12 = await readContracts({
-                contracts: yournftstake.map((item) => (
+            const data12WD = await readContracts({
+                contracts: yournftstakeWD.map((item) => (
                     {
-                        address: houseStaking,
-                        abi: houseStakingABI,
+                        address: weaponDepotStaking,
+                        abi: constructionStakingABI,
                         functionName: 'pendingReward',
                         args: [1, String(item.Id)],
                     }
                 ))
             })
 
-            let _allReward1 = 0
-            let _allPow = 0
-            for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const nftipfs = data1[i].result
+            let _allReward1WD = 0
+            let _allPowWD = 0
+            for (let i = 0; i <= yournftstakeWD.length - 1; i++) {
+                const nftipfs = data1WD[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
-                _allReward1 += Number(ethers.utils.formatEther(data12[i].result))
-                _allPow += Number(String(yournftstake[i].Id).slice(-5))
+                _allReward1WD += Number(ethers.utils.formatEther(data12WD[i].result))
+                _allPowWD += Number(String(yournftstakeWD[i].Id).slice(-5))
 
-                nftstake.push({
-                    Id: yournftstake[i].Id,
+                nftstakeWD.push({
+                    Id: yournftstakeWD[i].Id,
                     Name: nft.name,
                     Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerBlock: Number(String(yournftstake[i].Id).slice(-5)),
+                    RewardPerBlock: Number(String(yournftstakeWD[i].Id).slice(-5)),
                     isStaked: true,
-                    Reward: Number(ethers.utils.formatEther(data12[i].result)),
+                    Reward: Number(ethers.utils.formatEther(data12WD[i].result)),
                 })
-            }*/
+            }
             if (nftstakeWD.length === 0) { nftstakeWD.push(null) }
 
             let nfts = []
@@ -367,7 +364,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
             return [
                 landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, nftstake, 
-                wdlevel, ospoolWD, 
+                wdlevel, ospoolWD, _allReward1WD, _allPowWD, nftstakeWD,
             ]
         }
 
@@ -403,9 +400,12 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
             setWdLv(Number(result[12]))
             setOsPoolWD(ethers.utils.formatEther(String(result[13])))
+            setAllPendingRewardWD(result[14])
+            setAllPowWD(result[15])
+            setNftStakeWD(result[16])
         })
 
-    }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI])
+    }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
 
     const upgradeHouseHandle = async (_level) => {
         setisLoading(true)
@@ -567,7 +567,6 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
         }
         setisLoading(false)
     }
-
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
@@ -757,6 +756,59 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const { hash: hash04 } = await writeContract(config4)
             await waitForTransaction({ hash: hash04 })
             setTxupdate(hash04)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const stakeNftWD = async (_nftid) => {
+        setisLoading(true)
+        try {
+            const nftAllow = await readContract({
+                address: cmdaoNft,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== houseStaking.toUpperCase()) {
+                const config = await prepareWriteContract({
+                    address: cmdaoNft,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [weaponDepotStaking, _nftid],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }        
+            const config2 = await prepareWriteContract({
+                address: weaponDepotStaking,
+                abi: constructionStakingABI,
+                functionName: 'stake',
+                args: [1, _nftid, houseId],
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const unstakeNftWD = async (_nftid, _unstake) => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: weaponDepotStaking,
+                abi: constructionStakingABI,
+                functionName: 'unstake',
+                args: [1, _nftid, _unstake],
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1292,8 +1344,16 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                         House LV.6
                                                     </div>
                                                 </div>
-                                                <div>                                        
-                                                    {(slot1Lv >= 6) &&
+                                                <div>
+                                                    {wdLv !== 0 &&
+                                                        <div 
+                                                            style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed"}}
+                                                            className="bold button" 
+                                                        >
+                                                            UPGRADE
+                                                        </div>
+                                                    }                            
+                                                    {(slot1Lv >= 6 && wdLv === 0) &&
                                                         <div 
                                                             style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", marginTop: "20px", color: "rgb(0, 26, 44)"}}
                                                             className="bold button" 
@@ -1310,28 +1370,24 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                             <div style={{fontSize: "22px", lineHeight: "15px"}}>COLLECT TO EARN</div>
                                             <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
-                                                {/*nftStake !== null && nftStake[0] !== undefined &&
+                                                {nftStakeWD[0] !== null ?
                                                     <>
-                                                        {nftStake[0].isStaked ?
-                                                            <>
-                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                                <div>On Staking</div>
-                                                            </> :
-                                                            <>
-                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                                <div>Available for stake</div>
-                                                            </>
-                                                        }
+                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>On Staking</div>
+                                                    </> :
+                                                    <>
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Available for stake</div>
                                                     </>
-                                                */}
+                                                }
                                             </div>
                                         </div>
-                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{0}</div></div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>TOTAL CMPOW PER SEC: <div>{allPowWD}</div></div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             OVERSOUL PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
                                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="20" alt="$OS"/>
-                                                <div style={{marginLeft: "5px"}}>{String(0).toLocaleString()}</div>
+                                                <div style={{marginLeft: "5px"}}>{String(allPendingRewardWD).toLocaleString()}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -1342,6 +1398,52 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         </div>
                                         <div style={{height: "41px"}}></div>
+                                    </div>
+                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                        <div className="noscroll" style={{position: "relative", width: "100%", flexWrap: "wrap", height: "fit-content", display: "flex", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {wdLv >= 1 &&
+                                                        <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
+                                                            {nftStakeWD[0] !== null ?
+                                                                <>
+                                                                    <div style={{width: "fit-content", marginBottom: "15px", fontSize: "16px", textAlign: "center", color: "#fff"}}>{nftStakeWD[0].Name}</div>
+                                                                    <img src={nftStakeWD[0].Image} width="200px" alt="Can not load metadata." />
+                                                                    <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{nftStakeWD[0].RewardPerBlock} cmpow/block</div>
+                                                                    <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{Number(nftStakeWD[0].Reward).toFixed(4)} Pending $OS</div>
+                                                                    {address !== null && address !== undefined && slot1Addr !== null && slot1Addr !== undefined ?
+                                                                        <>
+                                                                            {address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                                                                <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                                                    {nftStakeWD !== null && nftStakeWD[0] !== undefined &&
+                                                                                        <>
+                                                                                            <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNftWD(nftStakeWD[0].Id, 0)}>HARVEST</div>
+                                                                                            <div className="button" onClick={() => unstakeNftWD(nftStakeWD[0].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        </>
+                                                                                    }
+                                                                                </div> :
+                                                                                <div style={{height: "105px"}}></div>
+                                                                            }
+                                                                        </> :
+                                                                        <div style={{height: "105px"}}></div>
+                                                                    }
+                                                                </> :
+                                                                <>
+                                                                    <div style={{width: "200px", marginBottom: "15px", fontSize: "16px", color: "#fff"}}>Weapon SLOT1</div>
+                                                                    <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                                                    <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 cmpow/block</div>
+                                                                    <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0.00 Pending $OS</div>
+                                                                    <div style={{height: "105px"}}></div>
+                                                                </>
+                                                            }
+                                                        </div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                     <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "350px", height: "500px", display: "flex", flexFlow: "column wrap", justifyContent: "space-around", padding: "50px", border: "none", marginRight: "20px"}} className='nftCard'>
                                         <div style={{width: "320px", textAlign: "left", fontSize: "18px", color: "#fff"}} className="bold" onClick={() => setMode(0)}>{slot1Owner}'s transport hub Lv.{thubLv}</div>
@@ -1483,7 +1585,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                                                     if (String(item.Id).slice(0, 1) === "1") {
                                                                                         stakeNft(item.Id)
                                                                                     } else if (String(item.Id).slice(0, 1) === "7") {
-                                                                                        alert('stay tuned!')
+                                                                                        stakeNftWD(item.Id)
                                                                                     }
                                                                                 }}
                                                                             >
@@ -1508,50 +1610,55 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                         }
                                                     </div>
                                                 }
-                                                {nftStaked[0] !== null ?
+                                                {nftStaked[0] !== null &&
                                                     <>
                                                         {nftStaked.map((item, index) => (
                                                             <div key={index}>
-                                                                {((String(item.Id).slice(0, 1) === "1" && String(item.Id).length !== 13) || String(item.Id).slice(0, 1) === "7") &&
-                                                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
-                                                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                                                        </div>
-                                                                        <div className="emp bold">{item.Name}</div>
-                                                                        <div className="bold">{item.Reward} cmpow per sec</div>
-                                                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                                                            <div 
-                                                                                style={{alignSelf: "center", background: "gray"}}
-                                                                                className="pixel button"
-                                                                                onClick={() => {
-                                                                                    if (String(item.Id).slice(0, 1) === "1") {
-                                                                                        unstakeNft(item.Id, 2)
-                                                                                    } else if (String(item.Id).slice(0, 1) === "7") {
-                                                                                        alert('stay tuned!')
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                UNSTAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
-                                                                            </div>
+                                                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
+                                                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                                    </div>
+                                                                    <div className="emp bold">{item.Name}</div>
+                                                                    <div className="bold">{item.RewardPerBlock} cmpow per sec</div>
+                                                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                                        <div 
+                                                                            style={{alignSelf: "center", background: "gray"}}
+                                                                            className="pixel button"
+                                                                            onClick={() => unstakeNft(item.Id, 1)}
+                                                                        >
+                                                                            UNSTAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
                                                                         </div>
                                                                     </div>
-                                                                }
+                                                                </div>
                                                             </div>
                                                         ))}
-                                                    </> :
-                                                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
-                                                        {address !== undefined ?
-                                                            <>
-                                                                <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                                                <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                                            </> :
-                                                            <>
-                                                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                                                <div className="bold">Please connect wallet to view your NFTs.</div>
-                                                            </>
-                                                        }
-                                                    </div>
+                                                    </>
+                                                }
+                                                {nftStakeWD[0] !== null &&
+                                                    <>
+                                                        {nftStakeWD.map((item, index) => (
+                                                            <div key={index}>
+                                                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
+                                                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                                    </div>
+                                                                    <div className="emp bold">{item.Name}</div>
+                                                                    <div className="bold">{item.RewardPerBlock} cmpow per sec</div>
+                                                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                                        <div 
+                                                                            style={{alignSelf: "center", background: "gray"}}
+                                                                            className="pixel button"
+                                                                            onClick={() => unstakeNftWD(item.Id, 1)}
+                                                                        >
+                                                                            UNSTAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </>
                                                 }
                                             </div> :
                                             <div style={{width: "1640px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
