@@ -909,7 +909,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                 }
                                                 <div style={{width: "95%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                     <input style={{width: "180px", padding: "10px 20px", marginRight: "10px", fontSize: "10px"}} className="bold" type="string" placeholder="New House Owner Addr" value={delegateAddr} onChange={(event) => {setDelegateAddr(event.target.value)}}></input>
-                                                    {nftStake.length === 0 ?
+                                                    {nftStake[0] === null ?
                                                         <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={registHouseHandle}>DELIGATE</div> :
                                                         <div style={{display: "flex", justifyContent: "center", width: "140px", borderRadius: "12px", padding: "12px 20px", color: "rgb(0, 26, 44)", background: "gray", cursor: "not-allowed", fontSize: "10px"}} className="bold button">UNSTAKE ALL NFT FIRST</div>
                                                     }
