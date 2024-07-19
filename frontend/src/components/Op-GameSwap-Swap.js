@@ -110,8 +110,8 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
 
     return (
         <>
-            <div style={{margin: "20px 0", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
-                <div style={{marginTop: "20px", padding: "20px 0", height: "450px", width: "350px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+            <div style={{margin: "20px 0", width: "950px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "center", flexWrap: "wrap"}}>
+                <div style={{margin: "20px", padding: "20px 0", height: "450px", width: "350px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Instant Swap</div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
@@ -227,6 +227,8 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                         <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px", cursor: "pointer"}} className="bold" onClick={swapTokenHandle}>Swap</div>
                     }
                 </div>
+                
+                <div style={{margin: "30px"}} id="dexscreener-embed"><iframe src="https://dexscreener.com/optimism/0xA41F70B283b8f097112ca3Bb63cB2718EE662e49?embed=1&trades=0&info=0"></iframe></div>
             </div>
         </>
     )
