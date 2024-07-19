@@ -664,8 +664,8 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const _canBuy4 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 20 ? true : false
             const sell5remain = (100540100000 - (Number(sell5Id[4]) - 100)) / 100000
             const _canBuy5 = _isKYC && !isBought5 && Number(ethers.utils.formatEther(String(bbqBal))) >= 40000 ? true : false
-            const sell6remain = (1000030200000 - (Number(sell6Id[2]) - 100)) / 100000
-            const _canBuy6 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 1.5 ? true : false
+            const sell6remain = (1000060200000 - (Number(sell6Id[2]) - 100)) / 100000
+            const _canBuy6 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 2 ? true : false
             const sell7remain = 101000399 - Number(sell7Id[3])
             const _canBuy7 = Number(ethers.utils.formatEther(String(jusdtBal))) >= 10 ? true : false
             const sell8remain = (102033400000 - (Number(sell8Id[2]) - 8000)) / 100000
@@ -1007,7 +1007,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
-            if (jusdtAllow < (1.5 * 10**18)) {
+            if (jusdtAllow < (2 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: jusdtToken,
                     abi: erc20ABI,
@@ -2408,14 +2408,14 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     </div>
 
                     <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
-                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Chō-Senjiryakketsu Vol.2</div>
+                        <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Chō-Senjiryakketsu Vol.3</div>
                         <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifgwtom3va2wm4wdur4eupbnoxjfvxr3765ebkpisron73ydmq3sa" height="150" alt="Can not load metadata."/>
                         <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
                             <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                 <div>Limited</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                 <div className="emp">{sell6Remain}</div>
-                                    /200 EA
+                                    /300 EA
                                 </div>
                             </div>
                             <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
@@ -2426,7 +2426,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                                 <div>Price</div>
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
-                                    <div style={{marginLeft: "7.5px"}}>1.5</div>
+                                    <div style={{marginLeft: "7.5px"}}>2</div>
                                 </div>
                             </div>
                         </div>

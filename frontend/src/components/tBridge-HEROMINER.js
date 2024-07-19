@@ -111,7 +111,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 68026368,136577024,220725248,192020480,146800640,68157440,136445952,221118464,191365120,146669568,67895296,136314880,220594176,191496192,146538496,67764224,136183808,220463104,191889408,146407424,67633152,136052736,220332032,191758336,146276352,
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
-const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
+const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance }) => {
     let { address } = useAccount()
     // let address = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
     const { chain } = useNetwork()
@@ -361,7 +361,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} {substanceSelected}</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {substanceSelected === "SALM" && Number((depositGas / 100)).toFixed(3)}{substanceSelected === "AGUA" && Number((depositGas / 100000)).toFixed(3)}{substanceSelected === "COSMOS" && Number((depositGas / 1000)).toFixed(3)} ENGY</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {0} ENGY</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {substanceSelected === "SALM" && Number(salmBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "AGUA" && Number(aguaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "COSMOS" && Number(cosmosBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {substanceSelected}</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})} ENGY</div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
 
@@ -383,9 +384,10 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">BRIDGE TO BITKUB CHAIN</div> : 
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BITKUB CHAIN</div>
                     }
-                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} </div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {/*depositCMJ >= 80 ? Number((depositCMJ * 80 - 80)).toFixed(3) : 0*/} {productSelected}</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BKC Mainnet Balance: {0} {productSelected}</div>
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} GEM</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {productSelected === "GOLD" && Number((depositProduct)).toFixed(3)}{productSelected === "DM" && Number((depositProduct / 5)).toFixed(3)} {productSelected} (Vault Remaining: {0})</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {productSelected === "GOLD" && Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{productSelected === "DM" && Number(dmBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {productSelected}</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
             </div>
