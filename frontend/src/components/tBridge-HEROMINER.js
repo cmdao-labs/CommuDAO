@@ -9,6 +9,13 @@ const herocatBBQ = '0x9cD236a18D1792993beCff9E525902a5B6ef4483'
 const bbqBridge = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
 const bkcBridge = '0x03088437f7bE4342e17a9492EBaAAE23d6f96208'
 
+const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
+const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
+const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
+const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
+const bbqTokensBridge = '0xEe44A885Bd7CC635f6b5Ac13EdA0a0ba25552360';
+const bkcTokensBridge = '0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A';
+
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
@@ -111,7 +118,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 68026368,136577024,220725248,192020480,146800640,68157440,136445952,221118464,191365120,146669568,67895296,136314880,220594176,191496192,146538496,67764224,136183808,220463104,191889408,146407424,67633152,136052736,220332032,191758336,146276352,
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
-const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance }) => {
+const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm }) => {
     let { address } = useAccount()
     // let address = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
     const { chain } = useNetwork()
@@ -331,6 +338,85 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
         setisLoading(false)
     }
 
+    const depositTokensFromBKCHandle = async (_index) => {
+        setisLoading(true)
+        let tokenAddr = null
+        let depositAmount = null
+        if (_index === 1) {
+            tokenAddr = salmBKC
+            depositAmount = ethers.utils.parseEther(String(depositGas))
+        } else if (_index === 2) {
+            tokenAddr = aguaBKC
+            depositAmount = depositGas
+        } else if (_index === 3) {
+            tokenAddr = cosmosBKC
+            depositAmount = ethers.utils.parseEther(String(depositGas))
+        }
+        try {
+            const tokenAllow = await readContract({
+                address: tokenAddr,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, bkcTokensBridge],
+            })
+            if (tokenAllow < Number(depositAmount)) {
+                const config0 = await prepareWriteContract({
+                    address: tokenAddr,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [bkcTokensBridge, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config = await prepareWriteContract({
+                address: bkcTokensBridge,
+                abi: uniTokensBridgeABI,
+                functionName: 'receiveTokens',
+                args: [_index, depositAmount],
+                value: ethers.utils.parseEther('1'),
+                chainId: 96,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+    const depositTokensFromBBQHandle = async (_index) => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: gemBBQ,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, bbqTokensBridge],
+            })
+            if (tokenAllow < Number(ethers.utils.parseEther(String(depositProduct)))) {
+                const config0 = await prepareWriteContract({
+                    address: gemBBQ,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [bbqTokensBridge, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config = await prepareWriteContract({
+                address: bbqTokensBridge,
+                abi: uniTokensBridgeABI,
+                functionName: 'receiveTokens',
+                args: [_index, ethers.utils.parseEther(String(depositProduct))],
+                value: ethers.utils.parseEther('800'),
+                chainId: 190,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
@@ -355,14 +441,28 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         value={depositGas}
                         onChange={(event) => setDepositGas(event.target.value)}
                     ></input>
-                    {false && chain.id === 96 && address !== null && address !== undefined ? 
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div> : 
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
+                    {chain.id === 96 && address !== null && address !== undefined ? 
+                        <div 
+                            style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} 
+                            className="button" 
+                            onClick={() => {
+                                if (substanceSelected === "SALM") {
+                                    depositTokensFromBKCHandle(1)
+                                } else if (substanceSelected === "AGUA") {
+                                    depositTokensFromBKCHandle(2)
+                                } else if (substanceSelected === "COSMOS") {
+                                    depositTokensFromBKCHandle(3)
+                                }
+                            }}
+                        >
+                            BRIDGE TO BBQ CHAIN
+                        </div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BBQ CHAIN</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} {substanceSelected}</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {substanceSelected === "SALM" && Number((depositGas / 100)).toFixed(3)}{substanceSelected === "AGUA" && Number((depositGas / 100000)).toFixed(3)}{substanceSelected === "COSMOS" && Number((depositGas / 1000)).toFixed(3)} ENGY</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {substanceSelected === "SALM" && Number(salmBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "AGUA" && Number(aguaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "COSMOS" && Number(cosmosBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {substanceSelected}</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})} ENGY</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BBQ CHAIN Balance: {Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})} ENGY</div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
 
@@ -380,14 +480,26 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         value={depositProduct}
                         onChange={(event) => setDepositProduct(event.target.value)}
                     ></input>
-                    {false && chain.id === 190 && address !== null && address !== undefined ? 
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">BRIDGE TO BITKUB CHAIN</div> : 
+                    {chain.id === 190 && address !== null && address !== undefined ? 
+                        <div 
+                            style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} 
+                            className="button"
+                            onClick={() => {
+                                if (productSelected === "GOLD") {
+                                    depositTokensFromBBQHandle(2)
+                                } else if (productSelected === "DM") {
+                                    depositTokensFromBBQHandle(3)
+                                }
+                            }}
+                        >
+                            BRIDGE TO BITKUB CHAIN
+                        </div> : 
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BITKUB CHAIN</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} GEM</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {productSelected === "GOLD" && Number((depositProduct)).toFixed(3)}{productSelected === "DM" && Number((depositProduct / 5)).toFixed(3)} {productSelected} (Vault Remaining: {0})</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {productSelected === "GOLD" && Number((depositProduct)).toFixed(3)}{productSelected === "DM" && Number((depositProduct / 5)).toFixed(3)} {productSelected} (Vault Remaining: {productSelected === "GOLD" && Number(bridgebalGold).toFixed(3)}{productSelected === "DM" && Number(bridgebalDm).toFixed(3)})</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {productSelected === "GOLD" && Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{productSelected === "DM" && Number(dmBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {productSelected}</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BBQ CHAIN Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
             </div>

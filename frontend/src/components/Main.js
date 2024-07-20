@@ -138,6 +138,7 @@ import bkcOracleABI from './jsons/bkcOracleABI.json'
 
 import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
 import nativeBridgeABI from './jsons/nativeBridgeABI.json'
+import uniTokensBridgeABI from './jsons/uniTokensBridgeABI.json'
 
 import veloPoolABI from './jsons/veloPoolABI.json'
 import velodromeRouterABI from './jsons/velodromeRouterABI.json'
@@ -438,7 +439,7 @@ const Main = () => {
                 {mode === 701 && <OpGameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} veloPoolABI={veloPoolABI} velodromeRouterABI={velodromeRouterABI} velodromeCallerABI={velodromeCallerABI} bkcOracleABI={bkcOracleABI} />}
                
 
-                {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} />}
+                {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} uniTokensBridgeABI={uniTokensBridgeABI} />}
 
                 {mode === null &&
                     <div style={{paddingTop: "100px"}} className="collection">
