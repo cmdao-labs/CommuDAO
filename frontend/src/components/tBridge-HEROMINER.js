@@ -536,7 +536,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                             <img 
                                 src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
                                 width="20"
-                                alt="$SALM"
+                                alt="$AGUA"
                                 style={{cursor: "crosshair", marginLeft: "5px"}}
                                 onClick={async () => {
                                     await ethereum.request({

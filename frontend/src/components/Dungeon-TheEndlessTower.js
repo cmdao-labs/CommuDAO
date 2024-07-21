@@ -8268,7 +8268,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot1 !== null ?
-                                            <img src={charSlot1[0]} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
+                                            <img src={charSlot1} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
                                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
                                         }
                                     </> :
