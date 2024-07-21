@@ -13,8 +13,11 @@ const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
-const bbqTokensBridge = '0xEe44A885Bd7CC635f6b5Ac13EdA0a0ba25552360';
-const bkcTokensBridge = '0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A';
+const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
+const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
+const bbqTokensBridge = '0xEe44A885Bd7CC635f6b5Ac13EdA0a0ba25552360'
+const bkcTokensBridge = '0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'
+const opTokensBridge = '0xAFb2a3A553574191cC6214D0AAd7864C9B5EFEf7'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
@@ -118,7 +121,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 68026368,136577024,220725248,192020480,146800640,68157440,136445952,221118464,191365120,146669568,67895296,136314880,220594176,191496192,146538496,67764224,136183808,220463104,191889408,146407424,67633152,136052736,220332032,191758336,146276352,
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
-const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm }) => {
+const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance }) => {
     let { address } = useAccount()
     // let address = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
     const { chain } = useNetwork()
@@ -130,6 +133,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
     const [depositGas, setDepositGas] = React.useState('')
     const [productSelected, setProductSelected] = React.useState("DM")
     const [depositProduct, setDepositProduct] = React.useState('')
+    const [depositCmm, setDepositCmm] = React.useState('')
+    const [withdrawCmm, setWithdrawCmm] = React.useState('')
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -351,6 +356,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
         } else if (_index === 3) {
             tokenAddr = cosmosBKC
             depositAmount = ethers.utils.parseEther(String(depositGas))
+        } else if (_index === 6) {
+            tokenAddr = cmmBKC
+            depositAmount = ethers.utils.parseEther(String(depositCmm))
         }
         try {
             const tokenAllow = await readContract({
@@ -380,7 +388,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            console.log(e)
+        }
         setisLoading(false)
     }
     const depositTokensFromBBQHandle = async (_index) => {
@@ -416,13 +426,46 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
         } catch {}
         setisLoading(false)
     }
+    const depositTokensFromOPHandle = async (_index) => {
+        setisLoading(true)
+        try {
+            const tokenAllow = await readContract({
+                address: cmmOP,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, opTokensBridge],
+            })
+            if (tokenAllow < Number(ethers.utils.parseEther(String(withdrawCmm)))) {
+                const config0 = await prepareWriteContract({
+                    address: cmmOP,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [opTokensBridge, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config = await prepareWriteContract({
+                address: opTokensBridge,
+                abi: uniTokensBridgeABI,
+                functionName: 'receiveTokens',
+                args: [_index, ethers.utils.parseEther(String(withdrawCmm))],
+                value: ethers.utils.parseEther('0.003'),
+                chainId: 10,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
 
     return (
         <>
             <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                 <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                     <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
-                    <div style={{fontSize: "30px"}}>From BKC 1 KUB/TX; From BBQ 800 CMD/TX</div>
+                    <div style={{fontSize: "30px"}}>From BKC 1 KUB/TX; From BBQ 800 CMD/TX; From OP Mainnet 0.0003 ETH</div>
                 </div>
             </div>
             <div style={{height: "560px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
@@ -501,6 +544,40 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {productSelected === "GOLD" && Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{productSelected === "DM" && Number(dmBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {productSelected}</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BBQ CHAIN Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
+                </div>
+            </div>
+            <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                <div style={{width: "40%", height: "180px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                    <input
+                        style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder="0.0 CMM"
+                        value={depositCmm}
+                        onChange={(event) => setDepositCmm(event.target.value)}
+                    ></input>
+                    {chain.id === 96 && address !== null && address !== undefined ? 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBKCHandle(6)}>BRIDGE TO OP</div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO OP</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left"}}>Balance: {Number(cmmBkcBalance).toFixed(4)} CMM [BITKUB CHAIN]</div>
+                </div>
+                <div style={{width: "40%", height: "180px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                    <input
+                        style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder="0.0 CMM"
+                        value={withdrawCmm}
+                        onChange={(event) => setWithdrawCmm(event.target.value)}
+                    ></input>
+                    {chain.id === 10 && address !== null && address !== undefined ?
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(1)}>BRIDGE TO BKC</div> :
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left"}}>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP MAINNET]</div>
                 </div>
             </div>
             <div style={{width: "1200px", maxWidth: "90%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">BKC NFTs</div>
