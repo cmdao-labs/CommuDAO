@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
+const { ethereum } = window
 
 const herocatBKC = '0x2F022D4Ef37847304eCd167303aeaA9699F73663'
 const herocatBBQ = '0x9cD236a18D1792993beCff9E525902a5B6ef4483'
@@ -12,6 +13,9 @@ const bkcBridge = '0x03088437f7bE4342e17a9492EBaAAE23d6f96208'
 const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
+const goldBKC = '0x794a7b0249eE38FCa6429DE90924113dc9566748'
+const dmBKC = '0x8AB1fcBe9f65b86a52c34FeE9b29679f70D8f6fA'
+const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
 const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
@@ -504,8 +508,76 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} {substanceSelected}</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {substanceSelected === "SALM" && Number((depositGas / 100)).toFixed(3)}{substanceSelected === "AGUA" && Number((depositGas / 100000)).toFixed(3)}{substanceSelected === "COSMOS" && Number((depositGas / 1000)).toFixed(3)} ENGY</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {substanceSelected === "SALM" && Number(salmBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "AGUA" && Number(aguaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "COSMOS" && Number(cosmosBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {substanceSelected}</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BBQ CHAIN Balance: {Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})} ENGY</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray",  display: "flex", alignItems: "center"}}>
+                        <div>BITKUB CHAIN Balance: {substanceSelected === "SALM" && Number(salmBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "AGUA" && Number(aguaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "COSMOS" && Number(cosmosBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {substanceSelected}</div>
+                        {substanceSelected === "SALM" &&
+                            <img 
+                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
+                                width="20"
+                                alt="$SALM"
+                                style={{cursor: "crosshair", marginLeft: "5px"}}
+                                onClick={async () => {
+                                    await ethereum.request({
+                                        method: 'wallet_watchAsset',
+                                        params: {
+                                            type: 'ERC20',
+                                            options: {
+                                                address: salmBKC,
+                                                symbol: 'SALM',
+                                                decimals: 18,
+                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
+                                            },
+                                        },
+                                    })
+                                }}
+                            />
+                        }
+                        {substanceSelected === "COSMOS" &&
+                            <img 
+                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
+                                width="20"
+                                alt="$CMOS"
+                                style={{cursor: "crosshair", marginLeft: "5px"}}
+                                onClick={async () => {
+                                    await ethereum.request({
+                                        method: 'wallet_watchAsset',
+                                        params: {
+                                            type: 'ERC20',
+                                            options: {
+                                                address: cosmosBKC,
+                                                symbol: 'CMOS',
+                                                decimals: 18,
+                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                                            },
+                                        },
+                                    })
+                                }}
+                            />
+                        }
+                    </div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
+                        <div>BBQ CHAIN Balance: {Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})} ENGY</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB"
+                            width="20"
+                            alt="$HRM-ENGY"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: engyBBQ,
+                                            symbol: 'HRM-ENGY',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
 
@@ -541,8 +613,76 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(0).toFixed(4)} GEM</div>
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {productSelected === "GOLD" && Number((depositProduct)).toFixed(3)}{productSelected === "DM" && Number((depositProduct / 5)).toFixed(3)} {productSelected} (Vault Remaining: {productSelected === "GOLD" && Number(bridgebalGold).toFixed(3)}{productSelected === "DM" && Number(bridgebalDm).toFixed(3)})</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BITKUB CHAIN Balance: {productSelected === "GOLD" && Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{productSelected === "DM" && Number(dmBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {productSelected}</div>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>BBQ CHAIN Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
+                        <div>BITKUB CHAIN Balance: {productSelected === "GOLD" && Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{productSelected === "DM" && Number(dmBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {productSelected}</div>
+                        {productSelected === "GOLD" &&
+                            <img 
+                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPvFi2ueyCG3fDEgyZT2gwGJ6zfY7PgQs6mzgvFzeErSD"
+                                width="20"
+                                alt="$GOLD"
+                                style={{cursor: "crosshair", marginLeft: "5px"}}
+                                onClick={async () => {
+                                    await ethereum.request({
+                                        method: 'wallet_watchAsset',
+                                        params: {
+                                            type: 'ERC20',
+                                            options: {
+                                                address: goldBKC,
+                                                symbol: 'GOLD',
+                                                decimals: 18,
+                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPvFi2ueyCG3fDEgyZT2gwGJ6zfY7PgQs6mzgvFzeErSD',
+                                            },
+                                        },
+                                    })
+                                }}
+                            />
+                        }
+                        {productSelected === "DM" &&
+                            <img 
+                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qme5erJ9PcgyEWA5MJNC88tYKGASKJUu3G7CkNARHN7zws"
+                                width="20"
+                                alt="$DM"
+                                style={{cursor: "crosshair", marginLeft: "5px"}}
+                                onClick={async () => {
+                                    await ethereum.request({
+                                        method: 'wallet_watchAsset',
+                                        params: {
+                                            type: 'ERC20',
+                                            options: {
+                                                address: dmBKC,
+                                                symbol: 'DM',
+                                                decimals: 18,
+                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qme5erJ9PcgyEWA5MJNC88tYKGASKJUu3G7CkNARHN7zws',
+                                            },
+                                        },
+                                    })
+                                }}
+                            />
+                        }
+                    </div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
+                        <div>BBQ CHAIN Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV"
+                            width="20"
+                            alt="$HRM-GEM"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: gemBBQ,
+                                            symbol: 'HRM-GEM',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
                     <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
             </div>
@@ -561,7 +701,29 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBKCHandle(6)}>BRIDGE TO OP</div> : 
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO OP</div>
                     }
-                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left"}}>Balance: {Number(cmmBkcBalance).toFixed(4)} CMM [BITKUB CHAIN]</div>
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
+                        <div>Balance: {Number(cmmBkcBalance).toFixed(4)} CMM [BITKUB CHAIN]</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
+                            width="20"
+                            alt="$CMM"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cmmBKC,
+                                            symbol: 'CMM',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
                 </div>
                 <div style={{width: "40%", height: "180px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                     <input
@@ -577,7 +739,29 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(1)}>BRIDGE TO BKC</div> :
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                     }
-                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left"}}>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP MAINNET]</div>
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
+                        <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP MAINNET]</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
+                            width="20"
+                            alt="$CMM"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cmmOP,
+                                            symbol: 'CMM',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
             <div style={{width: "1200px", maxWidth: "90%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">BKC NFTs</div>
