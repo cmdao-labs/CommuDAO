@@ -532,6 +532,28 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                                 }}
                             />
                         }
+                        {substanceSelected === "AGUA" &&
+                            <img 
+                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
+                                width="20"
+                                alt="$SALM"
+                                style={{cursor: "crosshair", marginLeft: "5px"}}
+                                onClick={async () => {
+                                    await ethereum.request({
+                                        method: 'wallet_watchAsset',
+                                        params: {
+                                            type: 'ERC20',
+                                            options: {
+                                                address: aguaBKC,
+                                                symbol: 'AGUA',
+                                                decimals: 0,
+                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq',
+                                            },
+                                        },
+                                    })
+                                }}
+                            />
+                        }
                         {substanceSelected === "COSMOS" &&
                             <img 
                                 src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
