@@ -10545,7 +10545,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
-                            <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", minHeight: "400px"}} className="nftCard" key={index}>
+                            <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", minHeight: "400px", height: "fit-content"}} className="nftCard" key={index}>
                                 <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
                                     <img src={item.Image} height="100%" alt="Can not load metadata." />
                                 </div>
