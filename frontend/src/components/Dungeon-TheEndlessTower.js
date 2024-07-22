@@ -8178,7 +8178,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot1 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot1 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot1 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -8189,6 +8192,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -8422,7 +8426,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot2 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot2 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(1, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot2 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -8433,6 +8440,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -8666,7 +8674,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot3 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                <div style={{alignSelf: "center", background: isRunoutSlot3 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(2, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot3 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -8677,6 +8688,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -8910,7 +8922,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot4 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot4 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(3, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot4 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -8921,6 +8936,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -9154,7 +9170,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot5 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot5 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(4, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot5 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -9165,7 +9184,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
-
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -9399,7 +9418,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot6 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot6 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(5, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot6 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -9410,6 +9432,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -9643,7 +9666,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot7 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                <div style={{alignSelf: "center", background: isRunoutSlot7 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(6, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot7 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -9654,6 +9680,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -9887,7 +9914,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot8 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot8 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(7, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot8 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -9898,6 +9928,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -10131,7 +10162,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot9 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot9 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(8, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot9 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -10142,6 +10176,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
@@ -10375,7 +10410,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {address !== undefined && address === youraddr ?
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {isStakeNowSlot10 ?
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> :
+                                            <>
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                <div style={{alignSelf: "center", background: isRunoutSlot10 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(9, 10)}>HARVEST & UNSTAKE</div>
+                                            </> :
                                             <>
                                                 {isStakeNowSlot10 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) ?
                                                     <>
@@ -10386,6 +10424,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                     </> :
                                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                                 }
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
                                             </>
                                         }
                                     </div> :
