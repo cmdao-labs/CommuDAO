@@ -812,7 +812,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_Img,
                     Description: nft1.description,
                     Attribute: nft1.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -831,7 +831,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_Img,
                     Description: nft2.description,
                     Attribute: nft2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -850,7 +850,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_Img,
                     Description: nft3.description,
                     Attribute: nft3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -869,7 +869,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_Img,
                     Description: nft4.description,
                     Attribute: nft4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -888,7 +888,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_Img,
                     Description: nft5.description,
                     Attribute: nft5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -907,7 +907,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_Img,
                     Description: nft6.description,
                     Attribute: nft6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -926,7 +926,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_Img,
                     Description: nft7.description,
                     Attribute: nft7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot1[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot1[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -945,7 +945,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_Img,
                     Description: nft8.description,
                     Attribute: nft8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -964,7 +964,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_Img,
                     Description: nft9.description,
                     Attribute: nft9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -983,7 +983,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_Img,
                     Description: nft10.description,
                     Attribute: nft10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1002,7 +1002,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_Img,
                     Description: nft11.description,
                     Attribute: nft11.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1021,7 +1021,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_Img,
                     Description: nft12.description,
                     Attribute: nft12.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1040,7 +1040,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_Img,
                     Description: nft13.description,
                     Attribute: nft13.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1059,7 +1059,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_Img,
                     Description: nft14.description,
                     Attribute: nft14.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1078,7 +1078,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_Img,
                     Description: nft15.description,
                     Attribute: nft15.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1097,7 +1097,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_Img,
                     Description: nft16.description,
                     Attribute: nft16.attributes,
-                    RewardPerSec: Number(nftEQ2_slot1[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot1[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1116,7 +1116,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_Img,
                     Description: nft17.description,
                     Attribute: nft17.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1135,7 +1135,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_Img,
                     Description: nft18.description,
                     Attribute: nft18.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1154,7 +1154,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_Img,
                     Description: nft19.description,
                     Attribute: nft19.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1173,7 +1173,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_Img,
                     Description: nft20.description,
                     Attribute: nft20.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1192,7 +1192,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_Img,
                     Description: nft21.description,
                     Attribute: nft21.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1211,7 +1211,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_Img,
                     Description: nft22.description,
                     Attribute: nft22.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1230,7 +1230,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_Img,
                     Description: nft23.description,
                     Attribute: nft23.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1249,7 +1249,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_Img,
                     Description: nft24.description,
                     Attribute: nft24.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1268,7 +1268,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_Img,
                     Description: nft25.description,
                     Attribute: nft25.attributes,
-                    RewardPerSec: Number(nftEQCard_slot1[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot1[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1479,7 +1479,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_2_Img,
                     Description: nft1_2.description,
                     Attribute: nft1_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1498,7 +1498,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_2_Img,
                     Description: nft2_2.description,
                     Attribute: nft2_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1517,7 +1517,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_2_Img,
                     Description: nft3_2.description,
                     Attribute: nft3_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1536,7 +1536,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_2_Img,
                     Description: nft4_2.description,
                     Attribute: nft4_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1555,7 +1555,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_2_Img,
                     Description: nft5_2.description,
                     Attribute: nft5_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1574,7 +1574,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_2_Img,
                     Description: nft6_2.description,
                     Attribute: nft6_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1593,7 +1593,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_2_Img,
                     Description: nft7_2.description,
                     Attribute: nft7_2.attributes,
-                    RewardPerSec: Number(nftEQ1_slot2[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot2[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1612,7 +1612,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_2_Img,
                     Description: nft8_2.description,
                     Attribute: nft8_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1631,7 +1631,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_2_Img,
                     Description: nft9_2.description,
                     Attribute: nft9_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1650,7 +1650,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_2_Img,
                     Description: nft10_2.description,
                     Attribute: nft10_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1669,7 +1669,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_2_Img,
                     Description: nft11_2.description,
                     Attribute: nft11_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1688,7 +1688,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_2_Img,
                     Description: nft12_2.description,
                     Attribute: nft12_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1707,7 +1707,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_2_Img,
                     Description: nft13_2.description,
                     Attribute: nft13_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1726,7 +1726,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_2_Img,
                     Description: nft14_2.description,
                     Attribute: nft14_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1745,7 +1745,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_2_Img,
                     Description: nft15_2.description,
                     Attribute: nft15_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1764,7 +1764,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_2_Img,
                     Description: nft16_2.description,
                     Attribute: nft16_2.attributes,
-                    RewardPerSec: Number(nftEQ2_slot2[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot2[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1783,7 +1783,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_2_Img,
                     Description: nft17_2.description,
                     Attribute: nft17_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1802,7 +1802,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_2_Img,
                     Description: nft18_2.description,
                     Attribute: nft18_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1821,7 +1821,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_2_Img,
                     Description: nft19_2.description,
                     Attribute: nft19_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1840,7 +1840,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_2_Img,
                     Description: nft20_2.description,
                     Attribute: nft20_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1859,7 +1859,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_2_Img,
                     Description: nft21_2.description,
                     Attribute: nft21_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1878,7 +1878,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_2_Img,
                     Description: nft22_2.description,
                     Attribute: nft22_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1897,7 +1897,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_2_Img,
                     Description: nft23_2.description,
                     Attribute: nft23_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1916,7 +1916,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_2_Img,
                     Description: nft24_2.description,
                     Attribute: nft24_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -1935,7 +1935,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_2_Img,
                     Description: nft25_2.description,
                     Attribute: nft25_2.attributes,
-                    RewardPerSec: Number(nftEQCard_slot2[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot2[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2144,7 +2144,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_3_Img,
                     Description: nft1_3.description,
                     Attribute: nft1_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2163,7 +2163,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_3_Img,
                     Description: nft2_3.description,
                     Attribute: nft2_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2182,7 +2182,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_3_Img,
                     Description: nft3_3.description,
                     Attribute: nft3_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2201,7 +2201,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_3_Img,
                     Description: nft4_3.description,
                     Attribute: nft4_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2220,7 +2220,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_3_Img,
                     Description: nft5_3.description,
                     Attribute: nft5_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2239,7 +2239,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_3_Img,
                     Description: nft6_3.description,
                     Attribute: nft6_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2258,7 +2258,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_3_Img,
                     Description: nft7_3.description,
                     Attribute: nft7_3.attributes,
-                    RewardPerSec: Number(nftEQ1_slot3[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot3[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2277,7 +2277,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_3_Img,
                     Description: nft8_3.description,
                     Attribute: nft8_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2296,7 +2296,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_3_Img,
                     Description: nft9_3.description,
                     Attribute: nft9_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2315,7 +2315,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_3_Img,
                     Description: nft10_3.description,
                     Attribute: nft10_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2334,7 +2334,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_3_Img,
                     Description: nft11_3.description,
                     Attribute: nft11_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2353,7 +2353,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_3_Img,
                     Description: nft12_3.description,
                     Attribute: nft12_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2372,7 +2372,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_3_Img,
                     Description: nft13_3.description,
                     Attribute: nft13_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2391,7 +2391,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_3_Img,
                     Description: nft14_3.description,
                     Attribute: nft14_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2410,7 +2410,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_3_Img,
                     Description: nft15_3.description,
                     Attribute: nft15_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2429,7 +2429,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_3_Img,
                     Description: nft16_3.description,
                     Attribute: nft16_3.attributes,
-                    RewardPerSec: Number(nftEQ2_slot3[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot3[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2448,7 +2448,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_3_Img,
                     Description: nft17_3.description,
                     Attribute: nft17_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2467,7 +2467,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_3_Img,
                     Description: nft18_3.description,
                     Attribute: nft18_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2486,7 +2486,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_3_Img,
                     Description: nft19_3.description,
                     Attribute: nft19_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2505,7 +2505,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_3_Img,
                     Description: nft20_3.description,
                     Attribute: nft20_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2524,7 +2524,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_3_Img,
                     Description: nft21_3.description,
                     Attribute: nft21_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2543,7 +2543,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_3_Img,
                     Description: nft22_3.description,
                     Attribute: nft22_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2562,7 +2562,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_3_Img,
                     Description: nft23_3.description,
                     Attribute: nft23_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2581,7 +2581,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_3_Img,
                     Description: nft24_3.description,
                     Attribute: nft24_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2600,7 +2600,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_3_Img,
                     Description: nft25_3.description,
                     Attribute: nft25_3.attributes,
-                    RewardPerSec: Number(nftEQCard_slot3[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot3[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2809,7 +2809,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_4_Img,
                     Description: nft1_4.description,
                     Attribute: nft1_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2828,7 +2828,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_4_Img,
                     Description: nft2_4.description,
                     Attribute: nft2_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2847,7 +2847,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_4_Img,
                     Description: nft3_4.description,
                     Attribute: nft3_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2866,7 +2866,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_4_Img,
                     Description: nft4_4.description,
                     Attribute: nft4_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2885,7 +2885,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_4_Img,
                     Description: nft5_4.description,
                     Attribute: nft5_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2904,7 +2904,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_4_Img,
                     Description: nft6_4.description,
                     Attribute: nft6_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2923,7 +2923,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_4_Img,
                     Description: nft7_4.description,
                     Attribute: nft7_4.attributes,
-                    RewardPerSec: Number(nftEQ1_slot4[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot4[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2942,7 +2942,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_4_Img,
                     Description: nft8_4.description,
                     Attribute: nft8_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2961,7 +2961,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_4_Img,
                     Description: nft9_4.description,
                     Attribute: nft9_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2980,7 +2980,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_4_Img,
                     Description: nft10_4.description,
                     Attribute: nft10_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -2999,7 +2999,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_4_Img,
                     Description: nft11_4.description,
                     Attribute: nft11_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3018,7 +3018,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_4_Img,
                     Description: nft12_4.description,
                     Attribute: nft12_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3037,7 +3037,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_4_Img,
                     Description: nft13_4.description,
                     Attribute: nft13_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3056,7 +3056,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_4_Img,
                     Description: nft14_4.description,
                     Attribute: nft14_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3075,7 +3075,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_4_Img,
                     Description: nft15_4.description,
                     Attribute: nft15_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3094,7 +3094,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_4_Img,
                     Description: nft16_4.description,
                     Attribute: nft16_4.attributes,
-                    RewardPerSec: Number(nftEQ2_slot4[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot4[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3113,7 +3113,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_4_Img,
                     Description: nft17_4.description,
                     Attribute: nft17_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3132,7 +3132,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_4_Img,
                     Description: nft18_4.description,
                     Attribute: nft18_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3151,7 +3151,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_4_Img,
                     Description: nft19_4.description,
                     Attribute: nft19_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3170,7 +3170,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_4_Img,
                     Description: nft20_4.description,
                     Attribute: nft20_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3189,7 +3189,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_4_Img,
                     Description: nft21_4.description,
                     Attribute: nft21_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3208,7 +3208,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_4_Img,
                     Description: nft22_4.description,
                     Attribute: nft22_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3227,7 +3227,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_4_Img,
                     Description: nft23_4.description,
                     Attribute: nft23_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3246,7 +3246,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_4_Img,
                     Description: nft24_4.description,
                     Attribute: nft24_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3265,7 +3265,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_4_Img,
                     Description: nft25_4.description,
                     Attribute: nft25_4.attributes,
-                    RewardPerSec: Number(nftEQCard_slot4[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot4[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3474,7 +3474,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_5_Img,
                     Description: nft1_5.description,
                     Attribute: nft1_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3493,7 +3493,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_5_Img,
                     Description: nft2_5.description,
                     Attribute: nft2_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3512,7 +3512,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_5_Img,
                     Description: nft3_5.description,
                     Attribute: nft3_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3531,7 +3531,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_5_Img,
                     Description: nft4_5.description,
                     Attribute: nft4_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3550,7 +3550,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_5_Img,
                     Description: nft5_5.description,
                     Attribute: nft5_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3569,7 +3569,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_5_Img,
                     Description: nft6_5.description,
                     Attribute: nft6_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3588,7 +3588,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_5_Img,
                     Description: nft7_5.description,
                     Attribute: nft7_5.attributes,
-                    RewardPerSec: Number(nftEQ1_slot5[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ1_slot5[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3607,7 +3607,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_5_Img,
                     Description: nft8_5.description,
                     Attribute: nft8_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3626,7 +3626,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_5_Img,
                     Description: nft9_5.description,
                     Attribute: nft9_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3645,7 +3645,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_5_Img,
                     Description: nft10_5.description,
                     Attribute: nft10_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3664,7 +3664,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_5_Img,
                     Description: nft11_5.description,
                     Attribute: nft11_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3683,7 +3683,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_5_Img,
                     Description: nft12_5.description,
                     Attribute: nft12_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3702,7 +3702,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_5_Img,
                     Description: nft13_5.description,
                     Attribute: nft13_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3721,7 +3721,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_5_Img,
                     Description: nft14_5.description,
                     Attribute: nft14_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3740,7 +3740,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_5_Img,
                     Description: nft15_5.description,
                     Attribute: nft15_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3759,7 +3759,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_5_Img,
                     Description: nft16_5.description,
                     Attribute: nft16_5.attributes,
-                    RewardPerSec: Number(nftEQ2_slot5[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQ2_slot5[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3778,7 +3778,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_5_Img,
                     Description: nft17_5.description,
                     Attribute: nft17_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[0]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[0]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3797,7 +3797,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_5_Img,
                     Description: nft18_5.description,
                     Attribute: nft18_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[1]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[1]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3816,7 +3816,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_5_Img,
                     Description: nft19_5.description,
                     Attribute: nft19_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[2]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[2]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3835,7 +3835,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_5_Img,
                     Description: nft20_5.description,
                     Attribute: nft20_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[3]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[3]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3854,7 +3854,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_5_Img,
                     Description: nft21_5.description,
                     Attribute: nft21_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[4]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[4]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3873,7 +3873,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_5_Img,
                     Description: nft22_5.description,
                     Attribute: nft22_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[5]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[5]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3892,7 +3892,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_5_Img,
                     Description: nft23_5.description,
                     Attribute: nft23_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[6]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[6]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3911,7 +3911,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_5_Img,
                     Description: nft24_5.description,
                     Attribute: nft24_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[7]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[7]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -3930,7 +3930,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_5_Img,
                     Description: nft25_5.description,
                     Attribute: nft25_5.attributes,
-                    RewardPerSec: Number(nftEQCard_slot5[8]) % 10000000,
+                    RewardPerSec: Number(String(nftEQCard_slot5[8]).slice(-7, -1)),
                     isStaked: true
                 })
             }
@@ -4139,7 +4139,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_6_Img,
                     Description: nft1_6.description,
                     Attribute: nft1_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4158,7 +4158,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_6_Img,
                     Description: nft2_6.description,
                     Attribute: nft2_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4177,7 +4177,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_6_Img,
                     Description: nft3_6.description,
                     Attribute: nft3_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4196,7 +4196,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_6_Img,
                     Description: nft4_6.description,
                     Attribute: nft4_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4215,7 +4215,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_6_Img,
                     Description: nft5_6.description,
                     Attribute: nft5_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4234,7 +4234,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_6_Img,
                     Description: nft6_6.description,
                     Attribute: nft6_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4253,7 +4253,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_6_Img,
                     Description: nft7_6.description,
                     Attribute: nft7_6.attributes,
-                    RewardPerSec: Number(nftEQ1_slot6[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot6[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4272,7 +4272,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_6_Img,
                     Description: nft8_6.description,
                     Attribute: nft8_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4291,7 +4291,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_6_Img,
                     Description: nft9_6.description,
                     Attribute: nft9_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4310,7 +4310,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_6_Img,
                     Description: nft10_6.description,
                     Attribute: nft10_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4329,7 +4329,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_6_Img,
                     Description: nft11_6.description,
                     Attribute: nft11_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4348,7 +4348,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_6_Img,
                     Description: nft12_6.description,
                     Attribute: nft12_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4367,7 +4367,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_6_Img,
                     Description: nft13_6.description,
                     Attribute: nft13_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4386,7 +4386,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_6_Img,
                     Description: nft14_6.description,
                     Attribute: nft14_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4405,7 +4405,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_6_Img,
                     Description: nft15_6.description,
                     Attribute: nft15_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4424,7 +4424,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_6_Img,
                     Description: nft16_6.description,
                     Attribute: nft16_6.attributes,
-                    RewardPerSec: Number(nftEQ2_slot6[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot6[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4443,7 +4443,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_6_Img,
                     Description: nft17_6.description,
                     Attribute: nft17_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4462,7 +4462,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_6_Img,
                     Description: nft18_6.description,
                     Attribute: nft18_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4481,7 +4481,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_6_Img,
                     Description: nft19_6.description,
                     Attribute: nft19_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4500,7 +4500,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_6_Img,
                     Description: nft20_6.description,
                     Attribute: nft20_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4519,7 +4519,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_6_Img,
                     Description: nft21_6.description,
                     Attribute: nft21_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4538,7 +4538,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_6_Img,
                     Description: nft22_6.description,
                     Attribute: nft22_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4557,7 +4557,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_6_Img,
                     Description: nft23_6.description,
                     Attribute: nft23_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4576,7 +4576,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_6_Img,
                     Description: nft24_6.description,
                     Attribute: nft24_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4595,7 +4595,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_6_Img,
                     Description: nft25_6.description,
                     Attribute: nft25_6.attributes,
-                    RewardPerSec: Number(nftEQCard_slot6[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot6[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4804,7 +4804,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_7_Img,
                     Description: nft1_7.description,
                     Attribute: nft1_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4823,7 +4823,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_7_Img,
                     Description: nft2_7.description,
                     Attribute: nft2_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4842,7 +4842,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_7_Img,
                     Description: nft3_7.description,
                     Attribute: nft3_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4861,7 +4861,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_7_Img,
                     Description: nft4_7.description,
                     Attribute: nft4_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4880,7 +4880,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_7_Img,
                     Description: nft5_7.description,
                     Attribute: nft5_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4899,7 +4899,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_7_Img,
                     Description: nft6_7.description,
                     Attribute: nft6_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4918,7 +4918,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_7_Img,
                     Description: nft7_7.description,
                     Attribute: nft7_7.attributes,
-                    RewardPerSec: Number(nftEQ1_slot7[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot7[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4937,7 +4937,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_7_Img,
                     Description: nft8_7.description,
                     Attribute: nft8_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4956,7 +4956,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_7_Img,
                     Description: nft9_7.description,
                     Attribute: nft9_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4975,7 +4975,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_7_Img,
                     Description: nft10_7.description,
                     Attribute: nft10_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -4994,7 +4994,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_7_Img,
                     Description: nft11_7.description,
                     Attribute: nft11_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5013,7 +5013,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_7_Img,
                     Description: nft12_7.description,
                     Attribute: nft12_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5032,7 +5032,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_7_Img,
                     Description: nft13_7.description,
                     Attribute: nft13_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5051,7 +5051,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_7_Img,
                     Description: nft14_7.description,
                     Attribute: nft14_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5070,7 +5070,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_7_Img,
                     Description: nft15_7.description,
                     Attribute: nft15_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5089,7 +5089,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_7_Img,
                     Description: nft16_7.description,
                     Attribute: nft16_7.attributes,
-                    RewardPerSec: Number(nftEQ2_slot7[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot7[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5108,7 +5108,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_7_Img,
                     Description: nft17_7.description,
                     Attribute: nft17_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5127,7 +5127,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_7_Img,
                     Description: nft18_7.description,
                     Attribute: nft18_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5146,7 +5146,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_7_Img,
                     Description: nft19_7.description,
                     Attribute: nft19_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5165,7 +5165,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_7_Img,
                     Description: nft20_7.description,
                     Attribute: nft20_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5184,7 +5184,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_7_Img,
                     Description: nft21_7.description,
                     Attribute: nft21_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5203,7 +5203,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_7_Img,
                     Description: nft22_7.description,
                     Attribute: nft22_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5222,7 +5222,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_7_Img,
                     Description: nft23_7.description,
                     Attribute: nft23_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5241,7 +5241,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_7_Img,
                     Description: nft24_7.description,
                     Attribute: nft24_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5260,7 +5260,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_7_Img,
                     Description: nft25_7.description,
                     Attribute: nft25_7.attributes,
-                    RewardPerSec: Number(nftEQCard_slot7[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot7[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5469,7 +5469,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_8_Img,
                     Description: nft1_8.description,
                     Attribute: nft1_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5488,7 +5488,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_8_Img,
                     Description: nft2_8.description,
                     Attribute: nft2_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5507,7 +5507,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_8_Img,
                     Description: nft3_8.description,
                     Attribute: nft3_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5526,7 +5526,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_8_Img,
                     Description: nft4_8.description,
                     Attribute: nft4_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5545,7 +5545,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_8_Img,
                     Description: nft5_8.description,
                     Attribute: nft5_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5564,7 +5564,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_8_Img,
                     Description: nft6_8.description,
                     Attribute: nft6_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5583,7 +5583,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_8_Img,
                     Description: nft7_8.description,
                     Attribute: nft7_8.attributes,
-                    RewardPerSec: Number(nftEQ1_slot8[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot8[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5602,7 +5602,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_8_Img,
                     Description: nft8_8.description,
                     Attribute: nft8_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5621,7 +5621,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_8_Img,
                     Description: nft9_8.description,
                     Attribute: nft9_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5640,7 +5640,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_8_Img,
                     Description: nft10_8.description,
                     Attribute: nft10_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5659,7 +5659,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_8_Img,
                     Description: nft11_8.description,
                     Attribute: nft11_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5678,7 +5678,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_8_Img,
                     Description: nft12_8.description,
                     Attribute: nft12_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5697,7 +5697,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_8_Img,
                     Description: nft13_8.description,
                     Attribute: nft13_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5716,7 +5716,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_8_Img,
                     Description: nft14_8.description,
                     Attribute: nft14_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5735,7 +5735,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_8_Img,
                     Description: nft15_8.description,
                     Attribute: nft15_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5754,7 +5754,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_8_Img,
                     Description: nft16_8.description,
                     Attribute: nft16_8.attributes,
-                    RewardPerSec: Number(nftEQ2_slot8[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot8[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5773,7 +5773,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_8_Img,
                     Description: nft17_8.description,
                     Attribute: nft17_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5792,7 +5792,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_8_Img,
                     Description: nft18_8.description,
                     Attribute: nft18_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5811,7 +5811,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_8_Img,
                     Description: nft19_8.description,
                     Attribute: nft19_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5830,7 +5830,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_8_Img,
                     Description: nft20_8.description,
                     Attribute: nft20_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5849,7 +5849,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_8_Img,
                     Description: nft21_8.description,
                     Attribute: nft21_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5868,7 +5868,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_8_Img,
                     Description: nft22_8.description,
                     Attribute: nft22_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5887,7 +5887,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_8_Img,
                     Description: nft23_8.description,
                     Attribute: nft23_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5906,7 +5906,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_8_Img,
                     Description: nft24_8.description,
                     Attribute: nft24_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -5925,7 +5925,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_8_Img,
                     Description: nft25_8.description,
                     Attribute: nft25_8.attributes,
-                    RewardPerSec: Number(nftEQCard_slot8[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot8[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6134,7 +6134,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_9_Img,
                     Description: nft1_9.description,
                     Attribute: nft1_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6153,7 +6153,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_9_Img,
                     Description: nft2_9.description,
                     Attribute: nft2_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6172,7 +6172,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_9_Img,
                     Description: nft3_9.description,
                     Attribute: nft3_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6191,7 +6191,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_9_Img,
                     Description: nft4_9.description,
                     Attribute: nft4_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6210,7 +6210,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_9_Img,
                     Description: nft5_9.description,
                     Attribute: nft5_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6229,7 +6229,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_9_Img,
                     Description: nft6_9.description,
                     Attribute: nft6_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6248,7 +6248,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_9_Img,
                     Description: nft7_9.description,
                     Attribute: nft7_9.attributes,
-                    RewardPerSec: Number(nftEQ1_slot9[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot9[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6267,7 +6267,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_9_Img,
                     Description: nft8_9.description,
                     Attribute: nft8_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6286,7 +6286,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_9_Img,
                     Description: nft9_9.description,
                     Attribute: nft9_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6305,7 +6305,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_9_Img,
                     Description: nft10_9.description,
                     Attribute: nft10_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6324,7 +6324,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_9_Img,
                     Description: nft11_9.description,
                     Attribute: nft11_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6343,7 +6343,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_9_Img,
                     Description: nft12_9.description,
                     Attribute: nft12_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6362,7 +6362,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_9_Img,
                     Description: nft13_9.description,
                     Attribute: nft13_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6381,7 +6381,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_9_Img,
                     Description: nft14_9.description,
                     Attribute: nft14_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6400,7 +6400,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_9_Img,
                     Description: nft15_9.description,
                     Attribute: nft15_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6419,7 +6419,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_9_Img,
                     Description: nft16_9.description,
                     Attribute: nft16_9.attributes,
-                    RewardPerSec: Number(nftEQ2_slot9[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot9[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6438,7 +6438,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_9_Img,
                     Description: nft17_9.description,
                     Attribute: nft17_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6457,7 +6457,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_9_Img,
                     Description: nft18_9.description,
                     Attribute: nft18_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6476,7 +6476,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_9_Img,
                     Description: nft19_9.description,
                     Attribute: nft19_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6495,7 +6495,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_9_Img,
                     Description: nft20_9.description,
                     Attribute: nft20_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6514,7 +6514,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_9_Img,
                     Description: nft21_9.description,
                     Attribute: nft21_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6533,7 +6533,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_9_Img,
                     Description: nft22_9.description,
                     Attribute: nft22_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6552,7 +6552,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_9_Img,
                     Description: nft23_9.description,
                     Attribute: nft23_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6571,7 +6571,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_9_Img,
                     Description: nft24_9.description,
                     Attribute: nft24_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6590,7 +6590,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_9_Img,
                     Description: nft25_9.description,
                     Attribute: nft25_9.attributes,
-                    RewardPerSec: Number(nftEQCard_slot9[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot9[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6799,7 +6799,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_1_10_Img,
                     Description: nft1_10.description,
                     Attribute: nft1_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6818,7 +6818,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_2_10_Img,
                     Description: nft2_10.description,
                     Attribute: nft2_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6837,7 +6837,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_3_10_Img,
                     Description: nft3_10.description,
                     Attribute: nft3_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6856,7 +6856,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_4_10_Img,
                     Description: nft4_10.description,
                     Attribute: nft4_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6875,7 +6875,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_5_10_Img,
                     Description: nft5_10.description,
                     Attribute: nft5_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6894,7 +6894,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_6_10_Img,
                     Description: nft6_10.description,
                     Attribute: nft6_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6913,7 +6913,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_7_10_Img,
                     Description: nft7_10.description,
                     Attribute: nft7_10.attributes,
-                    RewardPerSec: Number(nftEQ1_slot10[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ1_slot10[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6932,7 +6932,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_8_10_Img,
                     Description: nft8_10.description,
                     Attribute: nft8_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6951,7 +6951,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_9_10_Img,
                     Description: nft9_10.description,
                     Attribute: nft9_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6970,7 +6970,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_10_10_Img,
                     Description: nft10_10.description,
                     Attribute: nft10_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -6989,7 +6989,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_11_10_Img,
                     Description: nft11_10.description,
                     Attribute: nft11_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7008,7 +7008,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_12_10_Img,
                     Description: nft12_10.description,
                     Attribute: nft12_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7027,7 +7027,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_13_10_Img,
                     Description: nft13_10.description,
                     Attribute: nft13_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7046,7 +7046,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_14_10_Img,
                     Description: nft14_10.description,
                     Attribute: nft14_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7065,7 +7065,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_15_10_Img,
                     Description: nft15_10.description,
                     Attribute: nft15_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7084,7 +7084,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_16_10_Img,
                     Description: nft16_10.description,
                     Attribute: nft16_10.attributes,
-                    RewardPerSec: Number(nftEQ2_slot10[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQ2_slot10[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7103,7 +7103,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_17_10_Img,
                     Description: nft17_10.description,
                     Attribute: nft17_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[0]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[0]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7122,7 +7122,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_18_10_Img,
                     Description: nft18_10.description,
                     Attribute: nft18_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[1]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[1]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7141,7 +7141,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_19_10_Img,
                     Description: nft19_10.description,
                     Attribute: nft19_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[2]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[2]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7160,7 +7160,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_20_10_Img,
                     Description: nft20_10.description,
                     Attribute: nft20_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[3]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[3]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7179,7 +7179,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_21_10_Img,
                     Description: nft21_10.description,
                     Attribute: nft21_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[4]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[4]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7198,7 +7198,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_22_10_Img,
                     Description: nft22_10.description,
                     Attribute: nft22_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[5]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[5]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7217,7 +7217,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_23_10_Img,
                     Description: nft23_10.description,
                     Attribute: nft23_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[6]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[6]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7236,7 +7236,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_24_10_Img,
                     Description: nft24_10.description,
                     Attribute: nft24_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[7]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[7]).slice(-7, -1))),
                     isStaked: true
                 })
             }
@@ -7255,7 +7255,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nftEQ_25_10_Img,
                     Description: nft25_10.description,
                     Attribute: nft25_10.attributes,
-                    RewardPerSec: Number(nftEQCard_slot10[8]) % 10000000,
+                    RewardPerSec: Number(String((nftEQCard_slot10[8]).slice(-7, -1))),
                     isStaked: true
                 })
             }
