@@ -8044,7 +8044,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 functionName: 'allowance',
                 args: [address, dunGEM],
             })
-            if (gasAllow < (2 * 10**17)) {
+            if (gasAllow < (24 * 10**18)) {
                 const config = await prepareWriteContract({
                     address: gasAddr,
                     abi: erc20ABI,
