@@ -778,8 +778,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         step="1"
                         min="1"
                         placeholder="0.0 CMM"
-                        value={withdrawCmm2}
-                        onChange={(event) => setWithdrawCmm2(event.target.value)}
+                        value={withdrawCmm}
+                        onChange={(event) => setWithdrawCmm(event.target.value)}
                     ></input>
                     {chain.id === 10 && address !== null && address !== undefined ?
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(1)}>OP TO BKC</div> :
@@ -822,7 +822,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         onChange={(event) => setDepositCmm2(event.target.value)}
                     ></input>
                     {chain.id === 10 && address !== null && address !== undefined ? 
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBKCHandle(6)}>OP TO BBQ</div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(4)}>OP TO BBQ</div> : 
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">OP TO BBQ</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
@@ -856,11 +856,11 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         step="1"
                         min="1"
                         placeholder="0.0 CMM"
-                        value={withdrawCmm}
-                        onChange={(event) => setWithdrawCmm(event.target.value)}
+                        value={withdrawCmm2}
+                        onChange={(event) => setWithdrawCmm2(event.target.value)}
                     ></input>
                     {chain.id === 190 && address !== null && address !== undefined ?
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(1)}>BBQ TO OP</div> :
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBBQHandle(4)}>BBQ TO OP</div> :
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BBQ TO OP</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
