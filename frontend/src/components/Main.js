@@ -35,6 +35,8 @@ import CmCityLand from './Community-CmCityLand'
 import BigBroAnalytica from './Community-BigBroAnalytica'
 
 import Mall from './Mall'
+import BBQMall from './BBQ-Mall'
+
 import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
 
@@ -323,8 +325,15 @@ const Main = () => {
                 document.title = "Community | CommuDAO"
             }
         } else if (modeText.toUpperCase() === "MALL") {
-            preset = 5
-            document.title = "Mall | CommuDAO"
+            if (subModeText !== undefined) {
+                if (modeText.toUpperCase() === "MALL" && subModeText.toUpperCase() === "BBQCHAIN") {
+                    preset = 51
+                    document.title = "Mall [BBQ] | CommuDAO"
+                }
+            } else {
+                preset = 5
+                document.title = "Mall | CommuDAO"
+            }
         } else if (modeText.toUpperCase() === "MARKETPLACE") {
             preset = 6
             document.title = "Marketplace | CommuDAO"
@@ -429,6 +438,7 @@ const Main = () => {
                 
                 
                 {mode === 5 && <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoMerchantWLABI={cmdaoMerchantWLABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyStdABI={ammyStdABI} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} wjbcABI={wjbcABI} presaleABI={presaleABI} />}
+                {mode === 51 && <BBQMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} />}
             
                 {mode === 6 && <Mkp intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} aurora721ABI={aurora721ABI} cmdaoMkpABI={cmdaoMkpABI} houseStakingABI={houseStakingABI} />}
                 
