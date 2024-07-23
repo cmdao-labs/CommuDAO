@@ -7312,7 +7312,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
+                    RewardPerSec: Number(String(yournftwallet[i].Id).slice(-7)),
                     isStaked: false
                 })
             }
