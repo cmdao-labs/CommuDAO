@@ -478,7 +478,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
                 args: [_index, depositAmount],
-                value: ethers.utils.parseEther('0.003'),
+                value: ethers.utils.parseEther('0.0003'),
                 chainId: 10,
             })
             const { hash: hash1 } = await writeContract(config)
