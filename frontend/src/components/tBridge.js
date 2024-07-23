@@ -24,6 +24,7 @@ const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
 const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
+const cmmBBQ = '0x45ed41ED4E0F48317f787Dc268779260b1Ca81f1'
 
 const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI }) => {
     const { address } = useAccount()
@@ -55,6 +56,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const [gemBalance, setGemBalance] = React.useState(0)
     const [cmmBalance, setCmmBalance] = React.useState(0)
     const [cmmBkcBalance, setCmmBkcBalance] = React.useState(0)
+    const [cmmBbqBalance, setCmmBbqBalance] = React.useState(0)
 
     const [depositValue, setDepositValue] = React.useState(null)
     const [depositValueDis, setDepositValueDis] = React.useState('')
@@ -247,8 +249,15 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         args: [address],
                         chainId: 96,
                     },
+                    {
+                        address: cmmBBQ,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 190,
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
             
             const Balance = data1[0]
             const Balance2 = data1[1]
@@ -274,10 +283,11 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             const gemBal = data2[13]
             const cmmBal = data2[14]
             const cmmBkcBal = data2[15]
+            const cmmBbqBal = data2[16]
 
             return [
                 Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, _burnedCmj, 
-                salmBal, aguaBal, cosmosBal, goldBal, dmBal, engyBal, gemBal, BalanceGoldBridge, BalanceDmBridge, cmmBal, cmmBkcBal, 
+                salmBal, aguaBal, cosmosBal, goldBal, dmBal, engyBal, gemBal, BalanceGoldBridge, BalanceDmBridge, cmmBal, cmmBkcBal, cmmBbqBal,
             ]
         }
 
@@ -335,6 +345,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             setBridgebalDM(ethers.utils.formatEther(result[21].result))
             setCmmBalance(ethers.utils.formatEther(result[22].result))
             setCmmBkcBalance(ethers.utils.formatEther(result[23].result))
+            setCmmBbqBalance(ethers.utils.formatEther(result[24].result))
         })
     }, [address, txupdate, erc20ABI])
 
@@ -864,7 +875,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     <TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {mode === 5 && chain !== undefined &&
-                    <TBridgeHEROMINER setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20ABI={erc20ABI} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} />
+                    <TBridgeHEROMINER setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20ABI={erc20ABI} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} cmmBbqBalance={cmmBbqBalance} />
                 }
                 {mode === 6 && chain !== undefined &&
                     <TBridgeCMDAONFT setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />

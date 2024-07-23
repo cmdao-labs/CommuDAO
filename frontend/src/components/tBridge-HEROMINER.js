@@ -19,6 +19,7 @@ const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
 const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
+const cmmBBQ = '0x45ed41ED4E0F48317f787Dc268779260b1Ca81f1'
 const bbqTokensBridge = '0xEe44A885Bd7CC635f6b5Ac13EdA0a0ba25552360'
 const bkcTokensBridge = '0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'
 const opTokensBridge = '0xAFb2a3A553574191cC6214D0AAd7864C9B5EFEf7'
@@ -125,7 +126,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 68026368,136577024,220725248,192020480,146800640,68157440,136445952,221118464,191365120,146669568,67895296,136314880,220594176,191496192,146538496,67764224,136183808,220463104,191889408,146407424,67633152,136052736,220332032,191758336,146276352,
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
-const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance }) => {
+const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance, cmmBbqBalance }) => {
     let { address } = useAccount()
     // let address = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
     const { chain } = useNetwork()
@@ -139,6 +140,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
     const [depositProduct, setDepositProduct] = React.useState('')
     const [depositCmm, setDepositCmm] = React.useState('')
     const [withdrawCmm, setWithdrawCmm] = React.useState('')
+    const [depositCmm2, setDepositCmm2] = React.useState('')
+    const [withdrawCmm2, setWithdrawCmm2] = React.useState('')
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -351,16 +354,16 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
         setisLoading(true)
         let tokenAddr = null
         let depositAmount = null
-        if (_index === 1) {
+        if (_index === 1) { // to token 1, ENGY BBQ
             tokenAddr = salmBKC
             depositAmount = ethers.utils.parseEther(String(depositGas))
-        } else if (_index === 2) {
+        } else if (_index === 2) { // to token 1, ENGY BBQ
             tokenAddr = aguaBKC
             depositAmount = depositGas
-        } else if (_index === 3) {
+        } else if (_index === 3) { // to token 1, ENGY BBQ
             tokenAddr = cosmosBKC
             depositAmount = ethers.utils.parseEther(String(depositGas))
-        } else if (_index === 6) {
+        } else if (_index === 6) { // to token 1, CMM OP
             tokenAddr = cmmBKC
             depositAmount = ethers.utils.parseEther(String(depositCmm))
         }
@@ -399,16 +402,28 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
     }
     const depositTokensFromBBQHandle = async (_index) => {
         setisLoading(true)
+        let tokenAddr = null
+        let depositAmount = null
+        if (_index === 2) { // to token 4, GOLD BKC
+            tokenAddr = gemBBQ
+            depositAmount = ethers.utils.parseEther(String(depositProduct))
+        } else if (_index === 3) { // to token 5, DM BKC
+            tokenAddr = gemBBQ
+            depositAmount = ethers.utils.parseEther(String(depositProduct))
+        } else if (_index === 4) { // to token 4, CMM OP
+            tokenAddr = cmmBBQ
+            depositAmount = ethers.utils.parseEther(String(withdrawCmm2))
+        }
         try {
             const tokenAllow = await readContract({
-                address: gemBBQ,
+                address: tokenAddr,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, bbqTokensBridge],
             })
-            if (tokenAllow < Number(ethers.utils.parseEther(String(depositProduct)))) {
+            if (tokenAllow < Number(depositAmount)) {
                 const config0 = await prepareWriteContract({
-                    address: gemBBQ,
+                    address: tokenAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [bbqTokensBridge, ethers.utils.parseEther(String(10**8))],
@@ -420,7 +435,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 address: bbqTokensBridge,
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
-                args: [_index, ethers.utils.parseEther(String(depositProduct))],
+                args: [_index, depositAmount],
                 value: ethers.utils.parseEther('800'),
                 chainId: 190,
             })
@@ -432,16 +447,25 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
     }
     const depositTokensFromOPHandle = async (_index) => {
         setisLoading(true)
+        let tokenAddr = null
+        let depositAmount = null
+        if (_index === 1) { // to token 6, CMM BKC
+            tokenAddr = cmmOP
+            depositAmount = ethers.utils.parseEther(String(withdrawCmm))
+        } else if (_index === 4) { // to token 4, CMM BBQ
+            tokenAddr = cmmOP
+            depositAmount = ethers.utils.parseEther(String(depositCmm2))
+        }
         try {
             const tokenAllow = await readContract({
-                address: cmmOP,
+                address: tokenAddr,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, opTokensBridge],
             })
-            if (tokenAllow < Number(ethers.utils.parseEther(String(withdrawCmm)))) {
+            if (tokenAllow < Number(depositAmount)) {
                 const config0 = await prepareWriteContract({
-                    address: cmmOP,
+                    address: tokenAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [opTokensBridge, ethers.utils.parseEther(String(10**8))],
@@ -453,7 +477,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 address: opTokensBridge,
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
-                args: [_index, ethers.utils.parseEther(String(withdrawCmm))],
+                args: [_index, depositAmount],
                 value: ethers.utils.parseEther('0.003'),
                 chainId: 10,
             })
@@ -720,8 +744,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         onChange={(event) => setDepositCmm(event.target.value)}
                     ></input>
                     {chain.id === 96 && address !== null && address !== undefined ? 
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBKCHandle(6)}>BRIDGE TO OP</div> : 
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO OP</div>
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBKCHandle(6)}>BKC TO OP</div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BKC TO OP</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
                         <div>Balance: {Number(cmmBkcBalance).toFixed(4)} CMM [BITKUB CHAIN]</div>
@@ -758,8 +782,86 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         onChange={(event) => setWithdrawCmm(event.target.value)}
                     ></input>
                     {chain.id === 10 && address !== null && address !== undefined ?
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(1)}>BRIDGE TO BKC</div> :
-                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(1)}>OP TO BKC</div> :
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">OP TO BKC</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
+                        <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP MAINNET]</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
+                            width="20"
+                            alt="$CMM"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cmmOP,
+                                            symbol: 'CMM',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                <div style={{width: "40%", height: "180px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                    <input
+                        style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder="0.0 CMM"
+                        value={depositCmm2}
+                        onChange={(event) => setDepositCmm2(event.target.value)}
+                    ></input>
+                    {chain.id === 10 && address !== null && address !== undefined ? 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromOPHandle(4)}>OP TO BBQ</div> : 
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">OP TO BBQ</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
+                        <div>Balance: {Number(cmmBbqBalance).toFixed(4)} CMM [BBQ CHAIN]</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
+                            width="20"
+                            alt="$CMM"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: cmmBBQ,
+                                            symbol: 'CMM',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
+                </div>
+                <div style={{width: "40%", height: "180px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                    <input
+                        style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder="0.0 CMM"
+                        value={withdrawCmm2}
+                        onChange={(event) => setWithdrawCmm2(event.target.value)}
+                    ></input>
+                    {chain.id === 190 && address !== null && address !== undefined ?
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={() => depositTokensFromBBQHandle(4)}>BBQ TO OP</div> :
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BBQ TO OP</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
                         <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP MAINNET]</div>
