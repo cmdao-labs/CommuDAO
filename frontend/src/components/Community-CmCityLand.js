@@ -15,7 +15,7 @@ const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const house = '0xCb3AD565b9c08C4340A7Fe857c38595587843139'
-const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
+const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const weaponDepot = '0xcCbD8B881Dd8e137d41a6A02aBA2Db94f3049B35'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
@@ -178,7 +178,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
             let nftstake = []
             const stakeFilter = await cmdaonftSC.filters.Transfer(slot1owner, houseStaking, null)
-            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
+            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = await readContracts({
@@ -194,7 +194,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
             let yournftstake = []
             for (let i = 0; i <= stakeRemoveDup.length - 1; i++) {
-                if (data0[i].result[0].toUpperCase() === slot1owner.toUpperCase()) {
+                if (data0[i].result[0].toUpperCase() === slot1owner.toUpperCase() && Number(data0[i].result[4]) === Number('100' + code + '0' + intrasubModetext.slice(1, 3))) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
@@ -403,7 +403,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
                 setNextDayThub('now')
             setThubFee(Number(result[9][3]) / 100)
-            setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
+            (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
+                setThubCap(Number(ethers.utils.formatEther(String(result[10])))) :
+                setThubCap(0)
             setNftStaked(result[11])
 
             setWdLv(Number(result[12]))
