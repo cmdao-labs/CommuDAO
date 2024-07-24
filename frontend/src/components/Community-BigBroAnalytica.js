@@ -619,7 +619,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: os,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'],
+                        args: ['0xc4dB6374EeCa3743F8044ae995892827B62b14fe'],
                         chainId: 8899,
                     },
                 ],

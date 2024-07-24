@@ -7307,6 +7307,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
                 nfts.push({
                     Slot: 0,
+                    Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
                     Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),

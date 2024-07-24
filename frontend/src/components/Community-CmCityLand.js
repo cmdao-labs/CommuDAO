@@ -402,10 +402,10 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
                 setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
                 setNextDayThub('now')
-            setThubFee(Number(result[9][3]) / 100)
+            setThubFee(Number(result[9][3]) / 100);
             (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
-                setThubCap(Number(ethers.utils.formatEther(String(result[10])))) :
-                setThubCap(0)
+                setThubCap(0) :
+                setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
             setNftStaked(result[11])
 
             setWdLv(Number(result[12]))
@@ -417,7 +417,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
         })
 
     }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
-
+    
     const upgradeHouseHandle = async (_level) => {
         setisLoading(true)
         try {
@@ -585,7 +585,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 address: houseStaking,
                 abi: houseStakingABI,
                 functionName: 'unstake',
-                args: [1, _nftid, houseId, _unstake],
+                args: [1, _nftid, _unstake],
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
