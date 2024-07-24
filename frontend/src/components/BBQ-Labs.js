@@ -1559,10 +1559,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubZ10 && Number(result[3][2]) !== 0) ?
                 setNextDayThubZ10(_nextDayThubZ10.toLocaleString('es-CL')) :
                 setNextDayThubZ10('now')
-            setThubFeeZ10(Number(result[3][3]) / 100)
+            setThubFeeZ10(Number(result[3][3]) / 100);
             (Date.now() <= _nextDayThubZ10 && Number(result[3][2]) !== 0) ? 
-                setThubCapZ10(Number(ethers.utils.formatEther(String(result[4])))) : 
-                setThubCapZ10(0)
+                setThubCapZ10(0) :
+                setThubCapZ10(Number(ethers.utils.formatEther(String(result[4]))))
             setAllPowZ10(Number(result[5]))
 
             setThubLvZ02(Number(result[6][0]))
@@ -1570,10 +1570,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubZ02 && Number(result[6][2]) !== 0) ?
                 setNextDayThubZ02(_nextDayThubZ02.toLocaleString('es-CL')) :
                 setNextDayThubZ02('now')
-            setThubFeeZ02(Number(result[6][3]) / 100)
+            setThubFeeZ02(Number(result[6][3]) / 100);
             (Date.now() <= _nextDayThubZ02 && Number(result[6][2]) !== 0) ?
-                setThubCapZ02(Number(ethers.utils.formatEther(String(result[7])))) :
-                setThubCapZ02(0)
+                setThubCapZ02(0) :
+                setThubCapZ02(Number(ethers.utils.formatEther(String(result[7]))))
             setAllPowZ02(Number(result[8]))
 
             setThubLvA01(Number(result[9][0]))
@@ -1581,10 +1581,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA01 && Number(result[6][2]) !== 0) ?
                 setNextDayThubA01(_nextDayThubA01.toLocaleString('es-CL')) :
                 setNextDayThubA01('now')
-            setThubFeeA01(Number(result[9][3]) / 100)
+            setThubFeeA01(Number(result[9][3]) / 100);
             (Date.now() <= _nextDayThubA01 && Number(result[6][2]) !== 0) ?
-                setThubCapA01(Number(ethers.utils.formatEther(String(result[10])))) :
-                setThubCapA01(0)
+                setThubCapA01(0) :
+                setThubCapA01(Number(ethers.utils.formatEther(String(result[10]))))
             setAllPowA01(Number(result[11]))
 
             setThubLvA02(Number(result[12][0]))
@@ -1592,21 +1592,21 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA02 && Number(result[12][2]) !== 0) ?
                 setNextDayThubA02(_nextDayThubA02.toLocaleString('es-CL')) :
                 setNextDayThubA02('now')
-            setThubFeeA02(Number(result[12][3]) / 100)
+            setThubFeeA02(Number(result[12][3]) / 100);
             (Date.now() <= _nextDayThubA02 && Number(result[12][2]) !== 0) ?
-                setThubCapA02(Number(ethers.utils.formatEther(String(result[13])))) :
-                setThubCapA02(0)
+                setThubCapA02(0) :
+                setThubCapA02(Number(ethers.utils.formatEther(String(result[13]))))
             setAllPowA02(Number(result[14]))
 
-            setThubLvA03(Number(result[15][0]))
+            setThubLvA03(Number(result[15][0]));
             const _nextDayThubA03 = new Date((Number(result[15][2]) * 1000) + (86400 * 1000));
             (Date.now() <= _nextDayThubA03 && Number(result[15][2]) !== 0) ?
                 setNextDayThubA03(_nextDayThubA03.toLocaleString('es-CL')) :
                 setNextDayThubA03('now')
-            setThubFeeA03(Number(result[15][3]) / 100)
+            setThubFeeA03(Number(result[15][3]) / 100);
             (Date.now() <= _nextDayThubA03 && Number(result[15][2]) !== 0) ?
-                setThubCapA03(Number(ethers.utils.formatEther(String(result[16])))) :
-                setThubCapA03(0)
+                setThubCapA03(0) :
+                setThubCapA03(Number(ethers.utils.formatEther(String(result[16]))))
             setAllPowA03(Number(result[17]))
 
             setThubLvA04(Number(result[18][0]))
@@ -1614,10 +1614,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA04 && Number(result[18][2]) !== 0) ?
                 setNextDayThubA04(_nextDayThubA04.toLocaleString('es-CL')) :
                 setNextDayThubA04('now')
-            setThubFeeA04(Number(result[18][3]) / 100)
+            setThubFeeA04(Number(result[18][3]) / 100);
             (Date.now() <= _nextDayThubA04 && Number(result[18][2]) !== 0) ?
-                setThubCapA04(Number(ethers.utils.formatEther(String(result[19])))) :
-                setThubCapA04(0)
+                setThubCapA04(0) :
+                setThubCapA04(Number(ethers.utils.formatEther(String(result[19]))))
             setAllPowA04(Number(result[20]))
 
             setThubLvA05(Number(result[21][0]))
@@ -1625,10 +1625,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA05 && Number(result[21][2]) !== 0) ?
                 setNextDayThubA05(_nextDayThubA05.toLocaleString('es-CL')) :
                 setNextDayThubA05('now')
-            setThubFeeA05(Number(result[21][3]) / 100)
+            setThubFeeA05(Number(result[21][3]) / 100);
             (Date.now() <= _nextDayThubA05 && Number(result[21][2]) !== 0) ?
-                setThubCapA05(Number(ethers.utils.formatEther(String(result[22])))) :
-                setThubCapA05(0)
+                setThubCapA05(0) :
+                setThubCapA05(Number(ethers.utils.formatEther(String(result[22]))))
             setAllPowA05(Number(result[23]))
 
             setThubLvA06(Number(result[24][0]))
@@ -1636,10 +1636,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA06 && Number(result[24][2]) !== 0) ?
                 setNextDayThubA06(_nextDayThubA06.toLocaleString('es-CL')) :
                 setNextDayThubA06('now')
-            setThubFeeA06(Number(result[24][3]) / 100)
+            setThubFeeA06(Number(result[24][3]) / 100);
             (Date.now() <= _nextDayThubA06 && Number(result[24][2]) !== 0) ?
-                setThubCapA06(Number(ethers.utils.formatEther(String(result[25])))) :
-                setThubCapA06(0)
+                setThubCapA06(0) :
+                setThubCapA06(Number(ethers.utils.formatEther(String(result[25]))))
             setAllPowA06(Number(result[26]))
 
             setThubLvA07(Number(result[27][0]))
@@ -1647,10 +1647,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA07 && Number(result[27][2]) !== 0) ?
                 setNextDayThubA07(_nextDayThubA07.toLocaleString('es-CL')) :
                 setNextDayThubA07('now')
-            setThubFeeA07(Number(result[27][3]) / 100)
+            setThubFeeA07(Number(result[27][3]) / 100);
             (Date.now() <= _nextDayThubA07 && Number(result[27][2]) !== 0) ?
-                setThubCapA07(Number(ethers.utils.formatEther(String(result[28])))) :
-                setThubCapA07(0)
+                setThubCapA07(0) :
+                setThubCapA07(Number(ethers.utils.formatEther(String(result[28]))))
             setAllPowA07(Number(result[29]))
 
             setThubLvA08(Number(result[30][0]))
@@ -1658,10 +1658,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA08 && Number(result[30][2]) !== 0) ?
                 setNextDayThubA08(_nextDayThubA08.toLocaleString('es-CL')) :
                 setNextDayThubA08('now')
-            setThubFeeA08(Number(result[30][3]) / 100)
+            setThubFeeA08(Number(result[30][3]) / 100);
             (Date.now() <= _nextDayThubA08 && Number(result[30][2]) !== 0) ?
-                setThubCapA08(Number(ethers.utils.formatEther(String(result[31])))) :
-                setThubCapA08(0)
+                setThubCapA08(0) :
+                setThubCapA08(Number(ethers.utils.formatEther(String(result[31]))))
             setAllPowA08(Number(result[32]))
 
             setThubLvA09(Number(result[33][0]))
@@ -1669,10 +1669,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA09 && Number(result[33][2]) !== 0) ?
                 setNextDayThubA09(_nextDayThubA09.toLocaleString('es-CL')) :
                 setNextDayThubA09('now')
-            setThubFeeA09(Number(result[33][3]) / 100)
+            setThubFeeA09(Number(result[33][3]) / 100);
             (Date.now() <= _nextDayThubA09 && Number(result[33][2]) !== 0) ?
-                setThubCapA09(Number(ethers.utils.formatEther(String(result[34])))) :
-                setThubCapA09(0)
+                setThubCapA09(0) :
+                setThubCapA09(Number(ethers.utils.formatEther(String(result[34]))))
             setAllPowA09(Number(result[35]))
 
             setThubLvA10(Number(result[36][0]))
@@ -1680,10 +1680,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA10 && Number(result[36][2]) !== 0) ?
                 setNextDayThubA10(_nextDayThubA10.toLocaleString('es-CL')) :
                 setNextDayThubA10('now')
-            setThubFeeA10(Number(result[36][3]) / 100)
+            setThubFeeA10(Number(result[36][3]) / 100);
             (Date.now() <= _nextDayThubA10 && Number(result[36][2]) !== 0) ?
-                setThubCapA10(Number(ethers.utils.formatEther(String(result[37])))) :
-                setThubCapA10(0)
+                setThubCapA10(0) :
+                setThubCapA10(Number(ethers.utils.formatEther(String(result[37]))))
             setAllPowA10(Number(result[38]))
 
             setThubLvA11(Number(result[39][0]))
@@ -1691,10 +1691,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubA11 && Number(result[39][2]) !== 0) ?
                 setNextDayThubA11(_nextDayThubA11.toLocaleString('es-CL')) :
                 setNextDayThubA11('now')
-            setThubFeeA11(Number(result[39][3]) / 100)
+            setThubFeeA11(Number(result[39][3]) / 100);
             (Date.now() <= _nextDayThubA11 && Number(result[39][2]) !== 0) ?
-                setThubCapA11(Number(ethers.utils.formatEther(String(result[40])))) :
-                setThubCapA11(0)
+                setThubCapA11(0) :
+                setThubCapA11(Number(ethers.utils.formatEther(String(result[40]))))
             setAllPowA11(Number(result[41]))
 
             setThubLvZ06(Number(result[42][0]))
@@ -1702,10 +1702,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubZ06 && Number(result[42][2]) !== 0) ?
                 setNextDayThubZ06(_nextDayThubZ06.toLocaleString('es-CL')) :
                 setNextDayThubZ06('now')
-            setThubFeeZ06(Number(result[42][3]) / 100)
+            setThubFeeZ06(Number(result[42][3]) / 100);
             (Date.now() <= _nextDayThubZ06 && Number(result[42][2]) !== 0) ?
-                setThubCapZ06(Number(ethers.utils.formatEther(String(result[43])))) :
-                setThubCapZ06(0)
+                setThubCapZ06(0) :
+                setThubCapZ06(Number(ethers.utils.formatEther(String(result[43]))))
             setAllPowZ06(Number(result[44]))
 
             setThubLvB01(Number(result[45][0]))
@@ -1713,10 +1713,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB01 && Number(result[45][2]) !== 0) ?
                 setNextDayThubB01(_nextDayThubB01.toLocaleString('es-CL')) :
                 setNextDayThubB01('now')
-            setThubFeeB01(Number(result[45][3]) / 100)
+            setThubFeeB01(Number(result[45][3]) / 100);
             (Date.now() <= _nextDayThubB01 && Number(result[45][2]) !== 0) ?
-                setThubCapB01(Number(ethers.utils.formatEther(String(result[46])))) :
-                setThubCapB01(0)
+                setThubCapB01(0) :
+                setThubCapB01(Number(ethers.utils.formatEther(String(result[46]))))
             setAllPowB01(Number(result[47]))
 
             setThubLvB02(Number(result[48][0]))
@@ -1724,10 +1724,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB02 && Number(result[48][2]) !== 0) ?
                 setNextDayThubB02(_nextDayThubB02.toLocaleString('es-CL')) :
                 setNextDayThubB02('now')
-            setThubFeeB02(Number(result[48][3]) / 100)
+            setThubFeeB02(Number(result[48][3]) / 100);
             (Date.now() <= _nextDayThubB02 && Number(result[48][2]) !== 0) ?
-                setThubCapB02(Number(ethers.utils.formatEther(String(result[49])))) :
-                setThubCapB02(0)
+                setThubCapB02(0) :
+                setThubCapB02(Number(ethers.utils.formatEther(String(result[49]))))                
             setAllPowB02(Number(result[50]))
 
             setThubLvB03(Number(result[51][0]))
@@ -1735,10 +1735,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB03 && Number(result[51][2]) !== 0) ?
                 setNextDayThubB03(_nextDayThubB03.toLocaleString('es-CL')) :
                 setNextDayThubB03('now')
-            setThubFeeB03(Number(result[51][3]) / 100)
+            setThubFeeB03(Number(result[51][3]) / 100);
             (Date.now() <= _nextDayThubB03 && Number(result[51][2]) !== 0) ?
-                setThubCapB03(Number(ethers.utils.formatEther(String(result[52])))) :
-                setThubCapB03(0)
+                setThubCapB03(0) :
+                setThubCapB03(Number(ethers.utils.formatEther(String(result[52]))))
             setAllPowB03(Number(result[53]))
 
             setThubLvB04(Number(result[54][0]))
@@ -1746,10 +1746,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB04 && Number(result[54][2]) !== 0) ?
                 setNextDayThubB04(_nextDayThubB04.toLocaleString('es-CL')) :
                 setNextDayThubB04('now')
-            setThubFeeB04(Number(result[54][3]) / 100)
+            setThubFeeB04(Number(result[54][3]) / 100);
             (Date.now() <= _nextDayThubB04 && Number(result[54][2]) !== 0) ?
-                setThubCapB04(Number(ethers.utils.formatEther(String(result[55])))) :
-                setThubCapB04(0)
+                setThubCapB04(0) :
+                setThubCapB04(Number(ethers.utils.formatEther(String(result[55]))))
             setAllPowB04(Number(result[56]))
 
             setThubLvB05(Number(result[57][0]))
@@ -1757,10 +1757,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB05 && Number(result[57][2]) !== 0) ?
                 setNextDayThubB05(_nextDayThubB05.toLocaleString('es-CL')) :
                 setNextDayThubB05('now')
-            setThubFeeB05(Number(result[57][3]) / 100)
+            setThubFeeB05(Number(result[57][3]) / 100);
             (Date.now() <= _nextDayThubB05 && Number(result[57][2]) !== 0) ?
-                setThubCapB05(Number(ethers.utils.formatEther(String(result[58])))) :
-                setThubCapB05(0)
+                setThubCapB05(0) :
+                setThubCapB05(Number(ethers.utils.formatEther(String(result[58]))))               
             setAllPowB05(Number(result[59]))
 
             setThubLvB06(Number(result[60][0]))
@@ -1768,10 +1768,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB06 && Number(result[60][2]) !== 0) ?
                 setNextDayThubB06(_nextDayThubB06.toLocaleString('es-CL')) :
                 setNextDayThubB06('now')
-            setThubFeeB06(Number(result[60][3]) / 100)
+            setThubFeeB06(Number(result[60][3]) / 100);
             (Date.now() <= _nextDayThubB06 && Number(result[60][2]) !== 0) ?
-                setThubCapB06(Number(ethers.utils.formatEther(String(result[61])))) :
-                setThubCapB06(0)
+                setThubCapB06(0) :
+                setThubCapB06(Number(ethers.utils.formatEther(String(result[61]))))
             setAllPowB06(Number(result[62]))
 
             setThubLvB07(Number(result[63][0]))
@@ -1779,10 +1779,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB07 && Number(result[63][2]) !== 0) ?
                 setNextDayThubB07(_nextDayThubB07.toLocaleString('es-CL')) :
                 setNextDayThubB07('now')
-            setThubFeeB07(Number(result[63][3]) / 100)
+            setThubFeeB07(Number(result[63][3]) / 100);
             (Date.now() <= _nextDayThubB07 && Number(result[63][2]) !== 0) ?
-                setThubCapB07(Number(ethers.utils.formatEther(String(result[64])))) :
-                setThubCapB07(0)
+                setThubCapB07(0) :
+                setThubCapB07(Number(ethers.utils.formatEther(String(result[64]))))
             setAllPowB07(Number(result[65]))
 
             setThubLvB08(Number(result[66][0]))
@@ -1790,10 +1790,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB08 && Number(result[66][2]) !== 0) ?
                 setNextDayThubB08(_nextDayThubB08.toLocaleString('es-CL')) :
                 setNextDayThubB08('now')
-            setThubFeeB08(Number(result[66][3]) / 100)
+            setThubFeeB08(Number(result[66][3]) / 100);
             (Date.now() <= _nextDayThubB08 && Number(result[66][2]) !== 0) ?
-                setThubCapB08(Number(ethers.utils.formatEther(String(result[67])))) :
-                setThubCapB08(0)
+                setThubCapB08(0) :
+                setThubCapB08(Number(ethers.utils.formatEther(String(result[67]))))
             setAllPowB08(Number(result[68]))
 
             setThubLvB09(Number(result[69][0]))
@@ -1801,10 +1801,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB09 && Number(result[69][2]) !== 0) ?
                 setNextDayThubB09(_nextDayThubB09.toLocaleString('es-CL')) :
                 setNextDayThubB09('now')
-            setThubFeeB09(Number(result[69][3]) / 100)
+            setThubFeeB09(Number(result[69][3]) / 100);
             (Date.now() <= _nextDayThubB09 && Number(result[69][2]) !== 0) ?
-                setThubCapB09(Number(ethers.utils.formatEther(String(result[70])))) :
-                setThubCapB09(0)
+                setThubCapB09(0) :
+                setThubCapB09(Number(ethers.utils.formatEther(String(result[70]))))
             setAllPowB09(Number(result[71]))
 
             setThubLvB10(Number(result[72][0]))
@@ -1812,10 +1812,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB10 && Number(result[72][2]) !== 0) ?
                 setNextDayThubB10(_nextDayThubB10.toLocaleString('es-CL')) :
                 setNextDayThubB10('now')
-            setThubFeeB10(Number(result[72][3]) / 100)
+            setThubFeeB10(Number(result[72][3]) / 100);
             (Date.now() <= _nextDayThubB10 && Number(result[72][2]) !== 0) ?
-                setThubCapB10(Number(ethers.utils.formatEther(String(result[73])))) :
-                setThubCapB10(0)
+                setThubCapB10(0) :
+                setThubCapB10(Number(ethers.utils.formatEther(String(result[73]))))
             setAllPowB10(Number(result[74]))
 
             setThubLvB11(Number(result[75][0]))
@@ -1823,10 +1823,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubB11 && Number(result[75][2]) !== 0) ?
                 setNextDayThubB11(_nextDayThubB11.toLocaleString('es-CL')) :
                 setNextDayThubB11('now')
-            setThubFeeB11(Number(result[75][3]) / 100)
+            setThubFeeB11(Number(result[75][3]) / 100);
             (Date.now() <= _nextDayThubB11 && Number(result[75][2]) !== 0) ?
-                setThubCapB11(Number(ethers.utils.formatEther(String(result[76])))) :
-                setThubCapB11(0)
+                setThubCapB11(0) :
+                setThubCapB11(Number(ethers.utils.formatEther(String(result[76]))))
             setAllPowB11(Number(result[77]))
 
             setThubLvZ11(Number(result[78][0]))
@@ -1834,10 +1834,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubZ11 && Number(result[78][2]) !== 0) ?
                 setNextDayThubZ11(_nextDayThubZ11.toLocaleString('es-CL')) :
                 setNextDayThubZ11('now')
-            setThubFeeZ11(Number(result[78][3]) / 100)
+            setThubFeeZ11(Number(result[78][3]) / 100);
             (Date.now() <= _nextDayThubZ11 && Number(result[78][2]) !== 0) ?
-                setThubCapZ11(Number(ethers.utils.formatEther(String(result[79])))) :
-                setThubCapZ11(0)
+                setThubCapZ11(0) :
+                setThubCapZ11(Number(ethers.utils.formatEther(String(result[79]))))                
             setAllPowZ11(Number(result[80]))
 
             setThubLvC01(Number(result[81][0]))
@@ -1845,10 +1845,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC01 && Number(result[81][2]) !== 0) ?
                 setNextDayThubC01(_nextDayThubC01.toLocaleString('es-CL')) :
                 setNextDayThubC01('now')
-            setThubFeeC01(Number(result[81][3]) / 100)
+            setThubFeeC01(Number(result[81][3]) / 100);
             (Date.now() <= _nextDayThubC01 && Number(result[81][2]) !== 0) ?
-                setThubCapC01(Number(ethers.utils.formatEther(String(result[82])))) :
-                setThubCapC01(0)
+                setThubCapC01(0) :
+                setThubCapC01(Number(ethers.utils.formatEther(String(result[82]))))
             setAllPowC01(Number(result[83]))
 
             setThubLvC02(Number(result[84][0]))
@@ -1856,10 +1856,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC02 && Number(result[84][2]) !== 0) ?
                 setNextDayThubC02(_nextDayThubC02.toLocaleString('es-CL')) :
                 setNextDayThubC02('now')
-            setThubFeeC02(Number(result[84][3]) / 100)
+            setThubFeeC02(Number(result[84][3]) / 100);
             (Date.now() <= _nextDayThubC02 && Number(result[84][2]) !== 0) ?
-                setThubCapC02(Number(ethers.utils.formatEther(String(result[85])))) :
-                setThubCapC02(0)
+                setThubCapC02(0) :
+                setThubCapC02(Number(ethers.utils.formatEther(String(result[85]))))
             setAllPowC02(Number(result[86]))
 
             setThubLvC03(Number(result[87][0]))
@@ -1867,10 +1867,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC03 && Number(result[87][2]) !== 0) ?
                 setNextDayThubC03(_nextDayThubC03.toLocaleString('es-CL')) :
                 setNextDayThubC03('now')
-            setThubFeeC03(Number(result[87][3]) / 100)
+            setThubFeeC03(Number(result[87][3]) / 100);
             (Date.now() <= _nextDayThubC03 && Number(result[87][2]) !== 0) ?
-                setThubCapC03(Number(ethers.utils.formatEther(String(result[88])))) :
-                setThubCapC03(0)
+                setThubCapC03(0) :
+                setThubCapC03(Number(ethers.utils.formatEther(String(result[88]))))
             setAllPowC03(Number(result[89]))
 
             setThubLvC04(Number(result[90][0]))
@@ -1878,10 +1878,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC04 && Number(result[90][2]) !== 0) ?
                 setNextDayThubC04(_nextDayThubC04.toLocaleString('es-CL')) :
                 setNextDayThubC04('now')
-            setThubFeeC04(Number(result[90][3]) / 100)
+            setThubFeeC04(Number(result[90][3]) / 100);
             (Date.now() <= _nextDayThubC04 && Number(result[90][2]) !== 0) ?
-                setThubCapC04(Number(ethers.utils.formatEther(String(result[91])))) :
-                setThubCapC04(0)
+                setThubCapC04(0) :
+                setThubCapC04(Number(ethers.utils.formatEther(String(result[91]))))
             setAllPowC04(Number(result[92]))
 
             setThubLvC05(Number(result[93][0]))
@@ -1889,10 +1889,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC05 && Number(result[93][2]) !== 0) ?
                 setNextDayThubC05(_nextDayThubC05.toLocaleString('es-CL')) :
                 setNextDayThubC05('now')
-            setThubFeeC05(Number(result[93][3]) / 100)
+            setThubFeeC05(Number(result[93][3]) / 100);
             (Date.now() <= _nextDayThubC05 && Number(result[93][2]) !== 0) ?
-                setThubCapC05(Number(ethers.utils.formatEther(String(result[94])))) :
-                setThubCapC05(0)
+                setThubCapC05(0) :
+                setThubCapC05(Number(ethers.utils.formatEther(String(result[94]))))
             setAllPowC05(Number(result[95]))
 
             setThubLvC06(Number(result[96][0]))
@@ -1900,10 +1900,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC06 && Number(result[96][2]) !== 0) ?
                 setNextDayThubC06(_nextDayThubC06.toLocaleString('es-CL')) :
                 setNextDayThubC06('now')
-            setThubFeeC06(Number(result[96][3]) / 100)
+            setThubFeeC06(Number(result[96][3]) / 100);
             (Date.now() <= _nextDayThubC06 && Number(result[96][2]) !== 0) ?
-                setThubCapC06(Number(ethers.utils.formatEther(String(result[97])))) :
-                setThubCapC06(0)
+                setThubCapC06(0) :
+                setThubCapC06(Number(ethers.utils.formatEther(String(result[97]))))
             setAllPowC06(Number(result[98]))
 
             setThubLvC07(Number(result[99][0]))
@@ -1911,10 +1911,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC07 && Number(result[99][2]) !== 0) ?
                 setNextDayThubC07(_nextDayThubC07.toLocaleString('es-CL')) :
                 setNextDayThubC07('now')
-            setThubFeeC07(Number(result[99][3]) / 100)
+            setThubFeeC07(Number(result[99][3]) / 100);
             (Date.now() <= _nextDayThubC07 && Number(result[99][2]) !== 0) ?
-                setThubCapC07(Number(ethers.utils.formatEther(String(result[100])))) :
-                setThubCapC07(0)
+                setThubCapC07(0) :
+                setThubCapC07(Number(ethers.utils.formatEther(String(result[100]))))
             setAllPowC07(Number(result[101]))
 
             setThubLvC08(Number(result[102][0]))
@@ -1922,10 +1922,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC08 && Number(result[102][2]) !== 0) ?
                 setNextDayThubC08(_nextDayThubC08.toLocaleString('es-CL')) :
                 setNextDayThubC08('now')
-            setThubFeeC08(Number(result[102][3]) / 100)
+            setThubFeeC08(Number(result[102][3]) / 100);
             (Date.now() <= _nextDayThubC08 && Number(result[102][2]) !== 0) ?
-                setThubCapC08(Number(ethers.utils.formatEther(String(result[103])))) :
-                setThubCapC08(0)
+                setThubCapC08(0) :
+                setThubCapC08(Number(ethers.utils.formatEther(String(result[103]))))
             setAllPowC08(Number(result[104]))
 
             setThubLvC09(Number(result[105][0]))
@@ -1933,10 +1933,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC09 && Number(result[105][2]) !== 0) ?
                 setNextDayThubC09(_nextDayThubC09.toLocaleString('es-CL')) :
                 setNextDayThubC09('now')
-            setThubFeeC09(Number(result[105][3]) / 100)
+            setThubFeeC09(Number(result[105][3]) / 100);
             (Date.now() <= _nextDayThubC09 && Number(result[105][2]) !== 0) ?
-                setThubCapC09(Number(ethers.utils.formatEther(String(result[106])))) :
-                setThubCapC09(0)
+                setThubCapC09(0) :
+                setThubCapC09(Number(ethers.utils.formatEther(String(result[106]))))
             setAllPowC09(Number(result[107]))
 
             setThubLvC10(Number(result[108][0]))
@@ -1944,10 +1944,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC10 && Number(result[108][2]) !== 0) ?
                 setNextDayThubC10(_nextDayThubC10.toLocaleString('es-CL')) :
                 setNextDayThubC10('now')
-            setThubFeeC10(Number(result[108][3]) / 100)
+            setThubFeeC10(Number(result[108][3]) / 100);
             (Date.now() <= _nextDayThubC10 && Number(result[108][2]) !== 0) ?
-                setThubCapC10(Number(ethers.utils.formatEther(String(result[109])))) :
-                setThubCapC10(0)
+                setThubCapC10(0) :
+                setThubCapC10(Number(ethers.utils.formatEther(String(result[109]))))
             setAllPowC10(Number(result[110]))
 
             setThubLvC11(Number(result[111][0]))
@@ -1955,10 +1955,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC11 && Number(result[111][2]) !== 0) ?
                 setNextDayThubC11(_nextDayThubC11.toLocaleString('es-CL')) :
                 setNextDayThubC11('now')
-            setThubFeeC11(Number(result[111][3]) / 100)
+            setThubFeeC11(Number(result[111][3]) / 100);
             (Date.now() <= _nextDayThubC11 && Number(result[111][2]) !== 0) ?
-                setThubCapC11(Number(ethers.utils.formatEther(String(result[112])))) :
-                setThubCapC11(0)
+                setThubCapC11(0) :
+                setThubCapC11(Number(ethers.utils.formatEther(String(result[112]))))
             setAllPowC11(Number(result[113]))
 
             setThubLvC12(Number(result[114][0]))
@@ -1966,10 +1966,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC12 && Number(result[114][2]) !== 0) ?
                 setNextDayThubC12(_nextDayThubC12.toLocaleString('es-CL')) :
                 setNextDayThubC12('now')
-            setThubFeeC12(Number(result[114][3]) / 100)
+            setThubFeeC12(Number(result[114][3]) / 100);
             (Date.now() <= _nextDayThubC12 && Number(result[114][2]) !== 0) ?
-                setThubCapC12(Number(ethers.utils.formatEther(String(result[115])))) :
-                setThubCapC12(0)
+                setThubCapC12(0) :
+                setThubCapC12(Number(ethers.utils.formatEther(String(result[115]))))
             setAllPowC12(Number(result[116]))
 
             setThubLvC13(Number(result[117][0]))
@@ -1977,10 +1977,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC13 && Number(result[117][2]) !== 0) ?
                 setNextDayThubC13(_nextDayThubC13.toLocaleString('es-CL')) :
                 setNextDayThubC13('now')
-            setThubFeeC13(Number(result[117][3]) / 100)
+            setThubFeeC13(Number(result[117][3]) / 100);
             (Date.now() <= _nextDayThubC13 && Number(result[117][2]) !== 0) ?
-                setThubCapC13(Number(ethers.utils.formatEther(String(result[118])))) :
-                setThubCapC13(0)
+                setThubCapC13(0) :
+                setThubCapC13(Number(ethers.utils.formatEther(String(result[118]))))
             setAllPowC13(Number(result[119]))
 
             setThubLvC14(Number(result[120][0]))
@@ -1988,10 +1988,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC14 && Number(result[120][2]) !== 0) ?
                 setNextDayThubC14(_nextDayThubC14.toLocaleString('es-CL')) :
                 setNextDayThubC14('now')
-            setThubFeeC14(Number(result[120][3]) / 100)
+            setThubFeeC14(Number(result[120][3]) / 100);
             (Date.now() <= _nextDayThubC14 && Number(result[120][2]) !== 0) ?
-                setThubCapC14(Number(ethers.utils.formatEther(String(result[121])))) :
-                setThubCapC14(0)
+                setThubCapC14(0) :
+                setThubCapC14(Number(ethers.utils.formatEther(String(result[121]))))
             setAllPowC14(Number(result[122]))
 
             setThubLvC15(Number(result[123][0]))
@@ -1999,10 +1999,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC15 && Number(result[123][2]) !== 0) ?
                 setNextDayThubC15(_nextDayThubC15.toLocaleString('es-CL')) :
                 setNextDayThubC15('now')
-            setThubFeeC15(Number(result[123][3]) / 100)
+            setThubFeeC15(Number(result[123][3]) / 100);
             (Date.now() <= _nextDayThubC15 && Number(result[123][2]) !== 0) ?
-                setThubCapC15(Number(ethers.utils.formatEther(String(result[124])))) :
-                setThubCapC15(0)
+                setThubCapC15(0) :
+                setThubCapC15(Number(ethers.utils.formatEther(String(result[124]))))
             setAllPowC15(Number(result[125]))
 
             setThubLvC16(Number(result[126][0]))
@@ -2010,10 +2010,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC16 && Number(result[126][2]) !== 0) ?
                 setNextDayThubC16(_nextDayThubC16.toLocaleString('es-CL')) :
                 setNextDayThubC16('now')
-            setThubFeeC16(Number(result[126][3]) / 100)
+            setThubFeeC16(Number(result[126][3]) / 100);
             (Date.now() <= _nextDayThubC16 && Number(result[126][2]) !== 0) ?
-                setThubCapC16(Number(ethers.utils.formatEther(String(result[127])))) :
-                setThubCapC16(0)
+                setThubCapC16(0) :
+                setThubCapC16(Number(ethers.utils.formatEther(String(result[127]))))
             setAllPowC16(Number(result[128]))
 
             setThubLvC17(Number(result[129][0]))
@@ -2021,10 +2021,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC17 && Number(result[129][2]) !== 0) ?
                 setNextDayThubC17(_nextDayThubC17.toLocaleString('es-CL')) :
                 setNextDayThubC17('now')
-            setThubFeeC17(Number(result[129][3]) / 100)
+            setThubFeeC17(Number(result[129][3]) / 100);
             (Date.now() <= _nextDayThubC17 && Number(result[129][2]) !== 0) ?
-                setThubCapC17(Number(ethers.utils.formatEther(String(result[130])))) :
-                setThubCapC17(0)
+                setThubCapC17(0) :
+                setThubCapC17(Number(ethers.utils.formatEther(String(result[130]))))
             setAllPowC17(Number(result[131]))
 
             setThubLvC18(Number(result[132][0]))
@@ -2032,10 +2032,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC18 && Number(result[132][2]) !== 0) ?
                 setNextDayThubC18(_nextDayThubC18.toLocaleString('es-CL')) :
                 setNextDayThubC18('now')
-            setThubFeeC18(Number(result[132][3]) / 100)
+            setThubFeeC18(Number(result[132][3]) / 100);
             (Date.now() <= _nextDayThubC18 && Number(result[132][2]) !== 0) ?
-                setThubCapC18(Number(ethers.utils.formatEther(String(result[133])))) :
-                setThubCapC18(0)
+                setThubCapC18(0) :
+                setThubCapC18(Number(ethers.utils.formatEther(String(result[133]))))
             setAllPowC18(Number(result[134]))
 
             setThubLvC19(Number(result[135][0]))
@@ -2043,10 +2043,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC19 && Number(result[135][2]) !== 0) ?
                 setNextDayThubC19(_nextDayThubC19.toLocaleString('es-CL')) :
                 setNextDayThubC19('now')
-            setThubFeeC19(Number(result[135][3]) / 100)
+            setThubFeeC19(Number(result[135][3]) / 100);
             (Date.now() <= _nextDayThubC19 && Number(result[135][2]) !== 0) ?
-                setThubCapC19(Number(ethers.utils.formatEther(String(result[136])))) :
-                setThubCapC19(0)
+                setThubCapC19(0) :
+                setThubCapC19(Number(ethers.utils.formatEther(String(result[136]))))
             setAllPowC19(Number(result[137]))
 
             setThubLvC20(Number(result[138][0]))
@@ -2054,10 +2054,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC20 && Number(result[138][2]) !== 0) ?
                 setNextDayThubC20(_nextDayThubC20.toLocaleString('es-CL')) :
                 setNextDayThubC20('now')
-            setThubFeeC20(Number(result[138][3]) / 100)
+            setThubFeeC20(Number(result[138][3]) / 100);
             (Date.now() <= _nextDayThubC20 && Number(result[138][2]) !== 0) ?
-                setThubCapC20(Number(ethers.utils.formatEther(String(result[139])))) :
-                setThubCapC20(0)
+                setThubCapC20(0) :
+                setThubCapC20(Number(ethers.utils.formatEther(String(result[139]))))
             setAllPowC20(Number(result[140]))
 
             setThubLvC21(Number(result[141][0]))
@@ -2065,10 +2065,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC21 && Number(result[141][2]) !== 0) ?
                 setNextDayThubC21(_nextDayThubC21.toLocaleString('es-CL')) :
                 setNextDayThubC21('now')
-            setThubFeeC21(Number(result[141][3]) / 100)
+            setThubFeeC21(Number(result[141][3]) / 100);
             (Date.now() <= _nextDayThubC21 && Number(result[141][2]) !== 0) ?
-                setThubCapC21(Number(ethers.utils.formatEther(String(result[142])))) :
-                setThubCapC21(0)
+                setThubCapC21(0) :
+                setThubCapC21(Number(ethers.utils.formatEther(String(result[142]))))
             setAllPowC21(Number(result[143]))
 
             setThubLvC22(Number(result[144][0]))
@@ -2076,10 +2076,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             (Date.now() <= _nextDayThubC22 && Number(result[144][2]) !== 0) ?
                 setNextDayThubC22(_nextDayThubC22.toLocaleString('es-CL')) :
                 setNextDayThubC22('now')
-            setThubFeeC22(Number(result[144][3]) / 100)
+            setThubFeeC22(Number(result[144][3]) / 100);
             (Date.now() <= _nextDayThubC22 && Number(result[144][2]) !== 0) ?
-                setThubCapC22(Number(ethers.utils.formatEther(String(result[145])))) :
-                setThubCapC22(0)
+                setThubCapC22(0) :
+                setThubCapC22(Number(ethers.utils.formatEther(String(result[145]))))
             setAllPowC22(Number(result[146]))
         })
     }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI])
