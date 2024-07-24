@@ -7977,7 +7977,9 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) { 
+            console.log(e)
+        }
         setisLoading(false)
     }
 

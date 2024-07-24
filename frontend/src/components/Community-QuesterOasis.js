@@ -22,7 +22,7 @@ const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
-const houseStaking = '0x2eF9d702c42BC0F8B9D7305C34B4f63526502255'
+const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
@@ -774,7 +774,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             }) 
 
             const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
-            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 2549069, "latest")
+            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             const data0 = await readContracts({

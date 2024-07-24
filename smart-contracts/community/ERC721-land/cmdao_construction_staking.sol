@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.23;
 
-import "./cmcity_slot1.sol";
+import "./cmcity_construction.sol";
 
-contract CMDAO_HOUSE_STAKING_V3 is Ownable {
-    address public cmcitySlot1; 
+contract CMDAO_CONSTRUCTION_STAKING_V3 is Ownable {
+    address public cmcitySlot1;
+    address public cmcityConstruction; 
     address public rewardToken;
+    uint256 public eligibleIndex;
 
     struct PoolInfo {
         address nftAddr;
@@ -26,7 +28,7 @@ contract CMDAO_HOUSE_STAKING_V3 is Ownable {
         uint256 tokenStakedAt;
         uint256 power;
         uint256 rewardDebt;
-        uint256 houseId;
+        uint256 constructionId;
     }
     mapping(uint256=>mapping(uint256=>NftToken)) public nftStake;
     mapping(uint256=>mapping(uint256=>uint256)) public slotUsage;
@@ -37,11 +39,15 @@ contract CMDAO_HOUSE_STAKING_V3 is Ownable {
 
     constructor(
         address _cmcitySlot1,
+        address _cmcityConstruction,
+        uint256 _eligibleIndex,
         address _rewardToken,
         uint256 _rewardPerBlock,
         uint256 _startBlock
     ) {
         cmcitySlot1 = _cmcitySlot1;
+        cmcityConstruction = _cmcityConstruction;
+        eligibleIndex = _eligibleIndex;
         rewardToken = _rewardToken;
         rewardPerBlock = _rewardPerBlock;
         startBlock = _startBlock;
@@ -141,15 +147,15 @@ contract CMDAO_HOUSE_STAKING_V3 is Ownable {
     function stake(
         uint256 _pid,
         uint256 _tokenId,
-        uint256 _houseId
+        uint256 _constructionId
     ) external {
         PoolInfo storage pool = poolInfo[_pid];
         NftToken storage stakednft = nftStake[_pid][_tokenId]; 
         uint256 slot = _tokenId / 100000000000;
 
-        require(slot == 1, "Not Eligible NFT Type");
-        require(CMCITY_SLOT1(cmcitySlot1).slotOwner(_houseId) == msg.sender, "No Permission");
-        require(slotUsage[_pid][_houseId] < CMCITY_SLOT1(cmcitySlot1).slotLevel(_houseId), "Unavailable Slot");
+        require(slot == eligibleIndex, "Not Eligible NFT Type");
+        require(CMCITY_SLOT1(cmcitySlot1).slotOwner(_constructionId) == msg.sender, "No Permission");
+        require(slotUsage[_pid][_constructionId] < CMCITY_CONSTRUCTION(cmcityConstruction).constructionLevel(_constructionId), "Unavailable Slot");
 
         updatePool(_pid);
         IERC721(pool.nftAddr).transferFrom(msg.sender, address(this), _tokenId);
@@ -158,8 +164,8 @@ contract CMDAO_HOUSE_STAKING_V3 is Ownable {
         stakednft.tokenStakedAt = block.timestamp;
         stakednft.power += _tokenId % 100000;
         stakednft.rewardDebt = (stakednft.power * pool.accRewardPerShare) / 1e12;
-        stakednft.houseId = _houseId;
-        slotUsage[_pid][_houseId] += 1;
+        stakednft.constructionId = _constructionId;
+        slotUsage[_pid][_constructionId] += 1;
         pool.powerAll += _tokenId % 100000;
 
         emit ItemStaked(_tokenId, msg.sender, block.timestamp);
@@ -180,7 +186,7 @@ contract CMDAO_HOUSE_STAKING_V3 is Ownable {
 
         uint256 _pending = pendingReward(_pid, _tokenId);
         if (_pending > 0) {
-            IERC20(rewardToken).transfer(msg.sender, _pending);
+            IERC20(rewardToken).transfer(msg.sender, _pending * CMCITY_CONSTRUCTION(cmcityConstruction).landBonus(stakednft.constructionId));
         }
         stakednft.rewardDebt = (stakednft.power * pool.accRewardPerShare) / 1e12;
         emit Claimed(pendingReward(_pid, _tokenId), _tokenId, msg.sender, block.timestamp);
@@ -188,7 +194,7 @@ contract CMDAO_HOUSE_STAKING_V3 is Ownable {
         if (_unstake) {
             IERC721(pool.nftAddr).transferFrom(address(this), msg.sender, _tokenId);
 
-            slotUsage[_pid][stakednft.houseId] -= 1;
+            slotUsage[_pid][stakednft.constructionId] -= 1;
             pool.powerAll -= stakednft.power;
             delete nftStake[_pid][_tokenId];
             emit ItemUnstaked(_tokenId, msg.sender, block.timestamp);
