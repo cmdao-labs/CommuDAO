@@ -17,7 +17,6 @@ const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const silLab = '0xfEe9af37FBee37DbA1A830080b20Caa99b41741A'
 const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const goldLab = '0xc69F46334a86F4617Fa17432F430c641c2e10139'
-const goldMine = '0x28d8c3c2C0199Ff6E73eb7c4321F43E0e7F80ad8'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const platLab = '0xFFBADf348b97055cA8E60a848718cAEf29df50A7'
 const platLab2 = '0xB080353ccD9CC565C0844Bb22e2997EdB2b6B7f0'
@@ -43,7 +42,7 @@ const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, erc20ABI, kycABI }) => {
+const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, erc20ABI, kycABI }) => {
     const { address } = useAccount()
 
     const [cmjBalance, setCmjBalance] = React.useState(0)
@@ -605,7 +604,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setJaspBalance(ethers.utils.formatUnits(String(result[55]), "gwei"))
         })
 
-    }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, goldMineABI, kycABI])
+    }, [address, txupdate, erc20ABI, ctunaLabABI, sx31LabABI, bbqLab01ABI, bbqLab02ABI, pzaLabABI, cmdao20lab01ABI, kycABI])
 
     const craft1Handle = async () => {
         setisLoading(true)
