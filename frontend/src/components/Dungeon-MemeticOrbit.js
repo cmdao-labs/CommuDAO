@@ -15,8 +15,7 @@ const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunJasperABI, mintStOPTABI, salonABI }) => {
-    //let { address } = useAccount()
-    let address = '0x372191741EEF36a69C489B305632a390e0753101'
+    let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/dungeon/memetic-orbit/' + address)
