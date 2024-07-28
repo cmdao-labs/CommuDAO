@@ -223,15 +223,15 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000002) {
                     level = 2
                     expMax = 320
-                    hashRate = 5
+                    hashRate = 3
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000003) {
                     level = 3
                     expMax = 1080
-                    hashRate = 10
+                    hashRate = 5
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000004) {
                     level = 4
                     expMax = 2880
-                    hashRate = 20
+                    hashRate = 10
                 }
 
                 nfts.push({
@@ -296,15 +296,15 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000002) {
                     level = 2
                     expMax = 320
-                    hashRate = 5
+                    hashRate = 3
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000003) {
                     level = 3
                     expMax = 1080
-                    hashRate = 10
+                    hashRate = 5
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000004) {
                     level = 4
                     expMax = 2880
-                    hashRate = 20
+                    hashRate = 10
                 }
 
                 nfts.push({

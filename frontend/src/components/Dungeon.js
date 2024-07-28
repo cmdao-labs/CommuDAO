@@ -55,6 +55,23 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(31); navigate('/dungeon/jasper-cave');}}>Go to Jasper Cave</div>
                 </div>
+
+                <div className="nftCard pixel" style={{justifyContent: "center", margin: "20px"}}>
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQWfYKHMAnaF4gEwpXia7ZBGNcpv9QLSQav7AmeLH2ViJ" height="230" alt="Memetic_Orbit" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
+                        <div className="emp">Hard</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>Eligible NFT Collection</div>
+                        <div className="emp">Variable</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
+                        <div className="emp">Variable</div>
+                    </div>
+                    <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(39); navigate('/dungeon/memetic-orbit');}}>Go to Memetic Orbit</div>
+                </div>
             </div>
 
             <div style={{width: "97.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
