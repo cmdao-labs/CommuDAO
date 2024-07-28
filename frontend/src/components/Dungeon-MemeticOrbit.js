@@ -482,7 +482,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: 100,
+                    RewardPerSec: 0,
                     isStaked: false
                 })
             }
