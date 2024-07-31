@@ -1791,9 +1791,9 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const equipNft = async (_nftid, slot, _isMeme) => {
         setisLoading(true)
         let nftaddr = cmdaonft
-        if (slot === 4) {
+        if (_isMeme && slot === 4) {
             nftaddr = bbnft
-        } else if (slot === 5 || slot === 7) {
+        } else if (_isMeme && (slot === 5 || slot === 7)) {
             nftaddr = narutanft
         }
         try {
