@@ -1790,16 +1790,22 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
     const equipNft = async (_nftid, slot, _isMeme) => {
         setisLoading(true)
+        let nftaddr = cmdaonft
+        if (slot === 4) {
+            nftaddr = bbnft
+        } else if (slot === 5 || slot === 7) {
+            nftaddr = narutanft
+        }
         try {
             const nftAllow = await readContract({
-                address: cmdaonft,
+                address: nftaddr,
                 abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== dunMo.toUpperCase()) {
                 const config = await prepareWriteContract({
-                    address: cmdaonft,
+                    address: nftaddr,
                     abi: erc721ABI,
                     functionName: 'approve',
                     args: [dunMo, _nftid],
