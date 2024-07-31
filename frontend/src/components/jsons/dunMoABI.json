@@ -1,0 +1,921 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_colId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_slot",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isMeme",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_ss",
+				"type": "uint256"
+			}
+		],
+		"name": "equip",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "migrateNFT",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_ss",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isMeme",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			}
+		],
+		"name": "refuel",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_addr",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_usage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_multiplier",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_ssEnd",
+				"type": "uint256"
+			}
+		],
+		"name": "setGas",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_cmcitySlot1",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_cmcityConstruction",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_nft",
+				"type": "address"
+			}
+		],
+		"name": "setNft",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli3",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli4",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli5",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli6",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_eli7",
+				"type": "uint256"
+			}
+		],
+		"name": "setNftMeme",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_addr",
+				"type": "address"
+			}
+		],
+		"name": "setReward",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_slot",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isMeme",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_ss",
+				"type": "uint256"
+			}
+		],
+		"name": "unstake",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "withdrawGas",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "withdrawReward",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_staker",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_ss",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			}
+		],
+		"name": "calculateRewards",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cmcityConstruction",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cmcitySlot1",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "colBonus",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "startId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "multiplier",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "gas",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "usage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "multiplier",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ssEnd",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getColBonus",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_ss",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_slotIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getMemeEligible",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "memeEligible",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "nftIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "nft",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "nftEquip",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "characterId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "hatId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clothId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "accId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "shoesId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weaponId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "nftEquip2",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "weapon2Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc2Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc3Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc4Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc5Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc6Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "soulId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "badgeId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "nftEquip2ColMul",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "weapon2Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc2Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc3Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc4Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc5Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "acc6Id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "soulId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "badgeId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "nftEquipColMul",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "characterId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "hatId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clothId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "accId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "shoesId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weaponId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "nftEquipMeme",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "characterId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "hatId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clothId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "accId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "shoesId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weaponId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "nftMeme",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "characterId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "hatId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "clothId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "accId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "shoesId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "weaponId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "nftStatus",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "allPow",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "refuelAt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isStaked",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "reward",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

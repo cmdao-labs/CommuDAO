@@ -851,7 +851,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         <>
                             {nft.map((item, index) => (
                                 <>
-                                    {item.Id / 100000000000 <= 8 &&
+                                    {item.Id / 100000000000 <= 7 &&
                                         <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
                                             <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
                                                 <img src={item.Image} height="100%" alt="Can not load metadata." />
