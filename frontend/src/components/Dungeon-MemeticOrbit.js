@@ -979,13 +979,13 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         args: [Number(nftEQMemeSS1[2])],
                     },
                     {
-                        address: cmdaonft,
+                        address: bbnft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[3])],
                     },
                     {
-                        address: cmdaonft,
+                        address: narutanft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[4])],
@@ -997,7 +997,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         args: [Number(nftEQMemeSS1[5])],
                     },
                     {
-                        address: cmdaonft,
+                        address: narutanft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[6])],
@@ -1410,7 +1410,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             memeSS1cmpow += res_meme_acc_ss1 !== null ? Number(nftEQMemeSS1[3]) % 100000 : 0
             if (res_meme_acc_ss1 !== null) {
                 nfts.push({
-                    Col: 1,
+                    Col: 3,
                     Id: Number(nftEQMemeSS1[3]),
                     Name: nft_meme_acc_ss1.name,
                     Image: nftEQ_meme_acc_ss1_Img,
@@ -1431,7 +1431,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[4]) % 100000 : 0
             if (res_meme_back_ss1 !== null) {
                 nfts.push({
-                    Col: 1,
+                    Col: 2,
                     Id: Number(nftEQMemeSS1[4]),
                     Name: nftEQ_meme_back_ss1_Name,
                     Image: nftEQ_meme_back_ss1_Img,
@@ -1473,7 +1473,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             memeSS1cmpow += res_meme_weapon_ss1 !== null ? Number(nftEQMemeSS1[6]) % 100000 : 0
             if (res_meme_weapon_ss1 !== null) {
                 nfts.push({
-                    Col: 1,
+                    Col: 2,
                     Id: Number(nftEQMemeSS1[6]),
                     Name: nftEQ_meme_weapon_ss1_Name,
                     Image: nftEQ_meme_weapon_ss1_Img,
