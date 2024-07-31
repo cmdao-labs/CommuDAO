@@ -106,820 +106,6 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEquip',
-                args: [address],
-            })
-            const nftEQ2 = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEquip2',
-                args: [address],
-            })
-            /*const nftEQColMul = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEquipColMul',
-                args: [address],
-            })
-            const nftEQColMul2 = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEQColMul2',
-                args: [address],
-            })*/
-            const nftEQMemeSS1 = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEquipMeme',
-                args: [address, 1],
-            })
-
-            const data = await readContracts({
-                contracts: [
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[0])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[3])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[4])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[5])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[6])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[2])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ[1])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[0])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[1])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[2])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[3])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[4])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[5])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[6])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQ2[7])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[0])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[1])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[2])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[3])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[4])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[5])],
-                    },
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [Number(nftEQMemeSS1[6])],
-                    },
-                    {
-                        address: doijibToken,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },
-                    {
-                        address: silToken,
-                        abi: erc20ABI,
-                        functionName: 'balanceOf',
-                        args: [address],
-                    },
-                    {
-                        address: mintStOPT_Router,
-                        abi: mintStOPTABI,
-                        functionName: 'userTimeStamp',
-                        args: [address, 2],
-                    },
-                    {
-                        address: dunMo,
-                        abi: dunMoABI,
-                        functionName: 'calculateRewards',
-                        args: [address],
-                    },
-                    {
-                        address: salonRouter,
-                        abi: salonABI,
-                        functionName: 'skin',
-                        args: [address, 1],
-                    }, 
-                ],
-            })
-            
-            let nfts = []
-
-            let res_main_char = null
-            try {
-                res_main_char = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_char = res_main_char !== null ? await res_main_char.json() : {image: null, name: null}
-            const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_char_Name = nft_main_char.name
-            if (res_main_char !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[0]),
-                    Name: nftEQ_main_char_Name,
-                    Image: nftEQ_main_char_Img,
-                    Description: nft_main_char.description,
-                    Attribute: nft_main_char.attributes,
-                    RewardPerSec: Number(nftEQ[0]) % 100000,
-                    isStaked: true,
-                    Slot: 1
-                })
-            }
-            let res_main_acc1 = null
-            try {
-                res_main_acc1 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_acc = res_main_acc1 !== null ? await res_main_acc1.json() : {image: null, name: null}
-            const nftEQ_main_acc_Img = nft_main_acc.image !== null ? nft_main_acc.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_acc_Name = nft_main_acc.name
-            if (res_main_acc1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[3]),
-                    Name: nftEQ_main_acc_Name,
-                    Image: nftEQ_main_acc_Img,
-                    Description: nft_main_acc.description,
-                    Attribute: nft_main_acc.attributes,
-                    RewardPerSec: Number(nftEQ[3]) % 100000,
-                    isStaked: true,
-                    Slot: 4
-                })
-            }
-            let res_main_back = null
-            try {
-                res_main_back = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_back = res_main_back !== null ? await res_main_back.json() : {image: null, name: null}
-            const nftEQ_main_back_Img = nft_main_back.image !== null ? nft_main_back.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_back_Name = nft_main_back.name
-            if (res_main_back !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[4]),
-                    Name: nftEQ_main_back_Name,
-                    Image: nftEQ_main_back_Img,
-                    Description: nft_main_back.description,
-                    Attribute: nft_main_back.attributes,
-                    RewardPerSec: Number(nftEQ[4]) % 100000,
-                    isStaked: true,
-                    Slot: 5
-                })
-            }
-            let res_main_shoes = null
-            try {
-                res_main_shoes = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_shoes = res_main_shoes !== null ? await res_main_shoes.json() : {image: null, name: null}
-            const nftEQ_main_shoes_Img = nft_main_shoes.image !== null ? nft_main_shoes.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_shoes_Name = nft_main_shoes.name
-            if (res_main_shoes !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[5]),
-                    Name: nftEQ_main_shoes_Name,
-                    Image: nftEQ_main_shoes_Img,
-                    Description: nft_main_shoes.description,
-                    Attribute: nft_main_shoes.attributes,
-                    RewardPerSec: Number(nftEQ[5]) % 100000,
-                    isStaked: true,
-                    Slot: 6
-                })
-            }
-            let res_main_wp1 = null
-            try {
-                res_main_wp1 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_wp1 = res_main_wp1 !== null ? await res_main_wp1.json() : {image: null, name: null}
-            const nftEQ_main_wp1_Img = nft_main_wp1.image !== null ? nft_main_wp1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_wp1_Name = nft_main_wp1.name
-            if (res_main_wp1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[6]),
-                    Name: nftEQ_main_wp1_Name,
-                    Image: nftEQ_main_wp1_Img,
-                    Description: nft_main_wp1.description,
-                    Attribute: nft_main_wp1.attributes,
-                    RewardPerSec: Number(nftEQ[6]) % 100000,
-                    isStaked: true,
-                    Slot: 7
-                })
-            }
-            let res_main_cloth = null
-            try {
-                res_main_cloth = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_cloth = res_main_cloth !== null ? await res_main_cloth.json() : {image: null, name: null}
-            const nftEQ_main_cloth_Img = nft_main_cloth.image !== null ? nft_main_cloth.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_cloth_Name = nft_main_cloth.name
-            if (res_main_cloth !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[2]),
-                    Name: nftEQ_main_cloth_Name,
-                    Image: nftEQ_main_cloth_Img,
-                    Description: nft_main_cloth.description,
-                    Attribute: nft_main_cloth.attributes,
-                    RewardPerSec: Number(nftEQ[2]) % 100000,
-                    isStaked: true,
-                    Slot: 3
-                })
-            }
-            let res_main_hat = null
-            try {
-                res_main_hat = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_hat = res_main_hat !== null ? await res_main_hat.json() : {image: null, name: null}
-            const nftEQ_main_hat_Img = nft_main_hat.image !== null ? nft_main_hat.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_hat_Name = nft_main_hat.name
-            if (res_main_hat !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ[1]),
-                    Name: nftEQ_main_hat_Name,
-                    Image: nftEQ_main_hat_Img,
-                    Description: nft_main_hat.description,
-                    Attribute: nft_main_hat.attributes,
-                    RewardPerSec: Number(nftEQ[1]) % 100000,
-                    isStaked: true,
-                    Slot: 2
-                })
-            }
-            let res_main_wp2 = null
-            try {
-                res_main_wp2 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_wp2 = res_main_wp2 !== null ? await res_main_wp2.json() : {image: null, name: null}
-            const nftEQ_main_wp2_Img = nft_main_wp2.image !== null ? nft_main_wp2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_wp2_Name = nft_main_wp2.name
-            if (res_main_wp2 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[0]),
-                    Name: nftEQ_main_wp2_Name,
-                    Image: nftEQ_main_wp2_Img,
-                    Description: nft_main_wp2.description,
-                    Attribute: nft_main_wp2.attributes,
-                    RewardPerSec: Number(nftEQ2[0]) % 100000,
-                    isStaked: true,
-                    Slot: 14
-                })
-            }
-            let res_main_acc2 = null
-            try {
-                res_main_acc2 = data[8].status === 'success' ? await fetch(data[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_acc2 = res_main_acc2 !== null ? await res_main_acc2.json() : {image: null, name: null}
-            const nftEQ_main_acc2_Img = nft_main_acc2.image !== null ? nft_main_acc2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_acc2_Name = nft_main_acc2.name
-            if (res_main_acc2 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[1]),
-                    Name: nftEQ_main_acc2_Name,
-                    Image: nftEQ_main_acc2_Img,
-                    Description: nft_main_acc2.description,
-                    Attribute: nft_main_acc2.attributes,
-                    RewardPerSec: Number(nftEQ2[1]) % 100000,
-                    isStaked: true,
-                    Slot: 9
-                })
-            }
-            let res_main_acc3 = null
-            try {
-                res_main_acc3 = data[9].status === 'success' ? await fetch(data[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_acc3 = res_main_acc3 !== null ? await res_main_acc3.json() : {image: null, name: null}
-            const nftEQ_main_acc3_Img = nft_main_acc3.image !== null ? nft_main_acc3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_acc3_Name = nft_main_acc3.name
-            if (res_main_acc3 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[2]),
-                    Name: nftEQ_main_acc3_Name,
-                    Image: nftEQ_main_acc3_Img,
-                    Description: nft_main_acc3.description,
-                    Attribute: nft_main_acc3.attributes,
-                    RewardPerSec: Number(nftEQ2[2]) % 100000,
-                    isStaked: true,
-                    Slot: 10
-                })
-            }
-            let res_main_acc4 = null
-            try {
-                res_main_acc4 = data[10].status === 'success' ? await fetch(data[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_acc4 = res_main_acc4 !== null ? await res_main_acc4.json() : {image: null, name: null}
-            const nftEQ_main_acc4_Img = nft_main_acc4.image !== null ? nft_main_acc4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_acc4_Name = nft_main_acc4.name
-            if (res_main_acc4 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[3]),
-                    Name: nftEQ_main_acc4_Name,
-                    Image: nftEQ_main_acc4_Img,
-                    Description: nft_main_acc4.description,
-                    Attribute: nft_main_acc4.attributes,
-                    RewardPerSec: Number(nftEQ2[3]) % 100000,
-                    isStaked: true,
-                    Slot: 11
-                })
-            }
-            let res_main_acc5 = null
-            try {
-                res_main_acc5 = data[11].status === 'success' ? await fetch(data[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_acc5 = res_main_acc5 !== null ? await res_main_acc5.json() : {image: null, name: null}
-            const nftEQ_main_acc5_Img = nft_main_acc5.image !== null ? nft_main_acc5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_acc5_Name = nft_main_acc5.name
-            if (res_main_acc5 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[4]),
-                    Name: nftEQ_main_acc5_Name,
-                    Image: nftEQ_main_acc5_Img,
-                    Description: nft_main_acc5.description,
-                    Attribute: nft_main_acc5.attributes,
-                    RewardPerSec: Number(nftEQ2[4]) % 100000,
-                    isStaked: true,
-                    Slot: 12
-                })
-            }
-            let res_main_acc6 = null
-            try {
-                res_main_acc6 = data[12].status === 'success' ? await fetch(data[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_acc6 = res_main_acc6 !== null ? await res_main_acc6.json() : {image: null, name: null}
-            const nftEQ_main_acc6_Img = nft_main_acc6.image !== null ? nft_main_acc6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_acc6_Name = nft_main_acc6.name
-            if (res_main_acc6 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[5]),
-                    Name: nftEQ_main_acc6_Name,
-                    Image: nftEQ_main_acc6_Img,
-                    Description: nft_main_acc6.description,
-                    Attribute: nft_main_acc6.attributes,
-                    RewardPerSec: Number(nftEQ2[5]) % 100000,
-                    isStaked: true,
-                    Slot: 13
-                })
-            }
-            let res_main_soul = null
-            try {
-                res_main_soul = data[13].status === 'success' ? await fetch(data[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_soul = res_main_soul !== null ? await res_main_soul.json() : {image: null, name: null}
-            const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_soul_Name = nft_main_soul.name
-            if (res_main_soul !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[6]),
-                    Name: nftEQ_main_soul_Name,
-                    Image: nftEQ_main_soul_Img,
-                    Description: nft_main_soul.description,
-                    Attribute: nft_main_soul.attributes,
-                    RewardPerSec: Number(nftEQ2[6]) % 100000,
-                    isStaked: true,
-                    Slot: 15
-                })
-            }
-            let res_main_badge = null
-            try {
-                res_main_badge = data[14].status === 'success' ? await fetch(data[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_main_badge = res_main_badge !== null ? await res_main_badge.json() : {image: null, name: null}
-            const nftEQ_main_badge_Img = nft_main_badge.image !== null ? nft_main_badge.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_main_badge_Name = nft_main_badge.name
-            if (res_main_badge !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQ2[7]),
-                    Name: nftEQ_main_badge_Name,
-                    Image: nftEQ_main_badge_Img,
-                    Description: nft_main_badge.description,
-                    Attribute: nft_main_badge.attributes,
-                    RewardPerSec: Number(nftEQ2[7]) % 100000,
-                    isStaked: true,
-                    Slot: 8
-                })
-            }
-            let memeSS1cmpow = 0
-            let res_meme_char_ss1 = null
-            try {
-                res_meme_char_ss1 = data[15].status === 'success' ? await fetch(data[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_char_ss1 = res_meme_char_ss1 !== null ? await res_meme_char_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_char_ss1_Img = nft_meme_char_ss1.image !== null ? nft_meme_char_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_meme_char_ss1_Name = nft_meme_char_ss1.name
-            memeSS1cmpow += res_meme_char_ss1 !== null ? Number(nftEQMemeSS1[0]) % 100000 : 0
-            if (res_meme_char_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[0]),
-                    Name: nftEQ_meme_char_ss1_Name,
-                    Image: nftEQ_meme_char_ss1_Img,
-                    Description: nft_meme_char_ss1.description,
-                    Attribute: nft_meme_char_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[0]) % 100000,
-                    isStaked: true,
-                    Slot: 1
-                })
-            }
-            let res_meme_hat_ss1 = null
-            try {
-                res_meme_hat_ss1 = data[16].status === 'success' ? await fetch(data[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_hat_ss1 = res_meme_hat_ss1 !== null ? await res_meme_hat_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_hat_ss1_Img = nft_meme_hat_ss1.image !== null ? nft_meme_hat_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_meme_hat_ss1_Name = nft_meme_hat_ss1.name
-            memeSS1cmpow += res_meme_hat_ss1 !== null ? Number(nftEQMemeSS1[1]) % 100000 : 0
-            if (res_meme_hat_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[1]),
-                    Name: nftEQ_meme_hat_ss1_Name,
-                    Image: nftEQ_meme_hat_ss1_Img,
-                    Description: nft_meme_hat_ss1.description,
-                    Attribute: nft_meme_hat_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[1]) % 100000,
-                    isStaked: true,
-                    Slot: 2
-                })
-            }
-            let res_meme_cloth_ss1 = null
-            try {
-                res_meme_cloth_ss1 = data[17].status === 'success' ? await fetch(data[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_cloth_ss1 = res_meme_cloth_ss1 !== null ? await res_meme_cloth_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_cloth_ss1_Img = nft_meme_cloth_ss1.image !== null ? nft_meme_cloth_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_meme_cloth_ss1_Name = nft_meme_cloth_ss1.name
-            memeSS1cmpow += res_meme_cloth_ss1 !== null ? Number(nftEQMemeSS1[2]) % 100000 : 0
-            if (res_meme_cloth_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[2]),
-                    Name: nftEQ_meme_cloth_ss1_Name,
-                    Image: nftEQ_meme_cloth_ss1_Img,
-                    Description: nft_meme_cloth_ss1.description,
-                    Attribute: nft_meme_cloth_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[2]) % 100000,
-                    isStaked: true,
-                    Slot: 3
-                })
-            }
-            let res_meme_acc_ss1 = null
-            try {
-                res_meme_acc_ss1 = data[18].status === 'success' ? await fetch(data[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_acc_ss1 = res_meme_acc_ss1 !== null ? await res_meme_acc_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_acc_ss1_Img = nft_meme_acc_ss1.image !== null ? nft_meme_acc_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            memeSS1cmpow += res_meme_acc_ss1 !== null ? Number(nftEQMemeSS1[3]) % 100000 : 0
-            if (res_meme_acc_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[3]),
-                    Name: nft_meme_acc_ss1.name,
-                    Image: nftEQ_meme_acc_ss1_Img,
-                    Description: nft_meme_acc_ss1.description,
-                    Attribute: nft_meme_acc_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[3]) % 100000,
-                    isStaked: true,
-                    Slot: 4
-                })
-            }
-            let res_meme_back_ss1 = null
-            try {
-                res_meme_back_ss1 = data[19].status === 'success' ? await fetch(data[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_back_ss1 = res_meme_back_ss1 !== null ? await res_meme_back_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_back_ss1_Img = nft_meme_back_ss1.image !== null ? nft_meme_back_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_meme_back_ss1_Name = nft_meme_back_ss1.name
-            memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[4]) % 100000 : 0
-            if (res_meme_back_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[4]),
-                    Name: nftEQ_meme_back_ss1_Name,
-                    Image: nftEQ_meme_back_ss1_Img,
-                    Description: nft_meme_back_ss1.description,
-                    Attribute: nft_meme_back_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[4]) % 100000,
-                    isStaked: true,
-                    Slot: 5
-                })
-            }
-            let res_meme_shoes_ss1 = null
-            try {
-                res_meme_shoes_ss1 = data[20].status === 'success' ? await fetch(data[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_shoes_ss1 = res_meme_shoes_ss1 !== null ? await res_meme_shoes_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_shoes_ss1_Img = nft_meme_shoes_ss1.image !== null ? nft_meme_shoes_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_meme_shoes_ss1_Name = nft_meme_shoes_ss1.name
-            memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[5]) % 100000 : 0
-            if (res_meme_back_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[5]),
-                    Name: nftEQ_meme_shoes_ss1_Name,
-                    Image: nftEQ_meme_shoes_ss1_Img,
-                    Description: nft_meme_shoes_ss1.description,
-                    Attribute: nft_meme_shoes_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[5]) % 100000,
-                    isStaked: true,
-                    Slot: 6
-                })
-            }
-            let res_meme_weapon_ss1 = null
-            try {
-                res_meme_weapon_ss1 = data[21].status === 'success' ? await fetch(data[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            } catch {}
-            const nft_meme_weapon_ss1 = res_meme_weapon_ss1 !== null ? await res_meme_weapon_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_weapon_ss1_Img = nft_meme_weapon_ss1.image !== null ? nft_meme_weapon_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const nftEQ_meme_weapon_ss1_Name = nft_meme_weapon_ss1.name
-            memeSS1cmpow += res_meme_weapon_ss1 !== null ? Number(nftEQMemeSS1[6]) % 100000 : 0
-            if (res_meme_weapon_ss1 !== null) {
-                nfts.push({
-                    Col: 1,
-                    Id: Number(nftEQMemeSS1[6]),
-                    Name: nftEQ_meme_weapon_ss1_Name,
-                    Image: nftEQ_meme_weapon_ss1_Img,
-                    Description: nft_meme_weapon_ss1.description,
-                    Attribute: nft_meme_weapon_ss1.attributes,
-                    RewardPerSec: Number(nftEQMemeSS1[6]) % 100000,
-                    isStaked: true,
-                    Slot: 7
-                })
-            }
-
-            const nftStatus = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftStatus',
-                args: [address],
-            })
-
-            const allPow = Number(nftStatus[0])
-            const refuelAt = Number(nftStatus[1])
-            const isStaked = nftStatus[2]
-
-            const doijibBal = data[22].result
-            const silBal = data[23].result
-            const stOPTClaim = isStaked === true ? data[24].result : 0
-            const rewardPending = isStaked === true ? data[25].result : 0
-            const skinslot1 = data[26].result
-
-                        
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
-                contracts: walletRemoveDup.map((item) => (
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(walletRemoveDup.length).fill('')]
-            let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet.push({Id: String(walletRemoveDup[i])})
-                }
-            }
-            const data3 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet.map((item) => (
-                    {
-                        address: cmdaonft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet.length).fill('')]
-            for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const nftipfs = data3[i].result
-                let nft = {name: "", image: "", description: "", attributes: ""}
-                try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
-                    nft = await response.json()
-                } catch {}
-                nfts.push({
-                    Col: 1,
-                    Id: yournftwallet[i].Id,
-                    Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
-                    isStaked: false
-                })
-            }
-
-            const walletFilter2 = await narutanftSC.filters.Transfer(null, address, null)
-            const walletEvent2 = await narutanftSC.queryFilter(walletFilter2, 2852393, "latest")
-            const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
-                contracts: walletRemoveDup2.map((item) => (
-                    {
-                        address: narutanft,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(walletRemoveDup2.length).fill('')]
-            let yournftwallet2 = []
-            for (let i = 0; i <= walletRemoveDup2.length - 1 && address !== null && address !== undefined; i++) {
-                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet2.push({Id: String(walletRemoveDup2[i])})
-                }
-            }
-            const data5 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet2.map((item) => (
-                    {
-                        address: narutanft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet2.length).fill('')]
-            for (let i = 0; i <= yournftwallet2.length - 1; i++) {
-                const nftipfs = data5[i].result
-                let nft = {name: "", image: "", description: "", attributes: ""}
-                try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
-                    nft = await response.json()
-                } catch {}
-                nfts.push({
-                    Col: 2,
-                    Id: yournftwallet2[i].Id,
-                    Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: Number(yournftwallet2[i].Id.slice(-5)),
-                    isStaked: false
-                })
-            }
-
-            const walletFilter3 = await bbnftSC.filters.Transfer(null, address, null)
-            const walletEvent3 = await bbnftSC.queryFilter(walletFilter3, 3478177, "latest")
-            const walletMap3 = await Promise.all(walletEvent3.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup3 = walletMap3.filter((obj, index) => walletMap3.indexOf(obj) === index)
-            const data6 = address !== null && address !== undefined ? await readContracts({
-                contracts: walletRemoveDup3.map((item) => (
-                    {
-                        address: bbnft,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(walletRemoveDup3.length).fill('')]
-            let yournftwallet3 = []
-            for (let i = 0; i <= walletRemoveDup3.length - 1 && address !== null && address !== undefined; i++) {
-                if (data6[i].result.toUpperCase() === address.toUpperCase()) {
-                    yournftwallet3.push({Id: String(walletRemoveDup3[i])})
-                }
-            }
-            const data7 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet3.map((item) => (
-                    {
-                        address: bbnft,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet3.length).fill('')]
-            for (let i = 0; i <= yournftwallet3.length - 1; i++) {
-                const nftipfs = data7[i].result
-                let nft = {name: "", image: "", description: "", attributes: ""}
-                try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
-                    nft = await response.json()
-                } catch {}
-                nfts.push({
-                    Col: 3,
-                    Id: yournftwallet3[i].Id,
-                    Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: 0,
-                    isStaked: false
-                })
-            }
-            if (nfts.length === 0) { nfts.push(null) }
-
             const dataHouse = await readContracts({
                 contracts: [
                     {
@@ -1650,13 +836,827 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     myhouseMul = Number(dataHouse[95].result)
                 }
             }
+
+            const nftEQ = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEquip',
+                args: [address],
+            })
+            const nftEQ2 = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEquip2',
+                args: [address],
+            })
+            /*const nftEQColMul = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEquipColMul',
+                args: [address],
+            })
+            const nftEQColMul2 = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEQColMul2',
+                args: [address],
+            })*/
+            const nftEQMemeSS1 = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEquipMeme',
+                args: [address, 1],
+            })
+
+            const data = await readContracts({
+                contracts: [
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[0])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[3])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[4])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[5])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[6])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[2])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ[1])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[0])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[1])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[2])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[3])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[4])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[5])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[6])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQ2[7])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[0])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[1])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[2])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[3])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[4])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[5])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS1[6])],
+                    },
+                    {
+                        address: doijibToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: silToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: mintStOPT_Router,
+                        abi: mintStOPTABI,
+                        functionName: 'userTimeStamp',
+                        args: [address, 2],
+                    },
+                    {
+                        address: dunMo,
+                        abi: dunMoABI,
+                        functionName: 'calculateRewards',
+                        args: [address, ss, house],
+                    },
+                    {
+                        address: salonRouter,
+                        abi: salonABI,
+                        functionName: 'skin',
+                        args: [address, 1],
+                    }, 
+                ],
+            })
+            
+            let nfts = []
+
+            let res_main_char = null
+            try {
+                res_main_char = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_char = res_main_char !== null ? await res_main_char.json() : {image: null, name: null}
+            const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_char_Name = nft_main_char.name
+            if (res_main_char !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[0]),
+                    Name: nftEQ_main_char_Name,
+                    Image: nftEQ_main_char_Img,
+                    Description: nft_main_char.description,
+                    Attribute: nft_main_char.attributes,
+                    RewardPerSec: Number(nftEQ[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1
+                })
+            }
+            let res_main_acc1 = null
+            try {
+                res_main_acc1 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_acc = res_main_acc1 !== null ? await res_main_acc1.json() : {image: null, name: null}
+            const nftEQ_main_acc_Img = nft_main_acc.image !== null ? nft_main_acc.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc_Name = nft_main_acc.name
+            if (res_main_acc1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[3]),
+                    Name: nftEQ_main_acc_Name,
+                    Image: nftEQ_main_acc_Img,
+                    Description: nft_main_acc.description,
+                    Attribute: nft_main_acc.attributes,
+                    RewardPerSec: Number(nftEQ[3]) % 100000,
+                    isStaked: true,
+                    Slot: 4
+                })
+            }
+            let res_main_back = null
+            try {
+                res_main_back = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_back = res_main_back !== null ? await res_main_back.json() : {image: null, name: null}
+            const nftEQ_main_back_Img = nft_main_back.image !== null ? nft_main_back.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_back_Name = nft_main_back.name
+            if (res_main_back !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[4]),
+                    Name: nftEQ_main_back_Name,
+                    Image: nftEQ_main_back_Img,
+                    Description: nft_main_back.description,
+                    Attribute: nft_main_back.attributes,
+                    RewardPerSec: Number(nftEQ[4]) % 100000,
+                    isStaked: true,
+                    Slot: 5
+                })
+            }
+            let res_main_shoes = null
+            try {
+                res_main_shoes = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_shoes = res_main_shoes !== null ? await res_main_shoes.json() : {image: null, name: null}
+            const nftEQ_main_shoes_Img = nft_main_shoes.image !== null ? nft_main_shoes.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_shoes_Name = nft_main_shoes.name
+            if (res_main_shoes !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[5]),
+                    Name: nftEQ_main_shoes_Name,
+                    Image: nftEQ_main_shoes_Img,
+                    Description: nft_main_shoes.description,
+                    Attribute: nft_main_shoes.attributes,
+                    RewardPerSec: Number(nftEQ[5]) % 100000,
+                    isStaked: true,
+                    Slot: 6
+                })
+            }
+            let res_main_wp1 = null
+            try {
+                res_main_wp1 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_wp1 = res_main_wp1 !== null ? await res_main_wp1.json() : {image: null, name: null}
+            const nftEQ_main_wp1_Img = nft_main_wp1.image !== null ? nft_main_wp1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_wp1_Name = nft_main_wp1.name
+            if (res_main_wp1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[6]),
+                    Name: nftEQ_main_wp1_Name,
+                    Image: nftEQ_main_wp1_Img,
+                    Description: nft_main_wp1.description,
+                    Attribute: nft_main_wp1.attributes,
+                    RewardPerSec: Number(nftEQ[6]) % 100000,
+                    isStaked: true,
+                    Slot: 7
+                })
+            }
+            let res_main_cloth = null
+            try {
+                res_main_cloth = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_cloth = res_main_cloth !== null ? await res_main_cloth.json() : {image: null, name: null}
+            const nftEQ_main_cloth_Img = nft_main_cloth.image !== null ? nft_main_cloth.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_cloth_Name = nft_main_cloth.name
+            if (res_main_cloth !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[2]),
+                    Name: nftEQ_main_cloth_Name,
+                    Image: nftEQ_main_cloth_Img,
+                    Description: nft_main_cloth.description,
+                    Attribute: nft_main_cloth.attributes,
+                    RewardPerSec: Number(nftEQ[2]) % 100000,
+                    isStaked: true,
+                    Slot: 3
+                })
+            }
+            let res_main_hat = null
+            try {
+                res_main_hat = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_hat = res_main_hat !== null ? await res_main_hat.json() : {image: null, name: null}
+            const nftEQ_main_hat_Img = nft_main_hat.image !== null ? nft_main_hat.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_hat_Name = nft_main_hat.name
+            if (res_main_hat !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ[1]),
+                    Name: nftEQ_main_hat_Name,
+                    Image: nftEQ_main_hat_Img,
+                    Description: nft_main_hat.description,
+                    Attribute: nft_main_hat.attributes,
+                    RewardPerSec: Number(nftEQ[1]) % 100000,
+                    isStaked: true,
+                    Slot: 2
+                })
+            }
+            let res_main_wp2 = null
+            try {
+                res_main_wp2 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_wp2 = res_main_wp2 !== null ? await res_main_wp2.json() : {image: null, name: null}
+            const nftEQ_main_wp2_Img = nft_main_wp2.image !== null ? nft_main_wp2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_wp2_Name = nft_main_wp2.name
+            if (res_main_wp2 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[0]),
+                    Name: nftEQ_main_wp2_Name,
+                    Image: nftEQ_main_wp2_Img,
+                    Description: nft_main_wp2.description,
+                    Attribute: nft_main_wp2.attributes,
+                    RewardPerSec: Number(nftEQ2[0]) % 100000,
+                    isStaked: true,
+                    Slot: 14
+                })
+            }
+            let res_main_acc2 = null
+            try {
+                res_main_acc2 = data[8].status === 'success' ? await fetch(data[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_acc2 = res_main_acc2 !== null ? await res_main_acc2.json() : {image: null, name: null}
+            const nftEQ_main_acc2_Img = nft_main_acc2.image !== null ? nft_main_acc2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc2_Name = nft_main_acc2.name
+            if (res_main_acc2 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[1]),
+                    Name: nftEQ_main_acc2_Name,
+                    Image: nftEQ_main_acc2_Img,
+                    Description: nft_main_acc2.description,
+                    Attribute: nft_main_acc2.attributes,
+                    RewardPerSec: Number(nftEQ2[1]) % 100000,
+                    isStaked: true,
+                    Slot: 9
+                })
+            }
+            let res_main_acc3 = null
+            try {
+                res_main_acc3 = data[9].status === 'success' ? await fetch(data[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_acc3 = res_main_acc3 !== null ? await res_main_acc3.json() : {image: null, name: null}
+            const nftEQ_main_acc3_Img = nft_main_acc3.image !== null ? nft_main_acc3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc3_Name = nft_main_acc3.name
+            if (res_main_acc3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[2]),
+                    Name: nftEQ_main_acc3_Name,
+                    Image: nftEQ_main_acc3_Img,
+                    Description: nft_main_acc3.description,
+                    Attribute: nft_main_acc3.attributes,
+                    RewardPerSec: Number(nftEQ2[2]) % 100000,
+                    isStaked: true,
+                    Slot: 10
+                })
+            }
+            let res_main_acc4 = null
+            try {
+                res_main_acc4 = data[10].status === 'success' ? await fetch(data[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_acc4 = res_main_acc4 !== null ? await res_main_acc4.json() : {image: null, name: null}
+            const nftEQ_main_acc4_Img = nft_main_acc4.image !== null ? nft_main_acc4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc4_Name = nft_main_acc4.name
+            if (res_main_acc4 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[3]),
+                    Name: nftEQ_main_acc4_Name,
+                    Image: nftEQ_main_acc4_Img,
+                    Description: nft_main_acc4.description,
+                    Attribute: nft_main_acc4.attributes,
+                    RewardPerSec: Number(nftEQ2[3]) % 100000,
+                    isStaked: true,
+                    Slot: 11
+                })
+            }
+            let res_main_acc5 = null
+            try {
+                res_main_acc5 = data[11].status === 'success' ? await fetch(data[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_acc5 = res_main_acc5 !== null ? await res_main_acc5.json() : {image: null, name: null}
+            const nftEQ_main_acc5_Img = nft_main_acc5.image !== null ? nft_main_acc5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc5_Name = nft_main_acc5.name
+            if (res_main_acc5 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[4]),
+                    Name: nftEQ_main_acc5_Name,
+                    Image: nftEQ_main_acc5_Img,
+                    Description: nft_main_acc5.description,
+                    Attribute: nft_main_acc5.attributes,
+                    RewardPerSec: Number(nftEQ2[4]) % 100000,
+                    isStaked: true,
+                    Slot: 12
+                })
+            }
+            let res_main_acc6 = null
+            try {
+                res_main_acc6 = data[12].status === 'success' ? await fetch(data[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_acc6 = res_main_acc6 !== null ? await res_main_acc6.json() : {image: null, name: null}
+            const nftEQ_main_acc6_Img = nft_main_acc6.image !== null ? nft_main_acc6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc6_Name = nft_main_acc6.name
+            if (res_main_acc6 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[5]),
+                    Name: nftEQ_main_acc6_Name,
+                    Image: nftEQ_main_acc6_Img,
+                    Description: nft_main_acc6.description,
+                    Attribute: nft_main_acc6.attributes,
+                    RewardPerSec: Number(nftEQ2[5]) % 100000,
+                    isStaked: true,
+                    Slot: 13
+                })
+            }
+            let res_main_soul = null
+            try {
+                res_main_soul = data[13].status === 'success' ? await fetch(data[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_soul = res_main_soul !== null ? await res_main_soul.json() : {image: null, name: null}
+            const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_soul_Name = nft_main_soul.name
+            if (res_main_soul !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[6]),
+                    Name: nftEQ_main_soul_Name,
+                    Image: nftEQ_main_soul_Img,
+                    Description: nft_main_soul.description,
+                    Attribute: nft_main_soul.attributes,
+                    RewardPerSec: Number(nftEQ2[6]) % 100000,
+                    isStaked: true,
+                    Slot: 15
+                })
+            }
+            let res_main_badge = null
+            try {
+                res_main_badge = data[14].status === 'success' ? await fetch(data[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_main_badge = res_main_badge !== null ? await res_main_badge.json() : {image: null, name: null}
+            const nftEQ_main_badge_Img = nft_main_badge.image !== null ? nft_main_badge.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_badge_Name = nft_main_badge.name
+            if (res_main_badge !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQ2[7]),
+                    Name: nftEQ_main_badge_Name,
+                    Image: nftEQ_main_badge_Img,
+                    Description: nft_main_badge.description,
+                    Attribute: nft_main_badge.attributes,
+                    RewardPerSec: Number(nftEQ2[7]) % 100000,
+                    isStaked: true,
+                    Slot: 8
+                })
+            }
+            let memeSS1cmpow = 0
+            let res_meme_char_ss1 = null
+            try {
+                res_meme_char_ss1 = data[15].status === 'success' ? await fetch(data[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_char_ss1 = res_meme_char_ss1 !== null ? await res_meme_char_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_char_ss1_Img = nft_meme_char_ss1.image !== null ? nft_meme_char_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_char_ss1_Name = nft_meme_char_ss1.name
+            memeSS1cmpow += res_meme_char_ss1 !== null ? Number(nftEQMemeSS1[0]) % 100000 : 0
+            if (res_meme_char_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[0]),
+                    Name: nftEQ_meme_char_ss1_Name,
+                    Image: nftEQ_meme_char_ss1_Img,
+                    Description: nft_meme_char_ss1.description,
+                    Attribute: nft_meme_char_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1
+                })
+            }
+            let res_meme_hat_ss1 = null
+            try {
+                res_meme_hat_ss1 = data[16].status === 'success' ? await fetch(data[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_hat_ss1 = res_meme_hat_ss1 !== null ? await res_meme_hat_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_hat_ss1_Img = nft_meme_hat_ss1.image !== null ? nft_meme_hat_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_hat_ss1_Name = nft_meme_hat_ss1.name
+            memeSS1cmpow += res_meme_hat_ss1 !== null ? Number(nftEQMemeSS1[1]) % 100000 : 0
+            if (res_meme_hat_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[1]),
+                    Name: nftEQ_meme_hat_ss1_Name,
+                    Image: nftEQ_meme_hat_ss1_Img,
+                    Description: nft_meme_hat_ss1.description,
+                    Attribute: nft_meme_hat_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[1]) % 100000,
+                    isStaked: true,
+                    Slot: 2
+                })
+            }
+            let res_meme_cloth_ss1 = null
+            try {
+                res_meme_cloth_ss1 = data[17].status === 'success' ? await fetch(data[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_cloth_ss1 = res_meme_cloth_ss1 !== null ? await res_meme_cloth_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_cloth_ss1_Img = nft_meme_cloth_ss1.image !== null ? nft_meme_cloth_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_cloth_ss1_Name = nft_meme_cloth_ss1.name
+            memeSS1cmpow += res_meme_cloth_ss1 !== null ? Number(nftEQMemeSS1[2]) % 100000 : 0
+            if (res_meme_cloth_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[2]),
+                    Name: nftEQ_meme_cloth_ss1_Name,
+                    Image: nftEQ_meme_cloth_ss1_Img,
+                    Description: nft_meme_cloth_ss1.description,
+                    Attribute: nft_meme_cloth_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[2]) % 100000,
+                    isStaked: true,
+                    Slot: 3
+                })
+            }
+            let res_meme_acc_ss1 = null
+            try {
+                res_meme_acc_ss1 = data[18].status === 'success' ? await fetch(data[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_acc_ss1 = res_meme_acc_ss1 !== null ? await res_meme_acc_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_acc_ss1_Img = nft_meme_acc_ss1.image !== null ? nft_meme_acc_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            memeSS1cmpow += res_meme_acc_ss1 !== null ? Number(nftEQMemeSS1[3]) % 100000 : 0
+            if (res_meme_acc_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[3]),
+                    Name: nft_meme_acc_ss1.name,
+                    Image: nftEQ_meme_acc_ss1_Img,
+                    Description: nft_meme_acc_ss1.description,
+                    Attribute: nft_meme_acc_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[3]) % 100000,
+                    isStaked: true,
+                    Slot: 4
+                })
+            }
+            let res_meme_back_ss1 = null
+            try {
+                res_meme_back_ss1 = data[19].status === 'success' ? await fetch(data[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_back_ss1 = res_meme_back_ss1 !== null ? await res_meme_back_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_back_ss1_Img = nft_meme_back_ss1.image !== null ? nft_meme_back_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_back_ss1_Name = nft_meme_back_ss1.name
+            memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[4]) % 100000 : 0
+            if (res_meme_back_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[4]),
+                    Name: nftEQ_meme_back_ss1_Name,
+                    Image: nftEQ_meme_back_ss1_Img,
+                    Description: nft_meme_back_ss1.description,
+                    Attribute: nft_meme_back_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[4]) % 100000,
+                    isStaked: true,
+                    Slot: 5
+                })
+            }
+            let res_meme_shoes_ss1 = null
+            try {
+                res_meme_shoes_ss1 = data[20].status === 'success' ? await fetch(data[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_shoes_ss1 = res_meme_shoes_ss1 !== null ? await res_meme_shoes_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_shoes_ss1_Img = nft_meme_shoes_ss1.image !== null ? nft_meme_shoes_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_shoes_ss1_Name = nft_meme_shoes_ss1.name
+            memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[5]) % 100000 : 0
+            if (res_meme_back_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[5]),
+                    Name: nftEQ_meme_shoes_ss1_Name,
+                    Image: nftEQ_meme_shoes_ss1_Img,
+                    Description: nft_meme_shoes_ss1.description,
+                    Attribute: nft_meme_shoes_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[5]) % 100000,
+                    isStaked: true,
+                    Slot: 6
+                })
+            }
+            let res_meme_weapon_ss1 = null
+            try {
+                res_meme_weapon_ss1 = data[21].status === 'success' ? await fetch(data[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_weapon_ss1 = res_meme_weapon_ss1 !== null ? await res_meme_weapon_ss1.json() : {image: null, name: null}
+            const nftEQ_meme_weapon_ss1_Img = nft_meme_weapon_ss1.image !== null ? nft_meme_weapon_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_weapon_ss1_Name = nft_meme_weapon_ss1.name
+            memeSS1cmpow += res_meme_weapon_ss1 !== null ? Number(nftEQMemeSS1[6]) % 100000 : 0
+            if (res_meme_weapon_ss1 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS1[6]),
+                    Name: nftEQ_meme_weapon_ss1_Name,
+                    Image: nftEQ_meme_weapon_ss1_Img,
+                    Description: nft_meme_weapon_ss1.description,
+                    Attribute: nft_meme_weapon_ss1.attributes,
+                    RewardPerSec: Number(nftEQMemeSS1[6]) % 100000,
+                    isStaked: true,
+                    Slot: 7
+                })
+            }
+
+            const nftStatus = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftStatus',
+                args: [address],
+            })
+
+            const allPow = Number(nftStatus[0])
+            const refuelAt = Number(nftStatus[1])
+            const isStaked = nftStatus[2]
+
+            const doijibBal = data[22].result
+            const silBal = data[23].result
+            const stOPTClaim = isStaked ? data[24].result : 0
+            const rewardpending = isStaked ? data[25].result : 0
+            const skinslot1 = data[26].result
+
+                        
+            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
+            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
+            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            const data2 = address !== null && address !== undefined ? await readContracts({
+                contracts: walletRemoveDup.map((item) => (
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(walletRemoveDup.length).fill('')]
+            let yournftwallet = []
+            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+                    yournftwallet.push({Id: String(walletRemoveDup[i])})
+                }
+            }
+            const data3 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet.map((item) => (
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet.length).fill('')]
+            for (let i = 0; i <= yournftwallet.length - 1; i++) {
+                const nftipfs = data3[i].result
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    nft = await response.json()
+                } catch {}
+                nfts.push({
+                    Col: 1,
+                    Id: yournftwallet[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
+                    isStaked: false
+                })
+            }
+
+            const walletFilter2 = await narutanftSC.filters.Transfer(null, address, null)
+            const walletEvent2 = await narutanftSC.queryFilter(walletFilter2, 2852393, "latest")
+            const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
+            const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
+            const data4 = address !== null && address !== undefined ? await readContracts({
+                contracts: walletRemoveDup2.map((item) => (
+                    {
+                        address: narutanft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(walletRemoveDup2.length).fill('')]
+            let yournftwallet2 = []
+            for (let i = 0; i <= walletRemoveDup2.length - 1 && address !== null && address !== undefined; i++) {
+                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
+                    yournftwallet2.push({Id: String(walletRemoveDup2[i])})
+                }
+            }
+            const data5 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet2.map((item) => (
+                    {
+                        address: narutanft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet2.length).fill('')]
+            for (let i = 0; i <= yournftwallet2.length - 1; i++) {
+                const nftipfs = data5[i].result
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    nft = await response.json()
+                } catch {}
+                nfts.push({
+                    Col: 2,
+                    Id: yournftwallet2[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: Number(yournftwallet2[i].Id.slice(-5)),
+                    isStaked: false
+                })
+            }
+
+            const walletFilter3 = await bbnftSC.filters.Transfer(null, address, null)
+            const walletEvent3 = await bbnftSC.queryFilter(walletFilter3, 3478177, "latest")
+            const walletMap3 = await Promise.all(walletEvent3.map(async (obj) => String(obj.args.tokenId)))
+            const walletRemoveDup3 = walletMap3.filter((obj, index) => walletMap3.indexOf(obj) === index)
+            const data6 = address !== null && address !== undefined ? await readContracts({
+                contracts: walletRemoveDup3.map((item) => (
+                    {
+                        address: bbnft,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(walletRemoveDup3.length).fill('')]
+            let yournftwallet3 = []
+            for (let i = 0; i <= walletRemoveDup3.length - 1 && address !== null && address !== undefined; i++) {
+                if (data6[i].result.toUpperCase() === address.toUpperCase()) {
+                    yournftwallet3.push({Id: String(walletRemoveDup3[i])})
+                }
+            }
+            const data7 = address !== null && address !== undefined ? await readContracts({
+                contracts: yournftwallet3.map((item) => (
+                    {
+                        address: bbnft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                    }
+                ))
+            }) : [Array(yournftwallet3.length).fill('')]
+            for (let i = 0; i <= yournftwallet3.length - 1; i++) {
+                const nftipfs = data7[i].result
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    nft = await response.json()
+                } catch {}
+                nfts.push({
+                    Col: 3,
+                    Id: yournftwallet3[i].Id,
+                    Name: nft.name,
+                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: 0,
+                    isStaked: false
+                })
+            }
+            if (nfts.length === 0) { nfts.push(null) }
             
             return [
                 nfts, 
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 nftEQ_meme_char_ss1_Img, nftEQ_meme_char_ss1_Name, nftEQ_meme_hat_ss1_Img, nftEQ_meme_hat_ss1_Name, nftEQ_meme_cloth_ss1_Img, nftEQ_meme_cloth_ss1_Name, nftEQ_meme_acc_ss1_Img, nftEQ_meme_back_ss1_Img, nftEQ_meme_back_ss1_Name, nftEQ_meme_shoes_ss1_Img, nftEQ_meme_shoes_ss1_Name, nftEQ_meme_weapon_ss1_Img, nftEQ_meme_weapon_ss1_Name,
-                allPow, isStaked, refuelAt, rewardPending, stOPTClaim, doijibBal, silBal, skinslot1, myhouseMul, house, memeSS1cmpow,
+                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, silBal, skinslot1, myhouseMul, house, memeSS1cmpow,
             ]
         }
 
