@@ -20,6 +20,7 @@ const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
 
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
+const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
@@ -27,7 +28,7 @@ const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI, constructionStakingABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI, constructionStakingABI }) => {
     const { address } = useAccount()
 
     /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -773,6 +774,347 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 ],
             }) 
 
+            const dataHouseLv = await readContracts({
+                contracts: [
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10026010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10026002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10001011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10026006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10002011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10026011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003001'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003002'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003003'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003004'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003005'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003006'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003007'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003008'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003009'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003010'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003011'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003012'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003013'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003014'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003015'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003016'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003017'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003018'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003019'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003020'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003021'],
+                        chainId: 8899,
+                    },
+                    {
+                        address: slot1,
+                        abi: slot1ABI,
+                        functionName: 'slotLevel',
+                        args: ['10003022'],
+                        chainId: 8899,
+                    },
+                ],
+            }) 
+
             const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -1022,13 +1364,122 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     }
                 }
             }
-            console.log(powHouseWD)
+
+            let powMO = await readContracts({
+                contracts: ranker.map((item) => (
+                    {
+                        address: dunMo,
+                        abi: dunMoABI,
+                        functionName: 'nftStatus',
+                        args: [item],
+                    }
+                ))
+            })
+            for (let i = 0; i <= ranker.length - 1; i++) {
+                if (ranker[i].toUpperCase() === dataHouse[1].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[1].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[2].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[2].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[3].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[3].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[4].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[4].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[5].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[5].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[6].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[6].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[7].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[7].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[8].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[8].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[9].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[9].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[10].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[10].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[11].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[11].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[12].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 10 * Number(dataHouseLv[12].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[13].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[13].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[0].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[0].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[14].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[14].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[15].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[15].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[16].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[16].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[17].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[17].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[18].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[18].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[19].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[19].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[20].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[20].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[21].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[21].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[22].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[22].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[23].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[23].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[24].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 5 * Number(dataHouseLv[24].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[25].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[25].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[26].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[26].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[27].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[27].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[28].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[28].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[29].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[29].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[30].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[30].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[31].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[31].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[32].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[32].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[33].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[33].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[34].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[34].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[35].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[35].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[36].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[36].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[37].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[37].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[38].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[38].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[39].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[39].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[40].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[40].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[41].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[41].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[42].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[42].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[43].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[43].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[44].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[44].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[45].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[45].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[46].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[46].result)
+                } else if (ranker[i].toUpperCase() === dataHouse[47].result.toUpperCase()) {
+                    powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[47].result)
+                }
+            }
 
             const data3 = ranker.map((item, i) => {
                 return {
                     addr: item,
                     name: ambass100Arr[i] !== undefined ? ambass100Arr[i] : item.slice(0, 4) + "..." + item.slice(-4),
-                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i]) + Number(powHouseWD[i])
+                    cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i]) + Number(powHouseWD[i] + Number(powMO[i].result[0]))
                 }
             })
 
