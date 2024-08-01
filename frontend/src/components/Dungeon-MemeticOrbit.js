@@ -2142,9 +2142,10 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             TOTAL CMPOW
                             <div style={{display: "flex", flexDirection: "row"}}>{ss === 1 && yourSS1CMPOW}</div>
                         </div>
-                        <div style={{height: "160px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
+                        <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
                             <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 1 concludes at 11:59 PM on August 28th.</div>
-                            <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the season badge claiming. The season ends in 28 + 7 days.</div>
+                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
+                            <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
                             <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
                         </div>
                     </div>
@@ -2247,11 +2248,10 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                                                     (
                                                                         (Number(item.Id) >= 102000108000 && Number(item.Id) <= 102033308000) || 
                                                                         (Number(item.Id) >= 220010810800 && Number(item.Id) <= 220020910800) || 
-                                                                        (Number(item.Id) >= 300010100600 && Number(item.Id) <= 300054800600) || 
-                                                                        (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025600250)
+                                                                        (Number(item.Id) >= 300010100600 && Number(item.Id) <= 300054800600)
                                                                     )
                                                                 ) || 
-                                                                item.Col === 2 || 
+                                                                (item.Col === 2 && (Number(item.Id) < 700000118800 && Number(item.Id) > 700025018800)) || 
                                                                 item.Col === 3
                                                             )
                                                         ) &&
