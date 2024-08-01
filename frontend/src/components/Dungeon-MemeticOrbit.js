@@ -1645,7 +1645,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: 0,
+                    RewardPerSec: Number(yournftwallet3[i].Id.slice(-5)),
                     isStaked: false
                 })
             }
@@ -2143,7 +2143,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             <div style={{display: "flex", flexDirection: "row"}}>{ss === 1 && yourSS1CMPOW}</div>
                         </div>
                         <div style={{height: "160px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
-                            <div style={{width: "100%", margin: "20px 0 10px 0", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">Fulfill all slots to win this season badge. Season will end within 28 + 7 days.</div>
+                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 1 concludes at 11:59 PM on August 28th.</div>
+                            <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the season badge claiming. The season ends in 28 + 7 days.</div>
                             <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
                         </div>
                     </div>
