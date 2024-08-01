@@ -1021,18 +1021,19 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         args: [address, 2],
                     },
                     {
-                        address: dunMo,
-                        abi: dunMoABI,
-                        functionName: 'calculateRewards',
-                        args: [address, ss, house],
-                    },
-                    {
                         address: salonRouter,
                         abi: salonABI,
                         functionName: 'skin',
                         args: [address, 1],
                     }, 
                 ],
+            })
+            const rawPending = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'calculateRewards',
+                args: [address, ss, house],
+                account: address,
             })
             
             let nfts = []
@@ -1499,9 +1500,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const doijibBal = data[22].result
             const silBal = data[23].result
             const stOPTClaim = isStaked ? data[24].result : 0
-            const rewardpending = isStaked ? data[25].result : 0
-            const skinslot1 = data[26].result
-
+            const skinslot1 = data[25].result
+            const rewardpending = isStaked ? rawPending : 0
                         
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
