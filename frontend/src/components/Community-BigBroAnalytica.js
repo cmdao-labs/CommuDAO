@@ -17,6 +17,7 @@ const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
 const cmd = '0x399fe73bb0ee60670430fd92fe25a0fdd308e142'
+const usdtOP = '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58'
 
 const genesis = '0x0000000000000000000000000000000000000000'
 const burn = '0x0000000000000000000000000000000000000001'
@@ -26,6 +27,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
     const [cmdBbq, setCmdBbq] = React.useState(0)
     const [cmdGov, setCmdGov] = React.useState(0)
     const [cmdRev, setCmdRev] = React.useState(0)
+    const [usdtRev, setUsdtRev] = React.useState(0)
     const [cmdCirculation, setCmdCirculation] = React.useState(0)
 
     const [cmjLocked, setCmjLocked] = React.useState(0)
@@ -655,6 +657,13 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         args: ['0x494c102E557F5b8F1a5EaC7481d160EbA4413934'],
                         chainId: 10,
                     },
+                    {
+                        address: usdtOP,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x1BeedD97fCD4E21754465d21c757A9DF43733187'],
+                        chainId: 10,
+                    },
                 ],
             })
 
@@ -734,7 +743,8 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
             setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
-            setCmdRev((Number(result[14]) - 10) * 0.6)
+            setCmdRev((Number(result[14]) - 10) * 0.85)
+            setUsdtRev((Number(result[13][4].result) / 1e6) * 0.85)
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][0].result))))
 
             setWoodStat(result[15])
@@ -777,7 +787,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div style={{color: "#fff"}}>{Number(cmdCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdCirculation/1000000).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div>In CMDAO Governance (CMD-ETH LP):</div>
+                                <div>In CMDAO Gov (CMD-ETH LP):</div>
                                 <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
@@ -786,7 +796,11 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Epoch 1 Revenue:</div>
-                                <div style={{color: "#fff"}}>{Number(cmdRev).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdRev/1000000).toFixed(2)}%)</div>
+                                <div style={{color: "#fff"}}>{Number(cmdRev).toLocaleString('en-US', {maximumFractionDigits:0})} CMD ({Number(cmdRev/1000000).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div></div>
+                                <div style={{color: "#fff"}}>{Number(usdtRev).toLocaleString('en-US', {maximumFractionDigits:2})} USDT</div>
                             </div>
                         </div>
                     </div>
