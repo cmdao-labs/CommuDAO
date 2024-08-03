@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 const { ethereum } = window
 
