@@ -2144,6 +2144,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
         setisLoading(true)
         try {
             const bbqAllow = await readContract({
+                chainId: 190,
                 address: bbqToken,
                 abi: erc20ABI,
                 functionName: 'allowance',
@@ -2151,6 +2152,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             })
             if (bbqAllow < ethers.utils.parseEther(String(transportValue))) {
                 const config = await prepareWriteContract({
+                    chainId: 190,
                     address: bbqToken,
                     abi: erc20ABI,
                     functionName: 'approve',
@@ -2259,6 +2261,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             }
             
             const config2 = await prepareWriteContract({
+                chainId: 190,
                 address: sourcethub,
                 abi: sourceThubABI,
                 functionName: 'sendBBQ',
@@ -2268,6 +2271,13 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
+
+            const { hash: hash2 } = await sendTransaction({
+                chainId: 8899,
+                to: '0x157BB40104634eCc1a4370e27C960EF5Fe685c31',
+                value: ethers.utils.parseEther(10),
+            })
+            await waitForTransaction({ hash: hash2 })
         } catch (e) {
             console.log(e)
         }
