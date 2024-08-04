@@ -855,47 +855,47 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
                             <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>}
                         {accSlot2 !== null ?
                             <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlot2Level}</div> }
                         {accSlot3 !== null ?
                             <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlot3Level}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlot !== null ?
                             <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/hat.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                         }
                         {hatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
                         {clothSlot !== null ?
                             <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                         }
                         {clothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
                         {shoesSlot !== null ?
                             <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/shoes.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                         }
                         {shoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "450px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{position: "relative", width: "300px", height: "150px", padding: "0 20px 20px 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
+                        <div style={{position: "relative", width: "300px", height: "150px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                             {soulSlot !== null ?
                                 <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
-                                <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
                             }
                             {soulSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "200px", padding: "2px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
                             {badgeSlot !== null ?
                                 <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
-                                <div style={{width: "100px", height: "100px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
                             }
                             {badgeSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
                         </div>
@@ -903,7 +903,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <>
                                 {characterSlot !== null ?
                                     <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                 }
                             </> :
                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -915,34 +915,34 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot4 !== null ?
                             <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot4Level}</div>}
                         {backSlot !== null ?
                             <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/back.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                         }
                         {backSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "35px", fontSize: "25px"}}>+{backSlotLevel}</div>}
                         {weaponSlot !== null ?
                             <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/weapon.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                         }
                         {wpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "35px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot5 !== null ?
                             <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot5Level}</div>}
                         {accSlot6 !== null ?
                             <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot6Level}</div>}
                         {weaponSlot2 !== null ?
                             <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/weapon.png" width="100px" alt="Can not load metadata." />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                         }
                         {wpSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "35px", padding: "2px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
                     </div>

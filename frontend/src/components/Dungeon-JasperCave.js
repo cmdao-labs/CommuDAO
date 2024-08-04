@@ -1053,7 +1053,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlot !== null ?
                             <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                         }
                         {hatSlotLevel !== null ?
                             <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
@@ -1061,7 +1061,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         }
                         {clothSlot !== null ?
                             <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                         }
                         {clothSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
@@ -1069,7 +1069,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         }
                         {shoesSlot !== null ?
                             <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/shoes.png" width="100px" alt="Shoes_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                         }
                         {shoesSlotLevel !== null ?
                             <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div> :
@@ -1095,7 +1095,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                             <></>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                 }
                             </> :
                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -1114,7 +1114,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
                             <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Accessories_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlotLevel !== null ?
                             <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div> :
@@ -1122,7 +1122,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         }
                         {backSlot !== null ?
                             <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/back.png" width="100px" alt="Back_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                         }
                         {backSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div> :
@@ -1130,7 +1130,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         }
                         {weaponSlot !== null ?
                             <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/weapon.png" width="100px" alt="Weapon_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                         }
                         {wpSlotLevel !== null ?
                             <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div> :

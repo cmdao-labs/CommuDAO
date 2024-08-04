@@ -644,7 +644,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlotC !== null ?
                             <img src={hatSlotC} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                         }
                         {hatSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevelC}</div> :
@@ -652,7 +652,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {clothSlotC !== null ?
                             <img src={clothSlotC} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                         }
                         {clothSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevelC}</div> :
@@ -660,7 +660,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {shoesSlotC !== null ?
                             <img src={shoesSlotC} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/shoes.png" width="100px" alt="Shoes_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                         }
                         {shoesSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevelC}</div> :
@@ -703,7 +703,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                                             <></>
                                         }
                                     </> :
-                                    <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                 }
                             </> :
                             <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -726,7 +726,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlotC !== null ?
                             <img src={accSlotC} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Accessories_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevelC}</div> :
@@ -734,7 +734,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {backSlotC !== null ?
                             <img src={backSlotC} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/back.png" width="100px" alt="Back_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                         }
                         {backSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{backSlotLevelC}</div> :
@@ -742,7 +742,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {weaponSlotC !== null ?
                             <img src={weaponSlotC} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/weapon.png" width="100px" alt="Weapon_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                         }
                         {wpSlotLevelC !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevelC}</div> :
@@ -777,7 +777,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {hatSlot !== null ?
                             <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                         }
                         {hatSlotLevel !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
@@ -785,7 +785,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {clothSlot !== null ?
                             <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                         }
                         {clothSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
@@ -793,7 +793,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {shoesSlot !== null ?
                             <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/shoes.png" width="100px" alt="Shoes_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                         }
                         {shoesSlotLevel !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div> :
@@ -836,7 +836,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                                             <></>
                                         }
                                     </> :
-                                    <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                 }
                             </> :
                             <div style={{width: "250px", height: "250px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -863,7 +863,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
                             <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/accessories.png" width="100px" alt="Accessories_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
                         {accSlotLevel !== null ?
                             <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div> :
@@ -871,7 +871,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {backSlot !== null ?
                             <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/back.png" width="100px" alt="Back_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                         }
                         {backSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div> :
@@ -879,7 +879,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                         }
                         {weaponSlot !== null ?
                             <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/weapon.png" width="100px" alt="Weapon_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                         }
                         {wpSlotLevel !== null ?
                             <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div> :

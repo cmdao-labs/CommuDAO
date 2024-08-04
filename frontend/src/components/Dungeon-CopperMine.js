@@ -552,7 +552,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                         {hatSlot !== null ?
                             <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/hat.png" width="100px" alt="Hat_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                         }
                         {hatSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
@@ -578,7 +578,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                             <></>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                 }
                             </> :
                             <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -597,7 +597,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                         {clothSlot !== null ?
                             <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="/../elements/cloth.png" width="100px" alt="Cloth_slot" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                         }
                         {clothSlotLevel !== null ?
                             <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
