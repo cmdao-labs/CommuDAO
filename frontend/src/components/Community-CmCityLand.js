@@ -651,7 +651,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setTxupdate(hash1)
             const { hash: hash2 } = await sendTransaction({
                 chainId: 8899,
-                to: '0x157BB40104634eCc1a4370e27C960EF5Fe685c31',
+                to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                 value: ethers.utils.parseEther(10),
             })
             await waitForTransaction({ hash: hash2 })
@@ -775,7 +775,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setTxupdate(hash04)
             const { hash: hash2 } = await sendTransaction({
                 chainId: 8899,
-                to: '0x157BB40104634eCc1a4370e27C960EF5Fe685c31',
+                to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                 value: ethers.utils.parseEther(10),
             })
             await waitForTransaction({ hash: hash2 })
