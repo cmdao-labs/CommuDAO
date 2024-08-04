@@ -55,6 +55,8 @@ import BBQLabs from './BBQ-Labs'
 
 import OpGameSwap from  './OP-GameSwap'
 
+import Guild from  './Guild'
+
 import { bkc } from './chains/bkc.ts'
 import { bbqchain } from './chains/bbqchain.ts'
 import { erc20ABI, erc721ABI } from 'wagmi'
@@ -357,6 +359,9 @@ const Main = () => {
         } else if (modeText.toUpperCase() === "TBRIDGE") {
             preset = 8
             document.title = "tBridge | CommuDAO"
+        } else if (modeText.toUpperCase() === "GUILD") {
+            preset = 9
+            document.title = "Guild | CommuDAO"
         } else {
             preset = null
             document.title = "404 | CommuDAO"
@@ -455,6 +460,8 @@ const Main = () => {
                
 
                 {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} uniTokensBridgeABI={uniTokensBridgeABI} />}
+
+                {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunMoABI={dunMoABI} />}
 
                 {mode === null &&
                     <div style={{paddingTop: "100px"}} className="collection">
