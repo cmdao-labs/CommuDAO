@@ -197,7 +197,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         args: [address, ss],
                     },*/
                     {
-                        address: '0x157BB40104634eCc1a4370e27C960EF5Fe685c31',
+                        address: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
@@ -983,18 +983,18 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Ancient Forrest [BBQ Chain]</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>Soon!</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>CMPOW DEDICATED</div>
                             <div>0</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>PARTY DEDICATED</div>
                             <div>0</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
                             <div>NULL $WOOD (~$0.00)</div>
                         </div>
@@ -1004,18 +1004,18 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Health Pro [BBQ Chain]</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>Soon!</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>CMPOW DEDICATED</div>
                             <div>0</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>PARTY DEDICATED</div>
                             <div>0</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
                             <div>NULL $WOOD (~$0.00)</div>
                         </div>
