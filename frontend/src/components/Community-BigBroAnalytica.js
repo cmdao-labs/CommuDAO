@@ -27,6 +27,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
     const [cmdBbq, setCmdBbq] = React.useState(0)
     const [cmdGov, setCmdGov] = React.useState(0)
     const [cmdRev, setCmdRev] = React.useState(0)
+    const [cmdBurn, setCmdBurn] = React.useState(0)
     const [usdtRev, setUsdtRev] = React.useState(0)
     const [cmdCirculation, setCmdCirculation] = React.useState(0)
 
@@ -664,6 +665,13 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         args: ['0x1BeedD97fCD4E21754465d21c757A9DF43733187'],
                         chainId: 10,
                     },
+                    {
+                        address: cmd,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0x000000000000000000000000000000000000dead'],
+                        chainId: 10,
+                    },
                 ],
             })
 
@@ -745,7 +753,8 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
             setCmdRev((Number(result[14]) - 10) * 0.85)
             setUsdtRev(Number(result[13][4].result) / 1e6)
-            setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][0].result))))
+            setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][5].result))) - Number(ethers.utils.formatEther(String(result[13][0].result))))
+            setCmdBurn(ethers.utils.formatEther(String(result[13][5].result)))
 
             setWoodStat(result[15])
             setJdaoStat(result[16])
@@ -780,19 +789,19 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Max Supply:</div>
-                                <div style={{color: "#fff"}}>{Number(100000000).toLocaleString('en-US', {maximumFractionDigits:2})} (100%)</div>
+                                <div style={{color: "#fff"}}>{Number(100000000 - Number(cmdBurn)).toLocaleString('en-US', {maximumFractionDigits:2})} (100%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdCirculation/1000000).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div>In CMDAO Gov (CMD-ETH LP):</div>
-                                <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
-                            </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>On BBQ-chain:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdBbq).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdBbq/1000000).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
+                                <div>In CMDAO Gov (CMD-ETH LP):</div>
+                                <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Epoch 1 Revenue:</div>
