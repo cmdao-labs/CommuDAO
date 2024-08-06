@@ -9,7 +9,7 @@ const engyToken = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const dunGEM = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunGEMABI }) => {
+const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunGEMABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -7978,8 +7978,9 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) { 
-            console.log(e)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -8012,7 +8013,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -8028,7 +8032,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -8066,7 +8073,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
