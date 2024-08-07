@@ -137,6 +137,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                     <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                     <div style={{fontSize: "30px"}}>100 JBC/TX (JIBCHAIN)</div>
+                    <div style={{fontSize: "30px"}}>0.0003 ETH/TX (OP MAINNET)</div>
                 </div>
             </div>
             <div style={{width: "72%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My JIBCHAIN NFTs</div>
