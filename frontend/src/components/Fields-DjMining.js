@@ -71,6 +71,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             const stakeEvent = await bbNftSC.queryFilter(stakeFilter, 3489173, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            stakeRemoveDup.push('100000001', '100000002', '100000004', '100000007', '100000006')
             const data0 = address !== null && address !== undefined ? await readContracts({
                 contracts: stakeRemoveDup.map((item) => (
                     {
@@ -119,10 +120,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
-                } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
+                } catch {}
 
                 _allDaily += (0.1929012345 * 86400 * 30) + 500000
                 _allReward += Number(ethers.utils.formatEther(String(data11[i].result))) + 500000
@@ -178,10 +176,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                 try {
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
-                } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
+                } catch {}
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
@@ -391,7 +386,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                                 </div>
                             ))}
                             </> :
-                            <div className="nftCard" style={{justifyContent: "center"}}>
+                            <div className="nftCard" style={{justifyContent: "center", margin: "20px 10px", padding: "30px 20px"}}>
                                 {address !== undefined ?
                                     <>
                                         <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
@@ -405,7 +400,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                             </div>
                         }
                         </> :
-                        <div className="nftCard" style={{justifyContent: "center"}}>
+                        <div className="nftCard" style={{justifyContent: "center", margin: "20px 10px", padding: "30px 20px"}}>
                             <ThreeDots fill="#5f6476" />
                             <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                         </div>
