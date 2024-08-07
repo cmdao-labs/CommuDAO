@@ -848,6 +848,18 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            USER LEVEL 
+                            <div>0</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            PARTY LEVEL 
+                            <div>N/A</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            GUILD LEVEL 
+                            <div>N/A</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             MISSION REWARD 
                             <div>NULL (~$0.00)</div>
                         </div>

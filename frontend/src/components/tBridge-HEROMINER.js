@@ -493,7 +493,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                 <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                     <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
-                    <div style={{fontSize: "30px"}}>From BKC 1 KUB/TX; From BBQ 800 CMD/TX; From OP Mainnet 0.0003 ETH</div>
+                    <div style={{fontSize: "22px"}}>1 KUB/TX (BITKUB CHAIN)</div>
+                    <div style={{fontSize: "22px"}}>800 CMD/TX (BBQ CHAIN)</div>
+                    <div style={{fontSize: "22px"}}>0.0003 ETH/TX (OP MAINNET)</div>
                 </div>
             </div>
             <div style={{height: "560px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
@@ -888,7 +890,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     </div>
                 </div>
             </div>
-            <div style={{width: "1200px", maxWidth: "90%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">BKC NFTs</div>
+            <div style={{width: "1200px", maxWidth: "90%", margin: "40px 0", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My BITKUB CHAIN NFTs</div>
             {nft.length > 0 ?
                 <div style={{width: "1200px", maxWidth: "90%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
@@ -925,16 +927,16 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         </div>
                     }
                 </div> :
-                <div style={{width: "72%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", padding: "15px", justifyContent: "center"}}>
+                <div style={{width: "1200px", maxWidth: "90%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", padding: "15px", margin: "10px", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
             }
-            <div style={{width: "1200px", maxWidth: "90%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">BBQ NFTs</div>
+            <div style={{width: "1200px", maxWidth: "90%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My BBQ CHAIN NFTs</div>
             {nft2.length > 0 ?
-                <div style={{width: "1200px", maxWidth: "90%", marginBottom: "20px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{width: "1200px", maxWidth: "90%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft2[0] !== null ?
                         <>
                             {nft2.map((item, index) => (
@@ -965,8 +967,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         </div>
                     }
                 </div> :
-                <div style={{width: "1200px", maxWidth: "90%", marginBottom: "20px", display: "flex", flexDirection: "row", alignItems: "flex-start", padding: "15px", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", padding: "15px", justifyContent: "center"}}>
+                <div style={{width: "1200px", maxWidth: "90%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", padding: "15px", justifyContent: "flex-start"}}> 
+                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", padding: "15px", margin: "10px", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
