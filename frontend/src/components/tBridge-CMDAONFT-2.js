@@ -9,7 +9,7 @@ const bkcBridge = '0x95cC0C5fDBE5B3d3c2a8cAabc109bcdb67A081dC'
 
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const TBridgeCMDAONFT = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
+const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
     let { address } = useAccount()
     const { chain } = useNetwork()
 
@@ -136,11 +136,11 @@ const TBridgeCMDAONFT = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbrid
             <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
                 <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                     <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
-                    <div style={{fontSize: "30px"}}>1 KUB/TX (BITKUB CHAIN)</div>
+                    <div style={{fontSize: "30px"}}>100 JBC/TX (JIBCHAIN)</div>
                 </div>
             </div>
-            <div style={{width: "72%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My BITKUB CHAIN NFTs</div>
-            {nft.length > 0 ?
+            <div style={{width: "72%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My JIBCHAIN NFTs</div>
+            {/*nft.length > 0 ?
                 <div style={{width: "72%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
@@ -180,9 +180,9 @@ const TBridgeCMDAONFT = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbrid
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
-            }
+            */}
         </>
     )
 }
     
-export default TBridgeCMDAONFT
+export default TBridgeCMDAONFT2

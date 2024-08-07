@@ -207,7 +207,7 @@ header::-webkit-scrollbar { display: none; }
 }
 
 .half {
-  width: 40%;
+  width: 50%;
   height: 100vh;
   padding: 80px 0;
   display: flex;
@@ -222,18 +222,16 @@ header::-webkit-scrollbar { display: none; }
   justify-content: center;
   flex-wrap: nowrap;
   font-size: 18px;
-  background: radial-gradient(55.49% 51.68% at 37.19% -5.61%, rgba(244, 174, 255, 0.13) 0%, rgba(244, 174, 255, 0.00) 100%), radial-gradient(82.67% 48.53% at 49% 104.97%, rgba(133, 238, 186, 0.15) 0%, rgba(133, 238, 186, 0.00) 100%), radial-gradient(100.48% 68.94% at 97.13% 122.42%, rgba(109, 87, 255, 0.35) 0%, rgba(165, 151, 255, 0.00) 100%), #F5F5F5;
-  /*background-repeat: no-repeat;
-  background-position: bottom center, 50%, 50%;
-  background-image: url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiekq7urjzx7lzxclt5b2ykfhnbvvrsvmzg6qa2jxhn4uyiglzfvha');*/
+  background-image: url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcA7mJSegBinpW7bmGZPaUHPzGzbDV5XWcpJPnCdfUbkg');
+  /*background-repeat: no-repeat;*/
 }
 .motto {
-  font-size: 90px;
+  font-size: 42px;
 }
 #showoff {
-  min-width: 550px;
-  background: hsla(0,0%,100%,.25);
-  border: 0.5px solid rgb(227, 227, 227, 0.5);
+  min-width: 475px;
+  background: hsla(0,0%,100%,.05);
+  border: none;
 }
 .hashtag {
   margin: 10px;
@@ -251,7 +249,7 @@ header::-webkit-scrollbar { display: none; }
   text-decoration: underline;
 }
 .nftControl {
-  width: 500px
+  width: 600px
 }
 @keyframes blinking {
   25% { opacity: 1; }
@@ -264,7 +262,7 @@ header::-webkit-scrollbar { display: none; }
 }
 .typed-out{
   letter-spacing: 2px;
-  color: #000;
+  color: #fff;
   overflow: hidden;
   /*border-right: 0.4em solid #000;*/
   white-space: nowrap;
@@ -360,7 +358,7 @@ header::-webkit-scrollbar { display: none; }
     background-size: 3000px;
   }
   .welcomeText {
-    padding-top: 50px;
+    padding-top: 150px;
   }
   .motto {
     margin-top: 30px;
