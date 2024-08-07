@@ -6,7 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const bbNft = '0xc304195Ad2F55810EcD1e63d9D975e29138Dbd4E'
 const doijib = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
-const fieldDJ = '0x372191741EEF36a69C489B305632a390e0753101'
+const fieldDJ = '0x7A4359E7FCb6d11A6C628B2aa6f1b5EF19218344'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, fieldDjABI }) => {
