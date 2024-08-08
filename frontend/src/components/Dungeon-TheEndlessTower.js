@@ -10669,293 +10669,293 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                 </div>
                                                 {(!isStakeNowSlot1 &&
                                                     (
-                                                        (String(item.Id).slice(0, 2) === '11' && charSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '12' && weaponOneSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '13' && shieldSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '14' && armorSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '15' && headUpperSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '16' && headMiddleSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '17' && headLowerSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '18' && garmentSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '19' && footgearSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '20' && accessorySlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '21' && talismanOneSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '23' && wingSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '24' && daemonSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '26' && cardShieldSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '27' && cardArmorSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '34' && jewelSlot1 !== null) ||
-                                                        (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot1 !== null)
+                                                        (String(item.Id).slice(0, 2) === '11' && charSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '12' && weaponOneSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '13' && shieldSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '14' && armorSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '15' && headUpperSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '16' && headMiddleSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '17' && headLowerSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '18' && garmentSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '19' && footgearSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '20' && accessorySlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '21' && talismanOneSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '23' && wingSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '24' && daemonSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '26' && cardShieldSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '27' && cardArmorSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '34' && jewelSlot1 === null) ||
+                                                        (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot1 === null)
                                                     )
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(0, item.Id)}>EQUIP SLOT 1</div>
                                                 }
                                                 {(!isStakeNowSlot2 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot2 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot2 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot2 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot2 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(1, item.Id)}>EQUIP SLOT 2</div>
                                                 }
                                                 {(!isStakeNowSlot3 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot3 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot3 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot3 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot3 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(2, item.Id)}>EQUIP SLOT 3</div>
                                                 }
                                                 {(!isStakeNowSlot4 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot4 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot4 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot4 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot4 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(3, item.Id)}>EQUIP SLOT 4</div>
                                                 }
                                                 {(!isStakeNowSlot5 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot5 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot5 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot5 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot5 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(4, item.Id)}>EQUIP SLOT 5</div>
                                                 }
                                                 {(!isStakeNowSlot6 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot6 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot6 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot6 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot6 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(5, item.Id)}>EQUIP SLOT 6</div>
                                                 }
                                                 {(!isStakeNowSlot7 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot7 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot7 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot7 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot7 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(6, item.Id)}>EQUIP SLOT 7</div>
                                                 }
                                                 {(!isStakeNowSlot8 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot8 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot8 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot8 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot8 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(7, item.Id)}>EQUIP SLOT 8</div>
                                                 }
                                                 {(!isStakeNowSlot9 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot9 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot9 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot9 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot9 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(8, item.Id)}>EQUIP SLOT 9</div>
                                                 }
                                                 {(!isStakeNowSlot10 &&
-                                                    (String(item.Id).slice(0, 2) === '11' && charSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot10 !== null) ||
-                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot10 !== null)
+                                                    (String(item.Id).slice(0, 2) === '11' && charSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '12' && weaponOneSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '13' && shieldSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '14' && armorSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '15' && headUpperSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '16' && headMiddleSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '17' && headLowerSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '18' && garmentSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '19' && footgearSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '20' && accessorySlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '21' && talismanOneSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '23' && wingSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '24' && daemonSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '26' && cardShieldSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '27' && cardArmorSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '34' && jewelSlot10 === null) ||
+                                                    (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot10 === null)
                                                 ) &&
                                                     <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(9, item.Id)}>EQUIP SLOT X</div>
                                                 }
