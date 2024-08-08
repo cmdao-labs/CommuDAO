@@ -4,37 +4,38 @@ import { readContract, readContracts, prepareWriteContract, waitForTransaction, 
 import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
-const cmdaoBKC = '0x84bbfa70a60bB31fB00F2E2241E3a87C63F8734f'
+const cmdaoOP = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
 const bkcBridge = '0x95cC0C5fDBE5B3d3c2a8cAabc109bcdb67A081dC'
 
-const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
+const providerOP = new ethers.getDefaultProvider('https://mainnet.optimism.io')
 
 const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
-    let { address } = useAccount()
+    //let { address } = useAccount()
+    let address = '0x551dB316e8Aa02750Eb2DfDA35A78b6281ee7220'
     const { chain } = useNetwork()
 
     const [nft, setNft] = React.useState([])
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaoBKCSC = new ethers.Contract(cmdaoBKC, erc721ABI, providerBKC)
+        const cmdaoOPSC = new ethers.Contract(cmdaoOP, erc721ABI, providerOP)
         setNft([])
         
         const thefetch = async () => {
             let nfts = []
             
-            const walletFilter = await cmdaoBKCSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaoBKCSC.queryFilter(walletFilter, 19246023, "latest")
+            const walletFilter = await cmdaoOPSC.filters.Transfer(null, address, null)
+            const walletEvent = await cmdaoOPSC.queryFilter(walletFilter, 123743421, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data = address !== null && address !== undefined ? await readContracts({
                 contracts: walletRemoveDup.map((item) => (
                     {
-                        address: cmdaoBKC,
+                        address: cmdaoOP,
                         abi: erc721ABI,
                         functionName: 'ownerOf',
                         args: [String(item)],
-                        chainId: 96
+                        chainId: 10
                     }
                 ))
             }) : [Array(walletRemoveDup.length).fill('')]
@@ -49,11 +50,11 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             const data2 = address !== null && address !== undefined ? await readContracts({
                 contracts: yournftwallet.map((item) => (
                     {
-                        address: cmdaoBKC,
+                        address: cmdaoOP,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
-                        chainId: 96
+                        chainId: 10
                     }
                 ))
             }) : [Array(yournftwallet.length).fill('')]
@@ -97,18 +98,18 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
 
     }, [address, txupdate, erc721ABI])
 
-    const depositHandle = async (_nftId) => {
+    /*const depositHandle = async (_nftId) => {
         setisLoading(true)
         try {
             const nftAllow = await readContract({
-                address: cmdaoBKC,
+                address: cmdaoOP,
                 abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftId],
             })
             if (nftAllow.toUpperCase() !== bkcBridge.toUpperCase()) {
                 const config0 = await prepareWriteContract({
-                    address: cmdaoBKC,
+                    address: cmdaoOP,
                     abi: erc721ABI,
                     functionName: 'approve',
                     args: [bkcBridge, _nftId],
@@ -129,7 +130,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             setTxupdate(hash1)
         } catch {}
         setisLoading(false)
-    }
+    }*/
 
     return (
         <>
@@ -140,8 +141,8 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     <div style={{fontSize: "30px"}}>0.0003 ETH/TX (OP MAINNET)</div>
                 </div>
             </div>
-            <div style={{width: "72%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My JIBCHAIN NFTs</div>
-            {/*nft.length > 0 ?
+            <div style={{width: "72%", marginBottom: "40px", textIndent: "20px", fontSize: "18px", letterSpacing: "1px", textAlign: "left", color: "rgb(189, 194, 196)"}} className="bold">My OP MAINNET NFTs</div>
+            {nft.length > 0 ?
                 <div style={{width: "72%", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
@@ -153,8 +154,8 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                                         </div>
                                         <div className="emp bold">{item.Name}</div>
                                         <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                        {chain.id === 96 ?
-                                            <div style={{alignSelf: "center"}} className="pixel button" onClick={() => depositHandle(item.Id)}>BRIDGE TO JBC</div> :
+                                        {chain.id === 10 ?
+                                            <div style={{alignSelf: "center"}} className="pixel button">BRIDGE TO JBC</div> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">BRIDGE TO JBC</div>
                                         }
                                     </div>
@@ -181,7 +182,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
-            */}
+            }
         </>
     )
 }
