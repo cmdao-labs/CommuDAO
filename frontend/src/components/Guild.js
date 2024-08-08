@@ -6,7 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
-const providerOP = new ethers.getDefaultProvider('https://optimism.llamarpc.com')
+const providerOP = new ethers.getDefaultProvider('https://mainnet.optimism.io')
 
 const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunMoABI }) => {
     let { address } = useAccount()
