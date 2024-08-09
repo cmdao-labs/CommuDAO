@@ -8106,7 +8106,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     
         <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "rgb(230, 250, 54)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                <div style={{background: "rgb(230, 250, 54)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", maxWidth: "95%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{marginTop: "40px", display: "flex", flexFlow: "column wrap"}}>
                         {/*
                         ░██████╗██╗░░░░░░█████╗░████████╗░░███╗░░
@@ -8116,7 +8116,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░███████╗
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
                         */}
-                        <div style={{display: "flex"}}>
+                        <div style={{display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 1 STAKING</div>
@@ -8276,7 +8276,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot1Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 1</div>
                                 {nft.length > 0 ?
                                     <>
@@ -8364,7 +8364,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░███████╗
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 2 STAKING</div>
@@ -8524,7 +8524,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot2Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 2</div>
                                 {nft.length > 0 ?
                                     <>
@@ -8612,7 +8612,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░██████╔╝
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 3 STAKING</div>
@@ -8772,7 +8772,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot3Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 3</div>
                                 {nft.length > 0 ?
                                     <>
@@ -8860,7 +8860,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░╚════██║
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░░░░╚═╝
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 4 STAKING</div>
@@ -9020,7 +9020,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot4Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 4</div>
                                 {nft.length > 0 ?
                                     <>
@@ -9108,7 +9108,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░██████╔╝
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 5 STAKING</div>
@@ -9268,7 +9268,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot5Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 5</div>
                                 {nft.length > 0 ?
                                     <>
@@ -9356,7 +9356,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░╚█████╔╝
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 6 STAKING</div>
@@ -9516,7 +9516,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot6Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 6</div>
                                 {nft.length > 0 ?
                                     <>
@@ -9604,7 +9604,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░░░██╔╝░░
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░╚═╝░░░
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 7 STAKING</div>
@@ -9764,7 +9764,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot7Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 7</div>
                                 {nft.length > 0 ?
                                     <>
@@ -9852,7 +9852,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░╚█████╔╝
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 8 STAKING</div>
@@ -10012,7 +10012,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot8Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 8</div>
                                 {nft.length > 0 ?
                                     <>
@@ -10100,7 +10100,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░░█████╔╝
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 9 STAKING</div>
@@ -10260,7 +10260,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot9Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 9</div>
                                 {nft.length > 0 ?
                                     <>
@@ -10348,7 +10348,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ██████╔╝███████╗╚█████╔╝░░░██║░░░██╔╝╚██╗
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝
                         */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex"}}>
+                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
                             <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT X STAKING</div>
@@ -10508,7 +10508,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 }
                                 {talismanOneSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot10Level}</div>}
                             </div>
-                            <div style={{position: "relative", width: "300px", height: "700px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                                 <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot X</div>
                                 {nft.length > 0 ?
                                     <>

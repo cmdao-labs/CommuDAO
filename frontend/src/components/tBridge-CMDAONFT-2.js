@@ -42,7 +42,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data[i].result.toUpperCase() === address.toUpperCase()) {
+                if (data[i].result.toUpperCase() === address.toUpperCase() && Number(String(walletRemoveDup[i]).slice(-5)) >= 100000) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
