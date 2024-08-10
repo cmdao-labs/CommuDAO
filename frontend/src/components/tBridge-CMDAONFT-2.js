@@ -25,7 +25,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             let nfts = []
             
             const walletFilter = await cmdaoOPSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaoOPSC.queryFilter(walletFilter, 123743421, "latest")
+            const walletEvent = await cmdaoOPSC.queryFilter(walletFilter, 123847631/*123743421*/, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data = address !== null && address !== undefined ? await readContracts({
@@ -42,7 +42,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
 
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data[i].result.toUpperCase() === address.toUpperCase() && Number(String(walletRemoveDup[i]).slice(-5)) >= 100000) {
+                if (data[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
@@ -63,7 +63,12 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 const nftipfs = data2[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    let response
+                    if (nftipfs === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
+                        response = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                    } else {
+                        response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    }
                     nft = await response.json()
                 } catch {}
 
