@@ -6,7 +6,7 @@ import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
 const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
-const providerOP = new ethers.getDefaultProvider('https://mainnet.optimism.io')
+const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 
 const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI }) => {
     let { address } = useAccount()
