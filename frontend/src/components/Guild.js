@@ -1,23 +1,23 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
-const cmdaonft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
-const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
+const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
+const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
 const providerOP = new ethers.getDefaultProvider('https://mainnet.optimism.io')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunMoABI }) => {
+const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/guild/' + address)
+        navigate('/guild/profile/' + address)
     } else if (intrasubModetext.length === 42) {
         address = intrasubModetext
     } else if (address === undefined) {
     } else {
-        navigate('/guild/' + address)
+        navigate('/guild/profile/' + address)
     }
     
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -72,130 +72,142 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setNft([])
         
         const thefetch = async () => {
-            /*
             const nftEQ = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
+                address: nftSlot,
+                abi: nftSlotABI,
                 functionName: 'nftEquip',
                 args: [address],
+                chainId: 10,
             })
             const nftEQ2 = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
+                address: nftSlot,
+                abi: nftSlotABI,
                 functionName: 'nftEquip2',
                 args: [address],
+                chainId: 10,
             })
-            /*const nftEQColMul = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEquipColMul',
-                args: [address],
-            })
-            const nftEQColMul2 = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftEQColMul2',
-                args: [address],
-            })*/
 
             const data = await readContracts({
                 contracts: [
-                    /*{
+                    {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[0])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[1])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[2])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[3])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[4])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[5])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[6])],
+                        chainId: 10,
                     },
                     {
                         address: cmdaonft,
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[7])],
+                        chainId: 10,
                     },
                     {
-                        address: dunMo,
-                        abi: dunMoABI,
+                        address: nftSlot,
+                        abi: nftSlotABI,
                         functionName: 'calculateRewards',
-                        args: [address, ss],
-                    },*/
+                        args: [address],
+                        chainId: 10,
+                    },
+                    {
+                        address: nftSlot,
+                        abi: nftSlotABI,
+                        functionName: 'nftStatus',
+                        args: [address],
+                        chainId: 10,
+                    },
                     {
                         address: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                         abi: erc20ABI,
@@ -203,14 +215,28 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         args: [address],
                         chainId: 8899,
                     },
+                    {
+                        address: nftSlot,
+                        abi: nftSlotABI,
+                        functionName: 'nonTransferSCM',
+                        args: [address],
+                        chainId: 10,
+                    },
                 ],
             })
             
             let nfts = []
-            /*
             let res_main_char = null
             try {
-                res_main_char = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                if (data[0].status === 'success') {
+                    if (data[0].result === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
+                        res_main_char = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                    } else {
+                        res_main_char = await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    }
+                } else {
+                    res_main_char = null
+                }
             } catch {}
             const nft_main_char = res_main_char !== null ? await res_main_char.json() : {image: null, name: null}
             const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
@@ -470,7 +496,15 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             }
             let res_main_soul = null
             try {
-                res_main_soul = data[13].status === 'success' ? await fetch(data[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                if (data[13].status === 'success') {
+                    if (data[13].result === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
+                        res_main_soul = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                    } else {
+                        res_main_soul = await fetch(data[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    }
+                } else {
+                    res_main_soul = null
+                }
             } catch {}
             const nft_main_soul = res_main_soul !== null ? await res_main_soul.json() : {image: null, name: null}
             const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
@@ -509,22 +543,14 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 })
             }
 
-            const nftStatus = await readContract({
-                address: dunMo,
-                abi: dunMoABI,
-                functionName: 'nftStatus',
-                args: [address],
-            })*/
-
-            const allPow = 0/*Number(nftStatus[0])*/
             const refuelAt = null/*Number(nftStatus[1])*/
             const isStaked = false/*nftStatus[2]*/
-
-            const scmJBCBal = data[0].result
-            const rewardpending = 0/*isStaked ? rawPending : 0*/
+            const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
+            const allPow = Number(data[16].result)
+            const rewardpending = isStaked ? data[15].result : 0
                         
-            /*const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
+            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
+            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 123743421, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
@@ -557,7 +583,12 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    let response
+                    if (nftipfs === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
+                        response = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                    } else {
+                        response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    }
                     nft = await response.json()
                 } catch {}
                 nfts.push({
@@ -570,15 +601,15 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
                     isStaked: false
                 })
-            }*/
+            }
 
             if (nfts.length === 0) { nfts.push(null) }
             
             return [
                 nfts, 
-                /*nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
+                nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
-                allPow, isStaked, refuelAt, rewardpending,*/ scmJBCBal
+                allPow, /*isStaked, refuelAt, rewardpending,*/ scmJBCBal
             ]
         }
 
@@ -593,7 +624,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
         getAsync().then(result => {
             setNft(result[0])
-            /*
             setCharacterSlot(result[1])
             if (result[2] !== null && result[2].slice(-1) === "]" && result[2].slice(-3, -2) === ".") {
                 setCharacterSlotLevel(result[2].slice(-2, -1))
@@ -602,7 +632,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             } else {
                 setCharacterSlotLevel(null)
             }
-            result[2] !== null && result[2].slice(0, 7) === "SAPIENS" ? setIsOp(true) : setIsOp(false)
             setAccSlot(result[3])
             result[4] !== null && result[4].slice(-2, -1) === "+" ? setAccSlotLevel(result[4].slice(-1)) : setAccSlotLevel(null)
             setBackSlot(result[5])
@@ -632,19 +661,19 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setBadgeSlot(result[29])
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
             
-            setAllPower(result[44])
-            setIsStakeNow(result[45])
-            const gasOut = new Date((Number(result[46]) * 1000) + (7 * 86400 * 1000))
-            result[46] !== 0 ?
+            setAllPower(result[31])
+            /*setIsStakeNow(result[32])
+            const gasOut = new Date((Number(result[33]) * 1000) + (7 * 86400 * 1000))
+            result[33] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
-            result[46] !== 0 && Date.now() - (Number(result[46]) * 1000) > (7 * 86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
-            setRewardPending(ethers.utils.formatEther(String(result[47])))*/
+            result[33] !== 0 && Date.now() - (Number(result[33]) * 1000) > (7 * 86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
+            setRewardPending(ethers.utils.formatEther(String(result[34])))*/
 
-            setScmJBCBalance(ethers.utils.formatEther(String(result[1])))
+            setScmJBCBalance(result[32])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunMoABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -669,6 +698,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 abi: erc721ABI,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
+                chainId: 10,
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -679,37 +709,36 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         }
         setisLoading(false)
     }
-/*
-    const equipNft = async (_nftid, slot, _isMeme) => {
+
+    const equipNft = async (_nftid, slot) => {
         setisLoading(true)
         let nftaddr = cmdaonft
-        if (_isMeme && slot === 4) {
-            nftaddr = bbnft
-        } else if (_isMeme && (slot === 5 || slot === 7)) {
-            nftaddr = narutanft
-        }
         try {
             const nftAllow = await readContract({
                 address: nftaddr,
                 abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftid],
+                chainId: 10,
             })
-            if (nftAllow.toUpperCase() !== dunMo.toUpperCase()) {
+            if (nftAllow.toUpperCase() !== nftSlot.toUpperCase()) {
                 const config = await prepareWriteContract({
                     address: nftaddr,
                     abi: erc721ABI,
                     functionName: 'approve',
-                    args: [dunMo, _nftid],
+                    args: [nftSlot, _nftid],
+                    chainId: 10,
                 })
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
-                address: dunMo,
-                abi: dunMoABI,
+                address: nftSlot,
+                abi: nftSlotABI,
                 functionName: 'equip',
-                args: [_nftid, 0, slot, _isMeme, ss],
+                args: [_nftid, slot],
+                value: ethers.utils.parseEther('0.00005'),
+                chainId: 10,
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -721,14 +750,15 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(false)
     }
 
-    const unstakeNft = async (_slot, _isMeme) => {
+    const unequipNft = async (_slot) => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: dunMo,
-                abi: dunMoABI,
+                address: nftSlot,
+                abi: nftSlotABI,
                 functionName: 'unstake',
-                args: [_slot, myhouse, _isMeme, ss],
+                args: [_slot],
+                chainId: 10,
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -740,7 +770,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(false)
     }
 
-    const refuelStake = async () => {
+    /*const refuelStake = async () => {
         setisLoading(true)
         try {
             let gasAddr = ''
@@ -753,21 +783,21 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 address: gasAddr,
                 abi: erc20ABI,
                 functionName: 'allowance',
-                args: [address, dunMo],
+                args: [address, nftSlot],
             })
             if (gasAllow < (700000 * 10**18)) {
                     const config = await prepareWriteContract({
                         address: gasAddr,
                         abi: erc20ABI,
                         functionName: 'approve',
-                        args: [dunMo, ethers.utils.parseEther(String(10**8))],
+                        args: [nftSlot, ethers.utils.parseEther(String(10**8))],
                     })
                     const { hash: hash0 } = await writeContract(config)
                     await waitForTransaction({ hash: hash0 })
             }
             const config2 = await prepareWriteContract({
-                address: dunMo,
-                abi: dunMoABI,
+                address: nftSlot,
+                abi: nftSlotABI,
                 functionName: 'refuel',
                 args: [gasIndex, false, myhouse]
             })
@@ -835,10 +865,10 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             GUILD BOOSTER
-                            <div>NULL</div>
+                            <div>0</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            SOCIAL CONSENSUS BOOSTER
+                            SCM POINT BOOSTER
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <div style={{marginLeft: "5px"}}>{Number(scmJBCBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
@@ -991,7 +1021,28 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "flex-start", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Baby Alpha Tester [BBQ Chain]</div>
+                        </div>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid"}}>
+                            <div>Soon!</div>
+                        </div>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
+                            <div>CMPOW DEDICATED</div>
+                            <div>0</div>
+                        </div>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
+                            <div>PARTY DEDICATED</div>
+                            <div>0</div>
+                        </div>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
+                            <div>MISSION REWARD EMISSION</div>
+                            <div>-</div>
+                        </div>
+                    </div>
+
+                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Ancient Forrest [BBQ Chain]</div>
                         </div>
@@ -1012,7 +1063,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                     </div>
 
-                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Health Pro [BBQ Chain]</div>
                         </div>
@@ -1029,7 +1080,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
-                            <div>NULL $WOOD (~$0.00)</div>
+                            <div>NULL $HEALTH (~$0.00)</div>
                         </div>
                     </div>
                 </div>
@@ -1052,17 +1103,14 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                         {address === youraddr ?
                                             <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
                                                 {item.isStaked ?
-                                                    <>
-                                                        {item.Col === 1 && 
-                                                            <div style={{background: "gray"}} className="pixel button">UNEQUIP L1</div>
-                                                        }
-                                                    </> :
+                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unequipNft(item.Slot)}>UNEQUIP L1</div> :
                                                     <>
                                                         {item.Col === 1 && 
                                                             <>
                                                                 {((item.Id / 100000000000) | 0) === 1 && 
                                                                     <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button">EQUIP L1 MAIN CHAR</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1)}>EQUIP L1 MAIN CHAR</div>
+                                                                        {characterSlot !== null && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 15)}>EQUIP L1 SOUL</div>}
                                                                     </>
                                                                 }
                                                             </>
