@@ -9,7 +9,7 @@ const cmdaoJBC = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const jbcBridge = '0xcB2BB85d4310d5C742897403D5bDC11186460382'
 const opBridge = '0x551dB316e8Aa02750Eb2DfDA35A78b6281ee7220'
 
-const providerOP = new ethers.getDefaultProvider('https://mainnet.optimism.io')
+const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, uniNftBridgeABI }) => {
