@@ -827,7 +827,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">OP TO BBQ</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
-                        <div>Balance: {Number(cmmBbqBalance).toFixed(4)} CMM [OP CHAIN]</div>
+                        <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP CHAIN]</div>
                         <img 
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
                             width="20"
@@ -865,7 +865,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BBQ TO OP</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
-                        <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [BBQ MAINNET]</div>
+                        <div>Balance: {Number(cmmBbqBalance).toFixed(4)} CMM [BBQ MAINNET]</div>
                         <img 
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
                             width="20"
