@@ -88,6 +88,7 @@ import dunEEABI from './jsons/dunEEABI.json'
 import dunGEMABI from './jsons/dunGEMABI.json'
 import dunMoABI from './jsons/dunMoABI.json'
 import nftSlotABI from './jsons/nftSlotABI.json'
+import partyABI from './jsons/partyABI.json'
 
 import cmdaoMerchantABI from './jsons/cmdaoMerchantABI.json'
 import cmdaoMerchantV2ABI from './jsons/cmdaoMerchantV2ABI.json'
@@ -467,7 +468,7 @@ const Main = () => {
 
                 {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} uniTokensBridgeABI={uniTokensBridgeABI} uniNftBridgeABI={uniNftBridgeABI} />}
 
-                {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} />}
+                {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} partyABI={partyABI} />}
 
                 {mode === null &&
                     <div style={{paddingTop: "100px"}} className="collection">
