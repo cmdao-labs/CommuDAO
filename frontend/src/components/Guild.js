@@ -6,10 +6,12 @@ import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
 const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
+const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI }) => {
+const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI }) => {
     let { address } = useAccount()
+    //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/guild/profile/' + address)
@@ -65,6 +67,24 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const [rewardPending, setRewardPending] = React.useState(0)
 
     const [scmJBCBalance, setScmJBCBalance] = React.useState(0)
+
+    const [myParty, setMyParty] = React.useState(null)
+
+    const [party1Name, setParty1Name] = React.useState(null)
+    const [party1Logo, setParty1Logo] = React.useState(null)
+    const [party1Member1CMPOW, setParty1Member1CMPOW] = React.useState(null)
+    const [party1Member2CMPOW, setParty1Member2CMPOW] = React.useState(null)
+    const [party1Member3CMPOW, setParty1Member3CMPOW] = React.useState(null)
+    const [party1Member4CMPOW, setParty1Member4CMPOW] = React.useState(null)
+    const [party1Member5CMPOW, setParty1Member5CMPOW] = React.useState(null)
+
+    const [party2Name, setParty2Name] = React.useState(null)
+    const [party2Logo, setParty2Logo] = React.useState(null)
+    const [party2Member1CMPOW, setParty2Member1CMPOW] = React.useState(null)
+    const [party2Member2CMPOW, setParty2Member2CMPOW] = React.useState(null)
+    const [party2Member3CMPOW, setParty2Member3CMPOW] = React.useState(null)
+    const [party2Member4CMPOW, setParty2Member4CMPOW] = React.useState(null)
+    const [party2Member5CMPOW, setParty2Member5CMPOW] = React.useState(null)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -221,6 +241,48 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         functionName: 'nonTransferSCM',
                         args: [address],
                         chainId: 10,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyName',
+                        args: [1],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyLogo',
+                        args: [1],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyBody',
+                        args: [1],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyName',
+                        args: [2],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyLogo',
+                        args: [2],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyBody',
+                        args: [2],
+                        chainId: 190,
                     },
                 ],
             })
@@ -545,9 +607,24 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
             const refuelAt = null/*Number(nftStatus[1])*/
             const isStaked = false/*nftStatus[2]*/
-            const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
-            const allPow = Number(data[16].result)
             const rewardpending = isStaked ? data[15].result : 0
+            const allPow = Number(data[16].result)
+            const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
+            
+            const party1name = data[19].result
+            const party1logo = data[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+            const party1body = data[21].result
+            
+            const party2name = data[22].result
+            const party2logo = data[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+            const party2body = data[24].result
+
+            let myparty = null
+            if (party1body[0].toUpperCase() === address.toUpperCase() || party1body[1].toUpperCase() === address.toUpperCase() || party1body[2].toUpperCase() === address.toUpperCase() || party1body[3].toUpperCase() === address.toUpperCase() || party1body[4].toUpperCase() === address.toUpperCase()) {
+                myparty = party1name
+            } else if (party2body[0].toUpperCase() === address.toUpperCase() || party2body[1].toUpperCase() === address.toUpperCase() || party2body[2].toUpperCase() === address.toUpperCase() || party2body[3].toUpperCase() === address.toUpperCase() || party2body[4].toUpperCase() === address.toUpperCase()) {
+                myparty = party2name
+            }
                         
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 123743421, "latest")
@@ -609,7 +686,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 nfts, 
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
-                allPow, /*isStaked, refuelAt, rewardpending,*/ scmJBCBal
+                allPow, /*isStaked, refuelAt, rewardpending,*/ scmJBCBal,
+                myparty, party1name, party1logo, party2name, party2logo,
             ]
         }
 
@@ -671,9 +749,15 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setRewardPending(ethers.utils.formatEther(String(result[34])))*/
 
             setScmJBCBalance(result[32])
+
+            setMyParty(result[33])
+            setParty1Name(result[34])
+            setParty1Logo(result[35])
+            setParty2Name(result[36])
+            setParty2Logo(result[37])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -836,7 +920,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "370px", height: "390px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                         <div style={{fontSize: "22px", lineHeight: "15px"}}>STAKING</div>
                             
@@ -849,23 +933,51 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             PARTY 
-                            <div>N/A</div>
+                            {myParty !== null ?
+                                <>
+                                    {myParty === party1Name &&
+                                        <div style={{display: "flex", flexDirection: "row", alignItems: "flex-end"}}>
+                                            <img src={party1Logo} height="18" alt="Can not load metadata."/>
+                                            <div style={{marginLeft: "5px"}}>{party1Name}</div>
+                                        </div>
+                                    }
+                                    {myParty === party2Name && 
+                                        <div style={{display: "flex", flexDirection: "row", alignItems: "flex-end"}}>
+                                            <img src={party2Logo} height="20" alt="Can not load metadata."/>
+                                            <div style={{marginLeft: "5px"}}>{party2Name}</div>
+                                        </div>
+                                    }
+                                </> :
+                                <div>...</div>
+                            }
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             GUILD 
-                            <div>N/A</div>
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            PARTY CONCENTRATION 
-                            <div>0.00%</div>
+                            USER LEVEL 
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            GUILD CONCENTRATION 
-                            <div>0.00%</div>
+                            PARTY LEVEL 
+                            <div>TBD</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            GUILD LEVEL 
+                            <div>TBD</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            CMPOW 
+                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            PARTY BOOSTER
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             GUILD BOOSTER
-                            <div>0</div>
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             SCM POINT BOOSTER
@@ -874,25 +986,45 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            TOTAL CMPOW 
-                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            DELEGATED CMPOW 
+                            <div>{Number(allPower) !== 0 ? (Number(allPower) + Number(scmJBCBalance)).toLocaleString('en-US', {maximumFractionDigits:0}) : 0}</div>
+                        </div>
+
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            PARTY CONCENTRATION 
+                            <div>0.00%</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            USER LEVEL 
-                            <div>0</div>
+                            GUILD CONCENTRATION 
+                            <div>TBD</div>
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            PARTY LEVEL 
-                            <div>N/A</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            GUILD LEVEL 
-                            <div>N/A</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", marginBottom: "10px", borderBottom: "1px solid"}}>
                             MISSION REWARD 
-                            <div>NULL (~$0.00)</div>
+                            <div>0 $CMD</div>
                         </div>
+                        {address !== undefined && address === youraddr ?
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                {true ?
+                                    <>
+                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
+                                    </> :
+                                    <>
+                                        {true ?
+                                            <>
+                                                {Number(allPower) !== 0 ?
+                                                    <div style={{alignSelf: "center"}} className="button">REFUEL GAS</div> :
+                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                }
+                                            </> :
+                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                        }
+                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM</div>
+                                    </>
+                                }
+                            </div> :
+                            <div style={{height: "41px"}}></div>
+                        }
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
@@ -1001,15 +1133,30 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "300px"}}>PARTY</div>
                             <div style={{width: "300px"}}>GUILD</div>
                             <div style={{width: "150px"}}>NO. OF MEMBER</div>
-                            <div style={{width: "150px"}}>CMPOW</div>
+                            <div style={{width: "150px"}}>DELEGATED CMPOW</div>
                             <div style={{width: "150px"}}>CONCENTRATION</div>
                             <div style={{width: "150px"}}>MISSION DEDICATED</div>
                             <div style={{width: "200px"}}>MISSION REWARD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
+                            <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
+                                <img src={party1Logo} height="20" alt="Can not load metadata."/>
+                                <div style={{marginLeft: "5px"}}>{party1Name}</div>
+                            </div>
                             <div style={{width: "300px"}}>TBD</div>
-                            <div style={{width: "300px"}}>TBD</div>
+                            <div style={{width: "150px"}}>5</div>
                             <div style={{width: "150px"}}>TBD</div>
+                            <div style={{width: "150px"}}>TBD</div>
+                            <div style={{width: "150px"}}>TBD</div>
+                            <div style={{width: "200px"}}>TBD</div>
+                        </div>
+                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
+                            <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
+                                <img src={party2Logo} height="20" alt="Can not load metadata."/>
+                                <div style={{marginLeft: "5px"}}>{party2Name}</div>
+                            </div>
+                            <div style={{width: "300px"}}>TBD</div>
+                            <div style={{width: "150px"}}>5</div>
                             <div style={{width: "150px"}}>TBD</div>
                             <div style={{width: "150px"}}>TBD</div>
                             <div style={{width: "150px"}}>TBD</div>
@@ -1038,8 +1185,21 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
-                            <div>-</div>
+                            <div>0 $CMD</div>
                         </div>
+                        {address !== undefined && address === youraddr ?
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                {true ?
+                                    <>
+                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
+                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CONFIRM MISSION</div>
+                                    </> :
+                                    <>
+                                    </>
+                                }
+                            </div> :
+                            <div style={{height: "41px"}}></div>
+                        }
                     </div>
 
                     <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
@@ -1059,8 +1219,21 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
-                            <div>NULL $WOOD (~$0.00)</div>
+                            <div>0 $WOOD</div>
                         </div>
+                        {address !== undefined && address === youraddr ?
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                {true ?
+                                    <>
+                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
+                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CONFIRM MISSION</div>
+                                    </> :
+                                    <>
+                                    </>
+                                }
+                            </div> :
+                            <div style={{height: "41px"}}></div>
+                        }
                     </div>
 
                     <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
@@ -1080,8 +1253,21 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
-                            <div>NULL $HEALTH (~$0.00)</div>
+                            <div>0 $HEALTH</div>
                         </div>
+                        {address !== undefined && address === youraddr ?
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                {true ?
+                                    <>
+                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
+                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CONFIRM MISSION</div>
+                                    </> :
+                                    <>
+                                    </>
+                                }
+                            </div> :
+                            <div style={{height: "41px"}}></div>
+                        }
                     </div>
                 </div>
             </div>
