@@ -10,8 +10,8 @@ const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 
 const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI }) => {
-    //let { address } = useAccount()
-    let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
+    let { address } = useAccount()
+    //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/guild/profile/' + address)
