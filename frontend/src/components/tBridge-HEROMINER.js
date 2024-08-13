@@ -127,8 +127,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
 const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance, cmmBbqBalance }) => {
-    let { address } = useAccount()
-    // let address = '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f'
+    const { address } = useAccount()
     const { chain } = useNetwork()
 
     const [nft, setNft] = React.useState([])
@@ -828,7 +827,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">OP TO BBQ</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
-                        <div>Balance: {Number(cmmBbqBalance).toFixed(4)} CMM [BBQ CHAIN]</div>
+                        <div>Balance: {Number(cmmBbqBalance).toFixed(4)} CMM [OP CHAIN]</div>
                         <img 
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
                             width="20"
@@ -866,7 +865,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BBQ TO OP</div>
                     }
                     <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", display: "flex", alignItems: "center"}}>
-                        <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [OP MAINNET]</div>
+                        <div>Balance: {Number(cmmBalance).toFixed(4)} CMM [BBQ MAINNET]</div>
                         <img 
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWM9sbGBWM3yai8nsDsSXhE9tJZNwSwoE8XG835dJkHco"
                             width="20"
