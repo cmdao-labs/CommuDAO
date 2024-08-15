@@ -1395,7 +1395,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                             <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
                                         }
-                                        {(Number(myMemberIndex) === 1 && myPartyRefuelAt >= 19987500) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
+                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= 19987500) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
                                     </> :
                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
                                 }
