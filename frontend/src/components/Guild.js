@@ -12,8 +12,8 @@ const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.
 
 const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI }) => {
     const { chain } = useNetwork()
-    //let { address } = useAccount()
-    let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
+    let { address } = useAccount()
+    //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/guild/profile/' + address)
