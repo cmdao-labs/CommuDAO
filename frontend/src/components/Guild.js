@@ -297,6 +297,13 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         address: party,
                         abi: partyABI,
                         functionName: 'isAllRefuel',
+                        args: [1, 0],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
                         args: [1, 1],
                         chainId: 190,
                     },
@@ -325,7 +332,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         address: party,
                         abi: partyABI,
                         functionName: 'isAllRefuel',
-                        args: [1, 5],
+                        args: [2, 0],
                         chainId: 190,
                     },
                     {
@@ -354,13 +361,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         abi: partyABI,
                         functionName: 'isAllRefuel',
                         args: [2, 4],
-                        chainId: 190,
-                    },
-                    {
-                        address: party,
-                        abi: partyABI,
-                        functionName: 'isAllRefuel',
-                        args: [2, 5],
                         chainId: 190,
                     },
                 ],
@@ -720,7 +720,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             if (party1body[0].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
-                memberindex = 1
+                memberindex = 0
                 memberrefuel = isMem1Party1Refuel
                 mypartyrefuelat = party1body[5]
                 // simple validation need to be fixed later
@@ -728,31 +728,31 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             } else if (party1body[1].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
-                memberindex = 2
+                memberindex = 1
                 memberrefuel = isMem2Party1Refuel
                 mypartyrefuelat = party1body[5]
             } else if (party1body[2].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
-                memberindex = 3
+                memberindex = 2
                 memberrefuel = isMem3Party1Refuel
                 mypartyrefuelat = party1body[5]
             } else if (party1body[3].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
-                memberindex = 4
+                memberindex = 3
                 memberrefuel = isMem4Party1Refuel
                 mypartyrefuelat = party1body[5]
             } else if (party1body[4].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
-                memberindex = 5
+                memberindex = 4
                 memberrefuel = isMem5Party1Refuel
                 mypartyrefuelat = party1body[5]
             } else if (party2body[0].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
-                memberindex = 1
+                memberindex = 0
                 memberrefuel = isMem1Party2Refuel
                 mypartyrefuelat = party2body[5]
                 // simple validation need to be fixed later
@@ -760,25 +760,25 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             } else if (party2body[1].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
-                memberindex = 2
+                memberindex = 1
                 memberrefuel = isMem2Party2Refuel
                 mypartyrefuelat = party2body[5]
             } else if (party2body[2].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
-                memberindex = 3
+                memberindex = 2
                 memberrefuel = isMem3Party2Refuel
                 mypartyrefuelat = party2body[5]
             } else if (party2body[3].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
-                memberindex = 4
+                memberindex = 3
                 memberrefuel = isMem4Party2Refuel
                 mypartyrefuelat = party2body[5]
             } else if (party2body[4].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
-                memberindex = 5
+                memberindex = 4
                 memberrefuel = isMem5Party2Refuel
                 mypartyrefuelat = party2body[5]
             }
