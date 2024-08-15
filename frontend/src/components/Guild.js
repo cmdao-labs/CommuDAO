@@ -1214,7 +1214,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
                                 {chain.id === 190 ?
                                     <>
-                                        {Number(allPower) !== 0 && Number(gasBalance) >= 10 && !myRefuelStatus ?
+                                        {Number(allPower) !== 0 && Number(gasBalance) >= 10 && !myRefuelStatus && myPartyRefuelAt < 19987500 ?
                                             <div style={{alignSelf: "center"}} className="button" onClick={refuelGas}>REFUEL GAS</div> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                         }
