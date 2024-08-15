@@ -1,17 +1,19 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount } from 'wagmi'
+import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
 const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
 const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
+const missionBaseCmd = '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI }) => {
-    let { address } = useAccount()
-    //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
+const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI }) => {
+    const { chain } = useNetwork()
+    //let { address } = useAccount()
+    let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/guild/profile/' + address)
@@ -62,13 +64,17 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
-    const [timeToRunout, setTimeToRunout] = React.useState(null)
-    const [isRunout, setIsRunout] = React.useState(false)
     const [rewardPending, setRewardPending] = React.useState(0)
 
     const [scmJBCBalance, setScmJBCBalance] = React.useState(0)
+    const [gasBalance, setGasBalance] = React.useState(0)
 
     const [myParty, setMyParty] = React.useState(null)
+    const [myPartyIndex, setMyPartyIndex] = React.useState(null)
+    const [myMemberIndex, setMyMemberIndex] = React.useState(null)
+    const [myRefuelStatus, setMyRefuelStatus] = React.useState(null)
+    const [myPartyRefuelAt, setMyPartyRefuelAt] = React.useState(null)
+    const [myAbiltoDelegate, setMyAbiltoDelegate] = React.useState(null)
 
     const [party1Name, setParty1Name] = React.useState(null)
     const [party1Logo, setParty1Logo] = React.useState(null)
@@ -92,6 +98,9 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setNft([])
         
         const thefetch = async () => {
+            const cmdBal = address !== null && address !== undefined ?
+                await fetchBalance({ address: address, chainId: 190 }) :
+                {formatted: 0}
             const nftEQ = await readContract({
                 address: nftSlot,
                 abi: nftSlotABI,
@@ -282,6 +291,76 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         abi: partyABI,
                         functionName: 'partyBody',
                         args: [2],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [1, 1],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [1, 2],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [1, 3],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [1, 4],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [1, 5],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [2, 1],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [2, 2],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [2, 3],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [2, 4],
+                        chainId: 190,
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'isAllRefuel',
+                        args: [2, 5],
                         chainId: 190,
                     },
                 ],
@@ -618,12 +697,90 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             const party2name = data[22].result
             const party2logo = data[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
             const party2body = data[24].result
+            
+            const isMem1Party1Refuel = data[25].result
+            const isMem2Party1Refuel = data[26].result
+            const isMem3Party1Refuel = data[27].result
+            const isMem4Party1Refuel = data[28].result
+            const isMem5Party1Refuel = data[29].result
+            const isMem1Party2Refuel = data[30].result
+            const isMem2Party2Refuel = data[31].result
+            const isMem3Party2Refuel = data[32].result
+            const isMem4Party2Refuel = data[33].result
+            const isMem5Party2Refuel = data[34].result
+            console.log("Party 1: ", isMem1Party1Refuel, isMem2Party1Refuel, isMem3Party1Refuel, isMem4Party1Refuel, isMem5Party1Refuel)
+            console.log("Party 2: ", isMem1Party2Refuel, isMem2Party2Refuel, isMem3Party2Refuel, isMem4Party2Refuel, isMem5Party2Refuel)
 
             let myparty = null
-            if (party1body[0].toUpperCase() === address.toUpperCase() || party1body[1].toUpperCase() === address.toUpperCase() || party1body[2].toUpperCase() === address.toUpperCase() || party1body[3].toUpperCase() === address.toUpperCase() || party1body[4].toUpperCase() === address.toUpperCase()) {
+            let partyindex = null
+            let memberindex = null
+            let memberrefuel = null
+            let mypartyrefuelat = null
+            let abilitytodelegate = false
+            if (party1body[0].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
-            } else if (party2body[0].toUpperCase() === address.toUpperCase() || party2body[1].toUpperCase() === address.toUpperCase() || party2body[2].toUpperCase() === address.toUpperCase() || party2body[3].toUpperCase() === address.toUpperCase() || party2body[4].toUpperCase() === address.toUpperCase()) {
+                partyindex = 1
+                memberindex = 1
+                memberrefuel = isMem1Party1Refuel
+                mypartyrefuelat = party1body[5]
+                // simple validation need to be fixed later
+                abilitytodelegate = isMem1Party1Refuel && isMem2Party1Refuel && isMem3Party1Refuel && isMem4Party1Refuel && isMem5Party1Refuel ? true : false
+            } else if (party1body[1].toUpperCase() === address.toUpperCase()) {
+                myparty = party1name
+                partyindex = 1
+                memberindex = 2
+                memberrefuel = isMem2Party1Refuel
+                mypartyrefuelat = party1body[5]
+            } else if (party1body[2].toUpperCase() === address.toUpperCase()) {
+                myparty = party1name
+                partyindex = 1
+                memberindex = 3
+                memberrefuel = isMem3Party1Refuel
+                mypartyrefuelat = party1body[5]
+            } else if (party1body[3].toUpperCase() === address.toUpperCase()) {
+                myparty = party1name
+                partyindex = 1
+                memberindex = 4
+                memberrefuel = isMem4Party1Refuel
+                mypartyrefuelat = party1body[5]
+            } else if (party1body[4].toUpperCase() === address.toUpperCase()) {
+                myparty = party1name
+                partyindex = 1
+                memberindex = 5
+                memberrefuel = isMem5Party1Refuel
+                mypartyrefuelat = party1body[5]
+            } else if (party2body[0].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
+                partyindex = 2
+                memberindex = 1
+                memberrefuel = isMem1Party2Refuel
+                mypartyrefuelat = party2body[5]
+                // simple validation need to be fixed later
+                abilitytodelegate = isMem1Party2Refuel && isMem2Party2Refuel && isMem3Party2Refuel && isMem4Party2Refuel && isMem5Party2Refuel ? true : false
+            } else if (party2body[1].toUpperCase() === address.toUpperCase()) {
+                myparty = party2name
+                partyindex = 2
+                memberindex = 2
+                memberrefuel = isMem2Party2Refuel
+                mypartyrefuelat = party2body[5]
+            } else if (party2body[2].toUpperCase() === address.toUpperCase()) {
+                myparty = party2name
+                partyindex = 2
+                memberindex = 3
+                memberrefuel = isMem3Party2Refuel
+                mypartyrefuelat = party2body[5]
+            } else if (party2body[3].toUpperCase() === address.toUpperCase()) {
+                myparty = party2name
+                partyindex = 2
+                memberindex = 4
+                memberrefuel = isMem4Party2Refuel
+                mypartyrefuelat = party2body[5]
+            } else if (party2body[4].toUpperCase() === address.toUpperCase()) {
+                myparty = party2name
+                partyindex = 2
+                memberindex = 5
+                memberrefuel = isMem5Party2Refuel
+                mypartyrefuelat = party2body[5]
             }
                         
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
@@ -637,6 +794,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         abi: erc721ABI,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 10
                     }
                 ))
             }) : [Array(walletRemoveDup.length).fill('')]
@@ -653,6 +811,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 10
                     }
                 ))
             }) : [Array(yournftwallet.length).fill('')]
@@ -686,8 +845,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 nfts, 
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
-                allPow, /*isStaked, refuelAt, rewardpending,*/ scmJBCBal,
-                myparty, party1name, party1logo, party2name, party2logo,
+                allPow, /*refuelAt, rewardpending,*/ scmJBCBal, cmdBal,
+                myparty, partyindex, memberindex, memberrefuel, mypartyrefuelat, abilitytodelegate, party1name, party1logo, party2name, party2logo,
             ]
         }
 
@@ -740,8 +899,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
             
             setAllPower(result[31])
-            /*setIsStakeNow(result[32])
-            const gasOut = new Date((Number(result[33]) * 1000) + (7 * 86400 * 1000))
+            /*const gasOut = new Date((Number(result[33]) * 1000) + (7 * 86400 * 1000))
             result[33] !== 0 ?
                 setTimeToRunout(gasOut.toLocaleString('es-CL')) :
                 setTimeToRunout(null)
@@ -749,12 +907,19 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setRewardPending(ethers.utils.formatEther(String(result[34])))*/
 
             setScmJBCBalance(result[32])
+            setGasBalance(result[33].formatted)
 
-            setMyParty(result[33])
-            setParty1Name(result[34])
-            setParty1Logo(result[35])
-            setParty2Name(result[36])
-            setParty2Logo(result[37])
+            setMyParty(result[34])
+            setMyPartyIndex(result[35])
+            setMyMemberIndex(result[36])
+            setMyRefuelStatus(result[37])
+            setMyPartyRefuelAt(result[38])
+            setMyAbiltoDelegate(result[39])
+
+            setParty1Name(result[40])
+            setParty1Logo(result[41])
+            setParty2Name(result[42])
+            setParty2Logo(result[43])
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI])
@@ -854,38 +1019,19 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(false)
     }
 
-    /*const refuelStake = async () => {
+    const refuelGas = async () => {
         setisLoading(true)
         try {
-            let gasAddr = ''
-            let gasIndex = 0
-            if (ss === 1) {
-                gasAddr = doijibToken
-                gasIndex = 1
-            }
-            const gasAllow = await readContract({
-                address: gasAddr,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, nftSlot],
-            })
-            if (gasAllow < (700000 * 10**18)) {
-                    const config = await prepareWriteContract({
-                        address: gasAddr,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [nftSlot, ethers.utils.parseEther(String(10**8))],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-            }
-            const config2 = await prepareWriteContract({
-                address: nftSlot,
-                abi: nftSlotABI,
+            console.log(myPartyIndex, myMemberIndex)
+            const config = await prepareWriteContract({
+                address: party,
+                abi: partyABI,
                 functionName: 'refuel',
-                args: [gasIndex, false, myhouse]
+                args: [myPartyIndex, myMemberIndex],
+                value: ethers.utils.parseEther('10'),
+                chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config2)
+            const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
@@ -894,7 +1040,50 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         }
         setisLoading(false)
     }
-*/
+
+    const delegateMission = async () => {
+        setisLoading(true)
+        try {
+            console.log(myPartyIndex)
+            const config = await prepareWriteContract({
+                address: party,
+                abi: partyABI,
+                functionName: 'delegateMission',
+                args: [myPartyIndex, '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518', 100],
+                value: ethers.utils.parseEther('1'),
+                chainId: 190,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const confirmMission = async () => {
+        setisLoading(true)
+        try {
+            console.log(myPartyIndex)
+            const config = await prepareWriteContract({
+                address: missionBaseCmd,
+                abi: missionCMDBaseABI,
+                functionName: 'confirmDelegate',
+                args: [myPartyIndex],
+                chainId: 190,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
     return (
     <>
         {isTransferModal &&
@@ -923,7 +1112,26 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     <div style={{background: "#FFFFFF99", width: "370px", height: "390px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                         <div style={{fontSize: "22px", lineHeight: "15px"}}>STAKING</div>
-                            
+                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
+                                {myPartyRefuelAt >= 19987500 ?
+                                    <>
+                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                        <div>Party Already Delegated</div>
+                                    </> :
+                                    <>
+                                        {myRefuelStatus ?
+                                            <>
+                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>{myMemberIndex !== null && <>Member {myMemberIndex}: </>}Already Refuel</div>
+                                            </> :
+                                            <>
+                                                <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>{myMemberIndex !== null && <>Member {myMemberIndex}: </>}Not Refuel</div>
+                                            </>
+                                        }
+                                    </>
+                                }
+                            </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             {address !== undefined ?
@@ -1004,23 +1212,15 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {true ?
+                                {chain.id === 190 ?
                                     <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
-                                    </> :
-                                    <>
-                                        {true ?
-                                            <>
-                                                {Number(allPower) !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button">REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                            </> :
+                                        {Number(allPower) !== 0 && Number(gasBalance) >= 10 ?
+                                            <div style={{alignSelf: "center"}} className="button" onClick={refuelGas}>REFUEL GAS</div> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                         }
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM</div>
-                                    </>
+                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
+                                    </> :
+                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
                                 }
                             </div> :
                             <div style={{height: "41px"}}></div>
@@ -1145,10 +1345,10 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             </div>
                             <div style={{width: "300px"}}>TBD</div>
                             <div style={{width: "150px"}}>5</div>
+                            <div style={{width: "150px"}}>0</div>
+                            <div style={{width: "150px"}}>0.00%</div>
                             <div style={{width: "150px"}}>TBD</div>
-                            <div style={{width: "150px"}}>TBD</div>
-                            <div style={{width: "150px"}}>TBD</div>
-                            <div style={{width: "200px"}}>TBD</div>
+                            <div style={{width: "200px"}}>0 $CMD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
                             <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
@@ -1157,10 +1357,10 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             </div>
                             <div style={{width: "300px"}}>TBD</div>
                             <div style={{width: "150px"}}>5</div>
+                            <div style={{width: "150px"}}>0</div>
+                            <div style={{width: "150px"}}>0.00%</div>
                             <div style={{width: "150px"}}>TBD</div>
-                            <div style={{width: "150px"}}>TBD</div>
-                            <div style={{width: "150px"}}>TBD</div>
-                            <div style={{width: "200px"}}>TBD</div>
+                            <div style={{width: "200px"}}>0 $CMD</div>
                         </div>
                     </div>
                 </div>
@@ -1172,8 +1372,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Baby Alpha Tester [BBQ Chain]</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>Soon!</div>
+                        <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
+                            <div>Please contact on CommuDAO Discord for more information</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>CMPOW DEDICATED</div>
@@ -1189,13 +1389,15 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {true ?
+                                {chain.id === 190 ?
                                     <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
-                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CONFIRM MISSION</div>
+                                        {myAbiltoDelegate && Number(gasBalance) >= 1 ?
+                                            <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div> :
+                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
+                                        }
+                                        {(Number(myMemberIndex) === 1 && myPartyRefuelAt >= 19987500) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
                                     </> :
-                                    <>
-                                    </>
+                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
                                 }
                             </div> :
                             <div style={{height: "41px"}}></div>
@@ -1211,11 +1413,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>CMPOW DEDICATED</div>
-                            <div>0</div>
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>PARTY DEDICATED</div>
-                            <div>0</div>
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
@@ -1226,7 +1428,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                 {true ?
                                     <>
                                         <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
-                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CONFIRM MISSION</div>
                                     </> :
                                     <>
                                     </>
@@ -1245,11 +1446,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>CMPOW DEDICATED</div>
-                            <div>0</div>
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>PARTY DEDICATED</div>
-                            <div>0</div>
+                            <div>TBD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
@@ -1260,7 +1461,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                 {true ?
                                     <>
                                         <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
-                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CONFIRM MISSION</div>
                                     </> :
                                     <>
                                     </>
