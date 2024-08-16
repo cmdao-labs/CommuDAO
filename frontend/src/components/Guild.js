@@ -9,6 +9,7 @@ const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
 const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
 const missionBaseCmd = '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
+const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
 const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI }) => {
     const { chain } = useNetwork()
@@ -63,7 +64,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const [badgeSlotLevel, setBadgeSlotLevel] = React.useState(null)
 
     const [allPower, setAllPower] = React.useState(0)
-    const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [rewardPending, setRewardPending] = React.useState(0)
 
     const [scmJBCBalance, setScmJBCBalance] = React.useState(0)
@@ -75,26 +75,23 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const [myRefuelStatus, setMyRefuelStatus] = React.useState(null)
     const [myPartyRefuelAt, setMyPartyRefuelAt] = React.useState(null)
     const [myAbiltoDelegate, setMyAbiltoDelegate] = React.useState(null)
+    const [isBaseCmdDelegate, setIsBaseCmdDelegate] = React.useState(null)
+    const [allCmpowMyParty, setAllCmpowMyParty] = React.useState(0)
 
     const [party1Name, setParty1Name] = React.useState(null)
     const [party1Logo, setParty1Logo] = React.useState(null)
-    const [party1Member1CMPOW, setParty1Member1CMPOW] = React.useState(null)
-    const [party1Member2CMPOW, setParty1Member2CMPOW] = React.useState(null)
-    const [party1Member3CMPOW, setParty1Member3CMPOW] = React.useState(null)
-    const [party1Member4CMPOW, setParty1Member4CMPOW] = React.useState(null)
-    const [party1Member5CMPOW, setParty1Member5CMPOW] = React.useState(null)
+    const [party1DelegateBaseCMD, setParty1DelegateBaseCMD] = React.useState(0)
+    const [allCmpowParty1, setAllCmpowParty1] = React.useState(0)
 
     const [party2Name, setParty2Name] = React.useState(null)
     const [party2Logo, setParty2Logo] = React.useState(null)
-    const [party2Member1CMPOW, setParty2Member1CMPOW] = React.useState(null)
-    const [party2Member2CMPOW, setParty2Member2CMPOW] = React.useState(null)
-    const [party2Member3CMPOW, setParty2Member3CMPOW] = React.useState(null)
-    const [party2Member4CMPOW, setParty2Member4CMPOW] = React.useState(null)
-    const [party2Member5CMPOW, setParty2Member5CMPOW] = React.useState(null)
+    const [party2DelegateBaseCMD, setParty2DelegateBaseCMD] = React.useState(0)
+    const [allCmpowParty2, setAllCmpowParty2] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(cmdaonft, erc721ABI, providerOP)
+        const missionBaseCmdSC = new ethers.Contract(missionBaseCmd, missionCMDBaseABI, providerBBQ)
         setNft([])
         
         const thefetch = async () => {
@@ -711,18 +708,109 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             console.log("Party 1: ", isMem1Party1Refuel, isMem2Party1Refuel, isMem3Party1Refuel, isMem4Party1Refuel, isMem5Party1Refuel)
             console.log("Party 2: ", isMem1Party2Refuel, isMem2Party2Refuel, isMem3Party2Refuel, isMem4Party2Refuel, isMem5Party2Refuel)
 
+            const delegateParty1Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(1, null, null)
+            const delegateParty1Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty1Mission1Filter, 19987208, "latest")
+            const delegateParty1Mission1Map = await Promise.all(delegateParty1Mission1Event.map(async (obj) => String(obj.args.endBlock)))
+            const isDelegateParty1Mission1 = delegateParty1Mission1Map.indexOf('1724198400') !== -1 ? true : false
+
+            const delegateParty2Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(2, null, null)
+            const delegateParty2Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty2Mission1Filter, 19987208, "latest")
+            const delegateParty2Mission1Map = await Promise.all(delegateParty2Mission1Event.map(async (obj) => String(obj.args.endBlock)))
+            const isDelegateParty2Mission1 = delegateParty2Mission1Map.indexOf('1724198400') !== -1 ? true : false
+
+            const data4 = await readContracts({
+                contracts: [
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party1body[0]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party1body[1]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party1body[2]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party1body[3]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party1body[4]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party2body[0]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party2body[1]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party2body[2]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party2body[3]],
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'cmpow',
+                        args: [party2body[4]],
+                        chainId: 190,
+                    },
+                ],
+            })
+            const allcmpowparty1 = Number(data4[0].result) + Number(data4[1].result) + Number(data4[2].result) + Number(data4[3].result) + Number(data4[4].result)
+            const allcmpowparty2 = Number(data4[5].result) + Number(data4[6].result) + Number(data4[7].result) + Number(data4[8].result) + Number(data4[9].result)
+
             let myparty = null
             let partyindex = null
             let memberindex = null
             let memberrefuel = null
             let mypartyrefuelat = null
             let abilitytodelegate = false
+            let isDelegate1 = null
+            let mypartyallcmpow = 0
             if (party1body[0].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
                 memberindex = 0
                 memberrefuel = isMem1Party1Refuel
                 mypartyrefuelat = party1body[5]
+                isDelegate1 = isDelegateParty1Mission1
+                mypartyallcmpow = allcmpowparty1
                 // simple validation need to be fixed later
                 abilitytodelegate = isMem1Party1Refuel && isMem2Party1Refuel && isMem3Party1Refuel && isMem4Party1Refuel && isMem5Party1Refuel ? true : false
             } else if (party1body[1].toUpperCase() === address.toUpperCase()) {
@@ -731,30 +819,40 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 memberindex = 1
                 memberrefuel = isMem2Party1Refuel
                 mypartyrefuelat = party1body[5]
+                isDelegate1 = isDelegateParty1Mission1
+                mypartyallcmpow = allcmpowparty1
             } else if (party1body[2].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
                 memberindex = 2
                 memberrefuel = isMem3Party1Refuel
                 mypartyrefuelat = party1body[5]
+                isDelegate1 = isDelegateParty1Mission1
+                mypartyallcmpow = allcmpowparty1
             } else if (party1body[3].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
                 memberindex = 3
                 memberrefuel = isMem4Party1Refuel
                 mypartyrefuelat = party1body[5]
+                isDelegate1 = isDelegateParty1Mission1
+                mypartyallcmpow = allcmpowparty1
             } else if (party1body[4].toUpperCase() === address.toUpperCase()) {
                 myparty = party1name
                 partyindex = 1
                 memberindex = 4
                 memberrefuel = isMem5Party1Refuel
                 mypartyrefuelat = party1body[5]
+                isDelegate1 = isDelegateParty1Mission1
+                mypartyallcmpow = allcmpowparty1
             } else if (party2body[0].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
                 memberindex = 0
                 memberrefuel = isMem1Party2Refuel
                 mypartyrefuelat = party2body[5]
+                isDelegate1 = isDelegateParty2Mission1
+                mypartyallcmpow = allcmpowparty2
                 // simple validation need to be fixed later
                 abilitytodelegate = isMem1Party2Refuel && isMem2Party2Refuel && isMem3Party2Refuel && isMem4Party2Refuel && isMem5Party2Refuel ? true : false
             } else if (party2body[1].toUpperCase() === address.toUpperCase()) {
@@ -763,24 +861,32 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 memberindex = 1
                 memberrefuel = isMem2Party2Refuel
                 mypartyrefuelat = party2body[5]
+                isDelegate1 = isDelegateParty2Mission1
+                mypartyallcmpow = allcmpowparty2
             } else if (party2body[2].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
                 memberindex = 2
                 memberrefuel = isMem3Party2Refuel
                 mypartyrefuelat = party2body[5]
+                isDelegate1 = isDelegateParty2Mission1
+                mypartyallcmpow = allcmpowparty2
             } else if (party2body[3].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
                 memberindex = 3
                 memberrefuel = isMem4Party2Refuel
                 mypartyrefuelat = party2body[5]
+                isDelegate1 = isDelegateParty2Mission1
+                mypartyallcmpow = allcmpowparty2
             } else if (party2body[4].toUpperCase() === address.toUpperCase()) {
                 myparty = party2name
                 partyindex = 2
                 memberindex = 4
                 memberrefuel = isMem5Party2Refuel
                 mypartyrefuelat = party2body[5]
+                isDelegate1 = isDelegateParty2Mission1
+                mypartyallcmpow = allcmpowparty2
             }
                         
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
@@ -846,7 +952,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 allPow, /*refuelAt, rewardpending,*/ scmJBCBal, cmdBal,
-                myparty, partyindex, memberindex, memberrefuel, mypartyrefuelat, abilitytodelegate, party1name, party1logo, party2name, party2logo,
+                myparty, partyindex, memberindex, memberrefuel, mypartyrefuelat, abilitytodelegate, isDelegate1, mypartyallcmpow,
+                party1name, party1logo, isDelegateParty1Mission1, allcmpowparty1, party2name, party2logo, isDelegateParty2Mission1, allcmpowparty2,
             ]
         }
 
@@ -899,12 +1006,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
             
             setAllPower(result[31])
-            /*const gasOut = new Date((Number(result[33]) * 1000) + (7 * 86400 * 1000))
-            result[33] !== 0 ?
-                setTimeToRunout(gasOut.toLocaleString('es-CL')) :
-                setTimeToRunout(null)
-            result[33] !== 0 && Date.now() - (Number(result[33]) * 1000) > (7 * 86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
-            setRewardPending(ethers.utils.formatEther(String(result[34])))*/
+            /*setRewardPending(ethers.utils.formatEther(String(result[34])))*/
 
             setScmJBCBalance(result[32])
             setGasBalance(result[33].formatted)
@@ -915,14 +1017,20 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setMyRefuelStatus(result[37])
             setMyPartyRefuelAt(result[38])
             setMyAbiltoDelegate(result[39])
+            setIsBaseCmdDelegate(result[40])
+            setAllCmpowMyParty(result[41])
 
-            setParty1Name(result[40])
-            setParty1Logo(result[41])
-            setParty2Name(result[42])
-            setParty2Logo(result[43])
+            setParty1Name(result[42])
+            setParty1Logo(result[43])
+            setParty1DelegateBaseCMD(result[44])
+            setAllCmpowParty1(result[45])
+            setParty2Name(result[46])
+            setParty2Logo(result[47])
+            setParty2DelegateBaseCMD(result[48])
+            setAllCmpowParty2(result[49])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -1194,13 +1302,13 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            DELEGATED CMPOW 
+                            DELEGABLE CMPOW 
                             <div>{Number(allPower) !== 0 ? (Number(allPower) + Number(scmJBCBalance)).toLocaleString('en-US', {maximumFractionDigits:0}) : 0}</div>
                         </div>
 
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             PARTY CONCENTRATION 
-                            <div>0.00%</div>
+                            <div>{Number((allPower / allCmpowMyParty) * 100).toFixed(2)}%</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             GUILD CONCENTRATION 
@@ -1324,8 +1432,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             </div>
 
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "95%", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap", overflow: "scroll"}} className="nftCard">
+                    <div style={{background: "#FFFFFF99", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>PARTY PANEL</div>
                         </div>
@@ -1345,9 +1453,9 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             </div>
                             <div style={{width: "300px"}}>TBD</div>
                             <div style={{width: "150px"}}>5</div>
-                            <div style={{width: "150px"}}>0</div>
-                            <div style={{width: "150px"}}>0.00%</div>
-                            <div style={{width: "150px"}}>TBD</div>
+                            <div style={{width: "150px"}}>{allCmpowParty1}</div>
+                            <div style={{width: "150px"}}>{Number((allCmpowParty1 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)}%</div>
+                            <div style={{width: "150px"}}>{Number(party1DelegateBaseCMD)}</div>
                             <div style={{width: "200px"}}>0 $CMD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
@@ -1357,9 +1465,9 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             </div>
                             <div style={{width: "300px"}}>TBD</div>
                             <div style={{width: "150px"}}>5</div>
-                            <div style={{width: "150px"}}>0</div>
-                            <div style={{width: "150px"}}>0.00%</div>
-                            <div style={{width: "150px"}}>TBD</div>
+                            <div style={{width: "150px"}}>{allCmpowParty2}</div>
+                            <div style={{width: "150px"}}>{Number((allCmpowParty2 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)}%</div>
+                            <div style={{width: "150px"}}>{Number(party2DelegateBaseCMD)}</div>
                             <div style={{width: "200px"}}>0 $CMD</div>
                         </div>
                     </div>
@@ -1368,7 +1476,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "flex-start", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Baby Alpha Tester [BBQ Chain]</div>
                         </div>
@@ -1377,11 +1485,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>CMPOW DEDICATED</div>
-                            <div>0</div>
+                            <div>{allCmpowParty1 + allCmpowParty2}</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>PARTY DEDICATED</div>
-                            <div>0</div>
+                            <div>{Number(party1DelegateBaseCMD) + Number(party2DelegateBaseCMD)}</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
@@ -1391,11 +1499,10 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
                                 {chain.id === 190 ?
                                     <>
-                                        {myAbiltoDelegate && Number(gasBalance) >= 1 ?
-                                            <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div> :
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
-                                        }
-                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= 1723680000) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
+                                        {myMemberIndex === null && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>}
+                                        {(myAbiltoDelegate && Number(gasBalance) >= 1) && <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div>}
+                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= 1723680000 && !isBaseCmdDelegate) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
+                                        {isBaseCmdDelegate && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">MISSION DELEGATED</div>}
                                     </> :
                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
                                 }
@@ -1404,11 +1511,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         }
                     </div>
 
-                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Ancient Forrest [BBQ Chain]</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
                             <div>Soon!</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
@@ -1437,11 +1544,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         }
                     </div>
 
-                    <div style={{background: "#FFFFFF99", width: "400px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>Health Pro [BBQ Chain]</div>
                         </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid"}}>
+                        <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
                             <div>Soon!</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
