@@ -1788,13 +1788,17 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(false)
     }
 
-    const equipNft = async (_nftid, slot, _isMeme) => {
+    const equipNft = async (_nftCol, _nftid, slot, _isMeme) => {
         setisLoading(true)
         let nftaddr = cmdaonft
         if (_isMeme && slot === 4) {
             nftaddr = bbnft
         } else if (_isMeme && (slot === 5 || slot === 7)) {
             nftaddr = narutanft
+        }
+        let colBonus = 0
+        if (_nftCol === 1 && (Number(_nftid) >= 710000102550 && Number(_nftid) <= 710010701000)) {
+            colBonus = 710
         }
         try {
             const nftAllow = await readContract({
@@ -1817,7 +1821,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'equip',
-                args: [_nftid, 0, slot, _isMeme, ss],
+                args: [_nftid, colBonus, slot, _isMeme, ss],
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -2233,7 +2237,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                             <img src={item.Image} height="100%" alt="Can not load metadata." />
                                         </div>
                                         <div className="emp bold">{item.Name}</div>
-                                        <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                        <div className="bold">
+                                            {item.RewardPerSec}
+                                            &nbsp;{(item.Col === 1 && (Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000)) && '[x10 bonus]'} 
+                                            &nbsp;cmpow
+                                        </div>
                                         <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
                                         {address === youraddr ?
                                             <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
@@ -2263,40 +2271,40 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                                             <>
                                                                 {((item.Id / 100000000000) | 0) === 1 && 
                                                                     <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1, false)}>EQUIP L1 MAIN CHAR</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 15, false)}>EQUIP L1 SOUL</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 1, false)}>EQUIP L1 MAIN CHAR</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 15, false)}>EQUIP L1 SOUL</div>
                                                                     </>
                                                                 }
-                                                                {((item.Id / 100000000000) | 0) === 2 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 2, false)}>EQUIP L1 HAT</div>}
-                                                                {((item.Id / 100000000000) | 0) === 3 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 3, false)}>EQUIP L1 CLOTH</div>}
+                                                                {((item.Id / 100000000000) | 0) === 2 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 2, false)}>EQUIP L1 HAT</div>}
+                                                                {((item.Id / 100000000000) | 0) === 3 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 3, false)}>EQUIP L1 CLOTH</div>}
                                                                 {((item.Id / 100000000000) | 0) === 4 && 
                                                                     <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 4, false)}>EQUIP L1 ACC (1)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 9, false)}>EQUIP L1 ACC (2)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 10, false)}>EQUIP L1 ACC (3)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 11, false)}>EQUIP L1 ACC (4)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 12, false)}>EQUIP L1 ACC (5)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 13, false)}>EQUIP L1 ACC (6)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 4, false)}>EQUIP L1 ACC (1)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 9, false)}>EQUIP L1 ACC (2)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 10, false)}>EQUIP L1 ACC (3)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 11, false)}>EQUIP L1 ACC (4)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 12, false)}>EQUIP L1 ACC (5)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 13, false)}>EQUIP L1 ACC (6)</div>
                                                                     </>
                                                                 }
-                                                                {((item.Id / 100000000000) | 0) === 5 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 5, false)}>EQUIP L1 BACK</div>}
-                                                                {((item.Id / 100000000000) | 0) === 6 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 6, false)}>EQUIP L1 SHOES</div>}
+                                                                {((item.Id / 100000000000) | 0) === 5 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 5, false)}>EQUIP L1 BACK</div>}
+                                                                {((item.Id / 100000000000) | 0) === 6 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 6, false)}>EQUIP L1 SHOES</div>}
                                                                 {((item.Id / 100000000000) | 0) === 7 && 
                                                                     <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 7, false)}>EQUIP L1 WEAPON (1)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 14, false)}>EQUIP L1 WEAPON (2)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 7, false)}>EQUIP L1 WEAPON (1)</div>
+                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 14, false)}>EQUIP L1 WEAPON (2)</div>
                                                                     </>
                                                                 }
-                                                                {((item.Id / 100000000000) | 0) === 8 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 8, false)}>EQUIP L1 BADGE</div>}
+                                                                {((item.Id / 100000000000) | 0) === 8 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 8, false)}>EQUIP L1 BADGE</div>}
                                                             </>
                                                         }
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 102000108000 && Number(item.Id) <= 102033308000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1, true)}>EQUIP L2 SS1 MAIN CHAR</div>}
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 220010810800 && Number(item.Id) <= 220020910800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 2, true)}>EQUIP L2 SS1 HAT</div>}
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 300010100600 && Number(item.Id) <= 300054800600)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 3, true)}>EQUIP L2 SS1 CLOTH</div>}
-                                                        {(ss === 1 && item.Col === 3 && (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 4, true)}>EQUIP L2 SS1 ACC</div>}
-                                                        {(ss === 1 && item.Col === 2 && (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 5, true)}>EQUIP L2 SS1 BACK</div>}
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025601000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 6, true)}>EQUIP L2 SS1 SHOES</div>}
-                                                        {(ss === 1 && item.Col === 2 && (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 7, true)}>EQUIP L2 SS1 WEAPON</div>}
+                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 102000108000 && Number(item.Id) <= 102033308000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS1 MAIN CHAR</div>}
+                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 220010810800 && Number(item.Id) <= 220020910800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS1 HAT</div>}
+                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 300010100600 && Number(item.Id) <= 300054800600)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS1 CLOTH</div>}
+                                                        {(ss === 1 && item.Col === 3 && (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS1 ACC</div>}
+                                                        {(ss === 1 && item.Col === 2 && (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS1 BACK</div>}
+                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025601000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS1 SHOES</div>}
+                                                        {(ss === 1 && item.Col === 2 && (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS1 WEAPON</div>}
                                                         <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
                                                     </>
                                                 }
