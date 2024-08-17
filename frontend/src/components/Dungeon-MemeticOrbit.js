@@ -1799,6 +1799,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         let colBonus = 0
         if (_nftCol === 1 && (Number(_nftid) >= 710000102550 && Number(_nftid) <= 710010701000)) {
             colBonus = 710
+        } else if (_nftCol === 1 && (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000)) {
+            colBonus = 130
         }
         try {
             const nftAllow = await readContract({
@@ -2239,7 +2241,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                         <div className="emp bold">{item.Name}</div>
                                         <div className="bold">
                                             {item.RewardPerSec}
-                                            &nbsp;{(item.Col === 1 && (Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000)) && '[x10 bonus]'} 
+                                            &nbsp;{(item.Col === 1 && ((Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000) || (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000))) && '[x10 bonus]'} 
                                             &nbsp;cmpow
                                         </div>
                                         <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
