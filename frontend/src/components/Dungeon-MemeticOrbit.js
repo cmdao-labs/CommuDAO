@@ -1799,7 +1799,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         let colBonus = 0
         if (_nftCol === 1 && (Number(_nftid) >= 710000102550 && Number(_nftid) <= 710010701000)) {
             colBonus = 710
-        } else if (_nftCol === 1 && (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000)) {
+        } else if (_nftCol === 1 && (Number(_nftid) >= 130000100500 && Number(_nftid) <= 130060000000)) {
             colBonus = 130
         }
         try {
