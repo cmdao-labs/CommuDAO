@@ -172,6 +172,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftId],
+                chainId: 8899,
             })
             if (nftAllow.toUpperCase() !== jbcBridge.toUpperCase()) {
                 const config0 = await prepareWriteContract({
@@ -179,6 +180,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     abi: erc721ABI,
                     functionName: 'approve',
                     args: [jbcBridge, _nftId],
+                    chainId: 8899,
                 })
                 const { hash: hash0 } = await writeContract(config0)
                 await waitForTransaction({ hash: hash0 })
@@ -206,6 +208,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 abi: erc721ABI,
                 functionName: 'getApproved',
                 args: [_nftId],
+                chainId: 10,
             })
             if (nftAllow.toUpperCase() !== opBridge.toUpperCase()) {
                 const config0 = await prepareWriteContract({
@@ -213,6 +216,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                     abi: erc721ABI,
                     functionName: 'approve',
                     args: [opBridge, _nftId],
+                    chainId: 10,
                 })
                 const { hash: hash0 } = await writeContract(config0)
                 await waitForTransaction({ hash: hash0 })
@@ -220,7 +224,7 @@ const TBridgeCMDAONFT2 = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             const config = await prepareWriteContract({
                 address: opBridge,
                 abi: uniNftBridgeABI,
-                functionName: 'receiveNFTs',
+                functionName: 'receiveNfts',
                 args: [1, _nftId],
                 value: ethers.utils.parseEther('0.0003'),
                 chainId: 10,
