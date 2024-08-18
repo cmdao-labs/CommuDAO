@@ -750,9 +750,9 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
             setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
-            setCmdRev((Number(result[14]) - 10) * 0.60)
+            setCmdRev((Number(result[14]) - 10) * 0.85)
             setUsdtRev(Number(result[13][4].result) / 1e6)
-            setEthRev((Number(result[15])) * 0.60)
+            setEthRev((Number(result[15])) * 0.85)
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][5].result))) - Number(ethers.utils.formatEther(String(result[13][0].result))))
             setCmdBurn(ethers.utils.formatEther(String(result[13][5].result)))
 
