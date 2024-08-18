@@ -51,6 +51,7 @@ import stakerMachineABI from './jsons/stakerMachineABI.json'
 import diamonLpABI from './jsons/diamonlpABI.json'
 import farmCmosABI from './jsons/farmcmosABI.json'
 
+import BBQFields from './BBQ-Fields'
 import BBQLabs from './BBQ-Labs'
 
 import OpGameSwap from  './OP-GameSwap'
@@ -251,6 +252,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC-FRASER-RIVER") {
                     preset = 16
                     document.title = "Fraser River [BKC] | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BBQCHAIN") {
+                    preset = 10000
+                    document.title = "Fields [BBQ] | CommuDAO"
                 }
             } else {
                 preset = 1
@@ -422,6 +426,8 @@ const Main = () => {
                 {mode === 14 && <BKCFields callMode={callMode} navigate={navigate} />}
                 {mode === 15 && <BadMuseum setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} />}
                 {mode === 16 && <FraserRiver setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} />}
+
+                {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}
 
 
                 {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}

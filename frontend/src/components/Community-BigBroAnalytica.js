@@ -29,6 +29,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
     const [cmdRev, setCmdRev] = React.useState(0)
     const [cmdBurn, setCmdBurn] = React.useState(0)
     const [usdtRev, setUsdtRev] = React.useState(0)
+    const [ethRev, setEthRev] = React.useState(0)
     const [cmdCirculation, setCmdCirculation] = React.useState(0)
 
     const [cmjLocked, setCmjLocked] = React.useState(0)
@@ -655,7 +656,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         address: cmd,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
-                        args: ['0x494c102E557F5b8F1a5EaC7481d160EbA4413934'],
+                        args: ['0x3C72Fb1658E7A64fd4C88394De4474186A13460A'],
                         chainId: 10,
                     },
                     {
@@ -676,12 +677,10 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             })
 
             const bbqCmdBal1 = await fetchBalance({ address: '0x1BeedD97fCD4E21754465d21c757A9DF43733187', chainId: 190 })
-            const bbqCmdBal2 = await fetchBalance({ address: '0x0A071C71C2502ef7273eedFeFa54E23329e62e9f', chainId: 190 })
-            const bbqCmdBal3 = await fetchBalance({ address: '0xf623B7164cb81DCfC3836492fb09Ae005be57322', chainId: 190 })
-            const bbqCmdBal4 = await fetchBalance({ address: '0x494c102E557F5b8F1a5EaC7481d160EbA4413934', chainId: 190 })
+            const ethBal1 = await fetchBalance({ address: '0x3C72Fb1658E7A64fd4C88394De4474186A13460A', chainId: 10 })
 
             return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
-            (Number(bbqCmdBal1.formatted) + Number(bbqCmdBal2.formatted) + Number(bbqCmdBal3.formatted) + (Number(bbqCmdBal4.formatted) / 2) + Number(ethers.utils.formatEther(String(dataCMD[3].result)) / 2)), [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
+            (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
         }
 
         const promise = thefetch()
@@ -751,23 +750,24 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
             setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
-            setCmdRev((Number(result[14]) - 10) * 0.85)
+            setCmdRev((Number(result[14]) - 10) * 0.60)
             setUsdtRev(Number(result[13][4].result) / 1e6)
+            setEthRev((Number(result[15])) * 0.60)
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][5].result))) - Number(ethers.utils.formatEther(String(result[13][0].result))))
             setCmdBurn(ethers.utils.formatEther(String(result[13][5].result)))
 
-            setWoodStat(result[15])
-            setJdaoStat(result[16])
-            setOsStat(result[17])
-            setBbqStat(result[18])
-            setPzaStat(result[19])
-            setCtunaStat(result[20])
-            setSx31Stat(result[21])
-            setCuStat(result[22])
-            setSilStat(result[23])
-            setGoldStat(result[24])
-            setPlatStat(result[25])
-            setJaspStat(result[26])
+            setWoodStat(result[16])
+            setJdaoStat(result[17])
+            setOsStat(result[18])
+            setBbqStat(result[19])
+            setPzaStat(result[20])
+            setCtunaStat(result[21])
+            setSx31Stat(result[22])
+            setCuStat(result[23])
+            setSilStat(result[24])
+            setGoldStat(result[25])
+            setPlatStat(result[26])
+            setJaspStat(result[27])
         })
     }, [erc20ABI])
 
@@ -806,6 +806,10 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Epoch 1 Revenue:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdRev).toLocaleString('en-US', {maximumFractionDigits:0})} CMD ({Number(cmdRev/1000000).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div></div>
+                                <div style={{color: "#fff"}}>{Number(ethRev).toLocaleString('en-US', {maximumFractionDigits:4})} ETH</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div></div>
