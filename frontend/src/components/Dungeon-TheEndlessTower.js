@@ -8097,7 +8097,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd5r9efGEgrBPRd7UxkGuR4HcTSt3afGeDEa8suEHpoy2')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>The Endless Tower</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $GEMSTONE.</div>
+                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="150" alt="$GEM" />
@@ -8106,7 +8106,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     
         <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "rgb(230, 250, 54)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", maxWidth: "95%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                <div style={{backdropFilter: "blur(14px)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", maxWidth: "95%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{marginTop: "40px", display: "flex", flexFlow: "column wrap"}}>
                         {/*
                         ░██████╗██╗░░░░░░█████╗░████████╗░░███╗░░
@@ -8117,7 +8117,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
                         */}
                         <div style={{display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 1 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -8272,15 +8272,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot1Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 1</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot1 !== null ?
-                                            <img src={charSlot1} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot1} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -8360,7 +8359,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 2 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -8515,15 +8514,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot2Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 2</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot2 !== null ?
-                                            <img src={charSlot2} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot2} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -8603,7 +8601,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 3 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -8758,15 +8756,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot3Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 3</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot3 !== null ?
-                                            <img src={charSlot3} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot3} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -8846,7 +8843,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░░░░╚═╝
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 4 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -9001,15 +8998,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot4Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 4</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot4 !== null ?
-                                            <img src={charSlot4} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot4} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -9089,7 +9085,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 5 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -9244,15 +9240,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot5Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 5</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot5 !== null ?
-                                            <img src={charSlot5} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot5} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -9332,7 +9327,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 6 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -9487,15 +9482,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot6Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 6</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot6 !== null ?
-                                            <img src={charSlot6} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot6} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -9575,7 +9569,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░╚═╝░░░
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 7 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -9730,15 +9724,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot7Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 7</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot7 !== null ?
-                                            <img src={charSlot7} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot7} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -9818,7 +9811,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 8 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -9973,15 +9966,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot8Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 8</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot8 !== null ?
-                                            <img src={charSlot8} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot8} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -10061,7 +10053,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 9 STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -10216,15 +10208,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot9Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot 9</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot9 !== null ?
-                                            <img src={charSlot9} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot9} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -10304,7 +10295,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝
                         */}
                         <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                                 <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT X STAKING</div>
                                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -10459,15 +10450,14 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                 {talismanOneSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot10Level}</div>}
                             </div>
                             <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT Slot X</div>
                                 {nft.length > 0 ?
                                     <>
                                         {charSlot10 !== null ?
-                                            <img src={charSlot10} width="300px" alt="Can not load metadata." style={{marginTop: "30px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "30px"}}></div>
+                                            <img src={charSlot10} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px"}}></div>
                                         }
                                     </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
                                         <ThreeDots fill="#5f6476" />
                                     </div>
                                 }
@@ -10547,18 +10537,18 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
-                            <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", minHeight: "400px", height: "fit-content"}} className="nftCard" key={index}>
+                            <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", minHeight: "400px", height: "fit-content"}} className="nftCard" key={index}>
                                 <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
                                     <img src={item.Image} height="100%" alt="Can not load metadata." />
                                 </div>
-                                <div className="emp bold" style={{marginTop: "10px"}}>{item.Name}</div>
-                                <div className="bold">{item.RewardPerSec} power per sec</div>
-                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word", marginBottom: "10px"}} className="light">{item.Description}</div>
+                                <div className="emp bold" style={{margin: "10px 0"}}>{item.Name}</div>
+                                <div className="bold">{item.RewardPerSec} power</div>
+                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word", margin: "10px 0"}} className="light">{item.Description}</div>
                                 {address === youraddr ?
-                                    <div style={{width: "80%", display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                                    <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
                                         {item.isStaked ?
                                             <>
-                                                <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot - 1, String(item.Id).slice(0, 2))}>
+                                                <div style={{marginTop: "5px", width: "250px", background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot - 1, String(item.Id).slice(0, 2))}>
                                                     UNEQUIP&nbsp;
                                                     {String(item.Id).slice(0, 2) === '11' && '[Main Character]'}
                                                     {String(item.Id).slice(0, 2) === '12' && '[Weapon One]'}
@@ -10589,7 +10579,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                 </div>
                                             </> :
                                             <>
-                                                <div style={{marginTop: "5px", alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>
+                                                <div style={{marginTop: "5px", width: "250px", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>
                                                     TRANSFER&nbsp;
                                                     {String(item.Id).slice(0, 2) === '11' && '[Main Character]'}
                                                     {String(item.Id).slice(0, 2) === '12' && '[Weapon One]'}
@@ -10646,7 +10636,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot1 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(0, item.Id)}>EQUIP SLOT 1</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(0, item.Id)}>EQUIP SLOT 1</div>
                                                 }
                                                 {(!isStakeNowSlot2 && 
                                                     (
@@ -10677,7 +10667,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot2 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(1, item.Id)}>EQUIP SLOT 2</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(1, item.Id)}>EQUIP SLOT 2</div>
                                                 }
                                                 {(!isStakeNowSlot3 &&
                                                     (
@@ -10708,7 +10698,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot3 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(2, item.Id)}>EQUIP SLOT 3</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(2, item.Id)}>EQUIP SLOT 3</div>
                                                 }
                                                 {(!isStakeNowSlot4 &&
                                                     (
@@ -10739,7 +10729,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot4 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(3, item.Id)}>EQUIP SLOT 4</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(3, item.Id)}>EQUIP SLOT 4</div>
                                                 }
                                                 {(!isStakeNowSlot5 &&
                                                     (
@@ -10770,7 +10760,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot5 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(4, item.Id)}>EQUIP SLOT 5</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(4, item.Id)}>EQUIP SLOT 5</div>
                                                 }
                                                 {(!isStakeNowSlot6 &&
                                                     (
@@ -10801,7 +10791,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot6 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(5, item.Id)}>EQUIP SLOT 6</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(5, item.Id)}>EQUIP SLOT 6</div>
                                                 }
                                                 {(!isStakeNowSlot7 &&
                                                     (
@@ -10832,7 +10822,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot7 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(6, item.Id)}>EQUIP SLOT 7</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(6, item.Id)}>EQUIP SLOT 7</div>
                                                 }
                                                 {(!isStakeNowSlot8 &&
                                                     (
@@ -10863,7 +10853,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot8 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(7, item.Id)}>EQUIP SLOT 8</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(7, item.Id)}>EQUIP SLOT 8</div>
                                                 }
                                                 {(!isStakeNowSlot9 &&
                                                     (
@@ -10894,7 +10884,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot9 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(8, item.Id)}>EQUIP SLOT 9</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(8, item.Id)}>EQUIP SLOT 9</div>
                                                 }
                                                 {(!isStakeNowSlot10 &&
                                                     (
@@ -10925,7 +10915,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                                                         (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot10 === null)
                                                     )
                                                 ) &&
-                                                    <div style={{marginTop: "5px", alignSelf: "center"}} className="pixel button" onClick={() => equipNft(9, item.Id)}>EQUIP SLOT X</div>
+                                                    <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(9, item.Id)}>EQUIP SLOT X</div>
                                                 }
                                             </>
                                         }
@@ -10935,7 +10925,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                             </div>
                         ))}
                         </> :
-                        <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                        <div style={{bbackdropFilter: "blur(14px)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
                                 <>
                                     <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
@@ -10950,7 +10940,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     }
                 </div> :
                 <div style={{width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", padding: "20px", margin: "10px"}}> 
-                    <div className="nftCard" style={{background: "rgb(230, 250, 54)", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                    <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>

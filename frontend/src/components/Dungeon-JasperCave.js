@@ -943,25 +943,24 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
                                 {isStakeNow ?
                                     <>
-                                    {isRunout ?
-                                        <>
-                                            <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>Run Out of Gas</div>
-                                        </> :
-                                        <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>On Staking</div>
-                                        </>
-                                    }
+                                        {isRunout ?
+                                            <>
+                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>Run Out of Gas</div>
+                                            </> :
+                                            <>
+                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>On Staking</div>
+                                            </>
+                                        }
                                     </> :
                                     <>
-                                    {isStakeNow === false ?
-                                        <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>Available for stake</div>
-                                        </> :
-                                        <></>
-                                    }
+                                        {!isStakeNow &&
+                                            <>
+                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>Available for stake</div>
+                                            </>
+                                        }
                                     </>
                                 }
                             </div>
@@ -980,14 +979,14 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             JASP BALANCE (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             JASP PENDING (GWEI UNIT)
                             <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
@@ -998,26 +997,23 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 <option value="PIZZA">$PZA</option>
                             </select>
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                {gasselected === "CTUNA" ?
+                                {gasselected === "CTUNA" &&
                                     <>
                                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
                                         <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                    </> :
-                                    <></>
+                                    </>
                                 }
-                                {gasselected === "SX31" ?
+                                {gasselected === "SX31" &&
                                     <>
                                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
                                         <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                    </> :
-                                    <></>
+                                    </>
                                 }
-                                {gasselected === "PIZZA" ?
+                                {gasselected === "PIZZA" &&
                                     <>
                                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
                                         <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                    </> :
-                                    <></>
+                                    </>
                                 }
                                 <div style={{marginLeft: "5px"}}>/500</div>
                             </div>
@@ -1055,44 +1051,38 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                         }
-                        {hatSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div> :
-                            <></>
+                        {hatSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>
                         }
                         {clothSlot !== null ?
                             <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                         }
-                        {clothSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div> :
-                            <></>
+                        {clothSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>
                         }
                         {shoesSlot !== null ?
                             <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                         }
-                        {shoesSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div> :
-                            <></>
+                        {shoesSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>
                         }
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
+                        <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
                         {nft.length > 0 ?
                             <>
                                 {characterSlot !== null ?
                                     <>
-                                        {Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia") ?
-                                            <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
-                                            <></>
+                                        {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
+                                            <img src={characterSlot} width="300px" alt="Can not load metadata." />
                                         }
-                                        {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." /> :
-                                            <></>
+                                        {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
                                         }
-                                        {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 ?
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." /> :
-                                            <></>
+                                        {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
                                         }
                                     </> :
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
@@ -1102,13 +1092,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {characterSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div> :
-                            <></>
+                        {characterSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>
                         }
-                        {isOp && isStakeNow && !lastedSTOPT && isRunout ?
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div> :
-                            <></>
+                        {(isOp && isStakeNow && !lastedSTOPT && isRunout) &&
+                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
                         }
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
@@ -1116,25 +1104,22 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             <img src={accSlot} width="100px" alt="Can not load metadata." /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                         }
-                        {accSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div> :
-                            <></>
+                        {accSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>
                         }
                         {backSlot !== null ?
                             <img src={backSlot} width="100px" alt="Can not load metadata." /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                         }
-                        {backSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div> :
-                            <></>
+                        {backSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div>
                         }
                         {weaponSlot !== null ?
                             <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                         }
-                        {wpSlotLevel !== null ?
-                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div> :
-                            <></>
+                        {wpSlotLevel !== null &&
+                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>
                         }
                     </div>
                 </div>
@@ -1257,7 +1242,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                     <img src={item.Image} height="100%" alt="Can not load metadata." />
                                 </div>
                                 <div className="emp bold">{item.Name}</div>
-                                <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                <div className="bold">{item.RewardPerSec} cmpow</div>
                                 <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
                                 {address === youraddr ?
                                     <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
@@ -1274,9 +1259,8 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                                         {item.Col === 2 ?
                                                             <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeFollowerL2(item.Id)}>STAKE L2</div> :
                                                             <>
-                                                                {item.Col === 3 ?
-                                                                    <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeServantL2(item.Id)}>STAKE L2</div> :
-                                                                    <></>
+                                                                {item.Col === 3 &&
+                                                                    <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeServantL2(item.Id)}>STAKE L2</div>
                                                                 }
                                                             </>
                                                         }
