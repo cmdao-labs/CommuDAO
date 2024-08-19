@@ -574,7 +574,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicatk66gnfauhbytqbqbxlbu47hg2j3wzxiatzfs4xjwfhaozvpne')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
                 <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Daemon World</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $Angel Blessing.</div>
+                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" width="150" alt="$ANGB" />
@@ -583,35 +583,34 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     
         <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "rgb(230, 250, 54)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "rgb(194, 155, 231)", color: "#fff", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                <div style={{backdropFilter: "blur(14px)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "100px", background: "#000", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                            <div className='light' style={{color: "rgb(230, 250, 54)"}}>Reward x10</div>
+                            <div className='light' style={{color: "#fff"}}>Reward x10</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>LAYER 1 STAKING</div>
+                        <div style={{fontSize: "22px", lineHeight: "15px"}}>NFT STAKING</div>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 {isStakeNow ?
                                     <>
-                                    {isRunout ?
-                                        <>
-                                            <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>Run Out of Gas</div>
-                                        </> :
-                                        <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>On Staking</div>
-                                        </>
-                                    }
+                                        {isRunout ?
+                                            <>
+                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>Run Out of Gas</div>
+                                            </> :
+                                            <>
+                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>On Staking</div>
+                                            </>
+                                        }
                                     </> :
                                     <>
-                                    {isStakeNow === false ?
-                                        <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>Available for stake</div>
-                                        </> :
-                                        <></>
-                                    }
+                                        {!isStakeNow &&
+                                            <>
+                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                <div>Available for stake</div>
+                                            </>
+                                        }
                                     </>
                                 }
                             </div>
@@ -646,12 +645,11 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <option value="SWAR">$SWAR</option>
                             </select>
                             <div style={{display: "flex", flexDirection: "row"}}>
-                                {gasselected === "SWAR" ?
+                                {gasselected === "SWAR" &&
                                     <>
                                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="20" alt="$SWAR"/>
                                         <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                    </> :
-                                    <></>
+                                    </>
                                 }
                                 <div style={{marginLeft: "5px"}}>/0.2</div>
                             </div>
@@ -702,7 +700,6 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{bootsSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Main Character NFT</div>
                         {nft.length > 0 ?
                             <>
                                 {characterSlot !== null ?
@@ -714,10 +711,9 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel}</div>}
+                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "260px", right: "5px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Fairy NFT</div>
                         {nft.length > 0 ?
                             <>
                                 {fairySlot !== null ?
@@ -725,11 +721,11 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                     <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 }
                             </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <div style={{width: "250px", height: "375px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
                                 <ThreeDots fill="#5f6476" />
                             </div>
                         }
-                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{fairySlotLevel}</div>}
+                        {fairySlotLevel !== null && <div style={{position: "absolute", top: "335px", right: "30px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{fairySlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {ringSlot !== null ?
@@ -755,36 +751,30 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
-                        {nft.map((item, index) => (
-                            <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
-                                <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                    <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                </div>
-                                <div className="emp bold">{item.Name}</div>
-                                <div className="bold">{item.RewardPerSec} power per sec</div>
-                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                {address === youraddr ?
-                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        {item.isStaked ?
-                                            <>
-                                                <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div>
-                                            </> :
-                                            <>
-                                                {isStakeNow ?
-                                                    <>
-                                                    </> :
-                                                    <>
+                            {nft.map((item, index) => (
+                                <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
+                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                    </div>
+                                    <div className="emp bold">{item.Name}</div>
+                                    <div className="bold">{item.RewardPerSec} power</div>
+                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                    {address === youraddr ?
+                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                            {item.isStaked ?
+                                                <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
+                                                <>
+                                                    {!isStakeNow &&
                                                         <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Id)}>EQUIP</div>
-                                                    </>
-                                                }
-                                                <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                        ))}
+                                                    }
+                                                    <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                </>
+                                            }
+                                        </div> :
+                                        <div style={{height: "41px"}}></div>
+                                    }
+                                </div>
+                            ))}
                         </> :
                         <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
