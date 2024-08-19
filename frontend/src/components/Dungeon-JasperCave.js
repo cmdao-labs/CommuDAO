@@ -6,7 +6,6 @@ import { ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const beasts = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
-//const CMDS = '0xAF17Dc881204488d929a5D377eBCF3256130b335'
 
 const ctunaLab = '0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
@@ -54,10 +53,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const [shoesSlotLevel, setShoesSlotLevel] = React.useState(null)
     const [weaponSlot, setWeaponSlot] = React.useState(null)
     const [wpSlotLevel, setWpSlotLevel] = React.useState(null)
-    /*const [l2FollowerSlot, setL2FollowerSlot] = React.useState(null)
-    const [l2FollowerId, setL2FollowerId] = React.useState(null)
-    const [l2ServantSlot, setL2ServantSlot] = React.useState(null)
-    const [l2ServantId, setL2ServantId] = React.useState(null)*/
 
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
@@ -65,11 +60,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const [isRunout, setIsRunout] = React.useState(false)
     const [gasselected, setGasselected] = React.useState("PIZZA")
     const [jasperPending, setJasperPending] = React.useState(0)
-    /*const [isStakeL2Now, setIsStakeL2Now] = React.useState(null)
-    const [jbcPool, setJbcPool] = React.useState(0)
-    const [jbcPend, setJbcPend] = React.useState('0.0')
-    const [yourL2CMPOW, setYourL2CMPOW] = React.useState(0)
-    const [l2CMPOW, setL2CMPOW] = React.useState(0)*/
 
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
 
@@ -84,8 +74,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
-        // const beastnftSC = new ethers.Contract(beasts, erc721ABI, providerJBC)
-        // const cmdsnftSC = new ethers.Contract(CMDS, erc721ABI, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -404,190 +392,13 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 })
             }
 
-            /*const nftipfs = address !== null && address !== undefined ? await readContract({
-                address: beasts,
-                abi: erc721ABI,
-                functionName: 'tokenURI',
-                args: [String(data[12].followerId)],
-            }) : null  
-            let nft = {name: "", image: "", description: "", attributes: ""}
-            try {
-                const responsenft = nftipfs !== null ? await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/")) : null
-                nft = responsenft !== null ? await responsenft.json() : null
-            } catch {}
-            if (Number(data[12].followerId) !== 0) {
-                nfts.push({
-                    Col: 2,
-                    Id: Number(data[12].followerId),
-                    Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: 0,
-                    isStaked: true
-                })
-            }
-
-            const nftipfs2 = address !== null && address !== undefined ? await readContract({
-                address: CMDS,
-                abi: erc721ABI,
-                functionName: 'tokenURI',
-                args: [String(data[12].servantId)],
-            }) : null
-            const responsenft2 = nftipfs2 !== null ? await fetch(nftipfs2.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
-            const nft02 = responsenft2 !== null ? await responsenft2.json() : null
-            if (Number(data[12].servantId) !== 0) {
-                nfts.push({
-                    Col: 3,
-                    Id: Number(data[12].servantId),
-                    Name: nft02.name,
-                    Image: nft02.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
-                    Description: nft02.description,
-                    Attribute: nft02.attributes,
-                    RewardPerSec: 100,
-                    isStaked: true
-                })
-            }
-            
-            const nft02 = null
-
-            const L2_Follower_Id = Number(data[12].followerId)
-            const nftEQ_L2_Follower = Number(data[12].followerId) !== 0 && nft !== null ? nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/") : null
-            const L2_Servant_Id = Number(data[12].servantId)
-            const nftEQ_L2_Servant = Number(data[12].servantId) !== 0 && nft02 !== null ? nft02.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
-            const isStakeL2 = Number(nftEQ_L2.cmpow) > 0
-            const cmpow_L2 = Number(nftEQ_L2.cmpow)
-            const jbcPend = isStakeL2 ? data[14] : 0
-
-            const wallet2Filter = await beastnftSC.filters.Transfer(null, address, null)
-            const wallet2Event = await beastnftSC.queryFilter(wallet2Filter, 137000, "latest")
-            const wallet2Map = await Promise.all(wallet2Event.map(async (obj, index) => String(obj.args.tokenId)))
-            const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
-                contracts: wallet2RemoveDup.map((item) => (
-                    {
-                        address: beasts,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(wallet2RemoveDup.length).fill('')]
-
-            let yournftwallet2 = []
-            for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data4[i].toUpperCase() === address.toUpperCase()) {
-                    yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
-                }
-            }
-            console.log(yournftwallet2)
-
-            const data5 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet2.map((item) => (
-                    {
-                        address: beasts,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet2.length).fill('')]
-
-            for (let i = 0; i <= yournftwallet2.length - 1; i++) {
-                const nftipfs = data5[i]
-                let nft = {name: "", image: "", description: "", attributes: ""}
-                try {
-                    const responsenft = nftipfs !== null ? await fetch(nftipfs.replace("ipfs://", "https://ipfs.8api.sh/ipfs/")) : null
-                    nft = responsenft !== null ? await responsenft.json() : null
-                } catch {}
-
-                nfts.push({
-                    Col: 2,
-                    Id: yournftwallet2[i].Id,
-                    Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://ipfs.8api.sh/ipfs/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: 0,
-                    isStaked: false
-                })
-            }
-
-            const wallet3Filter = await cmdsnftSC.filters.Transfer(null, address, null)
-            const wallet3Event = await cmdsnftSC.queryFilter(wallet3Filter, 659239, "latest")
-            const wallet3Map = await Promise.all(wallet3Event.map(async (obj, index) => String(obj.args.tokenId)))
-            const wallet3RemoveDup = wallet3Map.filter((obj, index) => wallet3Map.indexOf(obj) === index)
-            const data6 = address !== null && address !== undefined ? await readContracts({
-                contracts: wallet3RemoveDup.map((item) => (
-                    {
-                        address: CMDS,
-                        abi: erc721ABI,
-                        functionName: 'ownerOf',
-                        args: [String(item)],
-                    }
-                ))
-            }) : [Array(wallet3RemoveDup.length).fill('')]
-
-            let yournftwallet3 = []
-            for (let i = 0; i <= wallet3RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                try {
-                    if (data6[i].toUpperCase() === address.toUpperCase()) {
-                        yournftwallet3.push({Id: String(wallet3RemoveDup[i])})
-                    }
-                } catch {}
-            }
-            console.log(yournftwallet3)
-
-            const data7 = address !== null && address !== undefined ? await readContracts({
-                contracts: yournftwallet3.map((item) => (
-                    {
-                        address: CMDS,
-                        abi: erc721ABI,
-                        functionName: 'tokenURI',
-                        args: [String(item.Id)],
-                    }
-                ))
-            }) : [Array(yournftwallet3.length).fill('')]
-
-            for (let i = 0; i <= yournftwallet3.length - 1 && yournftwallet3[i].Id.slice(0, 7) === "1000004"; i++) {
-                const nftipfs = data7[i]
-                const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
-                const nft = await response.json()
-
-                nfts.push({
-                    Col: 3,
-                    Id: yournftwallet3[i].Id,
-                    Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
-                    Description: nft.description,
-                    Attribute: nft.attributes,
-                    RewardPerSec: 100,
-                    isStaked: false
-                })
-            }
-            */
-
             if (nfts.length === 0) { nfts.push(null) }
-            
-            const l2Pool = 0/*await readContract({
-                address: dunJasperL2,
-                abi: dunJasperL2ABI,
-                functionName: 'poolInfo',
-                args: [1],
-            })*/
-            const l2PoolCMPOW = 0/*Number(l2Pool.cmpowAll)*/
-
-            const jbcPool = 0/*await fetchBalance({ address: dunJasperL2, })*/
-
-            const jbcBal = 0/*address !== null && address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}*/
-
-            console.log(nftEQ_L2, l2Pool, l2PoolCMPOW, jbcPool, )
 
             const skinslot1 = data[15].result
             
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, /*L2_Follower_Id, nftEQ_L2_Follower, L2_Servant_Id, nftEQ_L2_Servant,*/
-                allPow, isStaked, refuelAt, rewardPending, /*isStakeL2, jbcPool, jbcPend, l2PoolCMPOW, cmpow_L2,*/ stOPTClaim,
+                allPow, isStaked, refuelAt, rewardPending, stOPTClaim,
                 jbcBal, ctunaBal, sx31Bal, pzaBal, jaspBal,
                 skinslot1
             ]
@@ -625,10 +436,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             result[12] !== null && result[12].slice(-2, -1) === "+" ? setClothSlotLevel(result[12].slice(-1)) : setClothSlotLevel(null)
             setHatSlot(result[13])
             result[14] !== null && result[14].slice(-2, -1) === "+" ? setHatSlotLevel(result[14].slice(-1)) : setHatSlotLevel(null)
-            /*setL2FollowerId(result[15])
-            setL2FollowerSlot(result[16])
-            setL2ServantId(result[17])
-            setL2ServantSlot(result[18])*/
 
             setAllPower(result[15])
             setIsStakeNow(result[16])
@@ -638,11 +445,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 setTimeToRunout(null)
             result[17] !== 0 && Date.now() - (Number(result[17]) * 1000) > (86400 * 1000) ? setIsRunout(true) : setIsRunout(false)
             setJasperPending(ethers.utils.formatUnits(String(result[18]), "gwei"))
-            /*setIsStakeL2Now(result[23])
-            setJbcPool(result[24].formatted)
-            setJbcPend(ethers.utils.formatEther(String(result[25])))
-            setL2CMPOW(result[26])
-            setYourL2CMPOW(result[27])*/
 
             setLastedSTOPT(Number(result[17]) * 1000 === Number(result[19]) * 1000)
 
@@ -787,112 +589,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
         setisLoading(false)
     }
 
-    const stakeFollowerL2 = async (_nftid) => {/*
-        setisLoading(true)
-        try {
-            if (yourL2CMPOW !== 0) {
-                const config0 = await prepareWriteContract({
-                    address: dunJasperL2,
-                    abi: dunJasperL2ABI,
-                    functionName: 'unstakeL2',
-                    args: [1, false, false]
-                })
-                const { hash: hash10 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash10 })
-            }
-            if (_nftid !== 0) {
-                const nftAllow = await readContract({
-                    address: beasts,
-                    abi: erc721ABI,
-                    functionName: 'getApproved',
-                    args: [_nftid],
-                })
-                if (nftAllow.toUpperCase() !== dunJasperL2.toUpperCase()) {
-                    const config = await prepareWriteContract({
-                        address: beasts,
-                        abi: erc721ABI,
-                        functionName: 'approve',
-                        args: [dunJasperL2, _nftid],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                }
-            }
-            const config2 = await prepareWriteContract({
-                address: dunJasperL2,
-                abi: dunJasperL2ABI,
-                functionName: 'stakeL2',
-                args: [1, _nftid, 0]
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    }
-
-    const unstakeL2 = async () => {
-        setisLoading(true)
-        try {
-            const _isUnstakeFollower = l2FollowerId !== null ? true : false
-            const _isUnstakeServant = false
-            const config2 = await prepareWriteContract({
-                address: dunJasperL2,
-                abi: dunJasperL2ABI,
-                functionName: 'unstakeL2',
-                args: [1, _isUnstakeFollower, _isUnstakeServant]
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    */}
-
-    const stakeServantL2 = async (_nftid) => {/*
-        setisLoading(true)
-        try {
-            if (l2CMPOW !== 0) {
-                const config0 = await prepareWriteContract({
-                    address: dunJasperL2,
-                    abi: dunJasperL2ABI,
-                    functionName: 'unstakeL2',
-                    args: [1, false, false]
-                })
-                const { hash: hash10 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash10 })
-            }
-            if (_nftid !== 0) {
-                const nftAllow = await readContract({
-                    address: CMDS,
-                    abi: erc721ABI,
-                    functionName: 'getApproved',
-                    args: [_nftid],
-                })
-                if (nftAllow.toUpperCase() !== dunJasperL2.toUpperCase()) {
-                    const config = await prepareWriteContract({
-                        address: CMDS,
-                        abi: erc721ABI,
-                        functionName: 'approve',
-                        args: [dunJasperL2, _nftid],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                }
-            }
-            const config2 = await prepareWriteContract({
-                address: dunJasperL2,
-                abi: dunJasperL2ABI,
-                functionName: 'stakeL2',
-                args: [1, 0, _nftid]
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-        } catch {}
-        setisLoading(false)
-    */}
-
     const mintStOPT = async () => {
         setisLoading(true)
         try {
@@ -911,7 +607,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
     return (
     <>
-        {isTransferModal ?
+        {isTransferModal &&
             <div className="centermodal">
                 <div className="wrapper">
                     <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
@@ -921,8 +617,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
                     </div>
                 </div>
-            </div> :
-            <></>
+            </div>
         }
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
@@ -1124,113 +819,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     </div>
                 </div>
             </div>
-
-            {/*<div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", marginBottom: "100px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>LAYER 2 STAKING</div>
-                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
-                                {isStakeL2Now ?
-                                    <>
-                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                        <div>On Staking</div>
-                                    </> :
-                                    <>
-                                    {isStakeL2Now === false ?
-                                        <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>Available for stake</div>
-                                        </> :
-                                        <></>
-                                    }
-                                    </>
-                                }
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            TOTAL CMPOW PER BLOCK
-                            <div style={{display: "flex", flexDirection: "row"}}>{yourL2CMPOW}</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            POOL SHARE
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <div style={{marginLeft: "5px"}}>{isStakeL2Now ? Number((yourL2CMPOW * 100) / l2CMPOW).toFixed(6) : 0}%</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            JBC BALANCE
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jbcBalance).toFixed(3)}</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            JBC PENDING
-                            <div style={{display: "flex", flexDirection: "row", color: isStakeL2Now ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
-                                <div style={{marginLeft: "5px"}}>Reward has been depleted!</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            AVAILABLE JBC IN POOL
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="20" alt="$JBC"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jbcPool).toFixed(3)}</div>
-                            </div>
-                        </div>
-                        <div style={{height: "95px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
-                            {address !== undefined && address === youraddr && isStakeNow && l2FollowerSlot !== null ?
-                                <>
-                                    {Number(jbcPool) > 0 ?
-                                        <>
-                                            {isStakeL2Now ?
-                                                <div style={{width: "200px", alignSelf: "center"}} className="pixel button" onClick={unstakeL2}>UNSTAKE L2</div> :
-                                                <div style={{width: "200px", alignSelf: "center"}} className="pixel button" onClick={() => stakeFollowerL2(0)}>STAKE L2</div>
-                                            }
-                                        </> :
-                                        <div style={{width: "fit-content", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Reward has been depleted!</div>
-                                    }
-                                </> :
-                                <>
-                                    {isStakeL2Now ?
-                                        <div style={{width: "200px", alignSelf: "center"}} className="pixel button" onClick={unstakeL2}>UNSTAKE L2</div> :
-                                        <div style={{width: "200px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">STAKE L2</div>
-                                    }
-                                </>
-                            }
-                            <div style={{width: "100%", margin: "20px 0 10px 0", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">**In order to earn $JBC by staking Follower NFT,<br></br>Layer 1 staking is requisite.**</div>
-                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">Unlike Layer 1, staking in Layer 2 is gas-independent, enabling to stake once and claim all rewards at a later time, even after a prolonged period of dormancy.</div>
-                            
-                        </div>
-                    </div>
-                    <div style={{margin: "0 20px", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Follower NFT</div>
-                        {nft.length > 0 ?
-                            <>
-                                {l2FollowerSlot !== null ?
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                        <img src={l2FollowerSlot} height="100%" alt="Can not load metadata." />
-                                    </div> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                    </div>
-                    <div style={{margin: "0 20px", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                    <div style={{width: "300px", marginBottom: "20px", fontSize: "22px", textAlign: "center"}}>Pet NFT</div>
-                        {l2ServantSlot !== null ?
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                <img src={l2ServantSlot} height="100%" alt="Can not load metadata." />
-                            </div> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                        }
-                    </div>
-                </div>
-            </div>*/}
             
             {nft.length > 0 ?
                 <div style={{marginTop: "40px", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
@@ -1247,30 +835,10 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                 {address === youraddr ?
                                     <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                         {item.isStaked ?
+                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
                                             <>
-                                                {item.Col === 1 ?
-                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
-                                                    <></>
-                                                }
-                                            </> :
-                                            <>
-                                                {isStakeNow ?
-                                                    <>
-                                                        {item.Col === 2 ?
-                                                            <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeFollowerL2(item.Id)}>STAKE L2</div> :
-                                                            <>
-                                                                {item.Col === 3 &&
-                                                                    <div style={{alignSelf: "center"}} className="pixel button" onClick={() => stakeServantL2(item.Id)}>STAKE L2</div>
-                                                                }
-                                                            </>
-                                                        }
-                                                    </> :
-                                                    <>
-                                                        {item.Col !== 1 ?
-                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">STAKE L2</div> :
-                                                            <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Id)}>EQUIP</div>
-                                                        }
-                                                    </>
+                                                {!isStakeNow &&
+                                                    <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Id)}>EQUIP</div>
                                                 }
                                                 <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
                                             </>
