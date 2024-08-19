@@ -11,6 +11,7 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, thlFieldABI }) => {
     let { address } = useAccount()
+    const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/the-heaven-land/' + address)
     } else if (intrasubModetext.length === 42) {
@@ -26,6 +27,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
     const [transferTo, setTransferTo] = React.useState("")
 
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
     const [goldBalance, setGoldBalance] = React.useState("0.000")
@@ -64,6 +66,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
         
         const thefetch = async () => {
             let nfts = []
+            let nftstaked = []
 
             const stakeFilter = await mgnftSC.filters.Transfer(address, thlField, null)
             const stakeEvent = await mgnftSC.queryFilter(stakeFilter, 2260250, "latest")
@@ -155,6 +158,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                     Reward2: String(data12[i].result),
                     isJbcOut: data01[i].result[2]
                 })
+                nftstaked.push({Id: yournftstake[i].Id})
             }
 
             const walletFilter = await mgnftSC.filters.Transfer(null, address, null)
@@ -231,7 +235,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 args: [address],
             }) : 0
 
-            return [nfts, _allDaily, _allReward, goldBal]
+            return [nfts, _allDaily, _allReward, goldBal, nftstaked, ]
         }
 
         const promise = thefetch()
@@ -248,6 +252,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             setAllDaily(result[1] * 86400)
             setAllReward(result[2])
             setGoldBalance(ethers.utils.formatEther(String(result[3])))
+            setNftStaked(result[4])
         })
 
     }, [address, txupdate, erc20ABI, erc721ABI, thlFieldABI])
@@ -310,6 +315,28 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
         setisLoading(false)
     }
 
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStaked.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: thlField,
+                    abi: thlFieldABI,
+                    functionName: 'unstake',
+                    args: [nftStaked[i].Id, false],
+                })
+                if (i === nftStaked.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             {isTransferModal ?
@@ -360,9 +387,15 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                        <div style={{fontSize: "24px"}}>
+                        <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                            <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
+                            <>
+                                {address !== undefined && address === youraddr && allReward > 0 ?
+                                    <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                }
+                            </>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">

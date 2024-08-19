@@ -42,7 +42,7 @@ const Fields = ({ callMode, navigate }) => {
                             <div style={{marginLeft: "5px"}}>CMJ</div>
                         </div>
                     </div>
-                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}>Go to Ancient Forest</div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(13); navigate('/fields/ancient-forest');}}>Go to Ancient Forest</div>
                 </div>
                 <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibgjc2bzx42soeevrzn6ohlr44xly4sjhj6k6o2spcsia24qztyki" height="230" alt="Field_TheHeavenLand" />

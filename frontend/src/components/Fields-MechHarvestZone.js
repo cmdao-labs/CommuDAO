@@ -12,6 +12,7 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
     let { address } = useAccount()
+    const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/mech-harvest-zone/' + address)
     } else if (intrasubModetext.length === 42) {
@@ -27,8 +28,10 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const [transferTo, setTransferTo] = React.useState("")
 
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
+    const [allRewardNFT, setAllRewardNFT] = React.useState("0.000")
     const [gearBalance, setGearBalance] = React.useState("0.000")
 
     const [tmBalance, setTmBalance] = React.useState("0.000")
@@ -73,6 +76,8 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         
         const thefetch = async () => {
             let nfts = []
+            let nftstaked = []
+
             const stakeFilter = await taodumNFTSC.filters.Transfer(address, gear, null)
             const stakeEvent = await taodumNFTSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -119,6 +124,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
             let _allDaily = 0
             let _allReward = 0
+            let _allRewardNFT = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -142,6 +148,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
                 _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward).mul(ethers.BigNumber.from(372756008454)).mul(ethers.BigNumber.from(86400000000)))))
                 _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
+                _allRewardNFT += Number(ethers.utils.formatEther(String(data11[i].result)))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -153,6 +160,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     isStaked: true,
                     Reward: String(data11[i].result),
                 })
+                nftstaked.push({Id: yournftstake[i].Id})
             }
 
             const walletFilter = await taodumNFTSC.filters.Transfer(null, address, null)
@@ -466,7 +474,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             _allDaily += Number(ethers.utils.formatEther(String(ethers.BigNumber.from(_reward2).mul(ethers.BigNumber.from(23148100000)).mul(ethers.BigNumber.from(86400))))) * Number(ethers.utils.formatEther(String(tmStakeBal)))
             _allReward += Number(ethers.utils.formatEther(String(gearTokenPend)))
 
-            return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, PFPlv, ]
+            return [nfts, _allDaily, _allReward, vaBal, tmBal, tmStakeBal, gearTokenPend, PFPlv, nftstaked, _allRewardNFT, ]
         }
 
         const promise = thefetch()
@@ -487,6 +495,8 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             setTmStakedBalance(ethers.utils.formatEther(String(result[5])))
             setGearTokenPending(ethers.utils.formatEther(String(result[6])))
             setPfpLevel(result[7])
+            setNftStaked(result[8])
+            setAllRewardNFT(result[9])
         })
 
     }, [address, txupdate, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI])
@@ -542,6 +552,28 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         setisLoading(false)
     }
 
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStaked.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: gear,
+                    abi: gearFieldABI,
+                    functionName: 'unstake',
+                    args: [nftStaked[i].Id, 1, false],
+                })
+                if (i === nftStaked.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
+        } catch {}
+        setisLoading(false)
+    }
+
     const staketoken = async () => {
         setisLoading(true)
         try {
@@ -587,6 +619,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         }
         setisLoading(false)
     }
+
     const unstaketoken = async (_unstake) => {
         setisLoading(true)
         try {
@@ -681,9 +714,15 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                        <div style={{fontSize: "24px", display: "flex"}}>
+                        <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                             {Number(allReward) > 0 ? Number(allReward).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
+                            <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
+                            <>
+                                {address !== undefined && address === youraddr && allRewardNFT > 0 ?
+                                    <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL (NFT)</div> :
+                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL (NFT)</div>
+                                }
+                            </>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
