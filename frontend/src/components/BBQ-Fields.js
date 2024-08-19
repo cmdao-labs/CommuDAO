@@ -40,7 +40,7 @@ const BBQFields = ({ callMode, navigate }) => {
                             <div style={{margin: "0 5px"}}>WOOD</div>
                         </div>
                     </div>
-                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" /*onClick={() => {callMode(13); navigate('/fields/ancient-forrest');}}*/>Go to Ancient Forest</div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" /*onClick={() => {callMode(10001); navigate('/fields/ancient-forest-bbqchain');}}*/>Go to Ancient Forest</div>
                 </div>
             </div>           
         </>

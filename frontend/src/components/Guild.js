@@ -1513,7 +1513,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
                     <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Ancient Forrest [BBQ Chain]</div>
+                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Ancient Forest [BBQ Chain]</div>
                         </div>
                         <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
                             <div>Soon!</div>

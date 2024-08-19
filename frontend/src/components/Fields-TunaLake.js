@@ -9,6 +9,7 @@ const tunaField = '0x09676315DC0c85F6bd5e866C5f1363A00Eec4381'
 
 const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
     let { address } = useAccount()
+    const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/tuna-lake/' + address)
     } else if (intrasubModetext.length === 42) {
@@ -19,6 +20,8 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     }
 
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
+    const [allReward, setAllReward] = React.useState("0.000")
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -44,6 +47,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             }) : [Array(balanceofstake.length).fill('')]
 
             let nfts = []
+            let nftstaked = []
             let yournftstake = []
 
             for (let i = 0; i <= balanceofstake.length - 1; i++) {
@@ -63,6 +67,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
+            let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftstake[i].Id + ".json")
                 const _nft = await response.json()
@@ -78,6 +83,8 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     bonus = 25;
                 }
 
+                _allReward += Number(ethers.utils.formatEther(String(data2[i].result)))
+
                 nfts.push({
                     Id: Number(yournftstake[i].Id),
                     Name: _nft.name,
@@ -87,6 +94,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     isStaked: true,
                     Reward: String(data2[i].result)
                 })
+                nftstaked.push({Id: Number(yournftstake[i].Id)})
             }
 
             const balanceofyou = address !== null && address !== undefined ? await readContract({
@@ -121,7 +129,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 })
             }
 
-            return [nfts, balanceofstake.length, ]
+            return [nfts, balanceofstake.length, nftstaked, _allReward, ]
         }
 
         const promise = thefetch()
@@ -135,6 +143,8 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
         getAsync().then(result => {
             result[1] > 0 && result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
+            setNftStaked(result[2])
+            setAllReward(result[3])
         })
 
     }, [address, txupdate, aurora721ABI, tunaFieldABI])
@@ -187,6 +197,28 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(false)
     }
 
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStaked.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: tunaField,
+                    abi: tunaFieldABI,
+                    functionName: 'unstake',
+                    args: [nftStaked[i].Id, false],
+                })
+                if (i === nftStaked.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
+        } catch {}
+        setisLoading(false)
+    }
+
 
     return (
     <>
@@ -201,6 +233,19 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         </div>
 
         <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", fontSize: "14px"}} className="collection pixel">
+            <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                    <div style={{marginBottom: "20px"}}></div>
+                    <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <>
+                            {address !== undefined && address === youraddr && allReward > 0 ?
+                                <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                            }
+                        </>
+                    </div>
+                </div>
+            </div>
             {nft.length > 0 ?
                 <>
                 {nft[0] !== null ?

@@ -8,10 +8,21 @@ const bkga = '0x99a763eCBd64fdcCfE06143D405D5DFaf5828ce2'
 const badField = '0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldABI }) => {
-    const { address } = useAccount()
+const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldABI }) => {
+    let { address } = useAccount()
+    const youraddr = address
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/bkc-bad-museum/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/bkc-bad-museum/' + address)
+    }
 
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
+    const [allReward, setAllReward] = React.useState("0.000")
 
     React.useEffect(() => {
         console.log("Connected to " + address)
@@ -20,6 +31,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
         
         const thefetch = async () => {
             let nfts = []
+            let nftstaked = []
 
             const stakeFilter = await bkgaSC.filters.Transfer(address, badField, null)
             const stakeEvent = await bkgaSC.queryFilter(stakeFilter, 15619908, "latest")
@@ -65,6 +77,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
+            let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -72,6 +85,8 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
+
+                _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -83,6 +98,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
                     isStaked: true,
                     Reward: data11[i].result
                 })
+                nftstaked.push({Id: yournftstake[i].Id})
             }
 
             const walletFilter = await bkgaSC.filters.Transfer(null, address, null)
@@ -140,7 +156,7 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, ]
+            return [nfts, nftstaked, _allReward, ]
         }
 
         const promise = thefetch()
@@ -154,6 +170,8 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
 
         getAsync().then(result => {
             result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
+            setNftStaked(result[1])
+            setAllReward(result[2])
         })
 
     }, [address, txupdate, erc721ABI, tunaFieldABI])
@@ -206,6 +224,28 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
         setisLoading(false)
     }
 
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStaked.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: badField,
+                    abi: tunaFieldABI,
+                    functionName: 'unstake',
+                    args: [nftStaked[i].Id, false],
+                })
+                if (i === nftStaked.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
@@ -223,6 +263,19 @@ const BadMuseum = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldAB
             </div>
 
             <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+                <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}></div>
+                        <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                            <>
+                                {address !== undefined && address === youraddr && allReward > 0 ?
+                                    <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                }
+                            </>
+                        </div>
+                    </div>
+                </div>
                 {nft.length > 0 ?
                     <>
                     {nft[0] !== null ?

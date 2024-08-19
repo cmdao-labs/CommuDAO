@@ -10,6 +10,7 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, fieldEfABI }) => {
     let { address } = useAccount()
+    const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/eastern-front/' + address)
     } else if (intrasubModetext.length === 42) {
@@ -25,6 +26,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const [transferTo, setTransferTo] = React.useState("")
 
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily, setAllDaily] = React.useState("0.000")
     const [allReward, setAllReward] = React.useState("0.000")
     const [vabagBalance, setVaBagBalance] = React.useState("0.000")
@@ -63,6 +65,8 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         
         const thefetch = async () => {
             let nfts = []
+            let nftstaked = []
+
             const stakeFilter = await acNftSC.filters.Transfer(address, vabag, null)
             const stakeEvent = await acNftSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -165,6 +169,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     isStaked: true,
                     Reward: String(data11[i].result),
                 })
+                nftstaked.push({Id: yournftstake[i].Id})
             }
 
             const walletFilter = await acNftSC.filters.Transfer(null, address, null)
@@ -264,7 +269,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 args: [address],
             }) : 0
 
-            return [nfts, _allDaily, _allReward, vaBal]
+            return [nfts, _allDaily, _allReward, vaBal, nftstaked, ]
         }
 
         const promise = thefetch()
@@ -281,6 +286,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             setAllDaily(result[1])
             setAllReward(result[2])
             setVaBagBalance(ethers.utils.formatEther(String(result[3])))
+            setNftStaked(result[4])
         })
 
     }, [address, txupdate, erc20ABI, erc721ABI, fieldEfABI])
@@ -333,6 +339,28 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(false)
     }
 
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStaked.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: vabag,
+                    abi: fieldEfABI,
+                    functionName: 'unstake',
+                    args: [nftStaked[i].Id, false],
+                })
+                if (i === nftStaked.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
+        } catch {}
+        setisLoading(false)
+    }
+
     return (
         <>
             {isTransferModal ?
@@ -373,9 +401,15 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                         <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                        <div style={{fontSize: "24px", display: "flex"}}>
+                        <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                             {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
+                            <>
+                                {address !== undefined && address === youraddr && allReward > 0 ?
+                                    <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                }
+                            </>
                         </div>
                     </div>
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">

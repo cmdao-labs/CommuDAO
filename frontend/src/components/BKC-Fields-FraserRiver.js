@@ -10,15 +10,25 @@ const salmToken = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const cmmToken = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, salmFieldABI }) => {
-    const { address } = useAccount()
+const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, salmFieldABI }) => {
+    let { address } = useAccount()
+    const youraddr = address
+    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        navigate('/fields/bkc-fraser-river/' + address)
+    } else if (intrasubModetext.length === 42) {
+        address = intrasubModetext
+    } else if (address === undefined) {
+    } else {
+        navigate('/fields/bkc-fraser-river/' + address)
+    }
 
     const [nft, setNft] = React.useState([])
+    const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily1, setAllDaily1] = React.useState("0.000")
-        const [allReward1, setAllReward1] = React.useState("0.000")
-        const [allReward2, setAllReward2] = React.useState("0.000")
-        const [cmmBalance, setCmmBalance] = React.useState("0.000")
-        const [salmBalance, setSalmBalance] = React.useState("0.000")
+    const [allReward1, setAllReward1] = React.useState("0.000")
+    const [allReward2, setAllReward2] = React.useState("0.000")
+    const [cmmBalance, setCmmBalance] = React.useState("0.000")
+    const [salmBalance, setSalmBalance] = React.useState("0.000")
 
     React.useEffect(() => {
         console.log("Connected to " + address)
@@ -27,6 +37,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
         
         const thefetch = async () => {
             let nfts = []
+            let nftstaked = []
 
             const stakeFilter = await cmnftSC.filters.Transfer(address, fraserField, null)
             const stakeEvent = await cmnftSC.queryFilter(stakeFilter, 15727711, "latest")
@@ -119,6 +130,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                     Reward: data11[i].result,
                     Reward2: data12[i].result
                 })
+                nftstaked.push({Id: yournftstake[i].Id})
             }
 
             const walletFilter = await cmnftSC.filters.Transfer(null, address, null)
@@ -208,7 +220,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
             const cmmBal = dataToken[0].result
             const salmBal = dataToken[1].result
 
-            return [nfts, _allDaily1, _allReward1, _allReward2, cmmBal, salmBal, ]
+            return [nfts, _allDaily1, _allReward1, _allReward2, cmmBal, salmBal, nftstaked, ]
         }
 
         const promise = thefetch()
@@ -227,6 +239,7 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
             setAllReward2(result[3])
             setCmmBalance(ethers.utils.formatEther(String(result[4])))
             setSalmBalance(ethers.utils.formatEther(String(result[5])))
+            setNftStaked(result[6])
         })
 
     }, [address, txupdate, erc20ABI, erc721ABI, salmFieldABI])
@@ -275,6 +288,28 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStaked.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: fraserField,
+                    abi: salmFieldABI,
+                    functionName: 'unstake',
+                    args: [1, nftStaked[i].Id, false],
+                })
+                if (i === nftStaked.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
         } catch {}
         setisLoading(false)
     }
@@ -340,6 +375,17 @@ const FraserRiver = ({ setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI,
                         <div style={{fontSize: "24px"}}>
                             {nft.length > 0 && nft[0] !== null ? Number(cmmBalance).toFixed(3) : 0}
                             <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="24" alt="$CMM"/>
+                        </div>
+                    </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}></div>
+                        <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                            <>
+                                {address !== undefined && address === youraddr && (allReward1 > 0 || allReward2 > 0) ?
+                                    <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                }
+                            </>
                         </div>
                     </div>
                 </div>
