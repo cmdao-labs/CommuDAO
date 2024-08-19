@@ -146,7 +146,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
             </div>
           }
           {address !== null && address !== undefined && chain.id === 96 &&
-            <div id="jdaoBal" style={{width: "fit-content", height: "18px", border: "1px solid #5f6476", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
+            <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(255, 255, 255, 0.4)", border: "0 solid #e2e8f0", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
               <div style={{display: "flex", flexDirection: "row"}}>
                 <img
                   src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"

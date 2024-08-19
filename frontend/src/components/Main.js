@@ -428,7 +428,7 @@ const Main = () => {
                 {mode === 101 && <DjMining intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldDjABI={fieldDjABI} />}
                 
                 {mode === 14 && <BKCFields callMode={callMode} navigate={navigate} />}
-                {mode === 15 && <BadMuseum intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} />}
+                {mode === 15 && <BadMuseum intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} erc20ABI={erc20ABI} />}
                 {mode === 16 && <FraserRiver intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} />}
 
                 {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}

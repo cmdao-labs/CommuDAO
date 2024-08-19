@@ -748,7 +748,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             </div>
             
             {nft.length > 0 ?
-                <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                             {nft.map((item, index) => (
@@ -776,7 +776,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                 </div>
                             ))}
                         </> :
-                        <div style={{background: "rgb(230, 250, 54)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                        <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
                             {address !== undefined ?
                                 <>
                                     <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
@@ -790,8 +790,8 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         </div>
                     }
                 </div> :
-                <div style={{width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{background: "rgb(230, 250, 54)", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                    <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>

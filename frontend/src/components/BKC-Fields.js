@@ -28,7 +28,7 @@ const BKCFields = ({ callMode, navigate }) => {
                     </div>
                     <div className="emp pixel"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" style={{marginRight: "5px"}} width="12" alt="$BST"/>BST</div>
                 </div>
-                <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(15); navigate('/fields/bkc-bad-museum');}}>Go to Bad Musuem</div>
+                <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(15); navigate('/fields/bkc-bad-museum');}}>Go to Bad Musuem</div>
             </div>
             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieu6tyeea3bgzvvcxrylckaf674lqplpioghqvi2hudtfe4ux2fty" height="230" alt="Field_FraserRiver" />
@@ -51,7 +51,7 @@ const BKCFields = ({ callMode, navigate }) => {
                         <div style={{marginLeft: "5px"}}>CMM</div>
                     </div>
                 </div>
-                <div style={{width: "200px", margin: "40px 100px 0 0", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(16); navigate('/fields/bkc-fraser-river');}}>Go to Fraser River</div>
+                <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(16); navigate('/fields/bkc-fraser-river');}}>Go to Fraser River</div>
             </div>
         </div>
     </>

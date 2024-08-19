@@ -426,7 +426,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         {nft[0] !== null ?
                             <>
                             {nft.map((item, index) => (
-                                <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
+                                <div className="nftCard pixel" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} key={index}>
                                     <video autoPlay muted loop width="150">
                                         <source src={item.Image} type="video/mp4" />
                                     </video>
@@ -472,7 +472,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                 </div>
                             ))}
                             </> :
-                            <div className="nftCard" style={{justifyContent: "center"}}>
+                            <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
                                 {address !== undefined ?
                                     <>
                                         <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
@@ -486,7 +486,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             </div>
                         }
                         </> :
-                        <div className="nftCard" style={{justifyContent: "center"}}>
+                        <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
                             <ThreeDots fill="#5f6476" />
                             <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                         </div>

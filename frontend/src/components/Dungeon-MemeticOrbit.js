@@ -1938,7 +1938,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>LAYER 1 STAKING</div>
+                        <div style={{fontSize: "22px", lineHeight: "15px"}}>L1 STAKING</div>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
                                 {isStakeNow ?
                                     <>
@@ -2139,7 +2139,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             </div>
 
             {<div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", marginBottom: "100px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                             <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 1<br></br><br></br>D.O.M. THE DOI OLYMPUS MAFIA</div>
@@ -2215,7 +2215,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             </div>}
             
             {nft.length > 0 ?
-                <div style={{marginTop: "40px", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
@@ -2332,7 +2332,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                     }
                 </div> :
-                <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "500px"}}> 
+                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "500px"}}> 
                     <div className="nftCard" style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
