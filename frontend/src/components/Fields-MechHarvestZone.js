@@ -736,7 +736,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
                 <div style={{width: "95%", borderBottom: "1px solid #dddade", margin: "40px 10px 10px 10px"}}></div>
                 <div style={{width: "95%", margin: "20px 10px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">TAOMEME STAKING</div>
-                <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                     <div className="nftCard" style={{position: "relative", margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}}>
                         <div style={{position: "absolute", top: 15, right: 15, padding: "7px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">
                             Multiplier&nbsp; 
@@ -1027,7 +1027,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         {nft[0] !== null ?
                             <>
                             {nft.map((item, index) => (
-                                <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} key={index}>
+                                <div className="nftCard pixel" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} key={index}>
                                     <img src={item.Image} width="150" alt="Can not load metadata." />
                                     <div>{item.Name}</div>
                                     <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>

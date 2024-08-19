@@ -8,7 +8,7 @@ const bkga = '0x99a763eCBd64fdcCfE06143D405D5DFaf5828ce2'
 const badField = '0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldABI }) => {
+const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, tunaFieldABI, erc20ABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -22,7 +22,9 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
 
     const [nft, setNft] = React.useState([])
     const [nftStaked, setNftStaked] = React.useState([])
-    const [allReward, setAllReward] = React.useState("0.000")
+    const [allDaily, setAllDaily] = React.useState(0)
+    const [allReward, setAllReward] = React.useState(0)
+    const [bstBalance, setBstBalance] = React.useState(0)
 
     React.useEffect(() => {
         console.log("Connected to " + address)
@@ -77,6 +79,7 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
+            let _allDaily = 0
             let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftipfs = data1[i].result
@@ -85,7 +88,7 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
-
+                _allDaily += Number(ethers.utils.formatEther(String(1 * 10**14)))
                 _allReward += Number(ethers.utils.formatEther(String(data11[i].result)))
 
                 nfts.push({
@@ -156,7 +159,14 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts, nftstaked, _allReward, ]
+            const bstBal = address !== null && address !== undefined ? await readContract({
+                address: badField,
+                abi: erc20ABI,
+                functionName: 'balanceOf',
+                args: [address],
+            }) : 0
+
+            return [nfts, nftstaked, _allReward, _allDaily, bstBal, ]
         }
 
         const promise = thefetch()
@@ -172,9 +182,11 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
             result[0].length > 0 && address !== undefined ? setNft(result[0]) : setNft([null])
             setNftStaked(result[1])
             setAllReward(result[2])
+            setAllDaily(result[3] * 86400)
+            setBstBalance(ethers.utils.formatEther(String(result[4])))
         })
 
-    }, [address, txupdate, erc721ABI, tunaFieldABI])
+    }, [address, txupdate, erc721ABI, tunaFieldABI, erc20ABI])
     
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -262,11 +274,24 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
                 </div>
             </div>
 
-            <div style={{margin: "0", paddingTop: "75px", minHeight: "inherit", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+            <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
                 <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
                     <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                        <div style={{marginBottom: "20px"}}></div>
+                        <div style={{marginBottom: "20px"}}>BKGA ON WALLET</div>
+                        <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
+                    </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
+                        <div style={{fontSize: "24px", display: "flex"}} className="emp">
+                            {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="24" alt="$BST"/>
+                        </div>
+                    </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                         <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                            {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
+                            <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="24" alt="$BST"/>
                             <>
                                 {address !== undefined && address === youraddr && allReward > 0 ?
                                     <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
@@ -275,76 +300,85 @@ const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxup
                             </>
                         </div>
                     </div>
+                    <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div style={{marginBottom: "20px"}}>BST BALANCE</div>
+                        <div style={{fontSize: "24px"}}>
+                            {nft.length > 0 ? Number(bstBalance).toFixed(3) : 0}
+                            <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="24" alt="$BST"/>
+                        </div>
+                    </div>
                 </div>
-                {nft.length > 0 ?
-                    <>
-                    {nft[0] !== null ?
+                <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                    {nft.length > 0 ?
                         <>
-                        {nft.map((item, index) => (
-                            <div className="nftCard" style={{margin: "20px 10px", padding: "30px 20px"}} key={index}>
-                                <img
-                                    src={item.Image}
-                                    width="150"
-                                    alt="Can not load metadata."
-                                />
-                                <div>{item.Name}</div>
-                                <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                                    {item.isStaked ?
+                            {nft[0] !== null ?
+                                <>
+                                {nft.map((item, index) => (
+                                    <div className="nftCard pixel" style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} key={index}>
+                                        <img
+                                            src={item.Image}
+                                            width="150"
+                                            alt="Can not load metadata."
+                                        />
+                                        <div>{item.Name}</div>
+                                        <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                            {item.isStaked ?
+                                                <>
+                                                    <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                    <div style={{color: "black"}}>On Staking</div>
+                                                </> :
+                                                <>
+                                                    <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                    <div style={{color: "black"}}>Available for stake</div>
+                                                </>
+                                            }
+                                        </div>
+                                        <div>
+                                            Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
+                                            &nbsp;
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
+                                            BST/DAY
+                                        </div>
+                                        <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                            <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
+                                                Pending Rewards<br></br>
+                                                <div style={{display: "flex", alignItems: "center"}}>
+                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
+                                                    {ethers.utils.formatEther(item.Reward)}
+                                                </div>
+                                            </div>
+                                            {item.Reward > 0 ?
+                                                <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                            }
+                                        </div>
+                                        {item.isStaked ?
+                                            <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                        }
+                                    </div>
+                                ))}
+                                </> :
+                                <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
+                                    {address !== undefined ?
                                         <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>On Staking</div>
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                         </> :
                                         <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>Available for stake</div>
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
                                         </>
                                     }
                                 </div>
-                                <div>
-                                    Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
-                                    &nbsp;
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
-                                    BST/DAY
-                                </div>
-                                <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                    <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
-                                        Pending Rewards<br></br>
-                                        <div style={{display: "flex", alignItems: "center"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" width="12" style={{marginRight: "5px"}} alt="$BST"/>
-                                            {ethers.utils.formatEther(item.Reward)}
-                                        </div>
-                                    </div>
-                                    {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
-                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
-                                    }
-                                </div>
-                                {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
-                                    <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                }
-                            </div>
-                        ))}
-                        </> :
-                        <div className="nftCard" style={{justifyContent: "center"}}>
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
                             }
+                        </> :
+                        <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
+                            <ThreeDots fill="#5f6476" />
+                            <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                         </div>
                     }
-                    </> :
-                    <div className="nftCard" style={{justifyContent: "center"}}>
-                        <ThreeDots fill="#5f6476" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
-                    </div>
-                }
+                </div>
             </div>
         </>
     )

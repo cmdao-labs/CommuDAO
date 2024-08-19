@@ -10533,7 +10533,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             </div>
             
             {nft.length > 0 ?
-                <div style={{width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
@@ -10939,7 +10939,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         </div>
                     }
                 </div> :
-                <div style={{width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", padding: "20px", margin: "10px"}}> 
+                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>

@@ -65,7 +65,6 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
     const [skinSlot1, setSkinSlot1] = React.useState(null)
 
-    const [jbcBalance, setJbcBalance] = React.useState(0)
     const [ctunaBalance, setCTunaBalance] = React.useState(0)
     const [sx31Balance, setSx31Balance] = React.useState(0)
     const [pzaBalance, setPzaBalance] = React.useState(0)
@@ -336,7 +335,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             const pzaBal = data[9].result
             const jaspBal = data[10].result
             const stOPTClaim = isStaked === true ? data[11].result : 0
-            const nftEQ_L2 = data[12].result
+            // const nftEQ_L2 = data[12].result
             const rewardPending = isStaked === true ? data[13].result : 0
             
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
@@ -631,7 +630,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>LAYER 1 STAKING</div>
+                        <div style={{fontSize: "22px", lineHeight: "15px"}}>L1 STAKING</div>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
                                 {isStakeNow ?
                                     <>
@@ -818,7 +817,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             </div>
             
             {nft.length > 0 ?
-                <div style={{marginTop: "40px", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                         {nft.map((item, index) => (
@@ -860,7 +859,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         </div>
                     }
                 </div> :
-                <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>

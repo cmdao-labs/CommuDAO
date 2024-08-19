@@ -288,7 +288,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
     return (
     <>
-        {isTransferModal ?
+        {isTransferModal &&
             <div className="centermodal">
                 <div className="wrapper">
                     <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
@@ -298,8 +298,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                         <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
                     </div>
                 </div>
-            </div> :
-            <></>
+            </div>
         }
 
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu')", overflow: "scroll"}}>
@@ -349,64 +348,64 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                 {nft.length > 0 ?
                     <>
-                    {nft[0] !== null ?
-                        <>
-                        {nft.map((item, index) => (
-                            <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
-                                <img src={item.Image} width="150" alt="Can not load metadata." />
-                                <div>{item.Name}</div>
-                                <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                        {nft[0] !== null ?
+                            <>
+                            {nft.map((item, index) => (
+                                <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
+                                    <img src={item.Image} width="150" alt="Can not load metadata." />
+                                    <div>{item.Name}</div>
+                                    <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                        {item.isStaked ?
+                                            <>
+                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                <div style={{color: "black"}}>On Staking</div>
+                                            </> :
+                                            <>
+                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                <div style={{color: "black"}}>Available for stake</div>
+                                            </>
+                                        }
+                                    </div>
+                                    <div>
+                                        Earn: {item.Bonus * 86400}
+                                        &nbsp;
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
+                                        &nbsp;MICE/DAY
+                                    </div>
+                                    <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                        <div style={{lineHeight: 2, textAlign: "left"}}>
+                                            Pending Rewards<br></br>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
+                                            &nbsp;{item.Reward}
+                                        </div>
+                                        {item.Reward > 0 ?
+                                            <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                            <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                        }
+                                    </div>
                                     {item.isStaked ?
-                                        <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>On Staking</div>
-                                        </> :
-                                        <>
-                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                            <div style={{color: "black"}}>Available for stake</div>
-                                        </>
+                                        <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                        </div>
                                     }
                                 </div>
-                                <div>
-                                    Earn: {item.Bonus * 86400}
-                                    &nbsp;
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
-                                    &nbsp;MICE/DAY
-                                </div>
-                                <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                    <div style={{lineHeight: 2, textAlign: "left"}}>
-                                        Pending Rewards<br></br>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
-                                        &nbsp;{item.Reward}
-                                    </div>
-                                    {item.Reward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
-                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
-                                    }
-                                </div>
-                                {item.isStaked ?
-                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
-                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                        <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                        <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
-                                    </div>
+                            ))}
+                            </> :
+                            <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
+                                {address !== undefined ?
+                                    <>
+                                        <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                        <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                    </> :
+                                    <>
+                                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                        <div className="bold">Please connect wallet to view your NFTs.</div>
+                                    </>
                                 }
                             </div>
-                        ))}
-                        </> :
-                        <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
-                            }
-                        </div>
-                    }
+                        }
                     </> :
                     <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
                         <ThreeDots fill="#5f6476" />

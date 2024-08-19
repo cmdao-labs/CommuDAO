@@ -599,7 +599,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             </div>
             
             {nft.length > 0 ?
-                <div style={{marginTop: "40px", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
                             {nft.map((item, index) => (
@@ -646,7 +646,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         </div>
                     }
                 </div> :
-                <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
                     <div className="nftCard" style={{background: "#ffeceb", border: "none", justifyContent: "center"}}>
                         <ThreeDots fill="#5f6476" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
