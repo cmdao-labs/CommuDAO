@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { /*fetchBalance, */readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -399,7 +399,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, /*L2_Follower_Id, nftEQ_L2_Follower, L2_Servant_Id, nftEQ_L2_Servant,*/
                 allPow, isStaked, refuelAt, rewardPending, stOPTClaim,
-                jbcBal, ctunaBal, sx31Bal, pzaBal, jaspBal,
+                ctunaBal, sx31Bal, pzaBal, jaspBal,
                 skinslot1
             ]
         }
@@ -448,17 +448,14 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
             setLastedSTOPT(Number(result[17]) * 1000 === Number(result[19]) * 1000)
 
-            setJbcBalance(result[20].formatted)
-            setCTunaBalance(ethers.utils.formatEther(String(result[21])))
-            setSx31Balance(ethers.utils.formatEther(String(result[22])))
-            setPzaBalance(ethers.utils.formatEther(String(result[23])))
-            setJaspBalance(ethers.utils.formatUnits(String(result[24]), "gwei"))
-            setSkinSlot1(result[25])
+            setCTunaBalance(ethers.utils.formatEther(String(result[20])))
+            setSx31Balance(ethers.utils.formatEther(String(result[21])))
+            setPzaBalance(ethers.utils.formatEther(String(result[22])))
+            setJaspBalance(ethers.utils.formatUnits(String(result[23]), "gwei"))
+            setSkinSlot1(result[24])
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI])
-
-    console.log(jbcBalance, )
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
