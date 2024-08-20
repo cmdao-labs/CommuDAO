@@ -1,16 +1,14 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useContractEvent, useAccount } from 'wagmi'
-import { ThreeDots, Oval } from 'react-loading-icons'
-const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+import { useAccount } from 'wagmi'
+import { ThreeDots } from 'react-loading-icons'
 
-const CMDS = '0xAF17Dc881204488d929a5D377eBCF3256130b335'
-const starterCMDS = '0x936322111e1c9dCa38a721C1E07b9ec553BF2f04'
-const uplevelCMDS = '0x5fCf6Bd82Bd156Ef4DBef47f2997F91bD3E214BB'
-const fieldWood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
+const CMDS = '0x11EEB4A41d54522e1F4FF296a48215f7fc7F3e5D'
+const uplevelCMDS = '0xc50Aac569834896c18c60623Ebe81cF3D5BCeF78'
+const fieldWood = '0xc71AEB41A444AFdB4BfA28b4Ed1c1B5E1cB6d958'
 
-const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI }) => {
+const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI }) => {
     const { address } = useAccount()
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
@@ -21,8 +19,8 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
 
         const thefetch = async () => {
             const nftGenesis = address !== null && address !== undefined ? await readContract({
-                address: starterCMDS,
-                abi: starterCMDSABI,
+                address: CMDS,
+                abi: cmdsV2ABI,
                 functionName: 'mynft',
                 args: [address],
             }) : 0
@@ -32,31 +30,31 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                 contracts: [
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: cmdsV2ABI,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000000000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: cmdsV2ABI,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000010000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: cmdsV2ABI,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000020000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: cmdsV2ABI,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000030000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: cmdsV2ABI,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000040000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
@@ -77,19 +75,19 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                     contracts: [
                         {
                             address: CMDS,
-                            abi: erc721ABI,
+                            abi: cmdsV2ABI,
                             functionName: 'tokenURI',
                             args: [String(yournftstake[i].Id)],
                         },
                         {
-                            address: starterCMDS,
-                            abi: starterCMDSABI,
+                            address: CMDS,
+                            abi: cmdsV2ABI,
                             functionName: 'nftData',
                             args: [String(nftGenesis)],
                         },
                         {
                             address: fieldWood,
-                            abi: woodFieldABI,
+                            abi: fieldWoodBBQABI,
                             functionName: 'calculateRewards',
                             args: [String(yournftstake[i].Id)],
                         }
@@ -109,24 +107,24 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                 let theClass = 'Novice'
                 if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000000) {
                     level = 0
-                    expMax = 3
-                    hashRate = 1
+                    expMax = 30
+                    hashRate = 10
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000001) {
                     level = 1
-                    expMax = 90
-                    hashRate = 2
+                    expMax = 900
+                    hashRate = 15
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000002) {
                     level = 2
-                    expMax = 320
-                    hashRate = 3
+                    expMax = 3200
+                    hashRate = 20
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000003) {
                     level = 3
-                    expMax = 1080
-                    hashRate = 5
+                    expMax = 10800
+                    hashRate = 25
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000004) {
                     level = 4
-                    expMax = 2880
-                    hashRate = 10
+                    expMax = 28800
+                    hashRate = 30
                 }
 
                 nfts.push({
@@ -139,7 +137,6 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                     ExpMax: expMax,
                     Hashrate: hashRate,
                     RewardWood: ethers.utils.formatEther(String(reward)),
-                    RewardCmj: ethers.utils.formatEther(String(ethers.BigNumber.from(reward).div(ethers.BigNumber.from(1e12)))),
                     isStaked: true
                 })
             }
@@ -157,13 +154,13 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                     contracts: [
                         {
                             address: CMDS,
-                            abi: erc721ABI,
+                            abi: cmdsV2ABI,
                             functionName: 'tokenURI',
                             args: [yournftwallet[i].Id],
                         },
                         {
-                            address: starterCMDS,
-                            abi: starterCMDSABI,
+                            address: CMDS,
+                            abi: cmdsV2ABI,
                             functionName: 'nftData',
                             args: [String(nftGenesis)],
                         }
@@ -182,24 +179,24 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                 let theClass = 'Novice'
                 if (Number(((yournftwallet[i].Id) / 1e13).toFixed(0)) === 1000000) {
                     level = 0
-                    expMax = 3
-                    hashRate = 1
+                    expMax = 30
+                    hashRate = 10
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000001) {
                     level = 1
-                    expMax = 90
-                    hashRate = 2
+                    expMax = 900
+                    hashRate = 15
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000002) {
                     level = 2
-                    expMax = 320
-                    hashRate = 3
+                    expMax = 3200
+                    hashRate = 20
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000003) {
                     level = 3
-                    expMax = 1080
-                    hashRate = 5
+                    expMax = 10800
+                    hashRate = 25
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000004) {
                     level = 4
-                    expMax = 2880
-                    hashRate = 10
+                    expMax = 28800
+                    hashRate = 30
                 }
 
                 nfts.push({
@@ -212,7 +209,6 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                     ExpMax: expMax,
                     Hashrate: hashRate,
                     RewardWood: "0.000",
-                    RewardCmj: "0.000",
                     isStaked: false
                 })
             }
@@ -234,55 +230,59 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
             setNft(result[0])
         })
 
-    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, ])
+    }, [address, txupdate, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, ])
 
     const mintServant = async () => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: starterCMDS,
-                abi: starterCMDSABI,
+                address: CMDS,
+                abi: cmdsV2ABI,
                 functionName: 'mintServant',
                 args: [1, inputName],
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: CMDS,
-            abi: aurora721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== fieldWood.toUpperCase()) {
-            try {
+        try {
+            const nftAllow = await readContract({
+                address: CMDS,
+                abi: cmdsV2ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== fieldWood.toUpperCase()) {
                 const config = await prepareWriteContract({
                     address: CMDS,
-                    abi: aurora721ABI,
+                    abi: cmdsV2ABI,
                     functionName: 'approve',
                     args: [fieldWood, _nftid],
                 })
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
+            }
             const config2 = await prepareWriteContract({
                 address: fieldWood,
-                abi: woodFieldABI,
+                abi: fieldWoodBBQABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -291,7 +291,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
         try {
             const config = await prepareWriteContract({
                 address: fieldWood,
-                abi: woodFieldABI,
+                abi: fieldWoodBBQABI,
                 functionName: 'unstake',
                 args: [_nftid, true],
             })
@@ -309,7 +309,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
         setisLoading(true)
         const nftAllow = await readContract({
             address: CMDS,
-            abi: aurora721ABI,
+            abi: cmdsV2ABI,
             functionName: 'getApproved',
             args: [_nftid],
         })
@@ -317,7 +317,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
             try {
                 const config = await prepareWriteContract({
                     address: CMDS,
-                    abi: aurora721ABI,
+                    abi: cmdsV2ABI,
                     functionName: 'approve',
                     args: [uplevelCMDS, _nftid],
                 })
@@ -344,7 +344,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
         <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
                 <div className="pixel" style={{fontSize: "65px", width: "fit-content", padding: "0 10px"}}>Ancient Forest</div>
-                <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake CommuDAO Servant to earn $WOOD & $CMJ.</div>
+                <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake CommuDAO Servant to earn $WOOD</div>
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
@@ -400,11 +400,10 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721AB
                                                 Pending Rewards
                                                 <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
                                                 <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
-                                                <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
                                             </div>
                                             {item.RewardWood > 0 ?
-                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
-                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">HARVEST</div>
+                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
+                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">HARVEST</div>
                                             }
                                         </div>
                                     </div>
