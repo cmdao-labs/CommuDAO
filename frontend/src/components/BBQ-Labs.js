@@ -2120,14 +2120,6 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
     const obtainBBQHandle = async () => {
         setisLoading(true)
         try {
-            const config0 = await prepareWriteContract({
-                address: bbqToken,
-                abi: erc20ABI,
-                functionName: 'approve',
-                args: [bbqLab, 0],
-            })
-            const { hash: hash0 } = await writeContract(config0) // Block updating
-            await waitForTransaction({ hash: hash0 })
             const config = await prepareWriteContract({
                 address: bbqLab,
                 abi: bbqLab01ABI,
