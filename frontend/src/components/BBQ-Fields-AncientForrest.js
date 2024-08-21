@@ -12,6 +12,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
     const { address } = useAccount()
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
+    const [woodBalance, setWoodBalance] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -214,7 +215,14 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            return [nfts]
+            const woodBal = address !== null && address !== undefined ? await readContract({
+                address: fieldWood,
+                abi: fieldWoodBBQABI,
+                functionName: 'balanceOf',
+                args: [address],
+            }) : 0
+
+            return [nfts, woodBal]
         }
 
         const promise = thefetch()
@@ -228,6 +236,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
 
         getAsync().then(result => {
             setNft(result[0])
+            setWoodBalance(ethers.utils.formatEther(String(result[1])))
         })
 
     }, [address, txupdate, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, ])
@@ -352,61 +361,117 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
         </div>
 
         <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start", justifyContent: 'space-between'}} className="collection">
-            <div style={{minWidth: '50%', display: 'flex', justifyContent: 'flex-start', flexWrap: "wrap"}}>
+            <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">                
+                <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                    <div style={{marginBottom: "20px"}}>WOOD [BBQ-CHAIN] BALANCE</div>
+                    <div style={{fontSize: "24px"}}>
+                        {nft.length > 0 ? Number(woodBalance).toFixed(3) : 0}
+                        <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="24" alt="$WOOD"/>
+                    </div>
+                </div>
+            </div>
+            <div style={{minWidth: '50%', margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                 {nft.length > 0 ?
                     <>
                         {nft[0] !== null ?
                             <>
                                 {nft.map((item, index) => (
-                                    <div style={{justifyContent: "space-around", height: "500px", margin: "20px"}} className="nftCard" key={index}>
-                                        <img src={item.Image} width="175" alt="Can not load metadata." />
-                                        <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
-                                            <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
-                                                <div style={{color: "black"}}>{item.Name} [Lv. {item.Level}]</div>
-                                                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                                    {item.isStaked ?
-                                                        <>
-                                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                            <div>On Staking</div>
-                                                        </> :
-                                                        <>
-                                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                            <div>Available for stake</div>
-                                                        </>
-                                                    }
+                                    <>
+                                        <div style={{justifyContent: "space-around", height: "500px", margin: "20px"}} className="nftCard" key={index}>
+                                            <img src={item.Image} width="175" alt="Can not load metadata." />
+                                            <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
+                                                <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
+                                                    <div style={{color: "black"}}>{item.Name} [Lv. {item.Level}]</div>
+                                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                        {item.isStaked ?
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                    <div>Class : {item.Class}</div>
+                                                    <div>Hash rate : {item.Hashrate}</div>
+                                                    <div>EXP : {Number(item.Exp >= 1 ? item.Exp - 1 : 0).toFixed(0)}/{item.ExpMax} ({(((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax) >= 100 ? "MAX" : (((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax).toFixed(3).concat("%")})</div>
                                                 </div>
-                                                <div>Class : {item.Class}</div>
-                                                <div>Hash rate : {item.Hashrate}</div>
-                                                <div>EXP : {Number(item.Exp >= 1 ? item.Exp - 1 : 0).toFixed(0)}/{item.ExpMax} ({(((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax) >= 100 ? "MAX" : (((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax).toFixed(3).concat("%")})</div>
+                                                {item.isStaked ?
+                                                    <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                                                        {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
+                                                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
+                                                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
+                                                        }
+                                                    </div> :
+                                                    <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                                                        <div style={{lineHeight: 2, height: "fit-content", textAlign: "center"}} className="pixel button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                                        {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
+                                                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
+                                                            <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
+                                                        }
+                                                    </div>
+                                                }
                                             </div>
-                                            {item.isStaked ?
-                                                <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                                                    {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
-                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
-                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
-                                                    }
-                                                </div> :
-                                                <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                                                    <div style={{lineHeight: 2, height: "fit-content", textAlign: "center"}} className="pixel button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                                    {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
-                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
-                                                        <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
-                                                    }
+                                            <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                                <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
+                                                    Pending Rewards
+                                                    <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
+                                                    <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
                                                 </div>
-                                            }
-                                        </div>
-                                        <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                            <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
-                                                Pending Rewards
-                                                <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
-                                                <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
+                                                {item.RewardWood > 0 ?
+                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
+                                                    <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">HARVEST</div>
+                                                }
                                             </div>
-                                            {item.RewardWood > 0 ?
-                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
-                                                <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">HARVEST</div>
-                                            }
                                         </div>
-                                    </div>
+                                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", height: "500px"}}>
+                                            <div style={{width: "100%", textAlign: "left"}} className='pixel emp'>
+                                                SELECT DEDICATED PARTY TO MISSION HARVEST
+                                            </div>
+                                            <div style={{height: "80%", overflow: "scroll"}} className="pixel">
+                                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: "transparent"}}>
+                                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                                        <div>{false ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
+                                                        <div>FEE: 50%</div>
+                                                    </div>
+                                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                                        <div></div>
+                                                        <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{}</span> $WOOD</div>
+                                                    </div>
+                                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                                        <div></div>
+                                                        <div>RESET ON: {}</div>
+                                                    </div>
+                                                </div>
+                                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: "transparent"}}>
+                                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                                        <div>{false ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
+                                                        <div>FEE: 50%</div>
+                                                    </div>
+                                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                                        <div></div>
+                                                        <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{}</span> $WOOD</div>
+                                                    </div>
+                                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                                        <div></div>
+                                                        <div>RESET ON: {}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="pixel" style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                                                <div className='emp'>
+                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/>
+                                                    &nbsp;{0} [x100 GCS Bonus]
+                                                </div>
+                                                {false && address !== null && address !== undefined ? 
+                                                    <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">MISSION HARVEST</div> : 
+                                                    <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">MISSION HARVEST</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </>
                                 ))}
                             </> :
                             <>
