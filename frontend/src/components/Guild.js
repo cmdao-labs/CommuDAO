@@ -1478,7 +1478,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "flex-start", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Baby Alpha Tester [BBQ Chain]</div>
+                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Wood Chopper on Ancient Forest [BBQ Chain]</div>
                         </div>
                         <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
                             <div>Please contact on CommuDAO Discord for more information</div>
@@ -1493,7 +1493,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
                             <div>MISSION REWARD EMISSION</div>
-                            <div>0 $CMD</div>
+                            <div>TBD</div>
                         </div>
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
@@ -1505,39 +1505,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                         {isBaseCmdDelegate && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">MISSION DELEGATED</div>}
                                     </> :
                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
-
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Ancient Forest [BBQ Chain]</div>
-                        </div>
-                        <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
-                            <div>Soon!</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>CMPOW DEDICATED</div>
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>PARTY DEDICATED</div>
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>MISSION REWARD EMISSION</div>
-                            <div>0 $WOOD</div>
-                        </div>
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {true ?
-                                    <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
-                                    </> :
-                                    <>
-                                    </>
                                 }
                             </div> :
                             <div style={{height: "41px"}}></div>

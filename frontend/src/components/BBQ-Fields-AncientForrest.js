@@ -7,12 +7,26 @@ import { ThreeDots } from 'react-loading-icons'
 const CMDS = '0x11EEB4A41d54522e1F4FF296a48215f7fc7F3e5D'
 const uplevelCMDS = '0xc50Aac569834896c18c60623Ebe81cF3D5BCeF78'
 const fieldWood = '0xc71AEB41A444AFdB4BfA28b4Ed1c1B5E1cB6d958'
+const missionBaseCmd = '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518'
+const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
+const missionWood = '0x722f3afA275Ce7e063e02Ef04A1B3cA3c58a917e'
 
-const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI }) => {
+const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI }) => {
     const { address } = useAccount()
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
     const [woodBalance, setWoodBalance] = React.useState(0)
+    const [missionAmount, setMissionAmount] = React.useState(0)
+
+    const [partySelected, setPartySelected] = React.useState(0)
+    const [isBaseCmdDelegate1, setIsBaseCmdDelegate1] = React.useState(null)
+    const [woodCap1, setWoodCap1] = React.useState(0)
+    const [party1Fee, setParty1Fee] = React.useState(0)
+    const [nextDayParty1, setNextDayParty1] = React.useState(0)
+    const [isBaseCmdDelegate2, setIsBaseCmdDelegate2] = React.useState(null)
+    const [woodCap2, setWoodCap2] = React.useState(0)
+    const [party2Fee, setParty2Fee] = React.useState(0)
+    const [nextDayParty2, setNextDayParty2] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -222,7 +236,60 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                 args: [address],
             }) : 0
 
-            return [nfts, woodBal]
+            const dataParty = await readContracts({
+                contracts: [
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'endBlock',
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyBody',
+                        args: [1],
+                    },
+                    {
+                        address: party,
+                        abi: partyABI,
+                        functionName: 'partyBody',
+                        args: [2],
+                    },
+                    {
+                        address: missionWood,
+                        abi: missionWoodABI,
+                        functionName: 'routerState',
+                        args: [1],
+                    },
+                    {
+                        address: missionWood,
+                        abi: missionWoodABI,
+                        functionName: 'routerState',
+                        args: [2],
+                    },
+                    {
+                        address: missionWood,
+                        abi: missionWoodABI,
+                        functionName: 'baseCapacity',
+                        args: [1],
+                    },
+                    {
+                        address: missionWood,
+                        abi: missionWoodABI,
+                        functionName: 'baseCapacity',
+                        args: [2],
+                    },
+                ],
+            })
+
+            const isParty1Delegate = Number(dataParty[0].result) - Number(dataParty[1].result[5]) > 0
+            const party1Router = dataParty[3].result
+            const party1FullCap = dataParty[5].result
+            const isParty2Delegate = Number(dataParty[0].result) - Number(dataParty[2].result[5]) > 0
+            const party2Router = dataParty[4].result
+            const party2FullCap = dataParty[6].result
+
+            return [nfts, woodBal, isParty1Delegate, party1Router, party1FullCap, isParty2Delegate, party2Router, party2FullCap, ]
         }
 
         const promise = thefetch()
@@ -237,9 +304,30 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
         getAsync().then(result => {
             setNft(result[0])
             setWoodBalance(ethers.utils.formatEther(String(result[1])))
+            setIsBaseCmdDelegate1(result[2])
+            const _nextDayParty1 = new Date((Number(result[3][0]) * 1000) + (86400 * 1000));
+            if (Date.now() <= _nextDayParty1 && Number(result[3][0]) !== 0) {
+                setNextDayParty1(_nextDayParty1.toLocaleString('es-CL'))
+                setWoodCap1(Number(ethers.utils.formatEther(String(result[3][2]))))
+            } else {
+                setNextDayParty1('now')
+                setWoodCap1(Number(ethers.utils.formatEther(String(result[4]))))
+            }
+            setParty1Fee(Number(result[3][1]) / 100);
+
+            setIsBaseCmdDelegate2(result[5])
+            const _nextDayParty2 = new Date((Number(result[6][0]) * 1000) + (86400 * 1000));
+            if (Date.now() <= _nextDayParty2 && Number(result[6][0]) !== 0) {
+                setNextDayParty2(_nextDayParty2.toLocaleString('es-CL'))
+                setWoodCap2(Number(ethers.utils.formatEther(String(result[6][2]))))
+            } else {
+                setNextDayParty2('now')
+                setWoodCap2(Number(ethers.utils.formatEther(String(result[7]))))
+            }
+            setParty2Fee(Number(result[6][1]) / 100)
         })
 
-    }, [address, txupdate, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, ])
+    }, [address, txupdate, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI ])
 
     const mintServant = async () => {
         setisLoading(true)
@@ -311,7 +399,46 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             if (_uplevel) {
                 uplevelNft(_nftid, _toLv)
             }
-        } catch {setisLoading(false)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const missionHarvestHandle = async (_nftid) => {
+        setisLoading(true)
+        try {
+            const woodAllow = await readContract({
+                address: fieldWood,
+                abi: fieldWoodBBQABI,
+                functionName: 'allowance',
+                args: [address, missionWood],
+            })
+            if (woodAllow < ethers.utils.parseEther(String(10**12))) {
+                const config0 = await prepareWriteContract({
+                    address: fieldWood,
+                    abi: fieldWoodBBQABI,
+                    functionName: 'approve',
+                    args: [missionWood, ethers.utils.parseEther(String(10**12))],
+                })
+                const { hash: hash0 } = await writeContract(config0)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config1 = await prepareWriteContract({
+                address: missionWood,
+                abi: missionWoodABI,
+                functionName: 'mintViaGCS',
+                args: [partySelected, _nftid, true],
+            })
+            const { hash: hash1 } = await writeContract(config1)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
     }
 
     const uplevelNft = async (_nftid, _toLv) => {
@@ -344,7 +471,10 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -365,7 +495,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                 <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
                     <div style={{marginBottom: "20px"}}>WOOD [BBQ-CHAIN] BALANCE</div>
                     <div style={{fontSize: "24px"}}>
-                        {nft.length > 0 ? Number(woodBalance).toFixed(3) : 0}
+                        {nft.length > 0 ? Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:1}) : 0}
                         <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="24" alt="$WOOD"/>
                     </div>
                 </div>
@@ -396,7 +526,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                                     </div>
                                                     <div>Class : {item.Class}</div>
                                                     <div>Hash rate : {item.Hashrate}</div>
-                                                    <div>EXP : {Number(item.Exp >= 1 ? item.Exp - 1 : 0).toFixed(0)}/{item.ExpMax} ({(((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax) >= 100 ? "MAX" : (((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax).toFixed(3).concat("%")})</div>
+                                                    <div>EXP : {Number(item.Exp >= 1 ? item.Exp - 1 : 0).toLocaleString('en-US', {maximumFractionDigits:0})}/{item.ExpMax} ({(((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax) >= 100 ? "MAX" : (((item.Exp >= 1 ? item.Exp - 1 : 0) * 100) / item.ExpMax).toFixed(3).concat("%")})</div>
                                                 </div>
                                                 {item.isStaked ?
                                                     <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
@@ -417,8 +547,8 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                             <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                                 <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
                                                     Pending Rewards
-                                                    <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
-                                                    <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
+                                                    <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
+                                                    <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {Number(item.RewardWood).toLocaleString('en-US')}</div>
                                                 </div>
                                                 {item.RewardWood > 0 ?
                                                     <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
@@ -431,42 +561,62 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                                 SELECT DEDICATED PARTY TO MISSION HARVEST
                                             </div>
                                             <div style={{height: "80%", overflow: "scroll"}} className="pixel">
-                                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: "transparent"}}>
-                                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                        <div>{false ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
-                                                        <div>FEE: 50%</div>
+                                                <div 
+                                                    style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: partySelected === 1 ? "rgb(0, 227, 180)" : "transparent"}} 
+                                                    onClick={() => {
+                                                        setPartySelected(1) 
+                                                        if (Number(item.RewardWood) > Number(woodCap1)) {
+                                                            setMissionAmount(woodCap1)
+                                                        } else {
+                                                            setMissionAmount(item.RewardWood * 100)
+                                                        }
+                                                    }}
+                                                >
+                                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df" }}>
+                                                        <div>{isBaseCmdDelegate1 ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
+                                                        <div>FEE: {party1Fee}%</div>
                                                     </div>
                                                     <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                                         <div></div>
-                                                        <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{}</span> $WOOD</div>
+                                                        <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(woodCap1).toLocaleString('en-US', {maximumFractionDigits:1})}</span> $WOOD</div>
                                                     </div>
                                                     <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                                         <div></div>
-                                                        <div>RESET ON: {}</div>
+                                                        <div>RESET ON: {nextDayParty1}</div>
                                                     </div>
                                                 </div>
-                                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: "transparent"}}>
+                                                <div 
+                                                    style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: partySelected === 2 ? "rgb(0, 227, 180)" : "transparent"}} 
+                                                    onClick={() => {
+                                                        setPartySelected(2) 
+                                                        if (Number(item.RewardWood) > Number(woodCap2)) {
+                                                            setMissionAmount(woodCap2)
+                                                        } else {
+                                                            setMissionAmount(item.RewardWood * 100)
+                                                        }
+                                                    }}
+                                                >
                                                     <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                        <div>{false ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
-                                                        <div>FEE: 50%</div>
+                                                        <div>{isBaseCmdDelegate2 ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
+                                                        <div>FEE: {party2Fee}%</div>
                                                     </div>
                                                     <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                                         <div></div>
-                                                        <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{}</span> $WOOD</div>
+                                                        <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(woodCap2).toLocaleString('en-US', {maximumFractionDigits:1})}</span> $WOOD</div>
                                                     </div>
                                                     <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                                         <div></div>
-                                                        <div>RESET ON: {}</div>
+                                                        <div>RESET ON: {nextDayParty2}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="pixel" style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                 <div className='emp'>
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/>
-                                                    &nbsp;{0} [x100 GCS Bonus]
+                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> + EXP
+                                                    &nbsp;{Number(missionAmount/2).toLocaleString('en-US', {maximumFractionDigits:1})} 
                                                 </div>
-                                                {false && address !== null && address !== undefined ? 
-                                                    <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button">MISSION HARVEST</div> : 
+                                                {Number(missionAmount) > 0 && address !== null && address !== undefined ? 
+                                                    <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={() => missionHarvestHandle(item.Id)}>MISSION HARVEST</div> : 
                                                     <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">MISSION HARVEST</div>
                                                 }
                                             </div>
