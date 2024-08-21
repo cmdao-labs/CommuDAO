@@ -13,7 +13,7 @@ const BBQFields = ({ callMode, navigate }) => {
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Stake NFTs to earn resources.</div>
                 </div>
                 <div style={{margin: "30px 100px"}}>
-                    <img src="./background/fieldlogo.png" width="150" alt="Fields_Logo" />
+                    <img src="../background/fieldlogo.png" width="150" alt="Fields_Logo" />
                 </div>
             </div>
 
