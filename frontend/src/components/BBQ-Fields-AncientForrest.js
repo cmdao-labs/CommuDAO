@@ -305,7 +305,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             setNft(result[0])
             setWoodBalance(ethers.utils.formatEther(String(result[1])))
             setIsBaseCmdDelegate1(result[2])
-            const _nextDayParty1 = new Date((Number(result[3][0]) * 1000) + (86400 * 1000));
+            const _nextDayParty1 = new Date((Number(result[3][0]) * 1000) + (86400 * 1000))
             if (Date.now() <= _nextDayParty1 && Number(result[3][0]) !== 0) {
                 setNextDayParty1(_nextDayParty1.toLocaleString('es-CL'))
                 setWoodCap1(Number(ethers.utils.formatEther(String(result[3][2]))))
@@ -316,7 +316,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             setParty1Fee(Number(result[3][1]) / 100);
 
             setIsBaseCmdDelegate2(result[5])
-            const _nextDayParty2 = new Date((Number(result[6][0]) * 1000) + (86400 * 1000));
+            const _nextDayParty2 = new Date((Number(result[6][0]) * 1000) + (86400 * 1000))
             if (Date.now() <= _nextDayParty2 && Number(result[6][0]) !== 0) {
                 setNextDayParty2(_nextDayParty2.toLocaleString('es-CL'))
                 setWoodCap2(Number(ethers.utils.formatEther(String(result[6][2]))))
@@ -530,14 +530,14 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                                 </div>
                                                 {item.isStaked ?
                                                     <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                                                        {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
+                                                        {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 28800 ?
                                                             <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, true, item.Level + 1)}}>LEVEL UP</div> :
                                                             <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
                                                         }
                                                     </div> :
                                                     <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
                                                         <div style={{lineHeight: 2, height: "fit-content", textAlign: "center"}} className="pixel button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                                        {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 2880 ?
+                                                        {(((item.Exp - 1) * 100) / item.ExpMax) >= 100 && item.ExpMax !== 28800 ?
                                                             <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#67BAA7", fontSize: "16px"}} className="pixel button" onClick={() => {uplevelNft(item.Id, item.Level + 1)}}>LEVEL UP</div> :
                                                             <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", fontSize: "16px"}} className="pixel button">LEVEL UP</div>
                                                         }
@@ -573,7 +573,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                                     }}
                                                 >
                                                     <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df" }}>
-                                                        <div>{isBaseCmdDelegate1 ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
+                                                        <div>{(woodCap1 > 0 && isBaseCmdDelegate1) ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
                                                         <div>FEE: {party1Fee}%</div>
                                                     </div>
                                                     <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -597,7 +597,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                                     }}
                                                 >
                                                     <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                        <div>{isBaseCmdDelegate2 ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
+                                                        <div>{(woodCap2 > 0 && isBaseCmdDelegate2) ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
                                                         <div>FEE: {party2Fee}%</div>
                                                     </div>
                                                     <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -613,7 +613,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
                                             <div className="pixel" style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                 <div className='emp'>
                                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> + EXP
-                                                    &nbsp;{Number(missionAmount/2).toLocaleString('en-US', {maximumFractionDigits:1})} 
+                                                    &nbsp;{partySelected === 1 && Number((missionAmount *  party1Fee) / 100).toLocaleString('en-US', {maximumFractionDigits:1})}{partySelected === 2 && Number((missionAmount *  party2Fee) / 100).toLocaleString('en-US', {maximumFractionDigits:1})}
                                                 </div>
                                                 {Number(missionAmount) > 0 && address !== null && address !== undefined ? 
                                                     <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={() => missionHarvestHandle(item.Id)}>MISSION HARVEST</div> : 
