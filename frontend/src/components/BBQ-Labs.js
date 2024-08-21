@@ -6,6 +6,7 @@ const { ethereum } = window
 
 const bbqToken = '0x87dfDc26ff6e8986e2F773FAE3Bfa51C8f152cF0'
 const bbqLab = '0x2D2901B3c1A9770008AA38A095f71FB4e136c0f3'
+const woodToken = '0xc71AEB41A444AFdB4BfA28b4Ed1c1B5E1cB6d958'
 
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
@@ -18,6 +19,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
+    const [woodBalance, setWoodBalance] = React.useState(0)
 
     const [levelCraftBBQ, setLevelCraftBBQ] = React.useState(0)
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
@@ -338,11 +340,18 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                         functionName: 'supplier',
                         args: [address],
                     },
+                    {
+                        address: woodToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
             }) : [{result: 0}, {result: [0, 0, 0]}, ]
             
             const bbqBal = data[0].result
             const labLogBBQ = data[1].result
+            const woodBal = data[2].result
            
             const _canCraftBBQ = /*Number(ethers.utils.formatEther(String(woodBal))) >= 100 &&*/ Number(cmdBal.formatted) >= 0.01 ? true : false
 
@@ -1531,6 +1540,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                 data2[40].result, data2[41].result, _allPowZ06, data2[43].result, data2[44].result, _allPowB01, data2[46].result, data2[47].result, _allPowB02, data2[49].result, data2[50].result, _allPowB03, data2[52].result, data2[53].result, _allPowB04, data2[55].result, data2[56].result, _allPowB05, data2[58].result, data2[59].result, _allPowB06, data2[61].result, data2[62].result, _allPowB07, data2[64].result, data2[65].result, _allPowB08, data2[67].result, data2[68].result, _allPowB09, data2[70].result, data2[71].result, _allPowB10, data2[73].result, data2[74].result, _allPowB11,
                 data2[76].result, data2[77].result, _allPowZ11, data2[79].result, data2[80].result, _allPowC01, data2[82].result, data2[83].result, _allPowC02, data2[85].result, data2[86].result, _allPowC03, data2[88].result, data2[89].result, _allPowC04, data2[91].result, data2[92].result, _allPowC05, data2[94].result, data2[95].result, _allPowC06, data2[97].result, data2[98].result, _allPowC07, data2[100].result, data2[101].result, _allPowC08, data2[103].result, data2[104].result, _allPowC09, data2[106].result, data2[107].result, _allPowC10, data2[109].result, data2[110].result, _allPowC11,
                 data2[112].result, data2[113].result, _allPowC12, data2[115].result, data2[116].result, _allPowC13, data2[118].result, data2[119].result, _allPowC14, data2[121].result, data2[122].result, _allPowC15, data2[124].result, data2[125].result, _allPowC16, data2[127].result, data2[128].result, _allPowC17, data2[130].result, data2[131].result, _allPowC18, data2[133].result, data2[134].result, _allPowC19, data2[136].result, data2[137].result, _allPowC20, data2[139].result, data2[140].result, _allPowC21, data2[142].result, data2[143].result, _allPowC22,
+                woodBal,
             ]
         }
 
@@ -1555,532 +1565,582 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             setCanCraftBBQ(result[2])
 
             setThubLvZ10(Number(result[3][0]))
-            const _nextDayThubZ10 = new Date((Number(result[3][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubZ10 && Number(result[3][2]) !== 0) ?
-                setNextDayThubZ10(_nextDayThubZ10.toLocaleString('es-CL')) :
+            const _nextDayThubZ10 = new Date((Number(result[3][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubZ10 && Number(result[3][2]) !== 0) {
+                setNextDayThubZ10(_nextDayThubZ10.toLocaleString('es-CL'))
+                setThubCapZ10(Number(ethers.utils.formatEther(String(result[3][1]))))
+            } else {
                 setNextDayThubZ10('now')
-            setThubFeeZ10(Number(result[3][3]) / 100);
-            (Date.now() <= _nextDayThubZ10 && Number(result[3][2]) !== 0) ? 
-                setThubCapZ10(0) :
                 setThubCapZ10(Number(ethers.utils.formatEther(String(result[4]))))
+            }
+            setThubFeeZ10(Number(result[3][3]) / 100)
             setAllPowZ10(Number(result[5]))
 
             setThubLvZ02(Number(result[6][0]))
-            const _nextDayThubZ02 = new Date((Number(result[6][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubZ02 && Number(result[6][2]) !== 0) ?
-                setNextDayThubZ02(_nextDayThubZ02.toLocaleString('es-CL')) :
+            const _nextDayThubZ02 = new Date((Number(result[6][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubZ02 && Number(result[6][2]) !== 0) {
+                setNextDayThubZ02(_nextDayThubZ02.toLocaleString('es-CL'))
+                setThubCapZ02(Number(ethers.utils.formatEther(String(result[6][1]))))
+            } else {
                 setNextDayThubZ02('now')
-            setThubFeeZ02(Number(result[6][3]) / 100);
-            (Date.now() <= _nextDayThubZ02 && Number(result[6][2]) !== 0) ?
-                setThubCapZ02(0) :
                 setThubCapZ02(Number(ethers.utils.formatEther(String(result[7]))))
+            }
+            setThubFeeZ02(Number(result[6][3]) / 100)
             setAllPowZ02(Number(result[8]))
 
             setThubLvA01(Number(result[9][0]))
-            const _nextDayThubA01 = new Date((Number(result[9][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA01 && Number(result[6][2]) !== 0) ?
-                setNextDayThubA01(_nextDayThubA01.toLocaleString('es-CL')) :
+            const _nextDayThubA01 = new Date((Number(result[9][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA01 && Number(result[9][2]) !== 0) {
+                setNextDayThubA01(_nextDayThubA01.toLocaleString('es-CL'))
+                setThubCapA01(Number(ethers.utils.formatEther(String(result[9][1]))))
+            } else {
                 setNextDayThubA01('now')
-            setThubFeeA01(Number(result[9][3]) / 100);
-            (Date.now() <= _nextDayThubA01 && Number(result[6][2]) !== 0) ?
-                setThubCapA01(0) :
                 setThubCapA01(Number(ethers.utils.formatEther(String(result[10]))))
+            }
+            setThubFeeA01(Number(result[9][3]) / 100)
             setAllPowA01(Number(result[11]))
 
             setThubLvA02(Number(result[12][0]))
-            const _nextDayThubA02 = new Date((Number(result[12][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA02 && Number(result[12][2]) !== 0) ?
-                setNextDayThubA02(_nextDayThubA02.toLocaleString('es-CL')) :
+            const _nextDayThubA02 = new Date((Number(result[12][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA02 && Number(result[12][2]) !== 0) {
+                setNextDayThubA02(_nextDayThubA02.toLocaleString('es-CL'))
+                setThubCapA02(Number(ethers.utils.formatEther(String(result[12][1]))))
+            } else {
                 setNextDayThubA02('now')
-            setThubFeeA02(Number(result[12][3]) / 100);
-            (Date.now() <= _nextDayThubA02 && Number(result[12][2]) !== 0) ?
-                setThubCapA02(0) :
                 setThubCapA02(Number(ethers.utils.formatEther(String(result[13]))))
+            }
+            setThubFeeA02(Number(result[12][3]) / 100)
             setAllPowA02(Number(result[14]))
 
-            setThubLvA03(Number(result[15][0]));
-            const _nextDayThubA03 = new Date((Number(result[15][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA03 && Number(result[15][2]) !== 0) ?
-                setNextDayThubA03(_nextDayThubA03.toLocaleString('es-CL')) :
+            setThubLvA03(Number(result[15][0]))
+            const _nextDayThubA03 = new Date((Number(result[15][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA03 && Number(result[15][2]) !== 0) {
+                setNextDayThubA03(_nextDayThubA03.toLocaleString('es-CL'))
+                setThubCapA03(Number(ethers.utils.formatEther(String(result[15][1]))))
+            } else {
                 setNextDayThubA03('now')
-            setThubFeeA03(Number(result[15][3]) / 100);
-            (Date.now() <= _nextDayThubA03 && Number(result[15][2]) !== 0) ?
-                setThubCapA03(0) :
                 setThubCapA03(Number(ethers.utils.formatEther(String(result[16]))))
+            }
+            setThubFeeA03(Number(result[15][3]) / 100)
             setAllPowA03(Number(result[17]))
 
             setThubLvA04(Number(result[18][0]))
-            const _nextDayThubA04 = new Date((Number(result[18][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA04 && Number(result[18][2]) !== 0) ?
-                setNextDayThubA04(_nextDayThubA04.toLocaleString('es-CL')) :
+            const _nextDayThubA04 = new Date((Number(result[18][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA04 && Number(result[18][2]) !== 0) {
+                setNextDayThubA04(_nextDayThubA04.toLocaleString('es-CL'))
+                setThubCapA04(Number(ethers.utils.formatEther(String(result[18][1]))))
+            } else {
                 setNextDayThubA04('now')
-            setThubFeeA04(Number(result[18][3]) / 100);
-            (Date.now() <= _nextDayThubA04 && Number(result[18][2]) !== 0) ?
-                setThubCapA04(0) :
                 setThubCapA04(Number(ethers.utils.formatEther(String(result[19]))))
+            }
+            setThubFeeA04(Number(result[18][3]) / 100)
             setAllPowA04(Number(result[20]))
 
             setThubLvA05(Number(result[21][0]))
-            const _nextDayThubA05 = new Date((Number(result[21][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA05 && Number(result[21][2]) !== 0) ?
-                setNextDayThubA05(_nextDayThubA05.toLocaleString('es-CL')) :
+            const _nextDayThubA05 = new Date((Number(result[21][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA05 && Number(result[21][2]) !== 0) {
+                setNextDayThubA05(_nextDayThubA05.toLocaleString('es-CL'))
+                setThubCapA05(Number(ethers.utils.formatEther(String(result[21][1]))))
+            } else {
                 setNextDayThubA05('now')
-            setThubFeeA05(Number(result[21][3]) / 100);
-            (Date.now() <= _nextDayThubA05 && Number(result[21][2]) !== 0) ?
-                setThubCapA05(0) :
                 setThubCapA05(Number(ethers.utils.formatEther(String(result[22]))))
+            }
+            setThubFeeA05(Number(result[21][3]) / 100)
             setAllPowA05(Number(result[23]))
 
             setThubLvA06(Number(result[24][0]))
-            const _nextDayThubA06 = new Date((Number(result[24][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA06 && Number(result[24][2]) !== 0) ?
-                setNextDayThubA06(_nextDayThubA06.toLocaleString('es-CL')) :
+            const _nextDayThubA06 = new Date((Number(result[24][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA06 && Number(result[24][2]) !== 0) {
+                setNextDayThubA06(_nextDayThubA06.toLocaleString('es-CL'))
+                setThubCapA06(Number(ethers.utils.formatEther(String(result[24][1]))))
+            } else {
                 setNextDayThubA06('now')
-            setThubFeeA06(Number(result[24][3]) / 100);
-            (Date.now() <= _nextDayThubA06 && Number(result[24][2]) !== 0) ?
-                setThubCapA06(0) :
                 setThubCapA06(Number(ethers.utils.formatEther(String(result[25]))))
+            }
+            setThubFeeA06(Number(result[24][3]) / 100)
             setAllPowA06(Number(result[26]))
 
             setThubLvA07(Number(result[27][0]))
-            const _nextDayThubA07 = new Date((Number(result[27][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA07 && Number(result[27][2]) !== 0) ?
-                setNextDayThubA07(_nextDayThubA07.toLocaleString('es-CL')) :
+            const _nextDayThubA07 = new Date((Number(result[27][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA07 && Number(result[27][2]) !== 0) {
+                setNextDayThubA07(_nextDayThubA07.toLocaleString('es-CL'))
+                setThubCapA07(Number(ethers.utils.formatEther(String(result[27][1]))))
+            } else {
                 setNextDayThubA07('now')
-            setThubFeeA07(Number(result[27][3]) / 100);
-            (Date.now() <= _nextDayThubA07 && Number(result[27][2]) !== 0) ?
-                setThubCapA07(0) :
                 setThubCapA07(Number(ethers.utils.formatEther(String(result[28]))))
+            }
+            setThubFeeA07(Number(result[27][3]) / 100)
             setAllPowA07(Number(result[29]))
 
             setThubLvA08(Number(result[30][0]))
             const _nextDayThubA08 = new Date((Number(result[30][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA08 && Number(result[30][2]) !== 0) ?
-                setNextDayThubA08(_nextDayThubA08.toLocaleString('es-CL')) :
+            if (Date.now() <= _nextDayThubA08 && Number(result[30][2]) !== 0) {
+                setNextDayThubA08(_nextDayThubA08.toLocaleString('es-CL'))
+                setThubCapA08(Number(ethers.utils.formatEther(String(result[30][1]))))
+            } else {
                 setNextDayThubA08('now')
-            setThubFeeA08(Number(result[30][3]) / 100);
-            (Date.now() <= _nextDayThubA08 && Number(result[30][2]) !== 0) ?
-                setThubCapA08(0) :
                 setThubCapA08(Number(ethers.utils.formatEther(String(result[31]))))
+            }
+            setThubFeeA08(Number(result[30][3]) / 100)
             setAllPowA08(Number(result[32]))
 
             setThubLvA09(Number(result[33][0]))
-            const _nextDayThubA09 = new Date((Number(result[33][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA09 && Number(result[33][2]) !== 0) ?
-                setNextDayThubA09(_nextDayThubA09.toLocaleString('es-CL')) :
+            const _nextDayThubA09 = new Date((Number(result[33][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA09 && Number(result[33][2]) !== 0) {
+                setNextDayThubA09(_nextDayThubA09.toLocaleString('es-CL'))
+                setThubCapA09(Number(ethers.utils.formatEther(String(result[33][1]))))
+            } else {
                 setNextDayThubA09('now')
-            setThubFeeA09(Number(result[33][3]) / 100);
-            (Date.now() <= _nextDayThubA09 && Number(result[33][2]) !== 0) ?
-                setThubCapA09(0) :
                 setThubCapA09(Number(ethers.utils.formatEther(String(result[34]))))
+            }
+            setThubFeeA09(Number(result[33][3]) / 100)
             setAllPowA09(Number(result[35]))
 
             setThubLvA10(Number(result[36][0]))
-            const _nextDayThubA10 = new Date((Number(result[36][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA10 && Number(result[36][2]) !== 0) ?
-                setNextDayThubA10(_nextDayThubA10.toLocaleString('es-CL')) :
+            const _nextDayThubA10 = new Date((Number(result[36][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA10 && Number(result[36][2]) !== 0) {
+                setNextDayThubA10(_nextDayThubA10.toLocaleString('es-CL'))
+                setThubCapA10(Number(ethers.utils.formatEther(String(result[36][1]))))
+            } else {
                 setNextDayThubA10('now')
-            setThubFeeA10(Number(result[36][3]) / 100);
-            (Date.now() <= _nextDayThubA10 && Number(result[36][2]) !== 0) ?
-                setThubCapA10(0) :
                 setThubCapA10(Number(ethers.utils.formatEther(String(result[37]))))
+            }
+            setThubFeeA10(Number(result[36][3]) / 100)
             setAllPowA10(Number(result[38]))
 
             setThubLvA11(Number(result[39][0]))
-            const _nextDayThubA11 = new Date((Number(result[39][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubA11 && Number(result[39][2]) !== 0) ?
-                setNextDayThubA11(_nextDayThubA11.toLocaleString('es-CL')) :
+            const _nextDayThubA11 = new Date((Number(result[39][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubA11 && Number(result[39][2]) !== 0) {
+                setNextDayThubA11(_nextDayThubA11.toLocaleString('es-CL'))
+                setThubCapA11(Number(ethers.utils.formatEther(String(result[39][1]))))
+            } else {
                 setNextDayThubA11('now')
-            setThubFeeA11(Number(result[39][3]) / 100);
-            (Date.now() <= _nextDayThubA11 && Number(result[39][2]) !== 0) ?
-                setThubCapA11(0) :
                 setThubCapA11(Number(ethers.utils.formatEther(String(result[40]))))
+            }
+            setThubFeeA11(Number(result[39][3]) / 100)
             setAllPowA11(Number(result[41]))
 
             setThubLvZ06(Number(result[42][0]))
-            const _nextDayThubZ06 = new Date((Number(result[42][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubZ06 && Number(result[42][2]) !== 0) ?
-                setNextDayThubZ06(_nextDayThubZ06.toLocaleString('es-CL')) :
+            const _nextDayThubZ06 = new Date((Number(result[42][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubZ06 && Number(result[42][2]) !== 0) {
+                setNextDayThubZ06(_nextDayThubZ06.toLocaleString('es-CL'))
+                setThubCapZ06(Number(ethers.utils.formatEther(String(result[42][1]))))
+            } else {
                 setNextDayThubZ06('now')
-            setThubFeeZ06(Number(result[42][3]) / 100);
-            (Date.now() <= _nextDayThubZ06 && Number(result[42][2]) !== 0) ?
-                setThubCapZ06(0) :
                 setThubCapZ06(Number(ethers.utils.formatEther(String(result[43]))))
+            }
+            setThubFeeZ06(Number(result[42][3]) / 100)
             setAllPowZ06(Number(result[44]))
 
             setThubLvB01(Number(result[45][0]))
-            const _nextDayThubB01 = new Date((Number(result[45][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB01 && Number(result[45][2]) !== 0) ?
-                setNextDayThubB01(_nextDayThubB01.toLocaleString('es-CL')) :
+            const _nextDayThubB01 = new Date((Number(result[45][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB01 && Number(result[45][2]) !== 0) {
+                setNextDayThubB01(_nextDayThubB01.toLocaleString('es-CL'))
+                setThubCapB01(Number(ethers.utils.formatEther(String(result[45][1]))))
+            } else {
                 setNextDayThubB01('now')
-            setThubFeeB01(Number(result[45][3]) / 100);
-            (Date.now() <= _nextDayThubB01 && Number(result[45][2]) !== 0) ?
-                setThubCapB01(0) :
                 setThubCapB01(Number(ethers.utils.formatEther(String(result[46]))))
+            }
+            setThubFeeB01(Number(result[45][3]) / 100)
             setAllPowB01(Number(result[47]))
 
             setThubLvB02(Number(result[48][0]))
-            const _nextDayThubB02 = new Date((Number(result[48][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB02 && Number(result[48][2]) !== 0) ?
-                setNextDayThubB02(_nextDayThubB02.toLocaleString('es-CL')) :
+            const _nextDayThubB02 = new Date((Number(result[48][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB02 && Number(result[48][2]) !== 0) {
+                setNextDayThubB02(_nextDayThubB02.toLocaleString('es-CL'))
+                setThubCapB02(Number(ethers.utils.formatEther(String(result[48][1]))))
+            } else {
                 setNextDayThubB02('now')
-            setThubFeeB02(Number(result[48][3]) / 100);
-            (Date.now() <= _nextDayThubB02 && Number(result[48][2]) !== 0) ?
-                setThubCapB02(0) :
-                setThubCapB02(Number(ethers.utils.formatEther(String(result[49]))))                
+                setThubCapB02(Number(ethers.utils.formatEther(String(result[49]))))
+            }
+            setThubFeeB02(Number(result[48][3]) / 100)
             setAllPowB02(Number(result[50]))
 
             setThubLvB03(Number(result[51][0]))
-            const _nextDayThubB03 = new Date((Number(result[51][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB03 && Number(result[51][2]) !== 0) ?
-                setNextDayThubB03(_nextDayThubB03.toLocaleString('es-CL')) :
+            const _nextDayThubB03 = new Date((Number(result[51][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB03 && Number(result[51][2]) !== 0) {
+                setNextDayThubB03(_nextDayThubB03.toLocaleString('es-CL'))
+                setThubCapB03(Number(ethers.utils.formatEther(String(result[51][1]))))
+            } else {
                 setNextDayThubB03('now')
-            setThubFeeB03(Number(result[51][3]) / 100);
-            (Date.now() <= _nextDayThubB03 && Number(result[51][2]) !== 0) ?
-                setThubCapB03(0) :
                 setThubCapB03(Number(ethers.utils.formatEther(String(result[52]))))
+            }
+            setThubFeeB03(Number(result[51][3]) / 100)
             setAllPowB03(Number(result[53]))
 
             setThubLvB04(Number(result[54][0]))
-            const _nextDayThubB04 = new Date((Number(result[54][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB04 && Number(result[54][2]) !== 0) ?
-                setNextDayThubB04(_nextDayThubB04.toLocaleString('es-CL')) :
+            const _nextDayThubB04 = new Date((Number(result[54][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB04 && Number(result[54][2]) !== 0) {
+                setNextDayThubB04(_nextDayThubB04.toLocaleString('es-CL'))
+                setThubCapB04(Number(ethers.utils.formatEther(String(result[54][1]))))
+            } else {
                 setNextDayThubB04('now')
-            setThubFeeB04(Number(result[54][3]) / 100);
-            (Date.now() <= _nextDayThubB04 && Number(result[54][2]) !== 0) ?
-                setThubCapB04(0) :
                 setThubCapB04(Number(ethers.utils.formatEther(String(result[55]))))
+            }
+            setThubFeeB04(Number(result[54][3]) / 100)
             setAllPowB04(Number(result[56]))
 
             setThubLvB05(Number(result[57][0]))
-            const _nextDayThubB05 = new Date((Number(result[57][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB05 && Number(result[57][2]) !== 0) ?
-                setNextDayThubB05(_nextDayThubB05.toLocaleString('es-CL')) :
+            const _nextDayThubB05 = new Date((Number(result[57][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB05 && Number(result[57][2]) !== 0) {
+                setNextDayThubB05(_nextDayThubB05.toLocaleString('es-CL'))
+                setThubCapB05(Number(ethers.utils.formatEther(String(result[57][1]))))
+            } else {
                 setNextDayThubB05('now')
-            setThubFeeB05(Number(result[57][3]) / 100);
-            (Date.now() <= _nextDayThubB05 && Number(result[57][2]) !== 0) ?
-                setThubCapB05(0) :
-                setThubCapB05(Number(ethers.utils.formatEther(String(result[58]))))               
+                setThubCapB05(Number(ethers.utils.formatEther(String(result[58]))))
+            }
+            setThubFeeB05(Number(result[57][3]) / 100)
             setAllPowB05(Number(result[59]))
 
             setThubLvB06(Number(result[60][0]))
-            const _nextDayThubB06 = new Date((Number(result[60][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB06 && Number(result[60][2]) !== 0) ?
-                setNextDayThubB06(_nextDayThubB06.toLocaleString('es-CL')) :
+            const _nextDayThubB06 = new Date((Number(result[60][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB06 && Number(result[60][2]) !== 0) {
+                setNextDayThubB06(_nextDayThubB06.toLocaleString('es-CL'))
+                setThubCapB06(Number(ethers.utils.formatEther(String(result[60][1]))))
+            } else {
                 setNextDayThubB06('now')
-            setThubFeeB06(Number(result[60][3]) / 100);
-            (Date.now() <= _nextDayThubB06 && Number(result[60][2]) !== 0) ?
-                setThubCapB06(0) :
                 setThubCapB06(Number(ethers.utils.formatEther(String(result[61]))))
+            }
+            setThubFeeB06(Number(result[60][3]) / 100)
             setAllPowB06(Number(result[62]))
 
             setThubLvB07(Number(result[63][0]))
-            const _nextDayThubB07 = new Date((Number(result[63][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB07 && Number(result[63][2]) !== 0) ?
-                setNextDayThubB07(_nextDayThubB07.toLocaleString('es-CL')) :
+            const _nextDayThubB07 = new Date((Number(result[63][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB07 && Number(result[63][2]) !== 0) {
+                setNextDayThubB07(_nextDayThubB07.toLocaleString('es-CL'))
+                setThubCapB07(Number(ethers.utils.formatEther(String(result[63][1]))))
+            } else {
                 setNextDayThubB07('now')
-            setThubFeeB07(Number(result[63][3]) / 100);
-            (Date.now() <= _nextDayThubB07 && Number(result[63][2]) !== 0) ?
-                setThubCapB07(0) :
                 setThubCapB07(Number(ethers.utils.formatEther(String(result[64]))))
+            }
+            setThubFeeB07(Number(result[63][3]) / 100)
             setAllPowB07(Number(result[65]))
 
             setThubLvB08(Number(result[66][0]))
-            const _nextDayThubB08 = new Date((Number(result[66][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB08 && Number(result[66][2]) !== 0) ?
-                setNextDayThubB08(_nextDayThubB08.toLocaleString('es-CL')) :
+            const _nextDayThubB08 = new Date((Number(result[66][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB08 && Number(result[66][2]) !== 0) {
+                setNextDayThubB08(_nextDayThubB08.toLocaleString('es-CL'))
+                setThubCapB08(Number(ethers.utils.formatEther(String(result[66][1]))))
+            } else {
                 setNextDayThubB08('now')
-            setThubFeeB08(Number(result[66][3]) / 100);
-            (Date.now() <= _nextDayThubB08 && Number(result[66][2]) !== 0) ?
-                setThubCapB08(0) :
                 setThubCapB08(Number(ethers.utils.formatEther(String(result[67]))))
+            }
+            setThubFeeB08(Number(result[66][3]) / 100)
             setAllPowB08(Number(result[68]))
 
             setThubLvB09(Number(result[69][0]))
-            const _nextDayThubB09 = new Date((Number(result[69][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB09 && Number(result[69][2]) !== 0) ?
-                setNextDayThubB09(_nextDayThubB09.toLocaleString('es-CL')) :
+            const _nextDayThubB09 = new Date((Number(result[69][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB09 && Number(result[69][2]) !== 0) {
+                setNextDayThubB09(_nextDayThubB09.toLocaleString('es-CL'))
+                setThubCapB09(Number(ethers.utils.formatEther(String(result[69][1]))))
+            } else {
                 setNextDayThubB09('now')
-            setThubFeeB09(Number(result[69][3]) / 100);
-            (Date.now() <= _nextDayThubB09 && Number(result[69][2]) !== 0) ?
-                setThubCapB09(0) :
                 setThubCapB09(Number(ethers.utils.formatEther(String(result[70]))))
+            }
+            setThubFeeB09(Number(result[69][3]) / 100)
             setAllPowB09(Number(result[71]))
 
             setThubLvB10(Number(result[72][0]))
-            const _nextDayThubB10 = new Date((Number(result[72][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB10 && Number(result[72][2]) !== 0) ?
-                setNextDayThubB10(_nextDayThubB10.toLocaleString('es-CL')) :
+            const _nextDayThubB10 = new Date((Number(result[72][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB10 && Number(result[72][2]) !== 0) {
+                setNextDayThubB10(_nextDayThubB10.toLocaleString('es-CL'))
+                setThubCapB10(Number(ethers.utils.formatEther(String(result[72][1]))))
+            } else {
                 setNextDayThubB10('now')
-            setThubFeeB10(Number(result[72][3]) / 100);
-            (Date.now() <= _nextDayThubB10 && Number(result[72][2]) !== 0) ?
-                setThubCapB10(0) :
                 setThubCapB10(Number(ethers.utils.formatEther(String(result[73]))))
+            }
+            setThubFeeB10(Number(result[72][3]) / 100)
             setAllPowB10(Number(result[74]))
 
             setThubLvB11(Number(result[75][0]))
-            const _nextDayThubB11 = new Date((Number(result[75][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubB11 && Number(result[75][2]) !== 0) ?
-                setNextDayThubB11(_nextDayThubB11.toLocaleString('es-CL')) :
+            const _nextDayThubB11 = new Date((Number(result[75][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubB11 && Number(result[75][2]) !== 0) {
+                setNextDayThubB11(_nextDayThubB11.toLocaleString('es-CL'))
+                setThubCapB11(Number(ethers.utils.formatEther(String(result[75][1]))))
+            } else {
                 setNextDayThubB11('now')
-            setThubFeeB11(Number(result[75][3]) / 100);
-            (Date.now() <= _nextDayThubB11 && Number(result[75][2]) !== 0) ?
-                setThubCapB11(0) :
                 setThubCapB11(Number(ethers.utils.formatEther(String(result[76]))))
+            }
+            setThubFeeB11(Number(result[75][3]) / 100)
             setAllPowB11(Number(result[77]))
 
             setThubLvZ11(Number(result[78][0]))
-            const _nextDayThubZ11 = new Date((Number(result[78][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubZ11 && Number(result[78][2]) !== 0) ?
-                setNextDayThubZ11(_nextDayThubZ11.toLocaleString('es-CL')) :
+            const _nextDayThubZ11 = new Date((Number(result[78][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubZ11 && Number(result[78][2]) !== 0) {
+                setNextDayThubZ11(_nextDayThubZ11.toLocaleString('es-CL'))
+                setThubCapZ11(Number(ethers.utils.formatEther(String(result[78][1]))))
+            } else {
                 setNextDayThubZ11('now')
-            setThubFeeZ11(Number(result[78][3]) / 100);
-            (Date.now() <= _nextDayThubZ11 && Number(result[78][2]) !== 0) ?
-                setThubCapZ11(0) :
-                setThubCapZ11(Number(ethers.utils.formatEther(String(result[79]))))                
+                setThubCapZ11(Number(ethers.utils.formatEther(String(result[79]))))
+            }
+            setThubFeeZ11(Number(result[78][3]) / 100)
             setAllPowZ11(Number(result[80]))
 
             setThubLvC01(Number(result[81][0]))
-            const _nextDayThubC01 = new Date((Number(result[81][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC01 && Number(result[81][2]) !== 0) ?
-                setNextDayThubC01(_nextDayThubC01.toLocaleString('es-CL')) :
+            const _nextDayThubC01 = new Date((Number(result[81][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC01 && Number(result[81][2]) !== 0) {
+                setNextDayThubC01(_nextDayThubC01.toLocaleString('es-CL'))
+                setThubCapC01(Number(ethers.utils.formatEther(String(result[81][1]))))
+            } else {
                 setNextDayThubC01('now')
-            setThubFeeC01(Number(result[81][3]) / 100);
-            (Date.now() <= _nextDayThubC01 && Number(result[81][2]) !== 0) ?
-                setThubCapC01(0) :
                 setThubCapC01(Number(ethers.utils.formatEther(String(result[82]))))
+            }
+            setThubFeeC01(Number(result[81][3]) / 100)
             setAllPowC01(Number(result[83]))
 
             setThubLvC02(Number(result[84][0]))
-            const _nextDayThubC02 = new Date((Number(result[84][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC02 && Number(result[84][2]) !== 0) ?
-                setNextDayThubC02(_nextDayThubC02.toLocaleString('es-CL')) :
+            const _nextDayThubC02 = new Date((Number(result[84][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC02 && Number(result[84][2]) !== 0) {
+                setNextDayThubC02(_nextDayThubC02.toLocaleString('es-CL'))
+                setThubCapC02(Number(ethers.utils.formatEther(String(result[84][1]))))
+            } else {
                 setNextDayThubC02('now')
-            setThubFeeC02(Number(result[84][3]) / 100);
-            (Date.now() <= _nextDayThubC02 && Number(result[84][2]) !== 0) ?
-                setThubCapC02(0) :
                 setThubCapC02(Number(ethers.utils.formatEther(String(result[85]))))
+            }
+            setThubFeeC02(Number(result[84][3]) / 100)
             setAllPowC02(Number(result[86]))
 
             setThubLvC03(Number(result[87][0]))
-            const _nextDayThubC03 = new Date((Number(result[87][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC03 && Number(result[87][2]) !== 0) ?
-                setNextDayThubC03(_nextDayThubC03.toLocaleString('es-CL')) :
+            const _nextDayThubC03 = new Date((Number(result[87][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC03 && Number(result[87][2]) !== 0) {
+                setNextDayThubC03(_nextDayThubC03.toLocaleString('es-CL'))
+                setThubCapC03(Number(ethers.utils.formatEther(String(result[87][1]))))
+            } else {
                 setNextDayThubC03('now')
-            setThubFeeC03(Number(result[87][3]) / 100);
-            (Date.now() <= _nextDayThubC03 && Number(result[87][2]) !== 0) ?
-                setThubCapC03(0) :
                 setThubCapC03(Number(ethers.utils.formatEther(String(result[88]))))
+            }
+            setThubFeeC03(Number(result[87][3]) / 100)
             setAllPowC03(Number(result[89]))
 
             setThubLvC04(Number(result[90][0]))
-            const _nextDayThubC04 = new Date((Number(result[90][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC04 && Number(result[90][2]) !== 0) ?
-                setNextDayThubC04(_nextDayThubC04.toLocaleString('es-CL')) :
+            const _nextDayThubC04 = new Date((Number(result[90][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC04 && Number(result[90][2]) !== 0) {
+                setNextDayThubC04(_nextDayThubC04.toLocaleString('es-CL'))
+                setThubCapC04(Number(ethers.utils.formatEther(String(result[90][1]))))
+            } else {
                 setNextDayThubC04('now')
-            setThubFeeC04(Number(result[90][3]) / 100);
-            (Date.now() <= _nextDayThubC04 && Number(result[90][2]) !== 0) ?
-                setThubCapC04(0) :
                 setThubCapC04(Number(ethers.utils.formatEther(String(result[91]))))
+            }
+            setThubFeeC04(Number(result[90][3]) / 100)
             setAllPowC04(Number(result[92]))
 
             setThubLvC05(Number(result[93][0]))
-            const _nextDayThubC05 = new Date((Number(result[93][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC05 && Number(result[93][2]) !== 0) ?
-                setNextDayThubC05(_nextDayThubC05.toLocaleString('es-CL')) :
+            const _nextDayThubC05 = new Date((Number(result[93][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC05 && Number(result[93][2]) !== 0) {
+                setNextDayThubC05(_nextDayThubC05.toLocaleString('es-CL'))
+                setThubCapC05(Number(ethers.utils.formatEther(String(result[93][1]))))
+            } else {
                 setNextDayThubC05('now')
-            setThubFeeC05(Number(result[93][3]) / 100);
-            (Date.now() <= _nextDayThubC05 && Number(result[93][2]) !== 0) ?
-                setThubCapC05(0) :
                 setThubCapC05(Number(ethers.utils.formatEther(String(result[94]))))
+            }
+            setThubFeeC05(Number(result[93][3]) / 100)
             setAllPowC05(Number(result[95]))
 
             setThubLvC06(Number(result[96][0]))
-            const _nextDayThubC06 = new Date((Number(result[96][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC06 && Number(result[96][2]) !== 0) ?
-                setNextDayThubC06(_nextDayThubC06.toLocaleString('es-CL')) :
+            const _nextDayThubC06 = new Date((Number(result[96][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC06 && Number(result[96][2]) !== 0) {
+                setNextDayThubC06(_nextDayThubC06.toLocaleString('es-CL'))
+                setThubCapC06(Number(ethers.utils.formatEther(String(result[96][1]))))
+            } else {
                 setNextDayThubC06('now')
-            setThubFeeC06(Number(result[96][3]) / 100);
-            (Date.now() <= _nextDayThubC06 && Number(result[96][2]) !== 0) ?
-                setThubCapC06(0) :
                 setThubCapC06(Number(ethers.utils.formatEther(String(result[97]))))
+            }
+            setThubFeeC06(Number(result[96][3]) / 100)
             setAllPowC06(Number(result[98]))
 
             setThubLvC07(Number(result[99][0]))
-            const _nextDayThubC07 = new Date((Number(result[99][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC07 && Number(result[99][2]) !== 0) ?
-                setNextDayThubC07(_nextDayThubC07.toLocaleString('es-CL')) :
+            const _nextDayThubC07 = new Date((Number(result[99][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC07 && Number(result[99][2]) !== 0) {
+                setNextDayThubC07(_nextDayThubC07.toLocaleString('es-CL'))
+                setThubCapC07(Number(ethers.utils.formatEther(String(result[99][1]))))
+            } else {
                 setNextDayThubC07('now')
-            setThubFeeC07(Number(result[99][3]) / 100);
-            (Date.now() <= _nextDayThubC07 && Number(result[99][2]) !== 0) ?
-                setThubCapC07(0) :
                 setThubCapC07(Number(ethers.utils.formatEther(String(result[100]))))
+            }
+            setThubFeeC07(Number(result[99][3]) / 100)
             setAllPowC07(Number(result[101]))
 
             setThubLvC08(Number(result[102][0]))
-            const _nextDayThubC08 = new Date((Number(result[102][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC08 && Number(result[102][2]) !== 0) ?
-                setNextDayThubC08(_nextDayThubC08.toLocaleString('es-CL')) :
+            const _nextDayThubC08 = new Date((Number(result[102][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC08 && Number(result[102][2]) !== 0) {
+                setNextDayThubC08(_nextDayThubC08.toLocaleString('es-CL'))
+                setThubCapC08(Number(ethers.utils.formatEther(String(result[102][1]))))
+            } else {
                 setNextDayThubC08('now')
-            setThubFeeC08(Number(result[102][3]) / 100);
-            (Date.now() <= _nextDayThubC08 && Number(result[102][2]) !== 0) ?
-                setThubCapC08(0) :
                 setThubCapC08(Number(ethers.utils.formatEther(String(result[103]))))
+            }
+            setThubFeeC08(Number(result[102][3]) / 100)
             setAllPowC08(Number(result[104]))
 
             setThubLvC09(Number(result[105][0]))
-            const _nextDayThubC09 = new Date((Number(result[105][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC09 && Number(result[105][2]) !== 0) ?
-                setNextDayThubC09(_nextDayThubC09.toLocaleString('es-CL')) :
+            const _nextDayThubC09 = new Date((Number(result[105][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC09 && Number(result[105][2]) !== 0) {
+                setNextDayThubC09(_nextDayThubC09.toLocaleString('es-CL'))
+                setThubCapC09(Number(ethers.utils.formatEther(String(result[105][1]))))
+            } else {
                 setNextDayThubC09('now')
-            setThubFeeC09(Number(result[105][3]) / 100);
-            (Date.now() <= _nextDayThubC09 && Number(result[105][2]) !== 0) ?
-                setThubCapC09(0) :
                 setThubCapC09(Number(ethers.utils.formatEther(String(result[106]))))
+            }
+            setThubFeeC09(Number(result[105][3]) / 100)
             setAllPowC09(Number(result[107]))
 
             setThubLvC10(Number(result[108][0]))
-            const _nextDayThubC10 = new Date((Number(result[108][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC10 && Number(result[108][2]) !== 0) ?
-                setNextDayThubC10(_nextDayThubC10.toLocaleString('es-CL')) :
+            const _nextDayThubC10 = new Date((Number(result[108][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC10 && Number(result[108][2]) !== 0) {
+                setNextDayThubC10(_nextDayThubC10.toLocaleString('es-CL'))
+                setThubCapC10(Number(ethers.utils.formatEther(String(result[108][1]))))
+            } else {
                 setNextDayThubC10('now')
-            setThubFeeC10(Number(result[108][3]) / 100);
-            (Date.now() <= _nextDayThubC10 && Number(result[108][2]) !== 0) ?
-                setThubCapC10(0) :
                 setThubCapC10(Number(ethers.utils.formatEther(String(result[109]))))
+            }
+            setThubFeeC10(Number(result[108][3]) / 100)
             setAllPowC10(Number(result[110]))
 
             setThubLvC11(Number(result[111][0]))
-            const _nextDayThubC11 = new Date((Number(result[111][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC11 && Number(result[111][2]) !== 0) ?
-                setNextDayThubC11(_nextDayThubC11.toLocaleString('es-CL')) :
+            const _nextDayThubC11 = new Date((Number(result[111][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC11 && Number(result[111][2]) !== 0) {
+                setNextDayThubC11(_nextDayThubC11.toLocaleString('es-CL'))
+                setThubCapC11(Number(ethers.utils.formatEther(String(result[111][1]))))
+            } else {
                 setNextDayThubC11('now')
-            setThubFeeC11(Number(result[111][3]) / 100);
-            (Date.now() <= _nextDayThubC11 && Number(result[111][2]) !== 0) ?
-                setThubCapC11(0) :
                 setThubCapC11(Number(ethers.utils.formatEther(String(result[112]))))
+            }
+            setThubFeeC11(Number(result[111][3]) / 100)
             setAllPowC11(Number(result[113]))
 
             setThubLvC12(Number(result[114][0]))
-            const _nextDayThubC12 = new Date((Number(result[114][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC12 && Number(result[114][2]) !== 0) ?
-                setNextDayThubC12(_nextDayThubC12.toLocaleString('es-CL')) :
+            const _nextDayThubC12 = new Date((Number(result[114][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC12 && Number(result[114][2]) !== 0) {
+                setNextDayThubC12(_nextDayThubC12.toLocaleString('es-CL'))
+                setThubCapC12(Number(ethers.utils.formatEther(String(result[114][1]))))
+            } else {
                 setNextDayThubC12('now')
-            setThubFeeC12(Number(result[114][3]) / 100);
-            (Date.now() <= _nextDayThubC12 && Number(result[114][2]) !== 0) ?
-                setThubCapC12(0) :
                 setThubCapC12(Number(ethers.utils.formatEther(String(result[115]))))
+            }
+            setThubFeeC12(Number(result[114][3]) / 100)
             setAllPowC12(Number(result[116]))
 
             setThubLvC13(Number(result[117][0]))
-            const _nextDayThubC13 = new Date((Number(result[117][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC13 && Number(result[117][2]) !== 0) ?
-                setNextDayThubC13(_nextDayThubC13.toLocaleString('es-CL')) :
+            const _nextDayThubC13 = new Date((Number(result[117][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC13 && Number(result[117][2]) !== 0) {
+                setNextDayThubC13(_nextDayThubC13.toLocaleString('es-CL'))
+                setThubCapC13(Number(ethers.utils.formatEther(String(result[117][1]))))
+            } else {
                 setNextDayThubC13('now')
-            setThubFeeC13(Number(result[117][3]) / 100);
-            (Date.now() <= _nextDayThubC13 && Number(result[117][2]) !== 0) ?
-                setThubCapC13(0) :
                 setThubCapC13(Number(ethers.utils.formatEther(String(result[118]))))
+            }
+            setThubFeeC13(Number(result[117][3]) / 100)
             setAllPowC13(Number(result[119]))
 
             setThubLvC14(Number(result[120][0]))
-            const _nextDayThubC14 = new Date((Number(result[120][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC14 && Number(result[120][2]) !== 0) ?
-                setNextDayThubC14(_nextDayThubC14.toLocaleString('es-CL')) :
+            const _nextDayThubC14 = new Date((Number(result[120][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC14 && Number(result[120][2]) !== 0) {
+                setNextDayThubC14(_nextDayThubC14.toLocaleString('es-CL'))
+                setThubCapC14(Number(ethers.utils.formatEther(String(result[120][1]))))
+            } else {
                 setNextDayThubC14('now')
-            setThubFeeC14(Number(result[120][3]) / 100);
-            (Date.now() <= _nextDayThubC14 && Number(result[120][2]) !== 0) ?
-                setThubCapC14(0) :
                 setThubCapC14(Number(ethers.utils.formatEther(String(result[121]))))
+            }
+            setThubFeeC14(Number(result[120][3]) / 100)
             setAllPowC14(Number(result[122]))
 
             setThubLvC15(Number(result[123][0]))
-            const _nextDayThubC15 = new Date((Number(result[123][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC15 && Number(result[123][2]) !== 0) ?
-                setNextDayThubC15(_nextDayThubC15.toLocaleString('es-CL')) :
+            const _nextDayThubC15 = new Date((Number(result[123][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC15 && Number(result[123][2]) !== 0) {
+                setNextDayThubC15(_nextDayThubC15.toLocaleString('es-CL'))
+                setThubCapC15(Number(ethers.utils.formatEther(String(result[123][1]))))
+            } else {
                 setNextDayThubC15('now')
-            setThubFeeC15(Number(result[123][3]) / 100);
-            (Date.now() <= _nextDayThubC15 && Number(result[123][2]) !== 0) ?
-                setThubCapC15(0) :
                 setThubCapC15(Number(ethers.utils.formatEther(String(result[124]))))
+            }
+            setThubFeeC15(Number(result[123][3]) / 100)
             setAllPowC15(Number(result[125]))
 
             setThubLvC16(Number(result[126][0]))
-            const _nextDayThubC16 = new Date((Number(result[126][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC16 && Number(result[126][2]) !== 0) ?
-                setNextDayThubC16(_nextDayThubC16.toLocaleString('es-CL')) :
+            const _nextDayThubC16 = new Date((Number(result[126][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC16 && Number(result[126][2]) !== 0) {
+                setNextDayThubC16(_nextDayThubC16.toLocaleString('es-CL'))
+                setThubCapC16(Number(ethers.utils.formatEther(String(result[126][1]))))
+            } else {
                 setNextDayThubC16('now')
-            setThubFeeC16(Number(result[126][3]) / 100);
-            (Date.now() <= _nextDayThubC16 && Number(result[126][2]) !== 0) ?
-                setThubCapC16(0) :
                 setThubCapC16(Number(ethers.utils.formatEther(String(result[127]))))
+            }
+            setThubFeeC16(Number(result[126][3]) / 100)
             setAllPowC16(Number(result[128]))
 
             setThubLvC17(Number(result[129][0]))
-            const _nextDayThubC17 = new Date((Number(result[129][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC17 && Number(result[129][2]) !== 0) ?
-                setNextDayThubC17(_nextDayThubC17.toLocaleString('es-CL')) :
+            const _nextDayThubC17 = new Date((Number(result[129][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC17 && Number(result[129][2]) !== 0) {
+                setNextDayThubC17(_nextDayThubC17.toLocaleString('es-CL'))
+                setThubCapC17(Number(ethers.utils.formatEther(String(result[129][1]))))
+            } else {
                 setNextDayThubC17('now')
-            setThubFeeC17(Number(result[129][3]) / 100);
-            (Date.now() <= _nextDayThubC17 && Number(result[129][2]) !== 0) ?
-                setThubCapC17(0) :
                 setThubCapC17(Number(ethers.utils.formatEther(String(result[130]))))
+            }
+            setThubFeeC17(Number(result[129][3]) / 100)
             setAllPowC17(Number(result[131]))
 
             setThubLvC18(Number(result[132][0]))
-            const _nextDayThubC18 = new Date((Number(result[132][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC18 && Number(result[132][2]) !== 0) ?
-                setNextDayThubC18(_nextDayThubC18.toLocaleString('es-CL')) :
+            const _nextDayThubC18 = new Date((Number(result[132][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC18 && Number(result[132][2]) !== 0) {
+                setNextDayThubC18(_nextDayThubC18.toLocaleString('es-CL'))
+                setThubCapC18(Number(ethers.utils.formatEther(String(result[132][1]))))
+            } else {
                 setNextDayThubC18('now')
-            setThubFeeC18(Number(result[132][3]) / 100);
-            (Date.now() <= _nextDayThubC18 && Number(result[132][2]) !== 0) ?
-                setThubCapC18(0) :
                 setThubCapC18(Number(ethers.utils.formatEther(String(result[133]))))
+            }
+            setThubFeeC18(Number(result[132][3]) / 100)
             setAllPowC18(Number(result[134]))
 
             setThubLvC19(Number(result[135][0]))
-            const _nextDayThubC19 = new Date((Number(result[135][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC19 && Number(result[135][2]) !== 0) ?
-                setNextDayThubC19(_nextDayThubC19.toLocaleString('es-CL')) :
+            const _nextDayThubC19 = new Date((Number(result[135][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC19 && Number(result[135][2]) !== 0) {
+                setNextDayThubC19(_nextDayThubC19.toLocaleString('es-CL'))
+                setThubCapC19(Number(ethers.utils.formatEther(String(result[135][1]))))
+            } else {
                 setNextDayThubC19('now')
-            setThubFeeC19(Number(result[135][3]) / 100);
-            (Date.now() <= _nextDayThubC19 && Number(result[135][2]) !== 0) ?
-                setThubCapC19(0) :
                 setThubCapC19(Number(ethers.utils.formatEther(String(result[136]))))
+            }
+            setThubFeeC19(Number(result[135][3]) / 100)
             setAllPowC19(Number(result[137]))
 
             setThubLvC20(Number(result[138][0]))
-            const _nextDayThubC20 = new Date((Number(result[138][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC20 && Number(result[138][2]) !== 0) ?
-                setNextDayThubC20(_nextDayThubC20.toLocaleString('es-CL')) :
+            const _nextDayThubC20 = new Date((Number(result[138][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC20 && Number(result[138][2]) !== 0) {
+                setNextDayThubC20(_nextDayThubC20.toLocaleString('es-CL'))
+                setThubCapC20(Number(ethers.utils.formatEther(String(result[138][1]))))
+            } else {
                 setNextDayThubC20('now')
-            setThubFeeC20(Number(result[138][3]) / 100);
-            (Date.now() <= _nextDayThubC20 && Number(result[138][2]) !== 0) ?
-                setThubCapC20(0) :
                 setThubCapC20(Number(ethers.utils.formatEther(String(result[139]))))
+            }
+            setThubFeeC20(Number(result[138][3]) / 100)
             setAllPowC20(Number(result[140]))
 
             setThubLvC21(Number(result[141][0]))
-            const _nextDayThubC21 = new Date((Number(result[141][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC21 && Number(result[141][2]) !== 0) ?
-                setNextDayThubC21(_nextDayThubC21.toLocaleString('es-CL')) :
+            const _nextDayThubC21 = new Date((Number(result[141][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC21 && Number(result[141][2]) !== 0) {
+                setNextDayThubC21(_nextDayThubC21.toLocaleString('es-CL'))
+                setThubCapC21(Number(ethers.utils.formatEther(String(result[141][1]))))
+            } else {
                 setNextDayThubC21('now')
-            setThubFeeC21(Number(result[141][3]) / 100);
-            (Date.now() <= _nextDayThubC21 && Number(result[141][2]) !== 0) ?
-                setThubCapC21(0) :
                 setThubCapC21(Number(ethers.utils.formatEther(String(result[142]))))
+            }
+            setThubFeeC21(Number(result[141][3]) / 100)
             setAllPowC21(Number(result[143]))
 
             setThubLvC22(Number(result[144][0]))
-            const _nextDayThubC22 = new Date((Number(result[144][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThubC22 && Number(result[144][2]) !== 0) ?
-                setNextDayThubC22(_nextDayThubC22.toLocaleString('es-CL')) :
+            const _nextDayThubC22 = new Date((Number(result[144][2]) * 1000) + (86400 * 1000))
+            if (Date.now() <= _nextDayThubC22 && Number(result[144][2]) !== 0) {
+                setNextDayThubC22(_nextDayThubC22.toLocaleString('es-CL'))
+                setThubCapC22(Number(ethers.utils.formatEther(String(result[144][1]))))
+            } else {
                 setNextDayThubC22('now')
-            setThubFeeC22(Number(result[144][3]) / 100);
-            (Date.now() <= _nextDayThubC22 && Number(result[144][2]) !== 0) ?
-                setThubCapC22(0) :
                 setThubCapC22(Number(ethers.utils.formatEther(String(result[145]))))
+            }
+            setThubFeeC22(Number(result[144][3]) / 100)
             setAllPowC22(Number(result[146]))
+
+            setWoodBalance(ethers.utils.formatEther(result[147]))
         })
     }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI])
 
@@ -2337,8 +2397,23 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
                             width="20"
                             alt="$WOOD"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: woodToken,
+                                            symbol: 'WOOD',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                        },
+                                    },
+                                })
+                            }}
                         />
-                        <div style={{marginLeft: "5px"}}>{Number(0).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                     </div>
                 </div>
 
@@ -2465,7 +2540,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ02 * allPowZ02}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ02 * allPowZ02).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2479,7 +2554,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA01 * allPowA01}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA01 * allPowA01).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2493,7 +2568,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA02 * allPowA02}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA02 * allPowA02).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2507,7 +2582,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA03 * allPowA03}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA03 * allPowA03).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2521,7 +2596,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA04 * allPowA04}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA04 * allPowA04).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2535,7 +2610,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA05 * allPowA05}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA05 * allPowA05).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2549,7 +2624,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA06 * allPowA06}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA06 * allPowA06).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2563,7 +2638,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA07 * allPowA07}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA07 * allPowA07).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2577,7 +2652,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA08 * allPowA08}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA08 * allPowA08).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2591,7 +2666,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA09 * allPowA09}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA09 * allPowA09).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2605,7 +2680,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA10 * allPowA10}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA10 * allPowA10).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2619,7 +2694,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapA11 * allPowA11}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA11 * allPowA11).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2633,7 +2708,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ06 * allPowZ06}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ06 * allPowZ06).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2647,7 +2722,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ10 * allPowZ10}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ10 * allPowZ10).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2661,7 +2736,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB01 * allPowB01}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB01 * allPowB01).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2675,7 +2750,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB02 * allPowB02}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB02 * allPowB02).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2689,7 +2764,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB03 * allPowB03}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB03 * allPowB03).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2703,7 +2778,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB04 * allPowB04}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB04 * allPowB04).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2717,7 +2792,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB05 * allPowB05}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB05 * allPowB05).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2731,7 +2806,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB06 * allPowB06}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB06 * allPowB06).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2745,7 +2820,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB07 * allPowB07}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB07 * allPowB07).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2759,7 +2834,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB08 * allPowB08}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB08 * allPowB08).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2773,7 +2848,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB09 * allPowB09}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB09 * allPowB09).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2787,7 +2862,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB10 * allPowB10}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB10 * allPowB10).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2801,7 +2876,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapB11 * allPowB11}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB11 * allPowB11).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2815,7 +2890,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapZ11 * allPowZ11}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ11 * allPowZ11).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2829,7 +2904,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC01 * allPowC01}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC01 * allPowC01).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2843,7 +2918,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC02 * allPowC02}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC02 * allPowC02).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2857,7 +2932,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC03 * allPowC03}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC03 * allPowC03).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2871,7 +2946,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC04 * allPowC04}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC04 * allPowC04).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2885,7 +2960,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC05 * allPowC05}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC05 * allPowC05).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2899,7 +2974,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC06 * allPowC06}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC06 * allPowC06).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2913,7 +2988,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC07 * allPowC07}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC07 * allPowC07).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2927,7 +3002,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC08 * allPowC08}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC08 * allPowC08).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2941,7 +3016,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC09 * allPowC09}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC09 * allPowC09).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2955,7 +3030,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC10 * allPowC10}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC10 * allPowC10).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2969,7 +3044,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC11 * allPowC11}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC11 * allPowC11).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2983,7 +3058,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC12 * allPowC12}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC12 * allPowC12).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -2997,7 +3072,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC13 * allPowC13}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC13 * allPowC13).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3011,7 +3086,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC14 * allPowC14}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC14 * allPowC14).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3025,7 +3100,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC15 * allPowC15}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC15 * allPowC15).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3039,7 +3114,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC16 * allPowC16}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC16 * allPowC16).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3053,7 +3128,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC17 * allPowC17}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC17 * allPowC17).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3067,7 +3142,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC18 * allPowC18}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC18 * allPowC18).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3081,7 +3156,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC19 * allPowC19}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC19 * allPowC19).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3095,7 +3170,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC20 * allPowC20}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC20 * allPowC20).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3109,7 +3184,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC21 * allPowC21}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC21 * allPowC21).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
@@ -3123,7 +3198,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
-                                    <div>REMAIN CAPACITY: <span style={{color: "#000"}}>{thubCapC22 * allPowC22}</span> $BBQ</div>
+                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC22 * allPowC22).toLocaleString('en-US')}</span> $BBQ</div>
                                 </div>
                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                     <div></div>
