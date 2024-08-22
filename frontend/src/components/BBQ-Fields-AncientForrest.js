@@ -9,7 +9,8 @@ const uplevelCMDS = '0xc50Aac569834896c18c60623Ebe81cF3D5BCeF78'
 const fieldWood = '0xc71AEB41A444AFdB4BfA28b4Ed1c1B5E1cB6d958'
 const missionBaseCmd = '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518'
 const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
-const missionWood = '0x722f3afA275Ce7e063e02Ef04A1B3cA3c58a917e'
+// const missionWood_v1 = '0x722f3afA275Ce7e063e02Ef04A1B3cA3c58a917e'
+const missionWood = '0x6ed6f83192e224780B853E2c9A7d1930Cc8f075a'
 
 const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI }) => {
     const { address } = useAccount()
@@ -284,10 +285,10 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
 
             const isParty1Delegate = Number(dataParty[0].result) - Number(dataParty[1].result[5]) > 0
             const party1Router = dataParty[3].result
-            const party1FullCap = dataParty[5].result
+            const party1FullCap = dataParty[5].status === 'success' ? dataParty[5].result : 0
             const isParty2Delegate = Number(dataParty[0].result) - Number(dataParty[2].result[5]) > 0
             const party2Router = dataParty[4].result
-            const party2FullCap = dataParty[6].result
+            const party2FullCap = dataParty[6].status === 'success' ? dataParty[6].result : 0
 
             return [nfts, woodBal, isParty1Delegate, party1Router, party1FullCap, isParty2Delegate, party2Router, party2FullCap, ]
         }
