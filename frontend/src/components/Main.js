@@ -76,6 +76,7 @@ import cmdsV2ABI from './jsons/cmdsV2ABI.json'
 import fieldWoodBBQABI from './jsons/fieldWoodBBQABI.json'
 import missionWoodABI from './jsons/missionWoodABI.json'
 import statCMDRewardABI from './jsons/statCMDRewardABI.json'
+import baseCMDClaimerABI from './jsons/baseCMDClaimerABI.json'
 
 import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
@@ -483,7 +484,7 @@ const Main = () => {
 
                 {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} uniTokensBridgeABI={uniTokensBridgeABI} uniNftBridgeABI={uniNftBridgeABI} />}
 
-                {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} statCMDRewardABI={statCMDRewardABI} />}
+                {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} statCMDRewardABI={statCMDRewardABI} baseCMDClaimerABI={baseCMDClaimerABI} />}
 
                 {mode === null &&
                     <div style={{paddingTop: "100px"}} className="collection">

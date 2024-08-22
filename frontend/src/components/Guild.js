@@ -8,11 +8,12 @@ const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
 const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
 const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
 const missionBaseCmd = '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518'
+const baseCmdClaimer = '0x4cd3a0F5E4992059f23263aB17F71f2293bb495E'
 const statBaseCmd = '0x7b61b5Eb38535A385BEBc137Cbe2F4F5996d3EC0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI }) => {
+const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
     const { chain } = useNetwork()
     let { address } = useAccount()
     //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
@@ -363,6 +364,13 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         args: [2, 4],
                         chainId: 190,
                     },
+                    {
+                        address: baseCmdClaimer,
+                        abi: baseCMDClaimerABI,
+                        functionName: 'claimedReward',
+                        args: [address],
+                        chainId: 190,
+                    },
                 ],
             })
             
@@ -686,7 +694,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
             const refuelAt = null/*Number(nftStatus[1])*/
             const isStaked = false/*nftStatus[2]*/
-            const rewardpending = data[15].result
+            const rewardpending = Number(ethers.utils.formatEther(String(data[15].result))) - Number(ethers.utils.formatEther(String(data[35].result)))
             const allPow = Number(data[16].result)
             const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
             
@@ -1025,7 +1033,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
             
             setAllPower(result[31])
-            setRewardPending(ethers.utils.formatEther(String(result[32])))
+            setRewardPending(result[32])
 
             setScmJBCBalance(result[33])
             setGasBalance(result[34].formatted)
@@ -1051,7 +1059,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setTotalRewardParty2(ethers.utils.formatEther(String(result[52])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -1217,8 +1225,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
-                address: missionBaseCmd,
-                abi: missionCMDBaseABI,
+                address: baseCmdClaimer,
+                abi: baseCMDClaimerABI,
                 functionName: 'claimReward',
                 args: [address],
                 chainId: 190,
