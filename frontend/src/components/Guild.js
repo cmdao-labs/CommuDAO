@@ -8,10 +8,11 @@ const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
 const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
 const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
 const missionBaseCmd = '0x5222342bF1B94E5b65618b9e6c8e4D9b627AB518'
+const statBaseCmd = '0x7b61b5Eb38535A385BEBc137Cbe2F4F5996d3EC0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI }) => {
+const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI }) => {
     const { chain } = useNetwork()
     let { address } = useAccount()
     //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
@@ -82,11 +83,13 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const [party1Logo, setParty1Logo] = React.useState(null)
     const [party1DelegateBaseCMD, setParty1DelegateBaseCMD] = React.useState(0)
     const [allCmpowParty1, setAllCmpowParty1] = React.useState(0)
+    const [totalRewardParty1, setTotalRewardParty1] = React.useState(0)
 
     const [party2Name, setParty2Name] = React.useState(null)
     const [party2Logo, setParty2Logo] = React.useState(null)
     const [party2DelegateBaseCMD, setParty2DelegateBaseCMD] = React.useState(0)
     const [allCmpowParty2, setAllCmpowParty2] = React.useState(0)
+    const [totalRewardParty2, setTotalRewardParty2] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -221,11 +224,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         chainId: 10,
                     },
                     {
-                        address: nftSlot,
-                        abi: nftSlotABI,
-                        functionName: 'calculateRewards',
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'baseReward',
                         args: [address],
-                        chainId: 10,
+                        chainId: 190,
                     },
                     {
                         address: nftSlot,
@@ -683,7 +686,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
             const refuelAt = null/*Number(nftStatus[1])*/
             const isStaked = false/*nftStatus[2]*/
-            const rewardpending = isStaked ? data[15].result : 0
+            const rewardpending = data[15].result
             const allPow = Number(data[16].result)
             const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
             
@@ -790,11 +793,26 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         args: [party2body[4]],
                         chainId: 190,
                     },
+                    {
+                        address: statBaseCmd,
+                        abi: statCMDRewardABI,
+                        functionName: 'baseReward',
+                        args: [1, 1],
+                        chainId: 190,
+                    },
+                    {
+                        address: statBaseCmd,
+                        abi: statCMDRewardABI,
+                        functionName: 'baseReward',
+                        args: [2, 1],
+                        chainId: 190,
+                    },
                 ],
             })
             const allcmpowparty1 = Number(data4[0].result) + Number(data4[1].result) + Number(data4[2].result) + Number(data4[3].result) + Number(data4[4].result)
             const allcmpowparty2 = Number(data4[5].result) + Number(data4[6].result) + Number(data4[7].result) + Number(data4[8].result) + Number(data4[9].result)
-
+            const totalrewardparty1 = data4[10].result
+            const totalrewardparty2 = data4[11].result
             let myparty = null
             let partyindex = null
             let memberindex = null
@@ -951,9 +969,10 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 nfts, 
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
-                allPow, /*refuelAt, rewardpending,*/ scmJBCBal, cmdBal,
+                allPow, /*refuelAt,*/ rewardpending, scmJBCBal, cmdBal,
                 myparty, partyindex, memberindex, memberrefuel, mypartyrefuelat, abilitytodelegate, isDelegate1, mypartyallcmpow,
                 party1name, party1logo, isDelegateParty1Mission1, allcmpowparty1, party2name, party2logo, isDelegateParty2Mission1, allcmpowparty2,
+                totalrewardparty1, totalrewardparty2,
             ]
         }
 
@@ -1006,31 +1025,33 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
             
             setAllPower(result[31])
-            /*setRewardPending(ethers.utils.formatEther(String(result[34])))*/
+            setRewardPending(ethers.utils.formatEther(String(result[32])))
 
-            setScmJBCBalance(result[32])
-            setGasBalance(result[33].formatted)
+            setScmJBCBalance(result[33])
+            setGasBalance(result[34].formatted)
 
-            setMyParty(result[34])
-            setMyPartyIndex(result[35])
-            setMyMemberIndex(result[36])
-            setMyRefuelStatus(result[37])
-            setMyPartyRefuelAt(result[38])
-            setMyAbiltoDelegate(result[39])
-            setIsBaseCmdDelegate(result[40])
-            setAllCmpowMyParty(result[41])
+            setMyParty(result[35])
+            setMyPartyIndex(result[36])
+            setMyMemberIndex(result[37])
+            setMyRefuelStatus(result[38])
+            setMyPartyRefuelAt(result[39])
+            setMyAbiltoDelegate(result[40])
+            setIsBaseCmdDelegate(result[41])
+            setAllCmpowMyParty(result[42])
 
-            setParty1Name(result[42])
-            setParty1Logo(result[43])
-            setParty1DelegateBaseCMD(result[44])
-            setAllCmpowParty1(result[45])
-            setParty2Name(result[46])
-            setParty2Logo(result[47])
-            setParty2DelegateBaseCMD(result[48])
-            setAllCmpowParty2(result[49])
+            setParty1Name(result[43])
+            setParty1Logo(result[44])
+            setParty1DelegateBaseCMD(result[45])
+            setAllCmpowParty1(result[46])
+            setParty2Name(result[47])
+            setParty2Logo(result[48])
+            setParty2DelegateBaseCMD(result[49])
+            setAllCmpowParty2(result[50])
+            setTotalRewardParty1(ethers.utils.formatEther(String(result[51])))
+            setTotalRewardParty2(ethers.utils.formatEther(String(result[52])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -1192,6 +1213,26 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(false)
     }
 
+    const claimReward = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: missionBaseCmd,
+                abi: missionCMDBaseABI,
+                functionName: 'claimReward',
+                args: [address],
+                chainId: 190,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
     return (
     <>
         {isTransferModal &&
@@ -1217,7 +1258,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "390px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                         <div style={{fontSize: "22px", lineHeight: "15px"}}>STAKING</div>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
@@ -1308,7 +1349,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             PARTY CONCENTRATION 
-                            <div>{Number((allPower / allCmpowMyParty) * 100).toFixed(2)}%</div>
+                            <div>{allCmpowMyParty !== 0 ? Number((allPower / allCmpowMyParty * 100).toFixed(2)) : '0.00'}%</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
                             GUILD CONCENTRATION 
@@ -1316,7 +1357,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", marginBottom: "10px", borderBottom: "1px solid"}}>
                             MISSION REWARD 
-                            <div>0 $CMD</div>
+                            <div>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
                         </div>
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
@@ -1326,7 +1367,10 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                             <div style={{alignSelf: "center"}} className="button" onClick={refuelGas}>REFUEL GAS</div> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                         }
-                                        <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
+                                        {Number(rewardPending) > 0 ?
+                                            <div style={{marginLeft: "5px", alignSelf: "center", background: "#67BAA7"}} className="button" onClick={claimReward}>CLAIM REWARD</div> :
+                                            <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
+                                        }
                                     </> :
                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
                                 }
@@ -1444,7 +1488,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "150px"}}>DELEGATED CMPOW</div>
                             <div style={{width: "150px"}}>CONCENTRATION</div>
                             <div style={{width: "150px"}}>MISSION DEDICATED</div>
-                            <div style={{width: "200px"}}>MISSION REWARD</div>
+                            <div style={{width: "200px"}}>REWARD EMISSION</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
                             <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
@@ -1456,7 +1500,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "150px"}}>{allCmpowParty1}</div>
                             <div style={{width: "150px"}}>{Number((allCmpowParty1 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)}%</div>
                             <div style={{width: "150px"}}>{Number(party1DelegateBaseCMD)}</div>
-                            <div style={{width: "200px"}}>0 $CMD</div>
+                            <div style={{width: "200px"}}>{Number(totalRewardParty1).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
                             <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
@@ -1468,7 +1512,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "150px"}}>{allCmpowParty2}</div>
                             <div style={{width: "150px"}}>{Number((allCmpowParty2 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)}%</div>
                             <div style={{width: "150px"}}>{Number(party2DelegateBaseCMD)}</div>
-                            <div style={{width: "200px"}}>0 $CMD</div>
+                            <div style={{width: "200px"}}>{Number(totalRewardParty2).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
                         </div>
                     </div>
                 </div>
@@ -1492,8 +1536,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div>{Number(party1DelegateBaseCMD) + Number(party2DelegateBaseCMD)}</div>
                         </div>
                         <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>MISSION REWARD EMISSION</div>
-                            <div>TBD</div>
+                            <div>REWARD EMISSION</div>
+                            <div>{Number(Number(totalRewardParty1) + Number(totalRewardParty2)).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
                         </div>
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
