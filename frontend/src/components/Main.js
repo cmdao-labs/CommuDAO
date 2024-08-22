@@ -82,7 +82,6 @@ import kycABI from './jsons/kycABI.json'
 import ctunaLabABI from './jsons/ctunaLabABI.json'
 import sx31LabABI from './jsons/sx31LabABI.json'
 import bbqLab01ABI from './jsons/bbqLab01ABI.json'
-import bbqLab02ABI from './jsons/bbqLab02ABI.json'
 import pzaLabABI from './jsons/pzaLabABI.json'
 import cmdao20lab01ABI from './jsons/cmdao20lab01ABI.json'
 
@@ -439,7 +438,7 @@ const Main = () => {
                 {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}
                 {mode === 10001  && <BBQFieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdsV2ABI={cmdsV2ABI} uplevelCMDSABI={uplevelCMDSABI} fieldWoodBBQABI={fieldWoodBBQABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} missionWoodABI={missionWoodABI} />}
 
-                {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} bbqLab02ABI={bbqLab02ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}
+                {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}
                 {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
                 {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} sourceThubABI={sourceThubABI} />}
                 
