@@ -722,12 +722,12 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             const delegateParty1Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(1, null, null)
             const delegateParty1Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty1Mission1Filter, 19987208, "latest")
             const delegateParty1Mission1Map = await Promise.all(delegateParty1Mission1Event.map(async (obj) => String(obj.args.endBlock)))
-            const isDelegateParty1Mission1 = delegateParty1Mission1Map.indexOf('1724198400') !== -1 ? true : false
+            const isDelegateParty1Mission1 = delegateParty1Mission1Map.indexOf('1724778000') !== -1 ? true : false
 
             const delegateParty2Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(2, null, null)
             const delegateParty2Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty2Mission1Filter, 19987208, "latest")
             const delegateParty2Mission1Map = await Promise.all(delegateParty2Mission1Event.map(async (obj) => String(obj.args.endBlock)))
-            const isDelegateParty2Mission1 = delegateParty2Mission1Map.indexOf('1724198400') !== -1 ? true : false
+            const isDelegateParty2Mission1 = delegateParty2Mission1Map.indexOf('1724778000') !== -1 ? true : false
 
             const data4 = await readContracts({
                 contracts: [
