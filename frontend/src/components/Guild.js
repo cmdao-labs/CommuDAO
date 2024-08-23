@@ -34,7 +34,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const [transferTo, setTransferTo] = React.useState(null)
 
     const [startBlock, setStartBlock] = React.useState(0)
-    const [endBlock, setEndBlock] = React.useState(0)
 
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
@@ -999,7 +998,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 myparty, partyindex, memberindex, memberrefuel, mypartyrefuelat, abilitytodelegate, isDelegate1, mypartyallcmpow,
                 party1name, party1logo, isDelegateParty1Mission1, allcmpowparty1, party2name, party2logo, isDelegateParty2Mission1, allcmpowparty2,
                 totalrewardparty1, totalrewardparty2,
-                startblock, endblock,
+                startblock,
             ]
         }
 
@@ -1078,7 +1077,6 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setTotalRewardParty2(ethers.utils.formatEther(String(result[52])))
 
             setStartBlock(result[53])
-            setEndBlock(result[54])
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
