@@ -33,6 +33,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
 
+    const [startBlock, setStartBlock] = React.useState(0)
+
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
     const [characterSlotLevel, setCharacterSlotLevel] = React.useState(null)
@@ -371,6 +373,18 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         args: [address],
                         chainId: 190,
                     },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'startBlock',
+                        chainId: 190,
+                    },
+                    {
+                        address: missionBaseCmd,
+                        abi: missionCMDBaseABI,
+                        functionName: 'endBlock',
+                        chainId: 190,
+                    },
                 ],
             })
             
@@ -694,6 +708,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
             const refuelAt = null/*Number(nftStatus[1])*/
             const isStaked = false/*nftStatus[2]*/
+            const startblock = Number(data[36].result)
+            const endblock = Number(data[37].result)
             const rewardpending = Number(ethers.utils.formatEther(String(data[15].result))) - Number(ethers.utils.formatEther(String(data[35].result)))
             const allPow = Number(data[16].result)
             const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
@@ -716,18 +732,19 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             const isMem3Party2Refuel = data[32].result
             const isMem4Party2Refuel = data[33].result
             const isMem5Party2Refuel = data[34].result
-            console.log("Party 1: ", isMem1Party1Refuel, isMem2Party1Refuel, isMem3Party1Refuel, isMem4Party1Refuel, isMem5Party1Refuel)
-            console.log("Party 2: ", isMem1Party2Refuel, isMem2Party2Refuel, isMem3Party2Refuel, isMem4Party2Refuel, isMem5Party2Refuel)
 
             const delegateParty1Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(1, null, null)
             const delegateParty1Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty1Mission1Filter, 19987208, "latest")
             const delegateParty1Mission1Map = await Promise.all(delegateParty1Mission1Event.map(async (obj) => String(obj.args.endBlock)))
-            const isDelegateParty1Mission1 = delegateParty1Mission1Map.indexOf('1724778000') !== -1 ? true : false
+            const isDelegateParty1Mission1 = delegateParty1Mission1Map.indexOf(String(endblock)) !== -1 ? true : false
 
             const delegateParty2Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(2, null, null)
             const delegateParty2Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty2Mission1Filter, 19987208, "latest")
             const delegateParty2Mission1Map = await Promise.all(delegateParty2Mission1Event.map(async (obj) => String(obj.args.endBlock)))
-            const isDelegateParty2Mission1 = delegateParty2Mission1Map.indexOf('1724778000') !== -1 ? true : false
+            const isDelegateParty2Mission1 = delegateParty2Mission1Map.indexOf(String(endblock)) !== -1 ? true : false
+
+            console.log("Party 1: ", isMem1Party1Refuel, isMem2Party1Refuel, isMem3Party1Refuel, isMem4Party1Refuel, isMem5Party1Refuel, isDelegateParty1Mission1)
+            console.log("Party 2: ", isMem1Party2Refuel, isMem2Party2Refuel, isMem3Party2Refuel, isMem4Party2Refuel, isMem5Party2Refuel, isDelegateParty2Mission1)
 
             const data4 = await readContracts({
                 contracts: [
@@ -817,8 +834,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     },
                 ],
             })
-            const allcmpowparty1 = Number(data4[0].result) + Number(data4[1].result) + Number(data4[2].result) + Number(data4[3].result) + Number(data4[4].result)
-            const allcmpowparty2 = Number(data4[5].result) + Number(data4[6].result) + Number(data4[7].result) + Number(data4[8].result) + Number(data4[9].result)
+            const allcmpowparty1 = isDelegateParty1Mission1 ? Number(data4[0].result) + Number(data4[1].result) + Number(data4[2].result) + Number(data4[3].result) + Number(data4[4].result) : 0
+            const allcmpowparty2 = isDelegateParty2Mission1 ? Number(data4[5].result) + Number(data4[6].result) + Number(data4[7].result) + Number(data4[8].result) + Number(data4[9].result) : 0
             const totalrewardparty1 = data4[10].result
             const totalrewardparty2 = data4[11].result
             let myparty = null
@@ -981,6 +998,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 myparty, partyindex, memberindex, memberrefuel, mypartyrefuelat, abilitytodelegate, isDelegate1, mypartyallcmpow,
                 party1name, party1logo, isDelegateParty1Mission1, allcmpowparty1, party2name, party2logo, isDelegateParty2Mission1, allcmpowparty2,
                 totalrewardparty1, totalrewardparty2,
+                startblock,
             ]
         }
 
@@ -1057,6 +1075,8 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setAllCmpowParty2(result[50])
             setTotalRewardParty1(ethers.utils.formatEther(String(result[51])))
             setTotalRewardParty2(ethers.utils.formatEther(String(result[52])))
+
+            setStartBlock(result[53])
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
@@ -1270,7 +1290,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
                         <div style={{fontSize: "22px", lineHeight: "15px"}}>STAKING</div>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
-                                {myPartyRefuelAt >= 1724259600 ?
+                                {myPartyRefuelAt >= startBlock ?
                                     <>
                                         <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
                                         <div>Party Already Delegated</div>
@@ -1371,7 +1391,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
                                 {chain.id === 190 ?
                                     <>
-                                        {Number(allPower) !== 0 && Number(gasBalance) >= 10 && !myRefuelStatus && myPartyRefuelAt < 1724259600 ?
+                                        {Number(allPower) !== 0 && Number(gasBalance) >= 10 && !myRefuelStatus && myPartyRefuelAt < startBlock ?
                                             <div style={{alignSelf: "center"}} className="button" onClick={refuelGas}>REFUEL GAS</div> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                         }
@@ -1553,7 +1573,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                                     <>
                                         {myMemberIndex === null && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>}
                                         {(myAbiltoDelegate && Number(gasBalance) >= 1) && <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div>}
-                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= 1724259600 && !isBaseCmdDelegate) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
+                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= startBlock && !isBaseCmdDelegate) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
                                         {isBaseCmdDelegate && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">MISSION DELEGATED</div>}
                                     </> :
                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
