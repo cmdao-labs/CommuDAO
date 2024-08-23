@@ -7,6 +7,7 @@ import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
 import OpSwap from './Op-GameSwap-Swap'
+import OpGameSwapFarm from './OP-GameSwap-Farm'
 
 const options = [
     {value: 0, label: 'ETH'},
@@ -334,12 +335,8 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                     <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(1)}}>Liquidity</div>
                 }
                 {false && mode === 2 ?
-                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", borderBottom: "5px solid #61dafb", cursor: "pointer"}} className="bold">Farms</div> :
-                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(2)}}>Farms</div>
-                }
-                {false && mode === 3 ?
-                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", borderBottom: "5px solid #61dafb", cursor: "pointer"}} className="bold">DeFi</div> :
-                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(3)}}>DeFi</div>
+                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", borderBottom: "5px solid #61dafb", cursor: "pointer"}} className="bold">Gov</div> :
+                    <div style={{margin: "0 10px", width: "fit-content", border: "transparent", background: "transparent", fontSize: "20px", color: "#b8add2", borderBottom: "5px solid transparent", cursor: "pointer"}} className="bold" onClick={() => {setMode(2)}}>Gov</div>
                 }
             </div>
             {mode === 0 && 
@@ -496,6 +493,13 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                     </div>
                 </div>            
             }
+            {mode === 2 && <OpGameSwapFarm
+                address={address}
+                setisLoading={setisLoading}
+                setTxupdate={setTxupdate}
+                txupdate={txupdate}
+                erc20ABI={erc20ABI}
+            />}
         </div>
     )
 }
