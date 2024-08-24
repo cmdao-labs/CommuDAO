@@ -1801,6 +1801,26 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             colBonus = 710
         } else if (_nftCol === 1 && (Number(_nftid) >= 130000100500 && Number(_nftid) <= 130060000000)) {
             colBonus = 130
+        } else if (_nftCol === 1 && (Number(_nftid) >= 211000102550 && Number(_nftid) <= 211025601000)) {
+            colBonus = 211
+        } else if (_nftCol === 1 && (Number(_nftid) >= 310000102550 && Number(_nftid) <= 310010701000)) {
+            colBonus = 310
+        } else if (_nftCol === 1 && (Number(_nftid) >= 312000102550 && Number(_nftid) <= 312025601000)) {
+            colBonus = 312
+        } else if (_nftCol === 1 && (Number(_nftid) >= 411000102550 && Number(_nftid) <= 411025601000)) {
+            colBonus = 411
+        } else if (_nftCol === 1 && (Number(_nftid) >= 511000102550 && Number(_nftid) <= 511010701000)) {
+            colBonus = 511
+        } else if (_nftCol === 1 && (Number(_nftid) >= 512000102550 && Number(_nftid) <= 512025601000)) {
+            colBonus = 512
+        } else if (_nftCol === 1 && (Number(_nftid) >= 611000102550 && Number(_nftid) <= 611010701000)) {
+            colBonus = 611
+        } else if (_nftCol === 1 && (Number(_nftid) >= 612000102550 && Number(_nftid) <= 612025601000)) {
+            colBonus = 612
+        } else if (_nftCol === 1 && (Number(_nftid) >= 711000102550 && Number(_nftid) <= 711010701000)) {
+            colBonus = 711
+        } else if (_nftCol === 1 && (Number(_nftid) >= 712000102550 && Number(_nftid) <= 712025601000)) {
+            colBonus = 712
         }
         try {
             const nftAllow = await readContract({
@@ -2241,7 +2261,10 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                         <div className="emp bold">{item.Name}</div>
                                         <div className="bold">
                                             {item.RewardPerSec}
-                                            &nbsp;{(item.Col === 1 && ((Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000) || (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000))) && '[x10 bonus]'} 
+                                            &nbsp;
+                                            {(item.Col === 1 && ((Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000) || (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000) || (Number(item.Id) >= 310000102550 && Number(item.Id) <= 310010701000) || (Number(item.Id) >= 511000102550 && Number(item.Id) <= 511010701000) || (Number(item.Id) >= 611000102550 && Number(item.Id) <= 611010701000))) && '[x10 bonus]'}
+                                            {(item.Col === 1 && ((Number(item.Id) >= 211000102550 && Number(item.Id) <= 211025601000) || (Number(item.Id) >= 312000102550 && Number(item.Id) <= 312025601000) || (Number(item.Id) >= 411000102550 && Number(item.Id) <= 411025601000) || (Number(item.Id) >= 512000102550 && Number(item.Id) <= 512025601000) || (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025601000) || (Number(item.Id) >= 711000102550 && Number(item.Id) <= 711010701000))) && '[x9 bonus]'}
+                                            {(item.Col === 1 && ((Number(item.Id) >= 712000102550 && Number(item.Id) <= 712025601000))) && '[x8 bonus]'}
                                             &nbsp;cmpow
                                         </div>
                                         <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
