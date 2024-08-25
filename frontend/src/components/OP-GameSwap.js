@@ -70,7 +70,7 @@ const inputStyle = {
     }),
 }
    
-const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI, velodromeRouterABI, velodromeCallerABI, bkcOracleABI }) => {
+const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI, velodromeRouterABI, velodromeCallerABI, bkcOracleABI, stcmdABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
@@ -499,6 +499,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                 setTxupdate={setTxupdate}
                 txupdate={txupdate}
                 erc20ABI={erc20ABI}
+                stcmdABI={stcmdABI}
             />}
         </div>
     )
