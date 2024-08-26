@@ -406,7 +406,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const dataOP = await readContracts({
                 contracts: ranker.map((item) => (
                     {
-                        address: '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49',
+                        address: '0x51f97e67b2ff5ed064dc2b27b7a745e0d4c47ee0',
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [item],
