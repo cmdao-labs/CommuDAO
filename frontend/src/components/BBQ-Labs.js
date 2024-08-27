@@ -353,7 +353,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             const labLogBBQ = data[1].result
             const woodBal = data[2].result
            
-            const _canCraftBBQ = /*Number(ethers.utils.formatEther(String(woodBal))) >= 100 &&*/ Number(cmdBal.formatted) >= 0.01 ? true : false
+            const _canCraftBBQ = Number(ethers.utils.formatEther(String(woodBal))) >= 1000 && Number(cmdBal.formatted) >= 0.01 ? true : false
 
             const data2 = await readContracts({
                 contracts: [
@@ -2147,22 +2147,22 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
     const craftBBQHandle = async (_machine) => {
         setisLoading(true)
         try {
-            /*const woodAllow = await readContract({
-                address: woodField,
+            const woodAllow = await readContract({
+                address: woodToken,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, bbqLab],
             })
-            if (woodAllow < (100 * 10**18)) {
+            if (woodAllow < (1000 * 10**18)) {
                 const config = await prepareWriteContract({
-                    address: woodField,
+                    address: woodToken,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
                 })
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
-            }*/
+            }
             const config2 = await prepareWriteContract({
                 address: bbqLab,
                 abi: bbqLab01ABI,
@@ -2173,13 +2173,23 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            console.log(e)
+        }
         setisLoading(false)
     }
 
     const obtainBBQHandle = async () => {
         setisLoading(true)
         try {
+            const config0 = await prepareWriteContract({
+                address: woodToken,
+                abi: erc20ABI,
+                functionName: 'approve',
+                args: [bbqLab, ethers.utils.parseEther(String(0))],
+            })
+            const { hash: hash0 } = await writeContract(config0)
+            await waitForTransaction({ hash: hash0 })
             const config = await prepareWriteContract({
                 address: bbqLab,
                 abi: bbqLab01ABI,
@@ -2188,7 +2198,9 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            console.log(e)
+        }
         setisLoading(false)
     }
 
@@ -2340,7 +2352,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
         setisLoading(true)
         try {
             /*const woodAllow = await readContract({
-                address: woodField,
+                address: woodToken,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, bbqLab],
@@ -2355,7 +2367,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             }
             if (woodAllow < (woodUsage * 10**18)) {
                 const config = await prepareWriteContract({
-                    address: woodField,
+                    address: woodToken,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
@@ -2456,10 +2468,10 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                             <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                                <div style={{margin: "0 5px"}}>0</div>
+                                <div style={{margin: "0 5px"}}>1,000</div>
                                 <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                
-                                <div style={{margin: "0 5px"}}>$CMD 0.01</div>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" height="18" alt="$CMD"/>
+                                <div style={{margin: "0 5px"}}>0.01</div>
                                 <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                 <div style={{margin: "0 5px"}}>
