@@ -629,7 +629,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 </div>
 
                 <div style={{width: "40%", height: "460px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                    <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={productSelected} onChange={(event) => {setProductSelected(event.target.value)}}>
+                    {/*<select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={productSelected} onChange={(event) => {setProductSelected(event.target.value)}}>
                         <option value="DM">DIAMOND</option>
                         <option value="GOLD">GOLD</option>
                     </select>
@@ -641,8 +641,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                         placeholder="0.0 GEMSTONE"
                         value={depositProduct}
                         onChange={(event) => setDepositProduct(event.target.value)}
+                        disabled
                     ></input>
-                    {chain.id === 190 && address !== null && address !== undefined ? 
+                    {false && chain.id === 190 && address !== null && address !== undefined ? 
                         <div 
                             style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} 
                             className="button"
@@ -706,7 +707,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                                 }}
                             />
                         }
-                    </div>
+                    </div>*/}
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
                         <div>BBQ CHAIN Balance: {Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GEM</div>
                         <img 
@@ -730,7 +731,7 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                             }}
                         />
                     </div>
-                    <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
+                    <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "gray", fontSize: "50px"}}>$GEMSTONE one-way bridge paused at partner's request.</div>
                 </div>
             </div>
             <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>

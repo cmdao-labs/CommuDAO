@@ -10,9 +10,12 @@ const narutaNft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 
+const uiiLab = ''
+const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
+
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunEEABI }) => {
+const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunEEABI, taoPfpABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -55,6 +58,9 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
     const [iiBalance, setIIBalance] = React.useState(0)
     const [eeBalance, setEEBalance] = React.useState(0)
+
+    const [uiiBalance, setUIIBalance] = React.useState(0)
+    const [pfpLevel, setPfpLevel] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -181,8 +187,128 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 1],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 2],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 3],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 4],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 5],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 6],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 7],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 8],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 9],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 10],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 11],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 12],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 13],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 14],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 15],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 16],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 17],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 18],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 19],
+                    },
+                    {
+                        address: taoPFP,
+                        abi: taoPfpABI,
+                        functionName: 'user',
+                        args: [address, 20],
+                    },
                 ],
-            }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", ]
+            }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false},]
 
             let nfts = []
 
@@ -375,6 +501,50 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const iiBal = data[7].result
             const eeBal = data[8].result
             const rewardPending = isStaked === true ? data[9].result : 0
+
+            console.log(data)
+            let PFPlv = 0
+            if (data[36].result) {
+                PFPlv = 20
+            } else if (data[35].result) {
+                PFPlv = 19
+            } else if (data[34].result) {
+                PFPlv = 18
+            } else if (data[33].result) {
+                PFPlv = 17
+            } else if (data[32].result) {
+                PFPlv = 16
+            } else if (data[21].result) {
+                PFPlv = 15
+            } else if (data[30].result) {
+                PFPlv = 14
+            } else if (data[29].result) {
+                PFPlv = 13
+            } else if (data[28].result) {
+                PFPlv = 12
+            } else if (data[27].result) {
+                PFPlv = 11
+            } else if (data[26].result) {
+                PFPlv = 10
+            } else if (data[25].result) {
+                PFPlv = 9
+            } else if (data[24].result) {
+                PFPlv = 8
+            } else if (data[23].result) {
+                PFPlv = 7
+            } else if (data[22].result) {
+                PFPlv = 6
+            } else if (data[21].result) {
+                PFPlv = 5
+            } else if (data[20].result) {
+                PFPlv = 4
+            } else if (data[19].result) {
+                PFPlv = 3
+            } else if (data[18].result) {
+                PFPlv = 2
+            } else if (data[17].result) {
+                PFPlv = 1
+            }
             
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
@@ -486,7 +656,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name,
-                allPow, isStaked, refuelAt, rewardPending, iiBal, eeBal, 
+                allPow, isStaked, refuelAt, rewardPending, iiBal, eeBal, PFPlv, 
             ]
         }
 
@@ -535,9 +705,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         
             setIIBalance(ethers.utils.formatEther(String(result[19])))
             setEEBalance(ethers.utils.formatEther(String(result[20])))
+            setPfpLevel(result[21])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunEEABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, dunEEABI, taoPfpABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -749,7 +920,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            GAS USAGE
+                            GAS
                             <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                 <option value="II">$II</option>
                             </select>
@@ -760,7 +931,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                         <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </>
                                 }
-                                <div style={{marginLeft: "5px"}}>/7</div>
+                                <div style={{marginLeft: "5px"}}>/7 [{pfpLevel === 20 && 'UR4'}{pfpLevel === 19 && 'UR3'}{pfpLevel === 18 && 'UR2'}{pfpLevel === 17 && 'UR1'}{pfpLevel === 16 && 'SSR4'}{pfpLevel === 15 && 'SSR3'}{pfpLevel === 14 && 'SSR2'}{pfpLevel === 13 && 'SSR1'}{pfpLevel === 12 && 'SR4'}{pfpLevel === 11 && 'SR3'}{pfpLevel === 10 && 'SR2'}{pfpLevel === 9 && 'SR1'}{pfpLevel === 8 && 'R4'}{pfpLevel === 7 && 'R3'}{pfpLevel === 6 && 'R2'}{pfpLevel === 5 && 'R1'}{pfpLevel === 4 && 'N4'}{pfpLevel === 3 && 'N3'}{pfpLevel === 2 && 'N2'}{pfpLevel === 1 && 'N1'}{pfpLevel === 0 && 'Not The'} PFP Holder]</div> 
                             </div>
                         </div>
                         {isStakeNow ?
