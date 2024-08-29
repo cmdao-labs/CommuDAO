@@ -10,7 +10,7 @@ const narutaNft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 
-const uiiLab = ''
+const uiiLab = '0x49B83D37DC1E82a5a977B5d7FBF3Ae5c5bB37933'
 const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
