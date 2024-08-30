@@ -10,12 +10,12 @@ const narutaNft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
 
-const uiiLab = '0x49B83D37DC1E82a5a977B5d7FBF3Ae5c5bB37933'
+const uiiLab = '0x432ecf003bB9BF4875a75646368b58be796e0830'
 const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunEEABI, taoPfpABI }) => {
+const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunEEABI, taoPfpABI, uiiABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -57,15 +57,17 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const [angbPending, setAngbPending] = React.useState(0)
 
     const [iiBalance, setIIBalance] = React.useState(0)
+    const [uiiBalance, setUIIBalance] = React.useState(0)
     const [eeBalance, setEEBalance] = React.useState(0)
 
-    const [uiiBalance, setUIIBalance] = React.useState(0)
     const [pfpLevel, setPfpLevel] = React.useState(0)
+    const [pfpId, setPfpId] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
         const nrtnftSC = new ethers.Contract(narutaNft, erc721ABI, providerJBC)
+        const pfpnftSC = new ethers.Contract(taoPFP, erc721ABI, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -307,8 +309,14 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         functionName: 'user',
                         args: [address, 20],
                     },
+                    {
+                        address: uiiLab,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false},]
+            }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: 0}, ]
 
             let nfts = []
 
@@ -499,6 +507,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const refuelAt = Number(nftSTAT[8])
 
             const iiBal = data[7].result
+            const uiiBal = data[37].result
             const eeBal = data[8].result
             const rewardPending = isStaked === true ? data[9].result : 0
 
@@ -545,7 +554,30 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             } else if (data[17].result) {
                 PFPlv = 1
             }
-            
+
+            const wallet0Filter = await pfpnftSC.filters.Transfer(null, address, null)
+            const wallet0Event = await pfpnftSC.queryFilter(wallet0Filter, 2804540, "latest")
+            const wallet0Map = await Promise.all(wallet0Event.map(async (obj) => String(obj.args.tokenId)))
+            const wallet0RemoveDup = wallet0Map.filter((obj, index) => wallet0Map.indexOf(obj) === index)
+            const data0 = address !== null && address !== undefined ? await readContracts({
+                contracts: wallet0RemoveDup.map((item) => (
+                    {
+                        address: taoPFP,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                    }
+                ))
+            }) : [Array(wallet0RemoveDup.length).fill('')]
+
+            let yournftwallet0 = []
+            for (let i = 0; i <= wallet0RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data0[i].result.toUpperCase() === address.toUpperCase()) {
+                    yournftwallet0.push(String(wallet0RemoveDup[i]))
+                }
+            }
+            if (yournftwallet0.length === 0) { yournftwallet0.push('0') }
+
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -656,7 +688,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name,
-                allPow, isStaked, refuelAt, rewardPending, iiBal, eeBal, PFPlv, 
+                allPow, isStaked, refuelAt, rewardPending, iiBal, eeBal, PFPlv, yournftwallet0[yournftwallet0.length - 1], uiiBal, 
             ]
         }
 
@@ -706,6 +738,8 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             setIIBalance(ethers.utils.formatEther(String(result[19])))
             setEEBalance(ethers.utils.formatEther(String(result[20])))
             setPfpLevel(result[21])
+            setPfpId(result[22])
+            setUIIBalance(ethers.utils.formatEther(String(result[23])))
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, dunEEABI, taoPfpABI])
@@ -803,29 +837,71 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         setisLoading(true)
         let gasAddr = ''
         let gasIndex = 0
+        let iiUsage = 0
+        let craftIndex = null
+        let uAddr = ''
         if (gasselected === "II") {
             gasAddr = iiLab
-            gasIndex = 1
+            uAddr = uiiLab
+            gasIndex = 2
+            if (pfpLevel === 0) {
+                iiUsage = 35
+                craftIndex = 0
+            } else if (pfpLevel >= 1 && pfpLevel <= 8) {
+                iiUsage = 7
+                craftIndex = 1
+            } else if (pfpLevel >= 9 && pfpLevel <= 19) {
+                iiUsage = 4
+                craftIndex = 2
+            } else if (pfpLevel === 20) {
+                iiUsage = 1
+                craftIndex = 3
+            }
         }
-        const gasAllow = await readContract({
-            address: gasAddr,
-            abi: erc20ABI,
-            functionName: 'allowance',
-            args: [address, dunEE],
-        })
-        if (gasAllow < (7 * 10**18)) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            if (Number(uiiBalance) === 0) {
+                const gasAllow0 = await readContract({
                     address: gasAddr,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, uAddr],
+                })
+                if (gasAllow0 < (iiUsage * 10**18)) {
+                    const config = await prepareWriteContract({
+                        address: gasAddr,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [uAddr, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
+                }
+                console.log(craftIndex, pfpId)
+                const config02 = await prepareWriteContract({
+                    address: uAddr,
+                    abi: uiiABI,
+                    functionName: 'craft',
+                    args: [craftIndex, pfpId]
+                })
+                const { hash: hash01 } = await writeContract(config02)
+                await waitForTransaction({ hash: hash01 })
+            }
+            const gasAllow = await readContract({
+                address: uAddr,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, dunEE],
+            })
+            if (gasAllow < (1 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: uAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [dunEE, ethers.utils.parseEther(String(10**8))],
                 })
                 const { hash: hash0 } = await writeContract(config)
                 await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
+            }
             const config2 = await prepareWriteContract({
                 address: dunEE,
                 abi: dunEEABI,
@@ -835,7 +911,10 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -931,7 +1010,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                         <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                     </>
                                 }
-                                <div style={{marginLeft: "5px"}}>/7 [{pfpLevel === 20 && 'UR4'}{pfpLevel === 19 && 'UR3'}{pfpLevel === 18 && 'UR2'}{pfpLevel === 17 && 'UR1'}{pfpLevel === 16 && 'SSR4'}{pfpLevel === 15 && 'SSR3'}{pfpLevel === 14 && 'SSR2'}{pfpLevel === 13 && 'SSR1'}{pfpLevel === 12 && 'SR4'}{pfpLevel === 11 && 'SR3'}{pfpLevel === 10 && 'SR2'}{pfpLevel === 9 && 'SR1'}{pfpLevel === 8 && 'R4'}{pfpLevel === 7 && 'R3'}{pfpLevel === 6 && 'R2'}{pfpLevel === 5 && 'R1'}{pfpLevel === 4 && 'N4'}{pfpLevel === 3 && 'N3'}{pfpLevel === 2 && 'N2'}{pfpLevel === 1 && 'N1'}{pfpLevel === 0 && 'Not The'} PFP Holder]</div> 
+                                <div style={{marginLeft: "5px"}}>/{pfpLevel === 20 && '1 [UR4'}{pfpLevel === 19 && '4 [UR3'}{pfpLevel === 18 && '4 [UR2'}{pfpLevel === 17 && '4 [UR1'}{pfpLevel === 16 && '4 [SSR4'}{pfpLevel === 15 && '4 [SSR3'}{pfpLevel === 14 && '4 [SSR2'}{pfpLevel === 13 && '4 [SSR1'}{pfpLevel === 12 && '4 [SR4'}{pfpLevel === 11 && '4 [SR3'}{pfpLevel === 10 && '4 [SR2'}{pfpLevel === 9 && '4 [SR1'}{pfpLevel === 8 && '7 [R4'}{pfpLevel === 7 && '7 [R3'}{pfpLevel === 6 && '7 [R2'}{pfpLevel === 5 && '7 [R1'}{pfpLevel === 4 && '7 [N4'}{pfpLevel === 3 && '7 [N3'}{pfpLevel === 2 && '7 [N2'}{pfpLevel === 1 && '7 [N1'}{pfpLevel === 0 && '35 [Not The'} PFP Holder]</div> 
                             </div>
                         </div>
                         {isStakeNow ?
@@ -946,7 +1025,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && ((gasselected === "II" && Number(iiBalance) >= 7)) ?
+                                        {isStakeNow !== null && (gasselected === "II" && ((uiiBalance >= 1) || (pfpLevel === 20 && Number(iiBalance) >= 1) || (pfpLevel >= 9 && pfpLevel <= 19 && Number(iiBalance) >= 4) || (pfpLevel >= 1 && pfpLevel <= 8 && Number(iiBalance) >= 7) || (pfpLevel === 0 && Number(iiBalance) >= 35))) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
