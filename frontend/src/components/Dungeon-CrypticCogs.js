@@ -523,7 +523,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 PFPlv = 17
             } else if (data[32].result) {
                 PFPlv = 16
-            } else if (data[21].result) {
+            } else if (data[31].result) {
                 PFPlv = 15
             } else if (data[30].result) {
                 PFPlv = 14
