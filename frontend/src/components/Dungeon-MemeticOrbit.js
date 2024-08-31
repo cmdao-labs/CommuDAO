@@ -13,11 +13,13 @@ const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
 const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
+const badgeClaimer = '0x99f4FE6E420B46B7f5DeeEabFDc7604756e093d5' 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const ss = 1
+const isEnd = true
 
-const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI }) => {
+const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -1915,6 +1917,22 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(false)
     }
 
+    const claimBadge = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: badgeClaimer,
+                abi: badgeClaimerABI,
+                functionName: 'claimBadge',
+                args: [ss]
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
     /*const mintStOPT = async () => {
         setisLoading(true)
         try {
@@ -2003,26 +2021,37 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             REWARD PENDING
-                            <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
-                                <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                            </div>
+                            {!isEnd ? 
+                                <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                </div> :
+                                <div style={{color: "#5f6476"}}>SS1 is over</div>
+                            }
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             GAS USAGE
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                {ss === 1 &&
-                                    <>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                    </>
-                                }
-                                <div style={{marginLeft: "5px"}}>/700,000</div>
-                            </div>
+                            {!isEnd ? 
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    {ss === 1 &&
+                                        <>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
+                                            <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </>
+                                    }
+                                    <div style={{marginLeft: "5px"}}>/700,000</div>
+                                </div> :
+                                <div style={{color: "#5f6476"}}>SS1 is over</div>
+                            }
                         </div>
-                        {isStakeNow ?
-                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>7 day</div></div>
+                        {!isEnd ?
+                            <>
+                                {isStakeNow ?
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
+                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>7 day</div></div>
+                                }
+                            </> :
+                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div style={{color: "#5f6476"}}>SS1 is over</div></div>
                         }
                         {address !== undefined && address === youraddr ?
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
@@ -2032,7 +2061,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, false)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && (ss === 1 && Number(doijibBalance) >= 700000) ?
+                                        {isStakeNow !== null && (ss === 1 && !isEnd && Number(doijibBalance) >= 700000) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
@@ -2173,6 +2202,9 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
                             <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                {(ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={claimBadge}>CLAIM BADGE</div>}
+                            </div>
                         </div>
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
@@ -2240,7 +2272,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         <>
                         {nft.map((item, index) => (
                             <>
-                                {((item.Col === 1 && item.Id / 100000000000 <= 8) || 
+                                {((item.Col === 1 && Math.floor(Number(item.Id / 100000000000)) <= 8) || 
                                 (ss === 1 && 
                                     (
                                         (item.Col === 2 && 
