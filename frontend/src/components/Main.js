@@ -94,6 +94,7 @@ import dunEEABI from './jsons/dunEEABI.json'
 import uiiABI from './jsons/uiiABI.json'
 import dunGEMABI from './jsons/dunGEMABI.json'
 import dunMoABI from './jsons/dunMoABI.json'
+import badgeClaimerABI from './jsons/badgeClaimerABI.json'
 import nftSlotABI from './jsons/nftSlotABI.json'
 import partyABI from './jsons/partyABI.json'
 import missionCMDBaseABI from './jsons/missionCMDBaseABI.json'
@@ -448,7 +449,7 @@ const Main = () => {
                 {mode === 3 && <Dungeon callMode={callMode} navigate={navigate} />}
                 {mode === 33 && <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} />}
                 {mode === 31 && <Jaspercave intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} />}
-                {mode === 39 && <Memeticorbit intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunMoABI={dunMoABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} slot1ABI={slot1ABI} />}
+                {mode === 39 && <Memeticorbit intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunMoABI={dunMoABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} slot1ABI={slot1ABI} badgeClaimerABI={badgeClaimerABI} />}
 
                 {mode === 32 && <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} />}
                 {mode === 34 && <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
