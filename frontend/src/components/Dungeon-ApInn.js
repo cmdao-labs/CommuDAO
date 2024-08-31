@@ -266,7 +266,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             })
 
             const spend1Filter = await angbFarmSC.filters.Claimed(null, null, null)
-            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 3746383, 'latest')
+            const spend1Event = await angbFarmSC.queryFilter(spend1Filter, 3934782, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.staker), value: Number(ethers.utils.formatEther(obj.args.rewardAmount))}}))
             const spend1Merged = spend1Map.reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
@@ -277,18 +277,17 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
                 return prev
             }, {})
             const spend1RemoveDup = []
-            //for (let i = 0; i <= nameArr.length -1; i++) {
+            for (let i = 0; i <= nameArr.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spend1Merged).length -1; i2++) {
-                    //if (nameArr[i].toUpperCase() === Object.values(spend1Merged)[i2].from.toUpperCase()) {
-                        //Object.values(spend1Merged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(spend1Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend1Merged)[i2].from.slice(-4)
-                        Object.values(spend1Merged)[i2].name = Object.values(spend1Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend1Merged)[i2].from.slice(-4)
+                    if (nameArr[i].toUpperCase() === Object.values(spend1Merged)[i2].from.toUpperCase()) {
+                        Object.values(spend1Merged)[i2].name = nameArr3[i] !== undefined ? nameArr3[i] : Object.values(spend1Merged)[i2].from.slice(0, 4) + "..." + Object.values(spend1Merged)[i2].from.slice(-4)
                         spend1RemoveDup.push(Object.values(spend1Merged)[i2])
-                    //}
+                    }
                 }
-            //}
+            }
 
             const spend2Filter = await vabagUsageSC.filters.Transfer(null, '0x0000000000000000000000000000000000000001', null)
-            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 3746383, 'latest')
+            const spend2Event = await vabagUsageSC.queryFilter(spend2Filter, 3934782, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
             const spend2Merged = spend2Map.reduce((prev, curr) => {
                 if (prev[curr.from.toUpperCase()]) {
@@ -310,15 +309,15 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
             }
 
             const spend31Filter = await acnftSC.filters.Transfer('0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a', null, null)
-            const spend31Event = await acnftSC.queryFilter(spend31Filter, 3746383, 'latest')
+            const spend31Event = await acnftSC.queryFilter(spend31Filter, 3934782, 'latest')
             const spend31Map = await Promise.all(spend31Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
             const spend32Filter = await apDunSC.filters.Transfer('0x09e6a0A03afa27438c3f507de82b5f6061Ae1643', null, null)
-            const spend32Event = await apDunSC.queryFilter(spend32Filter, 3746383, 'latest')
+            const spend32Event = await apDunSC.queryFilter(spend32Filter, 3934782, 'latest')
             const spend32Map = await Promise.all(spend32Event.map(async (obj) => {return {from: String(obj.args.to), value: 10}}))
 
             const spend33Filter = await apDunSC.filters.Transfer('0x87A612709b36b575103C65a90cB3B16Cac2BC898', null, null)
-            const spend33Event = await apDunSC.queryFilter(spend33Filter, 3746383, 'latest')
+            const spend33Event = await apDunSC.queryFilter(spend33Filter, 3934782, 'latest')
             const spend33Map = await Promise.all(spend33Event.map(async (obj) => {return {from: String(obj.args.to), value: 20}}))
 
             const spend3Merged = spend31Map.concat(spend32Map, spend33Map).reduce((prev, curr) => {
@@ -546,7 +545,7 @@ const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanter
 
                 <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "70%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                     <div style={{padding: "50px", margin: "50px 0", backdropFilter: "blur(20px)", border: "none", minWidth: "940px", width: "80%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "14px"}} className="nftCard">
-                        <div style={{fontSize: "40px"}}>August 2024 Prize Pool 🎁</div>
+                        <div style={{fontSize: "40px"}}>September 2024 Prize Pool 🎁</div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                             <div style={{width: "220px", marginRight: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top $ANGB Holder</div>
