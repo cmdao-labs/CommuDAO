@@ -92,8 +92,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const [yourSS1CMPOW, setYourSS1CMPOW] = React.useState(0)
 
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
-
     const [skinSlot1, setSkinSlot1] = React.useState(null)
+    const [isClaimBadge, setIsClaimBadge] = React.useState(false)
 
     const [doijibBalance, setDoijibBalance] = React.useState(0)
     const [silBalance, setSilBalance] = React.useState(0)
@@ -1028,6 +1028,12 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         functionName: 'skin',
                         args: [address, 1],
                     }, 
+                    {
+                        address: badgeClaimer,
+                        abi: badgeClaimerABI,
+                        functionName: 'isClaimed',
+                        args: [address, ss],
+                    },
                 ],
             })
             const rawPending = await readContract({
@@ -1503,6 +1509,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const silBal = data[23].result
             const stOPTClaim = isStaked ? data[24].result : 0
             const skinslot1 = data[25].result
+            const isbadgeclaimed = data[26].result
             const rewardpending = isStaked ? rawPending : 0
                         
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
@@ -1658,7 +1665,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 nftEQ_meme_char_ss1_Img, nftEQ_meme_char_ss1_Name, nftEQ_meme_hat_ss1_Img, nftEQ_meme_hat_ss1_Name, nftEQ_meme_cloth_ss1_Img, nftEQ_meme_cloth_ss1_Name, nftEQ_meme_acc_ss1_Img, nftEQ_meme_back_ss1_Img, nftEQ_meme_back_ss1_Name, nftEQ_meme_shoes_ss1_Img, nftEQ_meme_shoes_ss1_Name, nftEQ_meme_weapon_ss1_Img, nftEQ_meme_weapon_ss1_Name,
-                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, silBal, skinslot1, myhouseMul, house, memeSS1cmpow,
+                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, silBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
             ]
         }
 
@@ -1748,9 +1755,10 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             setLandBonus(result[52])
             setMyhouse(result[53])
             setYourSS1CMPOW(result[54])
+            setIsClaimBadge(result[55])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -2014,14 +2022,17 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             REWARD BALANCE
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
-                                <div style={{marginLeft: "5px"}}>{Number(silBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                            </div>
+                            {isEnd ? 
+                                <div style={{display: "flex", flexDirection: "row"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(silBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                </div> :
+                                <div style={{color: "#5f6476"}}>SS1 is over</div>
+                            }
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             REWARD PENDING
-                            {!isEnd ? 
+                            {isEnd ? 
                                 <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
                                     <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
@@ -2044,7 +2055,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                 <div style={{color: "#5f6476"}}>SS1 is over</div>
                             }
                         </div>
-                        {!isEnd ?
+                        {isEnd ?
                             <>
                                 {isStakeNow ?
                                     <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
@@ -2203,7 +2214,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                {(ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={claimBadge}>CLAIM BADGE</div>}
+                                {(!isClaimBadge && ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={claimBadge}>CLAIM BADGE</div>}
                             </div>
                         </div>
                     </div>
