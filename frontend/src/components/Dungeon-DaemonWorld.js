@@ -12,7 +12,7 @@ const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunAngbABI, uswarABI }) => {
+const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunAngbABI, uswarABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -526,7 +526,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             uAddr = uswar
             gasIndex = 2
             swarUsage = 0.2
-            craftIndex = 0
+            craftIndex = 1
         }
         try {
             if (Number(uswarBalance) === 0) {
@@ -580,7 +580,10 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
