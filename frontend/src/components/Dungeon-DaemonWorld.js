@@ -7,11 +7,12 @@ import { ThreeDots } from 'react-loading-icons'
 const angelplus = '0x853beB37aBAfA021818B9f66e5333E657Ceb29d0'
 
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
+const uswar = '0x04Aa6Bd718c64E5253968c6C5DAc0Bce3a10424c'
 const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunAngbABI }) => {
+const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunAngbABI, uswarABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -57,6 +58,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const [angbPending, setAngbPending] = React.useState(0)
 
     const [swarBalance, setSwarBalance] = React.useState(0)
+    const [uswarBalance, setUSWARBalance] = React.useState(0)
     const [angbBalance, setAngbBalance] = React.useState(0)
 
     React.useEffect(() => {
@@ -140,8 +142,14 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                         functionName: 'calculateRewards',
                         args: [address],
                     },
+                    {
+                        address: uswar,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : ["", "", "", "", "", "", "", "", 0, 0, 0, 0, ]
+            }) : ["", "", "", "", "", "", "", "", 0, 0, 0, 0, {result: 0}]
 
             let nfts = []
 
@@ -312,6 +320,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const swarBal = data[8].result
             const angbBal = data[9].result
             const rewardPending = isStaked === true ? data[10].result : 0
+            const uswarBal = data[11].result
             
             const walletFilter = await apnftSC.filters.Transfer(null, address, null)
             const walletEvent = await apnftSC.queryFilter(walletFilter, 2768102, "latest")
@@ -370,7 +379,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name, nftEQ_8, nftEQ_8_Name,
-                allPow, isStaked, refuelAt, rewardPending, swarBal, angbBal, 
+                allPow, isStaked, refuelAt, rewardPending, swarBal, angbBal, uswarBal,
             ]
         }
 
@@ -413,6 +422,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         
             setSwarBalance(ethers.utils.formatEther(String(result[21])))
             setAngbBalance(ethers.utils.formatEther(String(result[22])))
+            setUSWARBalance(ethers.utils.formatEther(String(result[23])))
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, dunAngbABI])
@@ -508,20 +518,52 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         setisLoading(true)
         let gasAddr = ''
         let gasIndex = 0
+        let swarUsage = 0
+        let craftIndex = null
+        let uAddr = ''
         if (gasselected === "SWAR") {
             gasAddr = swarLab
-            gasIndex = 1
+            uAddr = uswar
+            gasIndex = 2
+            swarUsage = 0.2
+            craftIndex = 0
         }
         try {
+            if (Number(uswarBalance) === 0) {
+                const gasAllow0 = await readContract({
+                    address: gasAddr,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, uAddr],
+                })
+                if (gasAllow0 < (swarUsage * 10**18)) {
+                    const config = await prepareWriteContract({
+                        address: gasAddr,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [uAddr, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
+                }
+                const config02 = await prepareWriteContract({
+                    address: uAddr,
+                    abi: uswarABI,
+                    functionName: 'craft',
+                    args: [craftIndex]
+                })
+                const { hash: hash01 } = await writeContract(config02)
+                await waitForTransaction({ hash: hash01 })
+            }
             const gasAllow = await readContract({
-                address: gasAddr,
+                address: uAddr,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, dunANGB],
             })
-            if (gasAllow < (2 * 10**17)) {
+            if (gasAllow < (1 * 10**18)) {
                 const config = await prepareWriteContract({
-                    address: gasAddr,
+                    address: uAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [dunANGB, ethers.utils.parseEther(String(10**8))],
@@ -666,7 +708,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && ((gasselected === "SWAR" && Number(swarBalance) >= 0.2)) ?
+                                        {isStakeNow !== null && ((gasselected === "SWAR" && (Number(swarBalance) >= 0.2 || Number(uswarBalance) >= 1))) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
