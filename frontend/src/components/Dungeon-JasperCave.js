@@ -811,7 +811,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && ((gasselected === "CTUNA" && Number(ctunaBalance) >= 500) || (gasselected === "SX31" && Number(sx31Balance) >= 500) || (gasselected === "PIZZA" && (Number(pzaBalance) >= 5000 || csIdEquip !== "0"))) ?
+                                        {isStakeNow !== null && ((gasselected === "CTUNA" && Number(ctunaBalance) >= 500) || (gasselected === "SX31" && Number(sx31Balance) >= 500) || (gasselected === "PIZZA" && (Number(pzaBalance) >= 5000 || Number(upzaBalance) >= 500 || csIdEquip !== "0"))) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
