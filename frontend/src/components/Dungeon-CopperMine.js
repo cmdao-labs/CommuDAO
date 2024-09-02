@@ -5,16 +5,16 @@ import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
-
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
+const ubbqToken = '0x3466D3A3A6CB29B1FdBf1353CC476db62D1ACFC1'
 
 const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, dunCopperABI, mintStOPTABI, salonABI }) => {
+const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunCopperABI, mintStOPTABI, salonABI, ubbqABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -52,7 +52,11 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
     const [gasselected, setGasselected] = React.useState("BBQ")
     const [bbqBalance, setBbqBalance] = React.useState(0)
+    const [ubbqBalance, setUbbqBalance] = React.useState(0)
     const [cuBalance, setCuBalance] = React.useState(0)
+
+    const [csIdEquip, setCsIdEquip] = React.useState(null)
+    const [csUsage, setCsUsage] = React.useState(null)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -67,7 +71,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 args: [address],
             }) : [{characterId: 0, hatId: 0, clothId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = await readContracts({
                 contracts: [
                     {
                         address: hexajibjib,
@@ -117,8 +121,20 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                         functionName: 'skin',
                         args: [address, 1],
                     }, 
+                    {
+                        address: ubbqToken,
+                        abi: ubbqABI,
+                        functionName: 'cs',
+                        args: [address],
+                    },
+                    {
+                        address: ubbqToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : ["", "", "", 0, 0, 0, 0, 0, ]
+            })
 
             let nfts = []
 
@@ -187,10 +203,13 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             const refuelAt = Number(nftEQ[4])
 
             const rewardPending = isStaked ? data[3].result : 0
-            const stOPTClaim = isStaked === true ? data[4].result : 0
+            const stOPTClaim = isStaked ? data[4].result : 0
             const bbqBal = data[5].result
             const cuBal = data[6].result
             const skin1 = data[7].result
+            const csid = data[8].result[0]
+            const csusage = data[8].result[1]
+            const ubbqBal = data[9].result
 
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
@@ -251,7 +270,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_3, nftEQ_3_Name, nftEQ_2, nftEQ_2_Name,
                 allPow, isStaked, refuelAt, rewardPending, stOPTClaim,
-                bbqBal, cuBal, skin1, 
+                bbqBal, cuBal, skin1, csid, csusage, ubbqBal,
             ]
         }
 
@@ -293,9 +312,12 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             setBbqBalance(ethers.utils.formatEther(String(result[12])))
             setCuBalance(ethers.utils.formatEther(String(result[13])))
             setSkinSlot1(result[14])
+            setCsIdEquip(String(result[15]))
+            setCsUsage(Number(result[16]))
+            setUbbqBalance(ethers.utils.formatEther(String(result[17])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunCopperABI, mintStOPTABI, salonABI])
+    }, [address, txupdate, erc721ABI, erc20ABI, dunCopperABI, mintStOPTABI, salonABI, ubbqABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -378,16 +400,55 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
     const refuelStake = async () => {
         setisLoading(true)
+        let gasAddr = ''
+        let gasIndex = 0
+        let bbqUsage = 0
+        let uAddr = ''
+        if (gasselected === "BBQ") {
+            gasAddr = bbqToken
+            uAddr = ubbqToken
+            gasIndex = 2
+            if (csIdEquip === '0') {
+                bbqUsage = 5000
+            } else {
+                bbqUsage = 0
+            }
+        }
         try {
+            if (Number(ubbqBalance) === 0) {
+                const gasAllow0 = await readContract({
+                    address: gasAddr,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [address, uAddr],
+                })
+                if (gasAllow0 < (bbqUsage * 10**18)) {
+                    const config = await prepareWriteContract({
+                        address: gasAddr,
+                        abi: erc20ABI,
+                        functionName: 'approve',
+                        args: [uAddr, ethers.utils.parseEther(String(10**8))],
+                    })
+                    const { hash: hash0 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash0 })
+                }
+                const config02 = await prepareWriteContract({
+                    address: uAddr,
+                    abi: ubbqABI,
+                    functionName: 'craft',
+                })
+                const { hash: hash01 } = await writeContract(config02)
+                await waitForTransaction({ hash: hash01 })
+            }
             const gasAllow = await readContract({
-                address: bbqToken,
+                address: uAddr,
                 abi: erc20ABI,
                 functionName: 'allowance',
                 args: [address, dunCopper],
             })
             if (gasAllow < (500 * 10**18)) {
                 const config = await prepareWriteContract({
-                    address: bbqToken,
+                    address: uAddr,
                     abi: erc20ABI,
                     functionName: 'approve',
                     args: [dunCopper, ethers.utils.parseEther(String(10**8))],
@@ -399,12 +460,15 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 address: dunCopper,
                 abi: dunCopperABI,
                 functionName: 'refuel',
-                args: [1]
+                args: [gasIndex]
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -418,6 +482,38 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 args: [1]
             })
             const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const depositcs = async (_csId) => {
+        setisLoading(true)
+        try {
+            const nftAllow = await readContract({
+                address: hexajibjib,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_csId],
+            })
+            if (nftAllow.toUpperCase() !== ubbqToken.toUpperCase()) {
+                const config = await prepareWriteContract({
+                    address: hexajibjib,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [ubbqToken, _csId],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: ubbqToken,
+                abi: ubbqABI,
+                functionName: 'depositCs',
+                args: [1, _csId],
+            })
+            const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch {}
@@ -505,18 +601,15 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                             </div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            GAS USAGE
+                            GAS
                             <select style={{padding: "2.5px 5px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
                                 <option value="BBQ">$BBQ</option>
                             </select>
                             <div style={{display: "flex", flexDirection: "row"}}>
                                 {gasselected === "BBQ" &&
-                                    <>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                    </>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
                                 }
-                                <div style={{marginLeft: "5px"}}>/500</div>
+                                <div style={{marginLeft: "5px"}}>{csIdEquip === '0' ? <><div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>/5000</> : <>Free Gas Remain: {100 - csUsage}</>}</div>
                             </div>
                         </div>
                         {isStakeNow ?
@@ -531,7 +624,7 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && (gasselected === "BBQ" && Number(bbqBalance) >= 500) ?
+                                        {isStakeNow !== null && (gasselected === "BBQ" && (Number(bbqBalance) >= 5000 || csIdEquip !== "0")) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
@@ -616,12 +709,15 @@ const Coppermine = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                                                 <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                                     {item.isStaked ?
                                                         <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
-                                                        <>
+                                                        <div style={{display: "flex", flexDirection: "column"}}>
                                                             {!isStakeNow &&
                                                                 <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Id)}>EQUIP</div>
                                                             }
-                                                            <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
-                                                        </>
+                                                            {(csIdEquip === '0' && item.Name === 'Chō-Senjiryakketsu') &&
+                                                                <div style={{alignSelf: "center", marginTop: "10px"}} className="pixel button" onClick={() => depositcs(item.Id)}>REDEEM FREE GAS</div>
+                                                            }
+                                                            <div style={{alignSelf: "center", marginTop: "10px", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                        </div>
                                                     }
                                                 </div> :
                                                 <div style={{height: "41px"}}></div>

@@ -89,6 +89,7 @@ import dunJasperABI from './jsons/dunJasperABI.json'
 import dunJasperL2ABI from './jsons/dunJasperL2ABI.json'
 import dunCopperABI from './jsons/dunCopperABI.json'
 import mintStOPTABI from './jsons/mintStOPTABI.json'
+import ubbqABI from './jsons/ubbqABI.json'
 import dunAngbABI from './jsons/dunAngbABI.json'
 import dunEEABI from './jsons/dunEEABI.json'
 import uiiABI from './jsons/uiiABI.json'
@@ -448,7 +449,7 @@ const Main = () => {
                 
                 
                 {mode === 3 && <Dungeon callMode={callMode} navigate={navigate} />}
-                {mode === 33 && <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} />}
+                {mode === 33 && <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
                 {mode === 31 && <Jaspercave intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} />}
                 {mode === 39 && <Memeticorbit intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunMoABI={dunMoABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} slot1ABI={slot1ABI} badgeClaimerABI={badgeClaimerABI} />}
 
