@@ -113,15 +113,15 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Reward distribution on:</div>
-                        <div style={{textAlign: "right"}}>5-10 Sep 2024</div>
+                        <div style={{textAlign: "right"}}>8-10 Sep 2024</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
-                        <a style={{display: "flex", textAlign: "right"}} href="https://snapshot.org/#/commudao.eth" target="_blank" rel="noreferrer">Cast vote on Snapshot latest proposal to qualify</a>
+                        <a style={{display: "flex", textAlign: "right"}} href="https://snapshot.org/#/commudao.eth/proposal/0xee97eff68a04ade873fa51324f2bfca5e6b0863954fde133e080042796df6f5c" target="_blank" rel="noreferrer">Cast vote on Snapshot latest proposal to qualify</a>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
-                        <div style={{textAlign: "right"}}>The proposal will be voted on September 1, 2024.</div>
+                        <div style={{textAlign: "right"}}>Terminated on 11.59 PM. Sep 7, 2024.</div>
                     </div>
                     <div style={{width: "75%", height: "80px", display: "flex", justifyContent: "space-between", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
