@@ -68,7 +68,7 @@ const BBQMall = ({ setisLoading, txupdate, setTxupdate, cmdaoAmmNpcABI, erc20ABI
                 <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px", letterSpacing: "1px"}} className="pixel">Automated Buy & Sell</div>
             </div>
             <div style={{margin: "30px 100px"}}>
-                <img src="./background/malllogo.png" width="150" alt="Mall_Logo" />
+                <img src="../background/malllogo.png" width="150" alt="Mall_Logo" />
             </div>
         </div>
 
