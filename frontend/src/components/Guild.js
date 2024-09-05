@@ -1571,7 +1571,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                             <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
                                 {chain.id === 190 ?
                                     <>
-                                        {myMemberIndex === null && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>}
+                                        {(myMemberIndex === null || !myAbiltoDelegate) && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>}
                                         {(myAbiltoDelegate && Number(gasBalance) >= 1) && <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div>}
                                         {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= startBlock && !isBaseCmdDelegate) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
                                         {isBaseCmdDelegate && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">MISSION DELEGATED</div>}
