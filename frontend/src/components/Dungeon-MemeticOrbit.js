@@ -2022,7 +2022,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             REWARD BALANCE
-                            {isEnd ? 
+                            {!isEnd ? 
                                 <div style={{display: "flex", flexDirection: "row"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
                                     <div style={{marginLeft: "5px"}}>{Number(silBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
@@ -2032,7 +2032,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             REWARD PENDING
-                            {isEnd ? 
+                            {!isEnd ? 
                                 <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
                                     <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
@@ -2055,7 +2055,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                 <div style={{color: "#5f6476"}}>SS1 is over</div>
                             }
                         </div>
-                        {isEnd ?
+                        {!isEnd ?
                             <>
                                 {isStakeNow ?
                                     <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
@@ -2081,7 +2081,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                             </> :
                                             <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
                                         }
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                        {!isEnd && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>}
                                     </>
                                 }
                             </div> :
