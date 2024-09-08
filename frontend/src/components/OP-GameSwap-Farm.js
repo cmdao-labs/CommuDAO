@@ -10,6 +10,9 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
     const [stLpBalance, setStLpBalance] = React.useState(null)
     const [lpStake, setLpStake] = React.useState("")
     const [timetoWithdraw, setTimeToWithdraw] = React.useState("")
+    const [reward1, setReward1] = React.useState("")
+    const [reward2, setReward2] = React.useState("")
+    const [reward3, setReward3] = React.useState("")
 
     React.useEffect(() => {
         console.log("Connected to " + address)
@@ -35,11 +38,29 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                         functionName: 'lpStake',
                         args: [address],
                     },
+                    {
+                        address: stcmdlp,
+                        abi: stcmdABI,
+                        functionName: 'stakedRewards',
+                        args: [address, 1, 1],
+                    },
+                    {
+                        address: stcmdlp,
+                        abi: stcmdABI,
+                        functionName: 'stakedRewards',
+                        args: [address, 1, 2],
+                    },
+                    {
+                        address: stcmdlp,
+                        abi: stcmdABI,
+                        functionName: 'stakedRewards',
+                        args: [address, 1, 3],
+                    },
                 ],
-            }) : [{result: [0]}, {result: [0]}, {result: null}]
-            
+            }) : [{result: [0]}, {result: [0]}, {result: null}, {result: [0]}, {result: [0]}, {result: [0]}]
+
             return [
-                data[0].result, data[1].result, data[2].result,
+                data[0].result, data[1].result, data[2].result, data[3].result, data[4].result, data[5].result,
             ]
         }
 
@@ -57,6 +78,9 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
             setStLpBalance(ethers.utils.formatEther(result[1]))
             const nextWithdraw = new Date((Number(result[2][1]) * 1000) + (86400 * 28 * 1000))
             result[2][2] ? setTimeToWithdraw(nextWithdraw.toLocaleString('es-CL')) : setTimeToWithdraw("Not Stake")
+            setReward1(ethers.utils.formatEther(result[3]))
+            setReward2(ethers.utils.formatEther(result[4]))
+            setReward3(ethers.utils.formatUnits(result[5], 'mwei'))
         })
     }, [address, txupdate, erc20ABI, stcmdABI])
 
@@ -95,6 +119,38 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
         setisLoading(false)
     }
 
+    const harvestHandle = async () => {
+        setisLoading(true)
+        try {
+            const config1 = await prepareWriteContract({
+                address: stcmdlp,
+                abi: stcmdABI,
+                functionName: 'claimReward',
+                args: [1, 1],
+            })
+            const { hash: hash1 } = await writeContract(config1)
+            await waitForTransaction({ hash: hash1 })
+            const config2 = await prepareWriteContract({
+                address: stcmdlp,
+                abi: stcmdABI,
+                functionName: 'claimReward',
+                args: [2, 1],
+            })
+            const { hash: hash2 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash2 })
+            const config3 = await prepareWriteContract({
+                address: stcmdlp,
+                abi: stcmdABI,
+                functionName: 'claimReward',
+                args: [3, 1],
+            })
+            const { hash: hash3 } = await writeContract(config3)
+            await waitForTransaction({ hash: hash3 })
+            setTxupdate(hash3)
+        } catch (e) {console.log(e)}
+        setisLoading(false)
+    }
+
     return (
         <>
             <div style={{margin: "20px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
@@ -126,11 +182,14 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                     <div style={{width: "75%", height: "80px", display: "flex", justifyContent: "space-between", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>REVENUE SHARED:</div>
-                            <div className="bold">TBD $USDT</div>
-                            <div className="bold">TBD $WETH</div>
-                            <div className="bold">TBD $CMD</div>
+                            <div className="bold">{Number(reward1).toLocaleString('en-US', {maximumFractionDigits:2})} $CMD</div>
+                            <div className="bold">{Number(reward2).toLocaleString('en-US', {maximumFractionDigits:6})} $WETH</div>
+                            <div className="bold">{Number(reward3).toLocaleString('en-US', {maximumFractionDigits:2})} $USDT</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(206, 208, 207)", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        {Number(reward1) > 0 || Number(reward2) > 0 || Number(reward3) > 0 ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(206, 208, 207)", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
