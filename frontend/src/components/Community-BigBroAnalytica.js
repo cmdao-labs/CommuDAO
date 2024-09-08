@@ -750,9 +750,9 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
             setCmdBbq(ethers.utils.formatEther(String(result[13][1].result)))
             setCmdGov(ethers.utils.formatEther(String(result[13][2].result)))
-            setCmdRev((Number(result[14]) - 10) * 0.85)
+            setCmdRev((Number(result[14]) - 10) * 0.60)
             setUsdtRev(Number(result[13][4].result) / 1e6)
-            setEthRev((Number(result[15])) * 0.85)
+            setEthRev((Number(result[15])) * 0.60)
             setCmdCirculation(100000000 - Number(ethers.utils.formatEther(String(result[13][5].result))) - Number(ethers.utils.formatEther(String(result[13][0].result))))
             setCmdBurn(ethers.utils.formatEther(String(result[13][5].result)))
 
@@ -804,7 +804,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div>Epoch 1 Revenue:</div>
+                                <div>Epoch 2 Revenue:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdRev).toLocaleString('en-US', {maximumFractionDigits:0})} CMD ({Number(cmdRev/1000000).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
