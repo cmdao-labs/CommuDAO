@@ -4,10 +4,8 @@ import { readContracts } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
-const t1BKC = '0xfb0f31373fe7e12607c398565314483cde06b492'
+const t1BKC = '0xc6Ce0974DDC4cE4B76d9190dd8d48866A9976DE9'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
-
-const { ethereum } = window
 
 const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
     const { address } = useAccount()
@@ -21,7 +19,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
         const thefetch = async () => {    
             let nfts = []        
             const walletFilter = await bkcnftSC.filters.Transfer(null, address, null)
-            const walletEvent = await bkcnftSC.queryFilter(walletFilter, 4347206, "latest")
+            const walletEvent = await bkcnftSC.queryFilter(walletFilter, 4843357, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             const data2 = address !== null && address !== undefined ? await readContracts({
@@ -31,6 +29,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                         abi: erc721ABI,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 96
                     }
                 ))
             }) : [Array(walletRemoveDup.length).fill('')]
@@ -47,6 +46,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                         abi: erc721ABI,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 96
                     }
                 ))
             }) : [Array(yournftwallet.length).fill('')]
@@ -55,6 +55,17 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                 const nftipfs = data3[i].result
                 const response = await fetch(nftipfs)
                 const nft = await response.json()
+                
+                let cmpow = 0 
+                if (nft.attributes[0].value === "Normal") {
+                    cmpow = 1000
+                } else if (nft.attributes[0].value === "Rare") {
+                    cmpow = 1200
+                } else if (nft.attributes[0].value === "Super Rare") {
+                    cmpow = 1800
+                } else if (nft.attributes[0].value === "Ultra Rare") {
+                    cmpow = 2500
+                }
 
                 nfts.push({
                     Id: yournftwallet[i].Id,
@@ -62,7 +73,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: null,
+                    RewardPerSec: cmpow,
                     Onsell: false,
                     Count: null
                 })
@@ -86,7 +97,6 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
         })
 
     }, [address, txupdate, erc721ABI])
-    console.log(bkcNft)
 
     return (
         <>
@@ -112,8 +122,8 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
                 <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Your Bitkub Chain Wallet</div>
                 {bkcNft.length > 0 ?
-                    <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
-                        <div style={{textAlign: "left", margin: "50px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
+                        <div style={{textAlign: "left", margin: "20px 0 80px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                             {bkcNft[0] !== null ?
                                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                     {bkcNft.map((item, index) => (
@@ -125,10 +135,10 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, erc721ABI }) => {
                                                 <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                                                     <div style={{fontSize: "14px"}} className="emp bold">{item.Name}</div>
                                                     <div style={{fontSize: "16px", margin: "5px 0 12px 0"}} className="pixel">
-                                                        {item.RewardPerSec} bonus per sec 
+                                                        {item.RewardPerSec} cmpow 
                                                     </div>
                                                     {!item.Onsell ?
-                                                        <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "80px"}} className="pixel button">BRIDGE NFT</div> :
+                                                        <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "120px"}} className="pixel button">BRIDGE NFT</div> :
                                                         <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "120px", background: "gray"}} className="pixel button">REMOVE SELL</div>
                                                     }
                                                 </div>
