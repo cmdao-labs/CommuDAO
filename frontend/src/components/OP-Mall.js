@@ -6,7 +6,7 @@ import OPMallT1 from  './OP-Mall-T1'
 
 const { ethereum } = window
 
-const OPMall = ({ setisLoading, txupdate, setTxupdate, cmdaoAmmNpcABI, erc20ABI, erc721ABI }) => {
+const OPMall = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20ABI, erc721ABI, uniNftBridgeABI, multichainMallABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
@@ -53,7 +53,7 @@ const OPMall = ({ setisLoading, txupdate, setTxupdate, cmdaoAmmNpcABI, erc20ABI,
                 {mode === 1 && 
                     <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
                         <div className='hashtag' onClick={() => setMode(0)}>BACK</div>
-                        <OPMallT1 setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} />
+                        <OPMallT1 setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} uniNftBridgeABI={uniNftBridgeABI} multichainMallABI={multichainMallABI} />
                     </div>
                 }
             </div>

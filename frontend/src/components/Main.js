@@ -159,6 +159,7 @@ import tbridgeNFTABI from './jsons/tbridgeNFTABI.json'
 import nativeBridgeABI from './jsons/nativeBridgeABI.json'
 import uniTokensBridgeABI from './jsons/uniTokensBridgeABI.json'
 import uniNftBridgeABI from './jsons/uniNftBridgeABI.json'
+import multichainMallABI from './jsons/multichainMallABI.json'
 
 import veloPoolABI from './jsons/veloPoolABI.json'
 import velodromeRouterABI from './jsons/velodromeRouterABI.json'
@@ -480,7 +481,7 @@ const Main = () => {
                 
                 {mode === 5 && <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoMerchantWLABI={cmdaoMerchantWLABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyStdABI={ammyStdABI} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} wjbcABI={wjbcABI} presaleABI={presaleABI} />}
                 {mode === 51 && <BBQMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} />}
-                {mode === 52 && <OPMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} erc721ABI={erc721ABI} />}
+                {mode === 52 && <OPMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} erc721ABI={erc721ABI} uniNftBridgeABI={uniNftBridgeABI} multichainMallABI={multichainMallABI} />}
             
                 {mode === 6 && <Mkp intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} aurora721ABI={aurora721ABI} cmdaoMkpABI={cmdaoMkpABI} houseStakingABI={houseStakingABI} />}
                 
