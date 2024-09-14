@@ -14,6 +14,7 @@ import DjMining from './Fields-DjMining'
 import Labs from './Labs'
 
 import Dungeon from './Dungeon'
+import OPDungeon from './OP-Dungeon'
 import Npcblacksmith from './Dungeon-Blacksmith'
 import NpcEvolutionary from './Dungeon-Evolutionary'
 import ApInn from './Dungeon-ApInn'
@@ -26,6 +27,7 @@ import Jaspercave from './Dungeon-JasperCave'
 import Memeticorbit from './Dungeon-MemeticOrbit'
 import Daemonworld from './Dungeon-DaemonWorld'
 import CrypticCogs from './Dungeon-CrypticCogs'
+import AbandonedTempleVault from './OP-Dungeon-AbandonedTempleVault.js'
 
 import Community from './Community'
 import CmCityCenter from './Community-CmCityCenter'
@@ -323,6 +325,12 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "THE-ENDLESS-TOWER") {
                     preset = 30001
                     document.title = "The Endless Tower | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "OP") {
+                    preset = 31000
+                    document.title = "Dungeon [OP] | CommuDAO"
+                } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "ABANDONED-TEMPLE-VAULT") {
+                    preset = 31001
+                    document.title = "Abandoned Temple Vault | CommuDAO"
                 }
             } else {
                 preset = 3
@@ -469,6 +477,9 @@ const Main = () => {
 
                 {mode === 30000 && <BBQDungeon callMode={callMode} navigate={navigate} />}
                 {mode === 30001 && <TheEndlessTower intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunGEMABI={dunGEMABI} />}
+
+                {mode === 31000 && <OPDungeon callMode={callMode} navigate={navigate} />}
+                {mode === 31001 && <AbandonedTempleVault intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} />}
                 
                 {mode === 4 && <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} />}
                 {mode === 41 && <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} cmcityPointsABI={cmcityPointsABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} />}
