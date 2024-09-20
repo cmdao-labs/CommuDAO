@@ -103,6 +103,8 @@ import badgeClaimerABI from './jsons/badgeClaimerABI.json'
 import nftSlotABI from './jsons/nftSlotABI.json'
 import partyABI from './jsons/partyABI.json'
 import missionCMDBaseABI from './jsons/missionCMDBaseABI.json'
+import multichainSlotABI from './jsons/multichainSlotABI.json'
+import dunATVABI from './jsons/dunATVABI.json'
 
 import cmdaoMerchantABI from './jsons/cmdaoMerchantABI.json'
 import cmdaoMerchantV2ABI from './jsons/cmdaoMerchantV2ABI.json'
@@ -479,7 +481,7 @@ const Main = () => {
                 {mode === 30001 && <TheEndlessTower intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunGEMABI={dunGEMABI} />}
 
                 {mode === 31000 && <OPDungeon callMode={callMode} navigate={navigate} />}
-                {mode === 31001 && <AbandonedTempleVault intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} />}
+                {mode === 31001 && <AbandonedTempleVault intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} multichainSlotABI={multichainSlotABI} dunATVABI={dunATVABI} />}
                 
                 {mode === 4 && <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} />}
                 {mode === 41 && <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} cmcityPointsABI={cmcityPointsABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} />}

@@ -101,10 +101,11 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
           }
           {chain !== undefined && (chain.id === 10) &&
             <> 
-              <div className="funcList" style={{cursor: "not-allowed"}}>Field</div>
+              <div className="funcList" style={{cursor: "not-allowed"}}>Fields</div>
+              <div className="funcList" style={{cursor: "not-allowed"}}>Labs</div>
               <div className="funcList" onClick={() => {callMode(31001); navigate('/dungeon/abandoned-temple-vault');}}>Dungeon</div>
               <div className="funcList" onClick={() => {callMode(9); navigate('/guild/profile');}}>Guild</div>
-              <div className="funcList">Community</div>
+              <div className="funcList" style={{cursor: "not-allowed"}}>Community</div>
               <div className="funcList" onClick={() => {callMode(52); navigate('/mall/op');}}>Mall</div>
               <div className="funcList" onClick={() => {callMode(701); navigate('/gameswap/op');}}>GameSwap</div>
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
@@ -200,7 +201,6 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
       </header>
     </>
   )
-  }
+}
   
-  export default Headbar
-  
+export default Headbar
