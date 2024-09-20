@@ -1,15 +1,18 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
 import { useAccount, useNetwork } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
+const multinft1 = '0x224dFcCC4e6bFc2c25B0c5ee46D580f3Be77E3B4'
 const nftSlot = '0xB5fb4a445EE4882c8192680E2EaB0033C30e64BA'
+const multiSlot = '0x8c4672bE4043201Cd8236887C9B43A48046b69EF'
+const dunATV = '0x1391a538985f2F897375219573c7F5D61EA33Cdf'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI }) => {
+const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, multichainSlotABI, dunATVABI }) => {
     const { chain } = useNetwork()
     let { address } = useAccount()
     //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
@@ -61,12 +64,23 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
     const [badgeSlot, setBadgeSlot] = React.useState(null)
     const [badgeSlotLevel, setBadgeSlotLevel] = React.useState(null)
 
+    const [multinft, setMultinft] = React.useState([])
+    const [multiSlot1, setmultiSlot1] = React.useState(null)
+    const [multiSlot2, setmultiSlot2] = React.useState(null)
+    const [multiSlot3, setmultiSlot3] = React.useState(null)
+    const [multiSlot4, setmultiSlot4] = React.useState(null)
+    const [multiSlot5, setmultiSlot5] = React.useState(null)
+
     const [allPower, setAllPower] = React.useState(0)
+    const [sumPower, setSumPower] = React.useState(0)
+    const [stakePower, setStakePower] = React.useState(0)
     const [rewardPending, setRewardPending] = React.useState(0)
+    const [rewardBalance, setRewardBalance] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const cmdaonftSC = new ethers.Contract(cmdaonft, erc721ABI, providerOP)
+        const multinft1SC = new ethers.Contract(multinft1, erc721ABI, providerOP)
         setNft([])
         
         const thefetch = async () => {
@@ -83,6 +97,46 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 functionName: 'nftEquip2',
                 args: [address],
                 chainId: 10,
+            })
+
+            const multidata = await readContracts({
+                contracts: [
+                    {
+                        address: multiSlot,
+                        abi: multichainSlotABI,
+                        functionName: 'nftStake',
+                        args: [address, 0],
+                        chainId: 10,
+                    },
+                    {
+                        address: multiSlot,
+                        abi: multichainSlotABI,
+                        functionName: 'nftStake',
+                        args: [address, 1],
+                        chainId: 10,
+                    },
+                    {
+                        address: multiSlot,
+                        abi: multichainSlotABI,
+                        functionName: 'nftStake',
+                        args: [address, 2],
+                        chainId: 10,
+                    },
+                    {
+                        address: multiSlot,
+                        abi: multichainSlotABI,
+                        functionName: 'nftStake',
+                        args: [address, 3],
+                        chainId: 10,
+                    },
+                    {
+                        address: multiSlot,
+                        abi: multichainSlotABI,
+                        functionName: 'nftStake',
+                        args: [address, 4],
+                        chainId: 10,
+                    },
+                ],
             })
 
             const data = await readContracts({
@@ -196,6 +250,69 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                         address: nftSlot,
                         abi: nftSlotABI,
                         functionName: 'nftStatus',
+                        args: [address],
+                        chainId: 10,
+                    },
+                    {
+                        address: multiSlot,
+                        abi: multichainSlotABI,
+                        functionName: 'nftStatus',
+                        args: [address],
+                        chainId: 10,
+                    },
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [multidata[0].result[0]],
+                        chainId: 10,
+                    },
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [multidata[1].result[0]],
+                        chainId: 10,
+                    },
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [multidata[2].result[0]],
+                        chainId: 10,
+                    },
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [multidata[3].result[0]],
+                        chainId: 10,
+                    },
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [multidata[4].result[0]],
+                        chainId: 10,
+                    },
+                    {
+                        address: dunATV,
+                        abi: dunATVABI,
+                        functionName: 'nftStake',
+                        args: [address],
+                        chainId: 10,
+                    },
+                    {
+                        address: dunATV,
+                        abi: dunATVABI,
+                        functionName: 'calculateRewards',
+                        args: [address],
+                        chainId: 10,
+                    },
+                    {
+                        address: dunATV,
+                        abi: dunATVABI,
+                        functionName: 'balanceOf',
                         args: [address],
                         chainId: 10,
                     },
@@ -576,13 +693,187 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             }
             if (nfts.length === 0) { nfts.push(null) }
 
+            let multinfts = []
+            let res_multislot1 = null
+            try {
+                if (data[17].status === 'success') {
+                    res_multislot1 = await fetch(data[17].result)
+                } else {
+                    res_multislot1 = null
+                }
+            } catch {}
+            const nft_multislot1 = res_multislot1 !== null ? await res_multislot1.json() : {image: null, name: null}
+            const nft_multislot1_Img = nft_multislot1.image !== null ? nft_multislot1.image : null
+            if (res_multislot1 !== null) {
+                multinfts.push({
+                    Col: 2,
+                    Id: Number(multidata[0].result[0]),
+                    Name: nft_multislot1.name,
+                    Image: nft_multislot1_Img,
+                    Description: nft_multislot1.description,
+                    Attribute: nft_multislot1.attributes,
+                    RewardPerSec: Number(multidata[0].result[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1
+                })
+            }
+            let res_multislot2 = null
+            try {
+                if (data[18].status === 'success') {
+                    res_multislot2 = await fetch(data[18].result)
+                } else {
+                    res_multislot2 = null
+                }
+            } catch {}
+            const nft_multislot2 = res_multislot2 !== null ? await res_multislot2.json() : {image: null, name: null}
+            const nft_multislot2_Img = nft_multislot2.image !== null ? nft_multislot2.image : null
+            if (res_multislot2 !== null) {
+                multinfts.push({
+                    Col: 2,
+                    Id: Number(multidata[1].result[0]),
+                    Name: nft_multislot2.name,
+                    Image: nft_multislot2_Img,
+                    Description: nft_multislot2.description,
+                    Attribute: nft_multislot2.attributes,
+                    RewardPerSec: Number(multidata[1].result[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1
+                })
+            }
+            let res_multislot3 = null
+            try {
+                if (data[19].status === 'success') {
+                    res_multislot3 = await fetch(data[19].result)
+                } else {
+                    res_multislot3 = null
+                }
+            } catch {}
+            const nft_multislot3 = res_multislot3 !== null ? await res_multislot3.json() : {image: null, name: null}
+            const nft_multislot3_Img = nft_multislot3.image !== null ? nft_multislot3.image : null
+            if (res_multislot3 !== null) {
+                multinfts.push({
+                    Col: 2,
+                    Id: Number(multidata[2].result[0]),
+                    Name: nft_multislot3.name,
+                    Image: nft_multislot3_Img,
+                    Description: nft_multislot3.description,
+                    Attribute: nft_multislot3.attributes,
+                    RewardPerSec: Number(multidata[2].result[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1
+                })
+            }
+            let res_multislot4 = null
+            try {
+                if (data[20].status === 'success') {
+                    res_multislot4 = await fetch(data[20].result)
+                } else {
+                    res_multislot4 = null
+                }
+            } catch {}
+            const nft_multislot4 = res_multislot4 !== null ? await res_multislot4.json() : {image: null, name: null}
+            const nft_multislot4_Img = nft_multislot4.image !== null ? nft_multislot4.image : null
+            if (res_multislot1 !== null) {
+                multinfts.push({
+                    Col: 2,
+                    Id: Number(multidata[3].result[0]),
+                    Name: nft_multislot4.name,
+                    Image: nft_multislot4_Img,
+                    Description: nft_multislot4.description,
+                    Attribute: nft_multislot4.attributes,
+                    RewardPerSec: Number(multidata[3].result[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1
+                })
+            }
+            let res_multislot5 = null
+            try {
+                if (data[21].status === 'success') {
+                    res_multislot5 = await fetch(data[21].result)
+                } else {
+                    res_multislot5 = null
+                }
+            } catch {}
+            const nft_multislot5 = res_multislot5 !== null ? await res_multislot5.json() : {image: null, name: null}
+            const nft_multislot5_Img = nft_multislot5.image !== null ? nft_multislot5.image : null
+            if (res_multislot5 !== null) {
+                multinfts.push({
+                    Col: 2,
+                    Id: Number(multidata[4].result[0]),
+                    Name: nft_multislot5.name,
+                    Image: nft_multislot5_Img,
+                    Description: nft_multislot5.description,
+                    Attribute: nft_multislot5.attributes,
+                    RewardPerSec: Number(multidata[4].result[0]) % 100000,
+                    isStaked: true,
+                    Slot: 5
+                })
+            }
+            const multi1walletFilter = await multinft1SC.filters.Transfer(null, address, null)
+            const multi1walletEvent = await multinft1SC.queryFilter(multi1walletFilter, 125216008, "latest")
+            const multi1walletMap = await Promise.all(multi1walletEvent.map(async (obj) => String(obj.args.tokenId)))
+            const multi1walletRemoveDup = multi1walletMap.filter((obj, index) => multi1walletMap.indexOf(obj) === index)
+            const data4 = address !== null && address !== undefined ? await readContracts({
+                contracts: multi1walletRemoveDup.map((item) => (
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'ownerOf',
+                        args: [String(item)],
+                        chainId: 10
+                    }
+                ))
+            }) : [Array(multi1walletRemoveDup.length).fill('')]
+            let yourmultinft1wallet = []
+            for (let i = 0; i <= multi1walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
+                    yourmultinft1wallet.push({Id: String(multi1walletRemoveDup[i])})
+                }
+            }
+            const data5 = address !== null && address !== undefined ? await readContracts({
+                contracts: yourmultinft1wallet.map((item) => (
+                    {
+                        address: multinft1,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [String(item.Id)],
+                        chainId: 10
+                    }
+                ))
+            }) : [Array(yourmultinft1wallet.length).fill('')]
+            for (let i = 0; i <= yourmultinft1wallet.length - 1; i++) {
+                const nftipfs = data5[i].result
+                let nft = {name: "", image: "", description: "", attributes: ""}
+                try {
+                    const response = await fetch(nftipfs)
+                    nft = await response.json()
+                } catch {}
+                multinfts.push({
+                    Col: 2,
+                    Id: yourmultinft1wallet[i].Id,
+                    Name: nft.name,
+                    Image: nft.image,
+                    Description: nft.description,
+                    Attribute: nft.attributes,
+                    RewardPerSec: Number(yourmultinft1wallet[i].Id.slice(-5)),
+                    isStaked: false
+                })
+            }
+            if (multinfts.length === 0) { multinfts.push(null) }
+
             const allPow = Number(data[15].result)
+            const sumPow = Number(data[15].result) + Number(data[16].result)
+            const stakePow = Number(data[22].result[0])
+            const pendingreward = Number(data[23].result)
+            const balreward = Number(data[24].result)
+
             
             return [
                 nfts, 
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
-                allPow,
+                multinfts, [Number(multidata[0].result[0]) % 100000, nft_multislot1_Img], [Number(multidata[1].result[0]) % 100000, nft_multislot2_Img], [Number(multidata[2].result[0]) % 100000, nft_multislot3_Img], [Number(multidata[3].result[0]) % 100000, nft_multislot4_Img], [Number(multidata[4].result[0]) % 100000, nft_multislot5_Img],
+                allPow, sumPow, stakePow, pendingreward, balreward, 
             ]
         }
 
@@ -634,10 +925,20 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             setBadgeSlot(result[29])
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
             
-            setAllPower(result[31])
+            setMultinft(result[31])
+            setmultiSlot1(result[32])
+            setmultiSlot2(result[33])
+            setmultiSlot3(result[34])
+            setmultiSlot4(result[35])
+            setmultiSlot5(result[36])
+            setAllPower(result[37])
+            setSumPower(result[38])
+            setStakePower(result[39])
+            setRewardPending(ethers.utils.formatEther(String(result[40])))
+            setRewardBalance(ethers.utils.formatEther(String(result[41])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, ])
+    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, multichainSlotABI, dunATVABI ])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -734,6 +1035,88 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
         setisLoading(false)
     }
 
+    const equipMultiNft = async (_nftid, _colindex, _slot) => {
+        setisLoading(true)
+        let nftaddr = '0x'
+        if (_colindex === 1) {
+            nftaddr = multinft1
+        }
+        try {
+            const nftAllow = await readContract({
+                address: nftaddr,
+                abi: erc721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+                chainId: 10,
+            })
+            if (nftAllow.toUpperCase() !== multiSlot.toUpperCase()) {
+                const config = await prepareWriteContract({
+                    address: nftaddr,
+                    abi: erc721ABI,
+                    functionName: 'approve',
+                    args: [multiSlot, _nftid],
+                    chainId: 10,
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: multiSlot,
+                abi: multichainSlotABI,
+                functionName: 'stake',
+                args: [_slot, _colindex, _nftid],
+                value: ethers.utils.parseEther('0.00005'),
+                chainId: 10,
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const unequipMultiNft = async (_slot) => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: multiSlot,
+                abi: multichainSlotABI,
+                functionName: 'unstake',
+                args: [_slot],
+                chainId: 10,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const sync = async () => {
+        setisLoading(true)
+        try {
+            const config = await prepareWriteContract({
+                address: dunATV,
+                abi: dunATVABI,
+                functionName: 'sync',
+                chainId: 10,
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
     return (
     <>
         {isTransferModal &&
@@ -777,13 +1160,40 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                             <div>TBD</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            CMPOW 
+                            CMDAO NFT CMPOW 
                             <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            ALL POWER 
-                            <div>TBD</div>
+                            CURRENT POWER 
+                            <div>{Number(sumPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                         </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            STAKING POWER 
+                            <div>{Number(stakePower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            PENDING REWARD 
+                            <div style={{display: "flex", flexDirection: "row"}}>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>
+                                <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:9})}</div>
+                            </div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                            REWARD BALANCE
+                            <div style={{display: "flex", flexDirection: "row"}}>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>
+                                <div style={{marginLeft: "5px"}}>{Number(rewardBalance).toLocaleString('en-US', {maximumFractionDigits:9})}</div>
+                            </div>
+                        </div>
+                        {address !== undefined && address === youraddr ?
+                            <div style={{marginTop: "30px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                {Number(sumPower) !== 0 ?
+                                    <div style={{alignSelf: "center"}} className="button" onClick={sync}>SYNC STAKE / CLAIM REWARD</div> :
+                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SYNC STAKE / CLAIM REWARD</div>
+                                }
+                            </div> :
+                            <div style={{height: "41px"}}></div>
+                        }
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                         {accSlot !== null ?
@@ -885,12 +1295,13 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             <div style={{width: "1650px", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="pixel mainprofile">
                 {true && 
                     <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                        {false ?
+                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT1</div>
+                        {multiSlot1 !== null && multiSlot1[1] !== null ?
                             <>
-
+                                <img src={multiSlot1[1]} width="200px" alt="Can not load metadata." />
+                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{multiSlot1[0]} power</div>
                             </> :
                             <>
-                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT1</div>
                                 <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 power</div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}></div>
@@ -901,12 +1312,13 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 }
                 {true && 
                     <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                        {false ?
+                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT2</div>
+                        {multiSlot2 !== null && multiSlot2[1] !== null ?
                             <>
-
+                                <img src={multiSlot2[1]} width="200px" alt="Can not load metadata." />
+                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{multiSlot2[0]} power</div>
                             </> :
                             <>
-                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT2</div>
                                 <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 power</div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}></div>
@@ -917,12 +1329,13 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 }
                 {true && 
                     <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                        {false ?
+                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT3</div>
+                        {multiSlot3 !== null && multiSlot3[1] !== null ?
                             <>
-
+                                <img src={multiSlot3[1]} width="200px" alt="Can not load metadata." />
+                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{multiSlot3[0]} power</div>
                             </> :
                             <>
-                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT3</div>
                                 <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 power</div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}></div>
@@ -933,12 +1346,13 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 }
                 {true && 
                     <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                        {false ?
+                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT4</div>
+                        {multiSlot4 !== null && multiSlot4[1] !== null ?
                             <>
-
+                                <img src={multiSlot4[1]} width="200px" alt="Can not load metadata." />
+                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{multiSlot4[0]} power</div>
                             </> :
                             <>
-                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT4</div>
                                 <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 power</div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}></div>
@@ -949,12 +1363,14 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 }
                 {true && 
                     <div style={{margin: "20px 20px 0 0", display: "flex", flexDirection: "column"}}>
-                        {false ?
+                        <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT5</div>
+                        {multiSlot5 !== null && multiSlot5[1] !== null ?
                             <>
-
+                                <img src={multiSlot5[1]} width="200px" alt="Can not load metadata." />
+                                <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>{multiSlot5[0]} power</div>
                             </> :
                             <>
-                                <div style={{width: "200px", marginBottom: "15px", fontSize: "16px"}}>NFT SLOT5</div>
+                                
                                 <div style={{width: "200px", height: "200px", borderRadius: "16px", border: "1px solid gray"}}></div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}>0 power</div>
                                 <div style={{width: "fit-content", marginTop: "10px", fontSize: "16px", textAlign: "center"}}></div>
@@ -966,44 +1382,44 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             </div>
             
             {nft.length > 0 ?
-                <div style={{margin: "40px 0 60px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{marginTop: "40px", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     {nft[0] !== null ?
                         <>
-                        {nft.map((item, index) => (
-                            <>
-                                {(item.Col === 1 && item.Id / 100000000000 <= 8) &&
-                                    <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", height: "450px"}} className="nftCard" key={index}>
-                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
+                            {nft.map((item, index) => (
+                                <>
+                                    {(item.Col === 1 && item.Id / 100000000000 <= 8) &&
+                                        <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", height: "450px"}} className="nftCard" key={index}>
+                                            <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                            </div>
+                                            <div className="emp bold">{item.Name}</div>
+                                            <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                            <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                            {address === youraddr ?
+                                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                                    {item.isStaked ?
+                                                        <div style={{background: "gray"}} className="pixel button" onClick={() => unequipNft(item.Slot)}>UNEQUIP L1</div> :
+                                                        <>
+                                                            {item.Col === 1 && 
+                                                                <>
+                                                                    {((item.Id / 100000000000) | 0) === 1 && 
+                                                                        <>
+                                                                            <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1)}>EQUIP L1 MAIN CHAR</div>
+                                                                            {characterSlot !== null && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 15)}>EQUIP L1 SOUL</div>}
+                                                                        </>
+                                                                    }
+                                                                </>
+                                                            }
+                                                            <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                        </>
+                                                    }
+                                                </div> :
+                                                <div style={{height: "41px"}}></div>
+                                            }
                                         </div>
-                                        <div className="emp bold">{item.Name}</div>
-                                        <div className="bold">{item.RewardPerSec} cmpow per sec</div>
-                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                        {address === youraddr ?
-                                            <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                                {item.isStaked ?
-                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unequipNft(item.Slot)}>UNEQUIP L1</div> :
-                                                    <>
-                                                        {item.Col === 1 && 
-                                                            <>
-                                                                {((item.Id / 100000000000) | 0) === 1 && 
-                                                                    <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1)}>EQUIP L1 MAIN CHAR</div>
-                                                                        {characterSlot !== null && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 15)}>EQUIP L1 SOUL</div>}
-                                                                    </>
-                                                                }
-                                                            </>
-                                                        }
-                                                        <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
-                                                    </>
-                                                }
-                                            </div> :
-                                            <div style={{height: "41px"}}></div>
-                                        }
-                                    </div>
-                                }
-                            </>
-                        ))}
+                                    }
+                                </>
+                            ))}
                         </> :
                         <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center", padding: "20px", margin: "10px", height: "450px"}} className="nftCard">
                             {address !== undefined ?
@@ -1019,6 +1435,59 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     }
                 </div> :
                 <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "450px"}}> 
+                    <div className="nftCard" style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                        <ThreeDots fill="#fff" />
+                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                    </div>
+                </div>
+            }
+            {multinft.length > 0 ?
+                <div style={{margin: "40px 0 60px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                    {multinft[0] !== null ?
+                        <>
+                            {multinft.map((item, index) => (
+                                <>
+                                    <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", height: "550px"}} className="nftCard" key={index}>
+                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                        </div>
+                                        <div className="emp bold">{item.Name}</div>
+                                        <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                        {address === youraddr ?
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                                {item.isStaked ?
+                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unequipMultiNft(item.Slot - 1)}>UNEQUIP SLOT {item.Slot}</div> :
+                                                    <>
+                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipMultiNft(item.Id, item.Col - 1, 0)}>EQUIP SLOT 1</div>
+                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipMultiNft(item.Id, item.Col - 1, 1)}>EQUIP SLOT 2</div>
+                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipMultiNft(item.Id, item.Col - 1, 2)}>EQUIP SLOT 3</div>
+                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipMultiNft(item.Id, item.Col - 1, 3)}>EQUIP SLOT 4</div>
+                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipMultiNft(item.Id, item.Col - 1, 4)}>EQUIP SLOT 5</div>
+                                                        <div style={{width: "105px", alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                    </>
+                                                }
+                                            </div> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                </>
+                            ))}
+                        </> :
+                        <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center", padding: "20px", margin: "10px", height: "450px"}} className="nftCard">
+                            {address !== undefined ?
+                                <>
+                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                </> :
+                                <>
+                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                    <div className="bold">Please connect wallet to view your NFTs.</div>
+                                </>
+                            }
+                        </div>
+                    }
+                </div> :
+                <div style={{margin: "40px 0 60px 0", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "450px"}}> 
                     <div className="nftCard" style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center"}}>
                         <ThreeDots fill="#fff" />
                         <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>

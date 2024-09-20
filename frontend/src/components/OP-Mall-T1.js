@@ -208,7 +208,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                     args: [i],
                     chainId: 10
                 })
-                if (!mkp_data[4] && String(mkp_data[3]) !== '999999999000000000000000000') {
+                if (!mkp_data[4] && String(mkp_data[3]) !== '999999999000000000000000000' && String(mkp_data[3]) !== '0') {
                     mkpdata.push(mkp_data)
                 }
             }
@@ -426,7 +426,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                             {mkpNft[0] !== null ?
                                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                     {mkpNft.map((item, index) => (
-                                        <div style={{justifyContent: "space-around", padding: "20px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
+                                        <div style={{height: "450px", justifyContent: "space-around", padding: "20px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
                                             <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
                                                 <img src={item.Image} height="200" alt="Can not load metadata." />
                                             </div>
@@ -482,7 +482,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                             {mintNft[0] !== null ?
                                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                     {mintNft.map((item, index) => (
-                                        <div style={{justifyContent: "space-around", padding: "20px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
+                                        <div style={{height: "450px", justifyContent: "space-around", padding: "20px", margin: "20px 28px 15px 0px"}} className="nftCard" key={index}>
                                             <div style={{width: "95%", overflow: "hidden", display: "flex", justifyContent: "center"}}>
                                                 <img src={item.Image} height="200" alt="Can not load metadata." />
                                             </div>
