@@ -15,7 +15,7 @@ const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao
 const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, multichainSlotABI, dunATVABI }) => {
     const { chain } = useNetwork()
     let { address } = useAccount()
-    //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
+    //let address = '0x8B9C26D596997420089ceb7681A8faEF4486B8F0'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/dungeon/abandoned-temple-vault/' + address)
@@ -692,7 +692,6 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 })
             }
             if (nfts.length === 0) { nfts.push(null) }
-
             let multinfts = []
             let res_multislot1 = null
             try {
@@ -773,7 +772,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             } catch {}
             const nft_multislot4 = res_multislot4 !== null ? await res_multislot4.json() : {image: null, name: null}
             const nft_multislot4_Img = nft_multislot4.image !== null ? nft_multislot4.image : null
-            if (res_multislot1 !== null) {
+            if (res_multislot4 !== null) {
                 multinfts.push({
                     Col: 2,
                     Id: Number(multidata[3].result[0]),
