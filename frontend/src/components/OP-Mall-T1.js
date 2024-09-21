@@ -12,6 +12,7 @@ const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
 const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, uniNftBridgeABI, multichainMallABI }) => {
     const { address } = useAccount()
+    //let address = '0x8B9C26D596997420089ceb7681A8faEF4486B8F0'
     const { chain } = useNetwork()
 
     const [bkcNft, setBkcNft] = React.useState([])
@@ -487,7 +488,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                                                 <img src={item.Image} height="200" alt="Can not load metadata." />
                                             </div>
                                             <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-                                                <div style={{height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
+                                                <div style={{width: "100%", height: "100px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                                                     <div style={{fontSize: "14px"}} className="emp bold">{item.Name}</div>
                                                     <div style={{fontSize: "16px", margin: "5px 0 12px 0"}} className="pixel">
                                                         {item.RewardPerSec} cmpow 
@@ -498,15 +499,15 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                                                             <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                         </div>
                                                     }
-                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: "10px"}}>
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", marginTop: "10px"}}>
                                                         {chain.id === 10 ?
                                                             <>
                                                                 <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "110px"}} className="pixel button" onClick={() => sell(item.Name, item.Image, item.Count)}>LIST NFT</div>
-                                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "110px"}} className="pixel button" onClick={() => remove(item.Count)}>REDEEM NFT</div>
+                                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "110px", marginLeft: "10px"}} className="pixel button" onClick={() => remove(item.Count)}>REDEEM NFT</div>
                                                             </> :
                                                             <>
                                                                 <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "110px", background: "gray"}} className="pixel button">LIST NFT</div>
-                                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "110px", background: "gray"}} className="pixel button">REDEEM NFT</div>
+                                                                <div style={{textAlign: "center", borderRadius: "12px", padding: "10px 20px", width: "110px", background: "gray", marginLeft: "10px"}} className="pixel button">REDEEM NFT</div>
                                                             </>
                                                         }
                                                     </div>
