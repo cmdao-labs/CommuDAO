@@ -736,7 +736,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     Attribute: nft_multislot2.attributes,
                     RewardPerSec: Number(multidata[1].result[0]) % 100000,
                     isStaked: true,
-                    Slot: 1
+                    Slot: 2
                 })
             }
             let res_multislot3 = null
@@ -759,7 +759,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     Attribute: nft_multislot3.attributes,
                     RewardPerSec: Number(multidata[2].result[0]) % 100000,
                     isStaked: true,
-                    Slot: 1
+                    Slot: 3
                 })
             }
             let res_multislot4 = null
@@ -782,7 +782,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     Attribute: nft_multislot4.attributes,
                     RewardPerSec: Number(multidata[3].result[0]) % 100000,
                     isStaked: true,
-                    Slot: 1
+                    Slot: 4
                 })
             }
             let res_multislot5 = null
