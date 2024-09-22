@@ -68,6 +68,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
     const [cuStat, setCuStat] = React.useState([0, 0])
 
     const [silSupply, setSilSupply] = React.useState(0)
+    const [silLocked, setSilLocked] = React.useState(0)
     const [silBurn, setSilBurn] = React.useState(0)
     const [silCirculation, setSilCirculation] = React.useState(0)
     const [silStat, setSilStat] = React.useState([0, 0])
@@ -504,6 +505,13 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
+                    },
+                    {
+                        address: sil,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: ['0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'],
+                        chainId: 8899,
                     }
                 ],
             })
@@ -727,8 +735,9 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             setCuCirculation(Number(ethers.utils.formatEther(String(result[7][0].result))) - (Number(ethers.utils.formatEther(String(result[7][1].result)))  + Number(ethers.utils.formatEther(String(result[7][2].result)))))
 
             setSilSupply(ethers.utils.formatEther(String(result[8][0].result)))
+            setSilLocked(ethers.utils.formatEther(String(result[8][3].result)))
             setSilBurn(Number(ethers.utils.formatEther(String(result[8][1].result))) + Number(ethers.utils.formatEther(String(result[8][2].result))))
-            setSilCirculation(Number(ethers.utils.formatEther(String(result[8][0].result))) - (Number(ethers.utils.formatEther(String(result[8][1].result))) + Number(ethers.utils.formatEther(String(result[8][2].result)))))
+            setSilCirculation(Number(ethers.utils.formatEther(String(result[8][0].result))) - (Number(ethers.utils.formatEther(String(result[8][1].result))) + Number(ethers.utils.formatEther(String(result[8][2].result))) + Number(ethers.utils.formatEther(String(result[8][3].result)))))
 
             setGoldSupply(ethers.utils.formatEther(String(result[9][0].result)))
             setGoldBurn(Number(ethers.utils.formatEther(String(result[9][1].result))) + Number(ethers.utils.formatEther(String(result[9][2].result))))
@@ -1150,6 +1159,10 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Total Burn:</div>
                                 <div style={{color: "#fff"}}>{Number(silBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((silBurn/silSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Reward Locked:</div>
+                                <div style={{color: "#fff"}}>{Number(silLocked).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((silLocked/silSupply)*100).toFixed(2)}%)</div>
                             </div>
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
                                 <div>Circulating Supply:</div>
