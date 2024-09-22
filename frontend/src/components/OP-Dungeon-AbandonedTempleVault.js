@@ -76,6 +76,8 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
     const [stakePower, setStakePower] = React.useState(0)
     const [rewardPending, setRewardPending] = React.useState(0)
     const [rewardBalance, setRewardBalance] = React.useState(0)
+    const [timeToSyncAgain, setTimeToSyncAgain] = React.useState(null)
+    const [canSync, setCanSync] = React.useState(null)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -863,6 +865,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             const allPow = Number(data[15].result)
             const sumPow = Number(data[15].result) + Number(data[16].result)
             const stakePow = Number(data[22].result[0])
+            const syncTime = Number(data[22].result[1])
             const pendingreward = Number(data[23].result)
             const balreward = Number(data[24].result)
 
@@ -872,7 +875,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 multinfts, [Number(multidata[0].result[0]) % 100000, nft_multislot1_Img], [Number(multidata[1].result[0]) % 100000, nft_multislot2_Img], [Number(multidata[2].result[0]) % 100000, nft_multislot3_Img], [Number(multidata[3].result[0]) % 100000, nft_multislot4_Img], [Number(multidata[4].result[0]) % 100000, nft_multislot5_Img],
-                allPow, sumPow, stakePow, pendingreward, balreward, 
+                allPow, sumPow, stakePow, pendingreward, balreward, syncTime,
             ]
         }
 
@@ -935,8 +938,10 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             setStakePower(result[39])
             setRewardPending(ethers.utils.formatEther(String(result[40])))
             setRewardBalance(ethers.utils.formatEther(String(result[41])))
+            const syncAgain = new Date((Number(result[42]) * 1000) + (86400 * 1000))
+            result[42] !== 0 ? setTimeToSyncAgain(syncAgain.toLocaleString('es-CL')) : setTimeToSyncAgain(null)
+            result[42] !== 0 && Date.now() - (Number(result[42]) * 1000) > (86400 * 1000) ? setCanSync(true) : setCanSync(false)
         })
-
     }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, multichainSlotABI, dunATVABI ])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
@@ -1184,9 +1189,13 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                                 <div style={{marginLeft: "5px"}}>{Number(rewardBalance).toLocaleString('en-US', {maximumFractionDigits:9})}</div>
                             </div>
                         </div>
+                        {!canSync ?
+                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>SYNC AGAIN AT <div>{timeToSyncAgain}</div></div> :
+                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>SYNC AGAIN AT <div>NOW</div></div>
+                        }
                         {address !== undefined && address === youraddr ?
                             <div style={{marginTop: "30px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {Number(sumPower) !== 0 ?
+                                {Number(sumPower) !== 0 && canSync ?
                                     <div style={{alignSelf: "center"}} className="button" onClick={sync}>SYNC STAKE / CLAIM REWARD</div> :
                                     <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SYNC STAKE / CLAIM REWARD</div>
                                 }
