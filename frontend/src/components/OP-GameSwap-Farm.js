@@ -84,7 +84,7 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
         })
     }, [address, txupdate, erc20ABI, stcmdABI])
 
-    const addstakeHandle = async (_index) => {
+    const addstakeHandle = async () => {
         setisLoading(true)
         try {
             const lpAllow = await readContract({
@@ -111,6 +111,21 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                 abi: stcmdABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(lpStake)],
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch {}
+        setisLoading(false)
+    }
+
+    const withdrawHandle = async () => {
+        setisLoading(true)
+        try {
+            const config2 = await prepareWriteContract({
+                address: stcmdlp,
+                abi: stcmdABI,
+                functionName: 'unstake',
             })
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
@@ -201,7 +216,10 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                                 Unlock date:
                                 <br></br>{timetoWithdraw}
                             </div>
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(206, 208, 207)", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            {timetoWithdraw !== 'Not Stake' ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={withdrawHandle}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(206, 208, 207)", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
