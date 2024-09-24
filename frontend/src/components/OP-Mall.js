@@ -28,6 +28,7 @@ const OPMall = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cm
                     <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
                         <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
                         <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Multichain Mall</div>
+                        <a style={{width: "380px", margin: "40px 20px 20px 20px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f", textDecoration: "none"}} className="pixel hashtag" href="https://form.typeform.com/to/kbCUqHna" target="_blank" rel="noreferrer">✏️&nbsp;Permissionless listing your NFT project</a>
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYzsLujATTRCW59ByddhxubEDXPtAb2fdtNvGYXutL2RC" height="230" alt="T1_BKC" />
