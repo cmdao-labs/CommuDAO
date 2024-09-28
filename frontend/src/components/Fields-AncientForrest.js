@@ -219,19 +219,19 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000001) {
                     level = 1
                     expMax = 90
-                    hashRate = 2
+                    hashRate = 1
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000002) {
                     level = 2
                     expMax = 320
-                    hashRate = 3
+                    hashRate = 2
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000003) {
                     level = 3
                     expMax = 1080
-                    hashRate = 4
+                    hashRate = 2
                 } else if (Number((yournftstake[i].Id / 1e13).toFixed(0)) === 1000004) {
                     level = 4
                     expMax = 2880
-                    hashRate = 5
+                    hashRate = 3
                 }
 
                 nfts.push({
@@ -292,19 +292,19 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000001) {
                     level = 1
                     expMax = 90
-                    hashRate = 2
+                    hashRate = 1
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000002) {
                     level = 2
                     expMax = 320
-                    hashRate = 3
+                    hashRate = 2
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000003) {
                     level = 3
                     expMax = 1080
-                    hashRate = 4
+                    hashRate = 2
                 } else if (Number((yournftwallet[i].Id / 1e13).toFixed(0)) === 1000004) {
                     level = 4
                     expMax = 2880
-                    hashRate = 5
+                    hashRate = 3
                 }
 
                 nfts.push({
