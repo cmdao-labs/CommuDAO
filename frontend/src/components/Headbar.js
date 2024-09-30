@@ -101,7 +101,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
           }
           {chain !== undefined && (chain.id === 10) &&
             <> 
-              <div className="funcList" style={{cursor: "not-allowed"}}>Fields</div>
+              <div className="funcList" onClick={() => {callMode(11000); navigate('/fields/op');}}>Fields</div>
               <div className="funcList" style={{cursor: "not-allowed"}}>Labs</div>
               <div className="funcList" onClick={() => {callMode(31001); navigate('/dungeon/abandoned-temple-vault');}}>Dungeon</div>
               <div className="funcList" onClick={() => {callMode(9); navigate('/guild/profile');}}>Guild</div>
