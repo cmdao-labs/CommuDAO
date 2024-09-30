@@ -8,7 +8,7 @@ const cmdaonft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const narutanft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
 const bbnft = '0xc304195Ad2F55810EcD1e63d9D975e29138Dbd4E'
 const doijibToken = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
-const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
+const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
 const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
@@ -16,8 +16,8 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const badgeClaimer = '0x99f4FE6E420B46B7f5DeeEabFDc7604756e093d5' 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const ss = 1
-const isEnd = true
+const ss = 2
+const isEnd = false
 
 const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
     let { address } = useAccount()
@@ -84,19 +84,35 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const [ss1WeaponSlot, setSs1WeaponSlot] = React.useState(null)
     const [ss1WpSlotLevel, setSs1WpSlotLevel] = React.useState(null)
 
+    const [ss2CharacterSlot, setSs2CharacterSlot] = React.useState(null)
+    const [ss2CharacterSlotLevel, setSs2CharacterSlotLevel] = React.useState(null)
+    const [ss2HatSlot, setSs2HatSlot] = React.useState(null)
+    const [ss2HatSlotLevel, setSs2HatSlotLevel] = React.useState(null)
+    const [ss2ClothSlot, setSs2ClothSlot] = React.useState(null)
+    const [ss2ClothSlotLevel, setSs2ClothSlotLevel] = React.useState(null)
+    const [ss2AccSlot, setSs2AccSlot] = React.useState(null)
+    const [ss2AccSlotLevel, setSs2AccSlotLevel] = React.useState(null)
+    const [ss2BackSlot, setSs2BackSlot] = React.useState(null)
+    const [ss2BackSlotLevel, setSs2BackSlotLevel] = React.useState(null)
+    const [ss2ShoesSlot, setSs2ShoesSlot] = React.useState(null)
+    const [ss2ShoesSlotLevel, setSs2ShoesSlotLevel] = React.useState(null)
+    const [ss2WeaponSlot, setSs2WeaponSlot] = React.useState(null)
+    const [ss2WpSlotLevel, setSs2WpSlotLevel] = React.useState(null)
+
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [timeToRunout, setTimeToRunout] = React.useState(null)
     const [isRunout, setIsRunout] = React.useState(false)
     const [rewardPending, setRewardPending] = React.useState(0)
     const [yourSS1CMPOW, setYourSS1CMPOW] = React.useState(0)
+    const [yourSS2CMPOW, setYourSS2CMPOW] = React.useState(0)
 
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
     const [skinSlot1, setSkinSlot1] = React.useState(null)
     const [isClaimBadge, setIsClaimBadge] = React.useState(false)
 
     const [doijibBalance, setDoijibBalance] = React.useState(0)
-    const [silBalance, setSilBalance] = React.useState(0)
+    const [goldBalance, setGoldBalance] = React.useState(0)
     const [landBonus, setLandBonus] = React.useState(0)
     const [myhouse, setMyhouse] = React.useState(0)
 
@@ -869,6 +885,12 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 functionName: 'nftEquipMeme',
                 args: [address, 1],
             })
+            const nftEQMemeSS2 = await readContract({
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEquipMeme',
+                args: [address, 2],
+            })
 
             const data = await readContracts({
                 contracts: [
@@ -1011,7 +1033,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         args: [address],
                     },
                     {
-                        address: silToken,
+                        address: goldToken,
                         abi: erc20ABI,
                         functionName: 'balanceOf',
                         args: [address],
@@ -1033,6 +1055,48 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         abi: badgeClaimerABI,
                         functionName: 'isClaimed',
                         args: [address, ss],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[0])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[1])],
+                    },
+                    {
+                        address: narutanft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[2])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[3])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[4])],
+                    },
+                    {
+                        address: narutanft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[5])],
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721ABI,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS2[6])],
                     },
                 ],
             })
@@ -1346,6 +1410,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Slot: 8
                 })
             }
+            
             let memeSS1cmpow = 0
             let res_meme_char_ss1 = null
             try {
@@ -1365,7 +1430,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_char_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[0]) % 100000,
                     isStaked: true,
-                    Slot: 1
+                    Slot: 1,
+                    Ss: 1
                 })
             }
             let res_meme_hat_ss1 = null
@@ -1386,7 +1452,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_hat_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[1]) % 100000,
                     isStaked: true,
-                    Slot: 2
+                    Slot: 2,
+                    Ss: 1
                 })
             }
             let res_meme_cloth_ss1 = null
@@ -1407,7 +1474,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_cloth_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[2]) % 100000,
                     isStaked: true,
-                    Slot: 3
+                    Slot: 3,
+                    Ss: 1
                 })
             }
             let res_meme_acc_ss1 = null
@@ -1427,7 +1495,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_acc_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[3]) % 100000,
                     isStaked: true,
-                    Slot: 4
+                    Slot: 4,
+                    Ss: 1
                 })
             }
             let res_meme_back_ss1 = null
@@ -1448,7 +1517,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_back_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[4]) % 100000,
                     isStaked: true,
-                    Slot: 5
+                    Slot: 5,
+                    Ss: 1
                 })
             }
             let res_meme_shoes_ss1 = null
@@ -1469,7 +1539,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_shoes_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[5]) % 100000,
                     isStaked: true,
-                    Slot: 6
+                    Slot: 6,
+                    Ss: 1
                 })
             }
             let res_meme_weapon_ss1 = null
@@ -1490,7 +1561,164 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     Attribute: nft_meme_weapon_ss1.attributes,
                     RewardPerSec: Number(nftEQMemeSS1[6]) % 100000,
                     isStaked: true,
-                    Slot: 7
+                    Slot: 7,
+                    Ss: 1
+                })
+            }
+
+            let memeSS2cmpow = 0
+            let res_meme_char_ss2 = null
+            try {
+                res_meme_char_ss2 = data[27].status === 'success' ? await fetch(data[27].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_char_ss2 = res_meme_char_ss2 !== null ? await res_meme_char_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_char_ss2_Img = nft_meme_char_ss2.image !== null ? nft_meme_char_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_char_ss2_Name = nft_meme_char_ss2.name
+            memeSS2cmpow += res_meme_char_ss2 !== null ? Number(nftEQMemeSS2[0]) % 100000 : 0
+            if (res_meme_char_ss2 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS2[0]),
+                    Name: nftEQ_meme_char_ss2_Name,
+                    Image: nftEQ_meme_char_ss2_Img,
+                    Description: nft_meme_char_ss2.description,
+                    Attribute: nft_meme_char_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1,
+                    Ss: 2
+                })
+            }
+            let res_meme_hat_ss2 = null
+            try {
+                res_meme_hat_ss2 = data[28].status === 'success' ? await fetch(data[28].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_hat_ss2 = res_meme_hat_ss2 !== null ? await res_meme_hat_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_hat_ss2_Img = nft_meme_hat_ss2.image !== null ? nft_meme_hat_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_hat_ss2_Name = nft_meme_hat_ss2.name
+            memeSS2cmpow += res_meme_hat_ss2 !== null ? Number(nftEQMemeSS2[1]) % 100000 : 0
+            if (res_meme_hat_ss2 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS2[1]),
+                    Name: nftEQ_meme_hat_ss2_Name,
+                    Image: nftEQ_meme_hat_ss2_Img,
+                    Description: nft_meme_hat_ss2.description,
+                    Attribute: nft_meme_hat_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[1]) % 100000,
+                    isStaked: true,
+                    Slot: 2,
+                    Ss: 2
+                })
+            }
+            let res_meme_cloth_ss2 = null
+            try {
+                res_meme_cloth_ss2 = data[29].status === 'success' ? await fetch(data[29].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_cloth_ss2 = res_meme_cloth_ss2 !== null ? await res_meme_cloth_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_cloth_ss2_Img = nft_meme_cloth_ss2.image !== null ? nft_meme_cloth_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_cloth_ss2_Name = nft_meme_cloth_ss2.name
+            memeSS2cmpow += res_meme_cloth_ss2 !== null ? Number(nftEQMemeSS2[2]) % 100000 : 0
+            if (res_meme_cloth_ss2 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS2[2]),
+                    Name: nftEQ_meme_cloth_ss2_Name,
+                    Image: nftEQ_meme_cloth_ss2_Img,
+                    Description: nft_meme_cloth_ss2.description,
+                    Attribute: nft_meme_cloth_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[2]) % 100000,
+                    isStaked: true,
+                    Slot: 3,
+                    Ss: 2
+                })
+            }
+            let res_meme_acc_ss2 = null
+            try {
+                res_meme_acc_ss2 = data[30].status === 'success' ? await fetch(data[30].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_acc_ss2 = res_meme_acc_ss2 !== null ? await res_meme_acc_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_acc_ss2_Name = nft_meme_acc_ss2.name
+            const nftEQ_meme_acc_ss2_Img = nft_meme_acc_ss2.image !== null ? nft_meme_acc_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            memeSS2cmpow += res_meme_acc_ss2 !== null ? Number(nftEQMemeSS2[3]) % 100000 : 0
+            if (res_meme_acc_ss2 !== null) {
+                nfts.push({
+                    Col: 3,
+                    Id: Number(nftEQMemeSS2[3]),
+                    Name: nftEQ_meme_acc_ss2_Name,
+                    Image: nftEQ_meme_acc_ss2_Img,
+                    Description: nft_meme_acc_ss2.description,
+                    Attribute: nft_meme_acc_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[3]) % 100000,
+                    isStaked: true,
+                    Slot: 4,
+                    Ss: 2
+                })
+            }
+            let res_meme_back_ss2 = null
+            try {
+                res_meme_back_ss2 = data[31].status === 'success' ? await fetch(data[31].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_back_ss2 = res_meme_back_ss2 !== null ? await res_meme_back_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_back_ss2_Img = nft_meme_back_ss2.image !== null ? nft_meme_back_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_back_ss2_Name = nft_meme_back_ss2.name
+            memeSS2cmpow += res_meme_back_ss2 !== null ? Number(nftEQMemeSS2[4]) % 100000 : 0
+            if (res_meme_back_ss2 !== null) {
+                nfts.push({
+                    Col: 2,
+                    Id: Number(nftEQMemeSS2[4]),
+                    Name: nftEQ_meme_back_ss2_Name,
+                    Image: nftEQ_meme_back_ss2_Img,
+                    Description: nft_meme_back_ss2.description,
+                    Attribute: nft_meme_back_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[4]) % 100000,
+                    isStaked: true,
+                    Slot: 5,
+                    Ss: 2
+                })
+            }
+            let res_meme_shoes_ss2 = null
+            try {
+                res_meme_shoes_ss2 = data[32].status === 'success' ? await fetch(data[32].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_shoes_ss2 = res_meme_shoes_ss2 !== null ? await res_meme_shoes_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_shoes_ss2_Img = nft_meme_shoes_ss2.image !== null ? nft_meme_shoes_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_shoes_ss2_Name = nft_meme_shoes_ss2.name
+            memeSS2cmpow += res_meme_back_ss2 !== null ? Number(nftEQMemeSS2[5]) % 100000 : 0
+            if (res_meme_back_ss2 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS2[5]),
+                    Name: nftEQ_meme_shoes_ss2_Name,
+                    Image: nftEQ_meme_shoes_ss2_Img,
+                    Description: nft_meme_shoes_ss2.description,
+                    Attribute: nft_meme_shoes_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[5]) % 100000,
+                    isStaked: true,
+                    Slot: 6,
+                    Ss: 2
+                })
+            }
+            let res_meme_weapon_ss2 = null
+            try {
+                res_meme_weapon_ss2 = data[33].status === 'success' ? await fetch(data[33].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+            } catch {}
+            const nft_meme_weapon_ss2 = res_meme_weapon_ss2 !== null ? await res_meme_weapon_ss2.json() : {image: null, name: null}
+            const nftEQ_meme_weapon_ss2_Img = nft_meme_weapon_ss2.image !== null ? nft_meme_weapon_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_weapon_ss2_Name = nft_meme_weapon_ss2.name
+            memeSS2cmpow += res_meme_weapon_ss2 !== null ? Number(nftEQMemeSS2[6]) % 100000 : 0
+            if (res_meme_weapon_ss2 !== null) {
+                nfts.push({
+                    Col: 2,
+                    Id: Number(nftEQMemeSS2[6]),
+                    Name: nftEQ_meme_weapon_ss2_Name,
+                    Image: nftEQ_meme_weapon_ss2_Img,
+                    Description: nft_meme_weapon_ss2.description,
+                    Attribute: nft_meme_weapon_ss2.attributes,
+                    RewardPerSec: Number(nftEQMemeSS2[6]) % 100000,
+                    isStaked: true,
+                    Slot: 7,
+                    Ss: 2
                 })
             }
 
@@ -1506,7 +1734,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const isStaked = nftStatus[2]
 
             const doijibBal = data[22].result
-            const silBal = data[23].result
+            const goldBal = data[23].result
             const stOPTClaim = isStaked ? data[24].result : 0
             const skinslot1 = data[25].result
             const isbadgeclaimed = data[26].result
@@ -1665,7 +1893,8 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 nftEQ_meme_char_ss1_Img, nftEQ_meme_char_ss1_Name, nftEQ_meme_hat_ss1_Img, nftEQ_meme_hat_ss1_Name, nftEQ_meme_cloth_ss1_Img, nftEQ_meme_cloth_ss1_Name, nftEQ_meme_acc_ss1_Img, nftEQ_meme_back_ss1_Img, nftEQ_meme_back_ss1_Name, nftEQ_meme_shoes_ss1_Img, nftEQ_meme_shoes_ss1_Name, nftEQ_meme_weapon_ss1_Img, nftEQ_meme_weapon_ss1_Name,
-                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, silBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
+                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, goldBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
+                nftEQ_meme_char_ss2_Img, nftEQ_meme_char_ss2_Name, nftEQ_meme_hat_ss2_Img, nftEQ_meme_hat_ss2_Name, nftEQ_meme_cloth_ss2_Img, nftEQ_meme_cloth_ss2_Name, nftEQ_meme_acc_ss2_Img, nftEQ_meme_acc_ss2_Name, nftEQ_meme_back_ss2_Img, nftEQ_meme_back_ss2_Name, nftEQ_meme_shoes_ss2_Img, nftEQ_meme_shoes_ss2_Name, nftEQ_meme_weapon_ss2_Img, nftEQ_meme_weapon_ss2_Name, memeSS2cmpow,
             ]
         }
 
@@ -1750,12 +1979,34 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
             setLastedSTOPT(Number(result[46]) * 1000 === Number(result[48]) * 1000)
             setDoijibBalance(ethers.utils.formatEther(String(result[49])))
-            setSilBalance(ethers.utils.formatEther(String(result[50])))
+            setGoldBalance(ethers.utils.formatEther(String(result[50])))
             setSkinSlot1(result[51])
             setLandBonus(result[52])
             setMyhouse(result[53])
             setYourSS1CMPOW(result[54])
             setIsClaimBadge(result[55])
+
+            setSs2CharacterSlot(result[56])
+            if (result[57] !== null && result[57].slice(-1) === "]" && result[57].slice(-3, -2) === ".") {
+                setSs2CharacterSlotLevel(result[57].slice(-2, -1))
+            } else if (result[57] !== null && result[57].slice(-1) === "]" && result[57].slice(-4, -3) === ".") {
+                setSs2CharacterSlotLevel(result[57].slice(-3, -1))
+            } else {
+                setSs2CharacterSlotLevel(null)
+            }
+            setSs2HatSlot(result[58])
+            result[59] !== null && result[59].slice(-2, -1) === "+" ? setSs2HatSlotLevel(result[59].slice(-1)) : setSs2HatSlotLevel(null)
+            setSs2ClothSlot(result[60])
+            result[61] !== null && result[61].slice(-2, -1) === "+" ? setSs2ClothSlotLevel(result[61].slice(-1)) : setSs2ClothSlotLevel(null)
+            setSs2AccSlot(result[62])
+            result[63] !== null && result[63].slice(-2, -1) === "+" ? setSs2AccSlotLevel(result[63].slice(-1)) : setSs2AccSlotLevel(null)
+            setSs2BackSlot(result[64])
+            result[65] !== null && result[65].slice(-2, -1) === "+" ? setSs2BackSlotLevel(result[65].slice(-1)) : setSs2BackSlotLevel(null)
+            setSs2ShoesSlot(result[66])
+            result[67] !== null && result[67].slice(-2, -1) === "+" ? setSs2ShoesSlotLevel(result[67].slice(-1)) : setSs2ShoesSlotLevel(null)
+            setSs2WeaponSlot(result[68])
+            result[69] !== null && result[69].slice(-2, -1) === "+" ? setSs2WpSlotLevel(result[69].slice(-1)) : setSs2WpSlotLevel(null)
+            setYourSS2CMPOW(result[70])
         })
 
     }, [address, txupdate, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
@@ -1865,14 +2116,14 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(false)
     }
 
-    const unstakeNft = async (_slot, _isMeme) => {
+    const unstakeNft = async (_slot, _isMeme, _ss) => {
         setisLoading(true)
         try {
             const config = await prepareWriteContract({
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'unstake',
-                args: [_slot, myhouse, _isMeme, ss],
+                args: [_slot, myhouse, _isMeme, _ss],
             })
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
@@ -1889,9 +2140,9 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         try {
             let gasAddr = ''
             let gasIndex = 0
-            if (ss === 1) {
+            if (ss === 2) {
                 gasAddr = doijibToken
-                gasIndex = 1
+                gasIndex = 2
             }
             const gasAllow = await readContract({
                 address: gasAddr,
@@ -1899,7 +2150,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 functionName: 'allowance',
                 args: [address, dunMo],
             })
-            if (gasAllow < (700000 * 10**18)) {
+            if (gasAllow < (500000 * 10**18)) {
                     const config = await prepareWriteContract({
                         address: gasAddr,
                         abi: erc20ABI,
@@ -2024,35 +2275,35 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                             REWARD BALANCE
                             {!isEnd ? 
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
-                                    <div style={{marginLeft: "5px"}}>{Number(silBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                 </div> :
-                                <div style={{color: "#5f6476"}}>SS1 is over</div>
+                                <div style={{color: "#5f6476"}}>SS is over</div>
                             }
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             REWARD PENDING
                             {!isEnd ? 
                                 <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="20" alt="$SIL"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
                                     <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                 </div> :
-                                <div style={{color: "#5f6476"}}>SS1 is over</div>
+                                <div style={{color: "#5f6476"}}>SS is over</div>
                             }
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             GAS USAGE
                             {!isEnd ? 
                                 <div style={{display: "flex", flexDirection: "row"}}>
-                                    {ss === 1 &&
+                                    {ss === 2 &&
                                         <>
                                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
                                             <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                                         </>
                                     }
-                                    <div style={{marginLeft: "5px"}}>/700,000</div>
+                                    <div style={{marginLeft: "5px"}}>/500,000</div>
                                 </div> :
-                                <div style={{color: "#5f6476"}}>SS1 is over</div>
+                                <div style={{color: "#5f6476"}}>SS is over</div>
                             }
                         </div>
                         {!isEnd ?
@@ -2069,10 +2320,10 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                 {isStakeNow ?
                                     <>
                                         <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, false)}>HARVEST & UNSTAKE</div>
+                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, false, ss)}>HARVEST & UNSTAKE</div>
                                     </> :
                                     <>
-                                        {isStakeNow !== null && (ss === 1 && !isEnd && Number(doijibBalance) >= 700000) ?
+                                        {isStakeNow !== null && (ss === 2 && !isEnd && Number(doijibBalance) >= 500000) ?
                                             <>
                                                 {allPower !== 0 ?
                                                     <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
@@ -2197,8 +2448,78 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     </div>
                 </div>
             </div>
+            
+            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                            <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 2<br></br><br></br>POISEIDON SELECTION</div>
+                        </div>
+                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                            TOTAL CMPOW
+                            <div style={{display: "flex", flexDirection: "row"}}>{yourSS2CMPOW}</div>
+                        </div>
+                        <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
+                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 2 concludes at 11:59 PM on October 28th.</div>
+                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
+                            <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
+                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                        {ss2HatSlot !== null ?
+                            <img src={ss2HatSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss2HatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2HatSlotLevel}</div>}
+                        {ss2ClothSlot !== null ?
+                            <img src={ss2ClothSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss2ClothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2ClothSlotLevel}</div>}
+                        {ss2ShoesSlot !== null ?
+                            <img src={ss1ShoesSlot} width="100px" alt="" /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss2ShoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2ShoesSlotLevel}</div>}
+                    </div>
+                    <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                        <div style={{width: "300px", height: "65px"}}></div>
+                        {nft.length > 0 ?
+                            <>
+                                {ss2CharacterSlot !== null ?
+                                    <img src={ss2CharacterSlot} width="300px" alt="Can not load metadata." /> :
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
+                                }
+                            </> :
+                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                            </div>
+                        }
+                        {ss2CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss2CharacterSlotLevel}</div>}
+                    </div>
+                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                        {ss2AccSlot !== null ?
+                            <img src={ss2AccSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss2AccSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", fontSize: "25px"}}>+{ss2AccSlotLevel}</div> }
+                        {ss2BackSlot !== null ?
+                            <img src={ss2BackSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss2BackSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss2BackSlotLevel}</div> }
+                        {ss2WeaponSlot !== null ?
+                            <img src={ss2WeaponSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss2WpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2WpSlotLevel}</div>}
+                    </div>
+                </div>
+            </div>
 
-            {<div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
                 <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
                     <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
@@ -2206,7 +2527,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                             TOTAL CMPOW
-                            <div style={{display: "flex", flexDirection: "row"}}>{ss === 1 && yourSS1CMPOW}</div>
+                            <div style={{display: "flex", flexDirection: "row"}}>{yourSS1CMPOW}</div>
                         </div>
                         <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
                             <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 1 concludes at 11:59 PM on August 28th.</div>
@@ -2219,31 +2540,27 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         </div>
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ss === 1 && 
-                            <>
-                                {ss1HatSlot !== null ?
-                                    <img src={ss1HatSlot} width="100px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSgooLEbo2MrxT3rNzFKq1fGkweGZJhV2ejPhKpAgoSWr" width="100px" alt="Can not load metadata." />
-                                }
-                                {ss1HatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1HatSlotLevel}</div>}
-                                {ss1ClothSlot !== null ?
-                                    <img src={ss1ClothSlot} width="100px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPY9gNNpai3UGtx8jSsohn3scvsioJM7AvmQLbFnBjvwq" width="100px" alt="Can not load metadata." />
-                                }
-                                {ss1ClothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1ClothSlotLevel}</div>}
-                                {ss1ShoesSlot !== null ?
-                                    <img src={ss1ShoesSlot} width="100px" alt="" /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmT4aYAh5veaM7fawV4MbufZBGWKFcJ4QmXdzNqmHYMxXk" width="100px" alt="Can not load metadata." />
-                                }
-                                {ss1ShoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1ShoesSlotLevel}</div>}
-                            </>
+                        {ss1HatSlot !== null ?
+                            <img src={ss1HatSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSgooLEbo2MrxT3rNzFKq1fGkweGZJhV2ejPhKpAgoSWr" width="100px" alt="Can not load metadata." />
                         }
+                        {ss1HatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1HatSlotLevel}</div>}
+                        {ss1ClothSlot !== null ?
+                            <img src={ss1ClothSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPY9gNNpai3UGtx8jSsohn3scvsioJM7AvmQLbFnBjvwq" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss1ClothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1ClothSlotLevel}</div>}
+                        {ss1ShoesSlot !== null ?
+                            <img src={ss1ShoesSlot} width="100px" alt="" /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmT4aYAh5veaM7fawV4MbufZBGWKFcJ4QmXdzNqmHYMxXk" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss1ShoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1ShoesSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                         <div style={{width: "300px", height: "65px"}}></div>
                         {nft.length > 0 ?
                             <>
-                                {(ss === 1 && ss1CharacterSlot !== null) ?
+                                {ss1CharacterSlot !== null ?
                                     <img src={ss1CharacterSlot} width="300px" alt="Can not load metadata." /> :
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmViHN4xqFWr9x9t4q1QGMNanm3f7u2fBD6PU9x4ZKdyzk" width="300px" alt="Can not load metadata." />
                                 }
@@ -2255,27 +2572,23 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         {ss1CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss1CharacterSlotLevel}</div>}
                     </div>
                     <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ss === 1 && 
-                            <>
-                                {ss1AccSlot !== null ?
-                                    <img src={ss1AccSlot} width="100px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYYCgcgbqdh59kuyuXSxWom7igRYqPnXLY4DNjL3mJpY8" width="100px" alt="Can not load metadata." />
-                                }
-                                {ss1BackSlot !== null ?
-                                    <img src={ss1BackSlot} width="100px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRFpQsLUgJPjgXXBeREddUVAEcyJwzqG79VJ7BeYd8LSj" width="100px" alt="Can not load metadata." />
-                                }
-                                {ss1BackSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss1BackSlotLevel}</div> }
-                                {ss1WeaponSlot !== null ?
-                                    <img src={ss1WeaponSlot} width="100px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRKTx7BpuUicaecf4bKYSroAvedLGw3mncWAHHSfLszJc" width="100px" alt="Can not load metadata." />
-                                }
-                                {ss1WpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1WpSlotLevel}</div>}
-                            </>
+                        {ss1AccSlot !== null ?
+                            <img src={ss1AccSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYYCgcgbqdh59kuyuXSxWom7igRYqPnXLY4DNjL3mJpY8" width="100px" alt="Can not load metadata." />
                         }
+                        {ss1BackSlot !== null ?
+                            <img src={ss1BackSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRFpQsLUgJPjgXXBeREddUVAEcyJwzqG79VJ7BeYd8LSj" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss1BackSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss1BackSlotLevel}</div> }
+                        {ss1WeaponSlot !== null ?
+                            <img src={ss1WeaponSlot} width="100px" alt="Can not load metadata." /> :
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRKTx7BpuUicaecf4bKYSroAvedLGw3mncWAHHSfLszJc" width="100px" alt="Can not load metadata." />
+                        }
+                        {ss1WpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1WpSlotLevel}</div>}
                     </div>
                 </div>
-            </div>}
+            </div>
             
             {nft.length > 0 ?
                 <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
@@ -2294,6 +2607,14 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                         ) || 
                                         (item.Col === 3 && 
                                             (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)
+                                        )
+                                    )
+                                ) ||
+                                (ss === 2 && 
+                                    (item.Col === 2 && 
+                                        (
+                                            (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800) || 
+                                            (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)
                                         )
                                     )
                                 )) &&
@@ -2316,22 +2637,10 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                                 {item.isStaked ?
                                                     <>
                                                         {item.Col === 1 && 
-                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot, false)}>UNEQUIP L1</div>
+                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot, false, ss)}>UNEQUIP L1</div>
                                                         }
-                                                        {(ss === 1 &&
-                                                            (
-                                                                (item.Col === 1 && 
-                                                                    (
-                                                                        (Number(item.Id) >= 102000108000 && Number(item.Id) <= 102033308000) || 
-                                                                        (Number(item.Id) >= 220010810800 && Number(item.Id) <= 220020910800) || 
-                                                                        (Number(item.Id) >= 300010100600 && Number(item.Id) <= 300054800600)
-                                                                    )
-                                                                ) || 
-                                                                (item.Col === 2 && (Number(item.Id) < 700000118800 && Number(item.Id) > 700025018800)) || 
-                                                                item.Col === 3
-                                                            )
-                                                        ) &&
-                                                            <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => unstakeNft(item.Slot, true)}>UNEQUIP L2 SS1</div>
+                                                        {item.Ss !== undefined &&
+                                                            <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => unstakeNft(item.Slot, true, item.Ss)}>UNEQUIP L2 SS{item.Ss}</div>
                                                         }
                                                     </> :
                                                     <>
@@ -2366,13 +2675,13 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                                                                 {((item.Id / 100000000000) | 0) === 8 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 8, false)}>EQUIP L1 BADGE</div>}
                                                             </>
                                                         }
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 102000108000 && Number(item.Id) <= 102033308000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS1 MAIN CHAR</div>}
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 220010810800 && Number(item.Id) <= 220020910800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS1 HAT</div>}
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 300010100600 && Number(item.Id) <= 300054800600)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS1 CLOTH</div>}
-                                                        {(ss === 1 && item.Col === 3 && (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS1 ACC</div>}
-                                                        {(ss === 1 && item.Col === 2 && (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS1 BACK</div>}
-                                                        {(ss === 1 && item.Col === 1 && (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025601000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS1 SHOES</div>}
-                                                        {(ss === 1 && item.Col === 2 && (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS1 WEAPON</div>}
+                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 102033419000 && Number(item.Id) <= 102066619000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS2 MAIN CHAR</div>}
+                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 210000100250 && Number(item.Id) <= 210050001950)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS2 HAT</div>}
+                                                        {(ss === 2 && item.Col === 2 && (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS2 CLOTH</div>}
+                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 400030010900 && Number(item.Id) <= 400039910900)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS2 ACC</div>}
+                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 510030010100 && Number(item.Id) <= 510039910100)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS2 BACK</div>}
+                                                        {(ss === 2 && item.Col === 2 && (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS2 SHOES</div>}
+                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 730010010400 && Number(item.Id) <= 730019910400)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS2 WEAPON</div>}
                                                         <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
                                                     </>
                                                 }
