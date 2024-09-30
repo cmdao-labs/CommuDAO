@@ -44,6 +44,8 @@ import OPMall from './OP-Mall'
 import Mkp from  './Mkp'
 import GameSwap from  './GameSwap'
 
+import OPFields from './OP-Fields'
+
 import BKCFields from './BKC-Fields'
 import BadMuseum from './BKC-Fields-BadMuseum'
 import FraserRiver from './BKC-Fields-FraserRiver'
@@ -274,6 +276,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "ANCIENT-FOREST-BBQCHAIN") {
                     preset = 10001
                     document.title = "Ancient Forest [BBQ] | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "OP") {
+                    preset = 11000
+                    document.title = "Fields [OP] | CommuDAO"
                 }
             } else {
                 preset = 1
@@ -457,6 +462,8 @@ const Main = () => {
 
                 {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}
                 {mode === 10001  && <BBQFieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdsV2ABI={cmdsV2ABI} uplevelCMDSABI={uplevelCMDSABI} fieldWoodBBQABI={fieldWoodBBQABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} missionWoodABI={missionWoodABI} />}
+
+                {mode === 11000 && <OPFields callMode={callMode} navigate={navigate} />}
 
                 {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}
                 {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
