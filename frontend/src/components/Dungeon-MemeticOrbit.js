@@ -1054,7 +1054,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         address: badgeClaimer,
                         abi: badgeClaimerABI,
                         functionName: 'isClaimed',
-                        args: [address, ss],
+                        args: [address, 1],
                     },
                     {
                         address: cmdaonft,
@@ -2052,9 +2052,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const equipNft = async (_nftCol, _nftid, slot, _isMeme) => {
         setisLoading(true)
         let nftaddr = cmdaonft
-        if (_isMeme && slot === 4) {
-            nftaddr = bbnft
-        } else if (_isMeme && (slot === 5 || slot === 7)) {
+        if (_isMeme && (slot === 3 || slot === 6)) {
             nftaddr = narutanft
         }
         let colBonus = 0
