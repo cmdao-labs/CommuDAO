@@ -2477,7 +2477,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         }
                         {ss2ClothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2ClothSlotLevel}</div>}
                         {ss2ShoesSlot !== null ?
-                            <img src={ss1ShoesSlot} width="100px" alt="" /> :
+                            <img src={ss2ShoesSlot} width="100px" alt="" /> :
                             <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
                         }
                         {ss2ShoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2ShoesSlotLevel}</div>}
