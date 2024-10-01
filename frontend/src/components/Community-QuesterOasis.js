@@ -64,31 +64,31 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
-            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 3934782, 'latest')
+            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 4115554, 'latest')
             const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
-            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 3934782, 'latest')
+            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 4115554, 'latest')
             const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
-            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 3934782, 'latest')
+            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 4115554, 'latest')
             const spend3Map = await Promise.all(spend3Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
-            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 3934782, 'latest')
+            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 4115554, 'latest')
             const spend4Map = await Promise.all(spend4Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
 
             const spend5Filter = await jusdtSC.filters.Transfer(null, "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a", null)
-            const spend5Event = await jusdtSC.queryFilter(spend5Filter, 3934782, 'latest')
+            const spend5Event = await jusdtSC.queryFilter(spend5Filter, 4115554, 'latest')
             const spend5Map = await Promise.all(spend5Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend6Filter = await jusdtSC.filters.Transfer(null, "0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5", null)
-            const spend6Event = await jusdtSC.queryFilter(spend6Filter, 3934782, 'latest')
+            const spend6Event = await jusdtSC.queryFilter(spend6Filter, 4115554, 'latest')
             const spend6Map = await Promise.all(spend6Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spend7Filter = await jusdtSC.filters.Transfer(null, "0x09e6a0A03afa27438c3f507de82b5f6061Ae1643", null)
-            const spend7Event = await jusdtSC.queryFilter(spend7Filter, 3934782, 'latest')
+            const spend7Event = await jusdtSC.queryFilter(spend7Filter, 4115554, 'latest')
             const spend7Map = await Promise.all(spend7Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
 
             const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
@@ -304,7 +304,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             }
 
             const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
-            const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 3934782, 'latest')
+            const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 4115554, 'latest')
             const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
             const jdaoFarmAllMerged = jdaoFarmMap.reduce((prev, curr) => {
                 if (prev[curr.to.toUpperCase()]) {
@@ -1695,23 +1695,23 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
 
             <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
                 <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px"}} className="nftCard">
-                    <div style={{fontSize: "40px", color: "#fff"}}>September 2024 Prize Pool 🎁</div>
+                    <div style={{fontSize: "40px", color: "#fff"}}>October 2024 Prize Pool 🎁</div>
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Questers</div>
-                            <div>8,778.00 CMJ</div>
+                            <div>X.XX CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Strongest</div>
-                            <div>8,778.00 CMJ</div>
+                            <div>X.XX CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Spender</div>
-                            <div>8,778.00 CMJ</div>
+                            <div>X.XX CMJ</div>
                         </div>
                         <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                             <div>Top Money Mover</div>
-                            <div>2,926.00 CMJ</div>
+                            <div>X.XX CMJ</div>
                         </div>
                     </div>
                     <div style={{color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
