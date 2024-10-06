@@ -12,6 +12,7 @@ import EasternFront from './Fields-EasternFront'
 import MechHarvestZone from './Fields-MechHarvestZone'
 import DjMining from './Fields-DjMining'
 import Labs from './Labs'
+import OPLabs from './OP-Labs'
 
 import Dungeon from './Dungeon'
 import OPDungeon from './OP-Dungeon'
@@ -292,6 +293,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "BBQCHAIN") {
                     preset = 20000
                     document.title = "Labs [BBQ-CHAIN] | CommuDAO"
+                } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "OP") {
+                    preset = 21000
+                    document.title = "Labs [OP] | CommuDAO"
                 }
             } else {
                 preset = 2
@@ -468,6 +472,8 @@ const Main = () => {
                 {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}
                 {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
                 {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} sourceThubABI={sourceThubABI} />}
+                {mode === 21000 && <OPLabs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} />}
+
                 
                 
                 {mode === 3 && <Dungeon callMode={callMode} navigate={navigate} />}
