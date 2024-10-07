@@ -2595,20 +2595,18 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                         {nft.map((item, index) => (
                             <>
                                 {((item.Col === 1 && Math.floor(Number(item.Id / 100000000000)) <= 8) || 
-                                (ss === 1 && 
-                                    (
-                                        (item.Col === 2 && 
-                                            (
-                                                (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025018800) || 
-                                                (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025018800)
-                                            )
-                                        ) || 
-                                        (item.Col === 3 && 
-                                            (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)
+                                (//ss === 1 
+                                    (item.Col === 2 && 
+                                        (
+                                            (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025018800) || 
+                                            (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025018800)
                                         )
+                                    ) || 
+                                    (item.Col === 3 && 
+                                        (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)
                                     )
                                 ) ||
-                                (ss === 2 && 
+                                (//ss === 2  
                                     (item.Col === 2 && 
                                         (
                                             (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800) || 
