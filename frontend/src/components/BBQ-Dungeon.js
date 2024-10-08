@@ -22,18 +22,14 @@ const BBQDungeon = ({ callMode, navigate }) => {
             <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Dungeon</div>
             <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                    <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmW3aEzsjSmuhTW4z16TaRPskRTJ3oDooJsnhzuRYCN51R" width="30px" alt="HRM" /> 
-                        <div className='light' style={{marginLeft: "10px"}}>Hero Miner</div>
-                    </div>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmddAUAigPUPoaAQg3F4jsRoidfjN5BMifwtmWfEdBrPzt" height="230" alt="Endless_Tower" />
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWDUzuDyojEsdLBYXAdaceYXgCAydTk6XfH2vJkgwz22z" height="230" alt="Endless_Tower" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
                         <div className="emp">Intermediate</div>
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>Eligible NFT Collection</div>
-                        <div className="emp">Hero Miner NFTs</div>
+                        <div className="emp">HRM NFTs</div>
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
