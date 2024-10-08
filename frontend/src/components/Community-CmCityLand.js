@@ -46,7 +46,6 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const [slot1Owner, setSlot1Owner] = React.useState('...')
     const [slot1Lv, setSlot1Lv] = React.useState(0)
     const [nft, setNft] = React.useState([])
-    const [nftStaked, setNftStaked] = React.useState([])
     const [delegateAddr, setDelegateAddr] = React.useState(null)
 
     const [osPool, setOsPool] = React.useState(null)
@@ -371,7 +370,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             if (nfts.length === 0) { nfts.push(null) }
 
             return [
-                landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, nftstake, 
+                landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, null, 
                 wdlevel, ospoolWD, _allReward1WD, _allPowWD, nftstakeWD, wdBonus, 
             ]
         }
@@ -406,7 +405,6 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
                 setThubCap(0) :
                 setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
-            setNftStaked(result[11])
 
             setWdLv(Number(result[12]))
             setOsPoolWD(ethers.utils.formatEther(String(result[13])))
@@ -590,6 +588,30 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const { hash: hash1 } = await writeContract(config)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const unstakeNftAll = async () => {
+        setisLoading(true)
+        try {
+            for (let i = 0; i <= nftStake.length - 1; i++) {
+                const config = await prepareWriteContract({
+                    address: houseStaking,
+                    abi: houseStakingABI,
+                    functionName: 'unstake',
+                    args: [1, nftStake[i].Id, false],
+                })
+                if (i === nftStake.length - 1) {
+                    const { hash: hash1 } = await writeContract(config)
+                    await waitForTransaction({ hash: hash1 })
+                    setTxupdate(hash1)
+                } else {
+                    writeContract(config)
+                }
+            }
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -972,7 +994,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             <div style={{marginLeft: "5px"}}>{Number(osPool).toFixed(3).toLocaleString()}</div>
                                         </div>
                                     </div>
-                                    <div style={{height: "41px"}}></div>
+                                    {address !== undefined && address !== null && slot1Addr !== undefined && slot1Addr !== null && address.toUpperCase() === slot1Addr.toUpperCase() ?
+                                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                            {nftStake !== null && nftStake[0] !== null ?
+                                                <div style={{alignSelf: "center", background: "#ff007a"}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                            }
+                                        </div> :
+                                        <div style={{height: "41px"}}></div>
+                                    }
                                 </div>
                                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                                     <div className="noscroll" style={{position: "relative", width: "100%", flexWrap: "wrap", height: "fit-content", display: "flex", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}}>
@@ -1586,7 +1616,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                             <>
                                 {address.toUpperCase() === slot1Addr.toUpperCase() &&
                                     <>
-                                        {nft.length > 0 || nftStaked > 0 ?
+                                        {nft.length > 0 || nftStake > 0 ?
                                             <div style={{maxWidth: "100%", width: "1650px", marginBottom: "80px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
                                                 {nft[0] !== null ?
                                                     <>
@@ -1633,9 +1663,9 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                                         }
                                                     </div>
                                                 }
-                                                {nftStaked[0] !== null &&
+                                                {nftStake[0] !== null &&
                                                     <>
-                                                        {nftStaked.map((item, index) => (
+                                                        {nftStake.map((item, index) => (
                                                             <div key={index}>
                                                                 <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard">
                                                                     <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
