@@ -42,19 +42,19 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
-                        args: [address, 1, 1],
+                        args: [address, 2, 1],
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
-                        args: [address, 1, 2],
+                        args: [address, 2, 2],
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
-                        args: [address, 1, 3],
+                        args: [address, 2, 3],
                     },
                 ],
             }) : [{result: [0]}, {result: [0]}, {result: null}, {result: [0]}, {result: [0]}, {result: [0]}]
@@ -141,7 +141,7 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
-                args: [1, 1],
+                args: [1, 2],
             })
             const { hash: hash1 } = await writeContract(config1)
             await waitForTransaction({ hash: hash1 })
@@ -149,7 +149,7 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
-                args: [2, 1],
+                args: [2, 2],
             })
             const { hash: hash2 } = await writeContract(config2)
             await waitForTransaction({ hash: hash2 })
@@ -157,7 +157,7 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
-                args: [3, 1],
+                args: [3, 2],
             })
             const { hash: hash3 } = await writeContract(config3)
             await waitForTransaction({ hash: hash3 })
@@ -196,7 +196,7 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
                     </div>
                     <div style={{width: "75%", height: "80px", display: "flex", justifyContent: "space-between", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
-                            <div>REVENUE SHARED:</div>
+                            <div style={{textAlign: "left"}}>REVENUE SHARED EPOCH 2:</div>
                             <div className="bold">{Number(reward1).toLocaleString('en-US', {maximumFractionDigits:2})} $CMD</div>
                             <div className="bold">{Number(reward2).toLocaleString('en-US', {maximumFractionDigits:6})} $WETH</div>
                             <div className="bold">{Number(reward3).toLocaleString('en-US', {maximumFractionDigits:2})} $USDT</div>
