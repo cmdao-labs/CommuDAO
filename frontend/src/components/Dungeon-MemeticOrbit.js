@@ -1643,7 +1643,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             memeSS2cmpow += res_meme_acc_ss2 !== null ? Number(nftEQMemeSS2[3]) % 100000 : 0
             if (res_meme_acc_ss2 !== null) {
                 nfts.push({
-                    Col: 3,
+                    Col: 1,
                     Id: Number(nftEQMemeSS2[3]),
                     Name: nftEQ_meme_acc_ss2_Name,
                     Image: nftEQ_meme_acc_ss2_Img,
@@ -1665,7 +1665,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             memeSS2cmpow += res_meme_back_ss2 !== null ? Number(nftEQMemeSS2[4]) % 100000 : 0
             if (res_meme_back_ss2 !== null) {
                 nfts.push({
-                    Col: 2,
+                    Col: 1,
                     Id: Number(nftEQMemeSS2[4]),
                     Name: nftEQ_meme_back_ss2_Name,
                     Image: nftEQ_meme_back_ss2_Img,
@@ -1709,7 +1709,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             memeSS2cmpow += res_meme_weapon_ss2 !== null ? Number(nftEQMemeSS2[6]) % 100000 : 0
             if (res_meme_weapon_ss2 !== null) {
                 nfts.push({
-                    Col: 2,
+                    Col: 1,
                     Id: Number(nftEQMemeSS2[6]),
                     Name: nftEQ_meme_weapon_ss2_Name,
                     Image: nftEQ_meme_weapon_ss2_Img,
