@@ -195,6 +195,32 @@ const Fields = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(101); navigate('/fields/doijib-mining');}}>Go to DOIJIB Mining</div>
                 </div>
+
+                <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30px" alt="DOIJIB" />
+                        <div className='light' style={{marginLeft: "10px"}}>DOIJIB</div>
+                    </div>
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfCzo1EhcpXHosafS97zWHXbeo21n1tceZ3KF4Kz8KxMz" height="230" alt="Field_CommuDOI" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div>
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                            Eligible NFT Collection
+                        </div>
+                        <div className="emp" style={{fontSize: "12px"}}>CommuDAO NFT</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div>
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                            Earn
+                        </div>
+                        <div style={{display: "flex", flexDirection: "row"}} className="emp">
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="14" alt="$DOIJIB"/>
+                            <div style={{marginLeft: "5px"}}>DOIJIB</div>
+                        </div>                    
+                    </div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(102); navigate('/fields/commudoi');}}>Go to CommuDOI</div>
+                </div>
             </div>
         </>
     )

@@ -11,6 +11,7 @@ import TheHeavenLand from './Fields-TheHeavenLand'
 import EasternFront from './Fields-EasternFront'
 import MechHarvestZone from './Fields-MechHarvestZone'
 import DjMining from './Fields-DjMining'
+import CommuDOIField from './Fields-CommuDOI'
 import Labs from './Labs'
 import OPLabs from './OP-Labs'
 
@@ -77,6 +78,7 @@ import thlFieldABI from './jsons/thlFieldABI.json'
 import gearFieldABI from './jsons/gearFieldABI.json'
 import fieldEfABI from './jsons/fieldEfABI.json'
 import fieldDjABI from './jsons/fieldDJABI.json'
+import cmdoiFieldABI from './jsons/cmdoiFieldABI.json'
 import taoPfpABI from './jsons/taoPfpABI.json'
 import cmdsV2ABI from './jsons/cmdsV2ABI.json'
 import fieldWoodBBQABI from './jsons/fieldWoodBBQABI.json'
@@ -262,6 +264,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "DOIJIB-MINING") {
                     preset = 101
                     document.title = "DOIJIB Mining | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "COMMUDOI") {
+                    preset = 102
+                    document.title = "CommuDOI | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
                     document.title = "Fields [BKC] | CommuDAO"
@@ -454,11 +459,12 @@ const Main = () => {
                 {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
                 {mode === 11 && <FishingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
                 {mode === 12 && <RatHuntingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
-                {mode === 13  &&<FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20ABI={erc20ABI} />}
+                {mode === 13 && <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20ABI={erc20ABI} />}
                 {mode === 17 && <TheHeavenLand intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} />}
                 {mode === 19 && <EasternFront intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldEfABI={fieldEfABI} />}
                 {mode === 100 && <MechHarvestZone intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
                 {mode === 101 && <DjMining intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldDjABI={fieldDjABI} />}
+                {mode === 102 && <CommuDOIField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} cmdoiFieldABI={cmdoiFieldABI} />}
                 
                 {mode === 14 && <BKCFields callMode={callMode} navigate={navigate} />}
                 {mode === 15 && <BadMuseum intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} erc20ABI={erc20ABI} />}
