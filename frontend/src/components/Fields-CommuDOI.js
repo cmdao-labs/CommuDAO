@@ -85,7 +85,7 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 } catch {}
 
                 let _reward = Number(yournftstake[i].Id.slice(-5))
-                _allDaily += Number(ethers.utils.formatEther(String(_reward * 1e13 * 86400)))
+                _allDaily += Number(_reward * 0.00001 * 86400)
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -93,7 +93,7 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                     Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: ethers.utils.formatEther(String(_reward * 1e13 * 86400)),
+                    RewardPerSec: _reward * 0.00001 * 86400,
                     isStaked: true,
                 })
             }
@@ -146,7 +146,7 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
-                    RewardPerSec: ethers.utils.formatEther(String(yournftwallet[i].Id.slice(-5) * 1e13 * 86400)),
+                    RewardPerSec: yournftwallet[i].Id.slice(-5) * 0.00001 * 86400,
                     isStaked: false,
                 })
             }
