@@ -812,18 +812,6 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                                 <div>In CMDAO Gov (CMD-ETH LP):</div>
                                 <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div>Epoch 2 Revenue:</div>
-                                <div style={{color: "#fff"}}>{Number(cmdRev).toLocaleString('en-US', {maximumFractionDigits:0})} CMD ({Number(cmdRev/1000000).toFixed(2)}%)</div>
-                            </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div></div>
-                                <div style={{color: "#fff"}}>{Number(ethRev).toLocaleString('en-US', {maximumFractionDigits:4})} ETH</div>
-                            </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
-                                <div></div>
-                                <div style={{color: "#fff"}}>{Number(usdtRev).toLocaleString('en-US', {maximumFractionDigits:2})} USDT</div>
-                            </div>
                         </div>
                     </div>
                 </div>
