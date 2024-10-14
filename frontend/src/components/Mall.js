@@ -1984,7 +1984,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                     <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                         <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifid22c4xzlomymxik5kru5ymeunnd62rxkncrai7hnne7bnucuhi" width="220" alt="NPC_Gamy" />
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRW1q89QaD29zvC8h5bg4yZBcmsqj4aG8FPAe1RddvM6Y" width="230" alt="NPC_Gamy" />
                         </div>
                         <div style={{maxHeight: "110px"}}>
                             <div style={{fontSize: "20px", width: "380px"}} className="pixel">GAMY, THE PRESALE AGENT</div>
