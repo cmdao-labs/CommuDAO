@@ -1900,7 +1900,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                         <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                             {levelCraftBBQ >= 0 ? <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {levelCraftBBQ}</div> : <></>}
                             <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                {isCraftBBQ !== null || levelCraftBBQ < 4 ? <img src="./elements/BBQ_factory01_lv0.png" width="200" alt="$BBQ_Factory_lv0"/> : <></>}
+                                {isCraftBBQ !== null || levelCraftBBQ < 4 ? <img src="./elements/BBQ_factory01_lv0.png" width="170" alt="$BBQ_Factory_lv0"/> : <></>}
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -1982,7 +1982,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                         <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                             <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihbzubgndsg3y6j666b7i6mxky7fp7os5xtefrszzyslequkrnvta" width="280" alt="Pizza_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXQdWZs4VTcbUFJCv42onZCqXjhYJ4S1ek9fAZGfbeVSi" width="200" alt="Pizza_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2033,7 +2033,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                         <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                             <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidy3wavoltdphdhinuv5lpdevx7yao545xuzngiwqbtyyohr7jzuy" width="250" alt="$SIL_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdpfkSTFj8BY8f6RjtLzp4e1P1eF76zWo9qngx9FPmogv" width="210" alt="$SIL_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2086,7 +2086,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">                    
                         <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicrxd4ah7pmi2gaemx73rd6msspxyzg5aglqf3iez4mkyocdh3nta" width="330" alt="$GOLD_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWhS1SzApFMZA9DGYyv6BcW48d8EEn97dnHmfs7cCNRLM" width="220" alt="$GOLD_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2137,7 +2137,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
 
                         <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicrg6pt7nkzibtg4pwdw6vaipgcbpxhlnvt5hrqobmhlrnssqjiva" width="300" alt="$PLAT_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXuWRk4JQuepXzEM5N2f64StpwpypfEBtVzfjRqmHivUE" width="230" alt="$PLAT_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2186,62 +2186,9 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             }
                         </div>
 
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="300" alt="$PLAT_Factory02"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
-                                    <div style={{margin: "0 5px"}}>888</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
-                                    <div style={{margin: "0 5px"}}>10</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>15 minutes</div>
-                            </div>
-                            {isCraftPLAT2 ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimPLAT2 === 0 ? "now" : timetoClaimPLAT2}</div>
-                                    </div>
-                                    {timetoClaimPLAT2 === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLAT2Handle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftPLAT2 !== null ?
-                                                <>
-                                                    {canCraftPLAT2 ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLAT2Handle(1)}>Craft Platinum</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-                    </div>
-
-                    <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">                                        
                         <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbM9zQ2g1PmTnqn2nZznjCHzXSrpcc1Eey4rbawSNyayS" width="200" alt="$PLUTO_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVHAiLDekEegHqMzr11j6jH5Ay4KWHPS4of4cEYxn4afm" width="230" alt="$PLUTO_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2290,6 +2237,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                             }
                         </div>
                     </div>
+
                     
                     <div style={{marginTop: "0px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
                     <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Labs & Factories</div>
@@ -2410,7 +2358,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
                             </div>
                             <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibmo7hlkn73ltjvkrvjrjkztx74qosbzszsd2rjq42dgsrggvhy5i" width="310" alt="Large_SX31_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZmfbTakZsWQhZP7achSgqUJjqyajrziTq8YyNVndtuQ1" width="220" alt="Large_SX31_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2467,7 +2415,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                             </div>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="270" alt="$SW_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="220" alt="$SW_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2522,7 +2470,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                             </div>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="270" alt="$STAR_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="250" alt="$STAR_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2577,7 +2525,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                             </div>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="270" alt="$II_Factory"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfQhrhSNw5Ldegjeu8vF2wSv432uWesQYe5kyW1cWgntV" width="170" alt="$II_Factory"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2634,7 +2582,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                 <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                             </div>
                             <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibzjgibm5s45zoyxt563lqcxssxmgyfduxzprui6qdyujah33w7fq" width="340" alt="$II_Factory02"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="210" alt="$II_Factory02"/>
                             </div>
                             <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                 <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2675,6 +2623,61 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                                                     }
                                                 </> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TDM-II</div>
+                                            }
+                                        </> :
+                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                    }
+                                </>
+                            }
+                        </div>
+
+                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                            </div>
+                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="220" alt="$PLAT_Factory02"/>
+                            </div>
+                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                    <div style={{margin: "0 5px"}}>888</div>
+                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                    <div style={{margin: "0 5px"}}>1</div>
+                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                    <div style={{margin: "0 5px"}}>10</div>
+                                </div>
+                            </div>
+                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                <div>15 minutes</div>
+                            </div>
+                            {isCraftPLAT2 ?
+                                <>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                        <div>{timetoClaimPLAT2 === 0 ? "now" : timetoClaimPLAT2}</div>
+                                    </div>
+                                    {timetoClaimPLAT2 === 0 ?
+                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLAT2Handle}>Obtain</div> :
+                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                    }
+                                </> :
+                                <>
+                                    {address !== null && address !== undefined ?
+                                        <>
+                                            {isCraftPLAT2 !== null ?
+                                                <>
+                                                    {canCraftPLAT2 ?
+                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLAT2Handle(1)}>Craft Platinum</div> :
+                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                    }
+                                                </> :
+                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
                                             }
                                         </> :
                                         <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
