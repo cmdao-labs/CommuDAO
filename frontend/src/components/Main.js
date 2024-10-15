@@ -278,10 +278,10 @@ const Main = () => {
                     document.title = "Fraser River [BKC] | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BBQCHAIN") {
                     preset = 10000
-                    document.title = "Fields [BBQ] | CommuDAO"
+                    document.title = "Fields [BBQ Chain] | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "ANCIENT-FOREST-BBQCHAIN") {
                     preset = 10001
-                    document.title = "Ancient Forest [BBQ] | CommuDAO"
+                    document.title = "Ancient Forest [BBQ Chain] | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "OP") {
                     preset = 11000
                     document.title = "Fields [OP] | CommuDAO"
@@ -297,7 +297,7 @@ const Main = () => {
                     document.title = "Labs [BKC] | CommuDAO"
                 } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "BBQCHAIN") {
                     preset = 20000
-                    document.title = "Labs [BBQ-CHAIN] | CommuDAO"
+                    document.title = "Labs [BBQ Chain] | CommuDAO"
                 } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "OP") {
                     preset = 21000
                     document.title = "Labs [OP] | CommuDAO"
@@ -337,7 +337,7 @@ const Main = () => {
                     document.title = "TDM Robotics Inc. | CommuDAO"
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "BBQCHAIN") {
                     preset = 30000
-                    document.title = "Dungeon [BBQ-CHAIN] | CommuDAO"
+                    document.title = "Dungeon [BBQ Chain] | CommuDAO"
                 } else if (modeText.toUpperCase() === "DUNGEON" && subModeText.toUpperCase() === "THE-ENDLESS-TOWER") {
                     preset = 30001
                     document.title = "The Endless Tower | CommuDAO"
@@ -381,7 +381,7 @@ const Main = () => {
             if (subModeText !== undefined) {
                 if (modeText.toUpperCase() === "MALL" && subModeText.toUpperCase() === "BBQCHAIN") {
                     preset = 51
-                    document.title = "Mall [BBQ] | CommuDAO"
+                    document.title = "Mall [BBQ Chain] | CommuDAO"
                 } else if (modeText.toUpperCase() === "MALL" && subModeText.toUpperCase() === "OP") {
                     preset = 52
                     document.title = "Mall [OP] | CommuDAO"
@@ -477,7 +477,7 @@ const Main = () => {
 
                 {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}
                 {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
-                {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} sourceThubABI={sourceThubABI} />}
+                {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
                 {mode === 21000 && <OPLabs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} />}
 
                 

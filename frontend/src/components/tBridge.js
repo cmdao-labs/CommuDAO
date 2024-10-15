@@ -547,7 +547,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(6)}>CMDAO NFT</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(3)}>$TAOMEME</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HERO-MINER</div>
+                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HRM SYSTEM</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
@@ -598,8 +598,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     {mode === 5 &&
                         <>
                             <div style={{width: "100%", marginTop: "30px", fontSize: "40px", letterSpacing: "2.5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <img style={{marginRight: "20px"}} height="40px" src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmW3aEzsjSmuhTW4z16TaRPskRTJ3oDooJsnhzuRYCN51R" alt="HRM" />
-                                HERO MINER ONE-STOP BRIDGE
+                                HRM SYSTEM
                             </div>
                             <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "2px solid #fff"}}>
                                 <div className='hashtag' style={{padding: "10px", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px"}} onClick={() => setMode(5)}><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a" width="25" alt="BKC" /></div>
