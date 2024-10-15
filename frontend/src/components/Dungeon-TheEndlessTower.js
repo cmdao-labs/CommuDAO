@@ -8094,10 +8094,10 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 </div>
             </div>
         }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd5r9efGEgrBPRd7UxkGuR4HcTSt3afGeDEa8suEHpoy2')", overflow: "scroll"}}>
+        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
             <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>The Endless Tower</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
+                <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>The Endless Tower</div>
+                <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
             </div>
             <div style={{margin: "30px 100px"}}>
                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="150" alt="$GEM" />

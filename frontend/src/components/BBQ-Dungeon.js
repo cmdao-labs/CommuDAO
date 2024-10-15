@@ -19,10 +19,10 @@ const BBQDungeon = ({ callMode, navigate }) => {
         
         <div style={{width: "95%", flexDirection: "column", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
             <div style={{width: "97.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
-            <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Dungeon</div>
+            <div style={{width: "100%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Dungeon</div>
             <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                 <div className="nftCard pixel" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWDUzuDyojEsdLBYXAdaceYXgCAydTk6XfH2vJkgwz22z" height="230" alt="Endless_Tower" />
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUniMaXwLQG8yf6UEGa3bQmwxj9f6HCrQpinUFP9GbnUC" height="230" alt="Endless_Tower" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-gamepad"></i>Difficulty</div>
                         <div className="emp">Intermediate</div>
@@ -33,7 +33,7 @@ const BBQDungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
-                        <div className="emp">GEMSTONE</div>
+                        <div className="emp"><img style={{marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="12" alt="$GEM"/>GEMSTONE</div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(30001); navigate('/dungeon/the-endless-tower');}}>Go to The Endless Tower</div>
                 </div>

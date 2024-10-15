@@ -8,6 +8,9 @@ const bbqToken = '0x87dfDc26ff6e8986e2F773FAE3Bfa51C8f152cF0'
 const bbqLab = '0x2D2901B3c1A9770008AA38A095f71FB4e136c0f3'
 const woodToken = '0xc71AEB41A444AFdB4BfA28b4Ed1c1B5E1cB6d958'
 
+const gemToken = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
+const infpowLab = '0x0784a859e6d3b1F703465fB07d2329eEF8dB0780'
+
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
@@ -15,7 +18,7 @@ const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const sourcethub = '0xf623B7164cb81DCfC3836492fb09Ae005be57322'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI, sourceThubABI }) => {
+const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI, sourceThubABI, pzaLabABI }) => {
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -25,6 +28,12 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
     const [timetoClaimBBQ, setTimeToClaimBBQ] = React.useState(0)
     const [canCraftBBQ, setCanCraftBBQ] = React.useState(false)
+
+    const [isCraftINFPOW, setIsCraftINFPOW] = React.useState(null)
+    const [timetoClaimINFPOW, setTimeToClaimINFPOW] = React.useState(0)
+    const [canCraftINFPOW, setCanCraftINFPOW] = React.useState(false)
+    const [gemBalance, setGemBalance] = React.useState(0)
+    const [infpowBalance, setInfpowBalance] = React.useState(0)
 
     const [houseSelected, setHouseSelected] = React.useState('')
     const [transportValue, setTransportValue] = React.useState('')
@@ -346,14 +355,36 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: gemToken,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: infpowLab,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
+                    {
+                        address: infpowLab,
+                        abi: erc20ABI,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: [0, 0, 0]}, ]
+            }) : [{result: 0}, {result: [0, 0, 0]}, {result: 0}, {result: 0}, {result: [0, 0]}, {result: 0}]
             
             const bbqBal = data[0].result
             const labLogBBQ = data[1].result
             const woodBal = data[2].result
+            const gemBal = data[3].result
+            const labLogInfpow = data[4].result
+            const infpowBal = data[5].result
            
             const _canCraftBBQ = Number(ethers.utils.formatEther(String(woodBal))) >= 1000 && Number(cmdBal.formatted) >= 0.01 ? true : false
+            const _canCraftINFPOW = Number(ethers.utils.formatEther(String(gemBal))) >= 500 && Number(cmdBal.formatted) >= 1 ? true : false
 
             const data2 = await readContracts({
                 contracts: [
@@ -1541,6 +1572,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                 data2[76].result, data2[77].result, _allPowZ11, data2[79].result, data2[80].result, _allPowC01, data2[82].result, data2[83].result, _allPowC02, data2[85].result, data2[86].result, _allPowC03, data2[88].result, data2[89].result, _allPowC04, data2[91].result, data2[92].result, _allPowC05, data2[94].result, data2[95].result, _allPowC06, data2[97].result, data2[98].result, _allPowC07, data2[100].result, data2[101].result, _allPowC08, data2[103].result, data2[104].result, _allPowC09, data2[106].result, data2[107].result, _allPowC10, data2[109].result, data2[110].result, _allPowC11,
                 data2[112].result, data2[113].result, _allPowC12, data2[115].result, data2[116].result, _allPowC13, data2[118].result, data2[119].result, _allPowC14, data2[121].result, data2[122].result, _allPowC15, data2[124].result, data2[125].result, _allPowC16, data2[127].result, data2[128].result, _allPowC17, data2[130].result, data2[131].result, _allPowC18, data2[133].result, data2[134].result, _allPowC19, data2[136].result, data2[137].result, _allPowC20, data2[139].result, data2[140].result, _allPowC21, data2[142].result, data2[143].result, _allPowC22,
                 woodBal,
+                gemBal, labLogInfpow, _canCraftINFPOW, infpowBal,
             ]
         }
 
@@ -2141,8 +2173,17 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             setAllPowC22(Number(result[146]))
 
             setWoodBalance(ethers.utils.formatEther(result[147]))
+
+            setGemBalance(ethers.utils.formatEther(result[148]))
+            setIsCraftINFPOW(Number(result[149][0]) > 0)
+            const nextObtainInfpow = new Date((Number(result[149][1]) * 1000) + (10 * 60 * 1000))
+            Date.now() - (Number(result[149][1]) * 1000) <= (10 * 60 * 1000) ?
+                setTimeToClaimINFPOW(nextObtainInfpow.toLocaleString('es-CL')) :
+                setTimeToClaimINFPOW(0)
+            setCanCraftINFPOW(result[150])
+            setInfpowBalance(ethers.utils.formatEther(result[151]))
         })
-    }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI])
+    }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI, pzaLabABI])
 
     const craftBBQHandle = async (_machine) => {
         setisLoading(true)
@@ -2174,7 +2215,8 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
-            console.log(e)
+            setisError(true)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -2199,7 +2241,8 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
         } catch (e) {
-            console.log(e)
+            setisError(true)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -2343,7 +2386,8 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             })
             await waitForTransaction({ hash: hash2 })
         } catch (e) {
-            console.log(e)
+            setisError(true)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -2384,7 +2428,72 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
             const { hash: hash1 } = await writeContract(config2)
             await waitForTransaction({ hash: hash1 })
             setTxupdate(hash1)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const craftINFPOWHandle = async () => {
+        setisLoading(true)
+        try {
+            const gemAllow = await readContract({
+                address: gemToken,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [address, infpowLab],
+            })
+            if (gemAllow < (500 * 10**18)) {
+                const config = await prepareWriteContract({
+                    address: gemToken,
+                    abi: erc20ABI,
+                    functionName: 'approve',
+                    args: [infpowLab, ethers.utils.parseEther(String(10**8))],
+                })
+                const { hash: hash0 } = await writeContract(config)
+                await waitForTransaction({ hash: hash0 })
+            }
+            const config2 = await prepareWriteContract({
+                address: infpowLab,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [1],
+                value: ethers.utils.parseEther('1'),
+            })
+            const { hash: hash1 } = await writeContract(config2)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const obtainINFPOWHandle = async () => {
+        setisLoading(true)
+        try {
+            const config0 = await prepareWriteContract({
+                address: gemToken,
+                abi: erc20ABI,
+                functionName: 'approve',
+                args: [infpowLab, ethers.utils.parseEther(String(0))],
+            })
+            const { hash: hash0 } = await writeContract(config0)
+            await waitForTransaction({ hash: hash0 })
+            const config = await prepareWriteContract({
+                address: infpowLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            const { hash: hash1 } = await writeContract(config)
+            await waitForTransaction({ hash: hash1 })
+            setTxupdate(hash1)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -2427,6 +2536,30 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                         />
                         <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                     </div>
+
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV"
+                            width="20"
+                            alt="$GEMSTONE"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: gemToken,
+                                            symbol: 'HRM-GEM',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                    </div>
                 </div>
 
                 <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Craft Products</div>
@@ -2454,6 +2587,30 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                         />
                         <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                     </div>
+
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                            width="20"
+                            alt="$INF.POW"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: infpowLab,
+                                            symbol: 'INF-POW-BBQ',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                    </div>
                 </div>
 
                 <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
@@ -2462,7 +2619,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
                         {levelCraftBBQ >= 0 ? <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {levelCraftBBQ}</div> : <></>}
                         <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                            {levelCraftBBQ < 4 && <img src="../elements/BBQ_factory01_lv0.png" width="200" alt="$BBQ_Factory_lv0"/>}
+                            {levelCraftBBQ < 4 && <img src="../elements/BBQ_factory01_lv0.png" width="170" alt="$BBQ_Factory_lv0"/>}
                         </div>
                         <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2531,6 +2688,57 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, bbqLab01ABI, erc20ABI, t
                                         }
                                     </> :
                                     <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                }
+                            </>
+                        }
+                    </div>
+
+                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                        <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfE4Ruu1ckrrnMJBS1E6x9jejuiXhV3533AboaRtXU9cj" width="200" alt="INF.POW_Factory"/>
+                        </div>
+                        <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                            <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="18" alt="$GEMSTONE"/>
+                                <div style={{margin: "0 5px"}}>500</div>
+                                <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" height="18" alt="$CMD"/>
+                                <div style={{margin: "0 5px"}}>1</div>
+                                <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="18" alt="$INF.POW"/>
+                                <div style={{margin: "0 5px"}}>1</div>
+                            </div>
+                        </div>
+                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                            <div>10 minutes</div>
+                        </div>
+                        {isCraftINFPOW ?
+                            <>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                    <div>{timetoClaimINFPOW === 0 ? "now" : timetoClaimINFPOW}</div>
+                                </div>
+                                {timetoClaimINFPOW === 0 ?
+                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainINFPOWHandle}>Obtain</div> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                }
+                            </> :
+                            <>
+                                {address !== null && address !== undefined ?
+                                    <>
+                                        {isCraftINFPOW !== null ?
+                                            <>
+                                                {canCraftINFPOW ?
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={craftINFPOWHandle}>Craft INF.POW</div> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft INF.POW</div>
+                                        }
+                                    </> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                                 }
                             </>
                         }
