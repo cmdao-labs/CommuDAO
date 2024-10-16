@@ -206,30 +206,19 @@ header::-webkit-scrollbar { display: none; }
   font-size: 14px;
 }
 
-.half {
-  width: 50%;
-  height: 100vh;
-  padding: 80px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.welcomeText {
-  margin-top: 25px;
-}
 .welcome {
   margin-top: 100px;
   justify-content: center;
   flex-wrap: nowrap;
   font-size: 18px;
   background-image: url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcA7mJSegBinpW7bmGZPaUHPzGzbDV5XWcpJPnCdfUbkg');
-  /*background-repeat: no-repeat;*/
+  background-repeat: round;
 }
 .motto {
-  font-size: 42px;
+  font-size: 44px;
 }
 #showoff {
-  min-width: 475px;
+  min-width: 400px;
   background: hsla(0,0%,100%,.05);
   border: none;
 }
@@ -247,9 +236,6 @@ header::-webkit-scrollbar { display: none; }
   background: #ff007a;
   color: #fff;
   text-decoration: underline;
-}
-.nftControl {
-  width: 600px
 }
 @keyframes blinking {
   25% { opacity: 1; }
@@ -294,42 +280,24 @@ header::-webkit-scrollbar { display: none; }
     margin: 25px;
     font-size: 10px;
   }
-  .half {
-    width: 100%;
-    padding: 0;
-    height: fit-content;
-  }
   .welcome {
     margin-top: 0;
     justify-content: flex-start;
     flex-wrap: wrap;
     font-size: 10px;
-    background-size: 3000px;
-  }
-  .welcomeText {
-    height: fit-content;
-    margin: 100px 0 0 10px;
-    padding: 0 20px;
-  }
-  .motto {
-    font-size: 60px;
-  }
-  .motto2 {
-    font-size: 12px;
+    background-size: 1500px;
+    background-repeat: unset;
   }
   #showoff {
-    min-width: 350px;
+    min-width: 320px;
   }
   .typed-out {
     font-size: 12px;
   }
   .hashtag {
     width: fit-content;
-    padding: 10px 15px;
+    padding: 5px 10px;
     font-size: 12px;
-  }
-  .nftControl {
-    width: 350px
   }
 }
 @media (min-width: 481px) and (max-width: 1024px) {
@@ -348,17 +316,10 @@ header::-webkit-scrollbar { display: none; }
   .inFooterRight {
     margin: 25px;
   }
-  .half {
-    width: 100%;
-    padding: 0;
-    height: fit-content;
-  }
   .welcome {
     justify-content: flex-start;
-    background-size: 3000px;
-  }
-  .welcomeText {
-    padding-top: 150px;
+    background-size: 2500px;
+    background-repeat: unset;
   }
   .motto {
     margin-top: 30px;
@@ -370,8 +331,5 @@ header::-webkit-scrollbar { display: none; }
   }
   #showoff {
     min-width: 450px;
-  }
-  .nftControl {
-    width: 380px;
   }
 }
