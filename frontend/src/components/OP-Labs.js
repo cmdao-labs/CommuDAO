@@ -1,11 +1,11 @@
 import React from 'react'
-import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount } from 'wagmi'
-const { ethereum } = window
+//import { ethers } from 'ethers'
+//import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+//import { useAccount } from 'wagmi'
+//const { ethereum } = window
 
 const OPLabs = ({ setisLoading, txupdate, setTxupdate }) => {
-    const { address } = useAccount()
+    //const { address } = useAccount()
 
     return (
         <>

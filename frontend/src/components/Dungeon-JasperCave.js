@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -20,7 +21,7 @@ const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI }) => {
+const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -77,82 +78,82 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = address !== null && address !== undefined ? await readContract({
+            const nftEQ = address !== null && address !== undefined ? await readContract(config, {
                 address: dunJasper,
                 abi: dunJasperABI,
                 functionName: 'nftEquip',
                 args: [address],
             }) : [{characterId: 0, hatId: 0, clothId: 0, accessoriesId: 0, backId: 0, shoesId: 0, weaponId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
 
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
                     {
                         address: ctunaLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: sx31Lab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: pzaLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunJasper,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -194,7 +195,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                     },
                     {
                         address: upzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -359,11 +360,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -377,11 +378,11 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -477,7 +478,7 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             setUpzaBalance(ethers.utils.formatEther(String(result[27])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI])
+    }, [address, txupdate, erc721Abi, erc20Abi, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -499,49 +500,47 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
             addr = beasts
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
 
     const equipNft = async (_nftid) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: hexajibjib,
-            abi: erc721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== dunJasper.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const nftAllow = await readContract(config, {
+                address: hexajibjib,
+                abi: erc721Abi,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== dunJasper.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [dunJasper, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: dunJasper,
                 abi: dunJasperABI,
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -549,15 +548,15 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const unstakeNft = async (_slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunJasper,
                 abi: dunJasperABI,
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -586,55 +585,55 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
         }
         try {
             if (Number(upzaBalance) === 0) {
-                const gasAllow0 = await readContract({
+                const gasAllow0 = await readContract(config, {
                     address: gasAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, uAddr],
                 })
                 if (gasAllow0 < (pzaUsage * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: gasAddr,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [uAddr, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const config02 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: uAddr,
                     abi: ubbqABI,
                     functionName: 'craft',
                 })
-                const { hash: hash01 } = await writeContract(config02)
-                await waitForTransaction({ hash: hash01 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const gasAllow = await readContract({
+            const gasAllow = await readContract(config, {
                 address: uAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, dunJasper],
             })
             if (gasAllow < (500 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: uAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [dunJasper, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunJasper,
                 abi: dunJasperABI,
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -645,15 +644,15 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const mintStOPT = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: mintStOPT_Router,
                 abi: mintStOPTABI,
                 functionName: 'mintST',
                 args: [2]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -661,31 +660,31 @@ const Jaspercave = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxu
     const depositcs = async (_csId) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_csId],
             })
             if (nftAllow.toUpperCase() !== upzaToken.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [upzaToken, _csId],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: upzaToken,
                 abi: ubbqABI,
                 functionName: 'depositCs',
                 args: [1, _csId],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

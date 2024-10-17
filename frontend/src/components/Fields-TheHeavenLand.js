@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -9,7 +10,7 @@ const thlField = '0xdBC6e0928e49f22Ca448fEF2fEb9de526d6A65B9'
 const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, thlFieldABI }) => {
+const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, thlFieldABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -45,15 +46,15 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
     const transferNFTConfirm = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: mgnft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -61,7 +62,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const mgnftSC = new ethers.Contract(mgnft, erc721ABI, providerJBC)
+        const mgnftSC = new ethers.Contract(mgnft, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -72,7 +73,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             const stakeEvent = await mgnftSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: thlField,
@@ -90,7 +91,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 }
             }
 
-            const data01 = address !== null && address !== undefined ? await readContracts({
+            const data01 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: thlField,
@@ -101,18 +102,18 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 ))
             }) : [Array(yournftstake.length).fill({tokenOwnerOf: '', isJbcOut: false})]
 
-            const data1 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: mgnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill('')]
 
-            const data11 = address !== null && address !== undefined ? await readContracts({
+            const data11 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: thlField,
@@ -123,7 +124,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
-            const data12 = address !== null && address !== undefined ? await readContracts({
+            const data12 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: thlField,
@@ -165,11 +166,11 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             const walletEvent = await mgnftSC.queryFilter(walletFilter, 2260250, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: mgnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -183,7 +184,7 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 }
             }
 
-            const data00 = address !== null && address !== undefined ? await readContracts({
+            const data00 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: thlField,
@@ -193,11 +194,11 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                     }
                 ))
             }) : [Array(yournftwallet.length).fill({tokenOwnerOf: '', isJbcOut: false})]
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: mgnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -228,9 +229,9 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const goldBal = address !== null && address !== undefined ? await readContract({
+            const goldBal = address !== null && address !== undefined ? await readContract(config, {
                 address: gold,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'balanceOf',
                 args: [address],
             }) : 0
@@ -255,36 +256,36 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             setNftStaked(result[4])
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, thlFieldABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, thlFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: mgnft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== thlField.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: mgnft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [thlField, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: thlField,
                 abi: thlFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -293,24 +294,24 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
         setisLoading(true)
         try {
             if (Number(jbcTime) >= 86400 && !_isjbcout) {
-                const config1 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: thlField,
                     abi: thlFieldABI,
                     functionName: 'claimJBC',
                     args: [_nftid],
                 })
-                const { hash11 } = await writeContract(config1)
-                await waitForTransaction({ hash: hash11 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: thlField,
                 abi: thlFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash: hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash12 })
-            setTxupdate(hash12)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -319,18 +320,18 @@ const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, set
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStaked.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: thlField,
                     abi: thlFieldABI,
                     functionName: 'unstake',
                     args: [nftStaked[i].Id, false],
                 })
                 if (i === nftStaked.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch {}

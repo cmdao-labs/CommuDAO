@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContracts } from '@wagmi/core'
+import { getBalance, readContracts } from '@wagmi/core'
+import { config } from './config/config.ts'
 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const wood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
@@ -23,7 +24,7 @@ const genesis = '0x0000000000000000000000000000000000000000'
 const burn = '0x0000000000000000000000000000000000000001'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BigBroAnalytica = ({ erc20ABI }) => {
+const BigBroAnalytica = ({ erc20Abi }) => {
     const [cmdBbq, setCmdBbq] = React.useState(0)
     const [cmdGov, setCmdGov] = React.useState(0)
     const [cmdRev, setCmdRev] = React.useState(0)
@@ -102,18 +103,18 @@ const BigBroAnalytica = ({ erc20ABI }) => {
 
     React.useEffect(() => {  
         window.scrollTo(0, 0)
-        const woodSC = new ethers.Contract(wood, erc20ABI, providerJBC)
-        const bbqSC = new ethers.Contract(bbq, erc20ABI, providerJBC)
-        const pzaSC = new ethers.Contract(pza, erc20ABI, providerJBC)
-        const ctunaSC = new ethers.Contract(ctuna, erc20ABI, providerJBC)
-        const sx31SC = new ethers.Contract(sx31, erc20ABI, providerJBC)
-        const cuSC = new ethers.Contract(cu, erc20ABI, providerJBC)
-        const silSC = new ethers.Contract(sil, erc20ABI, providerJBC)
-        const goldSC = new ethers.Contract(gold, erc20ABI, providerJBC)
-        const platSC = new ethers.Contract(plat, erc20ABI, providerJBC)
-        const jaspSC = new ethers.Contract(jasp, erc20ABI, providerJBC)
-        const osSC = new ethers.Contract(os, erc20ABI, providerJBC)
-        const jdaoSC = new ethers.Contract(jdao, erc20ABI, providerJBC)
+        const woodSC = new ethers.Contract(wood, erc20Abi, providerJBC)
+        const bbqSC = new ethers.Contract(bbq, erc20Abi, providerJBC)
+        const pzaSC = new ethers.Contract(pza, erc20Abi, providerJBC)
+        const ctunaSC = new ethers.Contract(ctuna, erc20Abi, providerJBC)
+        const sx31SC = new ethers.Contract(sx31, erc20Abi, providerJBC)
+        const cuSC = new ethers.Contract(cu, erc20Abi, providerJBC)
+        const silSC = new ethers.Contract(sil, erc20Abi, providerJBC)
+        const goldSC = new ethers.Contract(gold, erc20Abi, providerJBC)
+        const platSC = new ethers.Contract(plat, erc20Abi, providerJBC)
+        const jaspSC = new ethers.Contract(jasp, erc20Abi, providerJBC)
+        const osSC = new ethers.Contract(os, erc20Abi, providerJBC)
+        const jdaoSC = new ethers.Contract(jdao, erc20Abi, providerJBC)
               
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber()
@@ -241,32 +242,32 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             const jaspMap2 = await Promise.all(jaspEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
             const jaspBurn = jaspMap2.reduce((partialSum, a) => partialSum + a, 0)
 
-            const dataCMJ = await readContracts({
+            const dataCMJ = await readContracts(config, {
                 contracts: [
                     {
                         address: cmj,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xA6d974BD59F97e49465c6995a11022CA044c001A'],
                         chainId: 8899,
                     },
                     {
                         address: cmj,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x94EaDb7e678Ba7A78CADe66A1ABfa5c12dc8Cd7b'],
                         chainId: 8899,
                     },
                     {
                         address: cmj,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000042'],
                         chainId: 8899,
                     },
                     {
                         address: cmj,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xFF19990569739e79aFF8549d8dE087Ab79De8dc7'],
                         chainId: 8899,
@@ -274,31 +275,31 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataWOOD = await readContracts({
+            const dataWOOD = await readContracts(config, {
                 contracts: [
                     {
                         address: wood,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: wood,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: wood,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x000000000000000000000000000000000000dEaD'],
                         chainId: 8899,
                     },
                     {
                         address: wood,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
@@ -306,31 +307,31 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataJDAO = await readContracts({
+            const dataJDAO = await readContracts(config, {
                 contracts: [
                     {
                         address: jdao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: jdao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: jdao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
                     },
                     {
                         address: jdao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
                         chainId: 8899,
@@ -338,31 +339,31 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataBBQ = await readContracts({
+            const dataBBQ = await readContracts(config, {
                 contracts: [
                     {
                         address: bbq,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: bbq,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: bbq,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
                     },
                     {
                         address: bbq,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'],
                         chainId: 8899,
@@ -370,38 +371,38 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataPZA = await readContracts({
+            const dataPZA = await readContracts(config, {
                 contracts: [
                     {
                         address: pza,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: pza,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: pza,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
                     },
                     {
                         address: pza,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'],
                         chainId: 8899,
                     },
                     {
                         address: pza,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
                         chainId: 8899,
@@ -409,24 +410,24 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataCTUNA = await readContracts({
+            const dataCTUNA = await readContracts(config, {
                 contracts: [
                     {
                         address: ctuna,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: ctuna,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: ctuna,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
@@ -434,24 +435,24 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataSX31 = await readContracts({
+            const dataSX31 = await readContracts(config, {
                 contracts: [
                     {
                         address: sx31,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: sx31,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: sx31,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
@@ -459,24 +460,24 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataCU = await readContracts({
+            const dataCU = await readContracts(config, {
                 contracts: [
                     {
                         address: cu,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: cu,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: cu,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
@@ -484,31 +485,31 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataSIL = await readContracts({
+            const dataSIL = await readContracts(config, {
                 contracts: [
                     {
                         address: sil,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: sil,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: sil,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
                     },
                     {
                         address: sil,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'],
                         chainId: 8899,
@@ -516,24 +517,24 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataGOLD = await readContracts({
+            const dataGOLD = await readContracts(config, {
                 contracts: [
                     {
                         address: gold,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: gold,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: gold,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
@@ -541,31 +542,31 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataPLAT = await readContracts({
+            const dataPLAT = await readContracts(config, {
                 contracts: [
                     {
                         address: plat,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: plat,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: plat,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
                     },
                     {
                         address: plat,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
                         chainId: 8899,
@@ -573,24 +574,24 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataJASP = await readContracts({
+            const dataJASP = await readContracts(config, {
                 contracts: [
                     {
                         address: jasp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: jasp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: jasp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
@@ -598,38 +599,38 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const dataOS = await readContracts({
+            const dataOS = await readContracts(config, {
                 contracts: [
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 8899,
                     },
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [burn],
                         chainId: 8899,
                     },
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
                         chainId: 8899,
                     },
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xABd4127c8058498A53E690b06a75aFAf0F1d4e86'],
                         chainId: 8899,
                     },
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xc4dB6374EeCa3743F8044ae995892827B62b14fe'],
                         chainId: 8899,
@@ -637,46 +638,46 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
             
-            const dataCMD = await readContracts({
+            const dataCMD = await readContracts(config, {
                 contracts: [
                     {
                         address: cmd,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x84bbfa70a60bB31fB00F2E2241E3a87C63F8734f'],
                         chainId: 10,
                     },
                     {
                         address: cmd,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xaA3Caad9e335a133d96EA3D5D73df2dcF9e360d4'],
                         chainId: 10,
                     },
                     {
                         address: cmd,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'],
                         chainId: 10,
                     },
                     {
                         address: cmd,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x3C72Fb1658E7A64fd4C88394De4474186A13460A'],
                         chainId: 10,
                     },
                     {
                         address: usdtOP,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x1BeedD97fCD4E21754465d21c757A9DF43733187'],
                         chainId: 10,
                     },
                     {
                         address: cmd,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x000000000000000000000000000000000000dead'],
                         chainId: 10,
@@ -684,8 +685,8 @@ const BigBroAnalytica = ({ erc20ABI }) => {
                 ],
             })
 
-            const bbqCmdBal1 = await fetchBalance({ address: '0x1BeedD97fCD4E21754465d21c757A9DF43733187', chainId: 190 })
-            const ethBal1 = await fetchBalance({ address: '0x3C72Fb1658E7A64fd4C88394De4474186A13460A', chainId: 10 })
+            const bbqCmdBal1 = await getBalance(config, { address: '0x1BeedD97fCD4E21754465d21c757A9DF43733187', chainId: 190 })
+            const ethBal1 = await getBalance(config, { address: '0x3C72Fb1658E7A64fd4C88394De4474186A13460A', chainId: 10 })
 
             return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
             (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
@@ -778,7 +779,7 @@ const BigBroAnalytica = ({ erc20ABI }) => {
             setPlatStat(result[26])
             setJaspStat(result[27])
         })
-    }, [erc20ABI])
+    }, [erc20Abi])
 
     return (
         <>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { /*fetchBalance,*/ readContracts, readContract, prepareWriteContract, waitForTransaction, writeContract, /*sendTransaction*/ } from '@wagmi/core'
+import { /*getBalance,*/ readContracts, readContract, simulateContract, waitForTransactionReceipt, writeContract, /*sendTransaction*/ } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 
 const cmcityPoints = '0xDEf1B2C59E116E5A63227af25CeED359EB489463'
@@ -10,7 +11,7 @@ const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 
-const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI }) => {
+const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20Abi, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [sx31Voting1, setSx31Voting1] = React.useState(['Loading...', 'Loading...', 0, 'Loading...'])
@@ -37,12 +38,12 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
     /*const sendHandle = async () => {
         setisLoading(true)
         try {
-            const { hash: hash1 } = await sendTransaction({
+            let h = await sendTransaction(config, {
                 to: meritFaucet,
                 value: delegateAmount !== '' ? ethers.utils.parseEther(delegateAmount) : undefined,
             })
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }*/
@@ -51,7 +52,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
         window.scrollTo(0, 0)
               
         const thefetch = async () => {
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: sx31Vote,
@@ -114,8 +115,8 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
             const cmcityProposal2All = data[6].result
             const cmcityProposal3All = data[7].result
 
-            /*const jbcFaucet = await fetchBalance({ address: meritFaucet, })
-            const allowtoClaim = address !== undefined && address !== null ? await readContract({
+            /*const jbcFaucet = await getBalance(config, { address: meritFaucet, })
+            const allowtoClaim = address !== undefined && address !== null ? await readContract(config, {
                 address: meritFaucet,
                 abi: faucetABI,
                 functionName: 'allowedToWithdraw',
@@ -123,7 +124,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
             }) : false*/
 
             
-            const name = await readContract({
+            const name = await readContract(config, {
                 address: cmdaoName,
                 abi: cmdaoNameABI,
                 functionName: 'tokenURI',
@@ -155,36 +156,36 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
             setCmVoting3All(ethers.utils.formatEther(String(result[7])))
         })
 
-    }, [address, txupdate, erc20ABI, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI])
+    }, [address, txupdate, erc20Abi, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI])
 
     const voteHandle = async (_proposal) => {
         setisLoading(true)
-        const tokenAllow = await readContract({
+        const tokenAllow = await readContract(config, {
             address: sx31Lab,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'allowance',
             args: [address, sx31Vote],
         })
         try {
             if (Number(tokenAllow) < Number(ethers.utils.parseEther(voteAmount))) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: sx31Lab,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [sx31Vote, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: sx31Vote,
                 abi: sx31voteABI,
                 functionName: 'vote',
                 args: [_proposal, ethers.utils.parseEther(voteAmount)]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -204,31 +205,31 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
             vote = vote4Amount
         }
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: addr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmcityPoints],
             })
             if (Number(tokenAllow) < Number(ethers.utils.parseEther(vote))) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: addr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmcityPoints, ethers.utils.parseEther(String(10**10))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmcityPoints,
                 abi: cmcityPointsABI,
                 functionName: 'vote',
                 args: [_proposal, ethers.utils.parseEther(vote)]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             console.log(e)
         }
@@ -238,14 +239,14 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
     /*const claimJBCHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: meritFaucet,
                 abi: faucetABI,
                 functionName: 'requestTokens',
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }*/
@@ -253,7 +254,7 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
     const checkName = async () => {
         setisLoading(true)
         try {
-            const avai = await readContract({
+            const avai = await readContract(config, {
                 address: cmdaoName,
                 abi: cmdaoNameABI,
                 functionName: 'availability',
@@ -267,31 +268,31 @@ const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20ABI, cmcityPoi
     const registName = async () => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: cmj,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoName],
             })
             if (Number(tokenAllow) < 250 * 10**18) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmj,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoName, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoName,
                 abi: cmdaoNameABI,
                 functionName: 'idMint',
                 args: [name]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

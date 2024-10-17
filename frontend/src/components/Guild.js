@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
+import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
@@ -13,9 +14,8 @@ const statBaseCmd = '0x7b61b5Eb38535A385BEBc137Cbe2F4F5996d3EC0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
-    const { chain } = useNetwork()
-    let { address } = useAccount()
+const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
+    let { address, chain } = useAccount()
     //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -96,22 +96,22 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(cmdaonft, erc721ABI, providerOP)
+        const cmdaonftSC = new ethers.Contract(cmdaonft, erc721Abi, providerOP)
         const missionBaseCmdSC = new ethers.Contract(missionBaseCmd, missionCMDBaseABI, providerBBQ)
         setNft([])
         
         const thefetch = async () => {
             const cmdBal = address !== null && address !== undefined ?
-                await fetchBalance({ address: address, chainId: 190 }) :
+                await getBalance(config, { address: address, chainId: 190 }) :
                 {formatted: 0}
-            const nftEQ = await readContract({
+            const nftEQ = await readContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'nftEquip',
                 args: [address],
                 chainId: 10,
             })
-            const nftEQ2 = await readContract({
+            const nftEQ2 = await readContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'nftEquip2',
@@ -119,109 +119,109 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 chainId: 10,
             })
 
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[0])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[1])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[2])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[3])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[4])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[5])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[6])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[7])],
                         chainId: 10,
@@ -242,7 +242,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     },
                     {
                         address: '0x336C4EaE525948C8EF79b74b549C048f07639315',
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 8899,
@@ -746,7 +746,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             console.log("Party 1: ", isMem1Party1Refuel, isMem2Party1Refuel, isMem3Party1Refuel, isMem4Party1Refuel, isMem5Party1Refuel, isDelegateParty1Mission1)
             console.log("Party 2: ", isMem1Party2Refuel, isMem2Party2Refuel, isMem3Party2Refuel, isMem4Party2Refuel, isMem5Party2Refuel, isDelegateParty2Mission1)
 
-            const data4 = await readContracts({
+            const data4 = await readContracts(config, {
                 contracts: [
                     {
                         address: missionBaseCmd,
@@ -936,11 +936,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 123743421, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 10
@@ -953,11 +953,11 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 10
@@ -1079,7 +1079,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             setStartBlock(result[53])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
+    }, [address, txupdate, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -1099,16 +1099,16 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
             addr = cmdaonft
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1120,25 +1120,25 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(true)
         let nftaddr = cmdaonft
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: nftaddr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
                 chainId: 10,
             })
             if (nftAllow.toUpperCase() !== nftSlot.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: nftaddr,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [nftSlot, _nftid],
                     chainId: 10,
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'equip',
@@ -1146,9 +1146,9 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 value: ethers.utils.parseEther('0.00005'),
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1159,16 +1159,16 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const unequipNft = async (_slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'unstake',
                 args: [_slot],
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1180,7 +1180,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(true)
         try {
             console.log(myPartyIndex, myMemberIndex)
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: party,
                 abi: partyABI,
                 functionName: 'refuel',
@@ -1188,9 +1188,9 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 value: ethers.utils.parseEther('10'),
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1202,7 +1202,7 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(true)
         try {
             console.log(myPartyIndex)
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: party,
                 abi: partyABI,
                 functionName: 'delegateMission',
@@ -1210,9 +1210,9 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
                 value: ethers.utils.parseEther('1'),
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1224,16 +1224,16 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
         setisLoading(true)
         try {
             console.log(myPartyIndex)
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: missionBaseCmd,
                 abi: missionCMDBaseABI,
                 functionName: 'confirmDelegate',
                 args: [myPartyIndex],
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1244,16 +1244,16 @@ const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate
     const claimReward = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: baseCmdClaimer,
                 abi: baseCMDClaimerABI,
                 functionName: 'claimReward',
                 args: [address],
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

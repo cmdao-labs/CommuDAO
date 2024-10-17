@@ -40,7 +40,6 @@ import CmCityLand from './Community-CmCityLand'
 import BigBroAnalytica from './Community-BigBroAnalytica'
 
 import Mall from './Mall'
-import BBQMall from './BBQ-Mall'
 import OPMall from './OP-Mall'
 
 import Mkp from  './Mkp'
@@ -66,9 +65,7 @@ import OpGameSwap from  './OP-GameSwap'
 
 import Guild from  './Guild'
 
-import { bkc } from './chains/bkc.ts'
-import { bbqchain } from './chains/bbqchain.ts'
-import { erc20ABI, erc721ABI } from 'wagmi'
+import { erc20Abi, erc721Abi } from 'viem'
 import msgABI from './jsons/msgABI.json'
 import pve01ABI from './jsons/pve01ABI.json'
 import aurora721ABI from './jsons/aurora721ABI.json'
@@ -177,47 +174,68 @@ import stcmdABI from './jsons/stcmdABI.json'
 
 import TBridge from './tBridge'
 
-import { optimism, bsc, jbc } from 'wagmi/chains'
+import { WagmiProvider } from 'wagmi'
+import { optimism, bsc, jbc } from '@reown/appkit/networks'
+import { createAppKit } from '@reown/appkit/react'
+import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { defineChain } from '@reown/appkit/networks';
 
-import { createWeb3Modal } from '@web3modal/wagmi/react'
-import { walletConnectProvider, EIP6963Connector, EmailConnector } from '@web3modal/wagmi'
-import { WagmiConfig, configureChains, createConfig } from 'wagmi'
-import { publicProvider } from 'wagmi/providers/public'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-
-const projectId = 'a7f5e2dc839576cee8ebf11b79d2b4ee'
-
-const { chains, publicClient } = configureChains(
-  [jbc, bkc, optimism, bsc, bbqchain],
-  [walletConnectProvider({ projectId }), publicProvider()]
-)
-
-const metadata = {
-  name: 'Web3Modal',
-  description: 'Web3Modal Example',
-  url: 'https://web3modal.com',
-  icons: ['https://avatars.githubusercontent.com/u/37784886']
-}
-
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors: [
-    new WalletConnectConnector({ chains, options: { projectId, showQrModal: false, metadata } }),
-    new EIP6963Connector({ chains }),
-    new InjectedConnector({ chains, options: { shimDisconnect: true } }),
-    new CoinbaseWalletConnector({ chains, options: { appName: metadata.name } }),
-    new EmailConnector({ chains, options: { projectId } })
-  ],
-  publicClient,
+const bkc = defineChain({
+    id: 96,
+    caipNetworkId: 'eip155:96',
+    chainNamespace: 'eip155',
+    name: 'Bitkub Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Bitkub',
+      symbol: 'KUB',
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://rpc.bitkubchain.io'],
+        webSocket: ['https://rpc.bitkubchain.io'],
+      },
+    },
+    blockExplorers: {
+      default: { name: 'Bkcscan', url: 'https://www.bkcscan.com' },
+    },
 })
 
-createWeb3Modal({
-    wagmiConfig,
+const bbqchain = defineChain({
+    id: 190,
+    caipNetworkId: 'eip155:190',
+    chainNamespace: 'eip155',
+    name: 'CMDAO BBQ Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'CMD',
+      symbol: 'CMD',
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://bbqchain-rpc.commudao.xyz'],
+        webSocket: ['https://bbqchain-rpc.commudao.xyz'],
+      },
+    },
+    blockExplorers: {
+      default: { name: 'CMDAO BBQ Chain Explorer', url: 'https://bbqchain-exp.commudao.xyz' },
+    },
+})
+
+const projectId = '7bc383f9e6957c93f54da557603631b4'
+const queryClient = new QueryClient()
+
+const wagmiAdapter = new WagmiAdapter({
+    networks: [jbc, bkc, bbqchain, optimism, bsc],
     projectId,
-    chains,
-    enableAnalytics: true,
+    ssr: true
+})
+
+createAppKit({
+    adapters: [wagmiAdapter],
+    networks: [jbc, bkc, bbqchain, optimism, bsc],
+    projectId,
     themeMode: 'light',
     themeVariables: {
         '--w3m-accent': '#ff007a',
@@ -231,10 +249,13 @@ createWeb3Modal({
         8899: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu',
         190: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce',
         10: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly',
+    },
+    features: {
+        analytics: true,
     }
 })
 
-const v = '0.3.7'
+const v = '0.4.0'
 
 const Main = () => {    
     const navigate = useNavigate()
@@ -379,10 +400,7 @@ const Main = () => {
             }
         } else if (modeText.toUpperCase() === "MALL") {
             if (subModeText !== undefined) {
-                if (modeText.toUpperCase() === "MALL" && subModeText.toUpperCase() === "BBQCHAIN") {
-                    preset = 51
-                    document.title = "Mall [BBQ Chain] | CommuDAO"
-                } else if (modeText.toUpperCase() === "MALL" && subModeText.toUpperCase() === "OP") {
+                if (modeText.toUpperCase() === "MALL" && subModeText.toUpperCase() === "OP") {
                     preset = 52
                     document.title = "Mall [OP] | CommuDAO"
                 }
@@ -451,92 +469,93 @@ const Main = () => {
                     </div>
                 </div>
             }
-            <WagmiConfig config={wagmiConfig}>
-                <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20ABI={erc20ABI} />
-                {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
+            <WagmiProvider config={wagmiAdapter.wagmiConfig}>
+                <QueryClientProvider client={queryClient}>
+                    <Headbar callMode={callMode} navigate={navigate} txupdate={txupdate} erc20Abi={erc20Abi} />
+                    {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
 
 
-                {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
-                {mode === 11 && <FishingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
-                {mode === 12 && <RatHuntingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
-                {mode === 13 && <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20ABI={erc20ABI} />}
-                {mode === 17 && <TheHeavenLand intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} thlFieldABI={thlFieldABI} />}
-                {mode === 19 && <EasternFront intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldEfABI={fieldEfABI} />}
-                {mode === 100 && <MechHarvestZone intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
-                {mode === 101 && <DjMining intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} fieldDjABI={fieldDjABI} />}
-                {mode === 102 && <CommuDOIField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} cmdoiFieldABI={cmdoiFieldABI} />}
+                    {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
+                    {mode === 11 && <FishingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
+                    {mode === 12 && <RatHuntingField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
+                    {mode === 13 && <FieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20Abi={erc20Abi} />}
+                    {mode === 17 && <TheHeavenLand intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} thlFieldABI={thlFieldABI} />}
+                    {mode === 19 && <EasternFront intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} fieldEfABI={fieldEfABI} />}
+                    {mode === 100 && <MechHarvestZone intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
+                    {mode === 101 && <DjMining intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} fieldDjABI={fieldDjABI} />}
+                    {mode === 102 && <CommuDOIField intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} cmdoiFieldABI={cmdoiFieldABI} />}
+                    
+                    {mode === 14 && <BKCFields callMode={callMode} navigate={navigate} />}
+                    {mode === 15 && <BadMuseum intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tunaFieldABI={tunaFieldABI} erc20Abi={erc20Abi} />}
+                    {mode === 16 && <FraserRiver intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} salmFieldABI={salmFieldABI} />}
+
+                    {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}
+                    {mode === 10001  && <BBQFieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdsV2ABI={cmdsV2ABI} uplevelCMDSABI={uplevelCMDSABI} fieldWoodBBQABI={fieldWoodBBQABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} missionWoodABI={missionWoodABI} />}
+
+                    {mode === 11000 && <OPFields callMode={callMode} navigate={navigate} />}
+
+                    {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20Abi={erc20Abi} kycABI={kycABI} />}
+                    {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
+                    {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20Abi={erc20Abi} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721Abi={erc721Abi} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
+                    {mode === 21000 && <OPLabs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} />}
+
+                    
+                    
+                    {mode === 3 && <Dungeon callMode={callMode} navigate={navigate} />}
+                    {mode === 33 && <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
+                    {mode === 31 && <Jaspercave intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
+                    {mode === 39 && <Memeticorbit intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunMoABI={dunMoABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} slot1ABI={slot1ABI} badgeClaimerABI={badgeClaimerABI} />}
+
+                    {mode === 32 && <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721Abi={erc721Abi} erc20Abi={erc20Abi} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} />}
+                    {mode === 34 && <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721Abi={erc721Abi} erc20Abi={erc20Abi} />}
+
+                    {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunAngbABI={dunAngbABI} uswarABI={uswarABI} />}
+                    {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunEEABI={dunEEABI} taoPfpABI={taoPfpABI} uiiABI={uiiABI} />}
+                    
+                    {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} uniEnchanterABI={uniEnchanterABI} erc721Abi={erc721Abi} erc20Abi={erc20Abi} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} dunAngbABI={dunAngbABI} />}
+                    {mode === 38 && <TdmRoboticsInc setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721Abi={erc721Abi} erc20Abi={erc20Abi} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} dunEEABI={dunEEABI} />}
+
+                    {mode === 30000 && <BBQDungeon callMode={callMode} navigate={navigate} />}
+                    {mode === 30001 && <TheEndlessTower intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunGEMABI={dunGEMABI} />}
+
+                    {mode === 31000 && <OPDungeon callMode={callMode} navigate={navigate} />}
+                    {mode === 31001 && <AbandonedTempleVault intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} nftSlotABI={nftSlotABI} multichainSlotABI={multichainSlotABI} dunATVABI={dunATVABI} />}
+                    
+                    {mode === 4 && <Community callMode={callMode} navigate={navigate} erc721Abi={erc721Abi} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} />}
+                    {mode === 41 && <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} cmcityPointsABI={cmcityPointsABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} />}
+                    {mode === 42 && <DungeonArena navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} questAmbassABI={questAmbassABI} dunJasperABI={dunJasperABI} pvp01ABI={pvp01ABI} salonABI={salonABI} />}
+                    {mode === 43 && <DumpsterHill navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} dumpster1ABI={dumpster1ABI} dumpster2ABI={dumpster2ABI} />}
+                    {mode === 44 && <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} dunMoABI={dunMoABI} cmdaoNameABI={cmdaoNameABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721Abi={erc721Abi} constructionStakingABI={constructionStakingABI} />}
+                    {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} intrasubModetext={intrasubModetext} erc20Abi={erc20Abi} erc721Abi={erc721Abi} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} houseABI={houseABI} houseStakingABI={houseStakingABI} delegateOwner01ABI={delegateOwner01ABI} wlMkpABI={wlMkpABI} transportHubABI={transportHubABI} constructionABI={constructionABI} constructionStakingABI={constructionStakingABI} />}
+                    {mode === 46 && <BigBroAnalytica erc20Abi={erc20Abi} />}
+                    
+                    
+                    {mode === 5 && <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoMerchantWLABI={cmdaoMerchantWLABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyStdABI={ammyStdABI} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} wjbcABI={wjbcABI} presaleABI={presaleABI} />}
+                    {mode === 52 && <OPMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} erc721Abi={erc721Abi} uniNftBridgeABI={uniNftBridgeABI} multichainMallABI={multichainMallABI} />}
                 
-                {mode === 14 && <BKCFields callMode={callMode} navigate={navigate} />}
-                {mode === 15 && <BadMuseum intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tunaFieldABI={tunaFieldABI} erc20ABI={erc20ABI} />}
-                {mode === 16 && <FraserRiver intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} salmFieldABI={salmFieldABI} />}
+                    {mode === 6 && <Mkp intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} erc20Abi={erc20Abi} aurora721ABI={aurora721ABI} cmdaoMkpABI={cmdaoMkpABI} houseStakingABI={houseStakingABI} />}
+                    
 
-                {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}
-                {mode === 10001  && <BBQFieldsAncientForrest setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdsV2ABI={cmdsV2ABI} uplevelCMDSABI={uplevelCMDSABI} fieldWoodBBQABI={fieldWoodBBQABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} missionWoodABI={missionWoodABI} />}
+                    {mode === 7 && <GameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} exchangeABI={exchangeABI} exchangeJulpABI={exchangeJulpABI} farmJdaoABI={farmJdaoABI} swapABI={swapABI} swapJulpABI={swapJulpABI} bkcOracleABI={bkcOracleABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} />}
+                    {mode === 700 && <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} />}
 
-                {mode === 11000 && <OPFields callMode={callMode} navigate={navigate} />}
-
-                {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20ABI={erc20ABI} kycABI={kycABI} />}
-                {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
-                {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20ABI={erc20ABI} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
-                {mode === 21000 && <OPLabs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} />}
-
-                
-                
-                {mode === 3 && <Dungeon callMode={callMode} navigate={navigate} />}
-                {mode === 33 && <Coppermine intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
-                {mode === 31 && <Jaspercave intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
-                {mode === 39 && <Memeticorbit intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunMoABI={dunMoABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} slot1ABI={slot1ABI} badgeClaimerABI={badgeClaimerABI} />}
-
-                {mode === 32 && <Npcblacksmith setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} enchantNABI={enchantNABI} enchantRABI={enchantRABI} osABI={osABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} />}
-                {mode === 34 && <NpcEvolutionary setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} evolutionaryABI={evolutionaryABI} fusionABI={fusionABI} salonABI={salonABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} />}
-
-                {mode === 35 && <Daemonworld intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunAngbABI={dunAngbABI} uswarABI={uswarABI} />}
-                {mode === 36 && <CrypticCogs intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunEEABI={dunEEABI} taoPfpABI={taoPfpABI} uiiABI={uiiABI} />}
-                
-                {mode === 37 && <ApInn setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} acUpgradeABI={acUpgradeABI} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} dunAngbABI={dunAngbABI} />}
-                {mode === 38 && <TdmRoboticsInc setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} uniEnchanterABI={uniEnchanterABI} erc721ABI={erc721ABI} erc20ABI={erc20ABI} questAmbassABI={questAmbassABI} cmdaoNameABI={cmdaoNameABI} dunEEABI={dunEEABI} />}
-
-                {mode === 30000 && <BBQDungeon callMode={callMode} navigate={navigate} />}
-                {mode === 30001 && <TheEndlessTower intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} dunGEMABI={dunGEMABI} />}
-
-                {mode === 31000 && <OPDungeon callMode={callMode} navigate={navigate} />}
-                {mode === 31001 && <AbandonedTempleVault intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} multichainSlotABI={multichainSlotABI} dunATVABI={dunATVABI} />}
-                
-                {mode === 4 && <Community callMode={callMode} navigate={navigate} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} />}
-                {mode === 41 && <CmCityCenter setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} cmcityPointsABI={cmcityPointsABI} sx31voteABI={sx31voteABI} faucetABI={faucetABI} cmdaoNameABI={cmdaoNameABI} />}
-                {mode === 42 && <DungeonArena navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} questAmbassABI={questAmbassABI} dunJasperABI={dunJasperABI} pvp01ABI={pvp01ABI} salonABI={salonABI} />}
-                {mode === 43 && <DumpsterHill navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} erc721ABI={erc721ABI} dumpster1ABI={dumpster1ABI} dumpster2ABI={dumpster2ABI} />}
-                {mode === 44 && <QuesterOasis setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} kycABI={kycABI} quest01ABI={quest01ABI} pvp01ABI={pvp01ABI} questBBQABI={questBBQABI} questAmbassABI={questAmbassABI} bbqLab01ABI={bbqLab01ABI} enderPotteryABI={enderPotteryABI} dunCopperABI={dunCopperABI} dunJasperABI={dunJasperABI} dunMoABI={dunMoABI} cmdaoNameABI={cmdaoNameABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721ABI={erc721ABI} constructionStakingABI={constructionStakingABI} />}
-                {mode === 45 && <CmCityLand setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} intrasubModetext={intrasubModetext} erc20ABI={erc20ABI} erc721ABI={erc721ABI} cmdaoNameABI={cmdaoNameABI} slot1ABI={slot1ABI} houseABI={houseABI} houseStakingABI={houseStakingABI} delegateOwner01ABI={delegateOwner01ABI} wlMkpABI={wlMkpABI} transportHubABI={transportHubABI} constructionABI={constructionABI} constructionStakingABI={constructionStakingABI} />}
-                {mode === 46 && <BigBroAnalytica erc20ABI={erc20ABI} />}
-                
-                
-                {mode === 5 && <Mall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} kycABI={kycABI} ctunaLabABI={ctunaLabABI} cmdaoMerchantABI={cmdaoMerchantABI} cmdaoMerchantV2ABI={cmdaoMerchantV2ABI} cmdaoMerchantKYCABI={cmdaoMerchantKYCABI} cmdaoMerchantWLABI={cmdaoMerchantWLABI} cmdaoGasha02ABI={cmdaoGasha02ABI} ammyStdABI={ammyStdABI} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} wjbcABI={wjbcABI} presaleABI={presaleABI} />}
-                {mode === 51 && <BBQMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} />}
-                {mode === 52 && <OPMall setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} erc721ABI={erc721ABI} uniNftBridgeABI={uniNftBridgeABI} multichainMallABI={multichainMallABI} />}
-            
-                {mode === 6 && <Mkp intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} erc20ABI={erc20ABI} aurora721ABI={aurora721ABI} cmdaoMkpABI={cmdaoMkpABI} houseStakingABI={houseStakingABI} />}
+                    {mode === 701 && <OpGameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} veloPoolABI={veloPoolABI} velodromeRouterABI={velodromeRouterABI} velodromeCallerABI={velodromeCallerABI} bkcOracleABI={bkcOracleABI} stcmdABI={stcmdABI} />}
                 
 
-                {mode === 7 && <GameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} exchangeABI={exchangeABI} exchangeJulpABI={exchangeJulpABI} farmJdaoABI={farmJdaoABI} swapABI={swapABI} swapJulpABI={swapJulpABI} bkcOracleABI={bkcOracleABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} />}
-                {mode === 700 && <BKCGameSwap setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} diamonLpABI={diamonLpABI} farmCmosABI={farmCmosABI} bkcOracleABI={bkcOracleABI} />}
+                    {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} uniTokensBridgeABI={uniTokensBridgeABI} uniNftBridgeABI={uniNftBridgeABI} />}
 
-                {mode === 701 && <OpGameSwap setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20ABI={erc20ABI} veloPoolABI={veloPoolABI} velodromeRouterABI={velodromeRouterABI} velodromeCallerABI={velodromeCallerABI} bkcOracleABI={bkcOracleABI} stcmdABI={stcmdABI} />}
-               
+                    {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} nftSlotABI={nftSlotABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} statCMDRewardABI={statCMDRewardABI} baseCMDClaimerABI={baseCMDClaimerABI} />}
 
-                {mode === 8 && <TBridge setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20ABI={erc20ABI} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} nativeBridgeABI={nativeBridgeABI} uniTokensBridgeABI={uniTokensBridgeABI} uniNftBridgeABI={uniNftBridgeABI} />}
-
-                {mode === 9 && <Guild intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721ABI={erc721ABI} erc20ABI={erc20ABI} nftSlotABI={nftSlotABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} statCMDRewardABI={statCMDRewardABI} baseCMDClaimerABI={baseCMDClaimerABI} />}
-
-                {mode === null &&
-                    <div style={{paddingTop: "100px"}} className="collection">
-                        <div className="nftCard" style={{justifyContent: "center"}}>
-                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-database"></i>
-                            <div className="emp bold">404 not found</div>
+                    {mode === null &&
+                        <div style={{paddingTop: "100px"}} className="collection">
+                            <div className="nftCard" style={{justifyContent: "center"}}>
+                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-database"></i>
+                                <div className="emp bold">404 not found</div>
+                            </div>
                         </div>
-                    </div>
-                }
-            </WagmiConfig>
+                    }
+                </QueryClientProvider>
+            </WagmiProvider>                
             <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", background: "#f7f5f8"}}>
                 <div className="inFooterLeft">
                     <div style={{marginBottom: "10px"}}>{'CommuDAO © 2023. - alpha v.' + v}</div>

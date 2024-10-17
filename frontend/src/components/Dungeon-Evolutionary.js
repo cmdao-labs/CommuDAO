@@ -1,5 +1,6 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots } from 'react-loading-icons'
@@ -25,7 +26,7 @@ const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI, fusionABI, salonABI, erc721ABI, erc20ABI }) => {
+const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI, fusionABI, salonABI, erc721Abi, erc20Abi }) => {
     const { address } = useAccount()
     
     const [nft, setNft] = React.useState([])
@@ -44,8 +45,8 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
-        const salonnftSC = new ethers.Contract(salon, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721Abi, providerJBC)
+        const salonnftSC = new ethers.Contract(salon, erc721Abi, providerJBC)
 
         const thefetch = async () => {
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
@@ -58,59 +59,59 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             const walletSalonMap = await Promise.all(walletSalonEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletSalonRemoveDup = walletSalonMap.filter((obj, index) => walletSalonMap.indexOf(obj) === index)
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: bbqToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: cuToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: silToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: goldToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: osToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: salon,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -122,13 +123,13 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                     },
                     {
                         address: platToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jaspToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -150,11 +151,11 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             let nfts = []
             let yournft = []
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [item],
                     }
@@ -168,11 +169,11 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournft.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [item.Id],
                     }
@@ -198,11 +199,11 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             let salonNfts = []
             let yoursalonnft = []
 
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletSalonRemoveDup.map((item) => (
                     {
                         address: salon,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [item],
                     }
@@ -216,11 +217,11 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
                 }
             }
 
-            const data5 = address !== null && address !== undefined ? await readContracts({
+            const data5 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yoursalonnft.map((item) => (
                     {
                         address: salon,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [item.Id],
                     }
@@ -267,415 +268,414 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
             setJaspBalance(ethers.utils.formatUnits(String(result[11]), "gwei"))
         })
 
-    }, [address, erc20ABI, erc721ABI, txupdate, salonABI])
+    }, [address, erc20Abi, erc721Abi, txupdate, salonABI])
 
     const evolutionV2Handle = async (_nftid, _enchantindex) => {
         setisLoading(true)
         try {
             if (Number(_enchantindex) <= 9) {
-                const bbqAllow = await readContract({
+                const bbqAllow = await readContract(config, {
                     address: bbqToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (bbqAllow < (1280000 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: bbqToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const cuAllow = await readContract({
+                const cuAllow = await readContract(config, {
                     address: cuToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (cuAllow < (128000 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: cuToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) === 10) {
-                const bbqAllow = await readContract({
+                const bbqAllow = await readContract(config, {
                     address: bbqToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (bbqAllow < (2560000 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: bbqToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const jdaoAllow = await readContract({
+                const jdaoAllow = await readContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (jdaoAllow < (10 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: jdaoToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) >= 11 && Number(_enchantindex) <= 19) {
-                const bbqAllow = await readContract({
+                const bbqAllow = await readContract(config, {
                     address: bbqToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (bbqAllow < (1310720000 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: bbqToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const silAllow = await readContract({
+                const silAllow = await readContract(config, {
                     address: silToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (silAllow < (384000 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: silToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) <= 1009 || (Number(_enchantindex) >= 2001 && Number(_enchantindex) <= 2009) || (Number(_enchantindex) >= 3001 && Number(_enchantindex) <= 3009) || (Number(_enchantindex) >= 4001 && Number(_enchantindex) <= 4009)) {
-                const pzaAllow = await readContract({
+                const pzaAllow = await readContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (pzaAllow < (1074 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const cuAllow = await readContract({
+                const cuAllow = await readContract(config, {
                     address: cuToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (cuAllow < (64000 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: cuToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) === 1010 || Number(_enchantindex) === 1020 || Number(_enchantindex) === 1030 || Number(_enchantindex) === 1040 || Number(_enchantindex) === 2010 || Number(_enchantindex) === 2020 || Number(_enchantindex) === 2030 || Number(_enchantindex) === 2040 || Number(_enchantindex) === 3010 || Number(_enchantindex) === 3020 || Number(_enchantindex) === 3030 || Number(_enchantindex) === 3040 || Number(_enchantindex) === 4010 || Number(_enchantindex) === 4020 || Number(_enchantindex) === 4030 || Number(_enchantindex) === 4040) {
-                const pzaAllow = await readContract({
+                const pzaAllow = await readContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (pzaAllow < (3674420 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const jdaoAllow = await readContract({
+                const jdaoAllow = await readContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (jdaoAllow < (1350 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: jdaoToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) <= 1019 || (Number(_enchantindex) >= 2011 && Number(_enchantindex) <= 2019) || (Number(_enchantindex) >= 3011 && Number(_enchantindex) <= 3019) || (Number(_enchantindex) >= 4011 && Number(_enchantindex) <= 4019)) {
-                const pzaAllow = await readContract({
+                const pzaAllow = await readContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (pzaAllow < (6655 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const silAllow = await readContract({
+                const silAllow = await readContract(config, {
                     address: silToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (silAllow < (384000 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: silToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) <= 1029 || (Number(_enchantindex) >= 2021 && Number(_enchantindex) <= 2029) || (Number(_enchantindex) >= 3021 && Number(_enchantindex) <= 3029) || (Number(_enchantindex) >= 4021 && Number(_enchantindex) <= 4029)) {
-                const pzaAllow = await readContract({
+                const pzaAllow = await readContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (pzaAllow < (49453 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const goldAllow = await readContract({
+                const goldAllow = await readContract(config, {
                     address: goldToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (goldAllow < (492075 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: goldToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) <= 1039 || (Number(_enchantindex) >= 2031 && Number(_enchantindex) <= 2039) || (Number(_enchantindex) >= 3031 && Number(_enchantindex) <= 3039) || (Number(_enchantindex) >= 4031 && Number(_enchantindex) <= 4039)) {
-                const pzaAllow = await readContract({
+                const pzaAllow = await readContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (pzaAllow < (306202 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const platAllow = await readContract({
+                const platAllow = await readContract(config, {
                     address: platToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (platAllow < (6150937 * 10**18)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: platToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             } else if (Number(_enchantindex) <= 1049 || (Number(_enchantindex) >= 2041 && Number(_enchantindex) <= 2049) || (Number(_enchantindex) >= 3041 && Number(_enchantindex) <= 3049) || (Number(_enchantindex) >= 4041 && Number(_enchantindex) <= 4049)) {
-                const pzaAllow = await readContract({
+                const pzaAllow = await readContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (pzaAllow < (1895924 * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const jaspAllow = await readContract({
+                const jaspAllow = await readContract(config, {
                     address: jaspToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, evolutionaryV2],
                 })
                 if (jaspAllow < (12807 * 10**9)) {
-                    const config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: jaspToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [evolutionaryV2, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash02 } = await writeContract(config2)
-                    await waitForTransaction({ hash: hash02 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== evolutionaryV2.toUpperCase()) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [evolutionaryV2, _nftid],
                 })
-                const { hash721 } = await writeContract(config3)
-                await waitForTransaction({ hash721, })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config4 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: evolutionaryV2,
                 abi: evolutionaryABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const { hash: hash1 } = await writeContract(config4)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
 
-
     const evolutionHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)
-        const cmjAllow = await readContract({
+        const cmjAllow = await readContract(config, {
             address: cmjToken,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'allowance',
             args: [address, evolutionary],
         })
         try {
             if (cmjAllow < (30 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [evolutionary, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const jdaoAllow = await readContract({
+            const jdaoAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, evolutionary],
             })
             if (jdaoAllow < (3 * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [evolutionary, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const bbqAllow = await readContract({
+            const bbqAllow = await readContract(config, {
                 address: bbqToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, evolutionary],
             })
             if (bbqAllow < (25000 * 10**18)) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: bbqToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [evolutionary, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash03 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== evolutionary.toUpperCase()) {
-                const config4 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [evolutionary, _nftid],
                 })
-                const { hash: hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash: hash04 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config5 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: evolutionary,
                 abi: evolutionaryABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const { hash: hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -683,115 +683,115 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
     const fusionHandle = async (_nftid, _fusionindex) => {
         setisLoading(true)        
         try {
-            const cmjAllow = await readContract({
+            const cmjAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, fusion],
             })
             if (cmjAllow < (150 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [fusion, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const jdaoAllow = await readContract({
+            const jdaoAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, fusion],
             })
             if (jdaoAllow < (15 * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [fusion, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== fusion.toUpperCase()) {
-                const config4 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [fusion, _nftid],
                 })
-                const { hash: hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash: hash04 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
             let _nftId2 = nft.filter((item) => item.Id >= 100410100400 && item.Id <= 100420000400)
-            const nftAllow2 = await readContract({
+            const nftAllow2 = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId2[0].Id],
             })
             if (nftAllow2.toUpperCase() !== fusion.toUpperCase()) {
-                const config5 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [fusion, _nftId2[0].Id],
                 })
-                const { hash: hash05 } = await writeContract(config5)
-                await waitForTransaction({ hash: hash05 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
             let _nftId3 = nft.filter((item) => item.Id >= 100420100400 && item.Id <= 100430000400)
-            const nftAllow3 = await readContract({
+            const nftAllow3 = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId3[0].Id],
             })
             if (nftAllow3.toUpperCase() !== fusion.toUpperCase()) {
-                const config6 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [fusion, _nftId3[0].Id],
                 })
-                const { hash: hash06 } = await writeContract(config6)
-                await waitForTransaction({ hash: hash06 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
             let _nftId4 = nft.filter((item) => item.Id >= 100430100400 && item.Id <= 100440000400)
-            const nftAllow4 = await readContract({
+            const nftAllow4 = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId4[0].Id],
             })
             if (nftAllow4.toUpperCase() !== fusion.toUpperCase()) {
-                const config7 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [fusion, _nftId4[0].Id],
                 })
-                const { hash: hash07 } = await writeContract(config7)
-                await waitForTransaction({ hash: hash07 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config8 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fusion,
                 abi: fusionABI,
                 functionName: 'enchant',
                 args: [_fusionindex, _nftid, _nftId2[0].Id, _nftId3[0].Id, _nftId4[0].Id, 0],
                 gas: 1000000,
             })
-            const { hash: hash1 } = await writeContract(config8)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -799,47 +799,47 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
     const changeHandle = async (_salonid) => {
         setisLoading(true)        
         try {
-            const cmjAllow = await readContract({
+            const cmjAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, salonRouter],
             })
             if (cmjAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [salonRouter, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const salonAllow = await readContract({
+            const salonAllow = await readContract(config, {
                 address: salon,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_salonid],
             })
             if (salonAllow.toUpperCase() !== salonRouter.toUpperCase()) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: salon,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [salonRouter, _salonid],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config3 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: salonRouter,
                 abi: salonABI,
                 functionName: 'change',
                 args: [_salonid],
             })
-            const { hash: hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -847,31 +847,31 @@ const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI,
     const unchangeHandle = async (_salontype) => {
         setisLoading(true)        
         try {
-            const osAllow = await readContract({
+            const osAllow = await readContract(config, {
                 address: osToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, salonRouter],
             })
             if (osAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: osToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [salonRouter, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: salonRouter,
                 abi: salonABI,
                 functionName: 'unchange',
                 args: [_salontype],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

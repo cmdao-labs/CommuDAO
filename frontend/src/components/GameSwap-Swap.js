@@ -1,9 +1,10 @@
 import React from 'react'
 import Select from 'react-select'
-import { fetchBalance, readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { getBalance, readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { ethers } from 'ethers'
    
-const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20ABI, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
+const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [jbcBought, setJbcBought] = React.useState("")
     const [cmjBought, setCmjBought] = React.useState("")
@@ -15,13 +16,13 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(true)
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
-        const _reserveCmj = await readContract({
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
         })
-        const tokensBought = await readContract({
+        const tokensBought = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getAmountOfTokens',
@@ -31,17 +32,17 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(false)
     }
     const maxHandle1 = async () => {
-        const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
+        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.009
         setInputSwap(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
-        const _reserveCmj = await readContract({
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
         })
-        const tokensBought = await readContract({
+        const tokensBought = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getAmountOfTokens',
@@ -54,13 +55,13 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setInputSwap(event.target.value)
         
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
-        const _reserveCmj = await readContract({
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
         })
-        const jbcBought = await readContract({
+        const jbcBought = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getAmountOfTokens',
@@ -70,21 +71,21 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(false)
     }
     const maxHandle2 = async () => {
-        const _max = address !== undefined ? await readContract({
+        const _max = address !== undefined ? await readContract(config, {
             address: cmjToken,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'balanceOf',
             args: [address],
         }) : 0
         setInputSwap(ethers.utils.formatEther(_max))
         const _value = _max >= 0 ? _max : 0
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
-        const _reserveCmj = await readContract({
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
         })
-        const jbcBought = await readContract({
+        const jbcBought = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getAmountOfTokens',
@@ -96,13 +97,13 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(true)
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
-        const _reserveJusdt = await readContract({
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
         })
-        const tokensBought = await readContract({
+        const tokensBought = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getAmountOfTokens',
@@ -112,17 +113,17 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(false)
     }
     const maxHandle3 = async () => {
-        const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
+        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.009
         setInputSwap(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
-        const _reserveJusdt = await readContract({
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
         })
-        const tokensBought = await readContract({
+        const tokensBought = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getAmountOfTokens',
@@ -134,13 +135,13 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(true)
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
-        const _reserveJusdt = await readContract({
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
         })
-        const jbcBought = await readContract({
+        const jbcBought = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getAmountOfTokens',
@@ -150,21 +151,21 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
         setDelaySwap(false)
     }
     const maxHandle4 = async () => {
-        const _max = address !== undefined ? await readContract({
+        const _max = address !== undefined ? await readContract(config, {
             address: jusdtToken,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'balanceOf',
             args: [address],
         }) : 0
         setInputSwap(ethers.utils.formatEther(_max))
         const _value = _max >= 0 ? _max : 0
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
-        const _reserveJusdt = await readContract({
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
         })
-        const jbcBought = await readContract({
+        const jbcBought = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getAmountOfTokens',
@@ -175,104 +176,96 @@ const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExcha
 
     const swapTokenHandle = async () => {
         setisLoading(true)
-        if (swapMode === 0) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            if (swapMode === 0) {
+                let { request } = await simulateContract(config, {
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callJbcToCmj',
                     args: [ethers.utils.parseEther(String(cmjBought * 0.99))],
                     value: ethers.utils.parseEther(inputSwap),
                 })
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            } catch {}
-        } else {
-            const cmAllow = await readContract({
-                address: cmjToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, jcSwap],
-            })
-            const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (inputSwap > Number(cmAllow) / (10**18)) {
-                try {
-                    const config = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
+            } else {
+                const cmAllow = await readContract(config, {
+                    address: cmjToken,
+                    abi: erc20Abi,
+                    functionName: 'allowance',
+                    args: [address, jcSwap],
+                })
+                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
+                const Hex = ethers.BigNumber.from(10**8)
+                const bigApprove = bigValue.mul(Hex)
+                if (inputSwap > Number(cmAllow) / (10**18)) {
+                    let { request } = await simulateContract(config, {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [jcSwap, bigApprove],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                } catch {}
-            }
-            try {
-                const config2 = await prepareWriteContract({
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                }
+                let { request } = await simulateContract(config, {
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callCmjToJbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcBought * 0.99))],
                 })
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            } catch {}
-        }
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
+            }
+        } catch {}
         setisLoading(false)
     }
     const swapTokenHandle2 = async () => {
         setisLoading(true)
-        if (swapMode === 3) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            if (swapMode === 3) {
+                let { request } = await simulateContract(config, {
                     address: juSwap,
                     abi: swapJulpABI,
                     functionName: 'callJbcToJusdt',
                     args: [ethers.utils.parseEther(String(jusdtJuBought * 0.99))],
                     value: ethers.utils.parseEther(inputSwap),
                 })
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            } catch {}
-        } else {
-            const jusdtAllow = await readContract({
-                address: jusdtToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, juSwap],
-            })
-            const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (inputSwap > Number(jusdtAllow) / (10**18)) {
-                try {
-                    const config = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
+            } else {
+                const jusdtAllow = await readContract(config, {
+                    address: jusdtToken,
+                    abi: erc20Abi,
+                    functionName: 'allowance',
+                    args: [address, juSwap],
+                })
+                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
+                const Hex = ethers.BigNumber.from(10**8)
+                const bigApprove = bigValue.mul(Hex)
+                if (inputSwap > Number(jusdtAllow) / (10**18)) {
+                    let { request } = await simulateContract(config, {
                         address: jusdtToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [juSwap, bigApprove],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                } catch {}
-            }
-            try {
-                const config2 = await prepareWriteContract({
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                }
+                let { request } = await simulateContract(config, {
                     address: juSwap,
                     abi: swapJulpABI,
                     functionName: 'callJusdtToJbc',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcJuBought * 0.99))],
                 })
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
-            } catch {}
-        }
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
+            }
+        } catch {}
         setisLoading(false)
     }
 

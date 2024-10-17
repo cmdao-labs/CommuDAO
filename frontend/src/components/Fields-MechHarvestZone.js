@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -10,7 +11,7 @@ const gear = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
 const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI }) => {
+const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, gearFieldABI, taoPfpABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -55,15 +56,15 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const transferNFTConfirm = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: taodumNFT,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -71,7 +72,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const taodumNFTSC = new ethers.Contract(taodumNFT, erc721ABI, providerJBC)
+        const taodumNFTSC = new ethers.Contract(taodumNFT, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -82,7 +83,7 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const stakeEvent = await taodumNFTSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: gear,
@@ -100,18 +101,18 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 }
             }
 
-            const data1 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: taodumNFT,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill('')]
 
-            const data11 = address !== null && address !== undefined ? await readContracts({
+            const data11 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: gear,
@@ -167,11 +168,11 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const walletEvent = await taodumNFTSC.queryFilter(walletFilter, 2725554, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: taodumNFT,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -185,11 +186,11 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: taodumNFT,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -231,17 +232,17 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const dataToken = address !== null && address !== undefined ? await readContracts({
+            const dataToken = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: gear,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: taomeme,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -499,36 +500,36 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             setAllRewardNFT(result[9])
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, gearFieldABI, taoPfpABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, gearFieldABI, taoPfpABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: taodumNFT,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== gear.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: taodumNFT,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [gear, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'stake',
                 args: [_nftid, 1],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -539,15 +540,15 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, 1, _unstake],
             })
-            const { hash: hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash12 })
-            setTxupdate(hash12)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -556,18 +557,18 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStaked.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: gear,
                     abi: gearFieldABI,
                     functionName: 'unstake',
                     args: [nftStaked[i].Id, 1, false],
                 })
                 if (i === nftStaked.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch {}
@@ -578,41 +579,41 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         setisLoading(true)
         try {
             if (tmStakedBalance > 0) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: gear,
                     abi: gearFieldABI,
                     functionName: 'unstake',
                     args: [0, 0, 0],
                 })
-                const { hash: hash10 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash10 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const allowed = await readContract({
+            const allowed = await readContract(config, {
                 address: taomeme,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, gear],
             })
             if (Number(ethers.utils.parseEther(String(inputTM))) > Number(allowed)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: taomeme,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [gear, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTM)), 0],
                 gas: 1000000,
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -623,15 +624,15 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const unstaketoken = async (_unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'unstake',
                 args: [0, 0, _unstake],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -642,31 +643,31 @@ const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const mintPFP = async (_lv) => {
         setisLoading(true)
         try {
-            const allowed = await readContract({
+            const allowed = await readContract(config, {
                 address: taomeme,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, taoPFP],
             })
             if (Number(ethers.utils.parseEther(String(8888))) > Number(allowed)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: taomeme,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [taoPFP, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: taoPFP,
                 abi: taoPfpABI,
                 functionName: 'claimDrop',
                 args: [_lv],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useContractEvent, useAccount } from 'wagmi'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useWatchContractEvent, useAccount } from 'wagmi'
 import { Oval, ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
@@ -14,9 +15,9 @@ const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, questAmbassABI, dunJasperABI, pvp01ABI, salonABI }) => {    
+const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, questAmbassABI, dunJasperABI, pvp01ABI, salonABI }) => {    
     const { address } = useAccount()
-    useContractEvent({
+    useWatchContractEvent({
         address: pvp01,
         abi: pvp01ABI,
         eventName: 'Fight',
@@ -96,7 +97,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
         const pvpSC = new ethers.Contract(pvp01, pvp01ABI, providerJBC)
 
         const thefetch = async () => {
-            const data0 = await readContract({
+            const data0 = await readContract(config, {
                 address: questAmbass,
                 abi: questAmbassABI,
                 functionName: 'registCount',
@@ -105,7 +106,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             for (let i = 1; i <= Number(data0); i++) {
                 rankerDummy.push(null)
             }
-            const data00 = await readContracts({
+            const data00 = await readContracts(config, {
                 contracts: rankerDummy.map((item, i) => (
                     {
                         address: questAmbass,
@@ -136,60 +137,60 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             const pvpRemove = pvpMap.filter((obj) => {return String(obj.cha1).toUpperCase() !== String(obj.cha2).toUpperCase()})
             if (pvpRemove.length === 0) { pvpRemove.push(null) }
 
-            const nftEQ = address !== null && address !== undefined ? await readContract({
+            const nftEQ = address !== null && address !== undefined ? await readContract(config, {
                 address: dunJasper,
                 abi: dunJasperABI,
                 functionName: 'nftEquip',
                 args: [address],
             }) : [{characterId: 0, hatId: 0, clothId: 0, accessoriesId: 0, backId: 0, shoesId: 0, weaponId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                     },
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
                     {
                         address: jdao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -297,7 +298,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             setSkinSlot1(result[20])
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, questAmbassABI, dunJasperABI, pvp01ABI, salonABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, questAmbassABI, dunJasperABI, pvp01ABI, salonABI])
 
     React.useEffect(() => {
         if (challenger[0] !== undefined) {
@@ -321,7 +322,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             setWpSlotLevelC(null)
 
             const thefetch = async () => {
-                const data2 = await readContracts({
+                const data2 = await readContracts(config, {
                     contracts: [
                         {
                             address: dunJasper,
@@ -348,47 +349,47 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 const c_pvpStat = data2[1].result
                 const c_skin1 = data2[2].result
 
-                const data3 = await readContracts({
+                const data3 = await readContracts(config, {
                     contracts: [
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[0])],
                         },
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[3])],
                         },
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[4])],
                         },
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[5])],
                         },
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[6])],
                         },
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[2])],
                         },
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [Number(c_nftEQ[1])],
                         }
@@ -478,37 +479,37 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 setSkinSlot1C(result[17])
             })
         }
-    }, [address, txupdate, challenger, challengerSlot, erc721ABI, dunJasperABI, pvp01ABI, salonABI])
+    }, [address, txupdate, challenger, challengerSlot, erc721Abi, dunJasperABI, pvp01ABI, salonABI])
 
     const oneHit = async () => {
         setisLoading(true)
         try {
-            const bountyAllow = await readContract({
+            const bountyAllow = await readContract(config, {
                 address: jdao,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, pvp01],
             })
             if (bountyAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdao,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [pvp01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: pvp01,
                 abi: pvp01ABI,
                 functionName: 'fight',
                 args: [challenger[challengerSlot]],
                 gas: 3000000,
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -516,47 +517,47 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
     const addBounty = async () => {
         setisLoading(true)
         try {
-            const bountyAllow = await readContract({
+            const bountyAllow = await readContract(config, {
                 address: jdao,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, pvp01],
             })
             if (bountyAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdao,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [pvp01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: pvp01,
                 abi: pvp01ABI,
                 functionName: 'challenge',
                 args: [1]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const withdrawBounty = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: pvp01,
                 abi: pvp01ABI,
                 functionName: 'fight',
                 args: [address],
                 gas: 3000000,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -569,7 +570,7 @@ const DungeonArena = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 break
             } else {
                 setChallengerSlot(i)
-                const data = await readContracts({
+                const data = await readContracts(config, {
                     contracts: [
                         {
                             address: dunJasper,

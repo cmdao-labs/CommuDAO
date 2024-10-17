@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -15,7 +16,7 @@ const dumpster2 = '0xB6b281D2AB93D31757FF13D42147dF1B55c3dDb5'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, dumpster1ABI, dumpster2ABI }) => {
+const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, dumpster1ABI, dumpster2ABI }) => {
     const { address } = useAccount()
 
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
@@ -29,7 +30,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const lootnftSC = new ethers.Contract(jibLoot, erc721ABI, providerJBC)
+        const lootnftSC = new ethers.Contract(jibLoot, erc721Abi, providerJBC)
 
         const thefetch = async () => {
             let nfts = []
@@ -38,11 +39,11 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             const walletEvent = await lootnftSC.queryFilter(walletFilter, 145354, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: jibLoot,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -56,11 +57,11 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: jibLoot,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -87,23 +88,23 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: wood,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: stOPT,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: mice,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     }
@@ -135,7 +136,7 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             setMiceBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI])
+    }, [address, txupdate, erc20Abi, erc721Abi])
 
     const dump1 = async (_index) => {
         setisLoading(true)
@@ -149,31 +150,31 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
             handle = miceHandle
         }
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: token,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, dumpster1],
             })
             if (tokenAllow < ethers.utils.parseEther(handle)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: token,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [dumpster1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dumpster1,
                 abi: dumpster1ABI,
                 functionName: 'dump',
                 args: [_index, ethers.utils.parseEther(handle)],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -181,31 +182,31 @@ const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20ABI,
     const dump2 = async (_index, _nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: jibLoot,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== dumpster2.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jibLoot,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [dumpster2, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dumpster2,
                 abi: dumpster2ABI,
                 functionName: 'dump',
                 args: [_index, _nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

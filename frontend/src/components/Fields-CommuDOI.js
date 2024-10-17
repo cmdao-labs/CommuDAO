@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -9,7 +10,7 @@ const cmdoiField = '0xAe8cdc88D74b090894Dca46fc87C4FFBa6630E8e'
 const doijib = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, cmdoiFieldABI }) => {
+const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, cmdoiFieldABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -29,7 +30,7 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const cmdaonftSC = new ethers.Contract(cmdao, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdao, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -39,7 +40,7 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 4174711, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: cmdoiField,
@@ -57,18 +58,18 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 }
             }
 
-            const data1 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: cmdao,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill('')]
 
-            const _allReward = address !== null && address !== undefined ? await readContract({
+            const _allReward = address !== null && address !== undefined ? await readContract(config, {
                 address: cmdoiField,
                 abi: cmdoiFieldABI,
                 functionName: 'calculateRewards',
@@ -102,11 +103,11 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdao,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -120,11 +121,11 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdao,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -153,9 +154,9 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const doijibBal = address !== null && address !== undefined ? await readContract({
+            const doijibBal = address !== null && address !== undefined ? await readContract(config, {
                 address: doijib,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'balanceOf',
                 args: [address],
             }) : 0
@@ -179,36 +180,36 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
             setDoijibBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, cmdoiFieldABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, cmdoiFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: cmdao,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== cmdoiField.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmdao,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [cmdoiField, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdoiField,
                 abi: cmdoiFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -219,15 +220,15 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
     const unstakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdoiField,
                 abi: cmdoiFieldABI,
                 functionName: 'unstake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -238,14 +239,14 @@ const CommuDOIField = ({ intrasubModetext, navigate, setisLoading, txupdate, set
     const unstakeNftAll = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdoiField,
                 abi: cmdoiFieldABI,
                 functionName: 'harvest',
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const taodumBKC = '0x165DCCB59F0aaE80a0C20c8CF2b536BE6E120be9'
@@ -12,17 +13,16 @@ const bkcBridge = '0x519fF534E58A226c11566b0546f900766664B705'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI }) => {
-    let { address } = useAccount()
-    const { chain } = useNetwork()
+const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721Abi, tbridgeNFTABI }) => {
+    let { address, chain } = useAccount()
 
     const [nft, setNft] = React.useState([])
     const [nft2, setNft2] = React.useState([])
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const taodumBkcSC = new ethers.Contract(taodumBKC, erc721ABI, providerBKC)
-        const taodumJbcSC = new ethers.Contract(taodumJBC, erc721ABI, providerJBC)
+        const taodumBkcSC = new ethers.Contract(taodumBKC, erc721Abi, providerBKC)
+        const taodumJbcSC = new ethers.Contract(taodumJBC, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -32,11 +32,11 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
             const walletEvent = await taodumBkcSC.queryFilter(walletFilter, 15323522, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: taodumBKC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 96
@@ -51,11 +51,11 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                 }
             }
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: taodumBKC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 96
@@ -88,11 +88,11 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
             const wallet2Event = await taodumJbcSC.queryFilter(wallet2Filter, 2725554, "latest")
             const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
             const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: wallet2RemoveDup.map((item) => (
                     {
                         address: taodumJBC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 8899
@@ -107,11 +107,11 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                 }
             }
 
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet2.map((item) => (
                     {
                         address: taodumJBC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 8899
@@ -157,28 +157,28 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
             setNft2(result[1])
         })
 
-    }, [address, txupdate, erc721ABI])
+    }, [address, txupdate, erc721Abi])
 
     const depositTaoHandle = async (_nftId) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: taodumBKC,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId],
             })
             if (nftAllow.toUpperCase() !== bkcBridge.toUpperCase()) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: taodumBKC,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [bkcBridge, _nftId],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bkcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
@@ -186,32 +186,32 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                 value: ethers.utils.parseEther('1'),
                 chainId: 96,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const withdrawTaoHandle = async (_nftId) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: taodumJBC,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId],
             })
             if (nftAllow.toUpperCase() !== jbcBridge.toUpperCase()) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: taodumJBC,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [jbcBridge, _nftId],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }       
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: jbcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
@@ -219,9 +219,9 @@ const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridge
                 value: ethers.utils.parseEther('10'),
                 chainId: 8899,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

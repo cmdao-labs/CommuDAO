@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract, sendTransaction } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -25,7 +26,7 @@ const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, intrasubModetext, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI, transportHubABI, constructionABI, constructionStakingABI }) => {
+const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, intrasubModetext, erc20Abi, erc721Abi, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI, transportHubABI, constructionABI, constructionStakingABI }) => {
     const { address } = useAccount()
     
     let code = ''
@@ -68,14 +69,14 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
 
     React.useEffect(() => {        
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
         
         const thefetch = async () => {
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
                     },
@@ -93,7 +94,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                     },
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [houseStaking],
                     },
@@ -117,7 +118,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                     },
                     {
                         address: os,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [weaponDepotStaking],
                     },
@@ -140,7 +141,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const ospoolWD = data[7].result
             const wdBonus = data[8].result
 
-            const id = data[0].status === 'success' && data[1].status === 'success' ? await readContracts({
+            const id = data[0].status === 'success' && data[1].status === 'success' ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaoName,
@@ -158,7 +159,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             }) : [0, 0]
             const id0 = id[0].result
             const id1 = id[1].result
-            const landlordname = id[0].status === 'success' && id[1].status === 'success' ? await readContracts({
+            const landlordname = id[0].status === 'success' && id[1].status === 'success' ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaoName,
@@ -180,7 +181,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = await readContracts({
+            const data0 = await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: houseStaking,
@@ -198,18 +199,18 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 }
             }
 
-            const data1 = await readContracts({
+            const data1 = await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             })
 
-            const data12 = await readContracts({
+            const data12 = await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: houseStaking,
@@ -250,7 +251,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3659125, "latest")
             const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
-            const data0WD = await readContracts({
+            const data0WD = await readContracts(config, {
                 contracts: stakeRemoveDupWD.map((item) => (
                     {
                         address: weaponDepotStaking,
@@ -267,18 +268,18 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 }
             }
 
-            const data1WD = await readContracts({
+            const data1WD = await readContracts(config, {
                 contracts: yournftstakeWD.map((item) => (
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             })
 
-            const data12WD = await readContracts({
+            const data12WD = await readContracts(config, {
                 contracts: yournftstakeWD.map((item) => (
                     {
                         address: weaponDepotStaking,
@@ -319,11 +320,11 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -337,11 +338,11 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -414,7 +415,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             setWdBonus(result[17])
         })
 
-    }, [address, code, intrasubModetext, txupdate, erc20ABI, erc721ABI, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
+    }, [address, code, intrasubModetext, txupdate, erc20Abi, erc721Abi, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
     
     const upgradeHouseHandle = async (_level) => {
         setisLoading(true)
@@ -463,59 +464,59 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 secondUsage = 1600000
                 secondToken = sil
             }
-            const woodAllow = await readContract({
+            const woodAllow = await readContract(config, {
                 address: wood,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, house],
             })
             if (woodAllow < (woodUsage * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: wood,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [house, ethers.utils.parseEther(String(10**10))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const secondAllow = await readContract({
+            const secondAllow = await readContract(config, {
                 address: secondToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, house],
             })
             if (secondAllow < (secondUsage * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: secondToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [house, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
 
             if (_level === 1) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: slot1,
                     abi: slot1ABI,
                     functionName: 'delegateOwner',
                     args: [0, address, houseId]
                 })
-                const { hash: hash1 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash1 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
 
-            const config4 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: house,
                 abi: houseABI,
                 functionName: 'upgrade',
                 args: [_level, houseId]
             })
-            const { hash: hash04 } = await writeContract(config4)
-            await waitForTransaction({ hash: hash04 })
-            setTxupdate(hash04)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -526,15 +527,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const registHouseHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: '0x786200541C307B5e6F414193D250752a999375C4',
                 abi: delegateOwner01ABI,
                 functionName: 'delegateOwnerCall',
                 args: [houseId, delegateAddr]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -545,31 +546,31 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: cmdaoNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== houseStaking.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmdaoNft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [houseStaking, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: houseStaking,
                 abi: houseStakingABI,
                 functionName: 'stake',
                 args: [1, _nftid, houseId],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -579,15 +580,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: houseStaking,
                 abi: houseStakingABI,
                 functionName: 'unstake',
                 args: [1, _nftid, _unstake],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -598,18 +599,18 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStake.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: houseStaking,
                     abi: houseStakingABI,
                     functionName: 'unstake',
                     args: [1, nftStake[i].Id, false],
                 })
                 if (i === nftStake.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch (e) {
@@ -630,31 +631,31 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             id = 6
         }
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdt,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, wlMkp],
             })
             if (jusdtAllow < (100000 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdt,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [wlMkp, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: wlMkp,
                 abi: wlMkpABI,
                 functionName: 'buyItem',
                 args: [id]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }*/
@@ -662,21 +663,21 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const changeThubFeeHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: transporthub,
                 abi: transportHubABI,
                 functionName: 'setHubFee',
                 args: [houseId, String(Number(changeThubFee * 100).toFixed(0))],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-            const { hash: hash2 } = await sendTransaction({
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+            let h2 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                 value: ethers.utils.parseEther(10),
             })
-            await waitForTransaction({ hash: hash2 })
+            await waitForTransactionReceipt(config, { hash: h2 })
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -695,47 +696,47 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 secondUsage = 500000
                 secondToken = cu
             }
-            const woodAllow = await readContract({
+            const woodAllow = await readContract(config, {
                 address: wood,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, weaponDepot],
             })
             if (woodAllow < (woodUsage * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: wood,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [weaponDepot, ethers.utils.parseEther(String(10**10))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const secondAllow = await readContract({
+            const secondAllow = await readContract(config, {
                 address: secondToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, weaponDepot],
             })
             if (secondAllow < (secondUsage * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: secondToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [weaponDepot, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config4 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: weaponDepot,
                 abi: constructionABI,
                 functionName: 'upgrade01',
                 args: [_level, houseId]
             })
-            const { hash: hash04 } = await writeContract(config4)
-            await waitForTransaction({ hash: hash04 })
-            setTxupdate(hash04)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -754,53 +755,53 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                 secondUsage = 1600000
                 secondToken = cu
             }
-            const woodAllow = await readContract({
+            const woodAllow = await readContract(config, {
                 address: wood,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, transporthub],
             })
             if (woodAllow < (woodUsage * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: wood,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [transporthub, ethers.utils.parseEther(String(10**10))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const secondAllow = await readContract({
+            const secondAllow = await readContract(config, {
                 address: secondToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, transporthub],
             })
             if (secondAllow < (secondUsage * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: secondToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [transporthub, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config4 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: transporthub,
                 abi: transportHubABI,
                 functionName: 'upgrade01',
                 args: [_level, houseId]
             })
-            const { hash: hash04 } = await writeContract(config4)
-            await waitForTransaction({ hash: hash04 })
-            setTxupdate(hash04)
-            const { hash: hash2 } = await sendTransaction({
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+            let h2 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                 value: ethers.utils.parseEther(10),
             })
-            await waitForTransaction({ hash: hash2 })
+            await waitForTransactionReceipt(config, { hash: h2 })
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -811,31 +812,31 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const stakeNftWD = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: cmdaoNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== houseStaking.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmdaoNft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [weaponDepotStaking, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: weaponDepotStaking,
                 abi: constructionStakingABI,
                 functionName: 'stake',
                 args: [1, _nftid, houseId],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -845,15 +846,15 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
     const unstakeNftWD = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: weaponDepotStaking,
                 abi: constructionStakingABI,
                 functionName: 'unstake',
                 args: [1, _nftid, _unstake],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

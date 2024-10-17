@@ -1,11 +1,12 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { ethers } from 'ethers'
 
 const cmdethlp = '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'
 const stcmdlp = '0x51f97E67B2fF5eD064Dc2B27b7A745E0d4C47Ee0'
    
-const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI, stcmdABI }) => {
+const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20Abi, stcmdABI }) => {
     const [lpBalance, setLpBalance] = React.useState(null)
     const [stLpBalance, setStLpBalance] = React.useState(null)
     const [lpStake, setLpStake] = React.useState("")
@@ -18,17 +19,17 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
         console.log("Connected to " + address)
 
         const thefetch = async () => {
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdethlp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: stcmdlp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -82,14 +83,14 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
             setReward2(ethers.utils.formatEther(result[4]))
             setReward3(ethers.utils.formatUnits(result[5], 'mwei'))
         })
-    }, [address, txupdate, erc20ABI, stcmdABI])
+    }, [address, txupdate, erc20Abi, stcmdABI])
 
     const addstakeHandle = async () => {
         setisLoading(true)
         try {
-            const lpAllow = await readContract({
+            const lpAllow = await readContract(config, {
                 address: cmdethlp,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, stcmdlp],
             })
@@ -97,24 +98,24 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(lpStake) > Number(lpAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmdethlp,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [stcmdlp, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(lpStake)],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -122,14 +123,14 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
     const withdrawHandle = async () => {
         setisLoading(true)
         try {
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'unstake',
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -137,31 +138,31 @@ const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20ABI
     const harvestHandle = async () => {
         setisLoading(true)
         try {
-            const config1 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
                 args: [1, 2],
             })
-            const { hash: hash1 } = await writeContract(config1)
-            await waitForTransaction({ hash: hash1 })
-            const config2 = await prepareWriteContract({
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            let { request: request2 } = await simulateContract(config, {
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
                 args: [2, 2],
             })
-            const { hash: hash2 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash2 })
-            const config3 = await prepareWriteContract({
+            let h2 = await writeContract(config, request2)
+            await waitForTransactionReceipt(config, { hash: h2 })
+            let { request: request3 } = await simulateContract(config, {
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
                 args: [3, 2],
             })
-            const { hash: hash3 } = await writeContract(config3)
-            await waitForTransaction({ hash: hash3 })
-            setTxupdate(hash3)
+            let h3 = await writeContract(config, request3)
+            await waitForTransactionReceipt(config, { hash: h3 })
+            setTxupdate(h3)
         } catch (e) {console.log(e)}
         setisLoading(false)
     }

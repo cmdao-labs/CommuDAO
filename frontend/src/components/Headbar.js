@@ -1,17 +1,17 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
-import { useWeb3Modal } from '@web3modal/wagmi/react'
+import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react'
+import { config } from './config/config.ts'
 const { ethereum } = window
 
 const jdao = "0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88"
 const cmos = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 
-const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
-  const { open } = useWeb3Modal()
-  const { address, isConnected } = useAccount()
-  const { chain } = useNetwork()
+const Headbar = ({ callMode, navigate, txupdate, erc20Abi }) => {
+  const { open } = useAppKit()
+  const { address, isConnected, chain } = useAccount()
 
   const [isChainInvalid, setIsChainInvalid] = React.useState(false)
   const [jdaoBalance, setJdaoBalance] = React.useState(0)
@@ -23,16 +23,16 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
     }
 
     const thefetch = async () => {
-      const jdaoBal = address !== null && address !== undefined ? await readContract({
+      const jdaoBal = address !== null && address !== undefined ? await readContract(config, {
         address: jdao,
-        abi: erc20ABI,
+        abi: erc20Abi,
         functionName: 'balanceOf',
         args: [address],
         chainId: 8899,
       }) : 0
-      const cmosBal = address !== null && address !== undefined ? await readContract({
+      const cmosBal = address !== null && address !== undefined ? await readContract(config, {
         address: cmos,
-        abi: erc20ABI,
+        abi: erc20Abi,
         functionName: 'balanceOf',
         args: [address],
         chainId: 96,
@@ -54,7 +54,7 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
       setJdaoBalance(ethers.utils.formatEther(String(result[0])))
       setCmosBalance(ethers.utils.formatEther(String(result[1])))
     })
-  }, [chain, address, txupdate, erc20ABI])
+  }, [chain, address, txupdate, erc20Abi])
 
   return (
     <>
@@ -105,7 +105,6 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(21000); navigate('/labs/op');}}>Labs</div>
               <div className="funcList" onClick={() => {callMode(31001); navigate('/dungeon/abandoned-temple-vault');}}>Dungeon</div>
               <div className="funcList" onClick={() => {callMode(9); navigate('/guild/profile');}}>Guild</div>
-              <div className="funcList" style={{cursor: "not-allowed"}}>Community</div>
               <div className="funcList" onClick={() => {callMode(52); navigate('/mall/op');}}>Mall</div>
               <div className="funcList" onClick={() => {callMode(701); navigate('/gameswap/op');}}>GameSwap</div>
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
@@ -117,7 +116,6 @@ const Headbar = ({ callMode, navigate, txupdate, erc20ABI }) => {
               <div className="funcList" onClick={() => {callMode(10000); navigate('/fields/bbqchain');}}>Fields</div>
               <div className="funcList" onClick={() => {callMode(20000); navigate('/labs/bbqchain');}}>Labs</div>
               <div className="funcList" onClick={() => {callMode(30000); navigate('/dungeon/bbqchain');}}>Dungeon</div>
-              <div className="funcList" onClick={() => {callMode(51); navigate('/mall/bbqchain');}}>Mall</div>
               <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
             </>
           }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -12,7 +13,7 @@ const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunAngbABI, uswarABI }) => {
+const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunAngbABI, uswarABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -63,76 +64,76 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const apnftSC = new ethers.Contract(angelplus, erc721ABI, providerJBC)
+        const apnftSC = new ethers.Contract(angelplus, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = address !== null && address !== undefined ? await readContract({
+            const nftEQ = address !== null && address !== undefined ? await readContract(config, {
                 address: dunANGB,
                 abi: dunAngbABI,
                 functionName: 'nftEquip',
                 args: [address],
             }) : [{characterId: 0, helmetId: 0, armorId: 0, ringId: 0, shieldId: 0, bootsId: 0, swordId: 0, fairyId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[7])],
                     },
                     {
                         address: swarLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunANGB,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -144,7 +145,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     },
                     {
                         address: uswar,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -326,11 +327,11 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const walletEvent = await apnftSC.queryFilter(walletFilter, 2768102, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -344,11 +345,11 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: angelplus,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -425,7 +426,7 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             setUSWARBalance(ethers.utils.formatEther(String(result[23])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunAngbABI])
+    }, [address, txupdate, erc721Abi, erc20Abi, dunAngbABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -445,15 +446,15 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             addr = angelplus
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -469,31 +470,31 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         }
         setIsSpecialModal(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: angelplus,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== dunANGB.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: angelplus,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [dunANGB, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunANGB,
                 abi: dunAngbABI,
                 functionName: 'equip',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -501,15 +502,15 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const unstakeNft = async (_slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunANGB,
                 abi: dunAngbABI,
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -530,56 +531,56 @@ const Daemonworld = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         }
         try {
             if (Number(uswarBalance) === 0) {
-                const gasAllow0 = await readContract({
+                const gasAllow0 = await readContract(config, {
                     address: gasAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, uAddr],
                 })
                 if (gasAllow0 < (swarUsage * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: gasAddr,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [uAddr, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const config02 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: uAddr,
                     abi: uswarABI,
                     functionName: 'craft',
                     args: [craftIndex]
                 })
-                const { hash: hash01 } = await writeContract(config02)
-                await waitForTransaction({ hash: hash01 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const gasAllow = await readContract({
+            const gasAllow = await readContract(config, {
                 address: uAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, dunANGB],
             })
             if (gasAllow < (1 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: uAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [dunANGB, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunANGB,
                 abi: dunAngbABI,
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

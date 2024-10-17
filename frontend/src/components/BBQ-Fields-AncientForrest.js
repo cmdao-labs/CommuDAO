@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -35,7 +36,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
         setNft([])
 
         const thefetch = async () => {
-            const nftGenesis = address !== null && address !== undefined ? await readContract({
+            const nftGenesis = address !== null && address !== undefined ? await readContract(config, {
                 address: CMDS,
                 abi: cmdsV2ABI,
                 functionName: 'mynft',
@@ -43,7 +44,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             }) : 0
             const nftIndex = Number(ethers.BigNumber.from(String(nftGenesis)).mod(ethers.BigNumber.from(String(10000000000000000000))))
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: CMDS,
@@ -88,7 +89,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             }
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const data2 = await readContracts({
+                const data2 = await readContracts(config, {
                     contracts: [
                         {
                             address: CMDS,
@@ -167,7 +168,7 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             }
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const data3 = await readContracts({
+                const data3 = await readContracts(config, {
                     contracts: [
                         {
                             address: CMDS,
@@ -231,14 +232,14 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const woodBal = address !== null && address !== undefined ? await readContract({
+            const woodBal = address !== null && address !== undefined ? await readContract(config, {
                 address: fieldWood,
                 abi: fieldWoodBBQABI,
                 functionName: 'balanceOf',
                 args: [address],
             }) : 0
 
-            const dataParty = await readContracts({
+            const dataParty = await readContracts(config, {
                 contracts: [
                     {
                         address: missionBaseCmd,
@@ -334,15 +335,15 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
     const mintServant = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: CMDS,
                 abi: cmdsV2ABI,
                 functionName: 'mintServant',
                 args: [1, inputName],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -353,31 +354,31 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: CMDS,
                 abi: cmdsV2ABI,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== fieldWood.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: CMDS,
                     abi: cmdsV2ABI,
                     functionName: 'approve',
                     args: [fieldWood, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fieldWood,
                 abi: fieldWoodBBQABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -388,15 +389,15 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
     const unstakeNft = async (_nftid, _uplevel, _toLv) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fieldWood,
                 abi: fieldWoodBBQABI,
                 functionName: 'unstake',
                 args: [_nftid, true],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
             setisLoading(false)
             if (_uplevel) {
                 uplevelNft(_nftid, _toLv)
@@ -411,31 +412,31 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
     const missionHarvestHandle = async (_nftid) => {
         setisLoading(true)
         try {
-            const woodAllow = await readContract({
+            const woodAllow = await readContract(config, {
                 address: fieldWood,
                 abi: fieldWoodBBQABI,
                 functionName: 'allowance',
                 args: [address, missionWood],
             })
             if (woodAllow < ethers.utils.parseEther(String(10**12))) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: fieldWood,
                     abi: fieldWoodBBQABI,
                     functionName: 'approve',
                     args: [missionWood, ethers.utils.parseEther(String(10**12))],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config1 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: missionWood,
                 abi: missionWoodABI,
                 functionName: 'mintViaGCS',
                 args: [partySelected, _nftid, true],
             })
-            const { hash: hash1 } = await writeContract(config1)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -445,34 +446,32 @@ const BBQFieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, setisErr
 
     const uplevelNft = async (_nftid, _toLv) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: CMDS,
-            abi: cmdsV2ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== uplevelCMDS.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const nftAllow = await readContract(config, {
+                address: CMDS,
+                abi: cmdsV2ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== uplevelCMDS.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: CMDS,
                     abi: cmdsV2ABI,
                     functionName: 'approve',
                     args: [uplevelCMDS, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: uplevelCMDS,
                 abi: uplevelCMDSABI,
                 functionName: 'uplevelServant',
                 args: [_toLv, _nftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

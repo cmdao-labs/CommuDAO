@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
+import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract, sendTransaction } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 
 import Ammmerchant from  './Mall-Ammy'
@@ -43,7 +44,7 @@ const cmdaoPresale = '0xbf9C07f7223D09899c1BEC25f8Db559828166E78'
 
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20ABI, wjbcABI, presaleABI }) => {
+const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, wjbcABI, presaleABI }) => {
     const { address } = useAccount()
 
     const [isWrappedModal, setIsWrappedModal] = React.useState(false)
@@ -142,9 +143,9 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
 
         const thefetch = async () => {
             const jbcBal = address !== null && address !== undefined ?
-                await fetchBalance({ address: address, }) :
+                await getBalance(config, { address: address, }) :
                 {formatted: 0}
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: kyc,
@@ -154,55 +155,55 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     },
                     {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jusdtToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: ctunaLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: sx31Lab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: bbqToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunCopper,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunJasper,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: pzaLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jdaoToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -214,7 +215,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     },
                     {
                         address: osToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -226,61 +227,61 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     },
                     {
                         address: goldToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: wjbcToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: swarLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: silToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunAngb,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: taomeme,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: iiLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunEE,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: platToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: gearToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -292,13 +293,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                     },
                     {
                         address: doijibToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: woodToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -334,7 +335,7 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             const doijibBal = data[24].result
             const woodBal = data[25].result
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaoMerchant,
@@ -834,38 +835,36 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
             setIsWL6(result[83])
             setDoijibRemain(ethers.utils.formatEther(String(result[86])))
         })
-    }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20ABI, presaleABI])
+    }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20Abi, presaleABI])
 
     const buyHandle = async () => {
         setisLoading(true)
-        const ctunaAllow = await readContract({
-            address: ctunaLab,
-            abi: ctunaLabABI,
-            functionName: 'allowance',
-            args: [address, cmdaoMerchant],
-        })
-        if (ctunaAllow < (2500 * 10**18)) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const ctunaAllow = await readContract(config, {
+                address: ctunaLab,
+                abi: ctunaLabABI,
+                functionName: 'allowance',
+                args: [address, cmdaoMerchant],
+            })
+            if (ctunaAllow < (2500 * 10**18)) {
+                let { request } = await simulateContract(config, {
                     address: ctunaLab,
                     abi: ctunaLabABI,
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [1]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -873,31 +872,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle2 = async () => {
         setisLoading(true)
         try {
-            const bbqAllow = await readContract({
+            const bbqAllow = await readContract(config, {
                 address: bbqToken,
                 abi: ctunaLabABI,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantKYC],
             })
             if (bbqAllow < (40000 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: bbqToken,
                     abi: ctunaLabABI,
                     functionName: 'approve',
                     args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantKYC,
                 abi: cmdaoMerchantKYCABI,
                 functionName: 'buy',
                 args: [2]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)        
     }
@@ -905,31 +904,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle3 = async (_index) => {
         setisLoading(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
                 abi: ctunaLabABI,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
             if (jusdtAllow < (20 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
                     abi: ctunaLabABI,
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -937,31 +936,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle4 = async (_index) => {
         setisLoading(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
                 abi: ctunaLabABI,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantV2],
             })
             if (jusdtAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
                     abi: ctunaLabABI,
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantV2,
                 abi: cmdaoMerchantV2ABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -969,31 +968,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle5 = async () => {
         setisLoading(true)
         try {
-            const bbqAllow = await readContract({
+            const bbqAllow = await readContract(config, {
                 address: bbqToken,
                 abi: ctunaLabABI,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantKYC],
             })
             if (bbqAllow < (40000 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: bbqToken,
                     abi: ctunaLabABI,
                     functionName: 'approve',
                     args: [cmdaoMerchantKYC, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantKYC,
                 abi: cmdaoMerchantKYCABI,
                 functionName: 'buy',
                 args: [1]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1001,31 +1000,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle6 = async () => {
         setisLoading(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
             if (jusdtAllow < (2 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [5]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1033,31 +1032,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle8 = async () => {
         setisLoading(true)
         try {
-            const jdaoAllow = await readContract({
+            const jdaoAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
             if (jdaoAllow < (1000 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [6]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1065,31 +1064,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle9 = async (_index) => {
         setisLoading(true)
         try {
-            const wjbcAllow = await readContract({
+            const wjbcAllow = await readContract(config, {
                 address: wjbcToken,
                 abi: ctunaLabABI,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantV2],
             })
             if (wjbcAllow < (500 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: wjbcToken,
                     abi: ctunaLabABI,
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantV2,
                 abi: cmdaoMerchantV2ABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1097,31 +1096,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle13 = async () => {
         setisLoading(true)
         try {
-            const osAllow = await readContract({
+            const osAllow = await readContract(config, {
                 address: osToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
             if (osAllow < (5500 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: osToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [8]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1129,31 +1128,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle15 = async (_index) => {
         setisLoading(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantV105],
             })
             if (jusdtAllow < (20 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchantV105, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantV105,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1161,31 +1160,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle18 = async () => {
         setisLoading(true)
         try {
-            const bbqAllow = await readContract({
+            const bbqAllow = await readContract(config, {
                 address: bbqToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchant],
             })
             if (bbqAllow < (100000000 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: bbqToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [10]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1193,31 +1192,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle31 = async (_index) => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: dunEE,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantWL],
             })
             if (tokenAllow < (444444 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: dunEE,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchantWL, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantWL,
                 abi: cmdaoMerchantWLABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1225,31 +1224,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle32 = async (_index) => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: iiLab,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantWL],
             })
             if (tokenAllow < (22222 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: iiLab,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchantWL, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantWL,
                 abi: cmdaoMerchantWLABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1257,64 +1256,63 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyHandle33 = async (_index) => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: gearToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantWL],
             })
             if (tokenAllow < (10**27)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: gearToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchantWL, ethers.utils.parseEther(String(10**9))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoMerchantWL,
                 abi: cmdaoMerchantWLABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
 
-
     const rollHandle2 = async (_colIndex) => {
         setisLoading(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoGasha02],
             })
             if (jusdtAllow < (15 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoGasha02,
                 abi: cmdaoGasha02ABI,
                 functionName: 'roll',
                 args: [_colIndex]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1322,31 +1320,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
         setisLoading(true)
         setIsSpecialModal(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoGasha02],
             })
             if (jusdtAllow < (20 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoGasha02, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoGasha02,
                 abi: cmdaoGasha02ABI,
                 functionName: 'roll',
                 args: [_colIndex]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1354,31 +1352,31 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const buyPresaleHandle = async (_sellIndex) => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: wjbcToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoPresale],
             })
             if (tokenAllow < (inputBuy * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: wjbcToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoPresale, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaoPresale,
                 abi: presaleABI,
                 functionName: 'buy',
                 args: [_sellIndex, ethers.utils.parseEther(inputBuy)]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1386,27 +1384,27 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
     const sendHandle = async () => {
         setisLoading(true)
         try {
-            const { hash: hash1 } = await sendTransaction({
+            let h = await sendTransaction(config, {
                 to: wjbcToken,
                 value: wrappedValue !== "" ? ethers.utils.parseEther(wrappedValue) : undefined,
             })
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const unwrapHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: wjbcToken,
                 abi: wjbcABI,
                 functionName: 'withdraw',
                 args: [ethers.utils.parseEther(unwrappedValue)]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1969,13 +1967,13 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
                 <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Automated Market Maker NPC</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <Ammmerchant setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} ctunaBalance={ctunaBalance} sx31Balance={sx31Balance} bbqBalance={bbqBalance} pzaBalance={pzaBalance} woodBalance={woodBalance} cmjBalance={cmjBalance} />
-                    <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} platBalance={platBalance} cmjBalance={cmjBalance} />
-                    <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} ammyStdABI={ammyStdABI} erc20ABI={erc20ABI} cmjBalance={cmjBalance} doijibBalance={doijibBalance} wjbcBalance={wjbcBalance} woodBalance={woodBalance} />
+                    <Ammmerchant setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} ctunaBalance={ctunaBalance} sx31Balance={sx31Balance} bbqBalance={bbqBalance} pzaBalance={pzaBalance} woodBalance={woodBalance} cmjBalance={cmjBalance} />
+                    <Ammmerchant2 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} platBalance={platBalance} cmjBalance={cmjBalance} />
+                    <Ammmerchant3 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} ammyStdABI={ammyStdABI} erc20Abi={erc20Abi} cmjBalance={cmjBalance} doijibBalance={doijibBalance} wjbcBalance={wjbcBalance} woodBalance={woodBalance} />
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                    <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
-                    <Ammmerchant5 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20ABI={erc20ABI} iiBalance={iiBalance} eeBalance={eeBalance} jtaoBalance={jtaoBalance} />
+                    <Ammmerchant4 setisLoading={setisLoading} setTxupdate={setTxupdate} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
+                    <Ammmerchant5 setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} iiBalance={iiBalance} eeBalance={eeBalance} jtaoBalance={jtaoBalance} />
                 </div>
 
                 <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>

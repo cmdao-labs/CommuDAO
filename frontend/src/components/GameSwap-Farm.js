@@ -1,5 +1,6 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { ethers } from 'ethers'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
@@ -20,7 +21,7 @@ const woodCmjLp = '0x466C3b32538eB0DB9f6c88ee2Fa9c72C495cE08F'
 const bbqCmjLp = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const pzaCmjLp = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
    
-const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20ABI, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB, cmdaoAmmNpcABI }) => {
+const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20Abi, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB, cmdaoAmmNpcABI }) => {
     const [jbcJdaoStaked, setJbcJdaoStaked] = React.useState(0)
     const [cmjJdaoStaked, setCmjJdaoStaked] = React.useState(0)
     const [yourjbcJdaoStaked, setYourJbcJdaoStaked] = React.useState(0)
@@ -201,45 +202,45 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const harvestHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [1, 0],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const harvestHandle202 = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [2, 0],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const harvestHandle3 = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [3, 0],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -248,7 +249,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao3Withdraw, setLpJdao3Withdraw] = React.useState("")
     const handleWithdraw = (event) => { setLpJdaoWithdraw(event.target.value) }
     const maxWithdrawHandle1 = async () => {
-        const farmJdaoBal = address !== undefined ? await readContract({
+        const farmJdaoBal = address !== undefined ? await readContract(config, {
             address: farmJdao,
             abi: farmJdaoABI,
             functionName: 'userInfo',
@@ -259,21 +260,21 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const withdrawstakeHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [1, ethers.utils.parseEther(lpJdaoWithdraw)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const handleWithdraw202 = (event) => { setLpJdao202Withdraw(event.target.value) }
     const maxWithdrawHandle202 = async () => {
-        const farmJdao202Bal = address !== undefined ? await readContract({
+        const farmJdao202Bal = address !== undefined ? await readContract(config, {
             address: farmJdao,
             abi: farmJdaoABI,
             functionName: 'userInfo',
@@ -284,21 +285,21 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const withdrawstakeHandle202 = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [2, ethers.utils.parseEther(lpJdao202Withdraw)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const handleWithdraw3 = (event) => { setLpJdao3Withdraw(event.target.value) }
     const maxWithdrawHandle3 = async () => {
-        const farmJdao3Bal = address !== undefined ? await readContract({
+        const farmJdao3Bal = address !== undefined ? await readContract(config, {
             address: farmJdao,
             abi: farmJdaoABI,
             functionName: 'userInfo',
@@ -309,15 +310,15 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const withdrawstakeHandle3 = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [3, ethers.utils.parseEther(lpJdao3Withdraw)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -325,7 +326,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     const [lpJdao3Stake, setLpJdao3Stake] = React.useState("")
     const handleStake = (event) => { setLpJdaoStake(event.target.value) }
     const maxAddHandle1 = async () => {
-        const jclpBal = address !== undefined ? await readContract({
+        const jclpBal = address !== undefined ? await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'balanceOf',
@@ -335,43 +336,41 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     }
     const addstakeHandle = async () => {
         setisLoading(true)
-        const lpAllow = await readContract({
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'allowance',
-            args: [address, farmJdao],
-        })
-        const bigValue = lpJdaoStake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdaoStake)) : ethers.BigNumber.from(0)
-        const Hex = ethers.BigNumber.from(10**8)
-        const bigApprove = bigValue.mul(Hex)
-        if (Number(lpJdaoStake) > Number(lpAllow) / (10**18)) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const lpAllow = await readContract(config, {
+                address: jcExchange,
+                abi: exchangeABI,
+                functionName: 'allowance',
+                args: [address, farmJdao],
+            })
+            const bigValue = lpJdaoStake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdaoStake)) : ethers.BigNumber.from(0)
+            const Hex = ethers.BigNumber.from(10**8)
+            const bigApprove = bigValue.mul(Hex)
+            if (Number(lpJdaoStake) > Number(lpAllow) / (10**18)) {
+                let { request } = await simulateContract(config, {
                     address: jcExchange,
                     abi: exchangeABI,
                     functionName: 'approve',
                     args: [farmJdao, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'deposit',
                 args: [1, ethers.utils.parseEther(lpJdaoStake)],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const handleStake3 = (event) => { setLpJdao3Stake(event.target.value) }
     const maxAddHandle3 = async () => {
-        const julpBal = address !== undefined ? await readContract({
+        const julpBal = address !== undefined ? await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'balanceOf',
@@ -381,37 +380,35 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
     }
     const addstakeHandle3 = async () => {
         setisLoading(true)
-        const lpAllow = await readContract({
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'allowance',
-            args: [address, farmJdao],
-        })
-        const bigValue = lpJdao3Stake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdao3Stake)) : ethers.BigNumber.from(0)
-        const Hex = ethers.BigNumber.from(10**8)
-        const bigApprove = bigValue.mul(Hex)
-        if (Number(lpJdao3Stake) > Number(lpAllow) / (10**18)) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const lpAllow = await readContract(config, {
+                address: juExchange,
+                abi: exchangeJulpABI,
+                functionName: 'allowance',
+                args: [address, farmJdao],
+            })
+            const bigValue = lpJdao3Stake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdao3Stake)) : ethers.BigNumber.from(0)
+            const Hex = ethers.BigNumber.from(10**8)
+            const bigApprove = bigValue.mul(Hex)
+            if (Number(lpJdao3Stake) > Number(lpAllow) / (10**18)) {
+                let { request } = await simulateContract(config, {
                     address: juExchange,
                     abi: exchangeJulpABI,
                     functionName: 'approve',
                     args: [farmJdao, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'deposit',
                 args: [3, ethers.utils.parseEther(lpJdao3Stake)],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -458,7 +455,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             stake = lpJdao15Stake 
         }
         try {
-            const lpAllow = await readContract({
+            const lpAllow = await readContract(config, {
                 address: lp,
                 abi: exchangeJulpABI,
                 functionName: 'allowance',
@@ -468,24 +465,24 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(stake) > Number(lpAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: lp,
                     abi: exchangeJulpABI,
                     functionName: 'approve',
                     args: [farmJdao, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'deposit',
                 args: [_index, ethers.utils.parseEther(stake)],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -518,50 +515,50 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             withdraw = lpJdao15Withdraw 
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [_index, ethers.utils.parseEther(withdraw)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const harvestHandleAll = async (_index) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmJdao,
                 abi: farmJdaoABI,
                 functionName: 'withdraw',
                 args: [_index, 0],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
 
     React.useEffect(() => {
         console.log("Connected to " + address)
-        const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
-        const cmjSC = new ethers.Contract(cmjToken, erc20ABI, providerJBC)
-        const bbqSC = new ethers.Contract('0x7004757e595409568Bd728736e1b0c79FDc94e1c', erc20ABI, providerJBC)
-        const pzaSC = new ethers.Contract('0x09DcdCFc6C48803681a3422997c679E773656763', erc20ABI, providerJBC)
-        const woodSC = new ethers.Contract('0xc2744Ff255518a736505cF9aC1996D9adDec69Bd', erc20ABI, providerJBC)
-        const sx31SC = new ethers.Contract('0xd431d826d7a4380b9259612176f00528b88840a7', erc20ABI, providerJBC)
-        const ctunaSC = new ethers.Contract('0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0', erc20ABI, providerJBC)
-        const platSC = new ethers.Contract('0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD', erc20ABI, providerJBC)
-        const goldSC = new ethers.Contract('0x7d5346E33889580528e6F79f48BdEE94D8A9E144', erc20ABI, providerJBC)
-        const silSC = new ethers.Contract('0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f', erc20ABI, providerJBC)
-        const cuSC = new ethers.Contract('0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841', erc20ABI, providerJBC)
-        const osSC = new ethers.Contract('0xAc5299D92373E9352636559cca497d7683A47655', erc20ABI, providerJBC)
-        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20ABI, providerJBC)
-        const jaspSC = new ethers.Contract('0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860', erc20ABI, providerJBC)
+        const jusdtSC = new ethers.Contract(jusdtToken, erc20Abi, providerJBC)
+        const cmjSC = new ethers.Contract(cmjToken, erc20Abi, providerJBC)
+        const bbqSC = new ethers.Contract('0x7004757e595409568Bd728736e1b0c79FDc94e1c', erc20Abi, providerJBC)
+        const pzaSC = new ethers.Contract('0x09DcdCFc6C48803681a3422997c679E773656763', erc20Abi, providerJBC)
+        const woodSC = new ethers.Contract('0xc2744Ff255518a736505cF9aC1996D9adDec69Bd', erc20Abi, providerJBC)
+        const sx31SC = new ethers.Contract('0xd431d826d7a4380b9259612176f00528b88840a7', erc20Abi, providerJBC)
+        const ctunaSC = new ethers.Contract('0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0', erc20Abi, providerJBC)
+        const platSC = new ethers.Contract('0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD', erc20Abi, providerJBC)
+        const goldSC = new ethers.Contract('0x7d5346E33889580528e6F79f48BdEE94D8A9E144', erc20Abi, providerJBC)
+        const silSC = new ethers.Contract('0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f', erc20Abi, providerJBC)
+        const cuSC = new ethers.Contract('0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841', erc20Abi, providerJBC)
+        const osSC = new ethers.Contract('0xAc5299D92373E9352636559cca497d7683A47655', erc20Abi, providerJBC)
+        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20Abi, providerJBC)
+        const jaspSC = new ethers.Contract('0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860', erc20Abi, providerJBC)
 
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber()
@@ -690,7 +687,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const sumFee14 = fee27Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee14_2 = fee28Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: farmJdao,
@@ -736,7 +733,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: jaspCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -754,7 +751,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: jdaoCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -772,7 +769,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: osCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -790,7 +787,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: cuCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -808,7 +805,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: silCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -826,7 +823,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: goldCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -844,7 +841,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: platCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -862,7 +859,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: ctunaCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -880,7 +877,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: sx31CmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -898,7 +895,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: bbqCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -916,7 +913,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: pzaCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -934,7 +931,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: woodCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -990,33 +987,33 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             const woodcmjbal = data[40]
             const jdao15Pend = data[41]
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: jcExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: juExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: jcExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
                     {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
                     {
                         address: juExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1027,12 +1024,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: jaspCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: jaspCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1043,12 +1040,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: jdaoCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: jdaoCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1059,12 +1056,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: osCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: osCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1080,12 +1077,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: cuCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: cuCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1096,12 +1093,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: silCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: silCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1112,12 +1109,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: goldCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: goldCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1128,12 +1125,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: platCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: platCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1144,12 +1141,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: ctunaCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: ctunaCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1160,12 +1157,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: sx31CmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: sx31CmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1176,12 +1173,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: bbqCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: bbqCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1192,12 +1189,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: pzaCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: pzaCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1208,12 +1205,12 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
                     },
                     {
                         address: woodCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: woodCmjLp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
                     },
@@ -1569,7 +1566,7 @@ const GameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, lpBalance,
             setReserveWOOD(ethers.utils.formatEther(result[102].result))
             setSwapfee24hour14_2(Number(result[103]).toFixed(0))
         })
-    }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20ABI, cmdaoAmmNpcABI])
+    }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20Abi, cmdaoAmmNpcABI])
 
     return (
         <>

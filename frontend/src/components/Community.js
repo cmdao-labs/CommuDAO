@@ -1,11 +1,12 @@
 import React from 'react'
 import { readContracts } from '@wagmi/core'
+import { config } from './config/config.ts'
 
 const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 
-const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) => {
+const Community = ({ callMode, navigate, erc721Abi, cmdaoNameABI, slot1ABI }) => {
     const [yourName, setYourName] = React.useState(null)
     const [slot1Lv, setSlot1Lv] = React.useState(null)
 
@@ -13,293 +14,293 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
         window.scrollTo(0, 0)
         
         const thefetch = async () => {
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001001'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001002'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001003'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001004'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001005'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001006'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001007'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001008'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001009'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001010'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10001011'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002001'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002002'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002003'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002004'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002005'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002006'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002007'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002008'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002009'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10026010'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002010'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10002011'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003001'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003002'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003003'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003004'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003005'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003006'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003007'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003008'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003009'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003010'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003011'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003012'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003013'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003014'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003015'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003016'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003017'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003018'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003019'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003020'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003021'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10003022'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10026002'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10026006'],
                     },
                     {
                         address: land,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: ['10026011'],
                     },
@@ -309,7 +310,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
             for (let i = 0; i <= Number(data.length - 1); i++) {
                 dataArr.push(data[i].result)
             }
-            const id = await readContracts({
+            const id = await readContracts(config, {
                 contracts: dataArr.map((item) => (
                     {
                         address: cmdaoName,
@@ -323,7 +324,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
             for (let i = 0; i <= Number(id.length - 1); i++) {
                 idArr.push(Number(id[i].result))
             }
-            const name = await readContracts({
+            const name = await readContracts(config, {
                 contracts: idArr.map((item) => (
                     {
                         address: cmdaoName,
@@ -337,7 +338,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
             for (let i = 0; i <= Number(name.length - 1); i++) {
                 nameArr.push(name[i].result)
             }
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: slot1,
@@ -651,7 +652,7 @@ const Community = ({ callMode, navigate, erc721ABI, cmdaoNameABI, slot1ABI }) =>
             setSlot1Lv(result[1])
         })
 
-    }, [erc721ABI, cmdaoNameABI, slot1ABI])
+    }, [erc721Abi, cmdaoNameABI, slot1ABI])
 
     return (
     <>
