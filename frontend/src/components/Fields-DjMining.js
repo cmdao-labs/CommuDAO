@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -9,7 +10,7 @@ const doijib = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
 const fieldDJ = '0x7A4359E7FCb6d11A6C628B2aa6f1b5EF19218344'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, fieldDjABI }) => {
+const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, fieldDjABI }) => {
     let { address } = useAccount()
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/doijib-mining/' + address)
@@ -43,15 +44,15 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
     const transferNFTConfirm = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bbNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -62,7 +63,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const bbNftSC = new ethers.Contract(bbNft, erc721ABI, providerJBC)
+        const bbNftSC = new ethers.Contract(bbNft, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -72,7 +73,7 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             stakeRemoveDup.push('100000001', '100000002', '100000004', '100000007', '100000006')
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: fieldDJ,
@@ -90,18 +91,18 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                 }
             }
 
-            const data1 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: bbNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill('')]
 
-            const data11 = address !== null && address !== undefined ? await readContracts({
+            const data11 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fieldDJ,
@@ -141,11 +142,11 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             const walletEvent = await bbNftSC.queryFilter(walletFilter, 3478177, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: bbNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -159,11 +160,11 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: bbNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -192,9 +193,9 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const djBal = address !== null && address !== undefined ? await readContract({
+            const djBal = address !== null && address !== undefined ? await readContract(config, {
                 address: doijib,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'balanceOf',
                 args: [address],
             }) : 0
@@ -218,36 +219,36 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
             setDoijibBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, fieldDjABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, fieldDjABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: bbNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== fieldDJ.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: bbNft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [fieldDJ, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fieldDJ,
                 abi: fieldDjABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -258,15 +259,15 @@ const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupd
     const unstakeNft = async (_nftid, _isNeedHarvest) => {
         setisLoading(true)
         try {
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fieldDJ,
                 abi: fieldDjABI,
                 functionName: 'unstake',
                 args: [_nftid, _isNeedHarvest],
             })
-            const { hash: hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash12 })
-            setTxupdate(hash12)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

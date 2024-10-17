@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -15,7 +16,7 @@ const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunEEABI, taoPfpABI, uiiABI }) => {
+const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunEEABI, taoPfpABI, uiiABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -65,79 +66,79 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
-        const nrtnftSC = new ethers.Contract(narutaNft, erc721ABI, providerJBC)
-        const pfpnftSC = new ethers.Contract(taoPFP, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
+        const nrtnftSC = new ethers.Contract(narutaNft, erc721Abi, providerJBC)
+        const pfpnftSC = new ethers.Contract(taoPFP, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = address !== null && address !== undefined ? await readContract({
+            const nftEQ = address !== null && address !== undefined ? await readContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'nftEquip',
                 args: [address],
             }) : [{characterId: 0, hatId: 0, clothId: 0, accessoriesId: 0, backId: 0, shoesId: 0, weaponId: 0,}]
 
-            const nftSTAT = address !== null && address !== undefined ? await readContract({
+            const nftSTAT = address !== null && address !== undefined ? await readContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'nftStatus',
                 args: [address],
             }) : [{characterIndex: 0, hatIndex: 0, clothIndex: 0, accessoriesIndex: 0, backIndex: 0, shoesIndex: 0, weaponIndex: 0, allPow: 0, refuelAt: 0, isStaked: null}]
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                     },
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                     },
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                     },
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                     },
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                     },
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                     },
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
                     {
                         address: iiLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunEE,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -149,43 +150,43 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                     },
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
@@ -311,7 +312,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                     },
                     {
                         address: uiiLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -559,11 +560,11 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const wallet0Event = await pfpnftSC.queryFilter(wallet0Filter, 2804540, "latest")
             const wallet0Map = await Promise.all(wallet0Event.map(async (obj) => String(obj.args.tokenId)))
             const wallet0RemoveDup = wallet0Map.filter((obj, index) => wallet0Map.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: wallet0RemoveDup.map((item) => (
                     {
                         address: taoPFP,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -582,11 +583,11 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -600,11 +601,11 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaoNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -635,11 +636,11 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const wallet2Event = await nrtnftSC.queryFilter(wallet2Filter, 2852393, "latest")
             const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
             const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: wallet2RemoveDup.map((item) => (
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -653,11 +654,11 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 }
             }
 
-            const data5 = address !== null && address !== undefined ? await readContracts({
+            const data5 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet2.map((item) => (
                     {
                         address: narutaNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -742,7 +743,7 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             setUIIBalance(ethers.utils.formatEther(String(result[23])))
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunEEABI, taoPfpABI])
+    }, [address, txupdate, erc721Abi, erc20Abi, dunEEABI, taoPfpABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -764,15 +765,15 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             addr = narutaNft
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -780,39 +781,37 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const equipNft = async (_index, _nftid) => {
         setisLoading(true)
         let addr = '0x0000000000000000000000000000000000000000'
-        if (_index === 1) {
-            addr = cmdaoNft
-        } else if (_index === 2) {
-            addr = narutaNft
-        }
-        const nftAllow = await readContract({
-            address: addr,
-            abi: erc721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== dunEE.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            if (_index === 1) {
+                addr = cmdaoNft
+            } else if (_index === 2) {
+                addr = narutaNft
+            }
+            const nftAllow = await readContract(config, {
+                address: addr,
+                abi: erc721Abi,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== dunEE.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: addr,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [dunEE, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'equip',
                 args: [_index, _nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -820,15 +819,15 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const unstakeNft = async (_slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'unstake',
                 args: [_slot],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -860,57 +859,57 @@ const CrypticCogs = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         }
         try {
             if (Number(uiiBalance) === 0) {
-                const gasAllow0 = await readContract({
+                const gasAllow0 = await readContract(config, {
                     address: gasAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, uAddr],
                 })
                 if (gasAllow0 < (iiUsage * 10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: gasAddr,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [uAddr, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
                 console.log(craftIndex, pfpId)
-                const config02 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: uAddr,
                     abi: uiiABI,
                     functionName: 'craft',
                     args: [craftIndex, pfpId]
                 })
-                const { hash: hash01 } = await writeContract(config02)
-                await waitForTransaction({ hash: hash01 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const gasAllow = await readContract({
+            const gasAllow = await readContract(config, {
                 address: uAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, dunEE],
             })
             if (gasAllow < (1 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: uAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [dunEE, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'refuel',
                 args: [gasIndex]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -8,7 +9,7 @@ const acNft = '0x526A70be985EB234c3f2c4933aCB59F6EB595Ed7'
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, fieldEfABI }) => {
+const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, fieldEfABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -44,15 +45,15 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const transferNFTConfirm = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: acNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -60,7 +61,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const acNftSC = new ethers.Contract(acNft, erc721ABI, providerJBC)
+        const acNftSC = new ethers.Contract(acNft, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
@@ -71,7 +72,7 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const stakeEvent = await acNftSC.queryFilter(stakeFilter, 2260250, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: vabag,
@@ -89,18 +90,18 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 }
             }
 
-            const data1 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: acNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill('')]
 
-            const data11 = address !== null && address !== undefined ? await readContracts({
+            const data11 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: vabag,
@@ -176,11 +177,11 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const walletEvent = await acNftSC.queryFilter(walletFilter, 2260250, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: acNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -194,11 +195,11 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: acNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -262,9 +263,9 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const vaBal = address !== null && address !== undefined ? await readContract({
+            const vaBal = address !== null && address !== undefined ? await readContract(config, {
                 address: vabag,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'balanceOf',
                 args: [address],
             }) : 0
@@ -289,36 +290,36 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             setNftStaked(result[4])
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, fieldEfABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, fieldEfABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: acNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== vabag.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: acNft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [vabag, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: vabag,
                 abi: fieldEfABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -326,15 +327,15 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: vabag,
                 abi: fieldEfABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash: hash12 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash12 })
-            setTxupdate(hash12)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -343,18 +344,18 @@ const EasternFront = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStaked.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: vabag,
                     abi: fieldEfABI,
                     functionName: 'unstake',
                     args: [nftStaked[i].Id, false],
                 })
                 if (i === nftStaked.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch {}

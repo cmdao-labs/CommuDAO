@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -10,7 +11,7 @@ const salmToken = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const cmmToken = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20ABI, erc721ABI, salmFieldABI }) => {
+const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, salmFieldABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -32,7 +33,7 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
     React.useEffect(() => {
         console.log("Connected to " + address)
-        const cmnftSC = new ethers.Contract(cmnft, erc721ABI, providerBKC)
+        const cmnftSC = new ethers.Contract(cmnft, erc721Abi, providerBKC)
         setNft([])
         
         const thefetch = async () => {
@@ -43,7 +44,7 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const stakeEvent = await cmnftSC.queryFilter(stakeFilter, 15727711, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts({
+            const data0 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: fraserField,
@@ -61,18 +62,18 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 }
             }
 
-            const data1 = address !== null && address !== undefined ? await readContracts({
+            const data1 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: cmnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftstake.length).fill('')]
 
-            const data10 = address !== null && address !== undefined ? await readContracts({
+            const data10 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fraserField,
@@ -83,7 +84,7 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
-            const data11 = address !== null && address !== undefined ? await readContracts({
+            const data11 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fraserField,
@@ -94,7 +95,7 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 ))
             }) : [Array(yournftstake.length).fill(0)]
 
-            const data12 = address !== null && address !== undefined ? await readContracts({
+            const data12 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fraserField,
@@ -137,11 +138,11 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             const walletEvent = await cmnftSC.queryFilter(walletFilter, 8248906, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -155,18 +156,18 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
                 ))
             }) : [Array(yournftwallet.length).fill('')]
 
-            const data30 = address !== null && address !== undefined ? await readContracts({
+            const data30 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: fraserField,
@@ -200,17 +201,17 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const dataToken = address !== null && address !== undefined ? await readContracts({
+            const dataToken = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmmToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: salmToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     }
@@ -242,36 +243,36 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
             setNftStaked(result[6])
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, salmFieldABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, salmFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: cmnft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== fraserField.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmnft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [fraserField, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fraserField,
                 abi: salmFieldABI,
                 functionName: 'stake',
                 args: [1, _nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -279,15 +280,15 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fraserField,
                 abi: salmFieldABI,
                 functionName: 'unstake',
                 args: [1, _nftid, _unstake],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -296,18 +297,18 @@ const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTx
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStaked.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: fraserField,
                     abi: salmFieldABI,
                     functionName: 'unstake',
                     args: [1, nftStaked[i].Id, false],
                 })
                 if (i === nftStaked.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch {}

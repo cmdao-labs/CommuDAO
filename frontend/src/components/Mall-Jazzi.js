@@ -1,5 +1,6 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -19,7 +20,7 @@ const jazziPLAT = '0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044'
 const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x329889325A555b217C41A4c2EADD529a0CfA4231'
 
-const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, cmjBalance }) => {
+const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("JDAO");
@@ -104,7 +105,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         } else {
             _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         }
-        const data = await readContracts({
+        const data = await readContracts(config, {
             contracts: [
                 {
                     address: addr,
@@ -120,7 +121,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         })
         const _reserveCurr = data[0].result
         const _reserveToken = data[1].result
-        const tokensBoughttokenTOcurr = await readContract({
+        const tokensBoughttokenTOcurr = await readContract(config, {
             address: addr,
             abi: cmdaoAmmNpcABI,
             functionName: 'getAmountOfTokens',
@@ -161,7 +162,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const data = await readContracts({
+        const data = await readContracts(config, {
             contracts: [
                 {
                     address: addr,
@@ -177,7 +178,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         })
         const _reserveCurr = data[0].result
         const _reserveToken = data[1].result
-        const tokensBoughtcurrTOtoken = await readContract({
+        const tokensBoughtcurrTOtoken = await readContract(config, {
             address: addr,
             abi: cmdaoAmmNpcABI,
             functionName: 'getAmountOfTokens',
@@ -245,9 +246,9 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         setisLoading(true)
         try {
             if (_sell) {
-                const tokenAllow = await readContract({
+                const tokenAllow = await readContract(config, {
                     address: token,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, lp],
                 })
@@ -255,38 +256,40 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                 const Hex = ethers.BigNumber.from(10**8)
                 const bigApprove = bigValue.mul(Hex)
                 if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: token,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [lp, bigApprove],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                let config = null
                 if (index === 3) {
-                    config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: lp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'tokenTOcurrency',
                         args: [ethers.utils.parseUnits(inputSwap, "gwei"), ethers.utils.parseEther(currBoughtToken)],
                     })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: lp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'tokenTOcurrency',
                         args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(currBoughtToken)],
                     })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 }
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
             } else {
-                const currAllow = await readContract({
+                const currAllow = await readContract(config, {
                     address: curr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, lp],
                 })
@@ -294,34 +297,36 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
                 const Hex = ethers.BigNumber.from(10**8)
                 const bigApprove = bigValue.mul(Hex)
                 if (Number(ethers.utils.parseEther(inputSwap2)) > Number(currAllow)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: curr,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [lp, bigApprove],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                let config2 = null
                 if (index === 3) {
-                    config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: lp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'currencyTOtoken',
                         args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseUnits(String(tokenBoughtCurr), "gwei")],
                     })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    config2 = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: lp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'currencyTOtoken',
                         args: [ethers.utils.parseEther(inputSwap2), ethers.utils.parseEther(tokenBoughtCurr)],
                     })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 }
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
             }
         } catch {}
         setisLoading(false)
@@ -346,15 +351,15 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         }
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
                 abi: cmdaoAmmNpcABI,
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(lpSell)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -384,13 +389,13 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         }
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveToken = await readContract({
+        const _reserveToken = await readContract(config, {
             address: addr,
             abi: cmdaoAmmNpcABI,
             functionName: 'getReserveToken',
         })
         const bigTokenReserv = ethers.BigNumber.from(_reserveToken)
-        const _reserveCurr = await readContract({
+        const _reserveCurr = await readContract(config, {
             address: addr,
             abi: cmdaoAmmNpcABI,
             functionName: 'getReserveCurrency',
@@ -418,13 +423,13 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveToken = await readContract({
+        const _reserveToken = await readContract(config, {
             address: addr,
             abi: cmdaoAmmNpcABI,
             functionName: 'getReserveToken',
         })
         const bigTokenReserv = ethers.BigNumber.from(_reserveToken)
-        const _reserveCurr = await readContract({
+        const _reserveCurr = await readContract(config, {
             address: addr,
             abi: cmdaoAmmNpcABI,
             functionName: 'getReserveCurrency',
@@ -464,9 +469,9 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
         }
         setisLoading(true)
         try {
-            const currAllow = await readContract({
+            const currAllow = await readContract(config, {
                 address: curr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, lp],
             })
@@ -474,57 +479,59 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(currAdd) > Number(currAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: curr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [lp, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: token,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, lp],
             })
             if (Number(tokenAdd) > Number(tokenAllow) / (10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: token,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [lp, bigApprove],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            let config3 = null
             if (index === 3) {
-                config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: lp,
                     abi: cmdaoAmmNpcABI,
                     functionName: 'addLiquidity',
                     args: [ethers.utils.parseUnits(tokenAdd, "gwei"), ethers.utils.parseEther(currAdd)],
                 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
             } else {
-                config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: lp,
                     abi: cmdaoAmmNpcABI,
                     functionName: 'addLiquidity',
                     args: [ethers.utils.parseEther(tokenAdd), ethers.utils.parseEther(currAdd)],
                 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
             }
-            const { hash: hash1 } = await writeContract(config3)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
         } catch {}
         setisLoading(false)
     }
 
     React.useEffect(() => {        
         const thefetch = async () => {
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: jazziJDAO,
@@ -614,7 +621,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const _reserveCmjPLAT = data[12].result
             const _reservePLAT = data[13].result
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: jazziJDAO,
@@ -669,47 +676,47 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             const tokensBoughtsilTOcmj = data2[5].result
             const tokensBoughtplatTOcmj = data2[6].result
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: jazziJDAO,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jazziCU,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jazziSIL,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jazziGOLD,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jazziJasp,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jazziOS,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jazziPLAT,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -793,7 +800,7 @@ const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20ABI, jda
             setPlatLpBalance(Math.floor(_platlpbalance * 100000) / 100000)
         })
 
-    }, [address, erc20ABI, cmdaoAmmNpcABI])
+    }, [address, erc20Abi, cmdaoAmmNpcABI])
 
     return (
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>

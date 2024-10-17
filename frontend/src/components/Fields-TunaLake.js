@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -31,13 +32,13 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setNft([])
         
         const thefetch = async () => {
-            const balanceofstake = await readContract({
+            const balanceofstake = await readContract(config, {
                 address: jibjib,
                 abi: aurora721ABI,
                 functionName: 'walletOfOwner',
                 args: [tunaField],
             })
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: balanceofstake.map((item) => (
                     {
                         address: tunaField,
@@ -58,7 +59,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 }
             }
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: tunaField,
@@ -100,7 +101,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 nftstaked.push({Id: Number(yournftstake[i].Id)})
             }
 
-            const balanceofyou = address !== null && address !== undefined ? await readContract({
+            const balanceofyou = address !== null && address !== undefined ? await readContract(config, {
                 address: jibjib,
                 abi: aurora721ABI,
                 functionName: 'walletOfOwner',
@@ -132,7 +133,7 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 })
             }
 
-            const tunaBal = address !== null && address !== undefined ? await readContract({
+            const tunaBal = address !== null && address !== undefined ? await readContract(config, {
                 address: tunaField,
                 abi: tunaFieldABI,
                 functionName: 'balanceOf',
@@ -164,31 +165,31 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const stakeNft = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: jibjib,
                 abi: aurora721ABI,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== tunaField.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jibjib,
                     abi: aurora721ABI,
                     functionName: 'approve',
                     args: [tunaField, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: tunaField,
                 abi: tunaFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -196,15 +197,15 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: tunaField,
                 abi: tunaFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -213,18 +214,18 @@ const FishingField = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStaked.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: tunaField,
                     abi: tunaFieldABI,
                     functionName: 'unstake',
                     args: [nftStaked[i].Id, false],
                 })
                 if (i === nftStaked.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch {}

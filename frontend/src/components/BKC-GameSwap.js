@@ -1,5 +1,6 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 const { ethereum } = window
@@ -8,7 +9,7 @@ const cmmkkubToken = "0x5Cced24E580586841f326d5088D288e6Ddd201dA"
 const cmosToken = "0x8b062b96Bb689833D7870a0133650FA22302496d"
 const farmCMOS = "0xe5B764566CB5b26fE7568e59370368ACf9c7c5c3"
 
-const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20ABI, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
+const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
     const { address } = useAccount()
 
     const [cmmKkubBalance, setCmmKkubBalance] = React.useState(0)
@@ -19,11 +20,11 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
         window.scrollTo(0, 0)
 
         const thefetch = async () => {
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmmkkubToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
@@ -48,27 +49,27 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
                     },
                     {
                         address: '0x67ebd850304c70d983b2d1b93ea79c7cd6c3f6b5',
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [cmmkkubToken],
                         chainId: 96,
                     },
                     {
                         address: '0x9b005000a10ac871947d99001345b01c1cef2790',
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [cmmkkubToken],
                         chainId: 96,
                     },
                     {
                         address: cmmkkubToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                         chainId: 96,
                     },
                     {
                         address: cmmkkubToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmCMOS],
                         chainId: 96,
@@ -114,7 +115,7 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
             setCmosPending(ethers.utils.formatEther(result[2]))
         })
 
-    }, [address, txupdate, erc20ABI, diamonLpABI, farmCmosABI, bkcOracleABI])
+    }, [address, txupdate, erc20Abi, diamonLpABI, farmCmosABI, bkcOracleABI])
 
     const [lp1Stake, setLp1Stake] = React.useState("")
     const [lp1StakeWei, setLp1StakeWei] = React.useState(0)
@@ -123,31 +124,31 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
     const addstakeHandle = async () => {
         setisLoading(true)
         try {
-            const lpAllow = await readContract({
+            const lpAllow = await readContract(config, {
                 address: cmmkkubToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, farmCMOS],
             })
             if (Number(lp1Stake) > Number(lpAllow)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmmkkubToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [farmCMOS, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'deposit',
                 args: [1, lp1StakeWei],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -158,15 +159,15 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
     const withdrawstakeHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'withdraw',
                 args: [1, ethers.utils.parseEther(String(lp1Withdraw))],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -177,15 +178,15 @@ const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMs
     const harvestHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: farmCMOS,
                 abi: farmCmosABI,
                 functionName: 'withdraw',
                 args: [1, 0],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

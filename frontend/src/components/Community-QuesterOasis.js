@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
@@ -28,7 +29,7 @@ const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI, constructionStakingABI }) => {
+const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
     const { address } = useAccount()
 
     /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)
@@ -57,10 +58,10 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     React.useEffect(() => {      
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
+        const jusdtSC = new ethers.Contract(jusdtToken, erc20Abi, providerJBC)
         const enderSC = new ethers.Contract(ender, enderPotteryABI, providerJBC)
-        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20ABI, providerJBC)
-        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
+        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20Abi, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
         
         const thefetch = async () => {
             const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
@@ -100,11 +101,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 return prev
             }, {})
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: jaspToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 8899,
@@ -167,7 +168,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     },
                     {
                         address: '0x399fe73bb0ee60670430fd92fe25a0fdd308e142',
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 10,
@@ -188,7 +189,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
             const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
 
-            const data2_0 = await readContract({
+            const data2_0 = await readContract(config, {
                 address: questAmbass,
                 abi: questAmbassABI,
                 functionName: 'registCount',
@@ -198,7 +199,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 rankerDummy.push(null)
             }
 
-            const data2_00 = await readContracts({
+            const data2_00 = await readContracts(config, {
                 contracts: rankerDummy.map((item, i) => (
                     {
                         address: questAmbass,
@@ -236,7 +237,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                     ambass2Arr.push(demover)
                 }
             }
-            const data2_001 = await readContracts({
+            const data2_001 = await readContracts(config, {
                 contracts: ambassArr.map(item => (
                     {
                         address: cmdaoName,
@@ -250,7 +251,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= Number(data2_001.length - 1); i++) {
                 ambass10Arr.push(data2_001[i].result)
             }
-            const data2_0011 = await readContracts({
+            const data2_0011 = await readContracts(config, {
                 contracts: ambass10Arr.map(item => (
                     {
                         address: cmdaoName,
@@ -265,7 +266,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 ambass100Arr.push(data2_0011[i].result)
             }
 
-            const data2_002 = await readContracts({
+            const data2_002 = await readContracts(config, {
                 contracts: ambass2Arr.map(item => (
                     {
                         address: cmdaoName,
@@ -279,7 +280,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= Number(data2_002.length - 1); i++) {
                 ambass20Arr.push(data2_002[i].result)
             }
-            const data2_0022 = await readContracts({
+            const data2_0022 = await readContracts(config, {
                 contracts: ambass20Arr.map(item => (
                     {
                         address: cmdaoName,
@@ -323,7 +324,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 }
             }
 
-            const data2_1 = await readContracts({
+            const data2_1 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: quest01,
@@ -338,7 +339,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 questArr.push(data2_1[i].result)
             }
 
-            const data2_2 = await readContracts({
+            const data2_2 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: questAmbass,
@@ -353,7 +354,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 quest2Arr.push(data2_2[i].result)
             }
 
-            const data2_3 = await readContracts({
+            const data2_3 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: questBBQ,
@@ -368,7 +369,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 quest3Arr.push(data2_3[i].result)
             }
 
-            const data2_4 = await readContracts({
+            const data2_4 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: questPlat01,
@@ -403,11 +404,11 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 }
             }
 
-            const dataOP = await readContracts({
+            const dataOP = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: '0x51f97e67b2ff5ed064dc2b27b7a745e0d4c47ee0',
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [item],
                         chainId: 10,
@@ -427,7 +428,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 }
             })
 
-            const data3_1 = await readContracts({
+            const data3_1 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: dunCopper,
@@ -441,7 +442,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= Number(data3_1.length - 1); i++) {
                 powCuArr.push(data3_1[i].result[3])
             }
-            const data3_2 = await readContracts({
+            const data3_2 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: dunJasper,
@@ -455,7 +456,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             for (let i = 0; i <= Number(data3_2.length - 1); i++) {
                 powJaspArr.push(data3_2[i].result[7])
             }
-            const dataHouse = await readContracts({
+            const dataHouse = await readContracts(config, {
                 contracts: [
                     {
                         address: slot1,
@@ -796,7 +797,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 ],
             }) 
 
-            const dataHouseLv = await readContracts({
+            const dataHouseLv = await readContracts(config, {
                 contracts: [
                     {
                         address: slot1,
@@ -1141,7 +1142,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = await readContracts({
+            const data0 = await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: houseStaking,
@@ -1266,7 +1267,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3660870, "latest")
             const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
-            const data0WD = await readContracts({
+            const data0WD = await readContracts(config, {
                 contracts: stakeRemoveDupWD.map((item) => (
                     {
                         address: weaponDepotStaking,
@@ -1387,7 +1388,7 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
                 }
             }
 
-            let powMO = await readContracts({
+            let powMO = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
                         address: dunMo,
@@ -1586,35 +1587,35 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
             setSumArrRank4(_sumArrRank4)
         })
 
-    }, [address, txupdate, erc20ABI, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721ABI, constructionStakingABI])
+    }, [address, txupdate, erc20Abi, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI])
 
     /*const claimSILHandle = async () => {
         setisLoading(true)
         try {
-            const jaspAllow = await readContract({
+            const jaspAllow = await readContract(config, {
                 address: jaspToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, quest01],
             })
             if (jaspAllow < 100000000) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jaspToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [quest01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: quest01,
                 abi: quest01ABI,
                 functionName: 'claim',
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1622,30 +1623,30 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     const claimPLATHandle = async () => {
         setisLoading(true)
         try {
-            const jaspAllow = await readContract({
+            const jaspAllow = await readContract(config, {
                 address: jaspToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, questPlat01],
             })
             if (jaspAllow < 1000000000) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jaspToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [questPlat01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: questPlat01,
                 abi: quest01ABI,
                 functionName: 'claim',
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {console.log(e)}
         setisLoading(false)
     }*/
@@ -1653,15 +1654,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     const joinHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: questAmbass,
                 abi: questAmbassABI,
                 functionName: 'regist',
                 args: [ambass],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -1669,15 +1670,15 @@ const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20ABI, kycABI, q
     const gmHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: questBBQ,
                 abi: questBBQABI,
                 functionName: 'claim',
                 args: [0, 0, address],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

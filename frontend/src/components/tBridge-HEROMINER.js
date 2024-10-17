@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 const { ethereum } = window
 
@@ -126,9 +127,8 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 68026368,136577024,220725248,192020480,146800640,68157440,136445952,221118464,191365120,146669568,67895296,136314880,220594176,191496192,146538496,67764224,136183808,220463104,191889408,146407424,67633152,136052736,220332032,191758336,146276352,
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
-const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20ABI, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance, cmmBbqBalance }) => {
-    const { address } = useAccount()
-    const { chain } = useNetwork()
+const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721Abi, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20Abi, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance, cmmBbqBalance }) => {
+    const { address, chain } = useAccount()
 
     const [nft, setNft] = React.useState([])
     const [nft2, setNft2] = React.useState([])
@@ -144,8 +144,8 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const herocatBKCSC = new ethers.Contract(herocatBKC, erc721ABI, providerBKC)
-        const herocatBBQSC = new ethers.Contract(herocatBBQ, erc721ABI, providerBBQ)
+        const herocatBKCSC = new ethers.Contract(herocatBKC, erc721Abi, providerBKC)
+        const herocatBBQSC = new ethers.Contract(herocatBBQ, erc721Abi, providerBBQ)
         setNft([])
         
         const thefetch = async () => {
@@ -155,11 +155,11 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             const walletEvent = await herocatBKCSC.queryFilter(walletFilter,8248906, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: herocatBKC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 96
@@ -174,11 +174,11 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 }
             }
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: herocatBKC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 96
@@ -211,11 +211,11 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             const wallet2Event = await herocatBBQSC.queryFilter(wallet2Filter, 3844939, "latest")
             const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
             const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: wallet2RemoveDup.map((item) => (
                     {
                         address: herocatBBQ,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 190
@@ -230,11 +230,11 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 }
             }
 
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet2.map((item) => (
                     {
                         address: herocatBBQ,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 190
@@ -280,28 +280,28 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             setNft2(result[1])
         })
 
-    }, [address, txupdate, erc721ABI])
+    }, [address, txupdate, erc721Abi])
 
     const depositHRMHandle = async (_nftId) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: herocatBKC,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId],
             })
             if (nftAllow.toUpperCase() !== bkcBridge.toUpperCase()) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: herocatBKC,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [bkcBridge, _nftId],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bkcBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
@@ -309,32 +309,32 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 value: ethers.utils.parseEther('1'),
                 chainId: 96,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const withdrawHRMHandle = async (_nftId) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: herocatBBQ,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId],
             })
             if (nftAllow.toUpperCase() !== bbqBridge.toUpperCase()) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: herocatBBQ,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [bbqBridge, _nftId],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }       
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bbqBridge,
                 abi: tbridgeNFTABI,
                 functionName: 'receiveNFTs',
@@ -342,9 +342,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 value: ethers.utils.parseEther('800'),
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -367,23 +367,23 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             depositAmount = ethers.utils.parseEther(String(depositCmm))
         }
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: tokenAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, bkcTokensBridge],
             })
             if (tokenAllow < Number(depositAmount)) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: tokenAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [bkcTokensBridge, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bkcTokensBridge,
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
@@ -391,9 +391,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 value: ethers.utils.parseEther('1'),
                 chainId: 96,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             console.log(e)
         }
@@ -414,23 +414,23 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             depositAmount = ethers.utils.parseEther(String(withdrawCmm2))
         }
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: tokenAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, bbqTokensBridge],
             })
             if (tokenAllow < Number(depositAmount)) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: tokenAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [bbqTokensBridge, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bbqTokensBridge,
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
@@ -438,9 +438,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 value: ethers.utils.parseEther('800'),
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -456,23 +456,23 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
             depositAmount = ethers.utils.parseEther(String(depositCmm2))
         }
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: tokenAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, opTokensBridge],
             })
             if (tokenAllow < Number(depositAmount)) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: tokenAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [opTokensBridge, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: opTokensBridge,
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
@@ -480,9 +480,9 @@ const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721ABI, tbri
                 value: ethers.utils.parseEther('0.0003'),
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -9,7 +10,7 @@ const engyToken = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const dunGEM = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunGEMABI }) => {
+const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunGEMABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -595,45 +596,45 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const hrmnftSC = new ethers.Contract(hrmNft, erc721ABI, providerBBQ)
+        const hrmnftSC = new ethers.Contract(hrmNft, erc721Abi, providerBBQ)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ1_slot1 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 0],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot1 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 0],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot1 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 0],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot1 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 0],
             }) : [0, 0, false]
-            const data_slot1 = await readContracts({
+            const data_slot1 = await readContracts(config, {
                 contracts: [
                     {
                         address: engyToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunGEM,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -645,151 +646,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot1[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot1[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot1[8])],
                     },
@@ -1279,31 +1280,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const gemBal = data_slot1[1].result
             const rewardPending = isStaked ? data_slot1[2].result : 0
 
-            const nftEQ1_slot2 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 1],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot2 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 1],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot2 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 1],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot2 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 1],
             }) : [0, 0, false]
-            const data_slot2 = await readContracts({
+            const data_slot2 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -1313,151 +1314,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot2[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot2[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot2[8])],
                     },
@@ -1944,31 +1945,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt2 = Number(nftStatus_slot2[1])
             const rewardPending2 = isStaked2 ? data_slot2[0].result : 0
 
-            const nftEQ1_slot3 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 2],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot3 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 2],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot3 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 2],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot3 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 2],
             }) : [0, 0, false]
-            const data_slot3 = await readContracts({
+            const data_slot3 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -1978,151 +1979,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot3[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot3[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot3[8])],
                     },
@@ -2609,31 +2610,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt3 = Number(nftStatus_slot3[1])
             const rewardPending3 = isStaked3 ? data_slot3[0].result : 0
 
-            const nftEQ1_slot4 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 3],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot4 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 3],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot4 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 3],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot4 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 3],
             }) : [0, 0, false]
-            const data_slot4 = await readContracts({
+            const data_slot4 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -2643,151 +2644,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot4[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot4[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot4[8])],
                     },
@@ -3274,31 +3275,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt4 = Number(nftStatus_slot4[1])
             const rewardPending4 = isStaked4 ? data_slot4[0].result : 0
 
-            const nftEQ1_slot5 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 4],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot5 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 4],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot5 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 4],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot5 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 4],
             }) : [0, 0, false]
-            const data_slot5 = await readContracts({
+            const data_slot5 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -3308,151 +3309,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot5[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot5[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot5[8])],
                     },
@@ -3939,31 +3940,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt5 = Number(nftStatus_slot5[1])
             const rewardPending5 = isStaked5 ? data_slot5[0].result : 0
 
-            const nftEQ1_slot6 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 5],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot6 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 5],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot6 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 5],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot6 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 5],
             }) : [0, 0, false]
-            const data_slot6 = await readContracts({
+            const data_slot6 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -3973,151 +3974,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot6[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot6[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot6[8])],
                     },
@@ -4604,31 +4605,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt6 = Number(nftStatus_slot6[1])
             const rewardPending6 = isStaked6 ? data_slot6[0].result : 0
 
-            const nftEQ1_slot7 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 6],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot7 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 6],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot7 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 6],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot7 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 6],
             }) : [0, 0, false]
-            const data_slot7 = await readContracts({
+            const data_slot7 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -4638,151 +4639,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot7[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot7[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot7[8])],
                     },
@@ -5269,31 +5270,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt7 = Number(nftStatus_slot7[1])
             const rewardPending7 = isStaked7 ? data_slot7[0].result : 0
 
-            const nftEQ1_slot8 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 7],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot8 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 7],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot8 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 7],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot8 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 7],
             }) : [0, 0, false]
-            const data_slot8 = await readContracts({
+            const data_slot8 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -5303,151 +5304,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot8[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot8[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot8[8])],
                     },
@@ -5934,31 +5935,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt8 = Number(nftStatus_slot8[1])
             const rewardPending8 = isStaked8 ? data_slot8[0].result : 0
 
-            const nftEQ1_slot9 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 8],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot9 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 8],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot9 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 8],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot9 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 8],
             }) : [0, 0, false]
-            const data_slot9 = await readContracts({
+            const data_slot9 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -5968,151 +5969,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot9[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot9[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot9[8])],
                     },
@@ -6599,31 +6600,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const refuelAt9 = Number(nftStatus_slot9[1])
             const rewardPending9 = isStaked9 ? data_slot9[0].result : 0
             
-            const nftEQ1_slot10 = address !== null && address !== undefined ? await readContract({
+            const nftEQ1_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 9],
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot10 = address !== null && address !== undefined ? await readContract({
+            const nftEQ2_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 9],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot10 = address !== null && address !== undefined ? await readContract({
+            const nftEQCard_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 9],
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot10 = address !== null && address !== undefined ? await readContract({
+            const nftStatus_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 9],
             }) : [0, 0, false]
-            const data_slot10 = await readContracts({
+            const data_slot10 = await readContracts(config, {
                 contracts: [
                     {
                         address: dunGEM,
@@ -6633,151 +6634,151 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ1_slot10[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQ2_slot10[8])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[0])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[1])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[2])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[3])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[4])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[5])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[6])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[7])],
                     },
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(nftEQCard_slot10[8])],
                     },
@@ -7268,11 +7269,11 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const walletEvent = await hrmnftSC.queryFilter(walletFilter, 4664954, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -7286,11 +7287,11 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 }
             }
 
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: hrmNft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -7949,7 +7950,7 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             result[541] !== 0 && Date.now() - (Number(result[541]) * 1000) > (86400 * 1000) ? setIsRunoutSlot10(true) : setIsRunoutSlot10(false)
             setGemPendingSlot10(ethers.utils.formatEther(String(result[542])))
         })
-    }, [address, txupdate, erc721ABI, erc20ABI, dunGEMABI])
+    }, [address, txupdate, erc721Abi, erc20Abi, dunGEMABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -7969,15 +7970,15 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             addr = hrmNft
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -7988,31 +7989,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const equipNft = async (_slot, _nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hrmNft,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== dunGEM.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hrmNft,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [dunGEM, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'equip',
                 args: [_slot, _nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -8023,15 +8024,15 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const unstakeNft = async (_slot2, _slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'unstake',
                 args: [_slot2, _slot],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -8048,31 +8049,31 @@ const TheEndlessTower = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             gasIndex = 1
         }
         try {
-            const gasAllow = await readContract({
+            const gasAllow = await readContract(config, {
                 address: gasAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, dunGEM],
             })
             if (gasAllow < (24 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: gasAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [dunGEM, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'refuel',
                 args: [_slot, gasIndex]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

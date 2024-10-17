@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { useAccount } from 'wagmi'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 const { ethereum } = window
 
 const bstToken = "0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e"
@@ -20,7 +21,7 @@ const redeemToken2 = '0xABaB4f130e282aF569905651d5c997B91E6c3D28'
 
 const redeemMerchant = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
 
-const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20ABI, stakerMachineABI, redeemTokenABI, cmdaoMerchantABI }) => {
+const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, stakerMachineABI, redeemTokenABI, cmdaoMerchantABI }) => {
     const { address } = useAccount()
 
     const [bstBalance, setBstBalance] = React.useState(0)
@@ -45,17 +46,17 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
         window.scrollTo(0, 0)
 
         const thefetch = async () => {
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: bstToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: trashToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -73,19 +74,19 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                     },
                     {
                         address: tierToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: salmToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: cmmToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -103,19 +104,19 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
                     },
                     {
                         address: aguaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: redeemToken1,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: redeemToken2,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -135,7 +136,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
             const _redeem1Bal = data[10].result 
             const _redeem2Bal = data[11].result 
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: redeemMerchant,
@@ -193,7 +194,7 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
             setRedeemRemain2(result[13])
         })
 
-    }, [address, txupdate, erc20ABI, stakerMachineABI, cmdaoMerchantABI])
+    }, [address, txupdate, erc20Abi, stakerMachineABI, cmdaoMerchantABI])
 
     const [inputTrash, setInputTrash] = React.useState('')
     const [inputStakedTrash, setInputStakeTrash] = React.useState('')
@@ -203,31 +204,31 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const stakeTrash = async () => {
         setisLoading(true)
         try {
-            const allowed = await readContract({
+            const allowed = await readContract(config, {
                 address: trashToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, bstMachine],
             })
             if (Number(ethers.utils.parseEther(String(inputTrash))) > Number(allowed)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: trashToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [bstMachine, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bstMachine,
                 abi: stakerMachineABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputTrash))],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -238,15 +239,15 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const unstakeTrash = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bstMachine,
                 abi: stakerMachineABI,
                 functionName: 'unstake',
                 args: [ethers.utils.parseEther(String(inputStakedTrash))],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -257,31 +258,31 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const craftfromBST = async (_index) => {
         setisLoading(true)
         try {
-            const allowed = await readContract({
+            const allowed = await readContract(config, {
                 address: bstToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, bstMachine],
             })
             if (Number(ethers.utils.parseEther('10')) > Number(allowed)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: bstToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [bstMachine, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bstMachine,
                 abi: stakerMachineABI,
                 functionName: 'craft',
                 args: [_index],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -292,14 +293,14 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const obtainfromBST = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bstMachine,
                 abi: stakerMachineABI,
                 functionName: 'obtain',
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -310,31 +311,31 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const stakeCMM = async () => {
         setisLoading(true)
         try {
-            const allowed = await readContract({
+            const allowed = await readContract(config, {
                 address: cmmToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, salmMachine],
             })
             if (Number(ethers.utils.parseEther(String(inputCMM))) > Number(allowed)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmmToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [salmMachine, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: salmMachine,
                 abi: stakerMachineABI,
                 functionName: 'stake',
                 args: [ethers.utils.parseEther(String(inputCMM))],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -345,15 +346,15 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const unstakeCMM = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: salmMachine,
                 abi: stakerMachineABI,
                 functionName: 'unstake',
                 args: [ethers.utils.parseEther(String(inputStakedCMM))],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -364,31 +365,31 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const craftfromSALM = async (_index) => {
         setisLoading(true)
         try {
-            const allowed = await readContract({
+            const allowed = await readContract(config, {
                 address: salmToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, salmMachine],
             })
             if (Number(ethers.utils.parseEther('10')) > Number(allowed)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: salmToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [salmMachine, ethers.constants.MaxUint256],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: salmMachine,
                 abi: stakerMachineABI,
                 functionName: 'craft',
                 args: [_index],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -399,14 +400,14 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
     const obtainfromSALM = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: salmMachine,
                 abi: stakerMachineABI,
                 functionName: 'obtain',
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -431,71 +432,71 @@ const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, e
         }
         try {
             if (redeemAmount < 1) {
-                const tokenAAllow = await readContract({
+                const tokenAAllow = await readContract(config, {
                     address: tokenA,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, redeem],
                 })
                 if (Number(tokenAAllow) < 700000) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: tokenA,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [redeem, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash00 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash00 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const tokenBAllow = await readContract({
+                const tokenBAllow = await readContract(config, {
                     address: tokenB,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, redeem],
                 })
                 if (Number(tokenBAllow) < Number(ethers.utils.parseEther('7000'))) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: tokenB,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [redeem, ethers.utils.parseEther(String(10**8))],
                     })
-                    const { hash: hash01 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash01 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const config02 = await prepareWriteContract({
+                let { request: request2 } = await simulateContract(config, {
                     address: redeem,
                     abi: redeemTokenABI,
                     functionName: 'buyRedeem',
                 })
-                const { hash: hash10 } = await writeContract(config02)
-                await waitForTransaction({ hash: hash10 })
+                let h2 = await writeContract(config, request2)
+                await waitForTransactionReceipt(config, { hash: h2 })
             }
-            const redeemAllow = await readContract({
+            const redeemAllow = await readContract(config, {
                 address: redeem,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, redeemMerchant],
             })
             if (Number(redeemAllow) < 1) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: redeem,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [redeemMerchant, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request: request3 } = await simulateContract(config, {
                 address: redeemMerchant,
                 abi: cmdaoMerchantABI,
                 functionName: 'buy',
                 args: [_index]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h3 = await writeContract(config, request3)
+            await waitForTransactionReceipt(config, { hash: h3 })
+            setTxupdate(h3)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

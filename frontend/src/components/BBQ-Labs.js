@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract, sendTransaction } from '@wagmi/core'
+import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract, sendTransaction } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 const { ethereum } = window
 
@@ -18,7 +19,7 @@ const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const sourcethub = '0xf623B7164cb81DCfC3836492fb09Ae005be57322'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20ABI, transportHubABI, houseStakingABI, slot1ABI, erc721ABI, sourceThubABI, pzaLabABI }) => {
+const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20Abi, transportHubABI, houseStakingABI, slot1ABI, erc721Abi, sourceThubABI, pzaLabABI }) => {
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -329,17 +330,17 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
     React.useEffect(() => {
         window.scrollTo(0, 0)  
         console.log("Connected to " + address)
-        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
         
         const thefetch = async () => {
             const cmdBal = address !== null && address !== undefined ?
-                await fetchBalance({ address: address, }) :
+                await getBalance(config, { address: address, }) :
                 {formatted: 0}
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: bbqToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -351,13 +352,13 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                     },
                     {
                         address: woodToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: gemToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -369,7 +370,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                     },
                     {
                         address: infpowLab,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -386,7 +387,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
             const _canCraftBBQ = Number(ethers.utils.formatEther(String(woodBal))) >= 1000 && Number(cmdBal.formatted) >= 0.01 ? true : false
             const _canCraftINFPOW = Number(ethers.utils.formatEther(String(gemBal))) >= 500 && Number(cmdBal.formatted) >= 1 ? true : false
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: slot1,
@@ -1403,7 +1404,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
             const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data0 = await readContracts({
+            const data0 = await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: houseStaking,
@@ -2183,37 +2184,37 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
             setCanCraftINFPOW(result[150])
             setInfpowBalance(ethers.utils.formatEther(result[151]))
         })
-    }, [address, txupdate, erc20ABI, erc721ABI, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI, pzaLabABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI, pzaLabABI])
 
     const craftBBQHandle = async (_machine) => {
         setisLoading(true)
         try {
-            const woodAllow = await readContract({
+            const woodAllow = await readContract(config, {
                 address: woodToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, bbqLab],
             })
             if (woodAllow < (1000 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: woodToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [bbqLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bbqLab,
                 abi: bbqLab01ABI,
                 functionName: 'craft',
                 args: [_machine],
                 value: ethers.utils.parseEther('0.01'),
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2224,22 +2225,22 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
     const obtainBBQHandle = async () => {
         setisLoading(true)
         try {
-            const config0 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: woodToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'approve',
-                args: [bbqLab, ethers.utils.parseEther(String(0))],
+                args: [bbqLab, ethers.utils.parseEther(String(10**8))],
             })
-            const { hash: hash0 } = await writeContract(config0)
-            await waitForTransaction({ hash: hash0 })
-            const config = await prepareWriteContract({
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            let { request: request2 } = await simulateContract(config, {
                 address: bbqLab,
                 abi: bbqLab01ABI,
                 functionName: 'obtain',
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h2 = await writeContract(config, request2)
+            await waitForTransactionReceipt(config, { hash: h2 })
+            setTxupdate(h2)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2250,23 +2251,23 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
     const transportHandle = async () => {
         setisLoading(true)
         try {
-            const bbqAllow = await readContract({
+            const bbqAllow = await readContract(config, {
                 chainId: 190,
                 address: bbqToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, sourcethub],
             })
             if (bbqAllow < ethers.utils.parseEther(String(transportValue))) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     chainId: 190,
                     address: bbqToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [sourcethub, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
             let _target = null
             if (houseSelected === 'Z02') {
@@ -2366,8 +2367,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
             } else if (houseSelected === 'C22') {
                 _target = 10003022
             }
-            
-            const config2 = await prepareWriteContract({
+            let { request: request2 } = await simulateContract(config, {
                 chainId: 190,
                 address: sourcethub,
                 abi: sourceThubABI,
@@ -2375,59 +2375,15 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                 args: [_target, ethers.utils.parseEther(String(transportValue))],
                 value: ethers.utils.parseEther('80'),
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
-
-            const { hash: hash2 } = await sendTransaction({
+            let h2 = await writeContract(config, request2)
+            await waitForTransactionReceipt(config, { hash: h2 })
+            setTxupdate(h2)
+            let h3 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                 value: ethers.utils.parseEther(10),
             })
-            await waitForTransaction({ hash: hash2 })
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-
-    const upgradeBBQHandle = async (_level) => {
-        setisLoading(true)
-        try {
-            /*const woodAllow = await readContract({
-                address: woodToken,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [address, bbqLab],
-            })
-            let woodUsage = 0
-            if (_level === 1) {
-                woodUsage = 6000
-            } else if (_level === 2) {
-                woodUsage = 60000
-            } else if (_level === 3) {
-                woodUsage = 600000
-            }
-            if (woodAllow < (woodUsage * 10**18)) {
-                const config = await prepareWriteContract({
-                    address: woodToken,
-                    abi: erc20ABI,
-                    functionName: 'approve',
-                    args: [bbqLab, ethers.utils.parseEther(String(10**8))],
-                })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            }*/
-            const config2 = await prepareWriteContract({
-                address: bbqLab,
-                abi: bbqLab01ABI,
-                functionName: 'upgrade',
-                args: [_level]
-            })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            await waitForTransactionReceipt(config, { hash: h3 })
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2438,32 +2394,32 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
     const craftINFPOWHandle = async () => {
         setisLoading(true)
         try {
-            const gemAllow = await readContract({
+            const gemAllow = await readContract(config, {
                 address: gemToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, infpowLab],
             })
             if (gemAllow < (500 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: gemToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [infpowLab, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: infpowLab,
                 abi: pzaLabABI,
                 functionName: 'craft',
                 args: [1],
                 value: ethers.utils.parseEther('1'),
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2474,22 +2430,22 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
     const obtainINFPOWHandle = async () => {
         setisLoading(true)
         try {
-            const config0 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: gemToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'approve',
                 args: [infpowLab, ethers.utils.parseEther(String(0))],
             })
-            const { hash: hash0 } = await writeContract(config0)
-            await waitForTransaction({ hash: hash0 })
-            const config = await prepareWriteContract({
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            let { request: request2 } = await simulateContract(config, {
                 address: infpowLab,
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h2 = await writeContract(config, request2)
+            await waitForTransactionReceipt(config, { hash: h2 })
+            setTxupdate(h2)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2680,7 +2636,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                                                     <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
                                                 }
                                                 {false ?
-                                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => upgradeBBQHandle(levelCraftBBQ + 1)}>UPGRADE</div> :
+                                                    <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px"}} className="pixel button">UPGRADE</div> :
                                                     <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
                                                 }
                                             </div> :

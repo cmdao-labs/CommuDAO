@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -45,15 +46,15 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const transferNFTConfirm = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: ory,
                 abi: aurora721ABI,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -68,7 +69,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const stakeEvent = await orynftSC.queryFilter(stakeFilter, 515000, "latest")
             const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
             const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: fieldMice,
@@ -89,7 +90,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
                 }
             }
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fieldMice,
@@ -137,7 +138,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             const walletEvent = await orynftSC.queryFilter(walletFilter, 515000, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: ory,
@@ -185,7 +186,7 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const miceBal = address !== null && address !== undefined ? await readContract({
+            const miceBal = address !== null && address !== undefined ? await readContract(config, {
                 address: fieldMice,
                 abi: tunaFieldABI,
                 functionName: 'balanceOf',
@@ -216,34 +217,32 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: ory,
-            abi: aurora721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== fieldMice.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const nftAllow = await readContract(config, {
+                address: ory,
+                abi: aurora721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== fieldMice.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: ory,
                     abi: aurora721ABI,
                     functionName: 'approve',
                     args: [fieldMice, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: fieldMice,
                 abi: tunaFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -251,15 +250,15 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
     const unstakeNft = async (_nftid, _unstake) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fieldMice,
                 abi: tunaFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, _unstake],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -268,18 +267,18 @@ const RatHuntingField = ({ intrasubModetext, navigate, setisLoading, txupdate, s
         setisLoading(true)
         try {
             for (let i = 0; i <= nftStaked.length - 1; i++) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: fieldMice,
                     abi: tunaFieldABI,
                     functionName: 'unstake',
                     args: [nftStaked[i].Id, false],
                 })
                 if (i === nftStaked.length - 1) {
-                    const { hash: hash1 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash1 })
-                    setTxupdate(hash1)
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
-                    writeContract(config)
+                    await writeContract(config, request)
                 }
             }
         } catch {}

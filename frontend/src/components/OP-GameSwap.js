@@ -1,11 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
-
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
-
 import { ethers } from 'ethers'
-
 import OpSwap from './Op-GameSwap-Swap'
 import OpGameSwapFarm from './OP-GameSwap-Farm'
 
@@ -70,7 +68,7 @@ const inputStyle = {
     }),
 }
    
-const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI, velodromeRouterABI, velodromeCallerABI, bkcOracleABI, stcmdABI }) => {
+const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20Abi, veloPoolABI, velodromeRouterABI, velodromeCallerABI, bkcOracleABI, stcmdABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
@@ -94,19 +92,19 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
 
         const thefetch = async () => {
             const ethBal = address !== null && address !== undefined ?
-                await fetchBalance({ address: address, }) :
+                await getBalance(config, { address: address, }) :
                 {formatted: 0}
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: cmdethExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -116,7 +114,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
             const cmdBal = data[0]
             const cmdWethBal = data[1]
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: cmdethExchange,
@@ -125,7 +123,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                     },
                     {
                         address: cmdethExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                 ],
@@ -168,7 +166,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
             setCmdPooled((ethers.utils.formatEther(result[2].result[0]) * ethers.utils.formatEther(result[3].result) / ethers.utils.formatEther(result[4].result)))
             setLpShare(Number(((ethers.utils.formatEther(result[3].result) / ethers.utils.formatEther(result[4].result))) * 100).toFixed(4))
         })
-    }, [address, txupdate, erc20ABI, veloPoolABI, bkcOracleABI])
+    }, [address, txupdate, erc20Abi, veloPoolABI, bkcOracleABI])
 
     const [liquidMode, setLiquidMode] = React.useState(0)
     const liquidModeSelect = async (option) => {
@@ -183,7 +181,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         setEthAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveCmd = await readContract({
+        const _reserveCmd = await readContract(config, {
             address: cmdethExchange,
             abi: veloPoolABI,
             functionName: 'getReserves',
@@ -193,12 +191,12 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         event.target.value !== "" ? setCmdAdd(ethers.utils.formatEther(((bigValue.mul(bigCmdReserv)).div(bigEthReserv)))) : setCmdAdd("")
     }
     const maxLiqHandle1 = async () => {
-        const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
+        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.004
         setEthAdd(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
         const bigValue = ethers.BigNumber.from(_value)        
-        const _reserveCmd = await readContract({
+        const _reserveCmd = await readContract(config, {
             address: cmdethExchange,
             abi: veloPoolABI,
             functionName: 'getReserves',
@@ -211,7 +209,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         setCmdAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveCmd = await readContract({
+        const _reserveCmd = await readContract(config, {
             address: cmdethExchange,
             abi: veloPoolABI,
             functionName: 'getReserves',
@@ -221,16 +219,16 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         event.target.value !== "" ? setEthAdd(ethers.utils.formatEther(((bigValue.mul(bigEthReserv)).div(bigCmdReserv)))) : setEthAdd("")
     }
     const maxLiqHandle2 = async () => {
-        const _max = address !== undefined ? await readContract({
+        const _max = address !== undefined ? await readContract(config, {
             address: cmdToken,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'balanceOf',
             args: [address],
         }) : 0
         setCmdAdd(ethers.utils.formatEther(_max))
         const _value = _max >= 0 ? _max : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveCmd = await readContract({
+        const _reserveCmd = await readContract(config, {
             address: cmdethExchange,
             abi: veloPoolABI,
             functionName: 'getReserves',
@@ -243,9 +241,9 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         setisLoading(true)
         const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
         try {
-            const cmdAllow = await readContract({
+            const cmdAllow = await readContract(config, {
                 address: cmdToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, router],
             })
@@ -253,25 +251,25 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(cmdAdd) > Number(cmdAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmdToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [router, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: router,
                 abi: velodromeRouterABI,
                 functionName: 'addLiquidityETH',
                 args: [cmdToken, false, ethers.utils.parseEther(cmdAdd), ethers.utils.parseEther(cmdAdd) , ethers.utils.parseEther(String(Number(ethAdd) - 0.001)), address, deadline],
                 value: ethers.utils.parseEther(ethAdd),
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             console.log(e)
         }
@@ -281,7 +279,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
     const [lpSell, setLpSell] = React.useState("")
     const removeliqHandle = async () => {
         setisLoading(true)
-        const qouteRemove = await readContract({
+        const qouteRemove = await readContract(config, {
             address: router,
             abi: velodromeRouterABI,
             functionName: 'quoteRemoveLiquidity',
@@ -289,9 +287,9 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
         })
         const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
         try {
-            const cmdwethAllow = await readContract({
+            const cmdwethAllow = await readContract(config, {
                 address: cmdethExchange,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, router],
             })
@@ -299,24 +297,24 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(lpSell) > Number(cmdwethAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmdethExchange,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [router, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: router,
                 abi: velodromeRouterABI,
                 functionName: 'removeLiquidityETH',
                 args: [cmdToken, false, ethers.utils.parseEther(lpSell), qouteRemove[0], qouteRemove[1], address, deadline],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             console.log(e)
         }
@@ -351,7 +349,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                         veloPoolABI={veloPoolABI}
                         cmdToken={cmdToken}
                         wethToken={wethToken}
-                        erc20ABI={erc20ABI}
+                        erc20Abi={erc20Abi}
                         cmdBalance={cmdBalance}
                         ethBalance={ethBalance}
                         ethReserv={ethReserv}
@@ -498,7 +496,7 @@ const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, veloPoolABI
                 setisLoading={setisLoading}
                 setTxupdate={setTxupdate}
                 txupdate={txupdate}
-                erc20ABI={erc20ABI}
+                erc20Abi={erc20Abi}
                 stcmdABI={stcmdABI}
             />}
         </div>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { fetchBalance, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
+import { getBalance, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useAccount } from 'wagmi'
 
 import TBridgeTAODUM from  './tBridge-TAODUM'
 import TBridgeHEROMINER from  './tBridge-HEROMINER'
@@ -27,9 +28,8 @@ const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
 const cmmBBQ = '0x45ed41ED4E0F48317f787Dc268779260b1Ca81f1'
 
-const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20ABI, erc721ABI, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
-    const { address } = useAccount()
-    const { chain } = useNetwork()
+const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
+    const { address, chain } = useAccount()
     const [mode, setMode] = React.useState(1)
 
     const [reserve, setReserve] = React.useState(0)
@@ -80,55 +80,55 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         
         const fetch = async () => {
             const cmdBbqBal = address !== null && address !== undefined ?
-                await fetchBalance({ address: address, chainId: 190, }) :
+                await getBalance(config, { address: address, chainId: 190, }) :
                 {formatted: 0}
-            const data1 = await readContracts({
+            const data1 = await readContracts(config, {
                 contracts: [
                     {
                         address: kusdt,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x8622049edEcC20ADA5aDEeaf2Caa53447e68Ae63'],
                         chainId: 96,
                     },
                     {
                         address: jusdt,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0xBb7A653509CDd8C4Ccd34D5834c817Ed3DFD6Fc7'],
                         chainId: 8899,
                     },
                     {
                         address: usdtBsc,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3'],
                         chainId: 56,
                     },
                     {
                         address: jusdt,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063'],
                         chainId: 8899,
                     },
                     {
                         address: cmj,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x0000000000000000000000000000000000000042'],
                         chainId: 8899,
                     },
                     {
                         address: goldBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'],
                         chainId: 96,
                     },
                     {
                         address: dmBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: ['0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'],
                         chainId: 96,
@@ -136,123 +136,123 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                 ],
             })
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: kusdt,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: jusdt,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 8899,
                     },
                     {
                         address: cmj,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 8899,
                     },
                     {
                         address: cmd,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 10,
                     },
                     {
                         address: usdtBsc,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 56,
                     },
                     {
                         address: tao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: jtao,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 8899,
                     },
                     {
                         address: salmBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: aguaBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: cosmosBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: goldBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: dmBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: engyBBQ,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 190,
                     },
                     {
                         address: gemBBQ,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 190,
                     },
                     {
                         address: cmmOP,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 10,
                     },
                     {
                         address: cmmBKC,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 96,
                     },
                     {
                         address: cmmBBQ,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 190,
@@ -348,7 +348,7 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
             setCmmBkcBalance(ethers.utils.formatEther(result[23].result))
             setCmmBbqBalance(ethers.utils.formatEther(result[24].result))
         })
-    }, [address, txupdate, erc20ABI])
+    }, [address, txupdate, erc20Abi])
 
     const handleDeposit = (event) => {
         setDepositValueDis(event.target.value)
@@ -359,16 +359,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const depositHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: kusdt,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'transfer',
                 args: ["0x8622049edEcC20ADA5aDEeaf2Caa53447e68Ae63", depositValue],
                 chainId: 96,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -382,16 +382,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const withdrawHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: jusdt,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'transfer',
                 args: ["0xBb7A653509CDd8C4Ccd34D5834c817Ed3DFD6Fc7", withdrawValue],
                 chainId: 8899,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -399,16 +399,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const depositCmjHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmj,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'transfer',
                 args: ["0x0000000000000000000000000000000000000042", ethers.utils.parseEther(String(depositCMJ))],
                 chainId: 8899,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -418,16 +418,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const depositCmdHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmd,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'transfer',
                 args: ["0xaa3caad9e335a133d96ea3d5d73df2dcf9e360d4", ethers.utils.parseEther(String(depositValue22))],
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -437,16 +437,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const withdrawCmdHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdBbq,
                 abi: nativeBridgeABI,
                 functionName: 'recieveTokens',
                 value: ethers.utils.parseEther(String(withdrawValue22)),
                 chainId: 190,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -457,16 +457,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const depositTaoHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: tao,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'transfer',
                 args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(depositTAO))],
                 chainId: 96,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -476,16 +476,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
     const withdrawTaoHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: jtao,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'transfer',
                 args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(withdrawTAO))],
                 chainId: 8899,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -497,16 +497,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         setisLoading(true)
         if (Number(depositValue2) <= Number(supply2)) {
             try {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: usdtBsc,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'transfer',
                     args: ["0x92E2fB6B899E715B6D392B7b1b851a9f7aae2dc3", ethers.utils.parseEther(String(depositValue2))],
                     chainId: 56,
                 })
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
             } catch (e) {
                 setisError(true)
                 setErrMsg(String(e))
@@ -518,16 +518,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
         setisLoading(true)
         if (Number(withdrawValue2) <= Number(reserve2)) {
             try {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdt,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'transfer',
                     args: ["0x9E1baBFC65DA0eBFE11934b1277755Eb3A7d3063", ethers.utils.parseEther(String(withdrawValue2))],
                     chainId: 8899,
                 })
-                const { hash: hash1 } = await writeContract(config)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
             } catch (e) {
                 setisError(true)
                 setErrMsg(String(e))
@@ -884,16 +884,16 @@ const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, e
                     </>
                 }
                 {mode === 4 && chain !== undefined &&
-                    <TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />
+                    <TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {mode === 5 && chain !== undefined &&
-                    <TBridgeHEROMINER setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20ABI={erc20ABI} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} cmmBbqBalance={cmmBbqBalance} />
+                    <TBridgeHEROMINER setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} cmmBbqBalance={cmmBbqBalance} />
                 }
                 {mode === 6 && chain !== undefined &&
-                    <TBridgeCMDAONFT setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} />
+                    <TBridgeCMDAONFT setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {mode === 60 && chain !== undefined &&
-                    <TBridgeCMDAONFT2 setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721ABI={erc721ABI} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />
+                    <TBridgeCMDAONFT2 setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />
                 }
                 {chain === undefined && 
                     <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>

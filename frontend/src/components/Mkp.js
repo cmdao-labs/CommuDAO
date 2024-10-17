@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
@@ -19,7 +20,7 @@ const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721ABI, erc20ABI, aurora721ABI, cmdaoMkpABI, houseStakingABI }) => {
+const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721Abi, erc20Abi, aurora721ABI, cmdaoMkpABI, houseStakingABI }) => {
     const { address } = useAccount()
     let sellerAddr = ''
     if (intrasubModetext === undefined) {
@@ -50,25 +51,25 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
     React.useEffect(() => {     
         window.scrollTo(0, 0) 
         const cmdaoMkpSC = new ethers.Contract(cmdaomkp, cmdaoMkpABI, providerJBC)
-        const orynftSC = new ethers.Contract(ory, erc721ABI, providerJBC)
-        //const beastnftSC = new ethers.Contract(beast, erc721ABI, providerJBC)
-        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
-        const cm_ogjibjibnftSC = new ethers.Contract(cm_ogjibjib, erc721ABI, providerJBC)
-        const cmdao_tiSC = new ethers.Contract(cmdao_ti, erc721ABI, providerJBC)
-        const mgnftSC = new ethers.Contract(mgnft, erc721ABI, providerJBC)
+        const orynftSC = new ethers.Contract(ory, erc721Abi, providerJBC)
+        //const beastnftSC = new ethers.Contract(beast, erc721Abi, providerJBC)
+        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721Abi, providerJBC)
+        const cm_ogjibjibnftSC = new ethers.Contract(cm_ogjibjib, erc721Abi, providerJBC)
+        const cmdao_tiSC = new ethers.Contract(cmdao_ti, erc721Abi, providerJBC)
+        const mgnftSC = new ethers.Contract(mgnft, erc721Abi, providerJBC)
 
         const thefetch = async () => {
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jusdtToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     }
@@ -100,11 +101,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
                 const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-                const data2 = address !== null && address !== undefined ? await readContracts({
+                const data2 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: walletRemoveDup.map((item) => (
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'ownerOf',
                             args: [String(item)],
                         }
@@ -120,11 +121,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 
                 setLoadingText("12.50%")
 
-                const data3 = address !== null && address !== undefined ? await readContracts({
+                const data3 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: yournftwallet.map((item) => (
                         {
                             address: hexajibjib,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [String(item.Id)],
                         }
@@ -155,11 +156,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 const wallet2Event = await orynftSC.queryFilter(wallet2Filter, 515000, "latest")
                 const wallet2Map = await Promise.all(wallet2Event.map(async (obj, index) => String(obj.args.tokenId)))
                 const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-                const data4 = address !== null && address !== undefined ? await readContracts({
+                const data4 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: wallet2RemoveDup.map((item) => (
                         {
                             address: ory,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'ownerOf',
                             args: [String(item)],
                         }
@@ -210,11 +211,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 const wallet3Event = await beastnftSC.queryFilter(wallet3Filter, 137000, "latest")
                 const wallet3Map = await Promise.all(wallet3Event.map(async (obj, index) => String(obj.args.tokenId)))
                 const wallet3RemoveDup = wallet3Map.filter((obj, index) => wallet3Map.indexOf(obj) === index)
-                const data5 = address !== null && address !== undefined ? await readContracts({
+                const data5 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: wallet3RemoveDup.map((item) => (
                         {
                             address: beast,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'ownerOf',
                             args: [String(item)],
                         }
@@ -229,11 +230,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 }
                 console.log(yournftwallet3)
 
-                const data6 = address !== null && address !== undefined ? await readContracts({
+                const data6 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: yournftwallet3.map((item) => (
                         {
                             address: beast,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [String(item.Id)],
                         }
@@ -263,7 +264,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
                 setLoadingText("25% Fetching CM Hexa Cat Meaw JIB JIB NFTs in Your Bag...")
 
-                const wallet4RemoveDup = address !== null && address !== undefined ? await readContract({
+                const wallet4RemoveDup = address !== null && address !== undefined ? await readContract(config, {
                     address: cm_ogjibjib,
                     abi: aurora721ABI,
                     functionName: 'walletOfOwner',
@@ -310,11 +311,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 const wallet5Event = await cmdao_tiSC.queryFilter(wallet5Filter, 2506258, "latest")
                 const wallet5Map = await Promise.all(wallet5Event.map(async (obj) => String(obj.args.tokenId)))
                 const wallet5RemoveDup = wallet5Map.filter((obj, index) => wallet5Map.indexOf(obj) === index)
-                const data7 = address !== null && address !== undefined ? await readContracts({
+                const data7 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: wallet5RemoveDup.map((item) => (
                         {
                             address: cmdao_ti,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'ownerOf',
                             args: [String(item)],
                         }
@@ -325,7 +326,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 for (let i = 0; i <= wallet5RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
                     if (data7[i].result.toUpperCase() === address.toUpperCase()) {
                         // Prevent sell while staking
-                        const slotUsage = await readContract({
+                        const slotUsage = await readContract(config, {
                             address: cmdao_house_staking,
                             abi: houseStakingABI,
                             functionName: 'slotUsage',
@@ -339,11 +340,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 
                 setLoadingText("32.50%")
 
-                const data8 = address !== null && address !== undefined ? await readContracts({
+                const data8 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: yournftwallet5.map((item) => (
                         {
                             address: cmdao_ti,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [String(item.Id)],
                         }
@@ -385,11 +386,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 const wallet6Event = await mgnftSC.queryFilter(wallet6Filter, 2260250, "latest")
                 const wallet6Map = await Promise.all(wallet6Event.map(async (obj) => String(obj.args.tokenId)))
                 const wallet6RemoveDup = wallet6Map.filter((obj, index) => wallet6Map.indexOf(obj) === index)
-                const data9 = address !== null && address !== undefined ? await readContracts({
+                const data9 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: wallet6RemoveDup.map((item) => (
                         {
                             address: mgnft,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'ownerOf',
                             args: [String(item)],
                         }
@@ -405,11 +406,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 
                 setLoadingText("37.50%")
 
-                const data10 = address !== null && address !== undefined ? await readContracts({
+                const data10 = address !== null && address !== undefined ? await readContracts(config, {
                     contracts: yournftwallet6.map((item) => (
                         {
                             address: mgnft,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [String(item.Id)],
                         }
@@ -442,11 +443,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             const mkpMap = await Promise.all(mkpEvent.map(async (obj) => String(obj.args.tokenId)))
             const mkpRemoveDup = mkpMap.filter((obj, index) => mkpMap.indexOf(obj) === index)
 
-            const mkp_data2 = await readContracts({
+            const mkp_data2 = await readContracts(config, {
                 contracts: mkpRemoveDup.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -462,11 +463,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             setLoadingText("52.50%")
 
-            const mkp_data3 = await readContracts({
+            const mkp_data3 = await readContracts(config, {
                 contracts: mkpwallet.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -545,11 +546,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             const mkp2Map = await Promise.all(mkp2Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp2RemoveDup = mkp2Map.filter((obj, index) => mkp2Map.indexOf(obj) === index)
 
-            const mkp_data4 = await readContracts({
+            const mkp_data4 = await readContracts(config, {
                 contracts: mkp2RemoveDup.map((item) => (
                     {
                         address: ory,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -655,11 +656,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             const mkp3Event = await beastnftSC.queryFilter(mkp3Filter, 137000, "latest")
             const mkp3Map = await Promise.all(mkp3Event.map(async (obj, index) => String(obj.args.tokenId)))
             const mkp3RemoveDup = mkp3Map.filter((obj, index) => mkp3Map.indexOf(obj) === index)
-            const mkp_data5 = await readContracts({
+            const mkp_data5 = await readContracts(config, {
                 contracts: mkp3RemoveDup.map((item) => (
                     {
                         address: beast,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -673,11 +674,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
                 }
             }
 
-            const mkp_data6 = await readContracts({
+            const mkp_data6 = await readContracts(config, {
                 contracts: mkp3wallet.map((item) => (
                     {
                         address: beast,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -751,7 +752,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             const mkp4Map = await Promise.all(mkp4Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp4RemoveDup = mkp4Map.filter((obj, index) => mkp4Map.indexOf(obj) === index)
 
-            const mkp_data7 = await readContracts({
+            const mkp_data7 = await readContracts(config, {
                 contracts: mkp4RemoveDup.map((item) => (
                     {
                         address: cm_ogjibjib,
@@ -853,11 +854,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             const mkp5Map = await Promise.all(mkp5Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp5RemoveDup = mkp5Map.filter((obj, index) => mkp5Map.indexOf(obj) === index)
 
-            const mkp_data8 = await readContracts({
+            const mkp_data8 = await readContracts(config, {
                 contracts: mkp5RemoveDup.map((item) => (
                     {
                         address: cmdao_ti,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -873,11 +874,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             setLoadingText("77.50%")
 
-            const mkp_data9 = await readContracts({
+            const mkp_data9 = await readContracts(config, {
                 contracts: mkp5wallet.map((item) => (
                     {
                         address: cmdao_ti,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -976,11 +977,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             const mkp6Map = await Promise.all(mkp6Event.map(async (obj) => String(obj.args.tokenId)))
             const mkp6RemoveDup = mkp6Map.filter((obj, index) => mkp6Map.indexOf(obj) === index)
 
-            const mkp_data10 = await readContracts({
+            const mkp_data10 = await readContracts(config, {
                 contracts: mkp6RemoveDup.map((item) => (
                     {
                         address: mgnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -996,11 +997,11 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
 
             setLoadingText("82.50%")
 
-            const mkp_data11 = await readContracts({
+            const mkp_data11 = await readContracts(config, {
                 contracts: mkp6wallet.map((item) => (
                     {
                         address: mgnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -1098,7 +1099,7 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
             }
         })
 
-    }, [address, txupdate, erc20ABI, erc721ABI, aurora721ABI, cmdaoMkpABI, sellerAddr, houseStakingABI])
+    }, [address, txupdate, erc20Abi, erc721Abi, aurora721ABI, cmdaoMkpABI, sellerAddr, houseStakingABI])
 
     const sellPriceHandle = (event) => { setSellPrice(event.target.value) }
     const sell = (_nftcol, _nftid, _nftname, _nftimage) => {
@@ -1125,42 +1126,40 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
         } else if (sellNftCol === 6) {
             nftAddr = mgnft
         }
-        if (sellNftCol !== 5) {
-            const nftAllow = await readContract({
-                address: nftAddr,
-                abi: erc721ABI,
-                functionName: 'getApproved',
-                args: [sellNftid],
-            })
-            if (nftAllow.toUpperCase() !== cmdaomkp.toUpperCase()) {
-                try {
-                    const config = await prepareWriteContract({
+        try {
+            if (sellNftCol !== 5) {
+                const nftAllow = await readContract(config, {
+                    address: nftAddr,
+                    abi: erc721Abi,
+                    functionName: 'getApproved',
+                    args: [sellNftid],
+                })
+                if (nftAllow.toUpperCase() !== cmdaomkp.toUpperCase()) {
+                    let { request } = await simulateContract(config, {
                         address: nftAddr,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'approve',
                         args: [cmdaomkp, sellNftid],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
-                } catch {}
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                }
             }
-        }
-        let currencyIndex = 0
-        if (currencyselected === "CMJ") {
-            currencyIndex = 1
-        } else if (currencyselected === "JUSDT") {
-            currencyIndex = 2
-        }
-        try {
-            const config2 = await prepareWriteContract({
+            let currencyIndex = 0
+            if (currencyselected === "CMJ") {
+                currencyIndex = 1
+            } else if (currencyselected === "JUSDT") {
+                currencyIndex = 2
+            }
+            let { request } = await simulateContract(config, {
                 address: cmdaomkp,
                 abi: cmdaoMkpABI,
                 functionName: 'addItem',
                 args: [sellNftCol, sellNftid, currencyIndex, ethers.utils.parseUnits(String(sellPrice, "wei"))]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setIsSellModal(false)
         setisLoading(false)
@@ -1169,55 +1168,53 @@ const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, 
     const remove = async (_count) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: cmdaomkp,
                 abi: cmdaoMkpABI,
                 functionName: 'removeItem',
                 args: [_count]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
 
     const buyHandle = async (_count, _currencyindex, _price) => {
         setisLoading(true)
-        let currencyAddr = null
-        if (_currencyindex === 1) {
-            currencyAddr = cmjToken
-        } else if (_currencyindex === 2) {
-            currencyAddr = jusdtToken
-        }
-        const currencyAllow = await readContract({
-            address: currencyAddr,
-            abi: erc20ABI,
-            functionName: 'allowance',
-            args: [address, cmdaomkp],
-        })
-        if (currencyAllow < (_price * 10**18)) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            let currencyAddr = null
+            if (_currencyindex === 1) {
+                currencyAddr = cmjToken
+            } else if (_currencyindex === 2) {
+                currencyAddr = jusdtToken
+            }
+            const currencyAllow = await readContract(config, {
+                address: currencyAddr,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, cmdaomkp],
+            })
+            if (currencyAllow < (_price * 10**18)) {
+                let { request } = await simulateContract(config, {
                     address: currencyAddr,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaomkp, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: cmdaomkp,
                 abi: cmdaoMkpABI,
                 functionName: 'buyItem',
                 args: [_count]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

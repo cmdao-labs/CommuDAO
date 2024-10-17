@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
 const t1BKC = '0xc6Ce0974DDC4cE4B76d9190dd8d48866A9976DE9'
@@ -10,10 +11,9 @@ const t1MALL = '0x224dFcCC4e6bFc2c25B0c5ee46D580f3Be77E3B4'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, uniNftBridgeABI, multichainMallABI }) => {
-    const { address } = useAccount()
+const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, uniNftBridgeABI, multichainMallABI }) => {
+    const { address, chain } = useAccount()
     //let address = '0x8B9C26D596997420089ceb7681A8faEF4486B8F0'
-    const { chain } = useNetwork()
 
     const [bkcNft, setBkcNft] = React.useState([])
     const [opNft, setOpNft] = React.useState([])
@@ -27,7 +27,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
 
     React.useEffect(() => {     
         window.scrollTo(0, 0) 
-        const bkcnftSC = new ethers.Contract(t1BKC, erc721ABI, providerBKC)
+        const bkcnftSC = new ethers.Contract(t1BKC, erc721Abi, providerBKC)
         const mkpnftSC = new ethers.Contract(t1MALL, multichainMallABI, providerOP)
 
         const thefetch = async () => {
@@ -36,11 +36,11 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
             const walletEvent = await bkcnftSC.queryFilter(walletFilter, 4843357, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: t1BKC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 96
@@ -53,11 +53,11 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: t1BKC,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 96
@@ -99,11 +99,11 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
             const opwalletEvent = await mkpnftSC.queryFilter(opwalletFilter, 125216008, "latest")
             const opwalletMap = await Promise.all(opwalletEvent.map(async (obj) => String(obj.args.tokenId)))
             const opwalletRemoveDup = opwalletMap.filter((obj, index) => opwalletMap.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: opwalletRemoveDup.map((item) => (
                     {
                         address: t1MALL,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 10
@@ -116,11 +116,11 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                     youropnftwallet.push({Id: String(opwalletRemoveDup[i])})
                 }
             }
-            const data5 = address !== null && address !== undefined ? await readContracts({
+            const data5 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: youropnftwallet.map((item) => (
                     {
                         address: t1MALL,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 10
@@ -149,18 +149,18 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
             const mintItemFilter = await mkpnftSC.filters.MintItem(null, null, address)
             const mintItemEvent = await mkpnftSC.queryFilter(mintItemFilter, 125216008, "latest")
             const mintItemMap = await Promise.all(mintItemEvent.map(async (obj) => {return {NftId: String(obj.args.nftId), Count: String(obj.args.itemCount)}}))
-            const mint_data = await readContracts({
+            const mint_data = await readContracts(config, {
                 contracts: mintItemMap.map((item) => (
                     {
                         address: t1MALL,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.NftId)],
                         chainId: 10
                     }
                 ))
             })
-            const mint_data2 = await readContracts({
+            const mint_data2 = await readContracts(config, {
                 contracts: mintItemMap.map((item) => (
                     {
                         address: t1MALL,
@@ -194,7 +194,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
             }
             if (yournftminter.length === 0) { yournftminter.push(null) }
 
-            const mkpCount = await readContract({
+            const mkpCount = await readContract(config, {
                 address: t1MALL,
                 abi: multichainMallABI,
                 functionName: 'itemCount',
@@ -202,7 +202,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
             })
             let mkpdata = []
             for (let i = 1; i <= Number(mkpCount); i++) {
-                const mkp_data = await readContract({
+                const mkp_data = await readContract(config, {
                     address: t1MALL,
                     abi: multichainMallABI,
                     functionName: 'items',
@@ -213,11 +213,11 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                     mkpdata.push(mkp_data)
                 }
             }
-            const mkp_data2 = await readContracts({
+            const mkp_data2 = await readContracts(config, {
                 contracts: mkpdata.map((item) => (
                     {
                         address: t1MALL,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item[2])],
                         chainId: 10
@@ -270,28 +270,28 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
             setMkpNft(result[3])
         })
 
-    }, [address, txupdate, erc721ABI, multichainMallABI])
+    }, [address, txupdate, erc721Abi, multichainMallABI])
 
     const depositHandle = async (_nftId) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: t1BKC,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftId],
             })
             if (nftAllow.toUpperCase() !== bridgeBKC.toUpperCase()) {
-                const config0 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: t1BKC,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [bridgeBKC, _nftId],
                 })
-                const { hash: hash0 } = await writeContract(config0)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }        
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: bridgeBKC,
                 abi: uniNftBridgeABI,
                 functionName: 'receiveNfts',
@@ -299,9 +299,9 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                 value: ethers.utils.parseEther('1'),
                 chainId: 96,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -321,15 +321,15 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
     const sellHandle = async () => {
         setisLoading(true)
         try {
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: t1MALL,
                 abi: multichainMallABI,
                 functionName: 'listItem',
                 args: [sellCount, ethers.utils.parseUnits(String(sellPrice, "wei"))]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -341,7 +341,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
     const remove = async (_count) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: t1MALL,
                 abi: multichainMallABI,
                 functionName: 'removeItem',
@@ -349,9 +349,9 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                 value: ethers.utils.parseEther('0.0003'),
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -362,7 +362,7 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
     const buyHandle = async (_count, _price) => {
         setisLoading(true)
         try {
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: t1MALL,
                 abi: multichainMallABI,
                 functionName: 'buyItem',
@@ -370,9 +370,9 @@ const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, 
                 value: ethers.utils.parseEther(String(_price)),
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

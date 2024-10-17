@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useContractEvent, useAccount } from 'wagmi'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useWatchContractEvent, useAccount } from 'wagmi'
 import { ThreeDots, Oval } from 'react-loading-icons'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
@@ -17,7 +18,7 @@ const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const pzaToken = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 
-const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20ABI }) => {
+const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721Abi, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20Abi }) => {
     const { address } = useAccount()
 
     const [msg, setMsg] = React.useState("")
@@ -31,7 +32,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
     const messagesEndRef = React.useRef(null);
 
-    useContractEvent({
+    useWatchContractEvent({
         address: pve01,
         abi: pve01ABI,
         eventName: 'Fight',
@@ -55,7 +56,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
         },
     })
 
-    useContractEvent({
+    useWatchContractEvent({
         address: chatSC,
         abi: msgABI,
         eventName: 'Message',
@@ -88,7 +89,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             for (let i = 0; i <= Number(chatMap.length - 1); i++) {
                 senderArr.push(chatMap[i].sender)
             }
-            const idName = await readContracts({
+            const idName = await readContracts(config, {
                 contracts: senderArr.map(item => (
                     {
                         address: cmdaoName,
@@ -102,7 +103,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             for (let i = 0; i <= Number(idName.length - 1); i++) {
                 idArr.push(idName[i].result)
             }
-            const strName = await readContracts({
+            const strName = await readContracts(config, {
                 contracts: idArr.map(item => (
                     {
                         address: cmdaoName,
@@ -125,7 +126,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             })
             if (chatFinal.length === 0) { chatFinal.push(null) }
 
-            const nftGenesis = address !== null && address !== undefined ? await readContract({
+            const nftGenesis = address !== null && address !== undefined ? await readContract(config, {
                 address: starterCMDS,
                 abi: starterCMDSABI,
                 functionName: 'mynft',
@@ -133,35 +134,35 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }) : 0
             const nftIndex = Number(ethers.BigNumber.from(String(nftGenesis)).mod(ethers.BigNumber.from(String(10000000000000000000))))
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000000000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000010000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000020000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000030000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
                     {
                         address: CMDS,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(ethers.BigNumber.from(String(10000040000000000000)).add(ethers.BigNumber.from(String(nftIndex))))],
                     },
@@ -178,11 +179,11 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }
 
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const data2 = await readContracts({
+                const data2 = await readContracts(config, {
                     contracts: [
                         {
                             address: CMDS,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [String(yournftstake[i].Id)],
                         },
@@ -258,11 +259,11 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }
 
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
-                const data3 = await readContracts({
+                const data3 = await readContracts(config, {
                     contracts: [
                         {
                             address: CMDS,
-                            abi: erc721ABI,
+                            abi: erc721Abi,
                             functionName: 'tokenURI',
                             args: [yournftwallet[i].Id],
                         },
@@ -323,7 +324,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const data3 = await readContracts({
+            const data3 = await readContracts(config, {
                 contracts: [
                     {
                         address: pve01,
@@ -336,7 +337,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
             const monData01 = data3[0].result
 
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: pve01,
@@ -346,7 +347,7 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
                     },
                     {
                         address: pzaToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -376,54 +377,52 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
             setPzaBalance(ethers.utils.formatEther(result[4]))
         })
 
-    }, [address, txupdate, erc721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20ABI])
+    }, [address, txupdate, erc721Abi, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20Abi])
 
     const mintServant = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: starterCMDS,
                 abi: starterCMDSABI,
                 functionName: 'mintServant',
                 args: [1, inputName],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: CMDS,
-            abi: aurora721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== fieldWood.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const nftAllow = await readContract(config, {
+                address: CMDS,
+                abi: aurora721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== fieldWood.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: CMDS,
                     abi: aurora721ABI,
                     functionName: 'approve',
                     args: [fieldWood, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: fieldWood,
                 abi: woodFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -431,15 +430,15 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
     const unstakeNft = async (_nftid, _uplevel, _toLv) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: fieldWood,
                 abi: woodFieldABI,
                 functionName: 'unstake',
                 args: [_nftid, true],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
             setisLoading(false)
             if (_uplevel) {
                 uplevelNft(_nftid, _toLv)
@@ -449,34 +448,32 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
 
     const uplevelNft = async (_nftid, _toLv) => {
         setisLoading(true)
-        const nftAllow = await readContract({
-            address: CMDS,
-            abi: aurora721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== uplevelCMDS.toUpperCase()) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const nftAllow = await readContract(config, {
+                address: CMDS,
+                abi: aurora721ABI,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== uplevelCMDS.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: CMDS,
                     abi: aurora721ABI,
                     functionName: 'approve',
                     args: [uplevelCMDS, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        try {
-            const config = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: uplevelCMDS,
                 abi: uplevelCMDSABI,
                 functionName: 'uplevelServant',
                 args: [_toLv, _nftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -484,16 +481,16 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
     const sendMsg = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: chatSC,
                 abi: msgABI,
                 functionName: 'sendMessage',
                 args: ['0x0000000000000000000000000000000000000427', 1, msg],
                 value: ethers.utils.parseEther('0.01'),
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
             setMsg('')
         } catch {}
         setisLoading(false)
@@ -502,31 +499,31 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
     const respawn01Handle = async (_index) => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, pve01],
             })
             if (tokenAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [pve01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: pve01,
                 abi: pve01ABI,
                 functionName: 'respawn',
                 args: [_index],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -534,62 +531,62 @@ const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721ABI, 
     const hpup01Handle = async () => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: osToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, pve01],
             })
             if (tokenAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: osToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [pve01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: pve01,
                 abi: pve01ABI,
                 functionName: 'healthPotion',
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const fight01Handle = async (_index) => {
         setisLoading(true)
         try {
-            const tokenAllow = await readContract({
+            const tokenAllow = await readContract(config, {
                 address: pzaToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, pve01],
             })
             if (tokenAllow < (10 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: pzaToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [pve01, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: pve01,
                 abi: pve01ABI,
                 functionName: 'fight',
                 args: [nft[0].Id, _index],
                 gas: 150000,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }

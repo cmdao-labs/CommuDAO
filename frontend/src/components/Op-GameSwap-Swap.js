@@ -1,12 +1,13 @@
 import React from 'react'
 import Select from 'react-select'
-import { readContract, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { ethers } from 'ethers'
 
 const factory = "0xF1046053aa5682b4F9a81b5481394DA16BE5FF5a"
 const swapCaller = '0x3C72Fb1658E7A64fd4C88394De4474186A13460A'
 
-const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20ABI, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
+const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20Abi, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [ethBought, setEthBought] = React.useState("")
     const [cmdBought, setCmdBought] = React.useState("")
@@ -39,7 +40,7 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
         setInputSwap(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(String(Number(event.target.value * 0.997).toFixed(18))) : 0
         if (swapMode === 0) {
-            const _tokenOut = await readContract({
+            const _tokenOut = await readContract(config, {
                 address: cmdethExchange,
                 abi: veloPoolABI,
                 functionName: 'getAmountOut',
@@ -47,7 +48,7 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
             })
             event.target.value !== "" ? setCmdBought(Number(ethers.utils.formatEther(_tokenOut))) : setCmdBought("")
         } else if (swapMode === 1) {
-            const _tokenOut = await readContract({
+            const _tokenOut = await readContract(config, {
                 address: cmdethExchange,
                 abi: veloPoolABI,
                 functionName: 'getAmountOut',
@@ -62,20 +63,20 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
         const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
         try {
             if (swapMode === 0) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: swapCaller,
                     abi: velodromeCallerABI,
                     functionName: 'callForToken',
                     args: [ethers.utils.parseEther(String(cmdBought * 0.99)), [[wethToken, cmdToken, false, factory]], deadline],
                     value: ethers.utils.parseEther(inputSwap),
                 })
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
+                let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
             } else if (swapMode === 1) {
-                const token0Allow = await readContract({
+                const token0Allow = await readContract(config, {
                     address: cmdToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, swapCaller],
                 })
@@ -83,24 +84,24 @@ const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdet
                 const Hex = ethers.BigNumber.from(10**8)
                 const bigApprove = bigValue.mul(Hex)
                 if (inputSwap > Number(token0Allow) / (10**18)) {
-                    const config = await prepareWriteContract({
+                    let { request } = await simulateContract(config, {
                         address: cmdToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'approve',
                         args: [swapCaller, bigApprove],
                     })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
                 }
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: swapCaller,
                     abi: velodromeCallerABI,
                     functionName: 'callForETH',
                     args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(cmdBought * 0.99)), [[cmdToken, wethToken, false, factory]], deadline],
                 })
-                const { hash: hash1 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash1 })
-                setTxupdate(hash1)
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
             }
         } catch (e) {
             console.log(e)

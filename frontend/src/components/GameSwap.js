@@ -1,11 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
-
-import { fetchBalance, readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
-
 import { ethers } from 'ethers'
-
 import Swap from './GameSwap-Swap'
 import GameSwapFarm from './GameSwap-Farm'
 
@@ -74,7 +72,7 @@ const inputStyle = {
     }),
 }
    
-const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, exchangeJulpABI, farmJdaoABI, swapABI, swapJulpABI, bkcOracleABI, cmdaoAmmNpcABI }) => {
+const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20Abi, exchangeABI, exchangeJulpABI, farmJdaoABI, swapABI, swapJulpABI, bkcOracleABI, cmdaoAmmNpcABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
@@ -112,9 +110,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         setJbcAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveCmj = await readContract({
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
@@ -123,14 +121,14 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         event.target.value !== "" ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigJbcReserv)))) : setCmjAdd("")
     }
     const maxLiqHandle1 = async () => {
-        const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
+        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.009
         setJbcAdd(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveCmj = await readContract({
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
@@ -142,9 +140,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         setCmjAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveCmj = await readContract({
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
@@ -153,18 +151,18 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         event.target.value !== "" ? setJbcAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigCmjReserv)))) : setJbcAdd("")
     }
     const maxLiqHandle2 = async () => {
-        const _max = address !== undefined ? await readContract({
+        const _max = address !== undefined ? await readContract(config, {
             address: cmjToken,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'balanceOf',
             args: [address],
         }) : 0
         setCmjAdd(ethers.utils.formatEther(_max))
         const _value = _max >= 0 ? _max : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: jcExchange, })
+        const _reserveJbc = await getBalance(config, { address: jcExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveCmj = await readContract({
+        const _reserveCmj = await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'getReserve',
@@ -176,9 +174,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         setJbcJuAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveJusdt = await readContract({
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
@@ -187,14 +185,14 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         event.target.value !== "" ? setJusdtJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJusdtReserv)).div(bigJbcReserv)))) : setJusdtJuAdd("")
     }
     const maxLiqHandle3 = async () => {
-        const _max = address !== undefined ? await fetchBalance({ address: address, }) : {formatted: 0}
+        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.009
         setJbcJuAdd(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveJusdt = await readContract({
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
@@ -206,9 +204,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         setJusdtJuAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveJusdt = await readContract({
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
@@ -217,18 +215,18 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
         event.target.value !== "" ? setJbcJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigJusdtReserv)))) : setJbcJuAdd("")
     }
     const maxLiqHandle4 = async () => {
-        const _max = address !== undefined ? await readContract({
+        const _max = address !== undefined ? await readContract(config, {
             address: jusdtToken,
-            abi: erc20ABI,
+            abi: erc20Abi,
             functionName: 'balanceOf',
             args: [address],
         }) : 0
         setJusdtJuAdd(ethers.utils.formatEther(_max))
         const _value = _max >= 0 ? _max : 0
         const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await fetchBalance({ address: juExchange, })
+        const _reserveJbc = await getBalance(config, { address: juExchange, })
         const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveJusdt = await readContract({
+        const _reserveJusdt = await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'getReserve',
@@ -240,9 +238,9 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     const addliqHandle = async () => {
         setisLoading(true)
         try {
-            const cmAllow = await readContract({
+            const cmAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, jcExchange],
             })
@@ -250,34 +248,34 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(cmjAdd) > Number(cmAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [jcExchange, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: jcExchange,
                 abi: exchangeABI,
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(cmjAdd)],
                 value: ethers.utils.parseEther(jbcAdd),
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const addliqHandle2 = async () => {
         setisLoading(true)
         try {
-            const jusdtAllow = await readContract({
+            const jusdtAllow = await readContract(config, {
                 address: jusdtToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, juExchange],
             })
@@ -285,25 +283,25 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
             if (Number(jusdtJuAdd) > Number(jusdtAllow) / (10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jusdtToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [juExchange, bigApprove],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: juExchange,
                 abi: exchangeJulpABI,
                 functionName: 'addLiquidity',
                 args: [ethers.utils.parseEther(jusdtJuAdd)],
                 value: ethers.utils.parseEther(jbcJuAdd),
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -313,7 +311,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
 
     const handleSell = (event) => { setLpSell(event.target.value) }
     const maxRemLiqHandle1 = async () => {
-        const jclpBal = address !== undefined ? await readContract({
+        const jclpBal = address !== undefined ? await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'balanceOf',
@@ -324,21 +322,21 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     const removeliqHandle = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: jcExchange,
                 abi: exchangeABI,
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(lpSell)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const handleSell2 = (event) => { setJulpSell(event.target.value) }
     const maxRemLiqHandle2 = async () => {
-        const julpBal = address !== undefined ? await readContract({
+        const julpBal = address !== undefined ? await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'balanceOf',
@@ -349,15 +347,15 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     const removeliqHandle2 = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: juExchange,
                 abi: exchangeJulpABI,
                 functionName: 'removeLiquidity',
                 args: [ethers.utils.parseEther(julpSell)],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -377,8 +375,8 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const jusdtSC = new ethers.Contract(jusdtToken, erc20ABI, providerJBC)
-        const cmjSC = new ethers.Contract(cmjToken, erc20ABI, providerJBC)
+        const jusdtSC = new ethers.Contract(jusdtToken, erc20Abi, providerJBC)
+        const cmjSC = new ethers.Contract(cmjToken, erc20Abi, providerJBC)
 
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber();
@@ -418,31 +416,31 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             */
 
             const jbcBal = address !== null && address !== undefined ?
-                await fetchBalance({ address: address, }) :
+                await getBalance(config, { address: address, }) :
                 {formatted: 0}
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jusdtToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: jcExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: juExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -454,7 +452,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             const jclpBal = data[2]
             const julpBal = data[3]
 
-            const data2 = await readContracts({
+            const data2 = await readContracts(config, {
                 contracts: [
                     {
                         address: jcExchange,
@@ -468,12 +466,12 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                     },
                     {
                         address: jcExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                     {
                         address: juExchange,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'totalSupply',
                     },
                 ],
@@ -484,10 +482,10 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             const jclpTotalSup = data2[2]
             const julpTotalSup = data2[3]
 
-            const JbcJcReserv = await fetchBalance({
+            const JbcJcReserv = await getBalance(config, {
                 address: jcExchange,
             })
-            const JbcJuReserv = await fetchBalance({
+            const JbcJuReserv = await getBalance(config, {
                 address: juExchange,
             })
 
@@ -555,7 +553,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
             setTSwapvol24CMJ(Number(result[15]).toFixed(0))
             */
         })
-    }, [address, txupdate, exchangeABI, exchangeJulpABI, erc20ABI, bkcOracleABI])
+    }, [address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
 
     return (
         <div style={{flexDirection: "column", alignItems: "center", justifyContent: "flex-start", background: "#e6e4f6"}} className="collection">
@@ -595,7 +593,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                         swapJulpABI={swapJulpABI}
                         cmjToken={cmjToken}
                         jusdtToken={jusdtToken}
-                        erc20ABI={erc20ABI}
+                        erc20Abi={erc20Abi}
                         jbcBalance={jbcBalance}
                         cmjBalance={cmjBalance}
                         jusdtBalance={jusdtBalance}
@@ -862,7 +860,7 @@ const GameSwap = ({ setisLoading, txupdate, setTxupdate, erc20ABI, exchangeABI, 
                 juExchange={juExchange}
                 exchangeJulpABI={exchangeJulpABI}
                 cmjToken={cmjToken}
-                erc20ABI={erc20ABI}
+                erc20Abi={erc20Abi}
                 cmjBalance={cmjBalance}
                 jbcReserv={jbcReserv}
                 cmjReserv={cmjReserv}

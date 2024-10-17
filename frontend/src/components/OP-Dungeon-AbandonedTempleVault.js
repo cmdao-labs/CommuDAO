@@ -1,7 +1,8 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
-import { useAccount, useNetwork } from 'wagmi'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
+import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
@@ -12,9 +13,8 @@ const dunATV = '0x1391a538985f2F897375219573c7F5D61EA33Cdf'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, nftSlotABI, multichainSlotABI, dunATVABI }) => {
-    const { chain } = useNetwork()
-    let { address } = useAccount()
+const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI }) => {
+    let { address, chain } = useAccount()
     //let address = '0x8B9C26D596997420089ceb7681A8faEF4486B8F0'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -81,19 +81,19 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(cmdaonft, erc721ABI, providerOP)
-        const multinft1SC = new ethers.Contract(multinft1, erc721ABI, providerOP)
+        const cmdaonftSC = new ethers.Contract(cmdaonft, erc721Abi, providerOP)
+        const multinft1SC = new ethers.Contract(multinft1, erc721Abi, providerOP)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = await readContract({
+            const nftEQ = await readContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'nftEquip',
                 args: [address],
                 chainId: 10,
             })
-            const nftEQ2 = await readContract({
+            const nftEQ2 = await readContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'nftEquip2',
@@ -101,7 +101,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 chainId: 10,
             })
 
-            const multidata = await readContracts({
+            const multidata = await readContracts(config, {
                 contracts: [
                     {
                         address: multiSlot,
@@ -141,109 +141,109 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 ],
             })
 
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[0])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[1])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[2])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[3])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[4])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[5])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[6])],
                         chainId: 10,
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[7])],
                         chainId: 10,
@@ -264,35 +264,35 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     },
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [multidata[0].result[0]],
                         chainId: 10,
                     },
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [multidata[1].result[0]],
                         chainId: 10,
                     },
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [multidata[2].result[0]],
                         chainId: 10,
                     },
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [multidata[3].result[0]],
                         chainId: 10,
                     },
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [multidata[4].result[0]],
                         chainId: 10,
@@ -642,11 +642,11 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 123743421, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 10
@@ -659,11 +659,11 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 10
@@ -814,11 +814,11 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             const multi1walletEvent = await multinft1SC.queryFilter(multi1walletFilter, 125216008, "latest")
             const multi1walletMap = await Promise.all(multi1walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const multi1walletRemoveDup = multi1walletMap.filter((obj, index) => multi1walletMap.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: multi1walletRemoveDup.map((item) => (
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                         chainId: 10
@@ -831,11 +831,11 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                     yourmultinft1wallet.push({Id: String(multi1walletRemoveDup[i])})
                 }
             }
-            const data5 = address !== null && address !== undefined ? await readContracts({
+            const data5 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yourmultinft1wallet.map((item) => (
                     {
                         address: multinft1,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                         chainId: 10
@@ -942,7 +942,7 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             result[42] !== 0 ? setTimeToSyncAgain(syncAgain.toLocaleString('es-CL')) : setTimeToSyncAgain(null)
             result[42] !== 0 && Date.now() - (Number(result[42]) * 1000) > (86400 * 1000) ? setCanSync(true) : setCanSync(false)
         })
-    }, [address, txupdate, erc721ABI, erc20ABI, nftSlotABI, multichainSlotABI, dunATVABI ])
+    }, [address, txupdate, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI ])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -962,16 +962,16 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             addr = cmdaonft
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -983,25 +983,25 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
         setisLoading(true)
         let nftaddr = cmdaonft
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: nftaddr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
                 chainId: 10,
             })
             if (nftAllow.toUpperCase() !== nftSlot.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: nftaddr,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [nftSlot, _nftid],
                     chainId: 10,
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'equip',
@@ -1009,9 +1009,9 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 value: ethers.utils.parseEther('0.00005'),
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1022,16 +1022,16 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
     const unequipNft = async (_slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'unstake',
                 args: [_slot],
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1046,25 +1046,25 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
             nftaddr = multinft1
         }
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: nftaddr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
                 chainId: 10,
             })
             if (nftAllow.toUpperCase() !== multiSlot.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: nftaddr,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [multiSlot, _nftid],
                     chainId: 10,
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: multiSlot,
                 abi: multichainSlotABI,
                 functionName: 'stake',
@@ -1072,9 +1072,9 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
                 value: ethers.utils.parseEther('0.00005'),
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1085,16 +1085,16 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
     const unequipMultiNft = async (_slot) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: multiSlot,
                 abi: multichainSlotABI,
                 functionName: 'unstake',
                 args: [_slot],
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1105,15 +1105,15 @@ const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupda
     const sync = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunATV,
                 abi: dunATVABI,
                 functionName: 'sync',
                 chainId: 10,
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

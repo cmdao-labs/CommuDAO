@@ -1,5 +1,6 @@
 import React from 'react'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots, Oval } from 'react-loading-icons'
@@ -19,7 +20,7 @@ const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, enchantRABI, osABI, erc721ABI, erc20ABI, questAmbassABI, cmdaoNameABI }) => {
+const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, enchantRABI, osABI, erc721Abi, erc20Abi, questAmbassABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])
@@ -32,7 +33,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
 
     React.useEffect(() => {
         window.scrollTo(0, 0)    
-        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721Abi, providerJBC)
 
         const thefetch = async () => {
             const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
@@ -40,35 +41,35 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
 
-            const data = address !== null && address !== undefined ? await readContracts({
+            const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: cmjToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunJasper,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: dunCopper,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: osToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     }
@@ -85,11 +86,11 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             let nfts = []
             let yournft = []
 
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: hexajibjib,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [item],
                     }
@@ -104,9 +105,9 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             }
 
             for (let i = 0; i <= yournft.length - 1; i++) {
-                const nftipfs = await readContract({
+                const nftipfs = await readContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'tokenURI',
                     args: [yournft[i].Id],
                 })
@@ -122,7 +123,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const data2_0 = await readContract({
+            const data2_0 = await readContract(config, {
                 address: questAmbass,
                 abi: questAmbassABI,
                 functionName: 'registCount',
@@ -132,7 +133,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
                 rankerDummy.push(null)
             }
 
-            const data2_00 = await readContracts({
+            const data2_00 = await readContracts(config, {
                 contracts: rankerDummy.map((item, i) => (
                     {
                         address: questAmbass,
@@ -146,7 +147,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             for (let i = 0; i <= Number(data2_00.length - 1); i++) {
                 nameArr.push(data2_00[i].result[0])
             }
-            const data2_001 = await readContracts({
+            const data2_001 = await readContracts(config, {
                 contracts: nameArr.map((item) => (
                     {
                         address: cmdaoName,
@@ -160,7 +161,7 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             for (let i = 0; i <= Number(nameArr.length - 1); i++) {
                 nameArr2.push(Number(data2_001[i].result))
             }
-            const data2_0011 = await readContracts({
+            const data2_0011 = await readContracts(config, {
                 contracts: nameArr2.map((item) => (
                     {
                         address: cmdaoName,
@@ -292,137 +293,131 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
             setRank(result[5])
         })
 
-    }, [address, erc20ABI, erc721ABI, txupdate, cmdaoNameABI, questAmbassABI])
+    }, [address, erc20Abi, erc721Abi, txupdate, cmdaoNameABI, questAmbassABI])
 
     const enchantNHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)
-        const cmjAllow = await readContract({
-            address: cmjToken,
-            abi: erc20ABI,
-            functionName: 'allowance',
-            args: [address, enchantN1],
-        })
-        if (cmjAllow < (450 * 10**18)) {
-            try {
-                const config = await prepareWriteContract({
+        try {
+            const cmjAllow = await readContract(config, {
+                address: cmjToken,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, enchantN1],
+            })
+            if (cmjAllow < (450 * 10**18)) {
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
-            } catch {}
-        }
-        const jaspAllow = await readContract({
-            address: dunJasper,
-            abi: erc20ABI,
-            functionName: 'allowance',
-            args: [address, enchantN1],
-        })
-        if (jaspAllow < (2 * 10**9)) {
-            try {
-                const config2 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            const jaspAllow = await readContract(config, {
+                address: dunJasper,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, enchantN1],
+            })
+            if (jaspAllow < (2 * 10**9)) {
+                let { request } = await simulateContract(config, {
                     address: dunJasper,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
-            } catch {}
-        }
-        const nftAllow = await readContract({
-            address: hexajibjib,
-            abi: erc721ABI,
-            functionName: 'getApproved',
-            args: [_nftid],
-        })
-        if (nftAllow.toUpperCase() !== enchantN1.toUpperCase()) {
-            try {
-                const config3 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            const nftAllow = await readContract(config, {
+                address: hexajibjib,
+                abi: erc721Abi,
+                functionName: 'getApproved',
+                args: [_nftid],
+            })
+            if (nftAllow.toUpperCase() !== enchantN1.toUpperCase()) {
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [enchantN1, _nftid],
                 })
-                const { hash: hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash03 })
-            } catch {}
-        }
-        try {
-            const config4 = await prepareWriteContract({
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
                 address: enchantN1,
                 abi: enchantNABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const { hash: hash1 } = await writeContract(config4)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const enchantNHandle2 = async (_nftid, _enchantindex) => {
         setisLoading(true)
         try {
-            const cmjAllow = await readContract({
+            const cmjAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantN1],
             })
             if (cmjAllow < (150 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const cuAllow = await readContract({
+            const cuAllow = await readContract(config, {
                 address: dunCopper,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantN1],
             })
             if (cuAllow < (1500 * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: dunCopper,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantN1, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== enchantN1.toUpperCase()) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [enchantN1, _nftid],
                 })
-                const { hash: hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash03 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config4 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: enchantN1,
                 abi: enchantNABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid]
             })
-            const { hash: hash1 } = await writeContract(config4)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -430,160 +425,160 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
     const enchantRHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)
         try {
-            const cmjAllow = await readContract({
+            const cmjAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (cmjAllow < (550 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const jdaoAllow = await readContract({
+            const jdaoAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (jdaoAllow < (35 * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const jaspAllow = await readContract({
+            const jaspAllow = await readContract(config, {
                 address: dunJasper,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (jaspAllow < (4 * 10**9)) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: dunJasper,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash03 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== enchantR.toUpperCase()) {
-                const config4 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [enchantR, _nftid],
                 })
-                const { hash: hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash: hash04 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config5 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: enchantR,
                 abi: enchantRABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
                 gas: 3000000,
             })
-            const { hash: hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
     const enchantRHandle2 = async (_nftid, _enchantindex) => {
         setisLoading(true)
         try {
-            const cmjAllow = await readContract({
+            const cmjAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (cmjAllow < (150 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const jdaoAllow = await readContract({
+            const jdaoAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (jdaoAllow < (25 * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const cuAllow = await readContract({
+            const cuAllow = await readContract(config, {
                 address: dunCopper,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (cuAllow < (12500 * 10**18)) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: dunCopper,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash03 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== enchantR.toUpperCase()) {
-                const config4 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [enchantR, _nftid],
                 })
-                const { hash: hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash: hash04 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config5 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: enchantR,
                 abi: enchantRABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
                 gas: 3000000,
             })
-            const { hash: hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -591,80 +586,80 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
     const enchantRHandle3 = async (_nftid, _enchantindex) => {
         setisLoading(true)
         try {
-            const cmjAllow = await readContract({
+            const cmjAllow = await readContract(config, {
                 address: cmjToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (cmjAllow < (800 * 10**18)) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: cmjToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const jdaoAllow = await readContract({
+            const jdaoAllow = await readContract(config, {
                 address: jdaoToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (jdaoAllow < (60 * 10**18)) {
-                const config2 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: jdaoToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash02 } = await writeContract(config2)
-                await waitForTransaction({ hash: hash02 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const osAllow = await readContract({
+            const osAllow = await readContract(config, {
                 address: osToken,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, enchantR],
             })
             if (osAllow < (3850 * 10**18)) {
-                const config3 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: osToken,
-                    abi: erc20ABI,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [enchantR, ethers.utils.parseEther(String(10**8))],
                 })
-                const { hash: hash03 } = await writeContract(config3)
-                await waitForTransaction({ hash: hash03 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== enchantR.toUpperCase()) {
-                const config4 = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [enchantR, _nftid],
                 })
-                const { hash: hash04 } = await writeContract(config4)
-                await waitForTransaction({ hash: hash04 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config5 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: enchantR,
                 abi: enchantRABI,
                 functionName: 'enchant',
                 args: [_enchantindex, _nftid],
                 gas: 3000000,
             })
-            const { hash: hash1 } = await writeContract(config5)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -672,31 +667,31 @@ const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, encha
     const extractHandle = async (_nftid) => {
         setisLoading(true)
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: hexajibjib,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== enchantN1.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: hexajibjib,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [osToken, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: osToken,
                 abi: osABI,
                 functionName: 'extract',
                 args: [_nftid]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}        
         setisLoading(false)
     }

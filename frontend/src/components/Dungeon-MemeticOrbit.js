@@ -1,6 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { readContract, readContracts, prepareWriteContract, waitForTransaction, writeContract } from '@wagmi/core'
+import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -19,7 +20,7 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 const ss = 2
 const isEnd = false
 
-const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
+const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
@@ -118,13 +119,13 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
-        const cmdaonftSC = new ethers.Contract(cmdaonft, erc721ABI, providerJBC)
-        const narutanftSC = new ethers.Contract(narutanft, erc721ABI, providerJBC)
-        const bbnftSC = new ethers.Contract(bbnft, erc721ABI, providerJBC)
+        const cmdaonftSC = new ethers.Contract(cmdaonft, erc721Abi, providerJBC)
+        const narutanftSC = new ethers.Contract(narutanft, erc721Abi, providerJBC)
+        const bbnftSC = new ethers.Contract(bbnft, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
-            const dataHouse = await readContracts({
+            const dataHouse = await readContracts(config, {
                 contracts: [
                     {
                         address: slot1,
@@ -855,186 +856,186 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 }
             }
 
-            const nftEQ = await readContract({
+            const nftEQ = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquip',
                 args: [address],
             })
-            const nftEQ2 = await readContract({
+            const nftEQ2 = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquip2',
                 args: [address],
             })
-            /*const nftEQColMul = await readContract({
+            /*const nftEQColMul = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquipColMul',
                 args: [address],
             })
-            const nftEQColMul2 = await readContract({
+            const nftEQColMul2 = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEQColMul2',
                 args: [address],
             })*/
-            const nftEQMemeSS1 = await readContract({
+            const nftEQMemeSS1 = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquipMeme',
                 args: [address, 1],
             })
-            const nftEQMemeSS2 = await readContract({
+            const nftEQMemeSS2 = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquipMeme',
                 args: [address, 2],
             })
 
-            const data = await readContracts({
+            const data = await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[0])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[1])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[2])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[3])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[4])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[5])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[6])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[7])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[0])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[1])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[2])],
                     },
                     {
                         address: bbnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[3])],
                     },
                     {
                         address: narutanft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[4])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[5])],
                     },
                     {
                         address: narutanft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[6])],
                     },
                     {
                         address: doijibToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
                     {
                         address: goldToken,
-                        abi: erc20ABI,
+                        abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                     },
@@ -1058,49 +1059,49 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[0])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[1])],
                     },
                     {
                         address: narutanft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[2])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[3])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[4])],
                     },
                     {
                         address: narutanft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[5])],
                     },
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[6])],
                     },
                 ],
             })
-            const rawPending = await readContract({
+            const rawPending = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'calculateRewards',
@@ -1722,7 +1723,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 })
             }
 
-            const nftStatus = await readContract({
+            const nftStatus = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftStatus',
@@ -1744,11 +1745,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
             const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts({
+            const data2 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -1760,11 +1761,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            const data3 = address !== null && address !== undefined ? await readContracts({
+            const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaonft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -1793,11 +1794,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const walletEvent2 = await narutanftSC.queryFilter(walletFilter2, 2852393, "latest")
             const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts({
+            const data4 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup2.map((item) => (
                     {
                         address: narutanft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -1809,11 +1810,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     yournftwallet2.push({Id: String(walletRemoveDup2[i])})
                 }
             }
-            const data5 = address !== null && address !== undefined ? await readContracts({
+            const data5 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet2.map((item) => (
                     {
                         address: narutanft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -1842,11 +1843,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             const walletEvent3 = await bbnftSC.queryFilter(walletFilter3, 3478177, "latest")
             const walletMap3 = await Promise.all(walletEvent3.map(async (obj) => String(obj.args.tokenId)))
             const walletRemoveDup3 = walletMap3.filter((obj, index) => walletMap3.indexOf(obj) === index)
-            const data6 = address !== null && address !== undefined ? await readContracts({
+            const data6 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: walletRemoveDup3.map((item) => (
                     {
                         address: bbnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
                     }
@@ -1858,11 +1859,11 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                     yournftwallet3.push({Id: String(walletRemoveDup3[i])})
                 }
             }
-            const data7 = address !== null && address !== undefined ? await readContracts({
+            const data7 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: yournftwallet3.map((item) => (
                     {
                         address: bbnft,
-                        abi: erc721ABI,
+                        abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
                     }
@@ -2009,7 +2010,7 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             setYourSS2CMPOW(result[70])
         })
 
-    }, [address, txupdate, erc721ABI, erc20ABI, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
+    }, [address, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -2033,15 +2034,15 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             addr = bbnft
         }
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: addr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'transferFrom',
                 args: [address, transferTo, transferNftid],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2082,31 +2083,31 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
             colBonus = 712
         }
         try {
-            const nftAllow = await readContract({
+            const nftAllow = await readContract(config, {
                 address: nftaddr,
-                abi: erc721ABI,
+                abi: erc721Abi,
                 functionName: 'getApproved',
                 args: [_nftid],
             })
             if (nftAllow.toUpperCase() !== dunMo.toUpperCase()) {
-                const config = await prepareWriteContract({
+                let { request } = await simulateContract(config, {
                     address: nftaddr,
-                    abi: erc721ABI,
+                    abi: erc721Abi,
                     functionName: 'approve',
                     args: [dunMo, _nftid],
                 })
-                const { hash: hash0 } = await writeContract(config)
-                await waitForTransaction({ hash: hash0 })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'equip',
                 args: [_nftid, colBonus, slot, _isMeme, ss],
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2117,15 +2118,15 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const unstakeNft = async (_slot, _isMeme, _ss) => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'unstake',
                 args: [_slot, myhouse, _isMeme, _ss],
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2142,31 +2143,31 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
                 gasAddr = doijibToken
                 gasIndex = 2
             }
-            const gasAllow = await readContract({
+            const gasAllow = await readContract(config, {
                 address: gasAddr,
-                abi: erc20ABI,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, dunMo],
             })
             if (gasAllow < (500000 * 10**18)) {
-                    const config = await prepareWriteContract({
-                        address: gasAddr,
-                        abi: erc20ABI,
-                        functionName: 'approve',
-                        args: [dunMo, ethers.utils.parseEther(String(10**8))],
-                    })
-                    const { hash: hash0 } = await writeContract(config)
-                    await waitForTransaction({ hash: hash0 })
+                let { request } = await simulateContract(config, {
+                    address: gasAddr,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [dunMo, ethers.utils.parseEther(String(10**8))],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
             }
-            const config2 = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'refuel',
                 args: [gasIndex, false, myhouse]
             })
-            const { hash: hash1 } = await writeContract(config2)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -2177,15 +2178,15 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     const claimBadge = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: badgeClaimer,
                 abi: badgeClaimerABI,
                 functionName: 'claimBadge',
                 args: [ss]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }
@@ -2193,15 +2194,15 @@ const Memeticorbit = ({ intrasubModetext, navigate, setisLoading, txupdate, setT
     /*const mintStOPT = async () => {
         setisLoading(true)
         try {
-            const config = await prepareWriteContract({
+            let { request } = await simulateContract(config, {
                 address: mintStOPT_Router,
                 abi: mintStOPTABI,
                 functionName: 'mintST',
                 args: [2]
             })
-            const { hash: hash1 } = await writeContract(config)
-            await waitForTransaction({ hash: hash1 })
-            setTxupdate(hash1)
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
         } catch {}
         setisLoading(false)
     }*/
