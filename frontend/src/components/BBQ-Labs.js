@@ -2381,7 +2381,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
             let h3 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
-                value: ethers.utils.parseEther(10),
+                value: ethers.utils.parseEther('10'),
             })
             await waitForTransactionReceipt(config, { hash: h3 })
         } catch (e) {
@@ -2434,7 +2434,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                 address: gemToken,
                 abi: erc20Abi,
                 functionName: 'approve',
-                args: [infpowLab, ethers.utils.parseEther(String(0))],
+                args: [infpowLab, ethers.utils.parseEther(String(10**8))],
             })
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
