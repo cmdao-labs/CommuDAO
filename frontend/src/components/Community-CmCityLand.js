@@ -675,7 +675,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             let h2 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
-                value: ethers.utils.parseEther(10),
+                value: ethers.utils.parseEther('10'),
             })
             await waitForTransactionReceipt(config, { hash: h2 })
         } catch (e) {
@@ -799,7 +799,7 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
             let h2 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
-                value: ethers.utils.parseEther(10),
+                value: ethers.utils.parseEther('10'),
             })
             await waitForTransactionReceipt(config, { hash: h2 })
         } catch (e) {
