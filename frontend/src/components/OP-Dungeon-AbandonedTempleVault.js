@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -13,8 +12,8 @@ const dunATV = '0x1391a538985f2F897375219573c7F5D61EA33Cdf'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const AbandonedTempleVault = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI }) => {
-    let { address, chain } = useAccount()
+const AbandonedTempleVault = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI }) => {
+    let { address } = useAccount()
     //let address = '0x8B9C26D596997420089ceb7681A8faEF4486B8F0'
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {

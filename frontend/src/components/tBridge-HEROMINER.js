@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 const { ethereum } = window
@@ -127,7 +126,7 @@ const eligibleArr = [12845056,67108864,174325760,219414528,135528448,191102976,1
 68026368,136577024,220725248,192020480,146800640,68157440,136445952,221118464,191365120,146669568,67895296,136314880,220594176,191496192,146538496,67764224,136183808,220463104,191889408,146407424,67633152,136052736,220332032,191758336,146276352,
 67502080,135921664,220200960,191234048,146145280,67371008,135790592,219676672,191627264,146014208,67239936,135659520,219938816,190971904,145883136];
 
-const TBridgeHEROMINER = ({ setisLoading, txupdate, setTxupdate, erc721Abi, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20Abi, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance, cmmBbqBalance }) => {
+const TBridgeHEROMINER = ({ config, setisLoading, txupdate, setTxupdate, erc721Abi, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, goldBalance, dmBalance, engyBalance, gemBalance, erc20Abi, uniTokensBridgeABI, bridgebalGold, bridgebalDm, cmmBalance, cmmBkcBalance, cmmBbqBalance }) => {
     const { address, chain } = useAccount()
 
     const [nft, setNft] = React.useState([])

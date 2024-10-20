@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -16,7 +15,7 @@ const dumpster2 = '0xB6b281D2AB93D31757FF13D42147dF1B55c3dDb5'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DumpsterHill = ({ navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, dumpster1ABI, dumpster2ABI }) => {
+const DumpsterHill = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, dumpster1ABI, dumpster2ABI }) => {
     const { address } = useAccount()
 
     const [stOPTBalance, setStOPTBalance] = React.useState(0)

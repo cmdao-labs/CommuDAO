@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -14,7 +13,7 @@ const statBaseCmd = '0x7b61b5Eb38535A385BEBc137Cbe2F4F5996d3EC0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const Guild = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
+const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
     let { address, chain } = useAccount()
     //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
     const youraddr = address

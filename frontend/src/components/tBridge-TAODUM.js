@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -13,7 +12,7 @@ const bkcBridge = '0x519fF534E58A226c11566b0546f900766664B705'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TBridgeTAODUM = ({ setisLoading, txupdate, setTxupdate, erc721Abi, tbridgeNFTABI }) => {
+const TBridgeTAODUM = ({ config, setisLoading, txupdate, setTxupdate, erc721Abi, tbridgeNFTABI }) => {
     let { address, chain } = useAccount()
 
     const [nft, setNft] = React.useState([])

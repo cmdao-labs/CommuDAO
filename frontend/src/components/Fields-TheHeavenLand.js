@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -10,7 +9,7 @@ const thlField = '0xdBC6e0928e49f22Ca448fEF2fEb9de526d6A65B9'
 const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheHeavenLand = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, thlFieldABI }) => {
+const TheHeavenLand = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, thlFieldABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {

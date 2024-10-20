@@ -1,12 +1,11 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { ethers } from 'ethers'
 
 const cmdethlp = '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'
 const stcmdlp = '0x51f97E67B2fF5eD064Dc2B27b7A745E0d4C47Ee0'
    
-const OpGameSwapFarm = ({ address, setisLoading, setTxupdate, txupdate, erc20Abi, stcmdABI }) => {
+const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, erc20Abi, stcmdABI }) => {
     const [lpBalance, setLpBalance] = React.useState(null)
     const [stLpBalance, setStLpBalance] = React.useState(null)
     const [lpStake, setLpStake] = React.useState("")

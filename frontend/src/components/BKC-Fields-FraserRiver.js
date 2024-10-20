@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -11,7 +10,7 @@ const salmToken = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const cmmToken = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const FraserRiver = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, salmFieldABI }) => {
+const FraserRiver = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc20Abi, erc721Abi, salmFieldABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {

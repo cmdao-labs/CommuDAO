@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import OpSwap from './Op-GameSwap-Swap'
@@ -68,7 +67,7 @@ const inputStyle = {
     }),
 }
    
-const OpGameSwap = ({ setisLoading, txupdate, setTxupdate, erc20Abi, veloPoolABI, velodromeRouterABI, velodromeCallerABI, bkcOracleABI, stcmdABI }) => {
+const OpGameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, veloPoolABI, velodromeRouterABI, velodromeCallerABI, bkcOracleABI, stcmdABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)

@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
@@ -11,7 +10,7 @@ const t1MALL = '0x224dFcCC4e6bFc2c25B0c5ee46D580f3Be77E3B4'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const OPMallT1 = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, uniNftBridgeABI, multichainMallABI }) => {
+const OPMallT1 = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, uniNftBridgeABI, multichainMallABI }) => {
     const { address, chain } = useAccount()
     //let address = '0x8B9C26D596997420089ceb7681A8faEF4486B8F0'
 

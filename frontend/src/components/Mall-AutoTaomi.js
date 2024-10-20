@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -10,7 +9,7 @@ const jtaoToken = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 const taomiII = '0xbd5bff1fbbd83fecd749a328d98f860f7f343c10'
 const taomiEE = '0x3822b065e9980f6cd62fd8fa60b3ffb36866ca60'
 
-const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, iiBalance, eeBalance, jtaoBalance }) => {
+const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, iiBalance, eeBalance, jtaoBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)

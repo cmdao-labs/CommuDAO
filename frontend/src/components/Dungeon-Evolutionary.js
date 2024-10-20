@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots } from 'react-loading-icons'
@@ -26,7 +25,7 @@ const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const NpcEvolutionary = ({ setisLoading, txupdate, setTxupdate, evolutionaryABI, fusionABI, salonABI, erc721Abi, erc20Abi }) => {
+const NpcEvolutionary = ({ config, setisLoading, txupdate, setTxupdate, evolutionaryABI, fusionABI, salonABI, erc721Abi, erc20Abi }) => {
     const { address } = useAccount()
     
     const [nft, setNft] = React.useState([])

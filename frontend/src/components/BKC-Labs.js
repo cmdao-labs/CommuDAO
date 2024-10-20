@@ -2,7 +2,6 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { useAccount } from 'wagmi'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 const { ethereum } = window
 
 const bstToken = "0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e"
@@ -21,7 +20,7 @@ const redeemToken2 = '0xABaB4f130e282aF569905651d5c997B91E6c3D28'
 
 const redeemMerchant = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
 
-const BKCLabs = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, stakerMachineABI, redeemTokenABI, cmdaoMerchantABI }) => {
+const BKCLabs = ({ config, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, stakerMachineABI, redeemTokenABI, cmdaoMerchantABI }) => {
     const { address } = useAccount()
 
     const [bstBalance, setBstBalance] = React.useState(0)

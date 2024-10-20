@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
@@ -29,7 +28,7 @@ const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ setisLoading, txupdate, setTxupdate, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
+const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
     const { address } = useAccount()
 
     /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)

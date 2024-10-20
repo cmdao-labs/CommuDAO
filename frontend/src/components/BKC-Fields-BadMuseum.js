@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -9,7 +8,7 @@ const bkga = '0x99a763eCBd64fdcCfE06143D405D5DFaf5828ce2'
 const badField = '0xded5c3F32bC01C0F451A4FC79a11619eB78bAF5e'
 const providerBKC = new ethers.getDefaultProvider('https://rpc.bitkubchain.io')
 
-const BadMuseum = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721Abi, tunaFieldABI, erc20Abi }) => {
+const BadMuseum = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721Abi, tunaFieldABI, erc20Abi }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {

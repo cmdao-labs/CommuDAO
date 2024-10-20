@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots, Oval } from 'react-loading-icons'
@@ -20,7 +19,7 @@ const questAmbass = '0x467eF538C90434D4F69cF8A8F40cd71a96e8424e'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Npcblacksmith = ({ setisLoading, txupdate, setTxupdate, enchantNABI, enchantRABI, osABI, erc721Abi, erc20Abi, questAmbassABI, cmdaoNameABI }) => {
+const Npcblacksmith = ({ config, setisLoading, txupdate, setTxupdate, enchantNABI, enchantRABI, osABI, erc721Abi, erc20Abi, questAmbassABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])

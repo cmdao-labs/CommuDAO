@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { Oval } from 'react-loading-icons'
 
@@ -20,7 +19,7 @@ const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Mkp = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721Abi, erc20Abi, aurora721ABI, cmdaoMkpABI, houseStakingABI }) => {
+const Mkp = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, erc721Abi, erc20Abi, aurora721ABI, cmdaoMkpABI, houseStakingABI }) => {
     const { address } = useAccount()
     let sellerAddr = ''
     if (intrasubModetext === undefined) {

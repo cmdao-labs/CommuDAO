@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -11,7 +10,7 @@ const woodToken = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 const degenoDoijibWJBC = '0xF2c2A60F3Fcf8017fED0655F694B91a785fc170b'
 const degenoDoijibWood = '0xD50855b6AdA0a796785D1a8FB08CC6F0A4662463'
 
-const Ammmerchant3 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, erc20Abi, cmjBalance, doijibBalance, wjbcBalance, woodBalance }) => {
+const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, erc20Abi, doijibBalance, wjbcBalance, woodBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)

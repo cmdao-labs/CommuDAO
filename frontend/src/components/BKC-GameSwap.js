@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 const { ethereum } = window
@@ -9,7 +8,7 @@ const cmmkkubToken = "0x5Cced24E580586841f326d5088D288e6Ddd201dA"
 const cmosToken = "0x8b062b96Bb689833D7870a0133650FA22302496d"
 const farmCMOS = "0xe5B764566CB5b26fE7568e59370368ACf9c7c5c3"
 
-const BKCGameSwap = ({ setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
+const BKCGameSwap = ({ config, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, diamonLpABI, farmCmosABI, bkcOracleABI }) => {
     const { address } = useAccount()
 
     const [cmmKkubBalance, setCmmKkubBalance] = React.useState(0)

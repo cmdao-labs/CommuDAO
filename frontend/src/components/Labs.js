@@ -1,10 +1,10 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 const { ethereum } = window
 
+const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const woodField = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 const bbqToken = '0x7004757e595409568Bd728736e1b0c79FDc94e1c'
@@ -22,27 +22,22 @@ const platLab2 = '0xB080353ccD9CC565C0844Bb22e2997EdB2b6B7f0'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
 const plutoLab = '0x907bcCa99052c195BA8181aca07181D18E1C7555'
-
 const tunaField = "0x09676315DC0c85F6bd5e866C5f1363A00Eec4381"
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const taomeme = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
-
 const gearField = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
-
 const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 
-const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
-
-const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, erc20Abi, kycABI }) => {
+const Labs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, erc20Abi, kycABI }) => {
     const { address } = useAccount()
-
+    const [isKYC, setIsKYC] = React.useState(null)
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [woodBalance, setWoodBalance] = React.useState(0)
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -62,69 +57,54 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
     const [swarBalance, setSwarBalance] = React.useState(0)
     const [angbBalance, setAngbBalance] = React.useState(0)
     const [starBalance, setStarBalance] = React.useState(0)
-
     const [tmBalance, setTmBalance] = React.useState(0)
     const [gearBalance, setGearBalance] = React.useState(0)
     const [iiBalance, setIiBalance] = React.useState(0)
     const [eeBalance, setEeBalance] = React.useState(0)
-
     const [levelCraftBBQ, setLevelCraftBBQ] = React.useState(0)
     const [isCraftBBQ, setIsCraftBBQ] = React.useState(null)
     const [timetoClaimBBQ, setTimeToClaimBBQ] = React.useState(0)
     const [canCraftBBQ, setCanCraftBBQ] = React.useState(false)
-
     const [isCraftPZA, setIsCraftPZA] = React.useState(null)
     const [timetoClaimPZA, setTimeToClaimPZA] = React.useState(0)
     const [canCraftPZA, setCanCraftPZA] = React.useState(false)
-
     const [isCraftSIL, setIsCraftSIL] = React.useState(null)
     const [timetoClaimSIL, setTimeToClaimSIL] = React.useState(0)
     const [canCraftSIL, setCanCraftSIL] = React.useState(false)
-
     const [isCraftGOLD, setIsCraftGOLD] = React.useState(null)
     const [timetoClaimGOLD, setTimeToClaimGOLD] = React.useState(0)
     const [canCraftGOLD, setCanCraftGOLD] = React.useState(false)
-
     const [isCraftPLAT, setIsCraftPLAT] = React.useState(null)
     const [timetoClaimPLAT, setTimeToClaimPLAT] = React.useState(0)
     const [canCraftPLAT, setCanCraftPLAT] = React.useState(false)
-
     const [isCraftPLAT2, setIsCraftPLAT2] = React.useState(null)
     const [timetoClaimPLAT2, setTimeToClaimPLAT2] = React.useState(0)
     const [canCraftPLAT2, setCanCraftPLAT2] = React.useState(false)
-
     const [isCraftPLUTO, setIsCraftPLUTO] = React.useState(null)
     const [timetoClaimPLUTO, setTimeToClaimPLUTO] = React.useState(0)
     const [canCraftPLUTO, setCanCraftPLUTO] = React.useState(false)
-
     const [isCraft1, setIsCraft1] = React.useState(null)
     const [timetoClaim1, setTimeToClaim1] = React.useState(0)
     const [canCraft1, setCanCraft1] = React.useState(false)
-
     const [isCraft2, setIsCraft2] = React.useState(null)
     const [craft2machine, setCraft2machine] = React.useState(0)
     const [timetoClaim2, setTimeToClaim2] = React.useState(0)
     const [timetoClaim2_2, setTimeToClaim2_2] = React.useState(0)
     const [canCraft2, setCanCraft2] = React.useState(false)
     const [canCraft2_2, setCanCraft2_2] = React.useState(false)
-
     const [isCraftSWAR, setIsCraftSWAR] = React.useState(null)
     const [timetoClaimSWAR, setTimeToClaimSWAR] = React.useState(0)
     const [canCraftSWAR, setCanCraftSWAR] = React.useState(false)
-
     const [isCraftSTAR, setIsCraftSTAR] = React.useState(null)
     const [timetoClaimSTAR, setTimeToClaimSTAR] = React.useState(0)
     const [canCraftSTAR, setCanCraftSTAR] = React.useState(false)
-
     const [isCraftII, setIsCraftII] = React.useState(null)
     const [timetoClaimII, setTimeToClaimII] = React.useState(0)
     const [canCraftII, setCanCraftII] = React.useState(false)
     const [craftIImachine, setCraftIImachine] = React.useState(0)
     const [timetoClaimII2, setTimeToClaimII2] = React.useState(0)
     const [canCraftII2, setCanCraftII2] = React.useState(false)
-
-    const [isKYC, setIsKYC] = React.useState(null)
-
+    
     React.useEffect(() => {    
         window.scrollTo(0, 0)  
         console.log("Connected to " + address)
@@ -353,17 +333,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                     },
                 ],
             }) : [
-                {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: false}, 
-                {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, machineIndex: 0, laststamp: 0}}, {result: {isCraft: false, machineIndex: 0, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}},
-                {result: 0}, {result: 0},
-                {result: {isCraft: false, laststamp: 0}}, 
-                {result: 0}, {result: 0},
-                {result: {isCraft: false, laststamp: 0}},
-                {result: 0}, {result: 0},
-                {result: {isCraft: false, laststamp: 0}},
-                {result: 0}, {result: 0}, {result: 0},
-                {result: {isCraft: false, laststamp: 0}},
-                {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, 
+                {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, 
+                {result: 0}, {result: 0}, {result: false}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, machineIndex: 0, laststamp: 0}}, {result: {isCraft: false, machineIndex: 0, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}},
+                {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0},
+                {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, 
             ]
             
             const cmjBal = data[0].result
@@ -379,7 +352,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const silBal = data[10].result
             const goldBal = data[11].result
             const isDionysus = data[12].result
-
             const labLog = data[13].result
             const labLog2 = data[14].result
             const labLogBBQ = data[15].result
@@ -387,46 +359,36 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             const labLogSIL = data[17].result
             const labLogGOLD = data[18].result
             const labLogPLUTO = data[19].result
-
             const plutoBal = data[20].result
             const platBal = data[21].result
-
             const labLogPLAT = data[22].result
-
             const vaBagBal = data[23].result
             const swarBal = data[24].result
-
             const labLogSWAR = data[25].result
-
             const angbBal = data[26].result
             const starBal = data[27].result
-
             const labLogSTAR = data[28].result
-
             const tmBal = data[29].result
             const gearBal = data[30].result
             const iiBal = data[31].result
-
             const labLogII = data[32].result
-
             const eeBal = data[33].result
             const labLogPlat2 = data[34].result
             const jaspBal = data[35].result
-
-            const _canCraft1 = Number(ethers.utils.formatEther(String(tunaBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 10 ? true : false
-            const _canCraft2 = Number(ethers.utils.formatEther(String(miceBal))) >= 50 && Number(ethers.utils.formatEther(String(cmjBal))) >= 9 ? true : false
-            const _canCraft2_2 = Number(ethers.utils.formatEther(String(miceBal))) >= 500 && Number(ethers.utils.formatEther(String(cmjBal))) >= 90 ? true : false
-            const _canCraftBBQ = Number(ethers.utils.formatEther(String(woodBal))) >= 100 && Number(jbcBal.formatted) >= 0.01 ? true : false
-            const _canCraftPZA = Number(ethers.utils.formatEther(String(stOPTBal))) >= 1 && Number(ethers.utils.formatEther(String(bbqBal))) >= 10000 ? true : false
-            const _canCraftSIL = Number(ethers.utils.formatEther(String(cmjBal))) >= 1 && Number(ethers.utils.formatEther(String(cuBal))) >= 150000 ? true : false
-            const _canCraftGOLD = Number(ethers.utils.formatEther(String(sx31Bal))) >= 5 && Number(ethers.utils.formatEther(String(silBal))) >= 10000 ? true : false
-            const _canCraftPLUTO = Number(ethers.utils.formatUnits(String(jaspBal), "gwei")) >= 100 && Number(ethers.utils.formatEther(String(cmjBal))) >= 5 ? true : false
-            const _canCraftPLAT = Number(ethers.utils.formatEther(String(goldBal))) >= 300 && Number(ethers.utils.formatEther(String(ctunaBal))) >= 5 ? true : false
-            const _canCraftSWAR = Number(ethers.utils.formatEther(String(vaBagBal))) >= 10 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
-            const _canCraftSTAR = Number(ethers.utils.formatEther(String(angbBal))) >= 40 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
-            const _canCraftII = Number(ethers.utils.formatEther(String(gearBal))) >= 888 && Number(ethers.utils.formatEther(String(tmBal))) >= 8 ? true : false
-            const _canCraftII2 = Number(ethers.utils.formatEther(String(gearBal))) >= 88888 && Number(ethers.utils.formatEther(String(tmBal))) >= 128 ? true : false
-            const _canCraftPLAT2 = Number(ethers.utils.formatEther(String(eeBal))) >= 888 && Number(ethers.utils.formatEther(String(cmjBal))) >= 1 ? true : false
+            const _canCraft1 = Number(ethers.utils.formatEther(tunaBal)) >= 50 && Number(ethers.utils.formatEther(cmjBal)) >= 10 ? true : false
+            const _canCraft2 = Number(ethers.utils.formatEther(miceBal)) >= 50 && Number(ethers.utils.formatEther(cmjBal)) >= 9 ? true : false
+            const _canCraft2_2 = Number(ethers.utils.formatEther(miceBal)) >= 500 && Number(ethers.utils.formatEther(cmjBal)) >= 90 ? true : false
+            const _canCraftBBQ = Number(ethers.utils.formatEther(woodBal)) >= 100 && Number(jbcBal.formatted) >= 0.01 ? true : false
+            const _canCraftPZA = Number(ethers.utils.formatEther(stOPTBal)) >= 1 && Number(ethers.utils.formatEther(bbqBal)) >= 10000 ? true : false
+            const _canCraftSIL = Number(ethers.utils.formatEther(cmjBal)) >= 1 && Number(ethers.utils.formatEther(cuBal)) >= 150000 ? true : false
+            const _canCraftGOLD = Number(ethers.utils.formatEther(sx31Bal)) >= 5 && Number(ethers.utils.formatEther(silBal)) >= 10000 ? true : false
+            const _canCraftPLUTO = Number(ethers.utils.formatUnits(jaspBal), 'gwei') >= 100 && Number(ethers.utils.formatEther(cmjBal)) >= 5 ? true : false
+            const _canCraftPLAT = Number(ethers.utils.formatEther(goldBal)) >= 300 && Number(ethers.utils.formatEther(ctunaBal)) >= 5 ? true : false
+            const _canCraftSWAR = Number(ethers.utils.formatEther(vaBagBal)) >= 10 && Number(ethers.utils.formatEther(cmjBal)) >= 1 ? true : false
+            const _canCraftSTAR = Number(ethers.utils.formatEther(angbBal)) >= 40 && Number(ethers.utils.formatEther(cmjBal)) >= 1 ? true : false
+            const _canCraftII = Number(ethers.utils.formatEther(gearBal)) >= 888 && Number(ethers.utils.formatEther(tmBal)) >= 8 ? true : false
+            const _canCraftII2 = Number(ethers.utils.formatEther(gearBal)) >= 88888 && Number(ethers.utils.formatEther(tmBal)) >= 128 ? true : false
+            const _canCraftPLAT2 = Number(ethers.utils.formatEther(eeBal)) >= 888 && Number(ethers.utils.formatEther(cmjBal)) >= 1 ? true : false
 
             return [
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
@@ -461,14 +423,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             setCopperBalance(ethers.utils.formatEther(result[11]))
             setSilverBalance(ethers.utils.formatEther(result[12]))
             setGoldBalance(ethers.utils.formatEther(result[13]))
-
             setIsCraft1(result[14][0])
             const nextHour = new Date((Number(result[14][1]) * 1000) + (3600 * 1000))
             Date.now() - (Number(result[14][1]) * 1000) <= (3600 * 1000) ?
                 setTimeToClaim1(nextHour.toLocaleString('es-CL')) :
                 setTimeToClaim1(0)
             setCanCraft1(result[15])
-
             setIsCraft2(result[16][0])
             setCraft2machine(Number(result[16][1]))
             let nextHour2 = 0
@@ -485,7 +445,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             }
             setCanCraft2(result[17])
             setCanCraft2_2(result[18])
-
             setLevelCraftBBQ(Number(result[19][0]))
             setIsCraftBBQ(Number(result[19][1]) > 0)
             const nextObtainBBQ = new Date((Number(result[19][2]) * 1000) + (300 * 1000))
@@ -493,28 +452,24 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimBBQ(nextObtainBBQ.toLocaleString('es-CL')) :
                 setTimeToClaimBBQ(0)
             setCanCraftBBQ(result[20])
-
             setIsCraftPZA(Number(result[21][0]) > 0)
             const nextHourPZA = new Date((Number(result[21][1]) * 1000) + (3600 * 24 * 1000))
             Date.now() - (Number(result[21][1]) * 1000) <= (3600 * 24 * 1000) ?
                 setTimeToClaimPZA(nextHourPZA.toLocaleString('es-CL')) :
                 setTimeToClaimPZA(0)
             setCanCraftPZA(result[22])
-            
             setIsCraftSIL(Number(result[23][0]) > 0)
             const nextHourSIL = new Date((Number(result[23][1]) * 1000) + (3600 * 2 * 1000))
             Date.now() - (Number(result[23][1]) * 1000) <= (3600 * 2 * 1000) ?
                 setTimeToClaimSIL(nextHourSIL.toLocaleString('es-CL')) :
                 setTimeToClaimSIL(0)
             setCanCraftSIL(result[24])
-
             setIsCraftGOLD(Number(result[25][0]) > 0)
             const nextHourGOLD = new Date((Number(result[25][1]) * 1000) + (3600 * 4 * 1000))
             Date.now() - (Number(result[25][1]) * 1000) <= (3600 * 4 * 1000) ?
                 setTimeToClaimGOLD(nextHourGOLD.toLocaleString('es-CL')) :
                 setTimeToClaimGOLD(0)
             setCanCraftGOLD(result[26])
-
             setPlutoBalance(ethers.utils.formatUnits(String(result[27]), "gwei"))
             setIsCraftPLUTO(Number(result[28][0]) > 0)
             const nextHourPLUTO = new Date((Number(result[28][1]) * 1000) + (3600 * 2 * 1000))
@@ -522,7 +477,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimPLUTO(nextHourPLUTO.toLocaleString('es-CL')) :
                 setTimeToClaimPLUTO(0)
             setCanCraftPLUTO(result[29])
-
             setPlatBalance(ethers.utils.formatEther(result[30]))
             setIsCraftPLAT(Number(result[31][0]) > 0)
             const nextHourPLAT = new Date((Number(result[31][1]) * 1000) + (3600 * 8 * 1000))
@@ -530,7 +484,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimPLAT(nextHourPLAT.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT(0)
             setCanCraftPLAT(result[32])
-
             setVabagBalance(ethers.utils.formatEther(result[33]))
             setSwarBalance(ethers.utils.formatEther(result[34]))
             setIsCraftSWAR(Number(result[35][0]) > 0)
@@ -539,7 +492,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimSWAR(nextHourSWAR.toLocaleString('es-CL')) :
                 setTimeToClaimSWAR(0)
             setCanCraftSWAR(result[36])
-
             setAngbBalance(ethers.utils.formatEther(result[37]))
             setStarBalance(ethers.utils.formatEther(result[38]))
             setIsCraftSTAR(Number(result[39][0]) > 0)
@@ -548,7 +500,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimSTAR(nextHourSTAR.toLocaleString('es-CL')) :
                 setTimeToClaimSTAR(0)
             setCanCraftSTAR(result[40])
-
             setTmBalance(ethers.utils.formatEther(result[41]))
             setGearBalance(ethers.utils.formatEther(result[42]))
             setIiBalance(ethers.utils.formatEther(result[43]))
@@ -568,7 +519,6 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             }
             setCanCraftII(result[45])
             setCanCraftII2(result[46])
-
             setEeBalance(ethers.utils.formatEther(result[47]))
             setIsCraftPLAT2(Number(result[48][0]) > 0)
             const nextHourPLAT2 = new Date((Number(result[48][1]) * 1000) + (60 * 15 * 1000))
@@ -576,8 +526,7 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 setTimeToClaimPLAT2(nextHourPLAT2.toLocaleString('es-CL')) :
                 setTimeToClaimPLAT2(0)
             setCanCraftPLAT2(result[49])
-
-            setJaspBalance(ethers.utils.formatUnits(String(result[50]), "gwei"))
+            setJaspBalance(ethers.utils.formatUnits(result[50], 'gwei'))
         })
 
     }, [address, txupdate, erc20Abi, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, kycABI])
@@ -591,12 +540,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, ctunaLab],
             })
-            if (tunaAllow < (50 * 10**18)) {
+            if (Number(ethers.utils.formatEther(tunaAllow)) < 50) {
                 let { request } = await simulateContract(config, {
                     address: tunaField,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [ctunaLab, ethers.utils.parseEther(String(10**8))],
+                    args: [ctunaLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -607,12 +556,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, ctunaLab],
             })
-            if (cmjAllow < (50 * 10**18)) {
+            if (Number(ethers.utils.formatEther(cmjAllow)) < 50) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [ctunaLab, ethers.utils.parseEther(String(10**8))],
+                    args: [ctunaLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -625,10 +574,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const claim1Handle = async () => {
         setisLoading(true)
         try {
@@ -640,7 +591,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -653,12 +607,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, sx31Lab],
             })
-            if (miceAllow < (500 * 10**18)) {
+            if (Number(ethers.utils.formatEther(miceAllow)) < 500) {
                 let { request } = await simulateContract(config, {
                     address: fieldMice,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [sx31Lab, ethers.utils.parseEther(String(10**8))],
+                    args: [sx31Lab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -669,12 +623,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, sx31Lab],
             })
-            if (cmjAllow < (100 * 10**18)) {
+            if (Number(ethers.utils.formatEther(cmjAllow)) < 100) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [sx31Lab, ethers.utils.parseEther(String(10**8))],
+                    args: [sx31Lab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -688,10 +642,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtain2Handle = async (_machine) => {
         setisLoading(true)
         try {
@@ -704,7 +660,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -717,12 +676,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, bbqLab],
             })
-            if (woodAllow < (100 * 10**18)) {
+            if (Number(ethers.utils.formatEther(woodAllow)) < 100) {
                 let { request } = await simulateContract(config, {
                     address: woodField,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [bbqLab, ethers.utils.parseEther(String(10**8))],
+                    args: [bbqLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -737,10 +696,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtainBBQHandle = async () => {
         setisLoading(true)
         try {
@@ -752,10 +713,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const upgradeBBQHandle = async (_level) => {
         setisLoading(true)
         try {
@@ -773,12 +736,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             } else if (_level === 3) {
                 woodUsage = 600000
             }
-            if (woodAllow < (woodUsage * 10**18)) {
+            if (Number(ethers.utils.formatEther(woodAllow)) < woodUsage) {
                 let { request } = await simulateContract(config, {
                     address: woodField,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [bbqLab, ethers.utils.parseEther(String(10**8))],
+                    args: [bbqLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -792,7 +755,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -805,13 +771,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, pzaLab],
             })
-            console.log(bbqAllow)
-            if (bbqAllow < (10000 * 10**18)) {
+            if (Number(ethers.utils.formatEther(bbqAllow)) < 10000) {
                 let { request } = await simulateContract(config, {
                     address: bbqToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [pzaLab, ethers.utils.parseEther(String(10**8))],
+                    args: [pzaLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -822,12 +787,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, pzaLab],
             })
-            if (stOPTAllow < (1 * 10**18)) {
+            if (Number(ethers.utils.formatEther(stOPTAllow)) < 1) {
                 let { request } = await simulateContract(config, {
                     address: stOPT,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [pzaLab, ethers.utils.parseEther(String(10**8))],
+                    args: [pzaLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -841,10 +806,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtainPzaHandle = async (_index) => {
         setisLoading(true)
         try {
@@ -856,7 +823,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -869,12 +839,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, silLab],
             })
-            if (cuAllow < (150000 * 10**18)) {
+            if (Number(ethers.utils.formatEther(cuAllow)) < 150000) {
                 let { request } = await simulateContract(config, {
                     address: cuToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [silLab, ethers.utils.parseEther(String(10**8))],
+                    args: [silLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -885,12 +855,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, silLab],
             })
-            if (cmjAllow < (1 * 10**18)) {
+            if (Number(ethers.utils.formatEther(cmjAllow)) < 1) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [silLab, ethers.utils.parseEther(String(10**8))],
+                    args: [silLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -904,10 +874,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtainSILHandle = async () => {
         setisLoading(true)
         try {
@@ -919,7 +891,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -932,12 +907,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, goldLab],
             })
-            if (silAllow < (10000 * 10**18)) {
+            if (Number(ethers.utils.formatEther(silAllow)) < 10000) {
                 let { request } = await simulateContract(config, {
                     address: silToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [goldLab, ethers.utils.parseEther(String(10**8))],
+                    args: [goldLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -948,12 +923,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, goldLab],
             })
-            if (sx31Allow < (5 * 10**18)) {
+            if (Number(ethers.utils.formatEther(sx31Allow)) < 5) {
                 let { request } = await simulateContract(config, {
                     address: sx31Lab,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [goldLab, ethers.utils.parseEther(String(10**8))],
+                    args: [goldLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -967,10 +942,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtainGOLDHandle = async () => {
         setisLoading(true)
         try {
@@ -982,7 +959,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -995,12 +975,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, platLab],
             })
-            if (goldAllow < (300 * 10**18)) {
+            if (Number(ethers.utils.formatEther(goldAllow)) < 300) {
                 let { request } = await simulateContract(config, {
                     address: goldToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [platLab, ethers.utils.parseEther(String(10**8))],
+                    args: [platLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1011,12 +991,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, platLab],
             })
-            if (ctunaAllow < (5 * 10**18)) {
+            if (Number(ethers.utils.formatEther(ctunaAllow)) < 5) {
                 let { request } = await simulateContract(config, {
                     address: ctunaLab,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [platLab, ethers.utils.parseEther(String(10**8))],
+                    args: [platLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1030,7 +1010,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const obtainPLATHandle = async () => {
@@ -1044,7 +1027,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -1057,12 +1043,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, platLab2],
             })
-            if (eeAllow < (888 * 10**18)) {
+            if (Number(ethers.utils.formatEther(eeAllow)) < 888) {
                 let { request } = await simulateContract(config, {
                     address: dunEE,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [platLab2, ethers.utils.parseEther(String(10**8))],
+                    args: [platLab2, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1073,12 +1059,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, platLab2],
             })
-            if (cmjAllow < 10**18) {
+            if (Number(ethers.utils.formatEther(cmjAllow)) < 1) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [platLab2, ethers.utils.parseEther(String(10**8))],
+                    args: [platLab2, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1092,7 +1078,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const obtainPLAT2Handle = async () => {
@@ -1106,7 +1095,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -1119,12 +1111,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, plutoLab],
             })
-            if (jaspAllow < (100 * 10**9)) {
+            if (Number(ethers.utils.formatEther(jaspAllow)) < 100) {
                 let { request } = await simulateContract(config, {
                     address: dunJasper,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [plutoLab, ethers.utils.parseEther(String(10**8))],
+                    args: [plutoLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1135,12 +1127,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, plutoLab],
             })
-            if (cmjAllow < (5 * 10**18)) {
+            if (Number(ethers.utils.formatEther(cmjAllow)) < 5) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [plutoLab, ethers.utils.parseEther(String(10**8))],
+                    args: [plutoLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1154,7 +1146,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const obtainPLUTOHandle = async () => {
@@ -1168,7 +1163,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -1181,12 +1179,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, swarLab],
             })
-            if (vabagAllow < (10 * 10**18)) {
+            if (Number(ethers.utils.formatEther(vabagAllow)) < 10) {
                 let { request } = await simulateContract(config, {
                     address: vabag,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [swarLab, ethers.utils.parseEther(String(10**8))],
+                    args: [swarLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1197,12 +1195,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, swarLab],
             })
-            if (cmjAllow < (10 * 10**18)) {
+            if (Number(ethers.utils.formatEther(cmjAllow)) < 10) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [swarLab, ethers.utils.parseEther(String(10**8))],
+                    args: [swarLab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1216,10 +1214,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtainSWARHandle = async () => {
         setisLoading(true)
         try {
@@ -1231,7 +1231,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -1268,12 +1271,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, lab],
             })
-            if (res1Allow < (res1Amount * 10**18)) {
+            if (Number(ethers.utils.formatEther(res1Allow)) < res1Amount) {
                 let { request } = await simulateContract(config, {
                     address: res1,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lab, ethers.utils.parseEther(String(10**8))],
+                    args: [lab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1284,12 +1287,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
                 functionName: 'allowance',
                 args: [address, lab],
             })
-            if (currAllow < (currAmount * 10**18)) {
+            if (Number(ethers.utils.formatEther(currAllow)) < currAmount) {
                 let { request } = await simulateContract(config, {
                     address: curr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lab, ethers.utils.parseEther(String(10**8))],
+                    args: [lab, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -1303,10 +1306,12 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const obtainCMDAO20Lab01Handle = async (_index) => {
         let lab = '0x0000000000000000000000000000000000000000'
         if (_index === 1) {
@@ -1324,7 +1329,10 @@ const Labs = ({ setisLoading, txupdate, setTxupdate, ctunaLabABI, sx31LabABI, bb
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
