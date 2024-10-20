@@ -304,7 +304,11 @@ const Mall = ({ setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoM
                         args: [address],
                     },
                 ],
-            }) : [false, 0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {result: 0}, {result: false}, {result: 0}, {result: 0},]
+            }) : [
+                {result: false}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
+                {result: true}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
+                {result: 0}, {result: 0}, {result: 0}, {result: false}, {result: 0}, {result: 0},
+            ]
             
             const _isKYC = data[0].result
             const cmjBal = data[1].result

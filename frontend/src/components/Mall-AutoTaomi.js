@@ -392,7 +392,7 @@ const Ammmerchant5 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, iiB
                         args: [address],
                     }              
                 ],
-            }) : [0, 0, ]
+            }) : [{result: 0}, {result: 0}, ]
 
             const iilpBal = data3[0].result
             const eelpBal = data3[1].result
