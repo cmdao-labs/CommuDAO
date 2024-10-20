@@ -1,13 +1,12 @@
 import React from 'react'
 import Select from 'react-select'
 import { readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { ethers } from 'ethers'
 
 const factory = "0xF1046053aa5682b4F9a81b5481394DA16BE5FF5a"
 const swapCaller = '0x3C72Fb1658E7A64fd4C88394De4474186A13460A'
 
-const OpSwap = ({ address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20Abi, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
+const OpSwap = ({ config, address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20Abi, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [ethBought, setEthBought] = React.useState("")
     const [cmdBought, setCmdBought] = React.useState("")

@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContracts } from '@wagmi/core'
-import { config } from './config/config.ts'
 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const wood = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
@@ -24,7 +23,7 @@ const genesis = '0x0000000000000000000000000000000000000000'
 const burn = '0x0000000000000000000000000000000000000001'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BigBroAnalytica = ({ erc20Abi }) => {
+const BigBroAnalytica = ({ config, erc20Abi }) => {
     const [cmdBbq, setCmdBbq] = React.useState(0)
     const [cmdGov, setCmdGov] = React.useState(0)
     const [cmdRev, setCmdRev] = React.useState(0)

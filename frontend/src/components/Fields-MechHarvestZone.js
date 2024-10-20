@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -11,7 +10,7 @@ const gear = '0x0E2610730A3c42fd721B289BEe092D9AD1C76890'
 const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const MechHarvestZone = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, gearFieldABI, taoPfpABI }) => {
+const MechHarvestZone = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, gearFieldABI, taoPfpABI }) => {
     let { address } = useAccount()
     const youraddr = address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {

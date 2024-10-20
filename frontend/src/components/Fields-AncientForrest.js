@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useWatchContractEvent, useAccount } from 'wagmi'
 import { ThreeDots, Oval } from 'react-loading-icons'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
@@ -18,7 +17,7 @@ const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const pzaToken = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 
-const FieldsAncientForrest = ({ setisLoading, txupdate, setTxupdate, erc721Abi, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20Abi }) => {
+const FieldsAncientForrest = ({ config, setisLoading, txupdate, setTxupdate, erc721Abi, aurora721ABI, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20Abi }) => {
     const { address } = useAccount()
 
     const [msg, setMsg] = React.useState("")

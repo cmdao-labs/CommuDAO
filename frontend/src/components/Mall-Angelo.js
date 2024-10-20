@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -10,7 +9,7 @@ const angeloSWAR = '0x5a9E35fC4Afc21B9Fc74bE18015D4D3B002A83A3'
 const angbToken = '0x59c1c2f5fa76db933b97b7c54223129e2a398534'
 const angeloANGB = '0xDd35db1a731CD86C01d74A8a4bA4354ca1CDE24d'
 
-const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, angbBalance, swarBalance, wjbcBalance }) => {
+const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, angbBalance, swarBalance, wjbcBalance }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(1)

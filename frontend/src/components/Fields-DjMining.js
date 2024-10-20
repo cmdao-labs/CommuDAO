@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ThreeDots } from 'react-loading-icons'
 
@@ -10,7 +9,7 @@ const doijib = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
 const fieldDJ = '0x7A4359E7FCb6d11A6C628B2aa6f1b5EF19218344'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const DjMining = ({ intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, fieldDjABI }) => {
+const DjMining = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, fieldDjABI }) => {
     let { address } = useAccount()
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
         navigate('/fields/doijib-mining/' + address)

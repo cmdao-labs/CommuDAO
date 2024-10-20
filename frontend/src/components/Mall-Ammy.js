@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -17,7 +16,7 @@ const ammyBBQ = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const ammyPZA = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
 const ammyWOOD = '0x466C3b32538eB0DB9f6c88ee2Fa9c72C495cE08F'
 
-const Ammmerchant = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, woodBalance, cmjBalance }) => {
+const Ammmerchant = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, ctunaBalance, sx31Balance, bbqBalance, pzaBalance, woodBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("BBQ");

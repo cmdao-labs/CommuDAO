@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 
@@ -20,7 +19,7 @@ const jazziPLAT = '0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044'
 const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x329889325A555b217C41A4c2EADD529a0CfA4231'
 
-const Ammmerchant2 = ({ setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, cmjBalance }) => {
+const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("JDAO");

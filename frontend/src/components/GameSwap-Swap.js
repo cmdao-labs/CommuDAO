@@ -1,10 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
 import { getBalance, readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { ethers } from 'ethers'
    
-const Swap = ({ address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
+const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [jbcBought, setJbcBought] = React.useState("")
     const [cmjBought, setCmjBought] = React.useState("")

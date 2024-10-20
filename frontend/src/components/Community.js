@@ -1,12 +1,11 @@
 import React from 'react'
 import { readContracts } from '@wagmi/core'
-import { config } from './config/config.ts'
 
 const land = '0x90B3a1F21D1C0BE9A8B6a6AA129066951AF63B72'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 
-const Community = ({ callMode, navigate, erc721Abi, cmdaoNameABI, slot1ABI }) => {
+const Community = ({ config, callMode, navigate, erc721Abi, cmdaoNameABI, slot1ABI }) => {
     const [yourName, setYourName] = React.useState(null)
     const [slot1Lv, setSlot1Lv] = React.useState(null)
 

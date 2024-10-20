@@ -1,6 +1,5 @@
 import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { ThreeDots, Oval } from 'react-loading-icons'
@@ -21,7 +20,7 @@ const vabagToken = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const ApInn = ({ setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanterABI, erc721Abi, erc20Abi, questAmbassABI, cmdaoNameABI, dunAngbABI }) => {
+const ApInn = ({ config, setisLoading, txupdate, setTxupdate, acUpgradeABI, uniEnchanterABI, erc721Abi, erc20Abi, questAmbassABI, cmdaoNameABI, dunAngbABI }) => {
     const { address } = useAccount()
 
     const [nft, setNft] = React.useState([])

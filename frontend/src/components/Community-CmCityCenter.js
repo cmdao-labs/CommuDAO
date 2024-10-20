@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { /*getBalance,*/ readContracts, readContract, simulateContract, waitForTransactionReceipt, writeContract, /*sendTransaction*/ } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 
 const cmcityPoints = '0xDEf1B2C59E116E5A63227af25CeED359EB489463'
@@ -11,7 +10,7 @@ const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 
-const CmCityCenter = ({ setisLoading, txupdate, setTxupdate, erc20Abi, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI }) => {
+const CmCityCenter = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI }) => {
     const { address } = useAccount()
 
     const [sx31Voting1, setSx31Voting1] = React.useState(['Loading...', 'Loading...', 0, 'Loading...'])

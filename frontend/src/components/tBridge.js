@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 
 import TBridgeTAODUM from  './tBridge-TAODUM'
@@ -28,7 +27,7 @@ const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
 const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
 const cmmBBQ = '0x45ed41ED4E0F48317f787Dc268779260b1Ca81f1'
 
-const TBridge = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
+const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
     const { address, chain } = useAccount()
     const [mode, setMode] = React.useState(1)
 

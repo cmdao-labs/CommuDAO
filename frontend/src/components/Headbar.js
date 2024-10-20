@@ -3,13 +3,12 @@ import { ethers } from 'ethers'
 import { readContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
-import { config } from './config/config.ts'
 const { ethereum } = window
 
 const jdao = "0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88"
 const cmos = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 
-const Headbar = ({ callMode, navigate, txupdate, erc20Abi }) => {
+const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
   const { open } = useAppKit()
   const { address, isConnected, chain } = useAccount()
 

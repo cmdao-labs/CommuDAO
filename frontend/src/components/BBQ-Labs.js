@@ -1,7 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract, sendTransaction } from '@wagmi/core'
-import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
 import { switchChain } from '@wagmi/core'
 const { ethereum } = window
@@ -21,7 +20,7 @@ const sourcethub = '0xf623B7164cb81DCfC3836492fb09Ae005be57322'
 const sourcethub2 = '0x18bc873eF20CB3Fc747b5B9Df3b675E91E7C7BE5'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20Abi, transportHubABI, transportHub2ABI, houseStakingABI, slot1ABI, erc721Abi, sourceThubABI, pzaLabABI }) => {
+const BBQLabs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20Abi, transportHubABI, transportHub2ABI, houseStakingABI, slot1ABI, erc721Abi, sourceThubABI, pzaLabABI }) => {
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -2199,7 +2198,7 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                 functionName: 'allowance',
                 args: [address, bbqLab],
             })
-            if (woodAllow < (1000 * 10**18)) {
+            if (Number((ethers.utils.formatEther(woodAllow))) < 1000) {
                 let { request } = await simulateContract(config, {
                     address: woodToken,
                     abi: erc20Abi,
@@ -2225,7 +2224,6 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
         }
         setisLoading(false)
     }
-
     const obtainBBQHandle = async () => {
         setisLoading(true)
         try {
