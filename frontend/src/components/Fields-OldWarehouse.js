@@ -11,25 +11,15 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, aurora721ABI, tunaFieldABI }) => {
     let { address, chain } = useAccount()
-    const { open } = useAppKit()
-    const youraddr = address === undefined ? null : address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/fields/old-warehouse/' + youraddr)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-        navigate('/fields/old-warehouse/' + address)
-    } else if (address === undefined) {
+    if (address === undefined) {
         address = null
-        navigate('/fields/old-warehouse/null')
-    } else {
-        navigate('/fields/old-warehouse/' + youraddr)
     }
-
+    const youraddr = address
+    const { open } = useAppKit()
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState("")
-
     const [nft, setNft] = React.useState([])
     const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily, setAllDaily] = React.useState(0)
@@ -69,6 +59,16 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
         window.scrollTo(0, 0)
         const orynftSC = new ethers.Contract(ory, aurora721ABI, providerJBC)
         console.log("Connected to " + address)
+        if (intrasubModetext === undefined) {
+            navigate('/fields/old-warehouse/' + youraddr)
+        } else if (intrasubModetext.length === 42) {
+            address = intrasubModetext
+            navigate('/fields/old-warehouse/' + address)
+        } else if (address === undefined) {
+            navigate('/fields/old-warehouse/null')
+        } else {
+            navigate('/fields/old-warehouse/' + address)
+        }
         setNft([])
         
         const thefetch = async () => {
@@ -353,7 +353,7 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
                                 <>
-                                    {address !== null && address === youraddr && allReward > 0 ?
+                                    {address !== null && youraddr.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
                                         <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                     }
@@ -401,12 +401,12 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
                                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
                                                     &nbsp;{item.Reward}
                                                 </div>
-                                                {youraddr !== null && item.Reward > 0 ?
+                                                {address !== null && youraddr.toUpperCase() === intrasubModetext.toUpperCase() && item.Reward > 0 ?
                                                     <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
                                                     <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                                 }
                                             </div>
-                                            {youraddr !== null && 
+                                            {address !== null && youraddr.toUpperCase() === intrasubModetext.toUpperCase() &&
                                                 <>
                                                     {item.isStaked ?
                                                         <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
