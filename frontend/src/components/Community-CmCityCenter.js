@@ -155,7 +155,7 @@ const CmCityCenter = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, c
             setCmVoting3All(ethers.utils.formatEther(String(result[7])))
         })
 
-    }, [address, txupdate, erc20Abi, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI])
+    }, [config, address, txupdate, erc20Abi, cmcityPointsABI, sx31voteABI, faucetABI, cmdaoNameABI])
 
     const voteHandle = async (_proposal) => {
         setisLoading(true)

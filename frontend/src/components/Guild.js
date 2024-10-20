@@ -1078,7 +1078,7 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
             setStartBlock(result[53])
         })
 
-    }, [address, txupdate, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {

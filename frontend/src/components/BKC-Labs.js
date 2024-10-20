@@ -193,7 +193,7 @@ const BKCLabs = ({ config, setisLoading, setTxupdate, txupdate, setisError, setE
             setRedeemRemain2(result[13])
         })
 
-    }, [address, txupdate, erc20Abi, stakerMachineABI, cmdaoMerchantABI])
+    }, [config, address, txupdate, erc20Abi, stakerMachineABI, cmdaoMerchantABI])
 
     const [inputTrash, setInputTrash] = React.useState('')
     const [inputStakedTrash, setInputStakeTrash] = React.useState('')

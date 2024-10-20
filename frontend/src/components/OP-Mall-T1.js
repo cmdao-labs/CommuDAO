@@ -269,7 +269,7 @@ const OPMallT1 = ({ config, setisLoading, txupdate, setTxupdate, setisError, set
             setMkpNft(result[3])
         })
 
-    }, [address, txupdate, erc721Abi, multichainMallABI])
+    }, [config, address, txupdate, erc721Abi, multichainMallABI])
 
     const depositHandle = async (_nftId) => {
         setisLoading(true)

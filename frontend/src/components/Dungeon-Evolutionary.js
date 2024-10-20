@@ -267,7 +267,7 @@ const NpcEvolutionary = ({ config, setisLoading, txupdate, setTxupdate, evolutio
             setJaspBalance(ethers.utils.formatUnits(String(result[11]), "gwei"))
         })
 
-    }, [address, erc20Abi, erc721Abi, txupdate, salonABI])
+    }, [config, address, erc20Abi, erc721Abi, txupdate, salonABI])
 
     const evolutionV2Handle = async (_nftid, _enchantindex) => {
         setisLoading(true)

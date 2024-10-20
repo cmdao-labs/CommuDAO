@@ -218,7 +218,7 @@ const DjMining = ({ config, intrasubModetext, navigate, setisLoading, txupdate, 
             setDoijibBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, fieldDjABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, fieldDjABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)

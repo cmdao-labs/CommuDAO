@@ -425,7 +425,7 @@ const Daemonworld = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             setUSWARBalance(ethers.utils.formatEther(String(result[23])))
         })
 
-    }, [address, txupdate, erc721Abi, erc20Abi, dunAngbABI])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, dunAngbABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {

@@ -297,7 +297,7 @@ const DungeonArena = ({ config,  setisLoading, txupdate, setTxupdate, erc20Abi, 
             setSkinSlot1(result[20])
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, questAmbassABI, dunJasperABI, pvp01ABI, salonABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, questAmbassABI, dunJasperABI, pvp01ABI, salonABI])
 
     React.useEffect(() => {
         if (challenger[0] !== undefined) {
@@ -478,7 +478,7 @@ const DungeonArena = ({ config,  setisLoading, txupdate, setTxupdate, erc20Abi, 
                 setSkinSlot1C(result[17])
             })
         }
-    }, [address, txupdate, challenger, challengerSlot, erc721Abi, dunJasperABI, pvp01ABI, salonABI])
+    }, [config, address, txupdate, challenger, challengerSlot, erc721Abi, dunJasperABI, pvp01ABI, salonABI])
 
     const oneHit = async () => {
         setisLoading(true)

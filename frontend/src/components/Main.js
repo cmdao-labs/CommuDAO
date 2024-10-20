@@ -5,8 +5,8 @@ import Headbar from './Headbar'
 import Home from './Home'
 import Fields from './Fields'
 import FieldsAncientForrest from './Fields-AncientForrest'
-import FishingField from './Fields-TunaLake'
-import RatHuntingField from './Fields-OldWarehouse'
+import TunaLake from './Fields-TunaLake'
+import OldWarehouse from './Fields-OldWarehouse'
 import TheHeavenLand from './Fields-TheHeavenLand'
 import EasternFront from './Fields-EasternFront'
 import MechHarvestZone from './Fields-MechHarvestZone'
@@ -440,7 +440,7 @@ const Main = () => {
             document.title = "404 | CommuDAO"
         }
     } else {
-        document.title = "Home | CommuDAO"
+        document.title = "CommuDAO | Multiverse of crypto community"
     }
 
     const [mode, setMode] = React.useState(preset) 
@@ -450,7 +450,6 @@ const Main = () => {
     const [isError, setisError] = React.useState(false)
     const [errMsg, setErrMsg] = React.useState('')
     const [txupdate, setTxupdate] = React.useState(null)
-    console.log(wagmiAdapter.wagmiConfig)
 
     return (
         <>
@@ -475,11 +474,10 @@ const Main = () => {
                 <QueryClientProvider client={queryClient}>
                     <Headbar config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} txupdate={txupdate} erc20Abi={erc20Abi} />
                     {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
-
-
                     {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
-                    {mode === 11 && <FishingField config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
-                    {mode === 12 && <RatHuntingField config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
+                    {mode === 11 && <TunaLake config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
+                    {mode === 12 && <OldWarehouse config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
+                    
                     {mode === 13 && <FieldsAncientForrest config={wagmiAdapter.wagmiConfig} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20Abi={erc20Abi} />}
                     {mode === 17 && <TheHeavenLand config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} thlFieldABI={thlFieldABI} />}
                     {mode === 19 && <EasternFront intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} fieldEfABI={fieldEfABI} />}
@@ -496,7 +494,7 @@ const Main = () => {
 
                     {mode === 11000 && <OPFields callMode={callMode} navigate={navigate} />}
 
-                    {mode === 2 && <Labs config={wagmiAdapter.wagmiConfig} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20Abi={erc20Abi} kycABI={kycABI} />}
+                    {mode === 2 && <Labs config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20Abi={erc20Abi} kycABI={kycABI} />}
                     {mode === 200 && <BKCLabs config={wagmiAdapter.wagmiConfig} setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
                     {mode === 20000 && <BBQLabs config={wagmiAdapter.wagmiConfig} setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20Abi={erc20Abi} transportHubABI={transportHubABI} transportHub2ABI={transportHub2ABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721Abi={erc721Abi} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
                     {mode === 21000 && <OPLabs config={wagmiAdapter.wagmiConfig} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} />}
@@ -549,18 +547,16 @@ const Main = () => {
                     {mode === 9 && <Guild config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} nftSlotABI={nftSlotABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} statCMDRewardABI={statCMDRewardABI} baseCMDClaimerABI={baseCMDClaimerABI} />}
 
                     {mode === null &&
-                        <div style={{paddingTop: "100px"}} className="collection">
-                            <div className="nftCard" style={{justifyContent: "center"}}>
-                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-database"></i>
-                                <div className="emp bold">404 not found</div>
-                            </div>
+                        <div style={{minHeight: "80vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}} className="collection">
+                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-database"></i>
+                            <div className="emp bold">404 not found!</div>
                         </div>
                     }
                 </QueryClientProvider>
             </WagmiProvider>                
-            <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", background: "#f7f5f8"}}>
+            <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", background: "#fff"}}>
                 <div className="inFooterLeft">
-                    <div style={{marginBottom: "10px"}}>{'CommuDAO © 2023. - alpha v.' + v}</div>
+                    <div style={{marginBottom: "10px"}}>{'CommuDAO. - alpha v.' + v}</div>
                     <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
                     <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>

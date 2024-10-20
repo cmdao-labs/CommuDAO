@@ -156,7 +156,7 @@ const TBridgeTAODUM = ({ config, setisLoading, txupdate, setTxupdate, erc721Abi,
             setNft2(result[1])
         })
 
-    }, [address, txupdate, erc721Abi])
+    }, [config, address, txupdate, erc721Abi])
 
     const depositTaoHandle = async (_nftId) => {
         setisLoading(true)

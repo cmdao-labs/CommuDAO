@@ -838,7 +838,7 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
             setIsWL6(result[83])
             setDoijibRemain(ethers.utils.formatEther(String(result[86])))
         })
-    }, [address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20Abi, presaleABI])
+    }, [config, address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20Abi, presaleABI])
 
     const buyHandle = async () => {
         setisLoading(true)

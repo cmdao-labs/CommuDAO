@@ -114,7 +114,7 @@ const BKCGameSwap = ({ config, setisLoading, setTxupdate, txupdate, setisError, 
             setCmosPending(ethers.utils.formatEther(result[2]))
         })
 
-    }, [address, txupdate, erc20Abi, diamonLpABI, farmCmosABI, bkcOracleABI])
+    }, [config, address, txupdate, erc20Abi, diamonLpABI, farmCmosABI, bkcOracleABI])
 
     const [lp1Stake, setLp1Stake] = React.useState("")
     const [lp1StakeWei, setLp1StakeWei] = React.useState(0)

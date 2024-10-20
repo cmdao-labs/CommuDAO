@@ -165,7 +165,7 @@ const OpGameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, vel
             setCmdPooled((ethers.utils.formatEther(result[2].result[0]) * ethers.utils.formatEther(result[3].result) / ethers.utils.formatEther(result[4].result)))
             setLpShare(Number(((ethers.utils.formatEther(result[3].result) / ethers.utils.formatEther(result[4].result))) * 100).toFixed(4))
         })
-    }, [address, txupdate, erc20Abi, veloPoolABI, bkcOracleABI])
+    }, [config, address, txupdate, erc20Abi, veloPoolABI, bkcOracleABI])
 
     const [liquidMode, setLiquidMode] = React.useState(0)
     const liquidModeSelect = async (option) => {

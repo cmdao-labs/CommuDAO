@@ -79,8 +79,7 @@ code {
 header {
   height: 60px;
   width: 100%;
-  border-bottom: 1px solid #dddade;
-  background: #f7f5f8;
+  background: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

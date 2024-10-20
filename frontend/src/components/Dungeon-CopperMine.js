@@ -317,7 +317,7 @@ const Coppermine = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             setUbbqBalance(ethers.utils.formatEther(String(result[17])))
         })
 
-    }, [address, txupdate, erc721Abi, erc20Abi, dunCopperABI, mintStOPTABI, salonABI, ubbqABI])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, dunCopperABI, mintStOPTABI, salonABI, ubbqABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {

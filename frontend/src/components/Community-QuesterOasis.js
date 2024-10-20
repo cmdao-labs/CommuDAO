@@ -1586,7 +1586,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             setSumArrRank4(_sumArrRank4)
         })
 
-    }, [address, txupdate, erc20Abi, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI])
+    }, [config, address, txupdate, erc20Abi, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI])
 
     /*const claimSILHandle = async () => {
         setisLoading(true)

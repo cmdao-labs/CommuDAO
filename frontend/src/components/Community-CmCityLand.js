@@ -414,7 +414,7 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
             setWdBonus(result[17])
         })
 
-    }, [address, code, intrasubModetext, txupdate, erc20Abi, erc721Abi, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
+    }, [config, address, code, intrasubModetext, txupdate, erc20Abi, erc721Abi, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI])
     
     const upgradeHouseHandle = async (_level) => {
         setisLoading(true)
@@ -1470,8 +1470,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                                 <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                     {nftStakeWD !== null && nftStakeWD[0] !== undefined &&
                                                                                         <>
-                                                                                            <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNftWD(nftStakeWD[0].Id, 0)}>HARVEST</div>
-                                                                                            <div className="button" onClick={() => unstakeNftWD(nftStakeWD[0].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                            <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNftWD(nftStakeWD[0].Id, false)}>HARVEST</div>
+                                                                                            <div className="button" onClick={() => unstakeNftWD(nftStakeWD[0].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                         </>
                                                                                     }
                                                                                 </div> :

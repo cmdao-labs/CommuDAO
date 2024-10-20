@@ -1565,7 +1565,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             setReserveWOOD(ethers.utils.formatEther(result[102].result))
             setSwapfee24hour14_2(Number(result[103]).toFixed(0))
         })
-    }, [address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20Abi, cmdaoAmmNpcABI])
+    }, [config, address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20Abi, cmdaoAmmNpcABI])
 
     return (
         <>
