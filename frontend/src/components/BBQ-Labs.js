@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract, sendTransaction } from '@wagmi/core'
 import { config } from './config/config.ts'
 import { useAccount } from 'wagmi'
+import { switchChain } from '@wagmi/core'
 const { ethereum } = window
 
 const bbqToken = '0x87dfDc26ff6e8986e2F773FAE3Bfa51C8f152cF0'
@@ -17,9 +18,10 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const sourcethub = '0xf623B7164cb81DCfC3836492fb09Ae005be57322'
+const sourcethub2 = '0x18bc873eF20CB3Fc747b5B9Df3b675E91E7C7BE5'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20Abi, transportHubABI, houseStakingABI, slot1ABI, erc721Abi, sourceThubABI, pzaLabABI }) => {
+const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, bbqLab01ABI, erc20Abi, transportHubABI, transportHub2ABI, houseStakingABI, slot1ABI, erc721Abi, sourceThubABI, pzaLabABI }) => {
     const { address } = useAccount()
 
     const [bbqBalance, setBbqBalance] = React.useState(0)
@@ -38,6 +40,8 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
 
     const [houseSelected, setHouseSelected] = React.useState('')
     const [transportValue, setTransportValue] = React.useState('')
+    const [houseSelected2, setHouseSelected2] = React.useState('')
+    const [transportValue2, setTransportValue2] = React.useState('')
 
     const [allPowZ02, setAllPowZ02] = React.useState(0)
     const [thubLvZ02, setThubLvZ02] = React.useState(0)
@@ -2378,6 +2382,156 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
             let h2 = await writeContract(config, request2)
             await waitForTransactionReceipt(config, { hash: h2 })
             setTxupdate(h2)
+            await switchChain(config, { chainId: 8899 })
+            let h3 = await sendTransaction(config, {
+                chainId: 8899,
+                to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
+                value: ethers.utils.parseEther('10'),
+            })
+            await waitForTransactionReceipt(config, { hash: h3 })
+            await switchChain(config, { chainId: 190 })
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const transportHandle2 = async (_index) => {
+        setisLoading(true)
+        let resaddr = null
+        let transportVal = null
+        if (_index === 3) {
+            resaddr = infpowLab
+            transportVal = transportValue2
+        }
+        try {
+            const tokenAllow = await readContract(config, {
+                chainId: 190,
+                address: resaddr,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, sourcethub2],
+            })
+            if (tokenAllow < ethers.utils.parseEther(String(transportVal))) {
+                let { request } = await simulateContract(config, {
+                    chainId: 190,
+                    address: resaddr,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [sourcethub2, ethers.utils.parseEther(String(10**8))],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let _target = null
+            if (houseSelected === 'Z02') {
+                _target = 10026002
+            } else if (houseSelected === 'A01') {
+                _target = 10001001
+            } else if (houseSelected === 'A02') {
+                _target = 10001002
+            } else if (houseSelected === 'A03') {
+                _target = 10001003
+            } else if (houseSelected === 'A04') {
+                _target = 10001004
+            } else if (houseSelected === 'A05') {
+                _target = 10001005
+            } else if (houseSelected === 'A06') {
+                _target = 10001006
+            } else if (houseSelected === 'A07') {
+                _target = 10001007
+            } else if (houseSelected === 'A08') {
+                _target = 10001008
+            } else if (houseSelected === 'A09') {
+                _target = 10001009
+            } else if (houseSelected === 'A10') {
+                _target = 10001010
+            } else if (houseSelected === 'A11') {
+                _target = 10001011
+            } else if (houseSelected === 'Z06') {
+                _target = 10026006
+            } else if (houseSelected === 'Z10') {
+                _target = 10026010
+            } else if (houseSelected === 'B01') {
+                _target = 10002001
+            } else if (houseSelected === 'B02') {
+                _target = 10002002
+            } else if (houseSelected === 'B03') {
+                _target = 10002003
+            } else if (houseSelected === 'B04') {
+                _target = 10002004
+            } else if (houseSelected === 'B05') {
+                _target = 10002005
+            } else if (houseSelected === 'B06') {
+                _target = 10002006
+            } else if (houseSelected === 'B07') {
+                _target = 10002007
+            } else if (houseSelected === 'B08') {
+                _target = 10002008
+            } else if (houseSelected === 'B09') {
+                _target = 10002009
+            } else if (houseSelected === 'B10') {
+                _target = 10002010
+            } else if (houseSelected === 'B11') {
+                _target = 10002011
+            } else if (houseSelected === 'Z11') {
+                _target = 10026011
+            } else if (houseSelected === 'C01') {
+                _target = 10003001
+            } else if (houseSelected === 'C02') {
+                _target = 10003002
+            } else if (houseSelected === 'C03') {
+                _target = 10003003
+            } else if (houseSelected === 'C04') {
+                _target = 10003004
+            } else if (houseSelected === 'C05') {
+                _target = 10003005
+            } else if (houseSelected === 'C06') {
+                _target = 10003006
+            } else if (houseSelected === 'C07') {
+                _target = 10003007
+            } else if (houseSelected === 'C08') {
+                _target = 10003008
+            } else if (houseSelected === 'C09') {
+                _target = 10003009
+            } else if (houseSelected === 'C10') {
+                _target = 10003010
+            } else if (houseSelected === 'C11') {
+                _target = 10003011
+            } else if (houseSelected === 'C12') {
+                _target = 10003012
+            } else if (houseSelected === 'C13') {
+                _target = 10003013
+            } else if (houseSelected === 'C14') {
+                _target = 10003014
+            } else if (houseSelected === 'C15') {
+                _target = 10003015
+            } else if (houseSelected === 'C16') {
+                _target = 10003016
+            } else if (houseSelected === 'C17') {
+                _target = 10003017
+            } else if (houseSelected === 'C18') {
+                _target = 10003018
+            } else if (houseSelected === 'C19') {
+                _target = 10003019
+            } else if (houseSelected === 'C20') {
+                _target = 10003020
+            } else if (houseSelected === 'C21') {
+                _target = 10003021
+            } else if (houseSelected === 'C22') {
+                _target = 10003022
+            }
+            let { request: request2 } = await simulateContract(config, {
+                chainId: 190,
+                address: sourcethub2,
+                abi: transportHub2ABI,
+                functionName: 'sendResource',
+                args: [_index, _target, ethers.utils.parseEther(String(transportVal))],
+                value: ethers.utils.parseEther('80'),
+            })
+            let h2 = await writeContract(config, request2)
+            await waitForTransactionReceipt(config, { hash: h2 })
+            setTxupdate(h2)
             let h3 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
@@ -2705,682 +2859,779 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                 <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Transport Services</div>
                 <div style={{width: "100%", margin: "10px 0 80px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                        <div style={{width: "100%", textAlign: "left"}} className='emp'>
-                            SELECT TRANSPORT HUB [ALPHA]
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "row"}} className='emp'>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>&nbsp;
+                            $BBQ TRANSPORT HUB
                         </div>
                         <div style={{height: "80%", overflow: "scroll"}} className="pixel">
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z02')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapZ02 * allPowZ02 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z02 Lv.{thubLvZ02}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ02}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ02 * allPowZ02).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubZ02}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A01')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA01 * allPowA01 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A01 Lv.{thubLvA01}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA01}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA01 * allPowA01).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA01}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A02')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA02 * allPowA02 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A02 Lv.{thubLvA02}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA02}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA02 * allPowA02).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA02}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A03')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA03 * allPowA03 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A03 Lv.{thubLvA03}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA03}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA03 * allPowA03).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA03}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A04')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA04 * allPowA04 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A04 Lv.{thubLvA04}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA04}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA04 * allPowA04).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA04}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A05')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA05 * allPowA05 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A05 Lv.{thubLvA05}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA05}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA05 * allPowA05).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA05}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A06')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA06 * allPowA06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A06 Lv.{thubLvA06}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA06}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA06 * allPowA06).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA06}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A07')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA07 * allPowA07 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A07 Lv.{thubLvA07}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA07}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA07 * allPowA07).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA07}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A08')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA08 * allPowA08 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A08 Lv.{thubLvA08}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA08}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA08 * allPowA08).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA08}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A09')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA09 * allPowA09 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A09 Lv.{thubLvA09}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA09}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA09 * allPowA09).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA09}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A10')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA10 * allPowA10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A10 Lv.{thubLvA10}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA10}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA10 * allPowA10).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA10}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A11')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapA11 * allPowA11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB A11 Lv.{thubLvA11}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeA11}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapA11 * allPowA11).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubA11}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z06')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapZ06 * allPowZ06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z06 Lv.{thubLvZ06}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ06}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ06 * allPowZ06).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubZ06}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z10')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapZ10 * allPowZ10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z10 Lv.{thubLvZ10}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ10}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ10 * allPowZ10).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubZ10}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B01')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB01 * allPowB01 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B01 Lv.{thubLvB01}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB01}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB01 * allPowB01).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB01}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B02')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB02 * allPowB02 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B02 Lv.{thubLvB02}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB02}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB02 * allPowB02).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB02}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B03')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB03 * allPowB03 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B03 Lv.{thubLvB03}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB03}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB03 * allPowB03).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB03}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B04')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB04 * allPowB04 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B04 Lv.{thubLvB04}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB04}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB04 * allPowB04).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB04}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B05')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB05 * allPowB05 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B05 Lv.{thubLvB05}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB05}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB05 * allPowB05).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB05}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B06')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB06 * allPowB06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B06 Lv.{thubLvB06}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB06}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB06 * allPowB06).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB06}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B07')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB07 * allPowB07 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B07 Lv.{thubLvB07}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB07}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB07 * allPowB07).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB07}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B08')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB08 * allPowB08 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B08 Lv.{thubLvB08}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB08}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB08 * allPowB08).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB08}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B09')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB09 * allPowB09 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B09 Lv.{thubLvB09}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB09}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB09 * allPowB09).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB09}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B10')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB10 * allPowB10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B10 Lv.{thubLvB10}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB10}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB10 * allPowB10).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB10}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B11')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapB11 * allPowB11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB B11 Lv.{thubLvB11}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeB11}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapB11 * allPowB11).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubB11}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z11')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapZ11 * allPowZ11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB Z11 Lv.{thubLvZ11}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeZ11}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapZ11 * allPowZ11).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubZ11}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C01')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC01 * allPowC01 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C01 Lv.{thubLvC01}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC01}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC01 * allPowC01).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC01}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C02')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC02 * allPowC02 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C02 Lv.{thubLvC02}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC02}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC02 * allPowC02).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC02}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C03')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC03 * allPowC03 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C03 Lv.{thubLvC03}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC03}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC03 * allPowC03).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC03}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C04')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC04 * allPowC04 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C04 Lv.{thubLvC04}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC04}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC04 * allPowC04).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC04}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C05')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC05 * allPowC05 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C05 Lv.{thubLvC05}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC05}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC05 * allPowC05).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC05}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C06')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC06 * allPowC06 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C06 Lv.{thubLvC06}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC06}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC06 * allPowC06).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC06}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C07')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC07 * allPowC07 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C07 Lv.{thubLvC07}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC07}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC07 * allPowC07).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC07}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C08')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC08 * allPowC08 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C08 Lv.{thubLvC08}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC08}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC08 * allPowC08).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC08}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C09')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC09 * allPowC09 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C09 Lv.{thubLvC09}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC09}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC09 * allPowC09).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC09}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C10')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC10 * allPowC10 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C10 Lv.{thubLvC10}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC10}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC10 * allPowC10).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC10}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C11')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC11 * allPowC11 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C11 Lv.{thubLvC11}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC11}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC11 * allPowC11).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC11}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C12' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C12')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC12 * allPowC12 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C12 Lv.{thubLvC12}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC12}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC12 * allPowC12).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC12}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C13' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C13')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC13 * allPowC13 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C13 Lv.{thubLvC13}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC13}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC13 * allPowC13).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC13}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C14' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C14')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC14 * allPowC14 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C14 Lv.{thubLvC14}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC14}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC14 * allPowC14).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC14}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C15' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C15')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC15 * allPowC15 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C15 Lv.{thubLvC15}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC15}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC15 * allPowC15).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC15}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C16' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C16')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC16 * allPowC16 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C16 Lv.{thubLvC16}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC16}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC16 * allPowC16).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC16}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C17' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C17')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC17 * allPowC17 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C17 Lv.{thubLvC17}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC17}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC17 * allPowC17).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC17}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C18' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C18')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC18 * allPowC18 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C18 Lv.{thubLvC18}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC18}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC18 * allPowC18).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC18}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C19' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C19')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC19 * allPowC19 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C19 Lv.{thubLvC19}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC19}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC19 * allPowC19).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC19}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C20' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C20')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC20 * allPowC20 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C20 Lv.{thubLvC20}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC20}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC20 * allPowC20).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC20}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C21' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C21')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC21 * allPowC21 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C21 Lv.{thubLvC21}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC21}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC21 * allPowC21).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC21}</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C22' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C22')}>
-                                <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div>{thubCapC22 * allPowC22 > 0 ? <>🟢</> : <>⚪️</>} T.HUB C22 Lv.{thubLvC22}</div>
-                                    <div>FEE: <span style={{color: "#000"}}>{thubFeeC22}%</span></div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>REMAIN CAP: <span style={{color: "#000"}}>{Number(thubCapC22 * allPowC22).toLocaleString('en-US')}</span> $BBQ</div>
-                                </div>
-                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    <div></div>
-                                    <div>RESET ON: {nextDayThubC22}</div>
-                                </div>
-                            </div>
+                            {thubLvZ02 * allPowZ02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ02 * allPowZ02 > 0 ? <>🟢</> : <>⚪️</>} Z02 | T.HUB lv.{thubLvZ02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapZ02 * allPowZ02).toLocaleString('en-US')}</span>/{Number(allPowZ02 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA01 * allPowA01 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A01')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA01 * allPowA01 > 0 ? <>🟢</> : <>⚪️</>} A01 | T.HUB lv.{thubLvA01}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA01}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA01 * allPowA01).toLocaleString('en-US')}</span>/{Number(allPowA01 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA01}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA02 * allPowA02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA02 * allPowA02 > 0 ? <>🟢</> : <>⚪️</>} A02 | T.HUB lv.{thubLvA02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA02 * allPowA02).toLocaleString('en-US')}</span>/{Number(allPowA02 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA03 * allPowA03 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A03')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA03 * allPowA03 > 0 ? <>🟢</> : <>⚪️</>} A03 | T.HUB lv.{thubLvA03}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA03}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA03 * allPowA03).toLocaleString('en-US')}</span>/{Number(allPowA03 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA03}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA04 * allPowA04 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A04')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA04 * allPowA04 > 0 ? <>🟢</> : <>⚪️</>} A04 | T.HUB lv.{thubLvA04}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA04}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA04 * allPowA04).toLocaleString('en-US')}</span>/{Number(allPowA04 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA04}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA05 * allPowA05 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A05')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA05 * allPowA05 > 0 ? <>🟢</> : <>⚪️</>} A05 | T.HUB lv.{thubLvA05}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA05}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA05 * allPowA05).toLocaleString('en-US')}</span>/{Number(allPowA05 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA05}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA06 * allPowA06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA06 * allPowA06 > 0 ? <>🟢</> : <>⚪️</>} A06 | T.HUB lv.{thubLvA06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA06 * allPowA06).toLocaleString('en-US')}</span>/{Number(allPowA06 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA07 * allPowA07 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A07')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA07 * allPowA07 > 0 ? <>🟢</> : <>⚪️</>} A07 | T.HUB lv.{thubLvA07}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA07}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA07 * allPowA07).toLocaleString('en-US')}</span>/{Number(allPowA07 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA07}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA08 * allPowA08 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A08')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA08 * allPowA08 > 0 ? <>🟢</> : <>⚪️</>} A08 | T.HUB lv.{thubLvA08}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA08}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA08 * allPowA08).toLocaleString('en-US')}</span>/{Number(allPowA08 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA08}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA09 * allPowA09 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A09')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA09 * allPowA09 > 0 ? <>🟢</> : <>⚪️</>} A09 | T.HUB lv.{thubLvA09}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA09}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA09 * allPowA09).toLocaleString('en-US')}</span>/{Number(allPowA09 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA09}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA10 * allPowA10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA10 * allPowA10 > 0 ? <>🟢</> : <>⚪️</>} A10 | T.HUB lv.{thubLvA10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA10 * allPowA10).toLocaleString('en-US')}</span>/{Number(allPowA10 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA11 * allPowA11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'A11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('A11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA11 * allPowA11 > 0 ? <>🟢</> : <>⚪️</>} A11 | T.HUB lv.{thubLvA11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapA11 * allPowA11).toLocaleString('en-US')}</span>/{Number(allPowA11 * 10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvZ06 * allPowZ06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ06 * allPowZ06 > 0 ? <>🟢</> : <>⚪️</>} Z06 | T.HUB lv.{thubLvZ06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapZ06 * allPowZ06).toLocaleString('en-US')}</span>/{Number(allPowZ06 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvZ10 * allPowZ10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ10 * allPowZ10 > 0 ? <>🟢</> : <>⚪️</>} Z10 | T.HUB lv.{thubLvZ10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapZ10 * allPowZ10).toLocaleString('en-US')}</span>/{Number(allPowZ10 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB01 * allPowB01 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B01')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB01 * allPowB01 > 0 ? <>🟢</> : <>⚪️</>} B01 | T.HUB lv.{thubLvB01}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB01}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB01 * allPowB01).toLocaleString('en-US')}</span>/{Number(allPowB01 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB01}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB02 * allPowB02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB02 * allPowB02 > 0 ? <>🟢</> : <>⚪️</>} B02 | T.HUB lv.{thubLvB02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB02 * allPowB02).toLocaleString('en-US')}</span>/{Number(allPowB02 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB03 * allPowB03 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B03')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB03 * allPowB03 > 0 ? <>🟢</> : <>⚪️</>} B03 | T.HUB lv.{thubLvB03}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB03}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB03 * allPowB03).toLocaleString('en-US')}</span>/{Number(allPowB03 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB03}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB04 * allPowB04 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B04')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB04 * allPowB04 > 0 ? <>🟢</> : <>⚪️</>} B04 | T.HUB lv.{thubLvB04}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB04}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB04 * allPowB04).toLocaleString('en-US')}</span>/{Number(allPowB04 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB04}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB05 * allPowB05 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B05')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB05 * allPowB05 > 0 ? <>🟢</> : <>⚪️</>} B05 | T.HUB lv.{thubLvB05}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB05}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB05 * allPowB05).toLocaleString('en-US')}</span>/{Number(allPowB05 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB05}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB06 * allPowB06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB06 * allPowB06 > 0 ? <>🟢</> : <>⚪️</>} B06 | T.HUB lv.{thubLvB06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB06 * allPowB06).toLocaleString('en-US')}</span>/{Number(allPowB06 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB07 * allPowB07 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B07')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB07 * allPowB07 > 0 ? <>🟢</> : <>⚪️</>} B07 | T.HUB lv.{thubLvB07}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB07}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB07 * allPowB07).toLocaleString('en-US')}</span>/{Number(allPowB07 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB07}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB08 * allPowB08 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B08')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB08 * allPowB08 > 0 ? <>🟢</> : <>⚪️</>} B08 | T.HUB lv.{thubLvB08}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB08}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB08 * allPowB08).toLocaleString('en-US')}</span>/{Number(allPowB08 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB08}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB09 * allPowB09 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B09')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB09 * allPowB09 > 0 ? <>🟢</> : <>⚪️</>} B09 | T.HUB lv.{thubLvB09}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB09}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB09 * allPowB09).toLocaleString('en-US')}</span>/{Number(allPowB09 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB09}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB10 * allPowB10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB10 * allPowB10 > 0 ? <>🟢</> : <>⚪️</>} B10 | T.HUB lv.{thubLvB10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB10 * allPowB10).toLocaleString('en-US')}</span>/{Number(allPowB10 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB11 * allPowB11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'B11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('B11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB11 * allPowB11 > 0 ? <>🟢</> : <>⚪️</>} B11 | T.HUB lv.{thubLvB11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapB11 * allPowB11).toLocaleString('en-US')}</span>/{Number(allPowB11 * 5).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvZ11 * allPowZ11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'Z11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('Z11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ11 * allPowZ11 > 0 ? <>🟢</> : <>⚪️</>} Z11 | T.HUB lv.{thubLvZ11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapZ11 * allPowZ11).toLocaleString('en-US')}</span>/{Number(allPowZ11).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC01 * allPowC01 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C01')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC01 * allPowC01 > 0 ? <>🟢</> : <>⚪️</>} C01 | T.HUB lv.{thubLvC01}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC01}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC01 * allPowC01).toLocaleString('en-US')}</span>/{Number(allPowC01).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC01}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC02 * allPowC02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC02 * allPowC02 > 0 ? <>🟢</> : <>⚪️</>} C02 | T.HUB lv.{thubLvC02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC02 * allPowC02).toLocaleString('en-US')}</span>/{Number(allPowC02).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC03 * allPowC03 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C03')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC03 * allPowC03 > 0 ? <>🟢</> : <>⚪️</>} C03 | T.HUB lv.{thubLvC03}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC03}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC03 * allPowC03).toLocaleString('en-US')}</span>/{Number(allPowC03).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC03}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC04 * allPowC04 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C04')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC04 * allPowC04 > 0 ? <>🟢</> : <>⚪️</>} C04 | T.HUB lv.{thubLvC04}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC04}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC04 * allPowC04).toLocaleString('en-US')}</span>/{Number(allPowC04).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC04}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC05 * allPowC05 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C05')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC05 * allPowC05 > 0 ? <>🟢</> : <>⚪️</>} C05 | T.HUB lv.{thubLvC05}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC05}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC05 * allPowC05).toLocaleString('en-US')}</span>/{Number(allPowC05).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC05}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC06 * allPowC06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC06 * allPowC06 > 0 ? <>🟢</> : <>⚪️</>} C06 | T.HUB lv.{thubLvC06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC06 * allPowC06).toLocaleString('en-US')}</span>/{Number(allPowC06).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC07 * allPowC07 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C07')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC07 * allPowC07 > 0 ? <>🟢</> : <>⚪️</>} C07 | T.HUB lv.{thubLvC07}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC07}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC07 * allPowC07).toLocaleString('en-US')}</span>/{Number(allPowC07).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC07}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC08 * allPowC08 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C08')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC08 * allPowC08 > 0 ? <>🟢</> : <>⚪️</>} C08 | T.HUB lv.{thubLvC08}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC08}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC08 * allPowC08).toLocaleString('en-US')}</span>/{Number(allPowC08).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC08}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC09 * allPowC09 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C09')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC09 * allPowC09 > 0 ? <>🟢</> : <>⚪️</>} C09 | T.HUB lv.{thubLvC09}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC09}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC09 * allPowC09).toLocaleString('en-US')}</span>/{Number(allPowC09).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC09}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC10 * allPowC10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC10 * allPowC10 > 0 ? <>🟢</> : <>⚪️</>} C10 | T.HUB lv.{thubLvC10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC10 * allPowC10).toLocaleString('en-US')}</span>/{Number(allPowC10).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC11 * allPowC11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC11 * allPowC11 > 0 ? <>🟢</> : <>⚪️</>} C11 | T.HUB lv.{thubLvC11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC11 * allPowC11).toLocaleString('en-US')}</span>/{Number(allPowC11).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC12 * allPowC12 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C12' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C12')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC12 * allPowC12 > 0 ? <>🟢</> : <>⚪️</>} C12 | T.HUB lv.{thubLvC12}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC12}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC12 * allPowC12).toLocaleString('en-US')}</span>/{Number(allPowC12).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC12}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC13 * allPowC13 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C13' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C13')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC13 * allPowC13 > 0 ? <>🟢</> : <>⚪️</>} C13 | T.HUB lv.{thubLvC13}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC13}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC13 * allPowC13).toLocaleString('en-US')}</span>/{Number(allPowC13).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC13}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC14 * allPowC14 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C14' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C14')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC14 * allPowC14 > 0 ? <>🟢</> : <>⚪️</>} C14 | T.HUB lv.{thubLvC14}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC14}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC14 * allPowC14).toLocaleString('en-US')}</span>/{Number(allPowC14).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC14}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC15 * allPowC15 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C15' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C15')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC15 * allPowC15 > 0 ? <>🟢</> : <>⚪️</>} C15 | T.HUB lv.{thubLvC15}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC15}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC15 * allPowC15).toLocaleString('en-US')}</span>/{Number(allPowC15).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC15}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC16 * allPowC16 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C16' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C16')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC16 * allPowC16 > 0 ? <>🟢</> : <>⚪️</>} C16 | T.HUB lv.{thubLvC16}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC16}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC16 * allPowC16).toLocaleString('en-US')}</span>/{Number(allPowC16).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC16}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC17 * allPowC17 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C17' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C17')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC17 * allPowC17 > 0 ? <>🟢</> : <>⚪️</>} C17 | T.HUB lv.{thubLvC17}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC17}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC17 * allPowC17).toLocaleString('en-US')}</span>/{Number(allPowC17).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC17}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC18 * allPowC18 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C18' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C18')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC18 * allPowC18 > 0 ? <>🟢</> : <>⚪️</>} C18 | T.HUB lv.{thubLvC18}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC18}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC18 * allPowC18).toLocaleString('en-US')}</span>/{Number(allPowC18).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC18}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC19 * allPowC19 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C19' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C19')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC19 * allPowC19 > 0 ? <>🟢</> : <>⚪️</>} C19 | T.HUB lv.{thubLvC19}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC19}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC19 * allPowC19).toLocaleString('en-US')}</span>/{Number(allPowC19).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC19}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC20 * allPowC20 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C20' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C20')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC20 * allPowC20 > 0 ? <>🟢</> : <>⚪️</>} C20 | T.HUB lv.{thubLvC20}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC20}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC20 * allPowC20).toLocaleString('en-US')}</span>/{Number(allPowC20).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC20}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC21 * allPowC21 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C21' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C21')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC21 * allPowC21 > 0 ? <>🟢</> : <>⚪️</>} C21 | T.HUB lv.{thubLvC21}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC21}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC21 * allPowC21).toLocaleString('en-US')}</span>/{Number(allPowC21).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC21}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC22 * allPowC22 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected === 'C22' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected('C22')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC22 * allPowC22 > 0 ? <>🟢</> : <>⚪️</>} C22 | T.HUB lv.{thubLvC22}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC22}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number(thubCapC22 * allPowC22).toLocaleString('en-US')}</span>/{Number(allPowC22).toLocaleString('en-US')} $BBQ</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC22}</div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                             <div>DESTINATION: <span className='emp'>{houseSelected}</span></div>
@@ -3398,6 +3649,802 @@ const BBQLabs = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, b
                             ></input>
                             {address !== null && address !== undefined ? 
                                 <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={transportHandle}>TRANSPORT</div> : 
+                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">TRANSPORT</div>
+                            }
+                        </div>
+                    </div>
+
+                    <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "row",}} className='emp'>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>&nbsp;
+                            $INF.POW TRANSPORT HUB
+                        </div>
+                        <div style={{height: "80%", overflow: "scroll"}} className="pixel">
+                            {thubLvZ02 * allPowZ02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'Z02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('Z02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ02 * allPowZ02 > 0 ? <>🟢</> : <>⚪️</>} Z02 | T.HUB lv.{thubLvZ02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapZ02 * allPowZ02)/10000).toLocaleString('en-US')}</span>/{Number(allPowZ02 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA01 * allPowA01 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A01')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA01 * allPowA01 > 0 ? <>🟢</> : <>⚪️</>} A01 | T.HUB lv.{thubLvA01}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA01}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA01 * allPowA01)/10000).toLocaleString('en-US')}</span>/{Number(allPowA01 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA01}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA02 * allPowA02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA02 * allPowA02 > 0 ? <>🟢</> : <>⚪️</>} A02 | T.HUB lv.{thubLvA02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA02 * allPowA02)/10000).toLocaleString('en-US')}</span>/{Number(allPowA02 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA03 * allPowA03 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A03')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA03 * allPowA03 > 0 ? <>🟢</> : <>⚪️</>} A03 | T.HUB lv.{thubLvA03}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA03}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA03 * allPowA03)/10000).toLocaleString('en-US')}</span>/{Number(allPowA03 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA03}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA04 * allPowA04 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A04')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA04 * allPowA04 > 0 ? <>🟢</> : <>⚪️</>} A04 | T.HUB lv.{thubLvA04}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA04}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA04 * allPowA04)/10000).toLocaleString('en-US')}</span>/{Number(allPowA04 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA04}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA05 * allPowA05 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A05')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA05 * allPowA05 > 0 ? <>🟢</> : <>⚪️</>} A05 | T.HUB lv.{thubLvA05}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA05}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA05 * allPowA05)/10000).toLocaleString('en-US')}</span>/{Number(allPowA05 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA05}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA06 * allPowA06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA06 * allPowA06 > 0 ? <>🟢</> : <>⚪️</>} A06 | T.HUB lv.{thubLvA06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA06 * allPowA06)/10000).toLocaleString('en-US')}</span>/{Number(allPowA06 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA07 * allPowA07 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A07')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA07 * allPowA07 > 0 ? <>🟢</> : <>⚪️</>} A07 | T.HUB lv.{thubLvA07}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA07}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA07 * allPowA07)/10000).toLocaleString('en-US')}</span>/{Number(allPowA07 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA07}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA08 * allPowA08 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A08')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA08 * allPowA08 > 0 ? <>🟢</> : <>⚪️</>} A08 | T.HUB lv.{thubLvA08}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA08}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA08 * allPowA08)/10000).toLocaleString('en-US')}</span>/{Number(allPowA08 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA08}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA09 * allPowA09 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A09')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA09 * allPowA09 > 0 ? <>🟢</> : <>⚪️</>} A09 | T.HUB lv.{thubLvA09}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA09}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA09 * allPowA09)/10000).toLocaleString('en-US')}</span>/{Number(allPowA09 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA09}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA10 * allPowA10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA10 * allPowA10 > 0 ? <>🟢</> : <>⚪️</>} A10 | T.HUB lv.{thubLvA10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA10 * allPowA10)/10000).toLocaleString('en-US')}</span>/{Number(allPowA10 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvA11 * allPowA11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'A11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('A11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapA11 * allPowA11 > 0 ? <>🟢</> : <>⚪️</>} A11 | T.HUB lv.{thubLvA11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeA11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapA11 * allPowA11)/10000).toLocaleString('en-US')}</span>/{Number(allPowA11 * (10 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubA11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvZ06 * allPowZ06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'Z06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('Z06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ06 * allPowZ06 > 0 ? <>🟢</> : <>⚪️</>} Z06 | T.HUB lv.{thubLvZ06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapZ06 * allPowZ06)/10000).toLocaleString('en-US')}</span>/{Number(allPowZ06 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvZ10 * allPowZ10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'Z10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('Z10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ10 * allPowZ10 > 0 ? <>🟢</> : <>⚪️</>} Z10 | T.HUB lv.{thubLvZ10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapZ10 * allPowZ10)/10000).toLocaleString('en-US')}</span>/{Number(allPowZ10 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB01 * allPowB01 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B01')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB01 * allPowB01 > 0 ? <>🟢</> : <>⚪️</>} B01 | T.HUB lv.{thubLvB01}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB01}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB01 * allPowB01)/10000).toLocaleString('en-US')}</span>/{Number(allPowB01 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB01}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB02 * allPowB02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB02 * allPowB02 > 0 ? <>🟢</> : <>⚪️</>} B02 | T.HUB lv.{thubLvB02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB02 * allPowB02)/10000).toLocaleString('en-US')}</span>/{Number(allPowB02 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB03 * allPowB03 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B03')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB03 * allPowB03 > 0 ? <>🟢</> : <>⚪️</>} B03 | T.HUB lv.{thubLvB03}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB03}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB03 * allPowB03)/10000).toLocaleString('en-US')}</span>/{Number(allPowB03 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB03}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB04 * allPowB04 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B04')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB04 * allPowB04 > 0 ? <>🟢</> : <>⚪️</>} B04 | T.HUB lv.{thubLvB04}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB04}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB04 * allPowB04)/10000).toLocaleString('en-US')}</span>/{Number(allPowB04 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB04}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB05 * allPowB05 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B05')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB05 * allPowB05 > 0 ? <>🟢</> : <>⚪️</>} B05 | T.HUB lv.{thubLvB05}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB05}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB05 * allPowB05)/10000).toLocaleString('en-US')}</span>/{Number(allPowB05 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB05}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB06 * allPowB06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB06 * allPowB06 > 0 ? <>🟢</> : <>⚪️</>} B06 | T.HUB lv.{thubLvB06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB06 * allPowB06)/10000).toLocaleString('en-US')}</span>/{Number(allPowB06 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB07 * allPowB07 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B07')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB07 * allPowB07 > 0 ? <>🟢</> : <>⚪️</>} B07 | T.HUB lv.{thubLvB07}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB07}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB07 * allPowB07)/10000).toLocaleString('en-US')}</span>/{Number(allPowB07 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB07}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB08 * allPowB08 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B08')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB08 * allPowB08 > 0 ? <>🟢</> : <>⚪️</>} B08 | T.HUB lv.{thubLvB08}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB08}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB08 * allPowB08)/10000).toLocaleString('en-US')}</span>/{Number(allPowB08 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB08}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB09 * allPowB09 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B09')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB09 * allPowB09 > 0 ? <>🟢</> : <>⚪️</>} B09 | T.HUB lv.{thubLvB09}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB09}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB09 * allPowB09)/10000).toLocaleString('en-US')}</span>/{Number(allPowB09 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB09}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB10 * allPowB10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB10 * allPowB10 > 0 ? <>🟢</> : <>⚪️</>} B10 | T.HUB lv.{thubLvB10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB10 * allPowB10)/10000).toLocaleString('en-US')}</span>/{Number(allPowB10 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvB11 * allPowB11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'B11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('B11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapB11 * allPowB11 > 0 ? <>🟢</> : <>⚪️</>} B11 | T.HUB lv.{thubLvB11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeB11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapB11 * allPowB11)/10000).toLocaleString('en-US')}</span>/{Number(allPowB11 * (5 / 10000)).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubB11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvZ11 * allPowZ11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'Z11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('Z11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapZ11 * allPowZ11 > 0 ? <>🟢</> : <>⚪️</>} Z11 | T.HUB lv.{thubLvZ11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeZ11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapZ11 * allPowZ11)/10000).toLocaleString('en-US')}</span>/{Number(allPowZ11 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubZ11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC01 * allPowC01 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C01' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C01')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC01 * allPowC01 > 0 ? <>🟢</> : <>⚪️</>} C01 | T.HUB lv.{thubLvC01}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC01}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC01 * allPowC01)/10000).toLocaleString('en-US')}</span>/{Number(allPowC01 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC01}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC02 * allPowC02 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C02' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C02')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC02 * allPowC02 > 0 ? <>🟢</> : <>⚪️</>} C02 | T.HUB lv.{thubLvC02}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC02}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC02 * allPowC02)/10000).toLocaleString('en-US')}</span>/{Number(allPowC02 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC02}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC03 * allPowC03 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C03' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C03')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC03 * allPowC03 > 0 ? <>🟢</> : <>⚪️</>} C03 | T.HUB lv.{thubLvC03}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC03}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC03 * allPowC03)/10000).toLocaleString('en-US')}</span>/{Number(allPowC03 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC03}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC04 * allPowC04 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C04' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C04')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC04 * allPowC04 > 0 ? <>🟢</> : <>⚪️</>} C04 | T.HUB lv.{thubLvC04}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC04}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC04 * allPowC04)/10000).toLocaleString('en-US')}</span>/{Number(allPowC04 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC04}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC05 * allPowC05 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C05' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C05')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC05 * allPowC05 > 0 ? <>🟢</> : <>⚪️</>} C05 | T.HUB lv.{thubLvC05}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC05}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC05 * allPowC05)/10000).toLocaleString('en-US')}</span>/{Number(allPowC05 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC05}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC06 * allPowC06 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C06' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C06')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC06 * allPowC06 > 0 ? <>🟢</> : <>⚪️</>} C06 | T.HUB lv.{thubLvC06}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC06}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC06 * allPowC06)/10000).toLocaleString('en-US')}</span>/{Number(allPowC06 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC06}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC07 * allPowC07 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C07' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C07')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC07 * allPowC07 > 0 ? <>🟢</> : <>⚪️</>} C07 | T.HUB lv.{thubLvC07}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC07}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC07 * allPowC07)/10000).toLocaleString('en-US')}</span>/{Number(allPowC07 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC07}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC08 * allPowC08 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C08' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C08')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC08 * allPowC08 > 0 ? <>🟢</> : <>⚪️</>} C08 | T.HUB lv.{thubLvC08}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC08}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC08 * allPowC08)/10000).toLocaleString('en-US')}</span>/{Number(allPowC08 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC08}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC09 * allPowC09 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C09' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C09')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC09 * allPowC09 > 0 ? <>🟢</> : <>⚪️</>} C09 | T.HUB lv.{thubLvC09}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC09}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC09 * allPowC09)/10000).toLocaleString('en-US')}</span>/{Number(allPowC09 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC09}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC10 * allPowC10 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C10' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C10')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC10 * allPowC10 > 0 ? <>🟢</> : <>⚪️</>} C10 | T.HUB lv.{thubLvC10}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC10}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC10 * allPowC10)/10000).toLocaleString('en-US')}</span>/{Number(allPowC10 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC10}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC11 * allPowC11 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C11' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C11')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC11 * allPowC11 > 0 ? <>🟢</> : <>⚪️</>} C11 | T.HUB lv.{thubLvC11}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC11}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC11 * allPowC11)/10000).toLocaleString('en-US')}</span>/{Number(allPowC11 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC11}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC12 * allPowC12 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C12' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C12')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC12 * allPowC12 > 0 ? <>🟢</> : <>⚪️</>} C12 | T.HUB lv.{thubLvC12}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC12}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC12 * allPowC12)/10000).toLocaleString('en-US')}</span>/{Number(allPowC12 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC12}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC13 * allPowC13 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C13' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C13')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC13 * allPowC13 > 0 ? <>🟢</> : <>⚪️</>} C13 | T.HUB lv.{thubLvC13}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC13}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC13 * allPowC13)/10000).toLocaleString('en-US')}</span>/{Number(allPowC13 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC13}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC14 * allPowC14 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C14' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C14')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC14 * allPowC14 > 0 ? <>🟢</> : <>⚪️</>} C14 | T.HUB lv.{thubLvC14}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC14}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC14 * allPowC14)/10000).toLocaleString('en-US')}</span>/{Number(allPowC14 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC14}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC15 * allPowC15 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C15' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C15')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC15 * allPowC15 > 0 ? <>🟢</> : <>⚪️</>} C15 | T.HUB lv.{thubLvC15}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC15}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC15 * allPowC15)/10000).toLocaleString('en-US')}</span>/{Number(allPowC15 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC15}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC16 * allPowC16 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C16' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C16')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC16 * allPowC16 > 0 ? <>🟢</> : <>⚪️</>} C16 | T.HUB lv.{thubLvC16}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC16}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC16 * allPowC16)/10000).toLocaleString('en-US')}</span>/{Number(allPowC16 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC16}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC17 * allPowC17 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C17' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C17')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC17 * allPowC17 > 0 ? <>🟢</> : <>⚪️</>} C17 | T.HUB lv.{thubLvC17}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC17}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC17 * allPowC17)/10000).toLocaleString('en-US')}</span>/{Number(allPowC17 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC17}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC18 * allPowC18 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C18' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C18')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC18 * allPowC18 > 0 ? <>🟢</> : <>⚪️</>} C18 | T.HUB lv.{thubLvC18}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC18}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC18 * allPowC18)/10000).toLocaleString('en-US')}</span>/{Number(allPowC18 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC18}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC19 * allPowC19 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C19' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C19')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC19 * allPowC19 > 0 ? <>🟢</> : <>⚪️</>} C19 | T.HUB lv.{thubLvC19}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC19}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC19 * allPowC19)/10000).toLocaleString('en-US')}</span>/{Number(allPowC19 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC19}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC20 * allPowC20 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C20' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C20')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC20 * allPowC20 > 0 ? <>🟢</> : <>⚪️</>} C20 | T.HUB lv.{thubLvC20}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC20}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC20 * allPowC20)/10000).toLocaleString('en-US')}</span>/{Number(allPowC20 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC20}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC21 * allPowC21 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C21' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C21')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC21 * allPowC21 > 0 ? <>🟢</> : <>⚪️</>} C21 | T.HUB lv.{thubLvC21}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC21}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC21 * allPowC21)/10000).toLocaleString('en-US')}</span>/{Number(allPowC21 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC21}</div>
+                                    </div>
+                                </div>
+                            }
+                            {thubLvC22 * allPowC22 > 0 &&
+                                <div style={{marginTop: "10px", padding: "10px", border: "1px solid", cursor: "pointer", background: houseSelected2 === 'C22' ? "rgb(0, 227, 180)" : "transparent"}} onClick={() => setHouseSelected2('C22')}>
+                                    <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div>{thubCapC22 * allPowC22 > 0 ? <>🟢</> : <>⚪️</>} C22 | T.HUB lv.{thubLvC22}</div>
+                                        <div>FEE: <span style={{color: "#000"}}>{thubFeeC22}%</span></div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>CAP: <span style={{color: "#000"}}>{Number((thubCapC22 * allPowC22)/10000).toLocaleString('en-US')}</span>/{Number(allPowC22 / 10000).toLocaleString('en-US')} $INF.POW</div>
+                                    </div>
+                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                        <div></div>
+                                        <div>RESET ON: {nextDayThubC22}</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                            <div>DESTINATION: <span className='emp'>{houseSelected2}</span></div>
+                            <div>tBridge fee: 80 CMD</div>
+                        </div>
+                        <div style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                            <input
+                                style={{maxHeight: "10px", width: "180px", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                                type="number"
+                                step="1"
+                                min="1"
+                                placeholder="0.00 $INF.POW"
+                                value={transportValue2}
+                                onChange={(event) => setTransportValue2(event.target.value)}
+                            ></input>
+                            {address !== null && address !== undefined ? 
+                                <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={() => transportHandle2(3)}>TRANSPORT</div> : 
                                 <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">TRANSPORT</div>
                             }
                         </div>

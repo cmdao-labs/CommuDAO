@@ -1571,10 +1571,17 @@ const CmCityLand = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                            $BBQ CURRENT CAPACITY
+                                            $CURRENT CAPACITY
                                             <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
                                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
                                                 <div style={{marginLeft: "5px"}}>{(thubCap * allPow).toLocaleString()}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            <div></div>
+                                            <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>
+                                                <div style={{marginLeft: "5px"}}>{((thubCap * allPow) / 10000).toLocaleString()}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
