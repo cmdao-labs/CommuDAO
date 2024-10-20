@@ -146,6 +146,7 @@ import delegateOwner01ABI from './jsons/delegateOwner01ABI.json'
 import houseABI from './jsons/houseABI.json'
 import houseStakingABI from './jsons/houseStakingABI.json'
 import transportHubABI from './jsons/transportHubABI.json'
+import transportHub2ABI from './jsons/transportHub2ABI.json'
 import sourceThubABI from './jsons/sourceThubABI.json'
 import constructionABI from './jsons/constructionABI.json'
 import constructionStakingABI from './jsons/constructionStakingABI.json'
@@ -496,7 +497,7 @@ const Main = () => {
 
                     {mode === 2 && <Labs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20Abi={erc20Abi} kycABI={kycABI} />}
                     {mode === 200 && <BKCLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} /> }
-                    {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20Abi={erc20Abi} transportHubABI={transportHubABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721Abi={erc721Abi} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
+                    {mode === 20000 && <BBQLabs setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20Abi={erc20Abi} transportHubABI={transportHubABI} transportHub2ABI={transportHub2ABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721Abi={erc721Abi} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
                     {mode === 21000 && <OPLabs setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} />}
 
                     
