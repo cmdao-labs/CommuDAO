@@ -577,6 +577,7 @@ const GameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, excha
             {mode === 0 && 
                 <>
                     <Swap
+                        config={config}
                         address={address}
                         setisLoading={setisLoading}
                         setTxupdate={setTxupdate}
@@ -844,6 +845,7 @@ const GameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, excha
                 </div>
             }
             {mode === 2 && <GameSwapFarm
+                config={config}
                 address={address}
                 setisLoading={setisLoading}
                 setTxupdate={setTxupdate}

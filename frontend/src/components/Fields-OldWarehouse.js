@@ -11,25 +11,15 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, aurora721ABI, tunaFieldABI }) => {
     let { address, chain } = useAccount()
-    const { open } = useAppKit()
-    const youraddr = address === undefined ? null : address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/fields/old-warehouse/' + youraddr)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-        navigate('/fields/old-warehouse/' + address)
-    } else if (address === undefined) {
+    if (address === undefined) {
         address = null
-        navigate('/fields/old-warehouse/null')
-    } else {
-        navigate('/fields/old-warehouse/' + youraddr)
     }
-
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState("")
-
     const [nft, setNft] = React.useState([])
     const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily, setAllDaily] = React.useState(0)
@@ -69,17 +59,26 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
         window.scrollTo(0, 0)
         const orynftSC = new ethers.Contract(ory, aurora721ABI, providerJBC)
         console.log("Connected to " + address)
+        if (intrasubModetext === undefined) {
+            navigate('/fields/old-warehouse/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/fields/old-warehouse/null')
+        } else {
+            navigate('/fields/old-warehouse/' + address)
+        }
         setNft([])
         
         const thefetch = async () => {
             let stakeRemoveDup = []
-            if (address !== null) {
-                const stakeFilter = await orynftSC.filters.Transfer(address, fieldMice, null)
+            if (addr !== null) {
+                const stakeFilter = await orynftSC.filters.Transfer(addr, fieldMice, null)
                 const stakeEvent = await orynftSC.queryFilter(stakeFilter, 515000, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
                 stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
             }
-            const data = address !== null ? await readContracts(config, {
+            const data = addr !== null ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: fieldMice,
@@ -93,12 +92,12 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             let nfts = []
             let nftstaked = []
             let yournftstake = []
-            for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null ; i++) {
-                if (data[i].result[0].toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= stakeRemoveDup.length - 1 && addr !== null ; i++) {
+                if (data[i].result[0].toUpperCase() === addr.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-            const data2 = address !== null ? await readContracts(config, {
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fieldMice,
@@ -141,13 +140,13 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             }
 
             let walletRemoveDup = []
-            if (address !== null) {
-                const walletFilter = await orynftSC.filters.Transfer(null, address, null)
+            if (addr !== null) {
+                const walletFilter = await orynftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await orynftSC.queryFilter(walletFilter, 515000, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
                 walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
             }
-            const data3 = address !== null ? await readContracts(config, {
+            const data3 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: ory,
@@ -160,7 +159,7 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             }) : null
             let yournftwallet = []
             for (let i = 0; i <= walletRemoveDup.length - 1; i++) {
-                if (data3[i].result.toUpperCase() === address.toUpperCase()) {
+                if (data3[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
@@ -191,11 +190,11 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const miceBal = address !== null ? await readContract(config, {
+            const miceBal = addr !== null ? await readContract(config, {
                 address: fieldMice,
                 abi: tunaFieldABI,
                 functionName: 'balanceOf',
-                args: [address],
+                args: [addr],
                 chainId: 8899
             }) : 0
 
@@ -218,7 +217,7 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             setMiceBalance(ethers.utils.formatEther(result[3]))
             setNftStaked(result[4])
         })
-    }, [config, address, chain, txupdate, aurora721ABI, tunaFieldABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, aurora721ABI, tunaFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -353,8 +352,13 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
                                 <>
-                                    {address !== null && address === youraddr && allReward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                    {address !== null && intrasubModetext !== undefined ?
+                                        <>
+                                            {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
+                                                <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                            }
+                                        </> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                     }
                                 </>
@@ -373,52 +377,61 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
                             <>
                                 {nft[0] !== null ?
                                     <>
-                                    {nft.map((item, index) => (
-                                        <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
-                                            <img src={item.Image} width="150" alt="Can not load metadata." />
-                                            <div>{item.Name}</div>
-                                            <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                                                {item.isStaked ?
+                                        {nft.map((item, index) => (
+                                            <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
+                                                <img src={item.Image} width="150" alt="Can not load metadata." />
+                                                <div>{item.Name}</div>
+                                                <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                                    {item.isStaked ?
+                                                        <>
+                                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                            <div style={{color: "black"}}>On Staking</div>
+                                                        </> :
+                                                        <>
+                                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                            <div style={{color: "black"}}>Available for stake</div>
+                                                        </>
+                                                    }
+                                                </div>
+                                                <div>
+                                                    Earn: {item.Bonus * 86400}
+                                                    &nbsp;
+                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
+                                                    &nbsp;MICE/DAY
+                                                </div>
+                                                <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                                    <div style={{lineHeight: 2, textAlign: "left"}}>
+                                                        Pending Rewards<br></br>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
+                                                        &nbsp;{item.Reward}
+                                                    </div>
+                                                    {address !== null && intrasubModetext !== undefined ?
+                                                        <>
+                                                            {address.toUpperCase() === intrasubModetext.toUpperCase() && item.Reward > 0 ?
+                                                                <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                                            }
+                                                        </> :
+                                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                                    }
+                                                </div>
+                                                {address !== null && intrasubModetext !== undefined && 
                                                     <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div style={{color: "black"}}>On Staking</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div style={{color: "black"}}>Available for stake</div>
+                                                        {address.toUpperCase() === intrasubModetext.toUpperCase() &&
+                                                            <>
+                                                                {item.isStaked ?
+                                                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                                                    <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                                        <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                                                        <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                                                    </div>
+                                                                }
+                                                            </>
+                                                        }
                                                     </>
                                                 }
                                             </div>
-                                            <div>
-                                                Earn: {item.Bonus * 86400}
-                                                &nbsp;
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
-                                                &nbsp;MICE/DAY
-                                            </div>
-                                            <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                                <div style={{lineHeight: 2, textAlign: "left"}}>
-                                                    Pending Rewards<br></br>
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
-                                                    &nbsp;{item.Reward}
-                                                </div>
-                                                {youraddr !== null && item.Reward > 0 ?
-                                                    <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
-                                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
-                                                }
-                                            </div>
-                                            {youraddr !== null && 
-                                                <>
-                                                    {item.isStaked ?
-                                                        <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
-                                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
-                                                        </div>
-                                                    }
-                                                </>
-                                            }
-                                        </div>
-                                    ))}
+                                        ))}
                                     </> :
                                     <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
                                         {address !== null ?

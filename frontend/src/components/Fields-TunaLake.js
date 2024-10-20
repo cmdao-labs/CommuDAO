@@ -10,19 +10,11 @@ const tunaField = '0x09676315DC0c85F6bd5e866C5f1363A00Eec4381'
 
 const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, aurora721ABI, tunaFieldABI }) => {
     let { address, chain } = useAccount()
-    const { open } = useAppKit()
-    const youraddr = address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/fields/tuna-lake/' + youraddr)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-        navigate('/fields/tuna-lake/' + address)
-    } else if (address === undefined) {
+    if (address === undefined) {
         address = null
-        navigate('/fields/tuna-lake/null')
-    } else {
-        navigate('/fields/tuna-lake/' + address)
     }
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)
     const [nft, setNft] = React.useState([])
     const [nftStaked, setNftStaked] = React.useState([])
     const [allDaily, setAllDaily] = React.useState(0)
@@ -32,17 +24,26 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
+        if (intrasubModetext === undefined) {
+            navigate('/fields/tuna-lake/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/fields/tuna-lake/null')
+        } else {
+            navigate('/fields/tuna-lake/' + address)
+        }
         setNft([])
         
         const thefetch = async () => {
-            const balanceofstake = address !== null ? await readContract(config, {
+            const balanceofstake = addr !== null ? await readContract(config, {
                 address: jibjib,
                 abi: aurora721ABI,
                 functionName: 'walletOfOwner',
                 args: [tunaField],
                 chainId: 8899
             }) : []
-            const data = address !== null ? await readContracts(config, {
+            const data = addr !== null ? await readContracts(config, {
                 contracts: balanceofstake.map((item) => (
                     {
                         address: tunaField,
@@ -58,11 +59,11 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
             let nftstaked = []
             let yournftstake = []
             for (let i = 0; i <= balanceofstake.length - 1; i++) {
-                if (data[i].result[0].toUpperCase() === address.toUpperCase()) {
+                if (data[i].result[0].toUpperCase() === addr.toUpperCase()) {
                     yournftstake.push({Id: String(balanceofstake[i])})
                 }
             }
-            const data2 = address !== null ? await readContracts(config, {
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: tunaField,
@@ -102,11 +103,11 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                 nftstaked.push({Id: Number(yournftstake[i].Id)})
             }
 
-            const balanceofyou = address !== null ? await readContract(config, {
+            const balanceofyou = addr !== null ? await readContract(config, {
                 address: jibjib,
                 abi: aurora721ABI,
                 functionName: 'walletOfOwner',
-                args: [address],
+                args: [addr],
                 chainId: 8899
             }) : []
             for (let i = 0; i <= balanceofyou.length - 1; i++) {
@@ -134,11 +135,11 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const tunaBal = address !== null ? await readContract(config, {
+            const tunaBal = addr !== null ? await readContract(config, {
                 address: tunaField,
                 abi: tunaFieldABI,
                 functionName: 'balanceOf',
-                args: [address],
+                args: [addr],
             }) : 0
 
             return [nfts, nftstaked, _allReward, _allDaily, tunaBal, ]
@@ -161,7 +162,7 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
             setTunaBalance(ethers.utils.formatEther(result[4]))
         })
 
-    }, [config, address, chain, txupdate, aurora721ABI, tunaFieldABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, aurora721ABI, tunaFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -284,8 +285,13 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
                                 <>
-                                    {address !== undefined && address === youraddr && allReward > 0 ?
-                                        <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                    {address !== null && intrasubModetext !== undefined ?
+                                        <>
+                                            {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
+                                                <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                            }
+                                        </> :
                                         <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                     }
                                 </>
@@ -332,16 +338,25 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                                 {ethers.utils.formatEther(String(item.Reward))}
                                             </div>
-                                            {youraddr !== null && item.Reward > 0 ?
-                                                <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                            {address !== null && intrasubModetext !== undefined ?
+                                                <>
+                                                    {address.toUpperCase() === intrasubModetext.toUpperCase() && item.Reward > 0 ?
+                                                        <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                                    }
+                                                </> :
                                                 <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                             }
                                         </div>
-                                        {youraddr !== null && 
+                                        {address !== null && intrasubModetext !== undefined && 
                                             <>
-                                                {item.isStaked ?
-                                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
-                                                    <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() &&
+                                                    <>
+                                                        {item.isStaked ?
+                                                            <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                                        }
+                                                    </>
                                                 }
                                             </>
                                         }
