@@ -599,7 +599,7 @@ const Ammmerchant4 = ({ setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI,
                         args: [address],
                     },                 
                 ],
-            }) : [0, 0, ]
+            }) : [{result: 0}, {result: 0}, ]
 
             const swarlpBal = data3[0].result
             const angblpBal = data3[1].result
