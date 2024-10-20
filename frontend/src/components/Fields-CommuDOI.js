@@ -179,7 +179,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, setisLoading, txupd
             setDoijibBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, cmdoiFieldABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, cmdoiFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)

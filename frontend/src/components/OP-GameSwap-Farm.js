@@ -82,7 +82,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
             setReward2(ethers.utils.formatEther(result[4]))
             setReward3(ethers.utils.formatUnits(result[5], 'mwei'))
         })
-    }, [address, txupdate, erc20Abi, stcmdABI])
+    }, [config, address, txupdate, erc20Abi, stcmdABI])
 
     const addstakeHandle = async () => {
         setisLoading(true)

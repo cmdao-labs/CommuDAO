@@ -216,7 +216,7 @@ const TdmRoboticsInc = ({ config, setisLoading, txupdate, setTxupdate, uniEnchan
             setRank(result[4])
         })
 
-    }, [address, erc20Abi, erc721Abi, questAmbassABI, cmdaoNameABI, dunEEABI, txupdate])
+    }, [config, address, erc20Abi, erc721Abi, questAmbassABI, cmdaoNameABI, dunEEABI, txupdate])
 
     const enchantHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)

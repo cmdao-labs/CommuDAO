@@ -242,7 +242,7 @@ const FraserRiver = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             setNftStaked(result[6])
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, salmFieldABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, salmFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)

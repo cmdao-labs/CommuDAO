@@ -289,7 +289,7 @@ const EasternFront = ({ config, intrasubModetext, navigate, setisLoading, txupda
             setNftStaked(result[4])
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, fieldEfABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, fieldEfABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)

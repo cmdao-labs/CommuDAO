@@ -279,7 +279,7 @@ const TBridgeHEROMINER = ({ config, setisLoading, txupdate, setTxupdate, erc721A
             setNft2(result[1])
         })
 
-    }, [address, txupdate, erc721Abi])
+    }, [config, address, txupdate, erc721Abi])
 
     const depositHRMHandle = async (_nftId) => {
         setisLoading(true)

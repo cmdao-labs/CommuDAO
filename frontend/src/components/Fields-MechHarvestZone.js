@@ -499,7 +499,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, setisLoading, txu
             setAllRewardNFT(result[9])
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, gearFieldABI, taoPfpABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, gearFieldABI, taoPfpABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)

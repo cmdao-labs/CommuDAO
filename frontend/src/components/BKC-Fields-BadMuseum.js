@@ -186,7 +186,7 @@ const BadMuseum = ({ config, intrasubModetext, navigate, setisLoading, txupdate,
             setBstBalance(ethers.utils.formatEther(String(result[4])))
         })
 
-    }, [address, txupdate, erc721Abi, tunaFieldABI, erc20Abi])
+    }, [config, address, txupdate, erc721Abi, tunaFieldABI, erc20Abi])
     
     const stakeNft = async (_nftid) => {
         setisLoading(true)

@@ -1098,7 +1098,7 @@ const Mkp = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTx
             }
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, aurora721ABI, cmdaoMkpABI, sellerAddr, houseStakingABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, aurora721ABI, cmdaoMkpABI, sellerAddr, houseStakingABI])
 
     const sellPriceHandle = (event) => { setSellPrice(event.target.value) }
     const sell = (_nftcol, _nftid, _nftname, _nftimage) => {

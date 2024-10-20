@@ -347,7 +347,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             setCmmBkcBalance(ethers.utils.formatEther(result[23].result))
             setCmmBbqBalance(ethers.utils.formatEther(result[24].result))
         })
-    }, [address, txupdate, erc20Abi])
+    }, [config, address, txupdate, erc20Abi])
 
     const handleDeposit = (event) => {
         setDepositValueDis(event.target.value)

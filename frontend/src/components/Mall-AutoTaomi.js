@@ -425,7 +425,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             setEeLpBalance(Math.floor(_eelpbalance * 100000) / 100000)
         })
 
-    }, [address, erc20Abi, cmdaoAmmNpcABI])
+    }, [config, address, erc20Abi, cmdaoAmmNpcABI])
 
     return (
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>

@@ -7949,7 +7949,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             result[541] !== 0 && Date.now() - (Number(result[541]) * 1000) > (86400 * 1000) ? setIsRunoutSlot10(true) : setIsRunoutSlot10(false)
             setGemPendingSlot10(ethers.utils.formatEther(String(result[542])))
         })
-    }, [address, txupdate, erc721Abi, erc20Abi, dunGEMABI])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, dunGEMABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {

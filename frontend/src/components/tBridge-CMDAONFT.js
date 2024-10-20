@@ -94,7 +94,7 @@ const TBridgeCMDAONFT = ({ config, setisLoading, txupdate, setTxupdate, erc721Ab
             setNft(result[0])
         })
 
-    }, [address, txupdate, erc721Abi])
+    }, [config, address, txupdate, erc721Abi])
 
     const depositHandle = async (_nftId) => {
         setisLoading(true)

@@ -941,7 +941,7 @@ const AbandonedTempleVault = ({ config, intrasubModetext, navigate, setisLoading
             result[42] !== 0 ? setTimeToSyncAgain(syncAgain.toLocaleString('es-CL')) : setTimeToSyncAgain(null)
             result[42] !== 0 && Date.now() - (Number(result[42]) * 1000) > (86400 * 1000) ? setCanSync(true) : setCanSync(false)
         })
-    }, [address, txupdate, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI ])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI ])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {

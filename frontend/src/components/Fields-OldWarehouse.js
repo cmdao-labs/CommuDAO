@@ -2,23 +2,27 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const ory = '0xD492E20Ecf3Ae85Fe3E3159BB064442b86D6DC02'
 const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
-
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, aurora721ABI, tunaFieldABI }) => {
-    let { address } = useAccount()
-    const youraddr = address
+const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, aurora721ABI, tunaFieldABI }) => {
+    let { address, chain } = useAccount()
+    const { open } = useAppKit()
+    const youraddr = address === undefined ? null : address
     if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/fields/old-warehouse/' + address)
+        navigate('/fields/old-warehouse/' + youraddr)
     } else if (intrasubModetext.length === 42) {
         address = intrasubModetext
-    } else if (address === undefined) {
-    } else {
         navigate('/fields/old-warehouse/' + address)
+    } else if (address === undefined) {
+        address = null
+        navigate('/fields/old-warehouse/null')
+    } else {
+        navigate('/fields/old-warehouse/' + youraddr)
     }
 
     const [isTransferModal, setIsTransferModal] = React.useState(false)
@@ -54,57 +58,61 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         const orynftSC = new ethers.Contract(ory, aurora721ABI, providerJBC)
+        console.log("Connected to " + address)
         setNft([])
         
         const thefetch = async () => {
-            const stakeFilter = await orynftSC.filters.Transfer(address, fieldMice, null)
-            const stakeEvent = await orynftSC.queryFilter(stakeFilter, 515000, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
-            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            const data = address !== null && address !== undefined ? await readContracts(config, {
+            let stakeRemoveDup = []
+            if (address !== null) {
+                const stakeFilter = await orynftSC.filters.Transfer(address, fieldMice, null)
+                const stakeEvent = await orynftSC.queryFilter(stakeFilter, 515000, "latest")
+                const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
+                stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            }
+            const data = address !== null ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: fieldMice,
                         abi: tunaFieldABI,
                         functionName: 'nftStake',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(stakeRemoveDup.length).fill({tokenOwnerOf: ''})]
-
+            }) : null
             let nfts = []
             let nftstaked = []
             let yournftstake = []
-
-            for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null && address !== undefined ; i++) {
+            for (let i = 0; i <= stakeRemoveDup.length - 1 && address !== null ; i++) {
                 if (data[i].result[0].toUpperCase() === address.toUpperCase()) {
                     yournftstake.push({Id: String(stakeRemoveDup[i])})
                 }
             }
-
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            const data2 = address !== null ? await readContracts(config, {
                 contracts: yournftstake.map((item) => (
                     {
                         address: fieldMice,
                         abi: tunaFieldABI,
                         functionName: 'calculateRewards',
                         args: [String(item.Id)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(yournftstake.length).fill(0)]
-
+            }) : null
             let _allDaily = 0
             let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
                 const nftid = yournftstake[i].Id
-
                 let bonus = 0
                 if (Number(nftid) >= 400) {
                     bonus = 4
@@ -121,7 +129,6 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
                 }
                 _allDaily += Number(ethers.utils.formatEther(String(bonus * 10**14)))
                 _allReward += Number(ethers.utils.formatEther(String(data2[i].result)))
-
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
@@ -133,32 +140,32 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
                 nftstaked.push({Id: nftid})
             }
 
-            const walletFilter = await orynftSC.filters.Transfer(null, address, null)
-            const walletEvent = await orynftSC.queryFilter(walletFilter, 515000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            let walletRemoveDup = []
+            if (address !== null) {
+                const walletFilter = await orynftSC.filters.Transfer(null, address, null)
+                const walletEvent = await orynftSC.queryFilter(walletFilter, 515000, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            }
+            const data3 = address !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: ory,
                         abi: aurora721ABI,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(walletRemoveDup.length).fill('')]
-
+            }) : null
             let yournftwallet = []
-
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
+            for (let i = 0; i <= walletRemoveDup.length - 1; i++) {
                 if (data3[i].result.toUpperCase() === address.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftid = Number(yournftwallet[i].Id)
-
                 let bonus;
                 if (Number(nftid) >= 400) {
                     bonus = 4;
@@ -173,7 +180,6 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
                 } else if (Number(nftid) === 1) {
                     bonus = 400;
                 }
-
                 nfts.push({
                     Id: nftid,
                     Name: "CM Cat Meaw Ory JIBJIB #" + nftid,
@@ -185,11 +191,12 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const miceBal = address !== null && address !== undefined ? await readContract(config, {
+            const miceBal = address !== null ? await readContract(config, {
                 address: fieldMice,
                 abi: tunaFieldABI,
                 functionName: 'balanceOf',
                 args: [address],
+                chainId: 8899
             }) : 0
 
             return [nfts, _allDaily, _allReward, miceBal, nftstaked, ]
@@ -208,11 +215,10 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
             setNft(result[0])
             setAllDaily(result[1] * 86400)
             setAllReward(result[2])
-            setMiceBalance(ethers.utils.formatEther(String(result[3])))
+            setMiceBalance(ethers.utils.formatEther(result[3]))
             setNftStaked(result[4])
         })
-
-    }, [address, txupdate, aurora721ABI, tunaFieldABI])
+    }, [config, address, chain, txupdate, aurora721ABI, tunaFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -242,7 +248,10 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -258,7 +267,10 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -280,140 +292,158 @@ const RatHuntingField = ({ config, intrasubModetext, navigate, setisLoading, txu
                     await writeContract(config, request)
                 }
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
     return (
-    <>
-        {isTransferModal &&
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{fontSize: "20px"}}>{transferName}</div>
-                        <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
-                        <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
-                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
+        <>
+            {isTransferModal &&
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu')", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "65px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Old Warehouse</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw ORY to earn $MICE.</div>
-            </div>
-            <div style={{margin: "30px 100px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="150" alt="$MICE" />
-            </div>
-        </div>
-
-        <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start"}} className="collection">
-            <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
-                <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                    <div style={{marginBottom: "20px"}}>ORY ON WALLET</div>
-                    <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
+            }
+        
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiertqhm4rnoxp63hrz6g6rzama54pryx3dypv5fkizgfnukxv5dsu')", overflow: "scroll"}}>
+                <div style={{flexDirection: "column", margin: "30px 100px"}}>
+                    <div className="pixel" style={{fontSize: "65px", color: "#fff", width: "fit-content", padding: "0 10px"}}>Old Warehouse</div>
+                    <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Cat Meaw ORY to earn $MICE.</div>
                 </div>
-                <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                    <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
-                    <div style={{fontSize: "24px"}} className="emp">
-                        {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                        <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                <div style={{margin: "30px 100px"}}>
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="150" alt="$MICE" />
+                </div>
+            </div>
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to JIBCHAIN L1.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
                     </div>
-                </div>
-                <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                    <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                    <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                        <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
-                        <>
-                            {address !== undefined && address === youraddr && allReward > 0 ?
-                                <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
-                                <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
-                            }
-                        </>
+                </div> :
+                <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start"}} className="collection">
+                    <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                            <div style={{marginBottom: "20px"}}>ORY ON WALLET</div>
+                            <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
+                        </div>
+                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                            <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
+                            <div style={{fontSize: "24px"}} className="emp">
+                                {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
+                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                            </div>
+                        </div>
+                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                            <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
+                            <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
+                                <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                                <>
+                                    {address !== null && address === youraddr && allReward > 0 ?
+                                        <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                    }
+                                </>
+                            </div>
+                        </div>
+                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                            <div style={{marginBottom: "20px"}}>MICE BALANCE</div>
+                            <div style={{fontSize: "24px"}}>
+                                {nft.length > 0 ? Number(miceBalance).toFixed(3) : 0}
+                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                    <div style={{marginBottom: "20px"}}>MICE BALANCE</div>
-                    <div style={{fontSize: "24px"}}>
-                        {nft.length > 0 ? Number(miceBalance).toFixed(3) : 0}
-                        <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="24" alt="$MICE"/>
-                    </div>
-                </div>
-            </div>
-            <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
-                {nft.length > 0 ?
-                    <>
-                        {nft[0] !== null ?
+                    <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                        {nft.length > 0 ?
                             <>
-                            {nft.map((item, index) => (
-                                <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
-                                    <img src={item.Image} width="150" alt="Can not load metadata." />
-                                    <div>{item.Name}</div>
-                                    <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                                        {item.isStaked ?
+                                {nft[0] !== null ?
+                                    <>
+                                    {nft.map((item, index) => (
+                                        <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
+                                            <img src={item.Image} width="150" alt="Can not load metadata." />
+                                            <div>{item.Name}</div>
+                                            <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                                {item.isStaked ?
+                                                    <>
+                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div style={{color: "black"}}>On Staking</div>
+                                                    </> :
+                                                    <>
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div style={{color: "black"}}>Available for stake</div>
+                                                    </>
+                                                }
+                                            </div>
+                                            <div>
+                                                Earn: {item.Bonus * 86400}
+                                                &nbsp;
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
+                                                &nbsp;MICE/DAY
+                                            </div>
+                                            <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                                <div style={{lineHeight: 2, textAlign: "left"}}>
+                                                    Pending Rewards<br></br>
+                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
+                                                    &nbsp;{item.Reward}
+                                                </div>
+                                                {youraddr !== null && item.Reward > 0 ?
+                                                    <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
+                                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                                }
+                                            </div>
+                                            {youraddr !== null && 
+                                                <>
+                                                    {item.isStaked ?
+                                                        <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
+                                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
+                                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
+                                                        </div>
+                                                    }
+                                                </>
+                                            }
+                                        </div>
+                                    ))}
+                                    </> :
+                                    <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
+                                        {address !== null ?
                                             <>
-                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                <div style={{color: "black"}}>On Staking</div>
+                                                <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                                <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
                                             </> :
                                             <>
-                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, borderRadius: "50%", marginRight: 7}}></div>
-                                                <div style={{color: "black"}}>Available for stake</div>
+                                                <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                                <div className="bold">Please connect wallet to view your NFTs.</div>
                                             </>
                                         }
                                     </div>
-                                    <div>
-                                        Earn: {item.Bonus * 86400}
-                                        &nbsp;
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="micepic"/>
-                                        &nbsp;MICE/DAY
-                                    </div>
-                                    <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
-                                        <div style={{lineHeight: 2, textAlign: "left"}}>
-                                            Pending Rewards<br></br>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" width="12" alt="$MICE"/>
-                                            &nbsp;{item.Reward}
-                                        </div>
-                                        {item.Reward > 0 ?
-                                            <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
-                                            <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
-                                        }
-                                    </div>
-                                    {item.isStaked ?
-                                        <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id, true)}}>UNSTAKE</div> :
-                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                            <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
-                                            <div style={{alignSelf: "center", background: "gray"}} className="button" onClick={() => transferNFT(item.Id)}>TRANSFER</div>
-                                        </div>
-                                    }
-                                </div>
-                            ))}
+                                }
                             </> :
                             <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
-                                {address !== undefined ?
-                                    <>
-                                        <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                        <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                    </> :
-                                    <>
-                                        <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                        <div className="bold">Please connect wallet to view your NFTs.</div>
-                                    </>
-                                }
+                                <ThreeDots fill="#5f6476" />
+                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                             </div>
                         }
-                    </> :
-                    <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
-                        <ThreeDots fill="#5f6476" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
-                }
-            </div>
-        </div>
-    </>
+                </div>
+            }
+        </>
     )
 }
 
-export default RatHuntingField
+export default OldWarehouse

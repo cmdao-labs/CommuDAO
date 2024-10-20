@@ -368,7 +368,7 @@ const ApInn = ({ config, setisLoading, txupdate, setTxupdate, acUpgradeABI, uniE
             setRank4(result[7])
         })
 
-    }, [address, erc20Abi, erc721Abi, questAmbassABI, cmdaoNameABI, dunAngbABI, txupdate])
+    }, [config, address, erc20Abi, erc721Abi, questAmbassABI, cmdaoNameABI, dunAngbABI, txupdate])
 
     const enchantAcHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)

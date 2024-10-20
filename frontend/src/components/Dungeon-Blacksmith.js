@@ -292,7 +292,7 @@ const Npcblacksmith = ({ config, setisLoading, txupdate, setTxupdate, enchantNAB
             setRank(result[5])
         })
 
-    }, [address, erc20Abi, erc721Abi, txupdate, cmdaoNameABI, questAmbassABI])
+    }, [config, address, erc20Abi, erc721Abi, txupdate, cmdaoNameABI, questAmbassABI])
 
     const enchantNHandle = async (_nftid, _enchantindex) => {
         setisLoading(true)

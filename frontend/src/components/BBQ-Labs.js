@@ -2187,7 +2187,7 @@ const BBQLabs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             setCanCraftINFPOW(result[150])
             setInfpowBalance(ethers.utils.formatEther(result[151]))
         })
-    }, [address, txupdate, erc20Abi, erc721Abi, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI, pzaLabABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, bbqLab01ABI, slot1ABI, houseStakingABI, transportHubABI, pzaLabABI])
 
     const craftBBQHandle = async (_machine) => {
         setisLoading(true)
@@ -2422,101 +2422,101 @@ const BBQLabs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                 await waitForTransactionReceipt(config, { hash: h })
             }
             let _target = null
-            if (houseSelected === 'Z02') {
+            if (houseSelected2 === 'Z02') {
                 _target = 10026002
-            } else if (houseSelected === 'A01') {
+            } else if (houseSelected2 === 'A01') {
                 _target = 10001001
-            } else if (houseSelected === 'A02') {
+            } else if (houseSelected2 === 'A02') {
                 _target = 10001002
-            } else if (houseSelected === 'A03') {
+            } else if (houseSelected2 === 'A03') {
                 _target = 10001003
-            } else if (houseSelected === 'A04') {
+            } else if (houseSelected2 === 'A04') {
                 _target = 10001004
-            } else if (houseSelected === 'A05') {
+            } else if (houseSelected2 === 'A05') {
                 _target = 10001005
-            } else if (houseSelected === 'A06') {
+            } else if (houseSelected2 === 'A06') {
                 _target = 10001006
-            } else if (houseSelected === 'A07') {
+            } else if (houseSelected2 === 'A07') {
                 _target = 10001007
-            } else if (houseSelected === 'A08') {
+            } else if (houseSelected2 === 'A08') {
                 _target = 10001008
-            } else if (houseSelected === 'A09') {
+            } else if (houseSelected2 === 'A09') {
                 _target = 10001009
-            } else if (houseSelected === 'A10') {
+            } else if (houseSelected2 === 'A10') {
                 _target = 10001010
-            } else if (houseSelected === 'A11') {
+            } else if (houseSelected2 === 'A11') {
                 _target = 10001011
-            } else if (houseSelected === 'Z06') {
+            } else if (houseSelected2 === 'Z06') {
                 _target = 10026006
-            } else if (houseSelected === 'Z10') {
+            } else if (houseSelected2 === 'Z10') {
                 _target = 10026010
-            } else if (houseSelected === 'B01') {
+            } else if (houseSelected2 === 'B01') {
                 _target = 10002001
-            } else if (houseSelected === 'B02') {
+            } else if (houseSelected2 === 'B02') {
                 _target = 10002002
-            } else if (houseSelected === 'B03') {
+            } else if (houseSelected2 === 'B03') {
                 _target = 10002003
-            } else if (houseSelected === 'B04') {
+            } else if (houseSelected2 === 'B04') {
                 _target = 10002004
-            } else if (houseSelected === 'B05') {
+            } else if (houseSelected2 === 'B05') {
                 _target = 10002005
-            } else if (houseSelected === 'B06') {
+            } else if (houseSelected2 === 'B06') {
                 _target = 10002006
-            } else if (houseSelected === 'B07') {
+            } else if (houseSelected2 === 'B07') {
                 _target = 10002007
-            } else if (houseSelected === 'B08') {
+            } else if (houseSelected2 === 'B08') {
                 _target = 10002008
-            } else if (houseSelected === 'B09') {
+            } else if (houseSelected2 === 'B09') {
                 _target = 10002009
-            } else if (houseSelected === 'B10') {
+            } else if (houseSelected2 === 'B10') {
                 _target = 10002010
-            } else if (houseSelected === 'B11') {
+            } else if (houseSelected2 === 'B11') {
                 _target = 10002011
-            } else if (houseSelected === 'Z11') {
+            } else if (houseSelected2 === 'Z11') {
                 _target = 10026011
-            } else if (houseSelected === 'C01') {
+            } else if (houseSelected2 === 'C01') {
                 _target = 10003001
-            } else if (houseSelected === 'C02') {
+            } else if (houseSelected2 === 'C02') {
                 _target = 10003002
-            } else if (houseSelected === 'C03') {
+            } else if (houseSelected2 === 'C03') {
                 _target = 10003003
-            } else if (houseSelected === 'C04') {
+            } else if (houseSelected2 === 'C04') {
                 _target = 10003004
-            } else if (houseSelected === 'C05') {
+            } else if (houseSelected2 === 'C05') {
                 _target = 10003005
-            } else if (houseSelected === 'C06') {
+            } else if (houseSelected2 === 'C06') {
                 _target = 10003006
-            } else if (houseSelected === 'C07') {
+            } else if (houseSelected2 === 'C07') {
                 _target = 10003007
-            } else if (houseSelected === 'C08') {
+            } else if (houseSelected2 === 'C08') {
                 _target = 10003008
-            } else if (houseSelected === 'C09') {
+            } else if (houseSelected2 === 'C09') {
                 _target = 10003009
-            } else if (houseSelected === 'C10') {
+            } else if (houseSelected2 === 'C10') {
                 _target = 10003010
-            } else if (houseSelected === 'C11') {
+            } else if (houseSelected2 === 'C11') {
                 _target = 10003011
-            } else if (houseSelected === 'C12') {
+            } else if (houseSelected2 === 'C12') {
                 _target = 10003012
-            } else if (houseSelected === 'C13') {
+            } else if (houseSelected2 === 'C13') {
                 _target = 10003013
-            } else if (houseSelected === 'C14') {
+            } else if (houseSelected2 === 'C14') {
                 _target = 10003014
-            } else if (houseSelected === 'C15') {
+            } else if (houseSelected2 === 'C15') {
                 _target = 10003015
-            } else if (houseSelected === 'C16') {
+            } else if (houseSelected2 === 'C16') {
                 _target = 10003016
-            } else if (houseSelected === 'C17') {
+            } else if (houseSelected2 === 'C17') {
                 _target = 10003017
-            } else if (houseSelected === 'C18') {
+            } else if (houseSelected2 === 'C18') {
                 _target = 10003018
-            } else if (houseSelected === 'C19') {
+            } else if (houseSelected2 === 'C19') {
                 _target = 10003019
-            } else if (houseSelected === 'C20') {
+            } else if (houseSelected2 === 'C20') {
                 _target = 10003020
-            } else if (houseSelected === 'C21') {
+            } else if (houseSelected2 === 'C21') {
                 _target = 10003021
-            } else if (houseSelected === 'C22') {
+            } else if (houseSelected2 === 'C22') {
                 _target = 10003022
             }
             let { request: request2 } = await simulateContract(config, {
@@ -2530,12 +2530,14 @@ const BBQLabs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             let h2 = await writeContract(config, request2)
             await waitForTransactionReceipt(config, { hash: h2 })
             setTxupdate(h2)
+            await switchChain(config, { chainId: 8899 })
             let h3 = await sendTransaction(config, {
                 chainId: 8899,
                 to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                 value: ethers.utils.parseEther('10'),
             })
             await waitForTransactionReceipt(config, { hash: h3 })
+            await switchChain(config, { chainId: 190 })
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))

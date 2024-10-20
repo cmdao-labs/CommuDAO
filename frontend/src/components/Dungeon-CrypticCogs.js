@@ -742,7 +742,7 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             setUIIBalance(ethers.utils.formatEther(String(result[23])))
         })
 
-    }, [address, txupdate, erc721Abi, erc20Abi, dunEEABI, taoPfpABI])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, dunEEABI, taoPfpABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {

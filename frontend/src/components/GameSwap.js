@@ -552,7 +552,7 @@ const GameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, excha
             setTSwapvol24CMJ(Number(result[15]).toFixed(0))
             */
         })
-    }, [address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
+    }, [config, address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
 
     return (
         <div style={{flexDirection: "column", alignItems: "center", justifyContent: "flex-start", background: "#e6e4f6"}} className="collection">

@@ -255,7 +255,7 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, setisLoading, txupd
             setNftStaked(result[4])
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi, thlFieldABI])
+    }, [config, address, txupdate, erc20Abi, erc721Abi, thlFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)

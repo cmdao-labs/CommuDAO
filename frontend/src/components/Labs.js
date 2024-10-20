@@ -2,8 +2,8 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 const { ethereum } = window
-
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const woodField = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
@@ -35,8 +35,9 @@ const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 
-const Labs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, erc20Abi, kycABI }) => {
-    const { address } = useAccount()
+const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, erc20Abi, kycABI }) => {
+    const { address, chain } = useAccount()
+    const { open } = useAppKit()
     const [isKYC, setIsKYC] = React.useState(null)
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [woodBalance, setWoodBalance] = React.useState(0)
@@ -110,10 +111,10 @@ const Labs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrM
         console.log("Connected to " + address)
         
         const thefetch = async () => {
-            const jbcBal = address !== null && address !== undefined ?
+            const jbcBal = chain !== undefined && chain.id === 8899 && address !== null && address !== undefined ?
                 await getBalance(config, { address: address, }) :
                 {formatted: 0}
-            const data = address !== null && address !== undefined ? await readContracts(config, {
+            const data = chain !== undefined && chain.id === 8899 && address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmjToken,
@@ -529,7 +530,7 @@ const Labs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrM
             setJaspBalance(ethers.utils.formatUnits(result[50], 'gwei'))
         })
 
-    }, [address, txupdate, erc20Abi, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, kycABI])
+    }, [config, address, chain, txupdate, erc20Abi, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, kycABI])
 
     const craft1Handle = async () => {
         setisLoading(true)
@@ -1348,1351 +1349,1363 @@ const Labs = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrM
                 </div>
             </div>
 
-            <div className="collection">
-                <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
-                    <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Cryptocurrency</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img 
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
-                                width="20"
-                                alt="$CMJ"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: cmjToken,
-                                                symbol: 'CMJ',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img 
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
-                                width="20"
-                                alt="$JTAO"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: taomeme,
-                                                symbol: 'JTAO',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(tmBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+            {address !== undefined && chain !== undefined && chain.id !== 8899 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to JIBCHAIN L1.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
                         </div>
                     </div>
-
-                    <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Resources</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
-                                width="20"
-                                alt="$WOOD"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: woodField,
-                                                symbol: 'WOOD',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                </div> :
+                <div className="collection">
+                    <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
+                        <div style={{width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Cryptocurrency</div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img 
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
+                                    width="20"
+                                    alt="$CMJ"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: cmjToken,
+                                                    symbol: 'CMJ',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
+                                                },
                                             },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"
-                                width="20"
-                                alt="$stOPT"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: stOPT,
-                                                symbol: 'stOPT',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(stOPTBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
-                                width="20"
-                                alt="$CU"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: cuToken,
-                                                symbol: 'CU',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(copperBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
-                                width="20"
-                                alt="$JASP"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: cuToken,
-                                                symbol: 'JASP',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
-                        </div>
-                    </div>
-
-                    <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Partner Resources</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
-                                width="20"
-                                alt="$TUNA"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: tunaField,
-                                                symbol: 'TUNA',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(tunaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"
-                                width="20"
-                                alt="$MICE"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: fieldMice,
-                                                symbol: 'MICE',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(miceBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"
-                                width="20"
-                                alt="$VABAG"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: vabag,
-                                                symbol: 'VABAG',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(vabagBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
-                                width="20"
-                                alt="$ANGB"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: dunANGB,
-                                                symbol: 'ANGB',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"
-                                width="20"
-                                alt="$GEAR"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: gearField,
-                                                symbol: 'GEAR',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(gearBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                    </div>
-
-                    <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Craft Products</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
-                                width="20"
-                                alt="$BBQ"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: bbqToken,
-                                                symbol: 'BBQ',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
-                                width="20"
-                                alt="$PZA"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: pzaLab,
-                                                symbol: 'PZA',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
-                                width="20"
-                                alt="$SIL"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: silToken,
-                                                symbol: 'SIL',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(silverBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
-                                width="20"
-                                alt="$GOLD"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: goldToken,
-                                                symbol: 'GOLD',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
-                                width="20"
-                                alt="$PLAT"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: platToken,
-                                                symbol: 'PLAT',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
-                                width="20"
-                                alt="$PLUTO"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: plutoToken,
-                                                symbol: 'PLUTO',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
-                        </div>
-                    </div>
-                
-                    <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Partner Craft Products</div>
-                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
-                                width="20"
-                                alt="$CTUNA"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: ctunaLab,
-                                                symbol: 'CTUNA',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
-                                width="20"
-                                alt="$SX31"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: sx31Lab,
-                                                symbol: 'SX31',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
-                                width="20"
-                                alt="$SWAR"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: swarLab,
-                                                symbol: 'SWAR',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"
-                                width="20"
-                                alt="$STAR"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: starLab,
-                                                symbol: 'AP-STAR',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(starBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
-                                width="20"
-                                alt="$II"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: iiLab,
-                                                symbol: 'TDM - II',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                            <img
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
-                                width="20"
-                                alt="$EE"
-                                style={{cursor: "crosshair"}}
-                                onClick={async () => {
-                                    await ethereum.request({
-                                        method: 'wallet_watchAsset',
-                                        params: {
-                                            type: 'ERC20',
-                                            options: {
-                                                address: dunEE,
-                                                symbol: 'TDM-EE',
-                                                decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
-                                            },
-                                        },
-                                    })
-                                }}
-                            />
-                            <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                    </div>
-
-                    <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
-                    <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Labs & Factories</div>
-                    <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            {levelCraftBBQ >= 0 ? <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {levelCraftBBQ}</div> : <></>}
-                            <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                {isCraftBBQ !== null || levelCraftBBQ < 4 ? <img src="./elements/BBQ_factory01_lv0.png" width="170" alt="$BBQ_Factory_lv0"/> : <></>}
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                             </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                                    <div style={{margin: "0 5px"}}>100</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
-                                    <div style={{margin: "0 5px"}}>0.01</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
-                                    <div style={{margin: "0 5px"}}>
-                                        {isCraftBBQ !== null ?
-                                            <>
-                                                {levelCraftBBQ === 0 ? "5" : ""}
-                                                {levelCraftBBQ === 1 ? "10" : ""}
-                                                {levelCraftBBQ === 2 ? "20" : ""}
-                                                {levelCraftBBQ === 3 ? "40" : ""}
-                                            </> :
-                                            "..."
-                                        }
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img 
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
+                                    width="20"
+                                    alt="$JTAO"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: taomeme,
+                                                    symbol: 'JTAO',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(tmBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                            </div>
+                        </div>
+
+                        <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Resources</div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                                    width="20"
+                                    alt="$WOOD"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: woodField,
+                                                    symbol: 'WOOD',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"
+                                    width="20"
+                                    alt="$stOPT"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: stOPT,
+                                                    symbol: 'stOPT',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(stOPTBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                                    width="20"
+                                    alt="$CU"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: cuToken,
+                                                    symbol: 'CU',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(copperBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
+                                    width="20"
+                                    alt="$JASP"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: cuToken,
+                                                    symbol: 'JASP',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                            </div>
+                        </div>
+
+                        <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Partner Resources</div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
+                                    width="20"
+                                    alt="$TUNA"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: tunaField,
+                                                    symbol: 'TUNA',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(tunaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"
+                                    width="20"
+                                    alt="$MICE"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: fieldMice,
+                                                    symbol: 'MICE',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(miceBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"
+                                    width="20"
+                                    alt="$VABAG"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: vabag,
+                                                    symbol: 'VABAG',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(vabagBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
+                                    width="20"
+                                    alt="$ANGB"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: dunANGB,
+                                                    symbol: 'ANGB',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:4})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"
+                                    width="20"
+                                    alt="$GEAR"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: gearField,
+                                                    symbol: 'GEAR',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(gearBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                        </div>
+
+                        <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Craft Products</div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                                    width="20"
+                                    alt="$BBQ"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: bbqToken,
+                                                    symbol: 'BBQ',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(bbqBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                                    width="20"
+                                    alt="$PZA"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: pzaLab,
+                                                    symbol: 'PZA',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
+                                    width="20"
+                                    alt="$SIL"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: silToken,
+                                                    symbol: 'SIL',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(silverBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                                    width="20"
+                                    alt="$GOLD"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: goldToken,
+                                                    symbol: 'GOLD',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
+                                    width="20"
+                                    alt="$PLAT"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: platToken,
+                                                    symbol: 'PLAT',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
+                                    width="20"
+                                    alt="$PLUTO"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: plutoToken,
+                                                    symbol: 'PLUTO',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                            </div>
+                        </div>
+                    
+                        <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Partner Craft Products</div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
+                                    width="20"
+                                    alt="$CTUNA"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: ctunaLab,
+                                                    symbol: 'CTUNA',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
+                                    width="20"
+                                    alt="$SX31"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: sx31Lab,
+                                                    symbol: 'SX31',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
+                                    width="20"
+                                    alt="$SWAR"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: swarLab,
+                                                    symbol: 'SWAR',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"
+                                    width="20"
+                                    alt="$STAR"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: starLab,
+                                                    symbol: 'AP-STAR',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(starBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
+                                    width="20"
+                                    alt="$II"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: iiLab,
+                                                    symbol: 'TDM - II',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
+                                    width="20"
+                                    alt="$EE"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: dunEE,
+                                                    symbol: 'TDM-EE',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                        </div>
+
+                        <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
+                        <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Labs & Factories</div>
+                        <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                {levelCraftBBQ >= 0 ? <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {levelCraftBBQ}</div> : <></>}
+                                <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                                    {isCraftBBQ !== null || levelCraftBBQ < 4 ? <img src="./elements/BBQ_factory01_lv0.png" width="170" alt="$BBQ_Factory_lv0"/> : <></>}
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                        <div style={{margin: "0 5px"}}>100</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
+                                        <div style={{margin: "0 5px"}}>0.01</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                        <div style={{margin: "0 5px"}}>
+                                            {isCraftBBQ !== null ?
+                                                <>
+                                                    {levelCraftBBQ === 0 ? "5" : ""}
+                                                    {levelCraftBBQ === 1 ? "10" : ""}
+                                                    {levelCraftBBQ === 2 ? "20" : ""}
+                                                    {levelCraftBBQ === 3 ? "40" : ""}
+                                                </> :
+                                                "..."
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>5 minutes</div>
-                            </div>
-                            {isCraftBBQ ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimBBQ === 0 ? "now" : timetoClaimBBQ}</div>
-                                    </div>
-                                    {timetoClaimBBQ === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainBBQHandle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
-                                                <div style={{display: "flex", flexDirection: "row"}}>
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
-                                                    <div style={{margin: "0 5px"}}>
-                                                        {isCraftBBQ !== null ?
-                                                            <>
-                                                                {levelCraftBBQ === 0 ? "6,000" : ""}
-                                                                {levelCraftBBQ === 1 ? "60,000" : ""}
-                                                                {levelCraftBBQ === 2 ? "600,000" : ""}
-                                                                {levelCraftBBQ === 3 ? "Upgradable soon!" : ""}
-                                                            </> :
-                                                            "Loading..."
-                                                        }
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>5 minutes</div>
+                                </div>
+                                {isCraftBBQ ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimBBQ === 0 ? "now" : timetoClaimBBQ}</div>
+                                        </div>
+                                        {timetoClaimBBQ === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainBBQHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
+                                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                                        <div style={{margin: "0 5px"}}>
+                                                            {isCraftBBQ !== null ?
+                                                                <>
+                                                                    {levelCraftBBQ === 0 ? "6,000" : ""}
+                                                                    {levelCraftBBQ === 1 ? "60,000" : ""}
+                                                                    {levelCraftBBQ === 2 ? "600,000" : ""}
+                                                                    {levelCraftBBQ === 3 ? "Upgradable soon!" : ""}
+                                                                </> :
+                                                                "Loading..."
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                {isCraftBBQ !== null ?
+                                                    <div style={{width: "100%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {canCraftBBQ ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftBBQHandle(levelCraftBBQ + 1)}>Craft Barbeque</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                        {(levelCraftBBQ === 0 && woodBalance >= 6000) || (levelCraftBBQ === 1 && woodBalance >= 60000) || (levelCraftBBQ === 2 && woodBalance >= 600000) ?
+                                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => upgradeBBQHandle(levelCraftBBQ + 1)}>UPGRADE</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
+                                                        }
+                                                    </div> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Barbeque</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXQdWZs4VTcbUFJCv42onZCqXjhYJ4S1ek9fAZGfbeVSi" width="200" alt="Pizza_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                        <div style={{margin: "0 5px"}}>10,000</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
+                                        <div style={{margin: "0 5px"}}>500</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>24 hour</div>
+                                </div>
+                                {isCraftPZA ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimPZA === 0 ? "now" : timetoClaimPZA}</div>
+                                        </div>
+                                        {timetoClaimPZA === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainPzaHandle(1)}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftPZA !== null ?
+                                                    <>
+                                                        {canCraftPZA ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPzaHandle(1)}>Craft Pizza</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Pizza</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdpfkSTFj8BY8f6RjtLzp4e1P1eF76zWo9qngx9FPmogv" width="210" alt="$SIL_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
+                                        <div style={{margin: "0 5px"}}>150,000</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
+                                        <div style={{margin: "0 5px"}}>5,000</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>2 hour</div>
+                                </div>
+                                {isCraftSIL ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimSIL === 0 ? "now" : timetoClaimSIL}</div>
+                                        </div>
+                                        {timetoClaimSIL === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainSILHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftSIL !== null ?
+                                                    <>
+                                                        {canCraftSIL ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftSILHandle(1)}>Craft Silver</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Silver</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+                        </div>
+
+                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">                    
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWhS1SzApFMZA9DGYyv6BcW48d8EEn97dnHmfs7cCNRLM" width="220" alt="$GOLD_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
+                                        <div style={{margin: "0 5px"}}>10,000</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                        <div style={{margin: "0 5px"}}>5</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                        <div style={{margin: "0 5px"}}>500</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>4 hour</div>
+                                </div>
+                                {isCraftGOLD ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimGOLD === 0 ? "now" : timetoClaimGOLD}</div>
+                                        </div>
+                                        {timetoClaimGOLD === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainGOLDHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftGOLD !== null ?
+                                                    <>
+                                                        {canCraftGOLD ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftGOLDHandle(1)}>Craft Gold</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Gold</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXuWRk4JQuepXzEM5N2f64StpwpypfEBtVzfjRqmHivUE" width="230" alt="$PLAT_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                        <div style={{margin: "0 5px"}}>300</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                        <div style={{margin: "0 5px"}}>5</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                        <div style={{margin: "0 5px"}}>100</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>8 hour</div>
+                                </div>
+                                {isCraftPLAT ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimPLAT === 0 ? "now" : timetoClaimPLAT}</div>
+                                        </div>
+                                        {timetoClaimPLAT === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLATHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftPLAT !== null ?
+                                                    <>
+                                                        {canCraftPLAT ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLATHandle(1)}>Craft Platinum</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVHAiLDekEegHqMzr11j6jH5Ay4KWHPS4of4cEYxn4afm" width="230" alt="$PLUTO_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                        <div style={{margin: "0 5px"}}>100 GWEI</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>5</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
+                                        <div style={{margin: "0 5px"}}>5 GWEI</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>2 hour</div>
+                                </div>
+                                {isCraftPLUTO ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimPLUTO === 0 ? "now" : timetoClaimPLUTO}</div>
+                                        </div>
+                                        {timetoClaimPLUTO === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLUTOHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftPLUTO !== null ?
+                                                    <>
+                                                        {canCraftPLUTO ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLUTOHandle(1)}>Craft Plutonium</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Plutonium</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+                        </div>
+
+                        
+                        <div style={{marginTop: "0px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
+                        <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Labs & Factories</div>
+                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                                    <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                                </div>
+                                <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                                    <img src="./elements/ctunafactory.png" width="200" alt="$CTUNA_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="18" alt="$TUNA"/>
+                                        <div style={{margin: "0 5px"}}>50</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>10</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                        <div style={{margin: "0 5px"}}>50</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>1 hour</div>
+                                </div>
+                                {isCraft1 ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaim1 === 0 ? "now" : timetoClaim1}</div>
+                                        </div>
+                                        {timetoClaim1 === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={claim1Handle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraft1 !== null ?
+                                                    <>
+                                                        {canCraft1 ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={craft1Handle}>Craft Canned Tuna</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Canned Tuna</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                                    <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                                </div>
+                                <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
+                                    <img src="./elements/sx31factory.png" width="200" alt="$SX31_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
+                                        <div style={{margin: "0 5px"}}>50</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>9</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                        <div style={{margin: "0 5px"}}>50</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>1 hour</div>
+                                </div>
+                                {isCraft2 && craft2machine === 1 ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaim2 === 0 ? "now" : timetoClaim2}</div>
+                                        </div>
+                                        {timetoClaim2 === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtain2Handle(1)}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraft2 === false ?
+                                                    <>
+                                                        {canCraft2 ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(1)}>Craft Sphinx31</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Sphinx31</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                                    <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                                </div>
+                                <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 2}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZmfbTakZsWQhZP7achSgqUJjqyajrziTq8YyNVndtuQ1" width="220" alt="Large_SX31_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
+                                        <div style={{margin: "0 5px"}}>500</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>90</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                        <div style={{margin: "0 5px"}}>500</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>8 hour</div>
+                                </div>
+                                {isKYC ?
+                                    <>
+                                    {isCraft2 && craft2machine === 431826 ?
+                                        <>
+                                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                                <div>{timetoClaim2_2 === 0 ? "now" : timetoClaim2_2}</div>
                                             </div>
-                                            {isCraftBBQ !== null ?
-                                                <div style={{width: "100%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                                    {canCraftBBQ ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftBBQHandle(levelCraftBBQ + 1)}>Craft Barbeque</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                    {(levelCraftBBQ === 0 && woodBalance >= 6000) || (levelCraftBBQ === 1 && woodBalance >= 60000) || (levelCraftBBQ === 2 && woodBalance >= 600000) ?
-                                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => upgradeBBQHandle(levelCraftBBQ + 1)}>UPGRADE</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
-                                                    }
-                                                </div> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Barbeque</div>
+                                            {timetoClaim2_2 === 0 ?
+                                                <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtain2Handle(431826)}>Obtain</div> :
+                                                <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
                                             }
                                         </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXQdWZs4VTcbUFJCv42onZCqXjhYJ4S1ek9fAZGfbeVSi" width="200" alt="Pizza_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
-                                    <div style={{margin: "0 5px"}}>10,000</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
-                                    <div style={{margin: "0 5px"}}>500</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>24 hour</div>
-                            </div>
-                            {isCraftPZA ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimPZA === 0 ? "now" : timetoClaimPZA}</div>
-                                    </div>
-                                    {timetoClaimPZA === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainPzaHandle(1)}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftPZA !== null ?
-                                                <>
-                                                    {canCraftPZA ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPzaHandle(1)}>Craft Pizza</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Pizza</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdpfkSTFj8BY8f6RjtLzp4e1P1eF76zWo9qngx9FPmogv" width="210" alt="$SIL_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
-                                    <div style={{margin: "0 5px"}}>150,000</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
-                                    <div style={{margin: "0 5px"}}>5,000</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>2 hour</div>
-                            </div>
-                            {isCraftSIL ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimSIL === 0 ? "now" : timetoClaimSIL}</div>
-                                    </div>
-                                    {timetoClaimSIL === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainSILHandle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftSIL !== null ?
-                                                <>
-                                                    {canCraftSIL ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftSILHandle(1)}>Craft Silver</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Silver</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-                    </div>
-
-                    <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">                    
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWhS1SzApFMZA9DGYyv6BcW48d8EEn97dnHmfs7cCNRLM" width="220" alt="$GOLD_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
-                                    <div style={{margin: "0 5px"}}>10,000</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
-                                    <div style={{margin: "0 5px"}}>5</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                    <div style={{margin: "0 5px"}}>500</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>4 hour</div>
-                            </div>
-                            {isCraftGOLD ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimGOLD === 0 ? "now" : timetoClaimGOLD}</div>
-                                    </div>
-                                    {timetoClaimGOLD === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainGOLDHandle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftGOLD !== null ?
-                                                <>
-                                                    {canCraftGOLD ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftGOLDHandle(1)}>Craft Gold</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Gold</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXuWRk4JQuepXzEM5N2f64StpwpypfEBtVzfjRqmHivUE" width="230" alt="$PLAT_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
-                                    <div style={{margin: "0 5px"}}>300</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
-                                    <div style={{margin: "0 5px"}}>5</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
-                                    <div style={{margin: "0 5px"}}>100</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>8 hour</div>
-                            </div>
-                            {isCraftPLAT ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimPLAT === 0 ? "now" : timetoClaimPLAT}</div>
-                                    </div>
-                                    {timetoClaimPLAT === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLATHandle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftPLAT !== null ?
-                                                <>
-                                                    {canCraftPLAT ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLATHandle(1)}>Craft Platinum</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVHAiLDekEegHqMzr11j6jH5Ay4KWHPS4of4cEYxn4afm" width="230" alt="$PLUTO_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
-                                    <div style={{margin: "0 5px"}}>100 GWEI</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>5</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
-                                    <div style={{margin: "0 5px"}}>5 GWEI</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>2 hour</div>
-                            </div>
-                            {isCraftPLUTO ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimPLUTO === 0 ? "now" : timetoClaimPLUTO}</div>
-                                    </div>
-                                    {timetoClaimPLUTO === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLUTOHandle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftPLUTO !== null ?
-                                                <>
-                                                    {canCraftPLUTO ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLUTOHandle(1)}>Craft Plutonium</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Plutonium</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-                    </div>
-
-                    
-                    <div style={{marginTop: "0px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
-                    <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Labs & Factories</div>
-                    <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
-                                <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
-                            </div>
-                            <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                <img src="./elements/ctunafactory.png" width="200" alt="$CTUNA_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="18" alt="$TUNA"/>
-                                    <div style={{margin: "0 5px"}}>50</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>10</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
-                                    <div style={{margin: "0 5px"}}>50</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>1 hour</div>
-                            </div>
-                            {isCraft1 ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaim1 === 0 ? "now" : timetoClaim1}</div>
-                                    </div>
-                                    {timetoClaim1 === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={claim1Handle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraft1 !== null ?
-                                                <>
-                                                    {canCraft1 ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={craft1Handle}>Craft Canned Tuna</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Canned Tuna</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
-                                <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
-                            </div>
-                            <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                <img src="./elements/sx31factory.png" width="200" alt="$SX31_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
-                                    <div style={{margin: "0 5px"}}>50</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>9</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
-                                    <div style={{margin: "0 5px"}}>50</div>
-                                </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>1 hour</div>
-                            </div>
-                            {isCraft2 && craft2machine === 1 ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaim2 === 0 ? "now" : timetoClaim2}</div>
-                                    </div>
-                                    {timetoClaim2 === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtain2Handle(1)}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
                                         <>
                                             {isCraft2 === false ?
                                                 <>
-                                                    {canCraft2 ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(1)}>Craft Sphinx31</div> :
+                                                    {canCraft2_2 ?
+                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(431826)}>Craft Sphinx31</div> :
                                                         <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
                                                     }
                                                 </> :
                                                 <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Sphinx31</div>
                                             }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        </>
                                     }
-                                </>
-                            }
+                                    </> :
+                                    <div style={{display: "flex", justifyContent: "center", width: "195px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Reserved for Dionysus</div>
+                                }
+                            </div>
                         </div>
 
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
-                                <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
-                            </div>
-                            <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZmfbTakZsWQhZP7achSgqUJjqyajrziTq8YyNVndtuQ1" width="220" alt="Large_SX31_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
-                                    <div style={{margin: "0 5px"}}>500</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>90</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
-                                    <div style={{margin: "0 5px"}}>500</div>
+                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                                    <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>8 hour</div>
-                            </div>
-                            {isKYC ?
-                                <>
-                                {isCraft2 && craft2machine === 431826 ?
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="220" alt="$SW_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="18" alt="$VABAG"/>
+                                        <div style={{margin: "0 5px"}}>10</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>8 hour</div>
+                                </div>
+                                {isCraftSWAR ?
                                     <>
                                         <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                             <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                            <div>{timetoClaim2_2 === 0 ? "now" : timetoClaim2_2}</div>
+                                            <div>{timetoClaimSWAR === 0 ? "now" : timetoClaimSWAR}</div>
                                         </div>
-                                        {timetoClaim2_2 === 0 ?
-                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtain2Handle(431826)}>Obtain</div> :
+                                        {timetoClaimSWAR === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainSWARHandle}>Obtain</div> :
                                             <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
                                         }
                                     </> :
                                     <>
-                                        {isCraft2 === false ?
+                                        {address !== null && address !== undefined ?
                                             <>
-                                                {canCraft2_2 ?
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craft2Handle(431826)}>Craft Sphinx31</div> :
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                {isCraftSWAR !== null ?
+                                                    <>
+                                                        {canCraftSWAR ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftSWARHandle(1)}>Craft Supply War</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Supply War</div>
                                                 }
                                             </> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Sphinx31</div>
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                                         }
                                     </>
                                 }
-                                </> :
-                                <div style={{display: "flex", justifyContent: "center", width: "195px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Reserved for Dionysus</div>
-                            }
-                        </div>
-                    </div>
+                            </div>
 
-                    <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
-                                <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
-                            </div>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="220" alt="$SW_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="18" alt="$VABAG"/>
-                                    <div style={{margin: "0 5px"}}>10</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                                    <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>8 hour</div>
-                            </div>
-                            {isCraftSWAR ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimSWAR === 0 ? "now" : timetoClaimSWAR}</div>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="250" alt="$STAR_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                        <div style={{margin: "0 5px"}}>40</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
                                     </div>
-                                    {timetoClaimSWAR === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainSWARHandle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftSWAR !== null ?
-                                                <>
-                                                    {canCraftSWAR ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftSWARHandle(1)}>Craft Supply War</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Supply War</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>72 hour</div>
+                                </div>
+                                {isCraftSTAR ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimSTAR === 0 ? "now" : timetoClaimSTAR}</div>
+                                        </div>
+                                        {timetoClaimSTAR === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(1)}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftSTAR !== null ?
+                                                    <>
+                                                        {canCraftSTAR ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(1, 1)}>Craft AP-STAR</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft AP-STAR</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
 
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
-                                <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
-                            </div>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="250" alt="$STAR_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
-                                    <div style={{margin: "0 5px"}}>40</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                    <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>72 hour</div>
-                            </div>
-                            {isCraftSTAR ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimSTAR === 0 ? "now" : timetoClaimSTAR}</div>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfQhrhSNw5Ldegjeu8vF2wSv432uWesQYe5kyW1cWgntV" width="170" alt="$II_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                        <div style={{margin: "0 5px"}}>888</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                        <div style={{margin: "0 5px"}}>8</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
                                     </div>
-                                    {timetoClaimSTAR === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(1)}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftSTAR !== null ?
-                                                <>
-                                                    {canCraftSTAR ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(1, 1)}>Craft AP-STAR</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft AP-STAR</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>30 minutes</div>
+                                </div>
+                                {isCraftII && craftIImachine === 1 ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimII === 0 ? "now" : timetoClaimII}</div>
+                                        </div>
+                                        {timetoClaimII === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(2)}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftII !== null ?
+                                                    <>
+                                                        {canCraftII ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 1)}>Craft TDM-II</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TDM-II</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
                         </div>
 
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                                <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
-                            </div>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfQhrhSNw5Ldegjeu8vF2wSv432uWesQYe5kyW1cWgntV" width="170" alt="$II_Factory"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
-                                    <div style={{margin: "0 5px"}}>888</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
-                                    <div style={{margin: "0 5px"}}>8</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
+                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                    <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>30 minutes</div>
-                            </div>
-                            {isCraftII && craftIImachine === 1 ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimII === 0 ? "now" : timetoClaimII}</div>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="210" alt="$II_Factory02"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                        <div style={{margin: "0 5px"}}>88,888</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                        <div style={{margin: "0 5px"}}>128</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                        <div style={{margin: "0 5px"}}>8</div>
                                     </div>
-                                    {timetoClaimII === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(2)}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftII !== null ?
-                                                <>
-                                                    {canCraftII ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 1)}>Craft TDM-II</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TDM-II</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>24 hours</div>
+                                </div>
+                                {isCraftII && craftIImachine === 2 ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimII2 === 0 ? "now" : timetoClaimII2}</div>
+                                        </div>
+                                        {timetoClaimII2 === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(2)}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftII !== null ?
+                                                    <>
+                                                        {canCraftII2 ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 2)}>Craft TDM-II</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TDM-II</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
 
-                    <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                                <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
-                            </div>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="210" alt="$II_Factory02"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
-                                    <div style={{margin: "0 5px"}}>88,888</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
-                                    <div style={{margin: "0 5px"}}>128</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
-                                    <div style={{margin: "0 5px"}}>8</div>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                    <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>24 hours</div>
-                            </div>
-                            {isCraftII && craftIImachine === 2 ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimII2 === 0 ? "now" : timetoClaimII2}</div>
-                                    </div>
-                                    {timetoClaimII2 === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => obtainCMDAO20Lab01Handle(2)}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftII !== null ?
-                                                <>
-                                                    {canCraftII2 ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftCMDAO20Lab01Handle(2, 2)}>Craft TDM-II</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft TDM-II</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
-                        </div>
-
-                        <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                            <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                                <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
-                            </div>
-                            <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="220" alt="$PLAT_Factory02"/>
-                            </div>
-                            <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
-                                <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
-                                    <div style={{margin: "0 5px"}}>888</div>
-                                    <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
-                                    <div style={{margin: "0 5px"}}>1</div>
-                                    <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
-                                    <div style={{margin: "0 5px"}}>10</div>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="220" alt="$PLAT_Factory02"/>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
-                                <div>15 minutes</div>
-                            </div>
-                            {isCraftPLAT2 ?
-                                <>
-                                    <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
-                                        <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
-                                        <div>{timetoClaimPLAT2 === 0 ? "now" : timetoClaimPLAT2}</div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                        <div style={{margin: "0 5px"}}>888</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                        <div style={{margin: "0 5px"}}>10</div>
                                     </div>
-                                    {timetoClaimPLAT2 === 0 ?
-                                        <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLAT2Handle}>Obtain</div> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
-                                    }
-                                </> :
-                                <>
-                                    {address !== null && address !== undefined ?
-                                        <>
-                                            {isCraftPLAT2 !== null ?
-                                                <>
-                                                    {canCraftPLAT2 ?
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLAT2Handle(1)}>Craft Platinum</div> :
-                                                        <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
-                                                    }
-                                                </> :
-                                                <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
-                                            }
-                                        </> :
-                                        <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
-                                    }
-                                </>
-                            }
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>15 minutes</div>
+                                </div>
+                                {isCraftPLAT2 ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimPLAT2 === 0 ? "now" : timetoClaimPLAT2}</div>
+                                        </div>
+                                        {timetoClaimPLAT2 === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainPLAT2Handle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null && address !== undefined ?
+                                            <>
+                                                {isCraftPLAT2 !== null ?
+                                                    <>
+                                                        {canCraftPLAT2 ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftPLAT2Handle(1)}>Craft Platinum</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Platinum</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </>
     )
 }

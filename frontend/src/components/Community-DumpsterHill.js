@@ -135,7 +135,7 @@ const DumpsterHill = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, e
             setMiceBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [address, txupdate, erc20Abi, erc721Abi])
+    }, [config, address, txupdate, erc20Abi, erc721Abi])
 
     const dump1 = async (_index) => {
         setisLoading(true)

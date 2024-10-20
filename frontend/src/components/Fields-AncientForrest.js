@@ -376,7 +376,7 @@ const FieldsAncientForrest = ({ config, setisLoading, txupdate, setTxupdate, erc
             setPzaBalance(ethers.utils.formatEther(result[4]))
         })
 
-    }, [address, txupdate, erc721Abi, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20Abi])
+    }, [config, address, txupdate, erc721Abi, starterCMDSABI, uplevelCMDSABI, woodFieldABI, msgABI, cmdaoNameABI, pve01ABI, erc20Abi])
 
     const mintServant = async () => {
         setisLoading(true)

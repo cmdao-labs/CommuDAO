@@ -2009,7 +2009,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
             setYourSS2CMPOW(result[70])
         })
 
-    }, [address, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
+    }, [config, address, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
