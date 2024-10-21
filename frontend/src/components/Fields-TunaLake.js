@@ -255,7 +255,7 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                 </div>
             </div>
 
-            {address !== undefined && chain !== undefined && chain.id !== 8899 ?
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
                 <div style={{zIndex: "999"}} className="centermodal">
                     <div className="wrapper">
                         <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>

@@ -13,7 +13,7 @@ const party = '0xd5E660a33Ce6D17Aa6584bF1a4DA50B495962df0'
 // const missionWood_v105 = '0x6ed6f83192e224780B853E2c9A7d1930Cc8f075a'
 const missionWood = '0x2D083C753b527083a4710323Afe92028Ab33c43e'
 
-const BBQFieldsAncientForrest = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI }) => {
+const BBQAncientForrest = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI }) => {
     const { address } = useAccount()
     const [inputName, setInputName] = React.useState("")
     const [nft, setNft] = React.useState([])
@@ -658,4 +658,4 @@ const BBQFieldsAncientForrest = ({ config, setisLoading, txupdate, setTxupdate, 
     )
 }
 
-export default BBQFieldsAncientForrest
+export default BBQAncientForrest
