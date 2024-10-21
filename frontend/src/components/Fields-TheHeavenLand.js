@@ -60,7 +60,7 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
         const mgnftSC = new ethers.Contract(mgnft, erc721Abi, providerJBC)
-        if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
+        if (intrasubModetext === undefined) {
             navigate('/fields/the-heaven-land/' + address)
         } else if (intrasubModetext.length === 42) {
             setAddr(intrasubModetext)
@@ -409,7 +409,6 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
                             <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="24" alt="$GOLD"/>
-                                <>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
@@ -419,7 +418,6 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
                                     </> :
                                     <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                 }
-                                </>
                             </div>
                         </div>
                         <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
@@ -503,7 +501,7 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
                                         ))}
                                     </> :
                                     <div className="nftCard" style={{margin: "10px", padding: "30px 20px", justifyContent: "center"}}>
-                                        {address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
                                                 <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>

@@ -1,14 +1,7 @@
 import React from 'react'
-//import { ethers } from 'ethers'
-//import { readContracts } from '@wagmi/core'
-//import { useAccount } from 'wagmi'
 import OPMallT1 from  './OP-Mall-T1'
 
-//const { ethereum } = window
-
-const OPMall = ({ setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, erc721Abi, uniNftBridgeABI, multichainMallABI }) => {
-    //const { address } = useAccount()
-
+const OPMall = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, erc721Abi, uniNftBridgeABI, multichainMallABI }) => {
     const [mode, setMode] = React.useState(0)
 
     return (
