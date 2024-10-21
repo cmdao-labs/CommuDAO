@@ -383,7 +383,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
             const _canCraftPZA = Number(ethers.utils.formatEther(stOPTBal)) >= 1 && Number(ethers.utils.formatEther(bbqBal)) >= 10000 ? true : false
             const _canCraftSIL = Number(ethers.utils.formatEther(cmjBal)) >= 1 && Number(ethers.utils.formatEther(cuBal)) >= 150000 ? true : false
             const _canCraftGOLD = Number(ethers.utils.formatEther(sx31Bal)) >= 5 && Number(ethers.utils.formatEther(silBal)) >= 10000 ? true : false
-            const _canCraftPLUTO = Number(ethers.utils.formatUnits(jaspBal), 'gwei') >= 100 && Number(ethers.utils.formatEther(cmjBal)) >= 5 ? true : false
+            const _canCraftPLUTO = Number(ethers.utils.formatUnits(jaspBal, 'gwei')) >= 100 && Number(ethers.utils.formatEther(cmjBal)) >= 5 ? true : false
             const _canCraftPLAT = Number(ethers.utils.formatEther(goldBal)) >= 300 && Number(ethers.utils.formatEther(ctunaBal)) >= 5 ? true : false
             const _canCraftSWAR = Number(ethers.utils.formatEther(vaBagBal)) >= 10 && Number(ethers.utils.formatEther(cmjBal)) >= 1 ? true : false
             const _canCraftSTAR = Number(ethers.utils.formatEther(angbBal)) >= 40 && Number(ethers.utils.formatEther(cmjBal)) >= 1 ? true : false

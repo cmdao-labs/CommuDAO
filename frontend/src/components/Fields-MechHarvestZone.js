@@ -117,7 +117,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, setisLoading, txu
                         address: gear,
                         abi: gearFieldABI,
                         functionName: 'calculateRewards',
-                        args: [String(item.Id), address, 1],
+                        args: [String(item.Id), address, true],
                     }
                 ))
             }) : [Array(yournftstake.length).fill(0)]
