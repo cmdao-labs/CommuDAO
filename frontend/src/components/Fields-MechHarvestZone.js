@@ -543,7 +543,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, setisLoading, txu
                 address: gear,
                 abi: gearFieldABI,
                 functionName: 'unstake',
-                args: [_nftid, 1, _unstake],
+                args: [_nftid, true, _unstake],
             })
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
@@ -560,7 +560,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, setisLoading, txu
                     address: gear,
                     abi: gearFieldABI,
                     functionName: 'unstake',
-                    args: [nftStaked[i].Id, 1, false],
+                    args: [nftStaked[i].Id, true, false],
                 })
                 if (i === nftStaked.length - 1) {
                     let h = await writeContract(config, request)
