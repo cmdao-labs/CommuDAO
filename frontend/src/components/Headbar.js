@@ -112,10 +112,10 @@ const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
               </>
             }
           </div>
-          <div style={{fontSize: "16px", marginRight: "10px"}} className="navButton pixel">
+          <div style={{fontSize: "12px", marginRight: "10px"}} className="navButton bold">
             {address !== null && address !== undefined && chain.id === 8899 &&
-              <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(255, 255, 255, 0.4)", border: "0 solid #e2e8f0", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
-                <div style={{display: "flex", flexDirection: "row"}}>
+              <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(0, 0, 0, 0.02)", border: "1px solid rgba(0, 0, 0, 0.05)", borderRadius: "80px", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "10px 20px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                   <img
                     src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq"
                     height="18"
@@ -136,13 +136,13 @@ const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
                       })
                     }}
                   />
-                  <div style={{marginLeft: "7.5px"}}>{Number(jdaoBalance).toFixed(3)}</div>
+                  <div style={{marginLeft: "7px"}}>{Number(jdaoBalance).toFixed(3)}</div>
                 </div>
               </div>
             }
             {address !== null && address !== undefined && chain.id === 96 &&
-              <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(255, 255, 255, 0.4)", border: "0 solid #e2e8f0", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "7px 14px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
-                <div style={{display: "flex", flexDirection: "row"}}>
+              <div id="jdaoBal" style={{width: "fit-content", height: "18px", background: "rgba(0, 0, 0, 0.02)", border: "1px solid rgba(0, 0, 0, 0.05)", borderRadius: "80px", marginRight: "5px", color: "rgb(70, 55, 169)", padding: "10px 20px", display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", letterSpacing: "1px", textDecoration: "none"}}>
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                   <img
                     src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
                     height="18"
@@ -163,7 +163,7 @@ const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
                         })
                     }}
                   />
-                  <div style={{marginLeft: "7.5px"}}>{Number(cmosBalance).toFixed(3)}</div>
+                  <div style={{marginLeft: "7px"}}>{Number(cmosBalance).toFixed(3)}</div>
                 </div>
               </div>
             }
