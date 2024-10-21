@@ -604,24 +604,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 0],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 0],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 0],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot1 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 0],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot1 = await readContracts(config, {
                 contracts: [
@@ -1284,24 +1288,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 1],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 1],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 1],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot2 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 1],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot2 = await readContracts(config, {
                 contracts: [
@@ -1949,24 +1957,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 2],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 2],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 2],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot3 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 2],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot3 = await readContracts(config, {
                 contracts: [
@@ -2614,24 +2626,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 3],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 3],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 3],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot4 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 3],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot4 = await readContracts(config, {
                 contracts: [
@@ -3279,24 +3295,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 4],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 4],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 4],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot5 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 4],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot5 = await readContracts(config, {
                 contracts: [
@@ -3944,24 +3964,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 5],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 5],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 5],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot6 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 5],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot6 = await readContracts(config, {
                 contracts: [
@@ -4609,24 +4633,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 6],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 6],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 6],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot7 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 6],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot7 = await readContracts(config, {
                 contracts: [
@@ -5274,24 +5302,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 7],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 7],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 7],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot8 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 7],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot8 = await readContracts(config, {
                 contracts: [
@@ -5939,24 +5971,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 8],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 8],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 8],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot9 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 8],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot9 = await readContracts(config, {
                 contracts: [
@@ -6604,24 +6640,28 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
                 args: [address, 9],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
             const nftEQ2_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
                 args: [address, 9],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftEQCard_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
                 args: [address, 9],
+                chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
             const nftStatus_slot10 = address !== null && address !== undefined ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
                 args: [address, 9],
+                chainId: 190
             }) : [0, 0, false]
             const data_slot10 = await readContracts(config, {
                 contracts: [
