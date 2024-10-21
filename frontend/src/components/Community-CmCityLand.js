@@ -1092,8 +1092,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[2] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[2].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[2].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[2].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[2].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1127,8 +1127,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[3] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[3].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[3].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[3].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[3].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1162,8 +1162,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[4] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[4].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[4].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[4].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[4].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1197,8 +1197,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[5] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[5].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[5].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[5].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[5].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1232,8 +1232,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[6] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[6].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[6].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[6].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[6].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1267,8 +1267,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[7] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[7].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[7].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[7].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[7].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1302,8 +1302,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[8] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[8].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[8].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[8].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[8].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1337,8 +1337,8 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                             <div style={{width: "100%", height: "90px", marginTop: "15px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                                                                 {nftStake !== null && nftStake[9] !== undefined &&
                                                                                     <>
-                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[9].Id, 0)}>HARVEST</div>
-                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[9].Id, 1)}>HARVEST & UNSTAKE</div>
+                                                                                        <div style={{background: "#67BAA7"}} className="button" onClick={() => unstakeNft(nftStake[9].Id, false)}>HARVEST</div>
+                                                                                        <div className="button" onClick={() => unstakeNft(nftStake[9].Id, true)}>HARVEST & UNSTAKE</div>
                                                                                     </>
                                                                                 }
                                                                             </div> :
@@ -1685,7 +1685,7 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                         <div 
                                                                             style={{alignSelf: "center", background: "gray"}}
                                                                             className="pixel button"
-                                                                            onClick={() => unstakeNft(item.Id, 1)}
+                                                                            onClick={() => unstakeNft(item.Id, true)}
                                                                         >
                                                                             UNSTAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
                                                                         </div>
@@ -1710,7 +1710,7 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                                         <div 
                                                                             style={{alignSelf: "center", background: "gray"}}
                                                                             className="pixel button"
-                                                                            onClick={() => unstakeNftWD(item.Id, 1)}
+                                                                            onClick={() => unstakeNftWD(item.Id, true)}
                                                                         >
                                                                             UNSTAKE ON {String(item.Id).slice(0, 1) === "1" && 'HOUSE'}{String(item.Id).slice(0, 1) === "7" && 'WEAPON DEPOT'}
                                                                         </div>
