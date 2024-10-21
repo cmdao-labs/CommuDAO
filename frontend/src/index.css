@@ -191,18 +191,18 @@ header::-webkit-scrollbar { display: none; }
 }
 
 .inFooterLeft {
-  margin: 25px 50px 25px 75px;
+  margin: 30px 50px;
   display: flex;
   flex-direction: column;
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
 }
 .inFooterRight {
-  margin: 25px 75px 25px 50px;
+  margin: 30px 50px;
   display: flex;
   flex-direction: column;
   text-align: right;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .welcome {

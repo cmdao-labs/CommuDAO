@@ -1,60 +1,77 @@
-const BKCFields = ({ callMode, navigate }) => {
-    return (
-    <>
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div style={{fontSize: "65px", width: "fit-content"}} className="pixel">Fields</div>
-                <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Stake NFTs to earn resources.</div>
-            </div>
-            <div style={{margin: "30px 100px"}}>
-                <img src="../background/fieldlogo.png" width="150" alt="Fields_Logo" />
-            </div>
-        </div>
+import React from 'react'
 
-        <div style={{width: "95%", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-            <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih6l2qo7pi2iulbi26wovgaq4dbilhncoyzweapznqzhbfqzgf7ji" height="230" alt="Field_BadMuseum" />
-                <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
-                    <div className="pixel">
-                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
-                        Eligible NFT Collection
-                    </div>
-                    <div className="emp pixel bold">Bad Kub Generative Art</div>
+const BKCFields = ({ callMode, navigate }) => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    return (
+        <>
+            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div style={{flexDirection: "column", margin: "30px 100px"}}>
+                    <div style={{fontSize: "65px", width: "fit-content"}} className="pixel">Fields</div>
+                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Stake NFTs to earn resources.</div>
                 </div>
-                <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
-                    <div className="pixel">
-                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
-                        Earn
-                    </div>
-                    <div className="emp pixel"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" style={{marginRight: "5px"}} width="12" alt="$BST"/>BST</div>
+                <div style={{margin: "30px 100px"}}>
+                    <img src="../background/fieldlogo.png" width="150" alt="Fields_Logo" />
                 </div>
-                <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(15); navigate('/fields/bkc-bad-museum');}}>Go to Bad Musuem</div>
             </div>
-            <div className="nftCard" style={{justifyContent: "center", margin: "20px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieu6tyeea3bgzvvcxrylckaf674lqplpioghqvi2hudtfe4ux2fty" height="230" alt="Field_FraserRiver" />
-                <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
-                    <div className="pixel">
-                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
-                        Eligible NFT Collection
+
+            <div style={{width: "92.5%", borderBottom: "1px solid #dddade", marginTop: "60px"}}></div>
+                <div style={{width: "95%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">Partner Fields</div>
+                <div style={{width: "95%", minHeight: 0,  marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                <div className="nftCard" style={{justifyContent: "center", margin: "20px", position: "relative", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <div style={{height: "30px"}}></div>
+                        <div className='light'>BADKUB LAUNCHPAD</div>
                     </div>
-                    <div className="emp pixel">Cat Meaw NFT</div>
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih6l2qo7pi2iulbi26wovgaq4dbilhncoyzweapznqzhbfqzgf7ji" height="230" alt="Field_BadMuseum" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div className="light">
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                            Eligible NFTs
+                        </div>
+                        <div style={{color: "#000", borderBottom: "1px dashed"}} className="pixel">Bad Kub Generative Art</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div className="light">
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                            Earn
+                        </div>
+                        <div style={{color: "#000", borderBottom: "1px dashed"}} className="pixel">
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfaoq6ewqfoipdm66wapq4kijjhxdueztpo6tvdhayprueihefrm" style={{marginRight: "5px"}} width="12" alt="$BST"/>
+                        </div>
+                    </div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px",border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(15); navigate('/fields/bkc-bad-museum');}}>Go to Bad Musuem</div>
                 </div>
-                <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
-                    <div className="pixel">
-                        <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
-                        Earn
+                <div className="nftCard" style={{justifyContent: "center", margin: "20px", position: "relative", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                        <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                     </div>
-                    <div style={{display: "flex", flexDirection: "row"}} className="emp pixel">
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" alt="$SALM"/>
-                        <div style={{margin: "0 5px"}}>SALMON &</div>
-                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="16" alt="$CMM"/>
-                        <div style={{marginLeft: "5px"}}>CMM</div>
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieu6tyeea3bgzvvcxrylckaf674lqplpioghqvi2hudtfe4ux2fty" height="230" alt="Field_FraserRiver" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div className="light">
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                            Eligible NFTs
+                        </div>
+                        <div style={{color: "#000", borderBottom: "1px dashed"}} className="pixel">Cat Meaw NFT</div>
                     </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div className="light">
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                            Earn
+                        </div>
+                        <div style={{color: "#000", borderBottom: "1px dashed", display: "flex", flexDirection: "row"}} className="pixel">
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34" width="12" alt="$SALM"/>
+                            &nbsp;+&nbsp;
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaayvrql643lox66vkdfv6uzaoq2c5aa5mq3jjp3c7v4asaxvvzla" width="16" alt="$CMM"/>
+                        </div>
+                    </div>
+                    <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(16); navigate('/fields/bkc-fraser-river');}}>Go to Fraser River</div>
                 </div>
-                <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel hashtag" onClick={() => {callMode(16); navigate('/fields/bkc-fraser-river');}}>Go to Fraser River</div>
             </div>
-        </div>
-    </>
+        </>
     )
 }
 

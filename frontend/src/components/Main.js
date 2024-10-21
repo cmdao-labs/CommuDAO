@@ -463,7 +463,7 @@ const Main = () => {
                 <div style={{zIndex: "999"}} className="centermodal">
                     <div className="wrapper">
                     <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "300px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{width: "90%", textAlign: "left", fontSize: "24px"}} className="emp">ERROR! [{'Alpha V. ' + v}]</div>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "24px"}} className="emp">ERROR! [{'alpha' + v}]</div>
                         <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px", height: "350px", overflow: "hidden", textOverflow: "ellipsis"}}>{errMsg}</div>
                         <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => setisError(false)}>CLOSE</div>
                     </div>
@@ -478,8 +478,8 @@ const Main = () => {
                     {mode === 11 && <TunaLake config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
                     {mode === 12 && <OldWarehouse config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
                     {mode === 13 && <AncientForrest config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} aurora721ABI={aurora721ABI} starterCMDSABI={starterCMDSABI} uplevelCMDSABI={uplevelCMDSABI} woodFieldABI={woodFieldABI} msgABI={msgABI} cmdaoNameABI={cmdaoNameABI} pve01ABI={pve01ABI} erc20Abi={erc20Abi} />}
-                    
-                    {mode === 17 && <TheHeavenLand config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} thlFieldABI={thlFieldABI} />}
+                    {mode === 17 && <TheHeavenLand config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} thlFieldABI={thlFieldABI} />}
+
                     {mode === 19 && <EasternFront config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc20Abi={erc20Abi} erc721Abi={erc721Abi} fieldEfABI={fieldEfABI} />}
                     {mode === 100 && <MechHarvestZone config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
                     {mode === 101 && <DjMining config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} fieldDjABI={fieldDjABI} />}
@@ -556,13 +556,14 @@ const Main = () => {
             </WagmiProvider>                
             <footer style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", background: "#fff"}}>
                 <div className="inFooterLeft">
-                    <div style={{marginBottom: "10px"}}>{'CommuDAO. - alpha v.' + v}</div>
-                    <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
-                    <a style={{color: "#5f6476", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
+                    <div style={{marginBottom: "10px"}}>{'CommuDAO. alpha ' + v}</div>
+                    <a style={{marginBottom: "10px", color: "#000", textDecoration: "none"}} href="https://docs.commudao.xyz" target="_blank" rel="noreferrer">Docs</a>
+                    <a style={{color: "#000", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>
                 <div className="inFooterRight">
-                    <a style={{marginBottom: "10px", color: "#5f6476", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">Quests on Zealy</a>
-                    <a style={{color: "#5f6476", textDecoration: "none"}} href="https://discord.gg/k92ReT5EYy" target="_blank" rel="noreferrer">Discord</a>
+                <a style={{marginBottom: "10px", color: "#000", textDecoration: "none"}} href="https://snapshot.org/#/commudao.eth" target="_blank" rel="noreferrer">Governance on Snapshot</a>
+                    <a style={{marginBottom: "10px", color: "#000", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">Quests on Zealy</a>
+                    <a style={{color: "#000", textDecoration: "none"}} href="https://discord.gg/k92ReT5EYy" target="_blank" rel="noreferrer">Discord</a>
                 </div>
             </footer>
         </>
