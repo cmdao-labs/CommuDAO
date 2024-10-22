@@ -47,7 +47,7 @@ const OPMall = ({ config, setisLoading, txupdate, setTxupdate, setisError, setEr
                 {mode === 1 && 
                     <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
                         <div className='hashtag' onClick={() => setMode(0)}>BACK</div>
-                        <OPMallT1 setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} uniNftBridgeABI={uniNftBridgeABI} multichainMallABI={multichainMallABI} />
+                        <OPMallT1 config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} uniNftBridgeABI={uniNftBridgeABI} multichainMallABI={multichainMallABI} />
                     </div>
                 }
             </div>

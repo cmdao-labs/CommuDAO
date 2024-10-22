@@ -419,7 +419,6 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                             <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
-                                <>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
@@ -429,7 +428,6 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     </> :
                                     <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                 }
-                                </>
                             </div>
                         </div>
                         <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
@@ -483,7 +481,8 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                                                 <div style={{lineHeight: 2}} className="button" onClick={() => {unstakeNft(item.Id, false)}}>HARVEST</div> :
                                                                 <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                                             }
-                                                        </> : <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
+                                                        </> : 
+                                                        <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST</div>
                                                     }
                                                 </div>
                                                 {address !== null && intrasubModetext !== undefined && 
