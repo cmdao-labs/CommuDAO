@@ -380,12 +380,11 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                     </div>
                 </div>
             }
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
-                    <div className="pixel" style={{fontSize: "75px", width: "fit-content", padding: "0 10px"}}>Eastern Front</div>
-                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake Adventurer Card to earn $Valuables-Bag.</div>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig67s2zxistu3b3eco5dshwweicqe6olnwng7o2n6qqzoaawtsag4')", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Eastern Front</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="150" alt="$VABAG"/>
                 </div>
             </div>
@@ -401,44 +400,44 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                         </div>
                     </div>
                 </div> :
-                <div style={{margin: "0", paddingTop: "40px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
-                    <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                            <div style={{marginBottom: "20px"}}>AP-AC ON WALLET</div>
-                            <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
+                <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+                    <div style={{width: "82%", minHeight: "120px", height: "fit-content", margin: "30px 10px 50px 10px", padding: "20px", fontSize: "10px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                        <div className="headfield bold">
+                            <div style={{marginBottom: "20px"}}>NFT IN WALLET</div>
+                            <div style={{fontSize: "24px", marginBottom: "20px"}}>{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
                         </div>
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
-                            <div style={{fontSize: "24px", display: "flex"}} className="emp">
+                            <div style={{fontSize: "24px", marginBottom: "20px"}}>
                                 {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
                                 <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                             </div>
                         </div>
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                            <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                            <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
-                                            <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
-                                            <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                            <div style={{lineHeight: 2, padding: "2px 20px"}} className="button" onClick={unstakeNftAll}>HARVEST ALL</div> :
+                                            <div style={{lineHeight: 2, padding: "2px 20px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                         }
                                     </> :
-                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
+                                    <div style={{lineHeight: 2, padding: "2px 20px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL</div>
                                 }
                             </div>
                         </div>
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                            <div style={{marginBottom: "20px"}}>VABAG BALANCE</div>
-                            <div style={{fontSize: "24px", display: "flex"}}>
+                        <div className="headfield bold">
+                            <div style={{marginBottom: "20px"}}>BALANCE</div>
+                            <div style={{fontSize: "24px", marginBottom: "20px"}}>
                                 {nft.length > 0 ? Number(vabagBalance).toFixed(3) : 0}
                                 <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" width="24" alt="$VABAG"/>
                             </div>
                         </div>
                     </div>
-                    <div style={{margin: "40px 0 80px 0", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                    <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                         {nft.length > 0 ?
                             <>
                                 {nft[0] !== null ?

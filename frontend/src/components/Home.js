@@ -16,15 +16,15 @@ const Home = ({ callMode, navigate }) => {
                 </div>
                 <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO Ecosystem!</div>
                 <div style={{margin: "10px 0", maxWidth: "650px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    <a className="hashtag" style={{textDecoration: "none", color: "#fff"}} href="https://docs.google.com/spreadsheets/d/1S1AeshQmdQLFc4HhhNl1_Ut5F0FOEc9ixp_Is4lukig" target="_blank" rel="noreferrer">
+                    <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://docs.google.com/spreadsheets/d/1S1AeshQmdQLFc4HhhNl1_Ut5F0FOEc9ixp_Is4lukig" target="_blank" rel="noreferrer">
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihiezpvelzflcvavljsgzlwh27zfy4njqmcoidzz23ldtajdeo3vi" height="25" alt="Can not load metadata."/>
                         &nbsp;CMDAO Alert
                     </a>
-                    <a className="hashtag" style={{textDecoration: "none", color: "#fff"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
+                    <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidlnozzbqrxqtdf54b32u3u7ri4svu7lcdpxujcnoa5x5biqcufpy" height="30" alt="Can not load metadata."/>
                         &nbsp;Auto Web3 Tool
                     </a>
-                    <a className="hashtag" style={{textDecoration: "none", color: "#fff"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
+                    <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictqeaxecodh6wogk4eihkvyhzhk3hnyyftfvsjxi6m4yf4sm4nta" height="30" alt="Can not load metadata."/>
                         &nbsp;DaoBuddy
                     </a>

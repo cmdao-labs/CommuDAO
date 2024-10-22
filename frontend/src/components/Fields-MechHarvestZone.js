@@ -684,12 +684,11 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, callMode, setisLo
                     </div>
                 </div>
             }
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidlzwhqtdrt4dnymhtf3v5vbhfwaczn6i3676iqr2aymrwbqbtw4m')", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
-                    <div className="pixel" style={{fontSize: "75px", padding: "10px 20px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Mech Harvest Zone</div>
-                    <div style={{fontSize: "17px", marginTop: "15px", padding: "10px 20px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}} className="pixel">Stake TAODUM / TAOMEME to earn $Gear.</div>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left",  backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidlzwhqtdrt4dnymhtf3v5vbhfwaczn6i3676iqr2aymrwbqbtw4m')", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Mech Harvest Zone</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="150" alt="$GEAR"/>
                 </div>
             </div>
@@ -705,38 +704,38 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, callMode, setisLo
                         </div>
                     </div>
                 </div> :
-                <div style={{margin: "0", paddingTop: "40px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
-                    <div style={{width: "95%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "14px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                            <div style={{marginBottom: "20px"}}>TAODUM ON WALLET</div>
-                            <div style={{fontSize: "24px"}} className="emp">{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
+                <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: "flex-start", fontSize: "14px", flexFlow: "row wrap"}} className="collection pixel">
+                    <div style={{width: "82%", minHeight: "120px", height: "fit-content", margin: "10px", padding: "20px", fontSize: "14px", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}} className="nftCard">
+                        <div className="headfield bold">
+                            <div style={{marginBottom: "20px"}}>NFT IN WALLET</div>
+                            <div style={{fontSize: "24px", marginBottom: "20px"}}>{nft.length > 0 && nft[0] !== null ? nft.length : 0}</div>
                         </div>
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
-                            <div style={{fontSize: "24px", display: "flex"}} className="emp">
+                            <div style={{fontSize: "24px", marginBottom: "20px"}} >
                                 {Number(allDaily) > 0 ? Number(allDaily).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
                                 <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                             </div>
                         </div>
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
+                        <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
-                            <div style={{fontSize: "24px", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                            <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "center"}}>
                                 {Number(allReward) > 0 ? Number(allReward).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
                                 <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allRewardNFT > 0 ?
-                                            <div style={{lineHeight: 2}} className="button" onClick={unstakeNftAll}>HARVEST ALL (NFT)</div> :
-                                            <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL (NFT)</div>
+                                            <div style={{lineHeight: 2, padding: "2px 20px"}} className="button" onClick={unstakeNftAll}>HARVEST ALL (NFT)</div> :
+                                            <div style={{lineHeight: 2, padding: "2px 20px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL (NFT)</div>
                                         }
                                     </> :
-                                    <div style={{lineHeight: 2, background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL (NFT)</div>
+                                    <div style={{lineHeight: 2, padding: "2px 20px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST ALL (NFT)</div>
                                 }
                             </div>
                         </div>
-                        <div style={{height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-around"}} className="bold">
-                            <div style={{marginBottom: "20px"}}>GEAR BALANCE</div>
-                            <div style={{fontSize: "24px", display: "flex"}}>
+                        <div className="headfield bold">
+                            <div style={{marginBottom: "20px"}}>BALANCE</div>
+                            <div style={{fontSize: "24px", marginBottom: "20px"}}>
                                 {Number(gearBalance) > 0 ? Number(gearBalance).toLocaleString('en-US', {maximumFractionDigits:3}) : 0}
                                 <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" width="26" alt="$GEAR"/>
                             </div>
@@ -1168,7 +1167,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, callMode, setisLo
 
                     <div style={{width: "95%", borderBottom: "1px solid #dddade", margin: "40px 10px 10px 10px"}}></div>
                     <div style={{width: "95%", margin: "20px 10px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">TAODUM STAKING</div>
-                    <div style={{margin: "40px 0 80px 0", width: "95%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
+                    <div style={{marginBottom: "80px", width: "95%", display: "flex", flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
                         {nft.length > 0 ?
                             <>
                                 {nft[0] !== null ?
