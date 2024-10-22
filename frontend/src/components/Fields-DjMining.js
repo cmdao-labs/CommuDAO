@@ -73,7 +73,7 @@ const DjMining = ({ config, intrasubModetext, navigate, callMode, setisLoading, 
         const thefetch = async () => {
             let nfts = []
             let stakeRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const stakeFilter = await bbNftSC.filters.Transfer(addr, fieldDJ, null)
                 const stakeEvent = await bbNftSC.queryFilter(stakeFilter, 3489173, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -140,7 +140,7 @@ const DjMining = ({ config, intrasubModetext, navigate, callMode, setisLoading, 
             }
 
             let walletRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const walletFilter = await bbNftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await bbNftSC.queryFilter(walletFilter, 3478177, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -192,7 +192,7 @@ const DjMining = ({ config, intrasubModetext, navigate, callMode, setisLoading, 
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const djBal = addr !== null ? await readContract(config, {
+            const djBal = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: doijib,
                 abi: erc20Abi,
                 functionName: 'balanceOf',

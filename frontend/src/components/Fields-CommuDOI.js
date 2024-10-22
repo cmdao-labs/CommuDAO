@@ -40,7 +40,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
         const thefetch = async () => {
             let nfts = []
             let stakeRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const stakeFilter = await cmdaonftSC.filters.Transfer(addr, cmdoiField, null)
                 const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 4174711, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -72,7 +72,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                     }
                 ))
             }) : null
-            const _allReward = addr !== null ? await readContract(config, {
+            const _allReward = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: cmdoiField,
                 abi: cmdoiFieldABI,
                 functionName: 'calculateRewards',
@@ -101,7 +101,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
             }
 
             let walletRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const walletFilter = await cmdaonftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj, index) => String(obj.args.tokenId)))
@@ -154,7 +154,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
 
             if (nfts.length === 0) { nfts.push(null) }
 
-            const doijibBal = addr !== null ? await readContract(config, {
+            const doijibBal = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: doijib,
                 abi: erc20Abi,
                 functionName: 'balanceOf',
@@ -320,11 +320,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                                     <>
                                         {nft.map((item, index) => (
                                             <div style={{margin: "10px", padding: "30px 20px", justifyContent: "space-around", fontSize: "14px"}} className="nftCard pixel" key={index}>
-                                                <img
-                                                    src={item.Image}
-                                                    width="150"
-                                                    alt="nftpic"
-                                                />
+                                                <img src={item.Image} width="150" alt="Can not load metadata." />
                                                 <div>{item.Name}</div>
                                                 <div style={{width: 300, display: "flex", flexDirection: "row", justifyContent: "center"}}>
                                                     {item.isStaked ?
