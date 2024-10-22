@@ -71,7 +71,7 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             let nfts = []
             let nftstaked = []
             let stakeRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const stakeFilter = await acNftSC.filters.Transfer(addr, vabag, null)
                 const stakeEvent = await acNftSC.queryFilter(stakeFilter, 2260250, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -172,7 +172,7 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
 
             let walletRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const walletFilter = await acNftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await acNftSC.queryFilter(walletFilter, 2260250, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -258,7 +258,7 @@ const EasternFront = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const vaBal = addr !== null ? await readContract(config, {
+            const vaBal = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: vabag,
                 abi: erc20Abi,
                 functionName: 'balanceOf',

@@ -79,7 +79,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, callMode, setisLo
             let nfts = []
             let nftstaked = []
             let stakeRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const stakeFilter = await taodumNFTSC.filters.Transfer(addr, gear, null)
                 const stakeEvent = await taodumNFTSC.queryFilter(stakeFilter, 2260250, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -160,7 +160,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
 
             let walletRemoveDup =[]
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const walletFilter = await taodumNFTSC.filters.Transfer(null, addr, null)
                 const walletEvent = await taodumNFTSC.queryFilter(walletFilter, 2725554, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -224,7 +224,7 @@ const MechHarvestZone = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const dataToken = addr !== null ? await readContracts(config, {
+            const dataToken = chain !== undefined && chain.id === 8899 && addr !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: gear,

@@ -75,7 +75,7 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
             let nfts = []
             let nftstaked = []
             let stakeRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const stakeFilter = await mgnftSC.filters.Transfer(addr, thlField, null)
                 const stakeEvent = await mgnftSC.queryFilter(stakeFilter, 2260250, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -164,7 +164,7 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
             }
 
             let walletRemoveDup = [];
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const walletFilter = await mgnftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await mgnftSC.queryFilter(walletFilter, 2260250, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -228,7 +228,7 @@ const TheHeavenLand = ({ config, intrasubModetext, navigate, callMode, setisLoad
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const goldBal = addr !== null ? await readContract(config, {
+            const goldBal = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: gold,
                 abi: erc20Abi,
                 functionName: 'balanceOf',

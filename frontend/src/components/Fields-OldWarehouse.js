@@ -72,7 +72,7 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
         
         const thefetch = async () => {
             let stakeRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const stakeFilter = await orynftSC.filters.Transfer(addr, fieldMice, null)
                 const stakeEvent = await orynftSC.queryFilter(stakeFilter, 515000, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -140,7 +140,7 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             }
 
             let walletRemoveDup = []
-            if (addr !== null) {
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
                 const walletFilter = await orynftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await orynftSC.queryFilter(walletFilter, 515000, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
@@ -190,7 +190,7 @@ const OldWarehouse = ({ config, intrasubModetext, callMode, navigate, setisLoadi
             }
             if (nfts.length === 0) { nfts.push(null) }
 
-            const miceBal = addr !== null ? await readContract(config, {
+            const miceBal = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: fieldMice,
                 abi: tunaFieldABI,
                 functionName: 'balanceOf',

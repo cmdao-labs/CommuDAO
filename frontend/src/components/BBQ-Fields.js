@@ -7,12 +7,12 @@ const BBQFields = ({ callMode, navigate }) => {
     
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div className="SubfieldBanner" style={{flexDirection: "column"}}>
                     <div style={{fontSize: "65px", width: "fit-content"}} className="pixel">Fields</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Stake NFTs to earn resources.</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                     <img src="../background/fieldlogo.png" width="150" alt="Fields_Logo" />
                 </div>
             </div>
@@ -20,7 +20,7 @@ const BBQFields = ({ callMode, navigate }) => {
             <div style={{width: "92.5%", borderBottom: "1px solid #dddade", marginTop: "60px"}}></div>
             <div style={{width: "95%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">CommuDAO Fields</div>
             <div style={{width: "95%", marginBottom: "80px", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-                <div className="nftCard" style={{justifyContent: "center", margin: "20px", position: "relative", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{justifyContent: "center", margin: "10px", position: "relative", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="light">
