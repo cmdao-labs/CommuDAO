@@ -597,12 +597,11 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px", color: "#fff"}}>
-                    <div className="pixel" style={{fontSize: "65px", width: "fit-content", padding: "0 10px"}}>Ancient Forest</div>
-                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "15px", padding: "0 10px"}} className="pixel">Stake CommuDAO Servant to earn $WOOD & $CMJ.</div>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Ancient Forest</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
                 </div>
             </div>
@@ -618,14 +617,14 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                         </div>
                     </div>
                 </div> :
-                <div style={{margin: "0", paddingTop: "30px", alignItems: "flex-start", justifyContent: 'space-between'}} className="collection">
+                <div style={{margin: "0", paddingTop: "30px", minHeight: "fit-content", alignItems: "flex-start", justifyContent: 'space-between'}} className="collection">
                     <div style={{minWidth: '50%', display: 'flex', justifyContent: 'flex-start', flexWrap: "wrap"}}>
                         {nft.length > 0 ?
                             <>
                                 {nft[0] !== null ?
                                     <>
                                         {nft.map((item, index) => (
-                                            <div style={{justifyContent: "space-around", height: "500px", margin: "20px"}} className="nftCard" key={index}>
+                                            <div style={{justifyContent: "space-around", padding: "30px 20px", height: "500px", margin: "10px"}} className="nftCard" key={index}>
                                                 <img src={item.Image} width="175" alt="Can not load metadata." />
                                                 <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
                                                     <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
@@ -679,7 +678,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                     </> :
                                     <>
                                         {address !== null ?
-                                            <div className="nftCard" style={{justifyContent: "flex-start", height: "500px", margin: '20px'}}>
+                                            <div className="nftCard" style={{justifyContent: "flex-start", padding: "30px 20px", height: "500px", margin: '10px'}}>
                                                 <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
                                                 <div style={{margin: "20px 0", fontSize: "18px"}} className="emp pixel">CommuDAO Servant Incubator</div>
                                                 <input
@@ -700,15 +699,15 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                     </>
                                 }
                             </> :
-                            <div className="nftCard" style={{justifyContent: "center", height: "500px", margin: '20px'}}>
+                            <div className="nftCard" style={{justifyContent: "center", padding: "30px 20px", height: "500px", margin: '10px'}}>
                                 <ThreeDots fill="#5f6476" />
                                 <div className="bold" style={{marginTop: "80px"}}>Loading Servant...</div>
                             </div>
                         }
                         {address !== null &&
-                            <div style={{justifyContent: "space-around", height: "500px", margin: '20px'}} className="nftCard">
+                            <div style={{justifyContent: "space-around", padding: "30px 20px", height: "500px", margin: '10px'}} className="nftCard">
                                 <img src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiax35zfioffpmp3tlyjwdrz2dplldgm5qokqi5p3b76cmomtkfri4' width="150" alt="Can not load metadata." />
-                                <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
+                                <div style={{width: 300, padding: "5px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
                                     <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
                                         <div style={{color: "red"}}>Fishmon [Lv. 5]</div>
                                         <div>Hash rate : {Number(monInfo01[1])}</div>
@@ -722,7 +721,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                         }
                                     </div>
                                 </div>
-                                <div style={{width: 300, padding: "10px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
+                                <div style={{width: 300, padding: "5px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
                                     <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
                                         <div style={{color: "#000"}}>Your Status</div>
                                         <div>Win : {Number(userInfo01[0])}</div>
@@ -733,7 +732,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                         <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px", fontSize: "16px"}} className="pixel button" onClick={hpup01Handle}>HP UP</div>
                                     </div>
                                 </div>
-                                <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
+                                <div style={{width: 300, padding: "5px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
                                         Rewards
                                         <div style={{fontSize: "14px"}}><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="12" alt="$PLAT"/> 1 per defeat</div>
@@ -746,7 +745,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                             </div>
                         }
                     </div>
-                    <div style={{minWidth: '400px', width: '25%', height: "100vh", padding: "20px", textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
+                    <div style={{minWidth: '352px', width: '25%', height: "500px", padding: "30px 20px", margin: '10px 10px 80px 10px', textAlign: "left", background: "#f7f5f8", display: "flex", flexDirection: "column", alignItems:"flex-start", justifyContent: "flex-start", fontSize: "16px"}}>
                         <div style={{padding: "10px", width: "95%", height: "500px", background: "#fff", overflow: 'scroll'}}>
                             {chat.length > 0 ?
                                 <>
