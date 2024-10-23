@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OPFields = ({}) => {
+const OPFields = () => {
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
