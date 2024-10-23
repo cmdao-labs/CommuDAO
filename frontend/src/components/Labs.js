@@ -36,7 +36,10 @@ const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
 
 const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, erc20Abi, kycABI }) => {
-    const { address, chain } = useAccount()
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
     const { open } = useAppKit()
     const [isKYC, setIsKYC] = React.useState(null)
     const [cmjBalance, setCmjBalance] = React.useState(0)
@@ -111,10 +114,10 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
         console.log("Connected to " + address)
         
         const thefetch = async () => {
-            const jbcBal = chain !== undefined && chain.id === 8899 && address !== null && address !== undefined ?
+            const jbcBal = chain !== undefined && chain.id === 8899 && address !== null ?
                 await getBalance(config, { address: address, }) :
                 {formatted: 0}
-            const data = chain !== undefined && chain.id === 8899 && address !== null && address !== undefined ? await readContracts(config, {
+            const data = chain !== undefined && chain.id === 8899 && address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmjToken,
@@ -1349,7 +1352,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                 </div>
             </div>
 
-            {address !== undefined && chain !== undefined && chain.id !== 8899 ?
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
                 <div style={{zIndex: "999"}} className="centermodal">
                     <div className="wrapper">
                         <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
@@ -1958,7 +1961,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
@@ -1978,7 +1981,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     </div>
                                                 </div>
                                                 {isCraftBBQ !== null ?
-                                                    <div style={{width: "100%", marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                    <div style={{width: "100%", marginTop: "40px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                                         {canCraftBBQ ?
                                                             <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px"}} className="pixel button" onClick={() => craftBBQHandle(levelCraftBBQ + 1)}>Craft Barbeque</div> :
                                                             <div style={{display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
@@ -1988,10 +1991,10 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                             <div style={{display: "flex", justifyContent: "center", width: "100px", borderRadius: "12px", padding: "15px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">UPGRADE</div>
                                                         }
                                                     </div> :
-                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Barbeque</div>
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Barbeque</div>
                                                 }
                                             </> :
-                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "20px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
                                         }
                                     </>
                                 }
@@ -2029,7 +2032,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftPZA !== null ?
                                                     <>
@@ -2079,7 +2082,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftSIL !== null ?
                                                     <>
@@ -2132,7 +2135,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftGOLD !== null ?
                                                     <>
@@ -2182,7 +2185,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftPLAT !== null ?
                                                     <>
@@ -2232,7 +2235,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftPLUTO !== null ?
                                                     <>
@@ -2292,7 +2295,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraft1 !== null ?
                                                     <>
@@ -2346,7 +2349,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraft2 === false ?
                                                     <>
@@ -2457,7 +2460,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftSWAR !== null ?
                                                     <>
@@ -2511,7 +2514,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftSTAR !== null ?
                                                     <>
@@ -2565,7 +2568,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftII !== null ?
                                                     <>
@@ -2622,7 +2625,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftII !== null ?
                                                     <>
@@ -2676,7 +2679,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                         }
                                     </> :
                                     <>
-                                        {address !== null && address !== undefined ?
+                                        {address !== null ?
                                             <>
                                                 {isCraftPLAT2 !== null ?
                                                     <>
