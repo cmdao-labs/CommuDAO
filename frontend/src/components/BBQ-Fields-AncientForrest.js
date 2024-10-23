@@ -319,7 +319,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
             setParty2Fee(Number(result[6][1]) / 100)
         })
 
-    }, [config, address, txupdate, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI ])
+    }, [config, address, chain, txupdate, cmdsV2ABI, uplevelCMDSABI, fieldWoodBBQABI, partyABI, missionCMDBaseABI, missionWoodABI ])
 
     const mintServant = async () => {
         setisLoading(true)

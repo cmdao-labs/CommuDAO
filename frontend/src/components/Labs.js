@@ -1339,12 +1339,12 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px"}} className="pixel">
-                    <div style={{fontSize: "75px", width: "fit-content"}}>Labs</div>
-                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px", letterSpacing: "1px"}}>Craft, Await and Obtain!</div>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div className="SubfieldBanner" style={{flexDirection: "column"}}>
+                    <div style={{fontSize: "75px", width: "fit-content"}} className="pixel">Labs</div>
+                    <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px", letterSpacing: "1px"}} className="pixel">Craft, Await and Obtain!</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                     <img src="./background/labslogo.png" width="150" alt="Labs_Logo" />
                 </div>
             </div>
@@ -1913,8 +1913,8 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
 
                         <div style={{marginTop: "40px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
                         <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Labs & Factories</div>
-                        <div style={{width: "100%", marginTop: "10px", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 {levelCraftBBQ >= 0 ? <div style={{position: "absolute", top: 15, right: 15, padding: "10px 20px", letterSpacing: 1, background: "transparent", border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="bold">LEVEL {levelCraftBBQ}</div> : <></>}
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                                     {isCraftBBQ !== null || levelCraftBBQ < 4 ? <img src="./elements/BBQ_factory01_lv0.png" width="170" alt="$BBQ_Factory_lv0"/> : <></>}
@@ -1996,8 +1996,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXQdWZs4VTcbUFJCv42onZCqXjhYJ4S1ek9fAZGfbeVSi" width="200" alt="Pizza_Factory"/>
                                 </div>
@@ -2047,8 +2046,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdpfkSTFj8BY8f6RjtLzp4e1P1eF76zWo9qngx9FPmogv" width="210" alt="$SIL_Factory"/>
                                 </div>
@@ -2100,8 +2098,8 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                         </div>
 
-                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">                    
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWhS1SzApFMZA9DGYyv6BcW48d8EEn97dnHmfs7cCNRLM" width="220" alt="$GOLD_Factory"/>
                                 </div>
@@ -2151,8 +2149,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXuWRk4JQuepXzEM5N2f64StpwpypfEBtVzfjRqmHivUE" width="230" alt="$PLAT_Factory"/>
                                 </div>
@@ -2202,8 +2199,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVHAiLDekEegHqMzr11j6jH5Ay4KWHPS4of4cEYxn4afm" width="230" alt="$PLUTO_Factory"/>
                                 </div>
@@ -2258,11 +2254,11 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         
                         <div style={{marginTop: "0px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
                         <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Labs & Factories</div>
-                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
-                                    <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                                    <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                                 </div>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                                     <img src="./elements/ctunafactory.png" width="200" alt="$CTUNA_Factory"/>
@@ -2313,11 +2309,10 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
-                                    <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                                    <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                                 </div>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                                     <img src="./elements/sx31factory.png" width="200" alt="$SX31_Factory"/>
@@ -2368,11 +2363,10 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
-                                    <div className='light' style={{marginLeft: "10px"}}>CM Hexa</div>
+                                    <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                                 </div>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 2}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZmfbTakZsWQhZP7achSgqUJjqyajrziTq8YyNVndtuQ1" width="220" alt="Large_SX31_Factory"/>
@@ -2425,9 +2419,9 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                         </div>
 
-                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
@@ -2480,9 +2474,8 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
@@ -2535,11 +2528,10 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                                    <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                                    <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfQhrhSNw5Ldegjeu8vF2wSv432uWesQYe5kyW1cWgntV" width="170" alt="$II_Factory"/>
@@ -2592,11 +2584,11 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                         </div>
 
-                        <div style={{width: "100%", margin: "10px 0", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px 20px 80px 20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                                    <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                                    <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="210" alt="$II_Factory02"/>
@@ -2647,13 +2639,12 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px"}}>
-                                <div style={{position: "absolute", top: -15, right: -15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
-                                    <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
+                                    <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
-                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="220" alt="$PLAT_Factory02"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
