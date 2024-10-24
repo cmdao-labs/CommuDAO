@@ -339,6 +339,7 @@ const OpGameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, vel
             {mode === 0 && 
                 <>
                     <OpSwap
+                        config={config}
                         address={address}
                         setisLoading={setisLoading}
                         setTxupdate={setTxupdate}
@@ -491,6 +492,7 @@ const OpGameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, vel
                 </div>            
             }
             {mode === 2 && <OpGameSwapFarm
+                config={config}
                 address={address}
                 setisLoading={setisLoading}
                 setTxupdate={setTxupdate}

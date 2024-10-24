@@ -22,6 +22,10 @@ const platLab2 = '0xB080353ccD9CC565C0844Bb22e2997EdB2b6B7f0'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
 const plutoLab = '0x907bcCa99052c195BA8181aca07181D18E1C7555'
+const fbtcToken = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
+const fbtcLab = '0x1ef5A1CbBc5Ea2058105Cb96073A0faC450F07D7'
+const x4Token = '0x0DF9D160489440D630a247fBC830DA74779928b1'
+const x4Lab = '0xaB58A9dEc0FC7FEcE936BF5aBe3C1fC23cdee156'
 const tunaField = "0x09676315DC0c85F6bd5e866C5f1363A00Eec4381"
 const ctunaLab = "0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0"
 const fieldMice = '0x09DE640ecd50e1c81bCB266279e3ffC2719873df'
@@ -34,6 +38,9 @@ const vabag = '0x495d66c9Fd7c63807114d06802A48BdAA60a0426'
 const swarLab = '0x5e18a8B78d5395371308C54719fead810Ce2aCd2'
 const dunANGB = '0x59c1C2f5FA76DB933B97b7c54223129e2A398534'
 const starLab = '0x7A7Bc613e93aD729141D4BbB94375b5aD19d0Cbf'
+const doijibToken = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
+const doistarToken = '0x27Fd1c088Cb0750e66a20f407b12c1ACa3AD77dd'
+const doistarLab = '0x028b5FEd156972f97ebd69E271c56B61d748De92'
 
 const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, erc20Abi, kycABI }) => {
     let { address, chain } = useAccount()
@@ -56,6 +63,10 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
     const [platBalance, setPlatBalance] = React.useState(0)
     const [jaspBalance, setJaspBalance] = React.useState(0)
     const [plutoBalance, setPlutoBalance] = React.useState(0)
+    const [fbtcBalance, setFbtcBalance] = React.useState(0)
+    const [x4Balance, setX4Balance] = React.useState(0)
+    const [doijibBalance, setDoijibBalance] = React.useState(0)
+    const [doistarBalance, setDoistarBalance] = React.useState(0)
     const [stOPTBalance, setStOPTBalance] = React.useState(0)
     const [vabagBalance, setVabagBalance] = React.useState(0)
     const [swarBalance, setSwarBalance] = React.useState(0)
@@ -87,6 +98,15 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
     const [isCraftPLUTO, setIsCraftPLUTO] = React.useState(null)
     const [timetoClaimPLUTO, setTimeToClaimPLUTO] = React.useState(0)
     const [canCraftPLUTO, setCanCraftPLUTO] = React.useState(false)
+    const [isCraftFBTC, setIsCraftFBTC] = React.useState(null)
+    const [timetoClaimFBTC, setTimeToClaimFBTC] = React.useState(0)
+    const [canCraftFBTC, setCanCraftFBTC] = React.useState(false)
+    const [isCraftX4, setIsCraftX4] = React.useState(null)
+    const [timetoClaimX4, setTimeToClaimX4] = React.useState(0)
+    const [canCraftX4, setCanCraftX4] = React.useState(false)
+    const [isCraftDOISTAR, setIsCraftDOISTAR] = React.useState(null)
+    const [timetoClaimDOISTAR, setTimeToClaimDOISTAR] = React.useState(0)
+    const [canCraftDOISTAR, setCanCraftDOISTAR] = React.useState(false)
     const [isCraft1, setIsCraft1] = React.useState(null)
     const [timetoClaim1, setTimeToClaim1] = React.useState(0)
     const [canCraft1, setCanCraft1] = React.useState(false)
@@ -335,14 +355,57 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: doijibToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: doistarToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: fbtcToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: x4Token,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: doistarLab,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
+                    {
+                        address: fbtcLab,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
+                    {
+                        address: x4Lab,
+                        abi: pzaLabABI,
+                        functionName: 'supplier',
+                        args: [address],
+                    },
                 ],
             }) : [
                 {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, 
                 {result: 0}, {result: 0}, {result: false}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, machineIndex: 0, laststamp: 0}}, {result: {isCraft: false, machineIndex: 0, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}},
                 {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0},
-                {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, 
+                {result: 0}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: {isCraft: false, laststamp: 0}}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
+                {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}}, {result: {isCraft: false, laststamp: 0}},
+
             ]
-            
             const cmjBal = data[0].result
             const woodBal = data[1].result
             const bbqBal = data[2].result
@@ -379,6 +442,13 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
             const eeBal = data[33].result
             const labLogPlat2 = data[34].result
             const jaspBal = data[35].result
+            const doijibBal = data[36].result
+            const doistarBal = data[37].result
+            const fbtcBal = data[38].result
+            const x4Bal = data[39].result
+            const labLogDOISTAR = data[40].result
+            const labLogFBTC = data[41].result
+            const labLogX4 = data[42].result
             const _canCraft1 = Number(ethers.utils.formatEther(tunaBal)) >= 50 && Number(ethers.utils.formatEther(cmjBal)) >= 10 ? true : false
             const _canCraft2 = Number(ethers.utils.formatEther(miceBal)) >= 50 && Number(ethers.utils.formatEther(cmjBal)) >= 9 ? true : false
             const _canCraft2_2 = Number(ethers.utils.formatEther(miceBal)) >= 500 && Number(ethers.utils.formatEther(cmjBal)) >= 90 ? true : false
@@ -393,6 +463,9 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
             const _canCraftII = Number(ethers.utils.formatEther(gearBal)) >= 888 && Number(ethers.utils.formatEther(tmBal)) >= 8 ? true : false
             const _canCraftII2 = Number(ethers.utils.formatEther(gearBal)) >= 88888 && Number(ethers.utils.formatEther(tmBal)) >= 128 ? true : false
             const _canCraftPLAT2 = Number(ethers.utils.formatEther(eeBal)) >= 888 && Number(ethers.utils.formatEther(cmjBal)) >= 1 ? true : false
+            const _canCraftDOISTAR = Number(ethers.utils.formatEther(starBal)) >= 1 && Number(ethers.utils.formatEther(doijibBal)) >= 100000 ? true : false
+            const _canCraftFBTC = Number(ethers.utils.formatUnits(plutoBal, 'gwei')) >= 20 && Number(ethers.utils.formatEther(doistarBal)) >= 10 ? true : false
+            const _canCraftX4 = Number(fbtcBal) >= 10 && Number(ethers.utils.formatEther(platBal)) >= 1000 ? true : false
 
             return [
                 isDionysus, jbcBal, cmjBal, woodBal, bbqBal, tunaBal, ctunaBal, miceBal, sx31Bal, stOPTBal, pzaBal, cuBal, silBal, goldBal,
@@ -401,6 +474,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                 plutoBal, labLogPLUTO, _canCraftPLUTO, platBal, labLogPLAT, _canCraftPLAT,
                 vaBagBal, swarBal, labLogSWAR, _canCraftSWAR, angbBal, starBal, labLogSTAR, _canCraftSTAR,
                 tmBal, gearBal, iiBal, labLogII, _canCraftII, _canCraftII2, eeBal, labLogPlat2, _canCraftPLAT2, jaspBal, 
+                doijibBal, doistarBal, fbtcBal, x4Bal, labLogDOISTAR, _canCraftDOISTAR, labLogFBTC, _canCraftFBTC, labLogX4, _canCraftX4,
             ]
         }
 
@@ -531,6 +605,28 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                 setTimeToClaimPLAT2(0)
             setCanCraftPLAT2(result[49])
             setJaspBalance(ethers.utils.formatUnits(result[50], 'gwei'))
+            setDoijibBalance(ethers.utils.formatEther(result[51]))
+            setDoistarBalance(ethers.utils.formatEther(result[52]))
+            setFbtcBalance(result[53])
+            setX4Balance(ethers.utils.formatEther(result[54]))
+            setIsCraftDOISTAR(Number(result[55][0]) > 0)
+            const nextHourDOISTAR = new Date((Number(result[55][1]) * 1000) + (60 * 30 * 1000))
+            Date.now() - (Number(result[55][1]) * 1000) <= (60 * 30 * 1000) ?
+                setTimeToClaimDOISTAR(nextHourDOISTAR.toLocaleString('es-CL')) :
+                setTimeToClaimDOISTAR(0)
+            setCanCraftDOISTAR(result[56])
+            setIsCraftFBTC(Number(result[57][0]) > 0)
+            const nextHourFBTC = new Date((Number(result[57][1]) * 1000) + (3600 * 4 * 1000))
+            Date.now() - (Number(result[57][1]) * 1000) <= (3600 * 4 * 1000) ?
+                setTimeToClaimFBTC(nextHourFBTC.toLocaleString('es-CL')) :
+                setTimeToClaimFBTC(0)
+            setCanCraftFBTC(result[58])
+            setIsCraftX4(Number(result[59][0]) > 0)
+            const nextHourX4 = new Date((Number(result[59][1]) * 1000) + (3600 * 8 * 1000))
+            Date.now() - (Number(result[59][1]) * 1000) <= (3600 * 8 * 1000) ?
+                setTimeToClaimX4(nextHourX4.toLocaleString('es-CL')) :
+                setTimeToClaimX4(0)
+            setCanCraftX4(result[60])
         })
 
     }, [config, address, chain, txupdate, erc20Abi, ctunaLabABI, sx31LabABI, bbqLab01ABI, pzaLabABI, cmdao20lab01ABI, kycABI])
@@ -1115,7 +1211,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                 functionName: 'allowance',
                 args: [address, plutoLab],
             })
-            if (Number(ethers.utils.formatEther(jaspAllow)) < 100) {
+            if (Number(ethers.utils.formatUnits(jaspAllow, 'gwei')) < 100) {
                 let { request } = await simulateContract(config, {
                     address: dunJasper,
                     abi: erc20Abi,
@@ -1161,6 +1257,210 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
         try {
             let { request } = await simulateContract(config, {
                 address: plutoLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const craftDOISTARHandle = async (_machine) => {
+        setisLoading(true)
+        try {
+            const doijibAllow = await readContract(config, {
+                address: doijibToken,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, doistarLab],
+            })
+            if (Number(ethers.utils.formatEther(doijibAllow)) < 100000) {
+                let { request } = await simulateContract(config, {
+                    address: doijibToken,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [doistarLab, ethers.constants.MaxUint256],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            const starAllow = await readContract(config, {
+                address: starLab,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, doistarLab],
+            })
+            if (Number(ethers.utils.formatEther(starAllow)) < 1) {
+                let { request } = await simulateContract(config, {
+                    address: starLab,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [doistarLab, ethers.constants.MaxUint256],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
+                address: doistarLab,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const obtainDOISTARHandle = async () => {
+        setisLoading(true)
+        try {
+            let { request } = await simulateContract(config, {
+                address: doistarLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const craftFBTCHandle = async (_machine) => {
+        setisLoading(true)
+        try {
+            const plutoAllow = await readContract(config, {
+                address: plutoToken,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, fbtcLab],
+            })
+            if (Number(ethers.utils.formatUnits(plutoAllow, 'gwei')) < 20) {
+                let { request } = await simulateContract(config, {
+                    address: plutoToken,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [fbtcLab, ethers.constants.MaxUint256],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            const doistarAllow = await readContract(config, {
+                address: doistarToken,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, fbtcLab],
+            })
+            if (Number(ethers.utils.formatEther(doistarAllow)) < 10) {
+                let { request } = await simulateContract(config, {
+                    address: doistarToken,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [fbtcLab, ethers.constants.MaxUint256],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
+                address: fbtcLab,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const obtainFBTCHandle = async () => {
+        setisLoading(true)
+        try {
+            let { request } = await simulateContract(config, {
+                address: fbtcLab,
+                abi: pzaLabABI,
+                functionName: 'obtain',
+            })
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+
+    const craftX4Handle = async (_machine) => {
+        setisLoading(true)
+        try {
+            const fbtcAllow = await readContract(config, {
+                address: fbtcToken,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, x4Lab],
+            })
+            if (Number(fbtcAllow) < 10) {
+                let { request } = await simulateContract(config, {
+                    address: fbtcToken,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [x4Lab, ethers.constants.MaxUint256],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            const platAllow = await readContract(config, {
+                address: platToken,
+                abi: erc20Abi,
+                functionName: 'allowance',
+                args: [address, x4Lab],
+            })
+            if (Number(ethers.utils.formatEther(platAllow)) < 1000) {
+                let { request } = await simulateContract(config, {
+                    address: platToken,
+                    abi: erc20Abi,
+                    functionName: 'approve',
+                    args: [x4Lab, ethers.constants.MaxUint256],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+            }
+            let { request } = await simulateContract(config, {
+                address: x4Lab,
+                abi: pzaLabABI,
+                functionName: 'craft',
+                args: [_machine],
+            })
+            let h = await writeContract(config, request)
+            await waitForTransactionReceipt(config, { hash: h })
+            setTxupdate(h)
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
+        setisLoading(false)
+    }
+    const obtainX4Handle = async () => {
+        setisLoading(true)
+        try {
+            let { request } = await simulateContract(config, {
+                address: x4Lab,
                 abi: pzaLabABI,
                 functionName: 'obtain',
             })
@@ -1628,6 +1928,29 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                 />
                                 <div style={{marginLeft: "5px"}}>{Number(gearBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                             </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi"
+                                    width="20"
+                                    alt="$DOIJIB"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: doijibToken,
+                                                    symbol: 'DOIJIB',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
                         </div>
 
                         <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">CommuDAO Craft Products</div>
@@ -1771,6 +2094,54 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                 <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
                             </div>
                         </div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC"
+                                    width="20"
+                                    alt="$F.BTC"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: fbtcToken,
+                                                    symbol: 'F.BTC',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:0})} SAT</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh"
+                                    width="20"
+                                    alt="$X4"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: x4Token,
+                                                    symbol: 'X4',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(x4Balance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                        </div>
                     
                         <div style={{width: "100%", textIndent: "20px", fontSize: "15px", marginTop: "20px", letterSpacing: "1px"}} className="bold">Partner Craft Products</div>
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
@@ -1911,6 +2282,31 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     }}
                                 />
                                 <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                        </div>
+                        <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img
+                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ"
+                                    width="20"
+                                    alt="$DOISTAR"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: doistarToken,
+                                                    symbol: 'DOISTAR',
+                                                    decimals: 18,
+                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>{Number(doistarBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                             </div>
                         </div>
 
@@ -2202,9 +2598,9 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVHAiLDekEegHqMzr11j6jH5Ay4KWHPS4of4cEYxn4afm" width="230" alt="$PLUTO_Factory"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXEZM8Pm1puJwoxRzTBeeuxtyb81XJVL1A47mDEEtYpoG" width="230" alt="$PLUTO_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
@@ -2254,6 +2650,108 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                         </div>
 
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmctFaWmze1R6rKCFJkGBS6zBeABX5X6r3Nuv9M46AvJxr" width="200" alt="$F.BTC_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
+                                        <div style={{margin: "0 5px"}}>20 GWEI</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ" height="18" alt="$DOISTAR"/>
+                                        <div style={{margin: "0 5px"}}>10</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" height="18" alt="$F.BTC"/>
+                                        <div style={{margin: "0 5px"}}>1 SAT</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>4 hour</div>
+                                </div>
+                                {isCraftFBTC ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimFBTC === 0 ? "now" : timetoClaimFBTC}</div>
+                                        </div>
+                                        {timetoClaimFBTC === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainFBTCHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null ?
+                                            <>
+                                                {isCraftFBTC !== null ?
+                                                    <>
+                                                        {canCraftFBTC ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftFBTCHandle(1)}>Craft Fake Bitcoin</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Fake Bitcoin</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmReQu734pS2Dt474RBME1LYUec2f2XgE2EDWAKCeX5RJg" width="220" alt="$X4_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" height="18" alt="$F.BTC"/>
+                                        <div style={{margin: "0 5px"}}>10 SAT</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLATINUM"/>
+                                        <div style={{margin: "0 5px"}}>1,000</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" height="18" alt="$X4"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>8 hour</div>
+                                </div>
+                                {isCraftX4 ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimX4 === 0 ? "now" : timetoClaimX4}</div>
+                                        </div>
+                                        {timetoClaimX4 === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainX4Handle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null ?
+                                            <>
+                                                {isCraftX4 !== null ?
+                                                    <>
+                                                        {canCraftX4 ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftX4Handle(1)}>Craft X4</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft X4</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+                        </div>
                         
                         <div style={{marginTop: "0px", width: "97.5%", borderBottom: "1px solid #dddade"}}></div>
                         <div style={{marginTop: "20px", width: "100%", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Labs & Factories</div>
@@ -2533,6 +3031,62 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
+                                    <div className='light' style={{marginLeft: "10px"}}>Angel Plus & DOIJIB</div>
+                                </div>
+                                <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYdNTzX1mGY2Wuk5DVv8M9vJEQKR9MFxYGmcrx5S9GZP8" width="220" alt="$DOISTAR_Factory"/>
+                                </div>
+                                <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
+                                    <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                        <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="18" alt="$DOIJIB"/>
+                                        <div style={{margin: "0 5px"}}>100,000</div>
+                                        <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ" height="18" alt="$DOISTAR"/>
+                                        <div style={{margin: "0 5px"}}>1</div>
+                                    </div>
+                                </div>
+                                <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                    <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-clock-o"></i></div>
+                                    <div>30 minutes</div>
+                                </div>
+                                {isCraftDOISTAR ?
+                                    <>
+                                        <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
+                                            <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-hourglass"></i></div>
+                                            <div>{timetoClaimDOISTAR === 0 ? "now" : timetoClaimDOISTAR}</div>
+                                        </div>
+                                        {timetoClaimDOISTAR === 0 ?
+                                            <div style={{background: "#67BAA7", display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={obtainDOISTARHandle}>Obtain</div> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "10px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Obtain</div>
+                                        }
+                                    </> :
+                                    <>
+                                        {address !== null ?
+                                            <>
+                                                {isCraftDOISTAR !== null ?
+                                                    <>
+                                                        {canCraftDOISTAR ?
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px"}} className="pixel button" onClick={() => craftDOISTARHandle(1)}>Craft Doistar</div> :
+                                                            <div style={{display: "flex", justifyContent: "center", width: "170px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Lack of Raw Mat...</div>
+                                                        }
+                                                    </> :
+                                                    <div style={{display: "flex", justifyContent: "center", width: "170px",marginTop: "40px", borderRadius: "12px", padding: "15px 40px", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Craft Doistar</div>
+                                                }
+                                            </> :
+                                            <div style={{display: "flex", justifyContent: "center", width: "185px", marginTop: "40px", borderRadius: "12px", padding: "15px 40px",  background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="pixel button">Please connect wallet</div>
+                                        }
+                                    </>
+                                }
+                            </div>
+                        </div>
+
+                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                            <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
+                                <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
@@ -2585,9 +3139,6 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     </>
                                 }
                             </div>
-                        </div>
-
-                        <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
