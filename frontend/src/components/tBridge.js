@@ -883,16 +883,16 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                     </>
                 }
                 {mode === 4 && chain !== undefined &&
-                    <TBridgeTAODUM setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
+                    <TBridgeTAODUM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {mode === 5 && chain !== undefined &&
-                    <TBridgeHEROMINER setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} cmmBbqBalance={cmmBbqBalance} />
+                    <TBridgeHEROMINER config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} cmmBbqBalance={cmmBbqBalance} />
                 }
                 {mode === 6 && chain !== undefined &&
-                    <TBridgeCMDAONFT setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
+                    <TBridgeCMDAONFT config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
                 }
                 {mode === 60 && chain !== undefined &&
-                    <TBridgeCMDAONFT2 setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />
+                    <TBridgeCMDAONFT2 config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />
                 }
                 {chain === undefined && 
                     <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>
