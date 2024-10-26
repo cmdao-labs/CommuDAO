@@ -270,6 +270,16 @@ header::-webkit-scrollbar { display: none; }
   font-size: 20px;
   animation: typing 1s forwards, blinking 3s linear infinite;
 }
+.slotbox {
+  overflow: scroll; 
+  display: flex;
+}
+.slotlevel {
+  right: 30px;
+}
+.slotlevel2 {
+  right: 50px;
+}
 
 @media (max-width: 480px) {
   .projectTitle {
@@ -314,6 +324,15 @@ header::-webkit-scrollbar { display: none; }
   }
   .headfield {
     width: 100%;
+  }
+  .slotbox {
+    width: 360px;
+  }
+  .slotlevel {
+    right: 10px;
+  }
+  .slotlevel2 {
+    right: 30px;
   }
 }
 @media (min-width: 481px) and (max-width: 1024px) {

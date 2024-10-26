@@ -7,15 +7,16 @@ const Dungeon = ({ callMode, navigate }) => {
     
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div className="SubfieldBanner" style={{flexDirection: "column"}}>
                     <div style={{fontSize: "75px", width: "fit-content"}} className="pixel">Dungeon</div>
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">Hunting rare token to empower your community.</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                     <img src="../background/dungeonlogo.png" width="150" alt="Dungeon_Logo" />
                 </div>
             </div>
+            
             <div style={{width: "92.5%", marginTop: "60px", borderBottom: "1px solid #dddade"}}></div>
             <div style={{width: "95%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Dungeon</div>
             <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
