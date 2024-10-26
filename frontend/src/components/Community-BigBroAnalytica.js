@@ -13,6 +13,7 @@ const sil = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const plat = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jasp = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
+const pluto = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
 const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
@@ -30,6 +31,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
     const [cmdBurn, setCmdBurn] = React.useState(0)
     const [usdtRev, setUsdtRev] = React.useState(0)
     const [ethRev, setEthRev] = React.useState(0)
+    console.log(cmdRev, usdtRev, ethRev)
     const [cmdCirculation, setCmdCirculation] = React.useState(0)
 
     const [cmjLocked, setCmjLocked] = React.useState(0)
@@ -89,6 +91,11 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
     const [jaspCirculation, setJaspCirculation] = React.useState(0)
     const [jaspStat, setJaspStat] = React.useState([0, 0])
 
+    const [plutoSupply, setPlutoSupply] = React.useState(0)
+    const [plutoBurn, setPlutoBurn] = React.useState(0)
+    const [plutoCirculation, setPlutoCirculation] = React.useState(0)
+    const [plutoStat, setPlutoStat] = React.useState([0, 0])
+
     const [osSupply, setOsSupply] = React.useState(0)
     const [osLocked, setOsLocked] = React.useState(0)
     const [osBurn, setOsBurn] = React.useState(0)
@@ -112,6 +119,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
         const goldSC = new ethers.Contract(gold, erc20Abi, providerJBC)
         const platSC = new ethers.Contract(plat, erc20Abi, providerJBC)
         const jaspSC = new ethers.Contract(jasp, erc20Abi, providerJBC)
+        const plutoSC = new ethers.Contract(pluto, erc20Abi, providerJBC)
         const osSC = new ethers.Contract(os, erc20Abi, providerJBC)
         const jdaoSC = new ethers.Contract(jdao, erc20Abi, providerJBC)
               
@@ -240,6 +248,16 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             const jaspEvent2 = await jaspSC.queryFilter(jaspFilter2, blockNumber - 7200, 'latest')
             const jaspMap2 = await Promise.all(jaspEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
             const jaspBurn = jaspMap2.reduce((partialSum, a) => partialSum + a, 0)
+
+            const plutoFilter = await plutoSC.filters.Transfer(genesis, null, null)
+            const plutoEvent = await plutoSC.queryFilter(plutoFilter, blockNumber - 7200, 'latest')
+            const plutoMap = await Promise.all(plutoEvent.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
+            const plutoMint = plutoMap.reduce((partialSum, a) => partialSum + a, 0)
+
+            const plutoFilter2 = await plutoSC.filters.Transfer(null, burn, null)
+            const plutoEvent2 = await plutoSC.queryFilter(plutoFilter2, blockNumber - 7200, 'latest')
+            const plutoMap2 = await Promise.all(plutoEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
+            const plutoBurn = plutoMap2.reduce((partialSum, a) => partialSum + a, 0)
 
             const dataCMJ = await readContracts(config, {
                 contracts: [
@@ -598,6 +616,31 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                 ],
             })
 
+            const dataPLUTO = await readContracts(config, {
+                contracts: [
+                    {
+                        address: pluto,
+                        abi: erc20Abi,
+                        functionName: 'totalSupply',
+                        chainId: 8899,
+                    },
+                    {
+                        address: pluto,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [burn],
+                        chainId: 8899,
+                    },
+                    {
+                        address: pluto,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
+                    },
+                ],
+            })
+
             const dataOS = await readContracts(config, {
                 contracts: [
                     {
@@ -687,8 +730,11 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             const bbqCmdBal1 = await getBalance(config, { address: '0x1BeedD97fCD4E21754465d21c757A9DF43733187', chainId: 190 })
             const ethBal1 = await getBalance(config, { address: '0x3C72Fb1658E7A64fd4C88394De4474186A13460A', chainId: 10 })
 
-            return [dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
-            (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],]
+            return [
+                dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
+                (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],
+                [plutoMint, plutoBurn], dataPLUTO,
+            ]
         }
 
         const promise = thefetch()
@@ -777,8 +823,13 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             setGoldStat(result[25])
             setPlatStat(result[26])
             setJaspStat(result[27])
+
+            setPlutoStat(result[28])
+            setPlutoSupply(ethers.utils.formatUnits(String(result[29][0].result), "gwei"))
+            setPlutoBurn(Number(ethers.utils.formatUnits(String(result[29][1].result), "gwei")) + Number(ethers.utils.formatUnits(String(result[29][2].result), "gwei")))
+            setPlutoCirculation(Number(ethers.utils.formatUnits(String(result[29][0].result), "gwei")) - (Number(ethers.utils.formatUnits(String(result[29][1].result), "gwei")) + Number(ethers.utils.formatUnits(String(result[29][2].result), "gwei"))))
         })
-    }, [erc20Abi])
+    }, [config, erc20Abi])
 
     return (
         <>
@@ -808,7 +859,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                                 <div>On BBQ-chain:</div>
                                 <div style={{color: "#fff"}}>{Number(cmdBbq).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdBbq/1000000).toFixed(2)}%)</div>
                             </div>
-                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>In CMDAO Gov (CMD-ETH LP):</div>
                                 <div style={{color: "#fff"}}>{Number(cmdGov).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(cmdGov/1000000).toFixed(2)}%)</div>
                             </div>
@@ -1283,6 +1334,42 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
                                 <div style={{color: "#fff"}}>{Number((((jaspStat[0] - jaspStat[1]) * 365)/jaspCirculation)*100).toFixed(4)}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "15px", border: "1px solid rgb(54, 77, 94)", width: "400px", height: "300px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">$PLUTO Tracker</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(plutoSupply).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI (100%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(plutoBurn).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI ({Number((plutoBurn/plutoSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
+                                <div>Circulating Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(plutoCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI ({Number((plutoCirculation/plutoSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(plutoStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(plutoStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(plutoStat[0] - plutoStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} GWEI ({Number(((plutoStat[0] - plutoStat[1])/plutoCirculation)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((plutoStat[0] - plutoStat[1]) * 365)/plutoCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
