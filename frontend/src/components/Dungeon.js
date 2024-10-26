@@ -20,7 +20,7 @@ const Dungeon = ({ callMode, navigate }) => {
             <div style={{width: "92.5%", marginTop: "60px", borderBottom: "1px solid #dddade"}}></div>
             <div style={{width: "95%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO Dungeon</div>
             <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig5qnhdcfhtk54gmc6grtce5islfq7xfkyx4l6utr3ckwol4xj4iu" height="230" alt="Copper_Mine" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                         <div className="light">
@@ -47,7 +47,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(33); navigate('/dungeon/copper-mine');}}>Go to Copper Mine</div>
                 </div>
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreify5cxbaerycclmyyjnrxkt3abrtdjftxvqucuxac4kovhuan4cei" height="230" alt="Jasper_Cave" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                         <div className="light">
@@ -74,7 +74,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(31); navigate('/dungeon/jasper-cave');}}>Go to Jasper Cave</div>
                 </div>
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQWfYKHMAnaF4gEwpXia7ZBGNcpv9QLSQav7AmeLH2ViJ" height="230" alt="Memetic_Orbit" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="light">
@@ -104,14 +104,14 @@ const Dungeon = ({ callMode, navigate }) => {
             <div style={{width: "92.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
             <div style={{width: "95%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">CommuDAO NFTs Upgrade</div>
             <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{width: "345px", height: "230px", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", overflow: "hidden"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="230" alt="Blacksmith" />
                     </div>
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"Looking to upgrade your equipment? I've got you covered! Let's get started on taking your setup to the next level - no time to waste!"</div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(32); navigate('/dungeon/blacksmith-house');}}>Enter Blacksmith House</div>
                 </div>
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{width: "345px", height: "230px", background: "linear-gradient(139.73deg,#e5fdff,#f3efff)", overflow: "hidden"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibb6sv46fa4as36s5pvb5lihvgdhry7jlsifnzca4qbgbvkej3cae" height="230" alt="Evo_Planet" />
                     </div>
@@ -123,7 +123,7 @@ const Dungeon = ({ callMode, navigate }) => {
             <div style={{width: "92.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
             <div style={{width: "95%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner Dungeon</div>
             <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                         <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
@@ -152,7 +152,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(35); navigate('/dungeon/daemon-world');}}>Go to Daemon World</div>
                 </div>
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                         <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
@@ -186,7 +186,7 @@ const Dungeon = ({ callMode, navigate }) => {
             <div style={{width: "92.5%", marginTop: "40px", borderBottom: "1px solid #dddade"}}></div>
             <div style={{width: "95%", marginTop: "20px", textAlign: "left", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Partner NFTs Upgrade</div>
             <div style={{marginBottom: "80px", width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                         <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
@@ -197,8 +197,7 @@ const Dungeon = ({ callMode, navigate }) => {
                     <div style={{marginTop: "50px", fontSize: "12px", textAlign: "left"}} className="pixel">"If you're looking for a place to prepare for an adventure,Hero, stop by INN!!!"</div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(37); navigate('/dungeon/ap-inn');}}>Enter AP INN</div>
                 </div>
-
-                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "20px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                         <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
