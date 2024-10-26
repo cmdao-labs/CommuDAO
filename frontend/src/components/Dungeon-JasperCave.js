@@ -2,42 +2,32 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const hexajibjib = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
-const beasts = '0x999999999AB9BC4F6EaA79a980Ba9c5AaD4FB868'
-
 const ctunaLab = '0xD9Be0e64053c8E0A0F868577F379C0ced5A28aF0'
 const sx31Lab = '0xd431d826d7a4380b9259612176f00528b88840a7'
 const pzaLab = '0x09DcdCFc6C48803681a3422997c679E773656763'
 const upzaToken = '0x44AE653D73cad7e8989C607959f8F64051E3284F'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const dunJasperL2 = '0xDe5770c72cEEE0d73503E827973cfD200431ABd4'
-
 const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
-
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
-
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI }) => {
-    let { address } = useAccount()
-    const youraddr = address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/dungeon/jasper-cave/' + address)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-    } else if (address === undefined) {
-    } else {
-        navigate('/dungeon/jasper-cave/' + address)
+const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI }) => {
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
     }
-    
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)   
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftCol, setTransferNftCol] = React.useState(null)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
-
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
     const [characterSlotLevel, setCharacterSlotLevel] = React.useState(null)
@@ -54,155 +44,180 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
     const [shoesSlotLevel, setShoesSlotLevel] = React.useState(null)
     const [weaponSlot, setWeaponSlot] = React.useState(null)
     const [wpSlotLevel, setWpSlotLevel] = React.useState(null)
-
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [timeToRunout, setTimeToRunout] = React.useState(null)
     const [isRunout, setIsRunout] = React.useState(false)
     const [gasselected, setGasselected] = React.useState("PIZZA")
     const [jasperPending, setJasperPending] = React.useState(0)
-
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
-
     const [skinSlot1, setSkinSlot1] = React.useState(null)
-
     const [ctunaBalance, setCTunaBalance] = React.useState(0)
     const [sx31Balance, setSx31Balance] = React.useState(0)
     const [pzaBalance, setPzaBalance] = React.useState(0)
     const [upzaBalance, setUpzaBalance] = React.useState(0)
     const [jaspBalance, setJaspBalance] = React.useState(0)
-
     const [csIdEquip, setCsIdEquip] = React.useState(null)
     const [csUsage, setCsUsage] = React.useState(null)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
+        if (intrasubModetext === undefined) {
+            navigate('/dungeon/jasper-cave/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/dungeon/jasper-cave/null')
+        } else {
+            navigate('/dungeon/jasper-cave/' + address)
+        }
         const cmdaonftSC = new ethers.Contract(hexajibjib, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ = addr !== null ? await readContract(config, {
                 address: dunJasper,
                 abi: dunJasperABI,
                 functionName: 'nftEquip',
-                args: [address],
-            }) : [{characterId: 0, hatId: 0, clothId: 0, accessoriesId: 0, backId: 0, shoesId: 0, weaponId: 0, allPow: 0, refuelAt: 0, isStaked: null}]
+                args: [addr],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, null]
 
-            const data = await readContracts(config, {
+            const data = addr !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
+                        chainId: 8899
                     },
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
+                        chainId: 8899
                     },
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
+                        chainId: 8899
                     },
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
+                        chainId: 8899
                     },
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
+                        chainId: 8899
                     },
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
+                        chainId: 8899
                     },
                     {
                         address: hexajibjib,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
+                        chainId: 8899
                     },
                     {
                         address: ctunaLab,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: sx31Lab,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: pzaLab,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: dunJasper,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: mintStOPT_Router,
                         abi: mintStOPTABI,
                         functionName: 'userTimeStamp',
-                        args: [address, 2],
+                        args: [addr, 2],
+                        chainId: 8899
                     },
                     {
                         address: dunJasperL2,
                         abi: dunJasperL2ABI,
                         functionName: 'userInfo',
-                        args: [1, address],
+                        args: [1, addr],
+                        chainId: 8899
                     },
                     {
                         address: dunJasper,
                         abi: dunJasperABI,
                         functionName: 'calculateRewards',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: dunJasperL2,
                         abi: dunJasperL2ABI,
                         functionName: 'pendingReward',
-                        args: [1, address],
+                        args: [1, addr],
+                        chainId: 8899
                     }, 
                     {
                         address: salonRouter,
                         abi: salonABI,
                         functionName: 'skin',
-                        args: [address, 1],
+                        args: [addr, 1],
+                        chainId: 8899
                     },
                     {
                         address: upzaToken,
                         abi: ubbqABI,
                         functionName: 'cs',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: upzaToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                 ],
-            })
+            }) : [
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: [0, 0], status: 'yo'}, {result: 0, status: 'yo'},
+            ]
 
             let nfts = []
-
             let response1 = null
             try {
                 response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -346,7 +361,6 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             const allPow = Number(nftEQ[7])
             const isStaked = nftEQ[9]
             const refuelAt = Number(nftEQ[8])
-
             const ctunaBal = data[7].result
             const sx31Bal = data[8].result
             const pzaBal = data[9].result
@@ -355,11 +369,14 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             // const nftEQ_L2 = data[12].result
             const rewardPending = isStaked ? data[13].result : 0
             
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            let walletRemoveDup = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
+                const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            }
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: hexajibjib,
@@ -368,16 +385,14 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
                         args: [String(item)],
                     }
                 ))
-            }) : [Array(walletRemoveDup.length).fill('')]
-
+            }) : null
             let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup.length - 1 && addr !== null; i++) {
+                if (data2[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: hexajibjib,
@@ -386,8 +401,7 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
                         args: [String(item.Id)],
                     }
                 ))
-            }) : [Array(yournftwallet.length).fill('')]
-
+            }) : null
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -407,7 +421,6 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
                     isStaked: false
                 })
             }
-
             if (nfts.length === 0) { nfts.push(null) }
 
             const skinslot1 = data[15].result
@@ -477,7 +490,7 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             setUpzaBalance(ethers.utils.formatEther(String(result[27])))
         })
 
-    }, [config, address, txupdate, erc721Abi, erc20Abi, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunJasperABI, dunJasperL2ABI, mintStOPTABI, salonABI, ubbqABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -495,8 +508,6 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
         let addr = ''
         if (transferNftCol === 1) {
             addr = hexajibjib
-        } else if (transferNftCol === 2) {
-            addr = beasts
         }
         try {
             let { request } = await simulateContract(config, {
@@ -508,7 +519,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -540,7 +554,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -556,7 +573,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -590,12 +610,12 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
                     functionName: 'allowance',
                     args: [address, uAddr],
                 })
-                if (gasAllow0 < (pzaUsage * 10**18)) {
+                if (Number(ethers.utils.formatEther(gasAllow0)) < pzaUsage) {
                     let { request } = await simulateContract(config, {
                         address: gasAddr,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [uAddr, ethers.utils.parseEther(String(10**8))],
+                        args: [uAddr, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -614,12 +634,12 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
                 functionName: 'allowance',
                 args: [address, dunJasper],
             })
-            if (gasAllow < (500 * 10**18)) {
+            if (Number(ethers.utils.formatEther(gasAllow)) < 500) {
                 let { request } = await simulateContract(config, {
                     address: uAddr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [dunJasper, ethers.utils.parseEther(String(10**8))],
+                    args: [dunJasper, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -652,7 +672,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -684,281 +707,307 @@ const Jaspercave = ({ config, intrasubModetext, navigate, setisLoading, txupdate
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
     return (
-    <>
-        {isTransferModal &&
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{fontSize: "20px"}}>{transferName}</div>
-                        <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
-                        <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
-                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
-                    </div>
-                </div>
-            </div>
-        }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Jasper Cave</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic cave to collect a rare token, $Jasper.</div>
-            </div>
-            <div style={{margin: "30px 100px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="150" alt="$JASP" />
-            </div>
-        </div>
-
-        <div style={{background: "rgb(14, 5, 47)", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>L1 STAKING</div>
-                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
-                                {isStakeNow ?
-                                    <>
-                                        {isRunout ?
-                                            <>
-                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Run Out of Gas</div>
-                                            </> :
-                                            <>
-                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>On Staking</div>
-                                            </>
-                                        }
-                                    </> :
-                                    <>
-                                        {!isStakeNow &&
-                                            <>
-                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Available for stake</div>
-                                            </>
-                                        }
-                                    </>
-                                }
-                            </div>
+        <>
+            {isTransferModal &&
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            {address !== undefined ?
-                                <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                <>ADDRESS <div>-</div></>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            TOTAL CMPOW PER SEC 
-                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            JASP BALANCE (GWEI UNIT)
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            JASP PENDING (GWEI UNIT)
-                            <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            GAS
-                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent", color: "#fff"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                <option value="CTUNA">$CTUNA</option>
-                                <option value="SX31">$SX31</option>
-                                <option value="PIZZA">$PZA</option>
-                            </select>
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                {gasselected === "CTUNA" &&
-                                    <>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                        <div style={{marginLeft: "5px"}}>/500</div>
-                                    </>
-                                }
-                                {gasselected === "SX31" &&
-                                    <>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                        <div style={{marginLeft: "5px"}}>/500</div>
-                                    </>
-                                }
-                                {gasselected === "PIZZA" &&
-                                    <>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
-                                        {csIdEquip === '0' ? <><div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>/5000</> : <>Free Gas Remain: {100 - csUsage}</>}
-                                    </>
-                                }
-                            </div>
-                        </div>
-                        {isStakeNow ?
-                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>1 day</div></div>
-                        }
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                {isStakeNow ?
-                                    <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
-                                    </> :
-                                    <>
-                                        {isStakeNow !== null && ((gasselected === "CTUNA" && Number(ctunaBalance) >= 500) || (gasselected === "SX31" && Number(sx31Balance) >= 500) || (gasselected === "PIZZA" && (Number(pzaBalance) >= 5000 || Number(upzaBalance) >= 500 || csIdEquip !== "0"))) ?
-                                            <>
-                                                {allPower !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                            </> :
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        }
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                    </>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {hatSlot !== null ?
-                            <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
-                        }
-                        {hatSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>
-                        }
-                        {clothSlot !== null ?
-                            <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
-                        }
-                        {clothSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>
-                        }
-                        {shoesSlot !== null ?
-                            <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
-                        }
-                        {shoesSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>
-                        }
-                    </div>
-                    <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
-                        {nft.length > 0 ?
-                            <>
-                                {characterSlot !== null ?
-                                    <>
-                                        {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
-                                            <img src={characterSlot} width="300px" alt="Can not load metadata." />
-                                        }
-                                        {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
-                                        }
-                                        {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
-                                        }
-                                    </> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
-                                }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                        {characterSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>
-                        }
-                        {(isOp && isStakeNow && !lastedSTOPT && isRunout) &&
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
-                        }
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot !== null ?
-                            <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>
-                        }
-                        {backSlot !== null ?
-                            <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {backSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div>
-                        }
-                        {weaponSlot !== null ?
-                            <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {wpSlotLevel !== null &&
-                            <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>
-                        }
-                    </div>
-                </div>
-            </div>
-            
-            {nft.length > 0 ?
-                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    {nft[0] !== null ?
-                        <>
-                            {nft.map((item, index) => (
-                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
-                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                    </div>
-                                    <div className="emp bold">{item.Name}</div>
-                                    <div className="bold">{item.RewardPerSec} cmpow</div>
-                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                    {address === youraddr ?
-                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                            {item.isStaked ?
-                                                <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
-                                                <div style={{display: "flex", flexDirection: "column"}}>
-                                                    {!isStakeNow &&
-                                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Id)}>EQUIP</div>
-                                                    }
-                                                    {(csIdEquip === '0' && item.Name === 'Chō-Senjiryakketsu') &&
-                                                        <div style={{alignSelf: "center", marginTop: "10px"}} className="pixel button" onClick={() => depositcs(item.Id)}>REDEEM FREE GAS</div>
-                                                    }
-                                                    <div style={{alignSelf: "center", marginTop: "10px", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
-                                                </div>
-                                            }
-                                        </div> :
-                                        <div style={{height: "41px"}}></div>
-                                    }
-                                </div>
-                            ))}
-                        </> :
-                        <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
-                            }
-                        </div>
-                    }
-                </div> :
-                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
-                        <ThreeDots fill="#fff" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
             }
-        </div>
-    </>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Jasper Cave</div>
+                </div>
+                <div className="SubfieldBanner">
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="150" alt="$JASP" />
+                </div>
+            </div>
+
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to JIBCHAIN L1.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
+                    </div>
+                </div> :
+                <div style={{background: "rgb(14, 5, 47)", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", maxWidth: "90%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", color: "#fff", width: "370px", height: "360px", margin: "5px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                <div style={{fontSize: "22px", lineHeight: "15px"}}>L1 STAKING</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
+                                        {isStakeNow ?
+                                            <>
+                                                {isRunout ?
+                                                    <>
+                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Run Out of Gas</div>
+                                                    </> :
+                                                    <>
+                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>On Staking</div>
+                                                    </>
+                                                }
+                                            </> :
+                                            <>
+                                                {!isStakeNow &&
+                                                    <>
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Available for stake</div>
+                                                    </>
+                                                }
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                        <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                        <><div>ADDRESS</div><div>-</div></>
+                                    }
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    TOTAL CMPOW PER SEC 
+                                    <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    JASP BALANCE (GWEI UNIT)
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
+                                        <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    JASP PENDING (GWEI UNIT)
+                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
+                                        <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    GAS
+                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent", color: "#fff"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                        <option value="CTUNA">$CTUNA</option>
+                                        <option value="SX31">$SX31</option>
+                                        <option value="PIZZA">$PZA</option>
+                                    </select>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        {gasselected === "CTUNA" &&
+                                            <>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
+                                                <div style={{marginLeft: "5px"}}>/500</div>
+                                            </>
+                                        }
+                                        {gasselected === "SX31" &&
+                                            <>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
+                                                <div style={{marginLeft: "5px"}}>/500</div>
+                                            </>
+                                        }
+                                        {gasselected === "PIZZA" &&
+                                            <>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
+                                                {csIdEquip === '0' ? <><div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>/5000</> : <>Free Gas Remain: {100 - csUsage}</>}
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+                                {isStakeNow ?
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
+                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                }
+                                {address !== null && intrasubModetext !== undefined ?
+                                    <>
+                                        {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                {isStakeNow ?
+                                                    <>
+                                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">REFUEL GAS</div>
+                                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a", padding: "10px 15px"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
+                                                    </> :
+                                                    <>
+                                                        {isStakeNow !== null && ((gasselected === "CTUNA" && Number(ctunaBalance) >= 500) || (gasselected === "SX31" && Number(sx31Balance) >= 500) || (gasselected === "PIZZA" && (Number(pzaBalance) >= 5000 || Number(upzaBalance) >= 500 || csIdEquip !== "0"))) ?
+                                                            <>
+                                                                {allPower !== 0 ?
+                                                                    <div style={{alignSelf: "center", padding: "10px 15px"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                            </> :
+                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">REFUEL GAS</div>
+                                                        }
+                                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">HARVEST & UNSTAKE</div>
+                                                    </>
+                                                }
+                                            </div> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </> :
+                                    <div style={{height: "41px"}}></div>
+                                }
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {hatSlot !== null ?
+                                        <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {hatSlotLevel !== null &&
+                                        <div className="slotlevel" style={{position: "absolute", top: "65px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>
+                                    }
+                                    {clothSlot !== null ?
+                                        <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {clothSlotLevel !== null &&
+                                        <div className="slotlevel"  style={{position: "absolute", top: "215px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>
+                                    }
+                                    {shoesSlot !== null ?
+                                        <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {shoesSlotLevel !== null &&
+                                        <div className="slotlevel" style={{position: "absolute", top: "365px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>
+                                    }
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {characterSlot !== null ?
+                                                <>
+                                                    {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
+                                                        <img src={characterSlot} width="300px" alt="Can not load metadata." />
+                                                    }
+                                                    {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
+                                                    }
+                                                    {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
+                                                    }
+                                                </> :
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {characterSlotLevel !== null &&
+                                        <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>
+                                    }
+                                    {(isOp && isStakeNow && !lastedSTOPT && isRunout) &&
+                                        <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
+                                    }
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot !== null ?
+                                        <img src={accSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlotLevel !== null &&
+                                        <div className="slotlevel"  style={{position: "absolute", top: "65px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>
+                                    }
+                                    {backSlot !== null ?
+                                        <img src={backSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {backSlotLevel !== null &&
+                                        <div className="slotlevel" style={{position: "absolute", top: "215px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div>
+                                    }
+                                    {weaponSlot !== null ?
+                                        <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {wpSlotLevel !== null &&
+                                        <div className="slotlevel" style={{position: "absolute", top: "365px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {nft.length > 0 ?
+                        <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                            {nft[0] !== null ?
+                                <>
+                                    {nft.map((item, index) => (
+                                        <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
+                                            <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                            </div>
+                                            <div className="emp bold">{item.Name}</div>
+                                            <div className="bold">{item.RewardPerSec} cmpow</div>
+                                            <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                            {address !== null && intrasubModetext !== undefined ?
+                                                <>
+                                                    {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                        <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                            {item.isStaked ?
+                                                                <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft((item.Id / 100000000000) | 0)}>UNEQUIP</div> :
+                                                                <div style={{display: "flex", flexDirection: "column"}}>
+                                                                    {!isStakeNow &&
+                                                                        <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Id)}>EQUIP</div>
+                                                                    }
+                                                                    {(csIdEquip === '0' && item.Name === 'Chō-Senjiryakketsu') &&
+                                                                        <div style={{alignSelf: "center", marginTop: "10px"}} className="pixel button" onClick={() => depositcs(item.Id)}>REDEEM FREE GAS</div>
+                                                                    }
+                                                                    <div style={{alignSelf: "center", marginTop: "10px", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                                </div>
+                                                            }
+                                                        </div> :
+                                                        <div style={{height: "41px"}}></div>
+                                                    }
+                                                </> :
+                                                <div style={{height: "41px"}}></div>
+                                            }
+                                        </div>
+                                    ))}
+                                </> :
+                                <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                                    {address !== null ?
+                                        <>
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                        </> :
+                                        <>
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
+                                        </>
+                                    }
+                                </div>
+                            }
+                        </div> :
+                        <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                            <div className="nftCard" style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
+                                <ThreeDots fill="#fff" />
+                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </>
     )
 }
 

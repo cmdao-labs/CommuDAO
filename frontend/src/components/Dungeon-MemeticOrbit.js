@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
@@ -19,24 +20,18 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 const ss = 2
 const isEnd = false
 
-const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
-    let { address } = useAccount()
-    const youraddr = address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/dungeon/memetic-orbit/' + address)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-    } else if (address === undefined) {
-    } else {
-        navigate('/dungeon/memetic-orbit/' + address)
+const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
     }
-    
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftCol, setTransferNftCol] = React.useState(null)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
-
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
     const [characterSlotLevel, setCharacterSlotLevel] = React.useState(null)
@@ -69,7 +64,6 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
     const [soulSlotLevel, setSoulSlotLevel] = React.useState(null)
     const [badgeSlot, setBadgeSlot] = React.useState(null)
     const [badgeSlotLevel, setBadgeSlotLevel] = React.useState(null)
-
     const [ss1CharacterSlot, setSs1CharacterSlot] = React.useState(null)
     const [ss1CharacterSlotLevel, setSs1CharacterSlotLevel] = React.useState(null)
     const [ss1HatSlot, setSs1HatSlot] = React.useState(null)
@@ -83,7 +77,6 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
     const [ss1ShoesSlotLevel, setSs1ShoesSlotLevel] = React.useState(null)
     const [ss1WeaponSlot, setSs1WeaponSlot] = React.useState(null)
     const [ss1WpSlotLevel, setSs1WpSlotLevel] = React.useState(null)
-
     const [ss2CharacterSlot, setSs2CharacterSlot] = React.useState(null)
     const [ss2CharacterSlotLevel, setSs2CharacterSlotLevel] = React.useState(null)
     const [ss2HatSlot, setSs2HatSlot] = React.useState(null)
@@ -98,7 +91,6 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
     const [ss2ShoesSlotLevel, setSs2ShoesSlotLevel] = React.useState(null)
     const [ss2WeaponSlot, setSs2WeaponSlot] = React.useState(null)
     const [ss2WpSlotLevel, setSs2WpSlotLevel] = React.useState(null)
-
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [timeToRunout, setTimeToRunout] = React.useState(null)
@@ -106,18 +98,26 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
     const [rewardPending, setRewardPending] = React.useState(0)
     const [yourSS1CMPOW, setYourSS1CMPOW] = React.useState(0)
     const [yourSS2CMPOW, setYourSS2CMPOW] = React.useState(0)
-
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
     const [skinSlot1, setSkinSlot1] = React.useState(null)
     const [isClaimBadge, setIsClaimBadge] = React.useState(false)
-
     const [doijibBalance, setDoijibBalance] = React.useState(0)
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [landBonus, setLandBonus] = React.useState(0)
     const [myhouse, setMyhouse] = React.useState(0)
+    console.log(isOp, lastedSTOPT)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
+        if (intrasubModetext === undefined) {
+            navigate('/dungeon/memetic-orbit/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/dungeon/memetic-orbit/null')
+        } else {
+            navigate('/dungeon/memetic-orbit/' + address)
+        }
         const cmdaonftSC = new ethers.Contract(cmdaonft, erc721Abi, providerJBC)
         const narutanftSC = new ethers.Contract(narutanft, erc721Abi, providerJBC)
         const bbnftSC = new ethers.Contract(bbnft, erc721Abi, providerJBC)
@@ -126,747 +126,268 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
         const thefetch = async () => {
             const dataHouse = await readContracts(config, {
                 contracts: [
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001001']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001003']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001004']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001005']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001007']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001008']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001009']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002001']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002003']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002004']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002005']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002007']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002008']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002009']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003001']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003003']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003004']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003005']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003007']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003008']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003009']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003012']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003013']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003014']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003015']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003016']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003017']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003018']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003019']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003020']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003021']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003022']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001001']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001003']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001004']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001005']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001007']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001008']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001009']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002001']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002003']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002004']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002005']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002007']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002008']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002009']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003001']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003002']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003003']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003004']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003005']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003006']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003007']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003008']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003009']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003010']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003011']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003012']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003013']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003014']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003015']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003016']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003017']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003018']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003019']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003020']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003021']
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003022']
-                    },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001001'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001003'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001004'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001005'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001007'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001008'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001009'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002001'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002003'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002004'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002005'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002007'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002008'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002009'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003001'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003003'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003004'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003005'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003007'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003008'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003009'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003012'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003013'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003014'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003015'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003016'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003017'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003018'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003019'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003020'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003021'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003022'], chainId: 8899 },                    
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001001'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001003'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001004'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001005'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001007'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001008'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001009'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002001'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002003'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002004'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002005'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002007'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002008'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002009'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003001'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003002'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003003'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003004'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003005'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003006'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003007'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003008'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003009'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003010'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003011'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003012'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003013'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003014'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003015'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003016'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003017'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003018'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003019'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003020'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003021'], chainId: 8899 },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003022'], chainId: 8899 },
                 ],
             }) 
-
             let house = 0
             let myhouseMul = 0
-            for (let i = 0; i <= dataHouse.length - 1; i++) {
-                if (address.toUpperCase() === dataHouse[1].result.toUpperCase()) {
+            for (let i = 0; i <= dataHouse.length - 1 && addr !== null; i++) {
+                if (addr.toUpperCase() === dataHouse[1].result.toUpperCase()) {
                     house = 10026002
                     myhouseMul = Number(dataHouse[49].result) * 10
-                } else if (address.toUpperCase() === dataHouse[2].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[2].result.toUpperCase()) {
                     house = 10001001
                     myhouseMul = Number(dataHouse[50].result) * 10
-                } else if (address.toUpperCase() === dataHouse[3].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[3].result.toUpperCase()) {
                     house = 10001002
                     myhouseMul = Number(dataHouse[51].result) * 10
-                } else if (address.toUpperCase() === dataHouse[4].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[4].result.toUpperCase()) {
                     house = 10001003
                     myhouseMul = Number(dataHouse[52].result) * 10
-                } else if (address.toUpperCase() === dataHouse[5].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[5].result.toUpperCase()) {
                     house = 10001004
                     myhouseMul = Number(dataHouse[53].result) * 10
-                } else if (address.toUpperCase() === dataHouse[6].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[6].result.toUpperCase()) {
                     house = 10001005
                     myhouseMul = Number(dataHouse[54].result) * 10
-                } else if (address.toUpperCase() === dataHouse[7].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[7].result.toUpperCase()) {
                     house = 10001006
                     myhouseMul = Number(dataHouse[55].result) * 10
-                } else if (address.toUpperCase() === dataHouse[8].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[8].result.toUpperCase()) {
                     house = 10001007
                     myhouseMul = Number(dataHouse[56].result) * 10
-                } else if (address.toUpperCase() === dataHouse[9].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[9].result.toUpperCase()) {
                     house = 10001008
                     myhouseMul = Number(dataHouse[57].result) * 10
-                } else if (address.toUpperCase() === dataHouse[10].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[10].result.toUpperCase()) {
                     house = 10001009
                     myhouseMul = Number(dataHouse[58].result) * 10
-                } else if (address.toUpperCase() === dataHouse[11].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[11].result.toUpperCase()) {
                     house = 10001010
                     myhouseMul = Number(dataHouse[59].result) * 10
-                } else if (address.toUpperCase() === dataHouse[12].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[12].result.toUpperCase()) {
                     house = 10001011
                     myhouseMul = Number(dataHouse[60].result) * 10
-                } else if (address.toUpperCase() === dataHouse[13].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[13].result.toUpperCase()) {
                     house = 10026006
                     myhouseMul = Number(dataHouse[61].result) * 5
-                } else if (address.toUpperCase() === dataHouse[0].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[0].result.toUpperCase()) {
                     house = 10026010
                     myhouseMul = Number(dataHouse[48].result) * 5
-                } else if (address.toUpperCase() === dataHouse[14].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[14].result.toUpperCase()) {
                     house = 10002001
                     myhouseMul = Number(dataHouse[62].result) * 5
-                } else if (address.toUpperCase() === dataHouse[15].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[15].result.toUpperCase()) {
                     house = 10002002
                     myhouseMul = Number(dataHouse[63].result) * 5
-                } else if (address.toUpperCase() === dataHouse[16].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[16].result.toUpperCase()) {
                     house = 10002003
                     myhouseMul = Number(dataHouse[64].result) * 5
-                } else if (address.toUpperCase() === dataHouse[17].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[17].result.toUpperCase()) {
                     house = 10002004
                     myhouseMul = Number(dataHouse[65].result) * 5
-                } else if (address.toUpperCase() === dataHouse[18].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[18].result.toUpperCase()) {
                     house = 10002005
                     myhouseMul = Number(dataHouse[66].result) * 5
-                } else if (address.toUpperCase() === dataHouse[19].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[19].result.toUpperCase()) {
                     house = 10002006
                     myhouseMul = Number(dataHouse[67].result) * 5
-                } else if (address.toUpperCase() === dataHouse[20].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[20].result.toUpperCase()) {
                     house = 10002007
                     myhouseMul = Number(dataHouse[68].result) * 5
-                } else if (address.toUpperCase() === dataHouse[21].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[21].result.toUpperCase()) {
                     house = 10002008
                     myhouseMul = Number(dataHouse[69].result) * 5
-                } else if (address.toUpperCase() === dataHouse[22].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[22].result.toUpperCase()) {
                     house = 10002009
                     myhouseMul = Number(dataHouse[70].result) * 5
-                } else if (address.toUpperCase() === dataHouse[23].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[23].result.toUpperCase()) {
                     house = 10002010
                     myhouseMul = Number(dataHouse[71].result) * 5
-                } else if (address.toUpperCase() === dataHouse[24].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[24].result.toUpperCase()) {
                     house = 10002011
                     myhouseMul = Number(dataHouse[72].result) * 5
-                } else if (address.toUpperCase() === dataHouse[25].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[25].result.toUpperCase()) {
                     house = 10026011
                     myhouseMul = Number(dataHouse[73].result)
-                } else if (address.toUpperCase() === dataHouse[26].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[26].result.toUpperCase()) {
                     house = 10003001
                     myhouseMul = Number(dataHouse[74].result)
-                } else if (address.toUpperCase() === dataHouse[27].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[27].result.toUpperCase()) {
                     house = 10003002
                     myhouseMul = Number(dataHouse[75].result)
-                } else if (address.toUpperCase() === dataHouse[28].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[28].result.toUpperCase()) {
                     house = 10003003
                     myhouseMul = Number(dataHouse[76].result)
-                } else if (address.toUpperCase() === dataHouse[29].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[29].result.toUpperCase()) {
                     house = 10003004
                     myhouseMul = Number(dataHouse[77].result)
-                } else if (address.toUpperCase() === dataHouse[30].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[30].result.toUpperCase()) {
                     house = 10003005
                     myhouseMul = Number(dataHouse[78].result)
-                } else if (address.toUpperCase() === dataHouse[31].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[31].result.toUpperCase()) {
                     house = 10003006
                     myhouseMul = Number(dataHouse[79].result)
-                } else if (address.toUpperCase() === dataHouse[32].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[32].result.toUpperCase()) {
                     house = 10003007
                     myhouseMul = Number(dataHouse[80].result)
-                } else if (address.toUpperCase() === dataHouse[33].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[33].result.toUpperCase()) {
                     house = 10003008
                     myhouseMul = Number(dataHouse[81].result)
-                } else if (address.toUpperCase() === dataHouse[34].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[34].result.toUpperCase()) {
                     house = 10003009
                     myhouseMul = Number(dataHouse[82].result)
-                } else if (address.toUpperCase() === dataHouse[35].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[35].result.toUpperCase()) {
                     house = 10003010
                     myhouseMul = Number(dataHouse[83].result)
-                } else if (address.toUpperCase() === dataHouse[36].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[36].result.toUpperCase()) {
                     house = 10003011
                     myhouseMul = Number(dataHouse[84].result)
-                } else if (address.toUpperCase() === dataHouse[37].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[37].result.toUpperCase()) {
                     house = 10003012
                     myhouseMul = Number(dataHouse[85].result)
-                } else if (address.toUpperCase() === dataHouse[38].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[38].result.toUpperCase()) {
                     house = 10003013
                     myhouseMul = Number(dataHouse[86].result)
-                } else if (address.toUpperCase() === dataHouse[39].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[39].result.toUpperCase()) {
                     house = 10003014
                     myhouseMul = Number(dataHouse[87].result)
-                } else if (address.toUpperCase() === dataHouse[40].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[40].result.toUpperCase()) {
                     house = 10003015
                     myhouseMul = Number(dataHouse[88].result)
-                } else if (address.toUpperCase() === dataHouse[41].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[41].result.toUpperCase()) {
                     house = 10003016
                     myhouseMul = Number(dataHouse[89].result)
-                } else if (address.toUpperCase() === dataHouse[42].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[42].result.toUpperCase()) {
                     house = 10003017
                     myhouseMul = Number(dataHouse[90].result)
-                } else if (address.toUpperCase() === dataHouse[43].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[43].result.toUpperCase()) {
                     house = 10003018
                     myhouseMul = Number(dataHouse[91].result)
-                } else if (address.toUpperCase() === dataHouse[44].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[44].result.toUpperCase()) {
                     house = 10003019
                     myhouseMul = Number(dataHouse[92].result)
-                } else if (address.toUpperCase() === dataHouse[45].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[45].result.toUpperCase()) {
                     house = 10003020
                     myhouseMul = Number(dataHouse[93].result)
-                } else if (address.toUpperCase() === dataHouse[46].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[46].result.toUpperCase()) {
                     house = 10003021
                     myhouseMul = Number(dataHouse[94].result)
-                } else if (address.toUpperCase() === dataHouse[47].result.toUpperCase()) {
+                } else if (addr.toUpperCase() === dataHouse[47].result.toUpperCase()) {
                     house = 10003022
                     myhouseMul = Number(dataHouse[95].result)
                 }
             }
 
-            const nftEQ = await readContract(config, {
+            const nftEQ = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquip',
-                args: [address],
-            })
-            const nftEQ2 = await readContract(config, {
+                args: [addr],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0]
+            const nftEQ2 = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquip2',
-                args: [address],
-            })
+                args: [addr],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0, 0]
             /*const nftEQColMul = await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
@@ -879,237 +400,278 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
                 functionName: 'nftEQColMul2',
                 args: [address],
             })*/
-            const nftEQMemeSS1 = await readContract(config, {
+            const nftEQMemeSS1 = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquipMeme',
-                args: [address, 1],
-            })
-            const nftEQMemeSS2 = await readContract(config, {
+                args: [addr, 1],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0]
+            const nftEQMemeSS2 = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftEquipMeme',
-                args: [address, 2],
-            })
+                args: [addr, 2],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0]
 
-            const data = await readContracts(config, {
+            const data = addr !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[0])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[1])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[2])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[3])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[4])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[5])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[6])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ2[7])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[0])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[1])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[2])],
+                        chainId: 8899
                     },
                     {
                         address: bbnft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[3])],
+                        chainId: 8899
                     },
                     {
                         address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[4])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[5])],
+                        chainId: 8899
                     },
                     {
                         address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS1[6])],
+                        chainId: 8899
                     },
                     {
                         address: doijibToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: goldToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: mintStOPT_Router,
                         abi: mintStOPTABI,
                         functionName: 'userTimeStamp',
-                        args: [address, 2],
+                        args: [addr, 2],
+                        chainId: 8899
                     },
                     {
                         address: salonRouter,
                         abi: salonABI,
                         functionName: 'skin',
-                        args: [address, 1],
+                        args: [addr, 1],
+                        chainId: 8899
                     }, 
                     {
                         address: badgeClaimer,
                         abi: badgeClaimerABI,
                         functionName: 'isClaimed',
-                        args: [address, 1],
+                        args: [addr, 1],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[0])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[1])],
+                        chainId: 8899
                     },
                     {
                         address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[2])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[3])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[4])],
+                        chainId: 8899
                     },
                     {
                         address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[5])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS2[6])],
+                        chainId: 8899
                     },
                 ],
-            })
-            const rawPending = await readContract(config, {
+            }) : [
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+            ]
+            const rawPending = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'calculateRewards',
-                args: [address, ss, house],
-                account: address,
-            })
+                args: [addr, ss, house],
+                account: addr,
+                chainId: 8899
+            }) : 0
             
             let nfts = []
-
             let res_main_char = null
             try {
                 res_main_char = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -1722,12 +1284,13 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
                 })
             }
 
-            const nftStatus = await readContract(config, {
+            const nftStatus = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
                 functionName: 'nftStatus',
-                args: [address],
-            })
+                args: [addr],
+                chainId: 8899
+            }) : [0, 0, 0]
 
             const allPow = Number(nftStatus[0])
             const refuelAt = Number(nftStatus[1])
@@ -1739,37 +1302,42 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
             const skinslot1 = data[25].result
             const isbadgeclaimed = data[26].result
             const rewardpending = isStaked ? rawPending : 0
-                        
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            
+            let walletRemoveDup = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const walletFilter = await cmdaonftSC.filters.Transfer(null, addr, null)
+                const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            }
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(walletRemoveDup.length).fill('')]
+            }) : null
             let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup.length - 1 && addr !== null; i++) {
+                if (data2[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(yournftwallet.length).fill('')]
+            }) : null
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -1789,36 +1357,41 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
                 })
             }
 
-            const walletFilter2 = await narutanftSC.filters.Transfer(null, address, null)
-            const walletEvent2 = await narutanftSC.queryFilter(walletFilter2, 2852393, "latest")
-            const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts(config, {
+            let walletRemoveDup2 = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const walletFilter2 = await narutanftSC.filters.Transfer(null, addr, null)
+                const walletEvent2 = await narutanftSC.queryFilter(walletFilter2, 2852393, "latest")
+                const walletMap2 = await Promise.all(walletEvent2.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup2 = walletMap2.filter((obj, index) => walletMap2.indexOf(obj) === index)
+            }
+            const data4 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup2.map((item) => (
                     {
                         address: narutanft,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(walletRemoveDup2.length).fill('')]
+            }) : null
             let yournftwallet2 = []
-            for (let i = 0; i <= walletRemoveDup2.length - 1 && address !== null && address !== undefined; i++) {
-                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup2.length - 1 && addr !== null; i++) {
+                if (data4[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet2.push({Id: String(walletRemoveDup2[i])})
                 }
             }
-            const data5 = address !== null && address !== undefined ? await readContracts(config, {
+            const data5 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet2.map((item) => (
                     {
                         address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(yournftwallet2.length).fill('')]
+            }) : null
             for (let i = 0; i <= yournftwallet2.length - 1; i++) {
                 const nftipfs = data5[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -1838,36 +1411,41 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
                 })
             }
 
-            const walletFilter3 = await bbnftSC.filters.Transfer(null, address, null)
-            const walletEvent3 = await bbnftSC.queryFilter(walletFilter3, 3478177, "latest")
-            const walletMap3 = await Promise.all(walletEvent3.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup3 = walletMap3.filter((obj, index) => walletMap3.indexOf(obj) === index)
-            const data6 = address !== null && address !== undefined ? await readContracts(config, {
+            let walletRemoveDup3 = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const walletFilter3 = await bbnftSC.filters.Transfer(null, addr, null)
+                const walletEvent3 = await bbnftSC.queryFilter(walletFilter3, 3478177, "latest")
+                const walletMap3 = await Promise.all(walletEvent3.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup3 = walletMap3.filter((obj, index) => walletMap3.indexOf(obj) === index)
+            }
+            const data6 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup3.map((item) => (
                     {
                         address: bbnft,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(walletRemoveDup3.length).fill('')]
+            }) : null
             let yournftwallet3 = []
-            for (let i = 0; i <= walletRemoveDup3.length - 1 && address !== null && address !== undefined; i++) {
-                if (data6[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup3.length - 1 && addr !== null; i++) {
+                if (data6[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet3.push({Id: String(walletRemoveDup3[i])})
                 }
             }
-            const data7 = address !== null && address !== undefined ? await readContracts(config, {
+            const data7 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet3.map((item) => (
                     {
                         address: bbnft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(yournftwallet3.length).fill('')]
+            }) : null
             for (let i = 0; i <= yournftwallet3.length - 1; i++) {
                 const nftipfs = data7[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -2009,7 +1587,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
             setYourSS2CMPOW(result[70])
         })
 
-    }, [config, address, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -2148,12 +1726,12 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
                 functionName: 'allowance',
                 args: [address, dunMo],
             })
-            if (gasAllow < (500000 * 10**18)) {
+            if (Number(ethers.utils.formatEther(gasAllow)) < 500000) {
                 let { request } = await simulateContract(config, {
                     address: gasAddr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [dunMo, ethers.utils.parseEther(String(10**8))],
+                    args: [dunMo, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -2186,7 +1764,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -2202,516 +1783,546 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, setisLoading, txupda
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }*/
 
     return (
-    <>
-        {isTransferModal &&
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{fontSize: "20px"}}>{transferName}</div>
-                        <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
-                        <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
-                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
+        <>
+            {isTransferModal &&
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
+                        </div>
                     </div>
                 </div>
+            }
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYeJjdaanuuX27L1RyXLM957MitBQRQ5qr3W4hZJFoGjy')", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Memetic Orbit</div>
+                </div>
+                <div className="SubfieldBanner"></div>
             </div>
-        }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYeJjdaanuuX27L1RyXLM957MitBQRQ5qr3W4hZJFoGjy')", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Memetic Orbit</div>
-                <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">Exploring exotic orbit to collect a variable rare token.</div>
-            </div>
-            <div style={{margin: "30px 100px"}}></div>
-        </div>
 
-        <div style={{background: "#0a090d", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>L1 STAKING</div>
-                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
-                                {isStakeNow ?
-                                    <>
-                                    {isRunout ?
-                                        <>
-                                            <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>Run Out of Gas</div>
-                                        </> :
-                                        <>
-                                            <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                            <div>On Staking</div>
-                                        </>
-                                    }
-                                    </> :
-                                    <>
-                                        {isStakeNow === false &&
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to JIBCHAIN L1.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
+                    </div>
+                </div> :
+                <div style={{background: "#0a090d", margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", maxWidth: "90%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "5px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                <div style={{fontSize: "22px", lineHeight: "15px"}}>L1 STAKING</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
+                                        {isStakeNow ?
                                             <>
-                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Available for stake</div>
+                                            {isRunout ?
+                                                <>
+                                                    <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                    <div>Run Out of Gas</div>
+                                                </> :
+                                                <>
+                                                    <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                    <div>On Staking</div>
+                                                </>
+                                            }
+                                            </> :
+                                            <>
+                                                {isStakeNow === false &&
+                                                    <>
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Available for stake</div>
+                                                    </>
+                                                }
                                             </>
                                         }
-                                    </>
-                                }
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            {address !== undefined ?
-                                <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                <>ADDRESS <div>-</div></>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            TOTAL CMPOW 
-                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})} [land multiplier x{Number(landBonus)}]</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            REWARD BALANCE
-                            {!isEnd ? 
-                                <div style={{display: "flex", flexDirection: "row"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
-                                    <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                </div> :
-                                <div style={{color: "#5f6476"}}>SS is over</div>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            REWARD PENDING
-                            {!isEnd ? 
-                                <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
-                                    <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                </div> :
-                                <div style={{color: "#5f6476"}}>SS is over</div>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            GAS USAGE
-                            {!isEnd ? 
-                                <div style={{display: "flex", flexDirection: "row"}}>
-                                    {ss === 2 &&
-                                        <>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
-                                            <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                        </>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                        <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                        <><div>ADDRESS</div><div>-</div></>
                                     }
-                                    <div style={{marginLeft: "5px"}}>/500,000</div>
-                                </div> :
-                                <div style={{color: "#5f6476"}}>SS is over</div>
-                            }
-                        </div>
-                        {!isEnd ?
-                            <>
-                                {isStakeNow ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>7 day</div></div>
-                                }
-                            </> :
-                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div style={{color: "#5f6476"}}>SS1 is over</div></div>
-                        }
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                {isStakeNow ?
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    TOTAL CMPOW 
+                                    <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})} [land multiplier x{Number(landBonus)}]</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    REWARD BALANCE
+                                    {!isEnd ? 
+                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
+                                            <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                        </div> :
+                                        <div style={{color: "#5f6476"}}>SS is over</div>
+                                    }
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    REWARD PENDING
+                                    {!isEnd ? 
+                                        <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
+                                            <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                        </div> :
+                                        <div style={{color: "#5f6476"}}>SS is over</div>
+                                    }
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    GAS USAGE
+                                    {!isEnd ? 
+                                        <div style={{display: "flex", flexDirection: "row"}}>
+                                            {ss === 2 &&
+                                                <>
+                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
+                                                    <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                                </>
+                                            }
+                                            <div style={{marginLeft: "5px"}}>/500,000</div>
+                                        </div> :
+                                        <div style={{color: "#5f6476"}}>SS is over</div>
+                                    }
+                                </div>
+                                {!isEnd ?
                                     <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, false, ss)}>HARVEST & UNSTAKE</div>
-                                    </> :
-                                    <>
-                                        {isStakeNow !== null && (ss === 2 && !isEnd && Number(doijibBalance) >= 500000) ?
-                                            <>
-                                                {allPower !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                            </> :
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        }
-                                        {!isEnd && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>}
-                                    </>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot !== null ?
-                            <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>}
-                        {accSlot2 !== null ?
-                            <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlot2Level}</div> }
-                        {accSlot3 !== null ?
-                            <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlot3Level}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {hatSlot !== null ?
-                            <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
-                        }
-                        {hatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
-                        {clothSlot !== null ?
-                            <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
-                        }
-                        {clothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
-                        {shoesSlot !== null ?
-                            <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
-                        }
-                        {shoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "300px", height: "450px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{position: "relative", width: "300px", height: "150px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
-                            {soulSlot !== null ?
-                                <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
-                            }
-                            {soulSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "200px", padding: "2px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
-                            {badgeSlot !== null ?
-                                <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
-                            }
-                            {badgeSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
-                        </div>
-                        {nft.length > 0 ?
-                            <>
-                                {characterSlot !== null ?
-                                    <>
-                                        {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
-                                            <img src={characterSlot} width="300px" alt="Can not load metadata." />
-                                        }
-                                        {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
-                                        }
-                                        {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
+                                        {isStakeNow ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT IN <div>7 day</div></div>
                                         }
                                     </> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>GAS RUN OUT AT <div style={{color: "#5f6476"}}>SS1 is over</div></div>
                                 }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                        {characterSlotLevel !== null && <div style={{position: "absolute", bottom: "15px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
-                        {/*isOp && isStakeNow && !lastedSTOPT && isRunout &&
-                            <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
-                        */}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot4 !== null ?
-                            <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot4Level}</div>}
-                        {backSlot !== null ?
-                            <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {backSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "35px", fontSize: "25px"}}>+{backSlotLevel}</div>}
-                        {weaponSlot !== null ?
-                            <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {wpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "35px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot5 !== null ?
-                            <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot5Level}</div>}
-                        {accSlot6 !== null ?
-                            <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot6Level}</div>}
-                        {weaponSlot2 !== null ?
-                            <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {wpSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "35px", padding: "2px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
-                    </div>
-                </div>
-            </div>
-            
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 2<br></br><br></br>POISEIDON SELECTION</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            TOTAL CMPOW
-                            <div style={{display: "flex", flexDirection: "row"}}>{yourSS2CMPOW}</div>
-                        </div>
-                        <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
-                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 2 concludes at 11:59 PM on October 28th.</div>
-                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
-                            <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ss2HatSlot !== null ?
-                            <img src={ss2HatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss2HatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2HatSlotLevel}</div>}
-                        {ss2ClothSlot !== null ?
-                            <img src={ss2ClothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss2ClothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2ClothSlotLevel}</div>}
-                        {ss2ShoesSlot !== null ?
-                            <img src={ss2ShoesSlot} width="100px" alt="" /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss2ShoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2ShoesSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", height: "65px"}}></div>
-                        {nft.length > 0 ?
-                            <>
-                                {ss2CharacterSlot !== null ?
-                                    <img src={ss2CharacterSlot} width="300px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
-                                }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                        {ss2CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss2CharacterSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ss2AccSlot !== null ?
-                            <img src={ss2AccSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss2AccSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", fontSize: "25px"}}>+{ss2AccSlotLevel}</div> }
-                        {ss2BackSlot !== null ?
-                            <img src={ss2BackSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss2BackSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss2BackSlotLevel}</div> }
-                        {ss2WeaponSlot !== null ?
-                            <img src={ss2WeaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss2WpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss2WpSlotLevel}</div>}
-                    </div>
-                </div>
-            </div>
-
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 1<br></br><br></br>D.O.M. THE DOI OLYMPUS MAFIA</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
-                            TOTAL CMPOW
-                            <div style={{display: "flex", flexDirection: "row"}}>{yourSS1CMPOW}</div>
-                        </div>
-                        <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
-                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 1 concludes at 11:59 PM on August 28th.</div>
-                            <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
-                            <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                {(!isClaimBadge && ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={claimBadge}>CLAIM BADGE</div>}
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ss1HatSlot !== null ?
-                            <img src={ss1HatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSgooLEbo2MrxT3rNzFKq1fGkweGZJhV2ejPhKpAgoSWr" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss1HatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1HatSlotLevel}</div>}
-                        {ss1ClothSlot !== null ?
-                            <img src={ss1ClothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPY9gNNpai3UGtx8jSsohn3scvsioJM7AvmQLbFnBjvwq" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss1ClothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1ClothSlotLevel}</div>}
-                        {ss1ShoesSlot !== null ?
-                            <img src={ss1ShoesSlot} width="100px" alt="" /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmT4aYAh5veaM7fawV4MbufZBGWKFcJ4QmXdzNqmHYMxXk" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss1ShoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1ShoesSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{width: "300px", height: "65px"}}></div>
-                        {nft.length > 0 ?
-                            <>
-                                {ss1CharacterSlot !== null ?
-                                    <img src={ss1CharacterSlot} width="300px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmViHN4xqFWr9x9t4q1QGMNanm3f7u2fBD6PU9x4ZKdyzk" width="300px" alt="Can not load metadata." />
-                                }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                        {ss1CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss1CharacterSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ss1AccSlot !== null ?
-                            <img src={ss1AccSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYYCgcgbqdh59kuyuXSxWom7igRYqPnXLY4DNjL3mJpY8" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss1BackSlot !== null ?
-                            <img src={ss1BackSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRFpQsLUgJPjgXXBeREddUVAEcyJwzqG79VJ7BeYd8LSj" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss1BackSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss1BackSlotLevel}</div> }
-                        {ss1WeaponSlot !== null ?
-                            <img src={ss1WeaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRKTx7BpuUicaecf4bKYSroAvedLGw3mncWAHHSfLszJc" width="100px" alt="Can not load metadata." />
-                        }
-                        {ss1WpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1WpSlotLevel}</div>}
-                    </div>
-                </div>
-            </div>
-            
-            {nft.length > 0 ?
-                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    {nft[0] !== null ?
-                        <>
-                        {nft.map((item, index) => (
-                            <>
-                                {((item.Col === 1 && Math.floor(Number(item.Id / 100000000000)) <= 8) || 
-                                (//ss === 1 
-                                    (item.Col === 2 && 
-                                        (
-                                            (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025018800) || 
-                                            (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025018800)
-                                        )
-                                    ) || 
-                                    (item.Col === 3 && 
-                                        (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)
-                                    )
-                                ) ||
-                                (//ss === 2  
-                                    (item.Col === 2 && 
-                                        (
-                                            (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800) || 
-                                            (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)
-                                        )
-                                    )
-                                )) &&
-                                    <div style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px", height: "500px"}} className="nftCard" key={index}>
-                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                        </div>
-                                        <div className="emp bold">{item.Name}</div>
-                                        <div className="bold">
-                                            {item.RewardPerSec}
-                                            &nbsp;
-                                            {(item.Col === 1 && ((Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000) || (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000) || (Number(item.Id) >= 310000102550 && Number(item.Id) <= 310010701000) || (Number(item.Id) >= 511000102550 && Number(item.Id) <= 511010701000) || (Number(item.Id) >= 611000102550 && Number(item.Id) <= 611010701000))) && '[x10 bonus]'}
-                                            {(item.Col === 1 && ((Number(item.Id) >= 211000102550 && Number(item.Id) <= 211025601000) || (Number(item.Id) >= 312000102550 && Number(item.Id) <= 312025601000) || (Number(item.Id) >= 411000102550 && Number(item.Id) <= 411025601000) || (Number(item.Id) >= 512000102550 && Number(item.Id) <= 512025601000) || (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025601000) || (Number(item.Id) >= 711000102550 && Number(item.Id) <= 711010701000))) && '[x9 bonus]'}
-                                            {(item.Col === 1 && ((Number(item.Id) >= 712000102550 && Number(item.Id) <= 712025601000))) && '[x8 bonus]'}
-                                            &nbsp;cmpow
-                                        </div>
-                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                        {address === youraddr ?
-                                            <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                                {item.isStaked ?
+                                {address !== null && intrasubModetext !== undefined ?
+                                    <>
+                                        {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                {isStakeNow ?
                                                     <>
-                                                        {item.Col === 1 && 
-                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot, false, ss)}>UNEQUIP L1</div>
-                                                        }
-                                                        {item.Ss !== undefined &&
-                                                            <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => unstakeNft(item.Slot, true, item.Ss)}>UNEQUIP L2 SS{item.Ss}</div>
-                                                        }
+                                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">REFUEL GAS</div>
+                                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a", padding: "10px 15px"}} className="button" onClick={() => unstakeNft(0, false, ss)}>HARVEST & UNSTAKE</div>
                                                     </> :
                                                     <>
-                                                        {item.Col === 1 && 
+                                                        {isStakeNow !== null && (ss === 2 && !isEnd && Number(doijibBalance) >= 500000) ?
                                                             <>
-                                                                {((item.Id / 100000000000) | 0) === 1 && 
-                                                                    <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 1, false)}>EQUIP L1 MAIN CHAR</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 15, false)}>EQUIP L1 SOUL</div>
-                                                                    </>
+                                                                {allPower !== 0 ?
+                                                                    <div style={{alignSelf: "center", padding: "10px 15px"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">REFUEL GAS</div>
                                                                 }
-                                                                {((item.Id / 100000000000) | 0) === 2 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 2, false)}>EQUIP L1 HAT</div>}
-                                                                {((item.Id / 100000000000) | 0) === 3 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 3, false)}>EQUIP L1 CLOTH</div>}
-                                                                {((item.Id / 100000000000) | 0) === 4 && 
-                                                                    <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 4, false)}>EQUIP L1 ACC (1)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 9, false)}>EQUIP L1 ACC (2)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 10, false)}>EQUIP L1 ACC (3)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 11, false)}>EQUIP L1 ACC (4)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 12, false)}>EQUIP L1 ACC (5)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 13, false)}>EQUIP L1 ACC (6)</div>
-                                                                    </>
-                                                                }
-                                                                {((item.Id / 100000000000) | 0) === 5 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 5, false)}>EQUIP L1 BACK</div>}
-                                                                {((item.Id / 100000000000) | 0) === 6 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 6, false)}>EQUIP L1 SHOES</div>}
-                                                                {((item.Id / 100000000000) | 0) === 7 && 
-                                                                    <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 7, false)}>EQUIP L1 WEAPON (1)</div>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 14, false)}>EQUIP L1 WEAPON (2)</div>
-                                                                    </>
-                                                                }
-                                                                {((item.Id / 100000000000) | 0) === 8 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 8, false)}>EQUIP L1 BADGE</div>}
-                                                            </>
+                                                            </> :
+                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">REFUEL GAS</div>
                                                         }
-                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 102033419000 && Number(item.Id) <= 102066619000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS2 MAIN CHAR</div>}
-                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 210000100250 && Number(item.Id) <= 210050001950)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS2 HAT</div>}
-                                                        {(ss === 2 && item.Col === 2 && (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS2 CLOTH</div>}
-                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 400030010900 && Number(item.Id) <= 400039910900)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS2 ACC</div>}
-                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 510030010100 && Number(item.Id) <= 510039910100)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS2 BACK</div>}
-                                                        {(ss === 2 && item.Col === 2 && (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS2 SHOES</div>}
-                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 730010010400 && Number(item.Id) <= 730019910400)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS2 WEAPON</div>}
-                                                        <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                        {!isEnd && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed", padding: "10px 15px"}} className="button">HARVEST & UNSTAKE</div>}
                                                     </>
                                                 }
                                             </div> :
                                             <div style={{height: "41px"}}></div>
                                         }
-                                    </div>
+                                    </> :
+                                    <div style={{height: "41px"}}></div>
                                 }
-                            </>
-                        ))}
-                        </> :
-                        <div style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px", height: "500px"}} className="nftCard">
-                            {address !== undefined ?
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot !== null ?
+                                        <img src={accSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>}
+                                    {accSlot2 !== null ?
+                                        <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{accSlot2Level}</div> }
+                                    {accSlot3 !== null ?
+                                        <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{accSlot3Level}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {hatSlot !== null ?
+                                        <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {hatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
+                                    {clothSlot !== null ?
+                                        <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {clothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
+                                    {shoesSlot !== null ?
+                                        <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {shoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "450px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{position: "relative", width: "300px", height: "150px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
+                                        {soulSlot !== null ?
+                                            <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
+                                        }
+                                        {soulSlotLevel !== null && <div style={{position: "absolute", top: "90px", right: "200px", padding: "2px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
+                                        {badgeSlot !== null ?
+                                            <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
+                                        }
+                                        {badgeSlotLevel !== null && <div style={{position: "absolute", top: "90px", right: "50px", padding: "2px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
+                                    </div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {characterSlot !== null ?
+                                                <>
+                                                    {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
+                                                        <img src={characterSlot} width="300px" alt="Can not load metadata." />
+                                                    }
+                                                    {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
+                                                    }
+                                                    {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
+                                                    }
+                                                </> :
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {characterSlotLevel !== null && <div style={{position: "absolute", bottom: "15px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
+                                    {/*isOp && isStakeNow && !lastedSTOPT && isRunout &&
+                                        <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
+                                    */}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot4 !== null ?
+                                        <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{accSlot4Level}</div>}
+                                    {backSlot !== null ?
+                                        <img src={backSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {backSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{backSlotLevel}</div>}
+                                    {weaponSlot !== null ?
+                                        <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {wpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot5 !== null ?
+                                        <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{accSlot5Level}</div>}
+                                    {accSlot6 !== null ?
+                                        <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{accSlot6Level}</div>}
+                                    {weaponSlot2 !== null ?
+                                        <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {wpSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 2<br></br><br></br>POISEIDON SELECTION</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    TOTAL CMPOW
+                                    <div style={{display: "flex", flexDirection: "row"}}>{yourSS2CMPOW}</div>
+                                </div>
+                                <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
+                                    <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 2 concludes at 11:59 PM on October 28th.</div>
+                                    <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
+                                    <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
+                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ss2HatSlot !== null ?
+                                        <img src={ss2HatSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss2HatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{ss2HatSlotLevel}</div>}
+                                    {ss2ClothSlot !== null ?
+                                        <img src={ss2ClothSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss2ClothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{ss2ClothSlotLevel}</div>}
+                                    {ss2ShoesSlot !== null ?
+                                        <img src={ss2ShoesSlot} width="100px" alt="" /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss2ShoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss2ShoesSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{width: "300px", height: "65px"}}></div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {ss2CharacterSlot !== null ?
+                                                <img src={ss2CharacterSlot} width="300px" alt="Can not load metadata." /> :
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {ss2CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss2CharacterSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ss2AccSlot !== null ?
+                                        <img src={ss2AccSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss2AccSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", fontSize: "25px"}}>+{ss2AccSlotLevel}</div>}
+                                    {ss2BackSlot !== null ?
+                                        <img src={ss2BackSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss2BackSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{ss2BackSlotLevel}</div>}
+                                    {ss2WeaponSlot !== null ?
+                                        <img src={ss2WeaponSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss2WpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss2WpSlotLevel}</div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 1<br></br><br></br>D.O.M. THE DOI OLYMPUS MAFIA</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    TOTAL CMPOW
+                                    <div style={{display: "flex", flexDirection: "row"}}>{yourSS1CMPOW}</div>
+                                </div>
+                                <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
+                                    <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 1 concludes at 11:59 PM on August 28th.</div>
+                                    <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
+                                    <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
+                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                        {(!isClaimBadge && ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={claimBadge}>CLAIM BADGE</div>}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ss1HatSlot !== null ?
+                                        <img src={ss1HatSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSgooLEbo2MrxT3rNzFKq1fGkweGZJhV2ejPhKpAgoSWr" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss1HatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{ss1HatSlotLevel}</div>}
+                                    {ss1ClothSlot !== null ?
+                                        <img src={ss1ClothSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPY9gNNpai3UGtx8jSsohn3scvsioJM7AvmQLbFnBjvwq" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss1ClothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{ss1ClothSlotLevel}</div>}
+                                    {ss1ShoesSlot !== null ?
+                                        <img src={ss1ShoesSlot} width="100px" alt="" /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmT4aYAh5veaM7fawV4MbufZBGWKFcJ4QmXdzNqmHYMxXk" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss1ShoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss1ShoesSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{width: "300px", height: "65px"}}></div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {ss1CharacterSlot !== null ?
+                                                <img src={ss1CharacterSlot} width="300px" alt="Can not load metadata." /> :
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmViHN4xqFWr9x9t4q1QGMNanm3f7u2fBD6PU9x4ZKdyzk" width="300px" alt="Can not load metadata." />
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {ss1CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss1CharacterSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ss1AccSlot !== null ?
+                                        <img src={ss1AccSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYYCgcgbqdh59kuyuXSxWom7igRYqPnXLY4DNjL3mJpY8" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss1BackSlot !== null ?
+                                        <img src={ss1BackSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRFpQsLUgJPjgXXBeREddUVAEcyJwzqG79VJ7BeYd8LSj" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss1BackSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss1BackSlotLevel}</div> }
+                                    {ss1WeaponSlot !== null ?
+                                        <img src={ss1WeaponSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRKTx7BpuUicaecf4bKYSroAvedLGw3mncWAHHSfLszJc" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss1WpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1WpSlotLevel}</div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {nft.length > 0 ?
+                        <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                            {nft[0] !== null ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                {nft.map((item, index) => (
+                                    <>
+                                        {((item.Col === 1 && Math.floor(Number(item.Id / 100000000000)) <= 8) || 
+                                        (//ss === 1 
+                                            (item.Col === 2 && 
+                                                (
+                                                    (Number(item.Id) >= 700000118800 && Number(item.Id) <= 700025018800) || 
+                                                    (Number(item.Id) >= 500000118800 && Number(item.Id) <= 500025018800)
+                                                )
+                                            ) || 
+                                            (item.Col === 3 && 
+                                                (Number(item.Id) >= 100000001 && Number(item.Id) <= 100001000)
+                                            )
+                                        ) ||
+                                        (//ss === 2  
+                                            (item.Col === 2 && 
+                                                (
+                                                    (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800) || 
+                                                    (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)
+                                                )
+                                            )
+                                        )) &&
+                                            <div style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px", height: "500px"}} className="nftCard" key={index}>
+                                                <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                    <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                </div>
+                                                <div className="emp bold">{item.Name}</div>
+                                                <div className="bold">
+                                                    {item.RewardPerSec}
+                                                    &nbsp;
+                                                    {(item.Col === 1 && ((Number(item.Id) >= 710000102550 && Number(item.Id) <= 710010701000) || (Number(item.Id) >= 130000100500 && Number(item.Id) <= 130060000000) || (Number(item.Id) >= 310000102550 && Number(item.Id) <= 310010701000) || (Number(item.Id) >= 511000102550 && Number(item.Id) <= 511010701000) || (Number(item.Id) >= 611000102550 && Number(item.Id) <= 611010701000))) && '[x10 bonus]'}
+                                                    {(item.Col === 1 && ((Number(item.Id) >= 211000102550 && Number(item.Id) <= 211025601000) || (Number(item.Id) >= 312000102550 && Number(item.Id) <= 312025601000) || (Number(item.Id) >= 411000102550 && Number(item.Id) <= 411025601000) || (Number(item.Id) >= 512000102550 && Number(item.Id) <= 512025601000) || (Number(item.Id) >= 612000102550 && Number(item.Id) <= 612025601000) || (Number(item.Id) >= 711000102550 && Number(item.Id) <= 711010701000))) && '[x9 bonus]'}
+                                                    {(item.Col === 1 && ((Number(item.Id) >= 712000102550 && Number(item.Id) <= 712025601000))) && '[x8 bonus]'}
+                                                    &nbsp;cmpow
+                                                </div>
+                                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                {address !== null && intrasubModetext !== undefined ?
+                                                    <>
+                                                        {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                            <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                                                {item.isStaked ?
+                                                                    <>
+                                                                        {item.Col === 1 && 
+                                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot, false, ss)}>UNEQUIP L1</div>
+                                                                        }
+                                                                        {item.Ss !== undefined &&
+                                                                            <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => unstakeNft(item.Slot, true, item.Ss)}>UNEQUIP L2 SS{item.Ss}</div>
+                                                                        }
+                                                                    </> :
+                                                                    <>
+                                                                        {item.Col === 1 && 
+                                                                            <>
+                                                                                {((item.Id / 100000000000) | 0) === 1 && 
+                                                                                    <>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 1, false)}>EQUIP L1 MAIN CHAR</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 15, false)}>EQUIP L1 SOUL</div>
+                                                                                    </>
+                                                                                }
+                                                                                {((item.Id / 100000000000) | 0) === 2 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 2, false)}>EQUIP L1 HAT</div>}
+                                                                                {((item.Id / 100000000000) | 0) === 3 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 3, false)}>EQUIP L1 CLOTH</div>}
+                                                                                {((item.Id / 100000000000) | 0) === 4 && 
+                                                                                    <>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 4, false)}>EQUIP L1 ACC (1)</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 9, false)}>EQUIP L1 ACC (2)</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 10, false)}>EQUIP L1 ACC (3)</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 11, false)}>EQUIP L1 ACC (4)</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 12, false)}>EQUIP L1 ACC (5)</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 13, false)}>EQUIP L1 ACC (6)</div>
+                                                                                    </>
+                                                                                }
+                                                                                {((item.Id / 100000000000) | 0) === 5 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 5, false)}>EQUIP L1 BACK</div>}
+                                                                                {((item.Id / 100000000000) | 0) === 6 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 6, false)}>EQUIP L1 SHOES</div>}
+                                                                                {((item.Id / 100000000000) | 0) === 7 && 
+                                                                                    <>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 7, false)}>EQUIP L1 WEAPON (1)</div>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 14, false)}>EQUIP L1 WEAPON (2)</div>
+                                                                                    </>
+                                                                                }
+                                                                                {((item.Id / 100000000000) | 0) === 8 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 8, false)}>EQUIP L1 BADGE</div>}
+                                                                            </>
+                                                                        }
+                                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 102033419000 && Number(item.Id) <= 102066619000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS2 MAIN CHAR</div>}
+                                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 210000100250 && Number(item.Id) <= 210050001950)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS2 HAT</div>}
+                                                                        {(ss === 2 && item.Col === 2 && (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS2 CLOTH</div>}
+                                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 400030010900 && Number(item.Id) <= 400039910900)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS2 ACC</div>}
+                                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 510030010100 && Number(item.Id) <= 510039910100)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS2 BACK</div>}
+                                                                        {(ss === 2 && item.Col === 2 && (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS2 SHOES</div>}
+                                                                        {(ss === 2 && item.Col === 1 && (Number(item.Id) >= 730010010400 && Number(item.Id) <= 730019910400)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS2 WEAPON</div>}
+                                                                        <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                                    </>
+                                                                }
+                                                            </div> :
+                                                            <div style={{height: "41px"}}></div>
+                                                        }
+                                                    </> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </div>
+                                        }
+                                    </>
+                                ))}
                                 </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
+                                <div style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center", padding: "20px", margin: "10px", height: "500px"}} className="nftCard">
+                                    {address !== null ?
+                                        <>
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                        </> :
+                                        <>
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
+                                        </>
+                                    }
+                                </div>
                             }
+                        </div> :
+                        <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "500px"}}> 
+                            <div className="nftCard" style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
+                                <ThreeDots fill="#fff" />
+                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                            </div>
                         </div>
                     }
-                </div> :
-                <div style={{margin: "40px 0 80px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "500px"}}> 
-                    <div className="nftCard" style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "center"}}>
-                        <ThreeDots fill="#fff" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
-                    </div>
                 </div>
             }
-        </div>
-    </>
+        </>
     )
 }
 
