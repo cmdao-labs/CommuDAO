@@ -9,6 +9,10 @@ const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
+const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
+//const fbtcToken = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
+//const x4Token = '0x0DF9D160489440D630a247fBC830DA74779928b1'
+//const infpowToken = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const jazziJDAO = '0x3C061eEce15C539CaE99FbE75B3044236Fa2eff0'
@@ -18,8 +22,9 @@ const jazziGOLD = '0x7086EC7ED5D94ef503bE324B0aE8A3748A15fAE5'
 const jazziPLAT = '0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044'
 const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x329889325A555b217C41A4c2EADD529a0CfA4231'
+const jazziPLUTO = '0xd3d493ac2c0dD08C814FbbFB5f8B4983a8a0921C'
 
-const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, cmjBalance }) => {
+const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, plutoBalance, fbtcBalance, x4Balance, infpowBalance, cmjBalance }) => {
     const { address } = useAccount()
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("JDAO");
@@ -80,6 +85,13 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
     const [reserveOS, setReserveOS] = React.useState("")
     const [osLpBalance, setOsLpBalance] = React.useState("0")
 
+    const [cmjBoughtPLUTO, setCmjBoughtPLUTO] = React.useState("0.000")
+    const [tokenBoughtPLUTO, setTokenBoughtPLUTO] = React.useState("0.000")
+    const [pricePLUTO, setPricePLUTO] = React.useState("0.000")
+    const [reserveCmjPLUTO, setReserveCmjPLUTO] = React.useState("")
+    const [reservePLUTO, setReservePLUTO] = React.useState("")
+    const [plutoLpBalance, setPlutoLpBalance] = React.useState("0")
+
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
@@ -96,10 +108,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             addr = jazziOS
         } else if (index === 7) {
             addr = jazziPLAT
+        } else if (index === 8) {
+            addr = jazziPLUTO
         }
         setInputSwap(event.target.value)
         let _value = 0
-        if (index === 3) {
+        if (index === 3 || index === 8) {
             _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
         } else {
             _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -140,6 +154,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             event.target.value !== "" ? setCmjBoughtOS(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtOS("0.000")
         } else if (index === 7) {
             event.target.value !== "" ? setCmjBoughtPLAT(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPLAT("0.000")
+        } else if (index === 8) {
+            event.target.value !== "" ? setCmjBoughtPLUTO(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPLUTO("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -158,6 +174,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             addr = jazziOS
         } else if (index === 7) {
             addr = jazziPLAT
+        } else if (index === 8) {
+            addr = jazziPLUTO
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -197,6 +215,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             event.target.value !== "" ? setTokenBoughtOS(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtOS("0.000")
         } else if (index === 7) {
             event.target.value !== "" ? setTokenBoughtPLAT(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtPLAT("0.000")
+        } else if (index === 8) {
+            event.target.value !== "" ? setTokenBoughtPLUTO(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) : setTokenBoughtPLUTO("0.000")
         }
     }
 
@@ -241,6 +261,11 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             token = platToken
             currBoughtToken = cmjBoughtPLAT
             tokenBoughtCurr = tokenBoughtPLAT
+        } else if (index === 8) {
+            lp = jazziPLUTO
+            token = plutoToken
+            currBoughtToken = cmjBoughtPLUTO
+            tokenBoughtCurr = tokenBoughtPLUTO
         }
         setisLoading(true)
         try {
@@ -264,7 +289,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
                 }
-                if (index === 3) {
+                if (index === 3 || index === 8) {
                     let { request } = await simulateContract(config, {
                         address: lp,
                         abi: cmdaoAmmNpcABI,
@@ -305,7 +330,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
                 }
-                if (index === 3) {
+                if (index === 3 || index === 8) {
                     let { request } = await simulateContract(config, {
                         address: lp,
                         abi: cmdaoAmmNpcABI,
@@ -327,7 +352,10 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     setTxupdate(h)
                 }
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -347,6 +375,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             addr = jazziOS
         } else if (index === 7) {
             addr = jazziPLAT
+        } else if (index === 8) {
+            addr = jazziPLUTO
         }
         setisLoading(true)
         try {
@@ -359,7 +389,10 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -379,10 +412,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             addr = jazziOS
         } else if (index === 7) {
             addr = jazziPLAT
+        } else if (index === 8) {
+            addr = jazziPLUTO
         }
         setTokenAdd(event.target.value)
         let _value = 0
-        if (index === 3) {
+        if (index === 3 || index === 8) {
             _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
         } else {
             _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -418,6 +453,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             addr = jazziOS
         } else if (index === 7) {
             addr = jazziPLAT
+        } else if (index === 8) {
+            addr = jazziPLUTO
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -434,7 +471,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             functionName: 'getReserveCurrency',
         })
         const bigCurrReserv = ethers.BigNumber.from(_reserveCurr)
-        if (index === 3) {
+        if (index === 3 || index === 8) {
             event.target.value !== "" ? setTokenAdd(ethers.utils.formatUnits(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)), "gwei")) : setTokenAdd("")
         } else {
             event.target.value !== "" ? setTokenAdd(ethers.utils.formatEther(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)))) : setTokenAdd("")
@@ -465,6 +502,9 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
         } else if (index === 7) {
             lp = jazziPLAT
             token = platToken
+        } else if (index === 8) {
+            lp = jazziPLUTO
+            token = plutoToken
         }
         setisLoading(true)
         try {
@@ -503,7 +543,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
             }
-            if (index === 3) {
+            if (index === 3 || index === 8) {
                 let { request } = await simulateContract(config, {
                     address: lp,
                     abi: cmdaoAmmNpcABI,
@@ -524,7 +564,10 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -602,6 +645,16 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
+                    {
+                        address: jazziPLUTO,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: jazziPLUTO,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -619,6 +672,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             const _reserveSIL = data[11].result
             const _reserveCmjPLAT = data[12].result
             const _reservePLAT = data[13].result
+            const _reserveCmjPLUTO = data[14].result
+            const _reservePLUTO = data[15].result
 
             const data2 = await readContracts(config, {
                 contracts: [
@@ -664,6 +719,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                         functionName: 'getAmountOfTokens',
                         args: [String(10**18), String(_reservePLAT), String(_reserveCmjPLAT)],
                     },
+                    {
+                        address: jazziPLUTO,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getAmountOfTokens',
+                        args: [String(10**9), String(_reservePLUTO), String(_reserveCmjPLUTO)],
+                    },
                 ],
             })
 
@@ -674,6 +735,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             const tokensBoughtgoldTOcmj = data2[4].result
             const tokensBoughtsilTOcmj = data2[5].result
             const tokensBoughtplatTOcmj = data2[6].result
+            const tokensBoughtplutoTOcmj = data2[7].result
 
             const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
@@ -719,8 +781,14 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: jazziPLUTO,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
 
             const jdaolpBal = data3[0].result
             const culpBal = data3[1].result
@@ -729,6 +797,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             const jasplpBal = data3[4].result
             const oslpBal = data3[5].result
             const platlpBal = data3[6].result
+            const plutolpBal = data3[7].result
 
             return [
                 tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, 
@@ -740,6 +809,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                 _reserveCmjSIL, _reserveSIL, tokensBoughtsilTOcmj,
                 sillpBal, goldlpBal, jasplpBal, oslpBal,
                 _reserveCmjPLAT, _reservePLAT, tokensBoughtplatTOcmj, platlpBal,
+                _reserveCmjPLUTO, _reservePLUTO, tokensBoughtplutoTOcmj, plutolpBal,
             ]
         }
 
@@ -797,6 +867,11 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             result[26] !== null && setPricePLAT(Number(ethers.utils.formatEther(result[26])).toFixed(3))
             const _platlpbalance = ethers.utils.formatEther(result[27])
             setPlatLpBalance(Math.floor(_platlpbalance * 100000) / 100000)
+            setReserveCmjPLUTO(ethers.utils.formatEther(result[28]))
+            setReservePLUTO(ethers.utils.formatEther(result[29]))
+            result[30] !== null && setPricePLUTO(Number(ethers.utils.formatEther(result[30])).toFixed(3))
+            const _plutolpbalance = ethers.utils.formatEther(result[31])
+            setPlutoLpBalance(Math.floor(_plutolpbalance * 100000) / 100000)
         })
 
     }, [config, address, erc20Abi, cmdaoAmmNpcABI])
@@ -823,6 +898,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         <option value="GOLD">GOLD</option>
                                         <option value="PLAT">PLAT</option>
                                         <option value="JASP">JASP</option>
+                                        <option value="PLUTO">PLUTO</option>
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "1px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
@@ -833,6 +909,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         {gasselected === "JASP" && <>&nbsp;GWEI&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/> &nbsp;=&nbsp; <div className="emp">{priceJASP}</div></>}
                                         {gasselected === "OS" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/> &nbsp;=&nbsp; <div className="emp">{priceOS}</div></>}
                                         {gasselected === "PLAT" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/> &nbsp;=&nbsp; <div className="emp">{pricePLAT}</div></>}
+                                        {gasselected === "PLUTO" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" width="22" alt="$PLUTO"/> &nbsp;=&nbsp; <div className="emp">{pricePLUTO}</div></>}
                                         &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                     </div>
                                 </div>
@@ -863,6 +940,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         handleSwapUni(6, event)
                                     } else if (gasselected === "PLAT") {
                                         handleSwapUni(7, event)
+                                    } else if (gasselected === "PLUTO") {
+                                        handleSwapUni(8, event)
                                     }
                                 }}
                                 value={inputSwap}
@@ -909,6 +988,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                     <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "PLUTO" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: plutoBalance}}; handleSwapUni(8, bal);}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" width="22" alt="$PLUTO"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
@@ -928,6 +1013,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                             swapTokenHandleUni(6, true)
                                         } else if (gasselected === "PLAT") {
                                             swapTokenHandleUni(7, true)
+                                        } else if (gasselected === "PLUTO") {
+                                            swapTokenHandleUni(8, true)
                                         }
                                     }
                                 }>SELL</div> :
@@ -942,6 +1029,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                     {gasselected === "JASP" && Number(cmjBoughtJASP).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "OS" && Number(cmjBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLAT" && Number(cmjBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "PLUTO" && Number(cmjBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $CMJ (
                                     {gasselected === "JDAO" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</>}
@@ -951,6 +1039,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                     {gasselected === "JASP" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "OS" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjOS) - ((Number(reserveCmjOS) * Number(reserveOS)) / (Number(reserveOS) + Number(inputSwap))))) - (Number(reserveOS/reserveCmjOS))) / (Number(reserveOS/reserveCmjOS))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "PLAT" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjPLAT) - ((Number(reserveCmjPLAT) * Number(reservePLAT)) / (Number(reservePLAT) + Number(inputSwap))))) - (Number(reservePLAT/reserveCmjPLAT))) / (Number(reservePLAT/reserveCmjPLAT))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "PLUTO" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap/10**9) / (Number(reserveCmjPLUTO) - ((Number(reserveCmjPLUTO) * Number(reservePLUTO)) / (Number(reservePLUTO) + Number(inputSwap/10**9))))) - (Number(reservePLUTO/reserveCmjPLUTO))) / (Number(reservePLUTO/reserveCmjPLUTO))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -979,6 +1068,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         handleSwapUni_2(6, event)
                                     } else if (gasselected === "PLAT") {
                                         handleSwapUni_2(7, event)
+                                    } else if (gasselected === "PLUTO") {
+                                        handleSwapUni_2(8, event)
                                     }
                                 }}
                                 value={inputSwap2}
@@ -1001,6 +1092,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         handleSwapUni_2(6, bal)
                                     } else if (gasselected === "PLAT") {
                                         handleSwapUni_2(7, bal)
+                                    } else if (gasselected === "PLUTO") {
+                                        handleSwapUni_2(8, bal)
                                     }
                                 }}
                             >
@@ -1026,6 +1119,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                             swapTokenHandleUni(6, false)
                                         } else if (gasselected === "PLAT") {
                                             swapTokenHandleUni(7, false)
+                                        } else if (gasselected === "PLUTO") {
+                                            swapTokenHandleUni(8, false)
                                         }
                                     }
                                 }>BUY</div> :
@@ -1040,6 +1135,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                     {gasselected === "JASP" && Number(tokenBoughtJASP).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "OS" && Number(tokenBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLAT" && Number(tokenBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "PLUTO" && Number(tokenBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 ${gasselected} ( 
                                     {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</>}
@@ -1049,6 +1145,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                     {gasselected === "JASP" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "OS" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveOS) - ((Number(reserveOS) * Number(reserveCmjOS)) / (Number(reserveCmjOS) + Number(inputSwap2))))) - (Number(reserveCmjOS/reserveOS))) / (Number(reserveCmjOS/reserveOS))) * 100)).toFixed(2)}%</>}
                                     {gasselected === "PLAT" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reservePLAT) - ((Number(reservePLAT) * Number(reserveCmjPLAT)) / (Number(reserveCmjPLAT) + Number(inputSwap2))))) - (Number(reserveCmjPLAT/reservePLAT))) / (Number(reserveCmjPLAT/reservePLAT))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "PLUTO" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reservePLUTO) - ((Number(reservePLUTO) * Number(reserveCmjPLUTO)) / (Number(reserveCmjPLUTO) + Number(inputSwap2))))) - (Number(reserveCmjPLAT/reservePLUTO))) / (Number(reserveCmjPLUTO/reservePLUTO))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap2) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -1071,6 +1168,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         <option value="GOLD">GOLD</option>
                                         <option value="PLAT">PLAT</option>
                                         <option value="JASP">JASP</option>
+                                        <option value="PLUTO">PLUTO</option>
                                     </select>
                                     <div
                                         style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}}
@@ -1091,6 +1189,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                                     setLpSell(String(osLpBalance))
                                                 } else if (gasselected === "PLAT") {
                                                     setLpSell(String(platLpBalance))
+                                                } else if (gasselected === "PLUTO") {
+                                                    setLpSell(String(plutoLpBalance))
                                                 }
                                             }
                                         }
@@ -1102,6 +1202,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         {gasselected === "JASP" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(jaspLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "OS" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(osLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "PLAT" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(platLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "PLUTO" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(plutoLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -1129,6 +1230,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                             removeLpUni(6)
                                         } else if (gasselected === "PLAT") {
                                             removeLpUni(7)
+                                        } else if (gasselected === "PLUTO") {
+                                            removeLpUni(8)
                                         }
                                     }
                                 }
@@ -1160,6 +1263,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         handleAddUni(6, event)
                                     } else if (gasselected === "PLAT") {
                                         handleAddUni(7, event)
+                                    } else if (gasselected === "PLUTO") {
+                                        handleAddUni(8, event)
                                     }
                                 }}
                                 value={tokenAdd}
@@ -1206,6 +1311,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                     <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "PLUTO" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(plutoBalance)}}; handleAddUni(8, bal);}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLUTO"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -1231,6 +1342,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                         handleAddUni_2(6, event)
                                     } else if (gasselected === "PLAT") {
                                         handleAddUni_2(7, event)
+                                    } else if (gasselected === "PLUTO") {
+                                        handleAddUni_2(8, event)
                                     }
                                 }}
                                 value={currAdd}
@@ -1254,6 +1367,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                             handleAddUni_2(6, bal)
                                         } else if (gasselected === "PLAT") {
                                             handleAddUni_2(7, bal)
+                                        } else if (gasselected === "PLUTO") {
+                                            handleAddUni_2(8, bal)
                                         }
                                     }
                                 }
@@ -1283,6 +1398,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                                                 addLpHandleUni(6)
                                             } else if (gasselected === "PLAT") {
                                                 addLpHandleUni(7)
+                                            } else if (gasselected === "PLUTO") {
+                                                addLpHandleUni(8)
                                             }
                                         }
                                     }

@@ -19,8 +19,9 @@ const sx31CmjLp = '0xda558EE93B466aEb4F59fBf95D25d410318be43A'
 const woodCmjLp = '0x466C3b32538eB0DB9f6c88ee2Fa9c72C495cE08F'
 const bbqCmjLp = '0x6F93F16cF86205C5BB9145078d584c354758D6DB'
 const pzaCmjLp = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
+const plutoCmjLp = '0xd3d493ac2c0dD08C814FbbFB5f8B4983a8a0921C'
    
-const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20Abi, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB, cmdaoAmmNpcABI }) => {
+const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20Abi, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB, cmdaoAmmNpcABI }) => {
     const [jbcJdaoStaked, setJbcJdaoStaked] = React.useState(0)
     const [cmjJdaoStaked, setCmjJdaoStaked] = React.useState(0)
     const [yourjbcJdaoStaked, setYourJbcJdaoStaked] = React.useState(0)
@@ -171,6 +172,17 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
     const [lpJdao15Withdraw, setLpJdao15Withdraw] = React.useState("")
     const [lpJdao15Stake, setLpJdao15Stake] = React.useState("")
 
+    const [plutoCmjBalance, setPlutoCmjBalance] = React.useState(null)
+    const [reserveCmjPLUTO, setReserveCmjPLUTO] = React.useState("")
+    const [reservePLUTO, setReservePLUTO] = React.useState("")
+    const [cmjPlutoStaked, setCmjPlutoStaked] = React.useState(0)
+    const [cmjPlutoPooled, setCmjPlutoPooled] = React.useState(0)
+    const [yourcmjPlutoStaked, setYourCmjPlutoStaked] = React.useState(0)
+    const [farmJdao16Balance, setFarmJdao16Balance] = React.useState(null)
+    const [jdao16Pending, setJdao16Pending] = React.useState(<>0.000</>)
+    const [lpJdao16Withdraw, setLpJdao16Withdraw] = React.useState("")
+    const [lpJdao16Stake, setLpJdao16Stake] = React.useState("")
+
     const [swapfee24hour1, setSwapfee24hour1] = React.useState("")
     const [swapfee24hour2, setSwapfee24hour2] = React.useState("")
     const [swapfee24hour3, setSwapfee24hour3] = React.useState("")
@@ -197,6 +209,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
     const [swapfee24hour13_2, setSwapfee24hour13_2] = React.useState("")
     const [swapfee24hour14, setSwapfee24hour14] = React.useState("")
     const [swapfee24hour14_2, setSwapfee24hour14_2] = React.useState("")
+    const [swapfee24hour15, setSwapfee24hour15] = React.useState("")
+    const [swapfee24hour15_2, setSwapfee24hour15_2] = React.useState("")
 
     const harvestHandle = async () => {
         setisLoading(true)
@@ -210,7 +224,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const harvestHandle202 = async () => {
@@ -225,7 +242,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const harvestHandle3 = async () => {
@@ -240,7 +260,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const [lpJdaoWithdraw, setLpJdaoWithdraw] = React.useState("")
@@ -268,7 +291,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const handleWithdraw202 = (event) => { setLpJdao202Withdraw(event.target.value) }
@@ -293,7 +319,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const handleWithdraw3 = (event) => { setLpJdao3Withdraw(event.target.value) }
@@ -318,7 +347,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const [lpJdaoStake, setLpJdaoStake] = React.useState("")
@@ -364,7 +396,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const handleStake3 = (event) => { setLpJdao3Stake(event.target.value) }
@@ -408,7 +443,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -452,6 +490,9 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
         } else if (_index === 16) {
             lp = woodCmjLp
             stake = lpJdao15Stake 
+        } else if (_index === 17) {
+            lp = plutoCmjLp
+            stake = lpJdao16Stake
         }
         try {
             const lpAllow = await readContract(config, {
@@ -482,7 +523,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const withdrawstakeHandleAll = async (_index) => {
@@ -512,6 +556,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             withdraw = lpJdao14Withdraw 
         } else if (_index === 16) {
             withdraw = lpJdao15Withdraw 
+        } else if (_index === 17) {
+            withdraw = lpJdao16Withdraw 
         }
         try {
             let { request } = await simulateContract(config, {
@@ -523,7 +569,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const harvestHandleAll = async (_index) => {
@@ -538,7 +587,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -558,6 +610,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
         const osSC = new ethers.Contract('0xAc5299D92373E9352636559cca497d7683A47655', erc20Abi, providerJBC)
         const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20Abi, providerJBC)
         const jaspSC = new ethers.Contract('0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860', erc20Abi, providerJBC)
+        const plutoSC = new ethers.Contract('0x70a74ec50bcceae43dd16f48492552a8b25403ea', erc20Abi, providerJBC)
 
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber()
@@ -685,6 +738,15 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             const fee28Map = await Promise.all(fee28Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee14 = fee27Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee14_2 = fee28Map.reduce((partialSum, a) => partialSum + a, 0)
+
+            const fee29Filter = await cmjSC.filters.Transfer(plutoCmjLp, merchant, null)
+            const fee29Event = await cmjSC.queryFilter(fee29Filter, blockNumber - 7200, 'latest')
+            const fee29Map = await Promise.all(fee29Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee30Filter = await plutoSC.filters.Transfer(plutoCmjLp, merchant, null)
+            const fee30Event = await plutoSC.queryFilter(fee30Filter, blockNumber - 7200, 'latest')
+            const fee30Map = await Promise.all(fee30Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee15 = fee29Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee15_2 = fee30Map.reduce((partialSum, a) => partialSum + a, 0)
 
             const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
@@ -940,8 +1002,26 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                         functionName: 'pendingCake',
                         args: [16, address],
                     },
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'userInfo',
+                        args: [17, address],
+                    },
+                    {
+                        address: plutoCmjLp,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'pendingCake',
+                        args: [17, address],
+                    },
                 ],
-            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},]
+            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},]
 
             const farmJdaoBal = data[0]
             const jdaoPend = data[1]
@@ -985,6 +1065,9 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             const farmJdao15Bal = data[39]
             const woodcmjbal = data[40]
             const jdao15Pend = data[41]
+            const farmJdao16Bal = data[42]
+            const plutocmjbal = data[43]
+            const jdao16Pend = data[44]
 
             const data2 = await readContracts(config, {
                 contracts: [
@@ -1268,6 +1351,27 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
+                    {
+                        address: plutoCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: plutoCmjLp,
+                        abi: erc20Abi,
+                        functionName: 'totalSupply',
+                    },
+                    {
+                        address: plutoCmjLp,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [farmJdao],
+                    },
+                    {
+                        address: plutoCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -1325,6 +1429,11 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             const _reserveCU = data2[50]
             const _reserveOS = data2[51]
             const _reserveJASP = data2[52]
+
+            const _reserveCmjPLUTO = data2[53]
+            const plutoCmjTotalSup = data2[54]
+            const farmJdao16TotalStake = data2[55]
+            const _reservePLUTO = data2[56]
             
             return [
                 jclpTotalSup, julpTotalSup, farmJdaoBal, farmJdaoTotalStake, jdaoPend, farmJdao202Bal, farmJdao202TotalStake, jdao202Pend, farmJdao3Bal, farmJdao3TotalStake, jdao3Pend,
@@ -1341,6 +1450,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                 farmJdao14Bal, jdao14Pend, pzacmjbal, _reserveCmjPZA, pzaCmjTotalSup, farmJdao14TotalStake, sumFee13,
                 farmJdao15Bal, jdao15Pend, woodcmjbal, _reserveCmjWOOD, woodCmjTotalSup, farmJdao15TotalStake, sumFee14,
                 _reserveBBQ, sumFee12_2, _reservePZA, sumFee13_2, _reserveWOOD, sumFee14_2, _reserveSX31, sumFee11_2, _reserveCTUNA, sumFee10_2, _reservePLAT, sumFee9_2, _reserveGOLD, sumFee8_2, _reserveSIL, sumFee7_2, _reserveCU, sumFee6_2,  _reserveOS, sumFee5_2,  sumFee4_2, _reserveJASP, sumFee3_2,
+                farmJdao16Bal, jdao16Pend, plutocmjbal, _reserveCmjPLUTO, plutoCmjTotalSup, farmJdao16TotalStake, sumFee15, _reservePLUTO, sumFee15_2,
             ]
         }
 
@@ -1564,6 +1674,21 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             setSwapfee24hour14(Number(result[97]).toFixed(0))
             setReserveWOOD(ethers.utils.formatEther(result[102].result))
             setSwapfee24hour14_2(Number(result[103]).toFixed(0))
+
+            const _farmjdao16balance = ethers.utils.formatEther(result[121].result[0])
+            setFarmJdao16Balance(_farmjdao16balance)
+            setJdao16Pending(Number(ethers.utils.formatEther(result[122].result)).toFixed(4))
+            setPlutoCmjBalance(ethers.utils.formatEther(result[123].result))
+            const _cmjplutoreserve = ethers.utils.formatEther(result[124].result)
+            setReserveCmjPLUTO(_cmjplutoreserve)
+            const _plutocmjtotalsupply = ethers.utils.formatEther(result[125].result)
+            const _farmjdao16totalstake = ethers.utils.formatEther(result[126].result)
+            setCmjPlutoStaked((Number(_cmjplutoreserve) * Number(_farmjdao16totalstake)) / Number(_plutocmjtotalsupply))
+            setCmjPlutoPooled((Number(_cmjplutoreserve) * Number(ethers.utils.formatEther(result[123].result))) / Number(_plutocmjtotalsupply))
+            setYourCmjPlutoStaked((Number(_cmjplutoreserve) * Number(_farmjdao16totalstake)) / Number(_plutocmjtotalsupply))
+            setSwapfee24hour15(Number(result[127]).toFixed(0))
+            setReservePLUTO(ethers.utils.formatEther(result[128].result))
+            setSwapfee24hour15_2(Number(result[129]).toFixed(0))
         })
     }, [config, address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20Abi, cmdaoAmmNpcABI])
 
@@ -2226,6 +2351,83 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
             <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
+                        <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xd3d493ac2c0dD08C814FbbFB5f8B4983a8a0921C" target="_blank" rel="noreferrer">
+                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" alt="$PLUTO" />
+                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />            
+                        </a>
+                        <a href="https://exp-l1.jibchain.net/token/0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" /></a>
+                    </div>
+                    <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>APR:</div>
+                        <div style={{textAlign: "right"}}>
+                            <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
+                                {Number(100 * (((Math.floor((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>Total Daily Yield:</div>
+                        <div style={{textAlign: "right"}}>
+                            <div>
+                                ~฿{Number((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                            </div> 
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4533)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                        </div>
+                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>Total Liquidity Locked:</div>
+                        {cmjPlutoStaked !== 0 ? <div>~฿{Number(((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                    </div>
+                    <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
+                            <div>JDAO EARNED:</div>
+                            <div className="bold">{jdao16Pending}</div>
+                        </div>
+                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(17)}>Harvest</div>
+                    </div>
+                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>LP STAKED</div>
+                            {farmJdao16Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={() => setLpJdao16Withdraw(farmJdao16Balance)}>{Number(Math.floor(farmJdao16Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor((yourcmjPlutoStaked * 2) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                        </div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <input
+                                placeholder="0.0"
+                                className="bold"
+                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                value={lpJdao16Withdraw}
+                                onChange={(event) => setLpJdao16Withdraw(event.target.value)}
+                            />
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(17)}>Withdraw</div>
+                        </div>
+                    </div>
+                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>LP BALANCE</div>
+                            {plutoCmjBalance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={() => setLpJdao16Stake(plutoCmjBalance)}>{(Math.floor(Number(plutoCmjBalance) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor((cmjPlutoPooled * 2) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                        </div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <input
+                                placeholder="0.0"
+                                className="bold"
+                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                value={lpJdao16Stake}
+                                onChange={(event) => setLpJdao16Stake(event.target.value)}
+                            />
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(17)}>Stake</div>
+                        </div>
+                    </div>
+                </div>
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px"}} className="nftCard"></div>
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px"}} className="nftCard"></div>
+            </div>
+
+            <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px"}} className="nftCard"></div>
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                    <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x7801F8cdBABE6999331d1Bf37d74aAf713C3722F" target="_blank" rel="noreferrer">
                             <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" alt="$CTUNA" />
                             <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />            
@@ -2367,7 +2569,9 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}> 
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x466C3b32538eB0DB9f6c88ee2Fa9c72C495cE08F" target="_blank" rel="noreferrer">
@@ -2439,9 +2643,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}> 
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x6F93F16cF86205C5BB9145078d584c354758D6DB" target="_blank" rel="noreferrer">
@@ -2585,7 +2786,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div style={{marginBottom: "80px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}> 
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a href="https://exp-l1.jibchain.net/token/0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /></a>                       
@@ -2650,6 +2852,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, lp
                         </div>
                     </div>
                 </div>
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", border: "none", boxShadow: "none", background: "transparent"}} className="nftCard"></div>
+                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", border: "none", boxShadow: "none", background: "transparent"}} className="nftCard"></div>
             </div>
         </>
     )

@@ -71,7 +71,7 @@ const inputStyle = {
     }),
 }
    
-const GameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, exchangeABI, exchangeJulpABI, farmJdaoABI, swapABI, swapJulpABI, bkcOracleABI, cmdaoAmmNpcABI }) => {
+const GameSwap = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, exchangeABI, exchangeJulpABI, farmJdaoABI, swapABI, swapJulpABI, bkcOracleABI, cmdaoAmmNpcABI }) => {
     const { address } = useAccount()
 
     const [mode, setMode] = React.useState(0)
@@ -850,6 +850,8 @@ const GameSwap = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, excha
                 setisLoading={setisLoading}
                 setTxupdate={setTxupdate}
                 txupdate={txupdate}
+                setisError={setisError}
+                setErrMsg={setErrMsg}
                 lpBalance={lpBalance}
                 julpBalance={julpBalance}
                 jbcPooled={jbcPooled}

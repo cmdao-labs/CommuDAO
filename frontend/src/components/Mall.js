@@ -32,7 +32,10 @@ const silToken = '0x2a081667587c35956d34A4cC3bf92b9CA0ef2C6f'
 const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
-
+const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
+const fbtcToken = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
+const x4Token = '0x0DF9D160489440D630a247fBC830DA74779928b1'
+const infpowToken = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 const cmdaoMerchant = "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D"
 const cmdaoMerchantV105 = '0x09e6a0A03afa27438c3f507de82b5f6061Ae1643'
 const cmdaoMerchantV2 = "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a"
@@ -40,10 +43,9 @@ const cmdaoMerchantKYC = "0xF67761e0E72fea7bD176686a242f1535879be8aB"
 const cmdaoMerchantWL = '0x010EbE14315F976967E6aE408Af5881617b86E09'
 const cmdaoGasha02 = '0x87A612709b36b575103C65a90cB3B16Cac2BC898'
 const cmdaoPresale = '0xbf9C07f7223D09899c1BEC25f8Db559828166E78'
-
 const kyc = '0xfB046CF7dBA4519e997f1eF3e634224a9BFf5A2E'
 
-const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, wjbcABI, presaleABI }) => {
+const Mall = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantKYCABI, cmdaoMerchantV2ABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, ammyStdABI, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, wjbcABI, presaleABI }) => {
     const { address } = useAccount()
 
     const [isWrappedModal, setIsWrappedModal] = React.useState(false)
@@ -118,6 +120,10 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [platBalance, setPlatBalance] = React.useState(0)
     const [jaspBalance, setJaspBalance] = React.useState(0)
+    const [plutoBalance, setPlutoBalance] = React.useState(0)
+    const [fbtcBalance, setFbtcBalance] = React.useState(0)
+    const [x4Balance, setX4Balance] = React.useState(0)
+    const [infpowBalance, setInfpowBalance] = React.useState(0)
     const [osBalance, setOsBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
@@ -302,11 +308,35 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: plutoToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: fbtcToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: x4Token,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: infpowToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
             }) : [
                 {result: false}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
                 {result: true}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
-                {result: 0}, {result: 0}, {result: 0}, {result: false}, {result: 0}, {result: 0},
+                {result: 0}, {result: 0}, {result: 0}, {result: false}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
             ]
             
             const _isKYC = data[0].result
@@ -337,6 +367,10 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
 
             const doijibBal = data[24].result
             const woodBal = data[25].result
+            const plutoBal = data[26].result
+            const fbtcBal = data[27].result
+            const x4Bal = data[28].result
+            const infpowBal = data[29].result
 
             const data2 = await readContracts(config, {
                 contracts: [
@@ -739,7 +773,7 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
                 sell19remain, sell20remain, sell21remain, sell22remain, sell23remain, _canBuy23, sell24remain, sell25remain, sell26remain, sell27remain, sell28remain, sell29remain, sell30remain,
                 ctunaBal, sx31Bal, jusdtBal, cmjBal, bbqBal, pzaBal, cuBal, jaspBal, osBal, goldBal, wjbcBal, swarBal, silBal, jdaoBal, angbBal, jtaoBal, iiBal, eeBal, platBal, gearBal,
                 sell31remain, sell32remain, sell33remain, sell34remain, sell35remain, sell36remain, _canBuy31, _canBuy32, _canBuy33, _isWL6, doijibBal, woodBal,
-                presale01[3],
+                presale01[3], plutoBal, fbtcBal, x4Bal, infpowBal,
             ]
         }
 
@@ -837,6 +871,10 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
             setCanBuy33(result[82])
             setIsWL6(result[83])
             setDoijibRemain(ethers.utils.formatEther(String(result[86])))
+            setPlutoBalance(ethers.utils.formatUnits(String(result[87]), "gwei"))
+            setFbtcBalance(result[88])
+            setX4Balance(ethers.utils.formatEther(String(result[89])))
+            setInfpowBalance(ethers.utils.formatEther(String(result[90])))
         })
     }, [config, address, txupdate, kycABI, ctunaLabABI, cmdaoMerchantABI, cmdaoMerchantV2ABI, cmdaoMerchantKYCABI, cmdaoMerchantWLABI, cmdaoGasha02ABI, erc20Abi, presaleABI])
 
@@ -1752,6 +1790,100 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
                     </div>
                     <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                         <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
+                            width="20"
+                            alt="$PLUTO"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: platToken,
+                                            symbol: 'PLUTO',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:2})} GWEI</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC"
+                            width="20"
+                            alt="$F.BTC"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: fbtcToken,
+                                            symbol: 'F.BTC',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:2})} SAT</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh"
+                            width="20"
+                            alt="$X4"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: x4Token,
+                                            symbol: 'X4',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(x4Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                    </div>
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                            width="20"
+                            alt="$INF.POW"
+                            style={{cursor: "crosshair"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: infpowToken,
+                                            symbol: 'INF-POW-JBC',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                        <div style={{marginLeft: "5px"}}>{Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                    </div>
+                </div>
+                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
+                    <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                        <img
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
                             width="20"
                             alt="$OS"
@@ -1971,7 +2103,7 @@ const Mall = ({ config, setisLoading, txupdate, setTxupdate, kycABI, ctunaLabABI
                 <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Automated Market Maker NPC</div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                     <Ammmerchant config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} ctunaBalance={ctunaBalance} sx31Balance={sx31Balance} bbqBalance={bbqBalance} pzaBalance={pzaBalance} woodBalance={woodBalance} cmjBalance={cmjBalance} />
-                    <Ammmerchant2 config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} platBalance={platBalance} cmjBalance={cmjBalance} />
+                    <Ammmerchant2 config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} jdaoBalance={jdaoBalance} cuBalance={cuBalance} silBalance={silBalance} goldBalance={goldBalance} jaspBalance={jaspBalance} osBalance={osBalance} platBalance={platBalance} plutoBalance={plutoBalance} fbtcBalance={fbtcBalance} x4Balance={x4Balance} infpowBalance={infpowBalance} cmjBalance={cmjBalance} />
                     <Ammmerchant3 config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} cmdaoAmmNpcABI={cmdaoAmmNpcABI} ammyStdABI={ammyStdABI} erc20Abi={erc20Abi} doijibBalance={doijibBalance} wjbcBalance={wjbcBalance} woodBalance={woodBalance} />
                 </div>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
