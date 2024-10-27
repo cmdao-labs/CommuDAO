@@ -14,6 +14,7 @@ const gold = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const plat = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jasp = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const pluto = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
+const fbtc = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
 const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
@@ -96,6 +97,11 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
     const [plutoCirculation, setPlutoCirculation] = React.useState(0)
     const [plutoStat, setPlutoStat] = React.useState([0, 0])
 
+    const [fbtcSupply, setFbtcSupply] = React.useState(0)
+    const [fbtcBurn, setFbtcBurn] = React.useState(0)
+    const [fbtcCirculation, setFbtcCirculation] = React.useState(0)
+    const [fbtcStat, setFbtcStat] = React.useState([0, 0])
+
     const [osSupply, setOsSupply] = React.useState(0)
     const [osLocked, setOsLocked] = React.useState(0)
     const [osBurn, setOsBurn] = React.useState(0)
@@ -120,6 +126,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
         const platSC = new ethers.Contract(plat, erc20Abi, providerJBC)
         const jaspSC = new ethers.Contract(jasp, erc20Abi, providerJBC)
         const plutoSC = new ethers.Contract(pluto, erc20Abi, providerJBC)
+        const fbtcSC = new ethers.Contract(fbtc, erc20Abi, providerJBC)
         const osSC = new ethers.Contract(os, erc20Abi, providerJBC)
         const jdaoSC = new ethers.Contract(jdao, erc20Abi, providerJBC)
               
@@ -253,11 +260,18 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             const plutoEvent = await plutoSC.queryFilter(plutoFilter, blockNumber - 7200, 'latest')
             const plutoMap = await Promise.all(plutoEvent.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
             const plutoMint = plutoMap.reduce((partialSum, a) => partialSum + a, 0)
-
             const plutoFilter2 = await plutoSC.filters.Transfer(null, burn, null)
             const plutoEvent2 = await plutoSC.queryFilter(plutoFilter2, blockNumber - 7200, 'latest')
             const plutoMap2 = await Promise.all(plutoEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
             const plutoBurn = plutoMap2.reduce((partialSum, a) => partialSum + a, 0)
+            const fbtcFilter = await fbtcSC.filters.Transfer(genesis, null, null)
+            const fbtcEvent = await fbtcSC.queryFilter(fbtcFilter, blockNumber - 7200, 'latest')
+            const fbtcMap = await Promise.all(fbtcEvent.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
+            const fbtcMint = fbtcMap.reduce((partialSum, a) => partialSum + a, 0)
+            const fbtcFilter2 = await fbtcSC.filters.Transfer(null, burn, null)
+            const fbtcEvent2 = await fbtcSC.queryFilter(fbtcFilter2, blockNumber - 7200, 'latest')
+            const fbtcMap2 = await Promise.all(fbtcEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
+            const fbtcBurn = fbtcMap2.reduce((partialSum, a) => partialSum + a, 0)
 
             const dataCMJ = await readContracts(config, {
                 contracts: [
@@ -640,6 +654,30 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                     },
                 ],
             })
+            const dataFBTC = await readContracts(config, {
+                contracts: [
+                    {
+                        address: fbtc,
+                        abi: erc20Abi,
+                        functionName: 'totalSupply',
+                        chainId: 8899,
+                    },
+                    {
+                        address: fbtc,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [burn],
+                        chainId: 8899,
+                    },
+                    {
+                        address: fbtc,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
+                    },
+                ],
+            })
 
             const dataOS = await readContracts(config, {
                 contracts: [
@@ -733,7 +771,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             return [
                 dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
                 (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],
-                [plutoMint, plutoBurn], dataPLUTO,
+                [plutoMint, plutoBurn], dataPLUTO, [fbtcMint, fbtcBurn], dataFBTC,
             ]
         }
 
@@ -828,6 +866,10 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             setPlutoSupply(ethers.utils.formatUnits(String(result[29][0].result), "gwei"))
             setPlutoBurn(Number(ethers.utils.formatUnits(String(result[29][1].result), "gwei")) + Number(ethers.utils.formatUnits(String(result[29][2].result), "gwei")))
             setPlutoCirculation(Number(ethers.utils.formatUnits(String(result[29][0].result), "gwei")) - (Number(ethers.utils.formatUnits(String(result[29][1].result), "gwei")) + Number(ethers.utils.formatUnits(String(result[29][2].result), "gwei"))))
+            setFbtcStat(result[30])
+            setFbtcSupply(String(result[31][0].result))
+            setFbtcBurn(Number((result[31][1].result)) + Number(result[31][2].result))
+            setFbtcCirculation(Number(result[31][0].result) - (Number(result[31][1].result) + Number(result[31][2].result)))
         })
     }, [config, erc20Abi])
 
@@ -1370,6 +1412,42 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
                                 <div style={{color: "#fff"}}>{Number((((plutoStat[0] - plutoStat[1]) * 365)/plutoCirculation)*100).toFixed(4)}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "15px", border: "1px solid rgb(54, 77, 94)", width: "400px", height: "300px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">$FBTC Tracker</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(fbtcSupply).toLocaleString('en-US', {maximumFractionDigits:0})} SAT (100%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(fbtcBurn).toLocaleString('en-US', {maximumFractionDigits:0})} SAT ({Number((fbtcBurn/fbtcSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
+                                <div>Circulating Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(fbtcCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} SAT ({Number((fbtcCirculation/fbtcSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(fbtcStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})} SAT</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(fbtcStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} SAT</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(fbtc[0] - fbtcStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} SAT ({Number(((fbtcStat[0] - fbtcStat[1])/fbtcCirculation)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((fbtcStat[0] - fbtcStat[1]) * 365)/fbtcCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>

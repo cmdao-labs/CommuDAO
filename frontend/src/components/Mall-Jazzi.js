@@ -10,7 +10,7 @@ const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
 const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
-//const fbtcToken = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
+const fbtcToken = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
 //const x4Token = '0x0DF9D160489440D630a247fBC830DA74779928b1'
 //const infpowToken = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
@@ -23,6 +23,7 @@ const jazziPLAT = '0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044'
 const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x329889325A555b217C41A4c2EADD529a0CfA4231'
 const jazziPLUTO = '0xd3d493ac2c0dD08C814FbbFB5f8B4983a8a0921C'
+const jazziFBTC = '0x4EF48881EFf572bBD636bcE736877881B9Ea17D5'
 
 const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, plutoBalance, fbtcBalance, x4Balance, infpowBalance, cmjBalance }) => {
     const { address } = useAccount()
@@ -92,6 +93,13 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     const [reservePLUTO, setReservePLUTO] = React.useState("")
     const [plutoLpBalance, setPlutoLpBalance] = React.useState("0")
 
+    const [cmjBoughtFBTC, setCmjBoughtFBTC] = React.useState("0.000")
+    const [tokenBoughtFBTC, setTokenBoughtFBTC] = React.useState("0.000")
+    const [priceFBTC, setPriceFBTC] = React.useState("0.000")
+    const [reserveCmjFBTC, setReserveCmjFBTC] = React.useState("")
+    const [reserveFBTC, setReserveFBTC] = React.useState("")
+    const [fbtcLpBalance, setFbtcLpBalance] = React.useState("0")
+
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
@@ -110,11 +118,15 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLAT
         } else if (index === 8) {
             addr = jazziPLUTO
+        } else if (index === 9) {
+            addr = jazziFBTC
         }
         setInputSwap(event.target.value)
         let _value = 0
         if (index === 3 || index === 8) {
             _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
+        } else if (index === 9) {
+            _value = event.target.value !== "" ? event.target.value : 0
         } else {
             _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         }
@@ -156,6 +168,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             event.target.value !== "" ? setCmjBoughtPLAT(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPLAT("0.000")
         } else if (index === 8) {
             event.target.value !== "" ? setCmjBoughtPLUTO(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPLUTO("0.000")
+        } else if (index === 9) {
+            event.target.value !== "" ? setCmjBoughtFBTC(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtFBTC("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -176,6 +190,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLAT
         } else if (index === 8) {
             addr = jazziPLUTO
+        } else if (index === 9) {
+            addr = jazziFBTC
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -217,6 +233,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             event.target.value !== "" ? setTokenBoughtPLAT(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtPLAT("0.000")
         } else if (index === 8) {
             event.target.value !== "" ? setTokenBoughtPLUTO(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) : setTokenBoughtPLUTO("0.000")
+        } else if (index === 9) {
+            event.target.value !== "" ? setTokenBoughtFBTC(String(tokensBoughtcurrTOtoken)) : setTokenBoughtFBTC("0.000")
         }
     }
 
@@ -266,6 +284,11 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             token = plutoToken
             currBoughtToken = cmjBoughtPLUTO
             tokenBoughtCurr = tokenBoughtPLUTO
+        } else if (index === 9) {
+            lp = jazziFBTC
+            token = fbtcToken
+            currBoughtToken = cmjBoughtFBTC
+            tokenBoughtCurr = tokenBoughtFBTC
         }
         setisLoading(true)
         try {
@@ -295,6 +318,16 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         abi: cmdaoAmmNpcABI,
                         functionName: 'tokenTOcurrency',
                         args: [ethers.utils.parseUnits(inputSwap, "gwei"), ethers.utils.parseEther(currBoughtToken)],
+                    })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
+                } else if (index === 9) {
+                    let { request } = await simulateContract(config, {
+                        address: lp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'tokenTOcurrency',
+                        args: [String(inputSwap), ethers.utils.parseEther(currBoughtToken)],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -340,6 +373,16 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
                     setTxupdate(h)
+                } else if (index === 9) {
+                    let { request } = await simulateContract(config, {
+                        address: lp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'currencyTOtoken',
+                        args: [ethers.utils.parseEther(inputSwap2), String(tokenBoughtCurr)],
+                    })
+                    let h = await writeContract(config, request)
+                    await waitForTransactionReceipt(config, { hash: h })
+                    setTxupdate(h)
                 } else {
                     let { request } = await simulateContract(config, {
                         address: lp,
@@ -377,6 +420,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLAT
         } else if (index === 8) {
             addr = jazziPLUTO
+        } else if (index === 9) {
+            addr = jazziFBTC
         }
         setisLoading(true)
         try {
@@ -414,11 +459,15 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLAT
         } else if (index === 8) {
             addr = jazziPLUTO
+        } else if (index === 9) {
+            addr = jazziFBTC
         }
         setTokenAdd(event.target.value)
         let _value = 0
         if (index === 3 || index === 8) {
             _value = event.target.value !== "" ? ethers.utils.parseUnits(event.target.value, "gwei") : 0
+        } else if (index === 9) {
+            _value = event.target.value !== "" ? event.target.value : 0
         } else {
             _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         }
@@ -455,6 +504,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLAT
         } else if (index === 8) {
             addr = jazziPLUTO
+        } else if (index === 9) {
+            addr = jazziFBTC
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -473,6 +524,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         const bigCurrReserv = ethers.BigNumber.from(_reserveCurr)
         if (index === 3 || index === 8) {
             event.target.value !== "" ? setTokenAdd(ethers.utils.formatUnits(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)), "gwei")) : setTokenAdd("")
+        } else if (index === 9) {
+            event.target.value !== "" ? setTokenAdd(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv))) : setTokenAdd("")
         } else {
             event.target.value !== "" ? setTokenAdd(ethers.utils.formatEther(((bigValue.mul(bigTokenReserv)).div(bigCurrReserv)))) : setTokenAdd("")
         }
@@ -505,6 +558,9 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         } else if (index === 8) {
             lp = jazziPLUTO
             token = plutoToken
+        } else if (index === 9) {
+            lp = jazziFBTC
+            token = fbtcToken
         }
         setisLoading(true)
         try {
@@ -517,7 +573,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const bigValue = currAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(currAdd)) : ethers.BigNumber.from(0)
             const Hex = ethers.BigNumber.from(10**8)
             const bigApprove = bigValue.mul(Hex)
-            if (Number(currAdd) > Number(currAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(currAllow)) < Number(currAdd)) {
                 let { request } = await simulateContract(config, {
                     address: curr,
                     abi: erc20Abi,
@@ -533,7 +589,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            if (Number(tokenAdd) > Number(tokenAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(tokenAllow)) < Number(tokenAdd)) {
                 let { request } = await simulateContract(config, {
                     address: token,
                     abi: erc20Abi,
@@ -549,6 +605,16 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     abi: cmdaoAmmNpcABI,
                     functionName: 'addLiquidity',
                     args: [ethers.utils.parseUnits(tokenAdd, "gwei"), ethers.utils.parseEther(currAdd)],
+                })
+                let h = await writeContract(config, request)
+                await waitForTransactionReceipt(config, { hash: h })
+                setTxupdate(h)
+            } else if (index === 9) {
+                let { request } = await simulateContract(config, {
+                    address: lp,
+                    abi: cmdaoAmmNpcABI,
+                    functionName: 'addLiquidity',
+                    args: [String(tokenAdd), ethers.utils.parseEther(currAdd)],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -655,6 +721,16 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
+                    {
+                        address: jazziFBTC,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: jazziFBTC,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -674,6 +750,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const _reservePLAT = data[13].result
             const _reserveCmjPLUTO = data[14].result
             const _reservePLUTO = data[15].result
+            const _reserveCmjFBTC = data[16].result
+            const _reserveFBTC = data[17].result
 
             const data2 = await readContracts(config, {
                 contracts: [
@@ -725,6 +803,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         functionName: 'getAmountOfTokens',
                         args: [String(10**9), String(_reservePLUTO), String(_reserveCmjPLUTO)],
                     },
+                    {
+                        address: jazziFBTC,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getAmountOfTokens',
+                        args: ['1', String(_reserveFBTC), String(_reserveCmjFBTC)],
+                    },
                 ],
             })
 
@@ -736,6 +820,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const tokensBoughtsilTOcmj = data2[5].result
             const tokensBoughtplatTOcmj = data2[6].result
             const tokensBoughtplutoTOcmj = data2[7].result
+            const tokensBoughtfbtcTOcmj = data2[8].result
 
             const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
@@ -787,8 +872,14 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: jazziFBTC,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
 
             const jdaolpBal = data3[0].result
             const culpBal = data3[1].result
@@ -798,6 +889,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const oslpBal = data3[5].result
             const platlpBal = data3[6].result
             const plutolpBal = data3[7].result
+            const fbtclpBal = data3[8].result
 
             return [
                 tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, 
@@ -810,6 +902,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                 sillpBal, goldlpBal, jasplpBal, oslpBal,
                 _reserveCmjPLAT, _reservePLAT, tokensBoughtplatTOcmj, platlpBal,
                 _reserveCmjPLUTO, _reservePLUTO, tokensBoughtplutoTOcmj, plutolpBal,
+                _reserveCmjFBTC, _reserveFBTC, tokensBoughtfbtcTOcmj, fbtclpBal,
             ]
         }
 
@@ -872,8 +965,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             result[30] !== null && setPricePLUTO(Number(ethers.utils.formatEther(result[30])).toFixed(3))
             const _plutolpbalance = ethers.utils.formatEther(result[31])
             setPlutoLpBalance(Math.floor(_plutolpbalance * 100000) / 100000)
+            setReserveCmjFBTC(ethers.utils.formatEther(result[32]))
+            setReserveFBTC(result[33])
+            result[34] !== null && setPriceFBTC(Number(ethers.utils.formatEther(result[34])).toFixed(3))
+            const _fbtclpbalance = ethers.utils.formatEther(result[35])
+            setFbtcLpBalance(Math.floor(_fbtclpbalance * 100000) / 100000)
         })
-
     }, [config, address, erc20Abi, cmdaoAmmNpcABI])
 
     return (
@@ -899,6 +996,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         <option value="PLAT">PLAT</option>
                                         <option value="JASP">JASP</option>
                                         <option value="PLUTO">PLUTO</option>
+                                        <option value="F.BTC">F.BTC</option>
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "1px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
@@ -910,6 +1008,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         {gasselected === "OS" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/> &nbsp;=&nbsp; <div className="emp">{priceOS}</div></>}
                                         {gasselected === "PLAT" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/> &nbsp;=&nbsp; <div className="emp">{pricePLAT}</div></>}
                                         {gasselected === "PLUTO" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" width="22" alt="$PLUTO"/> &nbsp;=&nbsp; <div className="emp">{pricePLUTO}</div></>}
+                                        {gasselected === "F.BTC" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" width="22" alt="$F.BTC"/> &nbsp;=&nbsp; <div className="emp">{priceFBTC}</div></>}
                                         &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                     </div>
                                 </div>
@@ -942,6 +1041,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleSwapUni(7, event)
                                     } else if (gasselected === "PLUTO") {
                                         handleSwapUni(8, event)
+                                    } else if (gasselected === "F.BTC") {
+                                        handleSwapUni(9, event)
                                     }
                                 }}
                                 value={inputSwap}
@@ -994,6 +1095,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "F.BTC" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: fbtcBalance}}; handleSwapUni(9, bal);}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" width="22" alt="$F.BTC"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
@@ -1015,6 +1122,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             swapTokenHandleUni(7, true)
                                         } else if (gasselected === "PLUTO") {
                                             swapTokenHandleUni(8, true)
+                                        } else if (gasselected === "F.BTC") {
+                                            swapTokenHandleUni(9, true)
                                         }
                                     }
                                 }>SELL</div> :
@@ -1030,16 +1139,18 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "OS" && Number(cmjBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLAT" && Number(cmjBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLUTO" && Number(cmjBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "F.BTC" && Number(cmjBoughtFBTC).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $CMJ (
-                                    {gasselected === "JDAO" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "CU" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjCU) - ((Number(reserveCmjCU) * Number(reserveCU)) / (Number(reserveCU) + Number(inputSwap))))) - (Number(reserveCU/reserveCmjCU))) / (Number(reserveCU/reserveCmjCU))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "SIL" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjSIL) - ((Number(reserveCmjSIL) * Number(reserveSIL)) / (Number(reserveSIL) + Number(inputSwap))))) - (Number(reserveSIL/reserveCmjSIL))) / (Number(reserveSIL/reserveCmjSIL))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "GOLD" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjGOLD) - ((Number(reserveCmjGOLD) * Number(reserveGOLD)) / (Number(reserveGOLD) + Number(inputSwap))))) - (Number(reserveGOLD/reserveCmjGOLD))) / (Number(reserveGOLD/reserveCmjGOLD))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "JASP" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "OS" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjOS) - ((Number(reserveCmjOS) * Number(reserveOS)) / (Number(reserveOS) + Number(inputSwap))))) - (Number(reserveOS/reserveCmjOS))) / (Number(reserveOS/reserveCmjOS))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "PLAT" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveCmjPLAT) - ((Number(reserveCmjPLAT) * Number(reservePLAT)) / (Number(reservePLAT) + Number(inputSwap))))) - (Number(reservePLAT/reserveCmjPLAT))) / (Number(reservePLAT/reserveCmjPLAT))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "PLUTO" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap/10**9) / (Number(reserveCmjPLUTO) - ((Number(reserveCmjPLUTO) * Number(reservePLUTO)) / (Number(reservePLUTO) + Number(inputSwap/10**9))))) - (Number(reservePLUTO/reserveCmjPLUTO))) / (Number(reservePLUTO/reserveCmjPLUTO))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "JDAO" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "CU" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjCU) - ((Number(reserveCmjCU) * Number(reserveCU)) / (Number(reserveCU) + Number(inputSwap))))) - (Number(reserveCU/reserveCmjCU))) / (Number(reserveCU/reserveCmjCU))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "SIL" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjSIL) - ((Number(reserveCmjSIL) * Number(reserveSIL)) / (Number(reserveSIL) + Number(inputSwap))))) - (Number(reserveSIL/reserveCmjSIL))) / (Number(reserveSIL/reserveCmjSIL))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "GOLD" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjGOLD) - ((Number(reserveCmjGOLD) * Number(reserveGOLD)) / (Number(reserveGOLD) + Number(inputSwap))))) - (Number(reserveGOLD/reserveCmjGOLD))) / (Number(reserveGOLD/reserveCmjGOLD))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "JASP" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap/10**9) / (Number(reserveCmjJASP) - ((Number(reserveCmjJASP) * Number(reserveJASP)) / (Number(reserveJASP) + Number(inputSwap/10**9))))) - (Number(reserveJASP/reserveCmjJASP))) / (Number(reserveJASP/reserveCmjJASP))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "OS" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjOS) - ((Number(reserveCmjOS) * Number(reserveOS)) / (Number(reserveOS) + Number(inputSwap))))) - (Number(reserveOS/reserveCmjOS))) / (Number(reserveOS/reserveCmjOS))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "PLAT" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjPLAT) - ((Number(reserveCmjPLAT) * Number(reservePLAT)) / (Number(reservePLAT) + Number(inputSwap))))) - (Number(reservePLAT/reserveCmjPLAT))) / (Number(reservePLAT/reserveCmjPLAT))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "PLUTO" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap/10**9) / (Number(reserveCmjPLUTO) - ((Number(reserveCmjPLUTO) * Number(reservePLUTO)) / (Number(reservePLUTO) + Number(inputSwap/10**9))))) - (Number(reservePLUTO/reserveCmjPLUTO))) / (Number(reservePLUTO/reserveCmjPLUTO))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "F.BTC" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjFBTC) - ((Number(reserveCmjFBTC) * Number(reserveFBTC)) / (Number(reserveFBTC) + Number(inputSwap))))) - (Number(Number(reserveFBTC)/Number(reserveCmjFBTC)))) / (Number(Number(reserveFBTC)/Number(reserveCmjFBTC)))) * 100).toFixed(2)}%</>}
                                     {Number(inputSwap) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -1070,6 +1181,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleSwapUni_2(7, event)
                                     } else if (gasselected === "PLUTO") {
                                         handleSwapUni_2(8, event)
+                                    } else if (gasselected === "F.BTC") {
+                                        handleSwapUni_2(9, event)
                                     }
                                 }}
                                 value={inputSwap2}
@@ -1094,6 +1207,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleSwapUni_2(7, bal)
                                     } else if (gasselected === "PLUTO") {
                                         handleSwapUni_2(8, bal)
+                                    } else if (gasselected === "F.BTC") {
+                                        handleSwapUni_2(9, bal)
                                     }
                                 }}
                             >
@@ -1121,6 +1236,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             swapTokenHandleUni(7, false)
                                         } else if (gasselected === "PLUTO") {
                                             swapTokenHandleUni(8, false)
+                                        } else if (gasselected === "F.BTC") {
+                                            swapTokenHandleUni(9, false)
                                         }
                                     }
                                 }>BUY</div> :
@@ -1136,16 +1253,18 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "OS" && Number(tokenBoughtOS).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLAT" && Number(tokenBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLUTO" && Number(tokenBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "F.BTC" && Number(tokenBoughtFBTC).toLocaleString('en-US', {maximumFractionDigits:0})}
                                 </div>
                                 ${gasselected} ( 
-                                    {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "CU" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveCU) - ((Number(reserveCU) * Number(reserveCmjCU)) / (Number(reserveCmjCU) + Number(inputSwap2))))) - (Number(reserveCmjCU/reserveCU))) / (Number(reserveCmjCU/reserveCU))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "SIL" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveSIL) - ((Number(reserveSIL) * Number(reserveCmjSIL)) / (Number(reserveCmjSIL) + Number(inputSwap2))))) - (Number(reserveCmjSIL/reserveSIL))) / (Number(reserveCmjSIL/reserveSIL))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "GOLD" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveGOLD) - ((Number(reserveGOLD) * Number(reserveCmjGOLD)) / (Number(reserveCmjGOLD) + Number(inputSwap2))))) - (Number(reserveCmjGOLD/reserveGOLD))) / (Number(reserveCmjGOLD/reserveGOLD))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "JASP" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "OS" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveOS) - ((Number(reserveOS) * Number(reserveCmjOS)) / (Number(reserveCmjOS) + Number(inputSwap2))))) - (Number(reserveCmjOS/reserveOS))) / (Number(reserveCmjOS/reserveOS))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "PLAT" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reservePLAT) - ((Number(reservePLAT) * Number(reserveCmjPLAT)) / (Number(reserveCmjPLAT) + Number(inputSwap2))))) - (Number(reserveCmjPLAT/reservePLAT))) / (Number(reserveCmjPLAT/reservePLAT))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "PLUTO" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reservePLUTO) - ((Number(reservePLUTO) * Number(reserveCmjPLUTO)) / (Number(reserveCmjPLUTO) + Number(inputSwap2))))) - (Number(reserveCmjPLUTO/reservePLUTO))) / (Number(reserveCmjPLUTO/reservePLUTO))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "CU" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveCU) - ((Number(reserveCU) * Number(reserveCmjCU)) / (Number(reserveCmjCU) + Number(inputSwap2))))) - (Number(reserveCmjCU/reserveCU))) / (Number(reserveCmjCU/reserveCU))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "SIL" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveSIL) - ((Number(reserveSIL) * Number(reserveCmjSIL)) / (Number(reserveCmjSIL) + Number(inputSwap2))))) - (Number(reserveCmjSIL/reserveSIL))) / (Number(reserveCmjSIL/reserveSIL))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "GOLD" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveGOLD) - ((Number(reserveGOLD) * Number(reserveCmjGOLD)) / (Number(reserveCmjGOLD) + Number(inputSwap2))))) - (Number(reserveCmjGOLD/reserveGOLD))) / (Number(reserveCmjGOLD/reserveGOLD))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "JASP" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveJASP) - ((Number(reserveJASP) * Number(reserveCmjJASP)) / (Number(reserveCmjJASP) + Number(inputSwap2))))) - (Number(reserveCmjJASP/reserveJASP))) / (Number(reserveCmjJASP/reserveJASP))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "OS" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveOS) - ((Number(reserveOS) * Number(reserveCmjOS)) / (Number(reserveCmjOS) + Number(inputSwap2))))) - (Number(reserveCmjOS/reserveOS))) / (Number(reserveCmjOS/reserveOS))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "PLAT" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reservePLAT) - ((Number(reservePLAT) * Number(reserveCmjPLAT)) / (Number(reserveCmjPLAT) + Number(inputSwap2))))) - (Number(reserveCmjPLAT/reservePLAT))) / (Number(reserveCmjPLAT/reservePLAT))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "PLUTO" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reservePLUTO) - ((Number(reservePLUTO) * Number(reserveCmjPLUTO)) / (Number(reserveCmjPLUTO) + Number(inputSwap2))))) - (Number(reserveCmjPLUTO/reservePLUTO))) / (Number(reserveCmjPLUTO/reservePLUTO)) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "F.BTC" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveFBTC) - ((Number(reserveFBTC) * Number(reserveCmjFBTC)) / (Number(reserveCmjFBTC) + Number(inputSwap2))))) - (Number(Number(reserveCmjFBTC)/Number(reserveFBTC)))) / (Number(Number(reserveCmjFBTC)/Number(reserveFBTC)))) * 100).toFixed(2)}%</>}
                                     {Number(inputSwap2) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -1169,6 +1288,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         <option value="PLAT">PLAT</option>
                                         <option value="JASP">JASP</option>
                                         <option value="PLUTO">PLUTO</option>
+                                        <option value="F.BTC">F.BTC</option>
                                     </select>
                                     <div
                                         style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}}
@@ -1191,6 +1311,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                                     setLpSell(String(platLpBalance))
                                                 } else if (gasselected === "PLUTO") {
                                                     setLpSell(String(plutoLpBalance))
+                                                } else if (gasselected === "F.BTC") {
+                                                    setLpSell(String(fbtcLpBalance))
                                                 }
                                             }
                                         }
@@ -1203,6 +1325,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         {gasselected === "OS" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(osLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "PLAT" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(platLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "PLUTO" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(plutoLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "F.BTC" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(fbtcLpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -1232,6 +1355,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             removeLpUni(7)
                                         } else if (gasselected === "PLUTO") {
                                             removeLpUni(8)
+                                        } else if (gasselected === "F.BTC") {
+                                            removeLpUni(9)
                                         }
                                     }
                                 }
@@ -1265,6 +1390,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleAddUni(7, event)
                                     } else if (gasselected === "PLUTO") {
                                         handleAddUni(8, event)
+                                    } else if (gasselected === "F.BTC") {
+                                        handleAddUni(9, event)
                                     }
                                 }}
                                 value={tokenAdd}
@@ -1317,6 +1444,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
+                            {gasselected === "F.BTC" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(fbtcBalance)}}; handleAddUni(9, bal);}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" width="22" alt="$F.BTC"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -1344,6 +1477,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleAddUni_2(7, event)
                                     } else if (gasselected === "PLUTO") {
                                         handleAddUni_2(8, event)
+                                    } else if (gasselected === "F.BTC") {
+                                        handleAddUni_2(9, event)
                                     }
                                 }}
                                 value={currAdd}
@@ -1369,6 +1504,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             handleAddUni_2(7, bal)
                                         } else if (gasselected === "PLUTO") {
                                             handleAddUni_2(8, bal)
+                                        } else if (gasselected === "F.BTC") {
+                                            handleAddUni_2(9, bal)
                                         }
                                     }
                                 }
@@ -1400,6 +1537,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                                 addLpHandleUni(7)
                                             } else if (gasselected === "PLUTO") {
                                                 addLpHandleUni(8)
+                                            } else if (gasselected === "F.BTC") {
+                                                addLpHandleUni(9)
                                             }
                                         }
                                     }
