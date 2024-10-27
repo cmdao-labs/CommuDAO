@@ -2,37 +2,29 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const narutaNft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
-
 const iiLab = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const dunEE = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
-
 const uiiLab = '0x432ecf003bB9BF4875a75646368b58be796e0830'
 const taoPFP = '0xB39336b9491547405341eEB8863B020A1302Dd69'
-
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunEEABI, taoPfpABI, uiiABI }) => {
-    let { address } = useAccount()
-    const youraddr = address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/dungeon/cryptic-cogs/' + address)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-    } else if (address === undefined) {
-    } else {
-        navigate('/dungeon/cryptic-cogs/' + address)
+const CrypticCogs = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunEEABI, taoPfpABI, uiiABI }) => {
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
     }
-
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftCol, setTransferNftCol] = React.useState(null)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
-
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
     const [characterSlotLevel, setCharacterSlotLevel] = React.useState(null)
@@ -48,278 +40,209 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
     const [bootsSlotLevel, setBootsSlotLevel] = React.useState(null)
     const [swordSlot, setSwordSlot] = React.useState(null)
     const [swordSlotLevel, setSwordSlotLevel] = React.useState(null)
-
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [timeToRunout, setTimeToRunout] = React.useState(null)
     const [isRunout, setIsRunout] = React.useState(false)
     const [gasselected, setGasselected] = React.useState("II")
     const [angbPending, setAngbPending] = React.useState(0)
-
     const [iiBalance, setIIBalance] = React.useState(0)
     const [uiiBalance, setUIIBalance] = React.useState(0)
     const [eeBalance, setEEBalance] = React.useState(0)
-
     const [pfpLevel, setPfpLevel] = React.useState(0)
     const [pfpId, setPfpId] = React.useState(0)
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
+        console.log("Connected to " + address)
+        if (intrasubModetext === undefined) {
+            navigate('/dungeon/cryptic-cogs/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/dungeon/cryptic-cogs/null')
+        } else {
+            navigate('/dungeon/cryptic-cogs/' + address)
+        }
         const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
         const nrtnftSC = new ethers.Contract(narutaNft, erc721Abi, providerJBC)
         const pfpnftSC = new ethers.Contract(taoPFP, erc721Abi, providerJBC)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ = addr !== null ? await readContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'nftEquip',
-                args: [address],
-            }) : [{characterId: 0, hatId: 0, clothId: 0, accessoriesId: 0, backId: 0, shoesId: 0, weaponId: 0,}]
+                args: [addr],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0]
 
-            const nftSTAT = address !== null && address !== undefined ? await readContract(config, {
+            const nftSTAT = addr !== null ? await readContract(config, {
                 address: dunEE,
                 abi: dunEEABI,
                 functionName: 'nftStatus',
-                args: [address],
-            }) : [{characterIndex: 0, hatIndex: 0, clothIndex: 0, accessoriesIndex: 0, backIndex: 0, shoesIndex: 0, weaponIndex: 0, allPow: 0, refuelAt: 0, isStaked: null}]
+                args: [addr],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0, 0, 0, null]
 
-            const data = address !== null && address !== undefined ? await readContracts(config, {
+            const data = addr !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
+                        chainId: 8899
                     },
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
+                        chainId: 8899
                     },
                     {
                         address: iiLab,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: dunEE,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: dunEE,
                         abi: dunEEABI,
                         functionName: 'calculateRewards',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[0])],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[3])],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[4])],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[5])],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[6])],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[2])],
+                        chainId: 8899
                     },
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQ[1])],
+                        chainId: 8899
                     },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 1],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 2],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 3],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 4],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 5],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 6],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 7],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 8],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 9],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 10],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 11],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 12],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 13],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 14],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 15],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 16],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 17],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 18],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 19],
-                    },
-                    {
-                        address: taoPFP,
-                        abi: taoPfpABI,
-                        functionName: 'user',
-                        args: [address, 20],
-                    },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 1], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 2], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 3], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 4], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 5], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 6], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 7], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 8], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 9], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 10], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 11], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 12], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 13], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 14], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 15], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 16], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 17], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 18], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 19], chainId: 8899 },
+                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 20], chainId: 8899 },
                     {
                         address: uiiLab,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 8899
                     },
                 ],
-            }) : ["", "", "", "", "", "", "", 0, 0, 0, "", "", "", "", "", "", "", {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: 0}, ]
+            }) : [
+                {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: 0}, {result: 0}, {result: 0},
+                {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''},
+                {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false},
+                {result: 0},
+            ]
 
             let nfts = []
-
             let charIpfs = null
             if (data[0].status === 'success' && Number(nftSTAT[0]) === 1) {
                 charIpfs = data[0].result
@@ -345,7 +268,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     isStaked: true
                 })
             }
-
             let accIpfs = null
             if (data[1].status === 'success' && Number(nftSTAT[3]) === 1) {
                 accIpfs = data[1].result
@@ -370,8 +292,7 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     RewardPerSec: Number(nftEQ[3]) % 100000,
                     isStaked: true
                 })
-            }
-            
+            }  
             let backpfs = null
             if (data[2].status === 'success' && Number(nftSTAT[4]) === 1) {
                 backpfs = data[2].result
@@ -397,7 +318,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     isStaked: true
                 })
             }
-
             let shoesIpfs = null
             if (data[3].status === 'success' && Number(nftSTAT[5]) === 1) {
                 shoesIpfs = data[3].result
@@ -423,7 +343,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     isStaked: true
                 })
             }
-
             let weaponIpfs = null
             if (data[4].status === 'success' && Number(nftSTAT[6]) === 1) {
                 weaponIpfs = data[4].result
@@ -501,116 +420,96 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     isStaked: true
                 })
             }
-
             const allPow = Number(nftSTAT[7])
             const isStaked = nftSTAT[9]
             const refuelAt = Number(nftSTAT[8])
-
             const iiBal = data[7].result
             const uiiBal = data[37].result
             const eeBal = data[8].result
-            const rewardPending = isStaked === true ? data[9].result : 0
-
-            console.log(data)
+            const rewardPending = isStaked ? data[9].result : 0
             let PFPlv = 0
-            if (data[36].result) {
-                PFPlv = 20
-            } else if (data[35].result) {
-                PFPlv = 19
-            } else if (data[34].result) {
-                PFPlv = 18
-            } else if (data[33].result) {
-                PFPlv = 17
-            } else if (data[32].result) {
-                PFPlv = 16
-            } else if (data[31].result) {
-                PFPlv = 15
-            } else if (data[30].result) {
-                PFPlv = 14
-            } else if (data[29].result) {
-                PFPlv = 13
-            } else if (data[28].result) {
-                PFPlv = 12
-            } else if (data[27].result) {
-                PFPlv = 11
-            } else if (data[26].result) {
-                PFPlv = 10
-            } else if (data[25].result) {
-                PFPlv = 9
-            } else if (data[24].result) {
-                PFPlv = 8
-            } else if (data[23].result) {
-                PFPlv = 7
-            } else if (data[22].result) {
-                PFPlv = 6
-            } else if (data[21].result) {
-                PFPlv = 5
-            } else if (data[20].result) {
-                PFPlv = 4
-            } else if (data[19].result) {
-                PFPlv = 3
-            } else if (data[18].result) {
-                PFPlv = 2
-            } else if (data[17].result) {
-                PFPlv = 1
-            }
+            if (data[36].result) { PFPlv = 20
+            } else if (data[35].result) { PFPlv = 19
+            } else if (data[34].result) { PFPlv = 18
+            } else if (data[33].result) { PFPlv = 17
+            } else if (data[32].result) { PFPlv = 16
+            } else if (data[31].result) { PFPlv = 15
+            } else if (data[30].result) { PFPlv = 14
+            } else if (data[29].result) { PFPlv = 13
+            } else if (data[28].result) { PFPlv = 12
+            } else if (data[27].result) { PFPlv = 11
+            } else if (data[26].result) { PFPlv = 10
+            } else if (data[25].result) { PFPlv = 9
+            } else if (data[24].result) { PFPlv = 8
+            } else if (data[23].result) { PFPlv = 7
+            } else if (data[22].result) { PFPlv = 6
+            } else if (data[21].result) { PFPlv = 5
+            } else if (data[20].result) { PFPlv = 4
+            } else if (data[19].result) { PFPlv = 3
+            } else if (data[18].result) { PFPlv = 2
+            } else if (data[17].result) { PFPlv = 1 }
 
-            const wallet0Filter = await pfpnftSC.filters.Transfer(null, address, null)
-            const wallet0Event = await pfpnftSC.queryFilter(wallet0Filter, 2804540, "latest")
-            const wallet0Map = await Promise.all(wallet0Event.map(async (obj) => String(obj.args.tokenId)))
-            const wallet0RemoveDup = wallet0Map.filter((obj, index) => wallet0Map.indexOf(obj) === index)
-            const data0 = address !== null && address !== undefined ? await readContracts(config, {
+            let wallet0RemoveDup = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const wallet0Filter = await pfpnftSC.filters.Transfer(null, addr, null)
+                const wallet0Event = await pfpnftSC.queryFilter(wallet0Filter, 2804540, "latest")
+                const wallet0Map = await Promise.all(wallet0Event.map(async (obj) => String(obj.args.tokenId)))
+                wallet0RemoveDup = wallet0Map.filter((obj, index) => wallet0Map.indexOf(obj) === index)
+            }
+            const data0 = addr !== null ? await readContracts(config, {
                 contracts: wallet0RemoveDup.map((item) => (
                     {
                         address: taoPFP,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(wallet0RemoveDup.length).fill('')]
-
+            }) : null
             let yournftwallet0 = []
-            for (let i = 0; i <= wallet0RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data0[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= wallet0RemoveDup.length - 1 && addr !== null; i++) {
+                if (data0[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet0.push(String(wallet0RemoveDup[i]))
                 }
             }
             if (yournftwallet0.length === 0) { yournftwallet0.push('0') }
 
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            let walletRemoveDup = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
+                const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335027, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            }
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(walletRemoveDup.length).fill('')]
-
+            }) : null
             let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup.length - 1 && addr !== null; i++) {
+                if (data2[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaoNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(yournftwallet.length).fill('')]
-
+            }) : null
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -618,7 +517,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
-
                 nfts.push({
                     Col: 1,
                     Id: yournftwallet[i].Id,
@@ -631,39 +529,41 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                 })
             }
 
-            const wallet2Filter = await nrtnftSC.filters.Transfer(null, address, null)
-            const wallet2Event = await nrtnftSC.queryFilter(wallet2Filter, 2852393, "latest")
-            const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
-            const wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
-            const data4 = address !== null && address !== undefined ? await readContracts(config, {
+            let wallet2RemoveDup = []
+            if (chain !== undefined && chain.id === 8899 && addr !== null) {
+                const wallet2Filter = await nrtnftSC.filters.Transfer(null, addr, null)
+                const wallet2Event = await nrtnftSC.queryFilter(wallet2Filter, 2852393, "latest")
+                const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
+                wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
+            }
+            const data4 = addr !== null ? await readContracts(config, {
                 contracts: wallet2RemoveDup.map((item) => (
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(wallet2RemoveDup.length).fill('')]
-
+            }) : null
             let yournftwallet2 = []
-            for (let i = 0; i <= wallet2RemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data4[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= wallet2RemoveDup.length - 1 && addr !== null; i++) {
+                if (data4[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
                 }
             }
-
-            const data5 = address !== null && address !== undefined ? await readContracts(config, {
+            const data5 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet2.map((item) => (
                     {
                         address: narutaNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 8899
                     }
                 ))
-            }) : [Array(yournftwallet2.length).fill('')]
-
+            }) : null
             for (let i = 0; i <= yournftwallet2.length - 1; i++) {
                 const nftipfs = data5[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -671,7 +571,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
-
                 nfts.push({
                     Col: 2,
                     Id: yournftwallet2[i].Id,
@@ -683,7 +582,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     isStaked: false
                 })
             }
-
             if (nfts.length === 0) { nfts.push(null) }
             
             return [
@@ -725,7 +623,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             result[12] !== null && result[12].slice(-2, -1) === "+" ? setArmorSlotLevel(result[12].slice(-1)) : setArmorSlotLevel(null)
             setHelmetSlot(result[13])
             result[14] !== null && result[14].slice(-2, -1) === "+" ? setHelmetSlotLevel(result[14].slice(-1)) : setHelmetSlotLevel(null)
-
             setAllPower(result[15])
             setIsStakeNow(result[16])
             const gasOut = new Date((Number(result[17]) * 1000) + (86400 * 1000))
@@ -742,7 +639,7 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             setUIIBalance(ethers.utils.formatEther(String(result[23])))
         })
 
-    }, [config, address, txupdate, erc721Abi, erc20Abi, dunEEABI, taoPfpABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunEEABI, taoPfpABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -773,7 +670,10 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -811,7 +711,10 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -827,7 +730,10 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -864,17 +770,16 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                     functionName: 'allowance',
                     args: [address, uAddr],
                 })
-                if (gasAllow0 < (iiUsage * 10**18)) {
+                if (Number(ethers.utils.formatEther(gasAllow0)) < iiUsage) {
                     let { request } = await simulateContract(config, {
                         address: gasAddr,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [uAddr, ethers.utils.parseEther(String(10**8))],
+                        args: [uAddr, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
                 }
-                console.log(craftIndex, pfpId)
                 let { request } = await simulateContract(config, {
                     address: uAddr,
                     abi: uiiABI,
@@ -890,12 +795,12 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
                 functionName: 'allowance',
                 args: [address, dunEE],
             })
-            if (gasAllow < (1 * 10**18)) {
+            if (Number(ethers.utils.formatEther(gasAllow)) < 1) {
                 let { request } = await simulateContract(config, {
                     address: uAddr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [dunEE, ethers.utils.parseEther(String(10**8))],
+                    args: [dunEE, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -917,237 +822,260 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, setisLoading, txupdat
     }
 
     return (
-    <>
-        {isTransferModal ?
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{fontSize: "20px"}}>{transferName}</div>
-                        <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
-                        <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
-                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
-                    </div>
-                </div>
-            </div> :
-            <></>
-        }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiehjcwrzylly7xunlan4xqwe2aynokqkgtj65bwxxqq5wfnz4hcnq')", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", padding: "10px 20px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Cryptic Cogs</div>
-                <div style={{fontSize: "17px", padding: "10px", width: "fit-content", marginTop: "30px", color: "#fff"}} className="pixel"></div>
-            </div>
-            <div style={{margin: "30px 100px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="150" alt="$EE" />
-            </div>
-        </div>
-    
-        <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{backdropFilter: "blur(14px)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>NFT STAKING</div>
-                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                {isStakeNow ?
-                                    <>
-                                        {isRunout ?
-                                            <>
-                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Run Out of Gas</div>
-                                            </> :
-                                            <>
-                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>On Staking</div>
-                                            </>
-                                        }
-                                    </> :
-                                    <>
-                                        {!isStakeNow &&
-                                            <>
-                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>Available for stake</div>
-                                            </>
-                                        }
-                                    </>
-                                }
-                            </div>
+        <>
+            {isTransferModal &&
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
                         </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            {address !== undefined ?
-                                <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                <>ADDRESS <div>-</div></>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            TOTAL POWER PER SEC
-                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            EE BALANCE
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
-                                <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            EE PENDING
-                            <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
-                                <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                            GAS
-                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                <option value="II">$II</option>
-                            </select>
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                {gasselected === "II" &&
-                                    <>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="20" alt="$II"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                    </>
-                                }
-                                <div style={{marginLeft: "5px"}}>/{pfpLevel === 20 && '1 [UR4'}{pfpLevel === 19 && '4 [UR3'}{pfpLevel === 18 && '4 [UR2'}{pfpLevel === 17 && '4 [UR1'}{pfpLevel === 16 && '4 [SSR4'}{pfpLevel === 15 && '4 [SSR3'}{pfpLevel === 14 && '4 [SSR2'}{pfpLevel === 13 && '4 [SSR1'}{pfpLevel === 12 && '4 [SR4'}{pfpLevel === 11 && '4 [SR3'}{pfpLevel === 10 && '4 [SR2'}{pfpLevel === 9 && '4 [SR1'}{pfpLevel === 8 && '7 [R4'}{pfpLevel === 7 && '7 [R3'}{pfpLevel === 6 && '7 [R2'}{pfpLevel === 5 && '7 [R1'}{pfpLevel === 4 && '7 [N4'}{pfpLevel === 3 && '7 [N3'}{pfpLevel === 2 && '7 [N2'}{pfpLevel === 1 && '7 [N1'}{pfpLevel === 0 && '35 [Not The'} PFP Holder]</div> 
-                            </div>
-                        </div>
-                        {isStakeNow ?
-                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
-                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                        }
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                {isStakeNow ?
-                                    <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
-                                    </> :
-                                    <>
-                                        {isStakeNow !== null && (gasselected === "II" && ((uiiBalance >= 1) || (pfpLevel === 20 && Number(iiBalance) >= 1) || (pfpLevel >= 9 && pfpLevel <= 19 && Number(iiBalance) >= 4) || (pfpLevel >= 1 && pfpLevel <= 8 && Number(iiBalance) >= 7) || (pfpLevel === 0 && Number(iiBalance) >= 35))) ?
-                                            <>
-                                                {allPower !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                            </> :
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        }
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                    </>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {helmetSlot !== null ?
-                            <img src={helmetSlot} width="100px" alt="Can not load metadata." /> :
-                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
-                        }
-                        {helmetSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{helmetSlotLevel}</div>}
-                        {armorSlot !== null ?
-                            <img src={armorSlot} width="100px" alt="Can not load metadata." /> :
-                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
-                        }
-                        {armorSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlotLevel}</div>}
-                        {bootsSlot !== null ?
-                            <img src={bootsSlot} width="100px" alt="Can not load metadata." /> :
-                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
-                        }
-                        {bootsSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{bootsSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        {nft.length > 0 ?
-                            <>
-                                {characterSlot !== null ?
-                                    <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
-                                }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                        {characterSlotLevel !== null && <div style={{position: "absolute", top: "260px", right: "5px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{characterSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {ringSlot !== null ?
-                            <img src={ringSlot} width="100px" alt="Can not load metadata." /> :
-                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
-                        }
-                        {ringSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{ringSlotLevel}</div>}
-                        {shieldSlot !== null ?
-                            <img src={shieldSlot} width="100px" alt="Can not load metadata." /> :
-                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
-                        }
-                        {shieldSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlotLevel}</div>}
-                        {swordSlot !== null ?
-                            <img src={swordSlot} width="100px" alt="Can not load metadata." /> :
-                            <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
-                        }
-                        {swordSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "0 6px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{swordSlotLevel}</div>}
-                    </div>
-                </div>
-            </div>
-            
-            {nft.length > 0 ?
-                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    {nft[0] !== null ?
-                        <>
-                            {nft.map((item, index) => (
-                                <>
-                                    {item.Id / 100000000000 <= 8 &&
-                                        <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
-                                            <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                                <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                            </div>
-                                            <div className="emp bold">{item.Name}</div>
-                                            <div className="bold">{item.RewardPerSec} power</div>
-                                            <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                            {address === youraddr ?
-                                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-                                                    {item.isStaked ?
-                                                        <>
-                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Id / 100000000000 | 0)}>UNEQUIP</div>
-                                                        </> :
-                                                        <>
-                                                            {!isStakeNow &&
-                                                                <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id)}>EQUIP</div>
-                                                            }
-                                                            <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
-                                                        </>
-                                                    }
-                                                </div> :
-                                                <div style={{height: "41px"}}></div>
-                                            }
-                                        </div>
-                                    }
-                                </>
-                            ))}
-                        </> :
-                        <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
-                            }
-                        </div>
-                    }
-                </div> :
-                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
-                        <ThreeDots fill="#5f6476" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
             }
-        </div>
-    </>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiehjcwrzylly7xunlan4xqwe2aynokqkgtj65bwxxqq5wfnz4hcnq')", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{fontSize: "75px", padding: "10px 20px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Cryptic Cogs</div>
+                </div>
+                <div className="SubfieldBanner">
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" width="150" alt="$EE" />
+                </div>
+            </div>
+            
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to JIBCHAIN L1.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
+                    </div>
+                </div> :
+                <div style={{margin: "0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{backdropFilter: "blur(14px)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#FFFFFF99", width: "370px", height: "360px", margin: "5px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                <div style={{fontSize: "22px", lineHeight: "15px"}}>NFT STAKING</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                        {isStakeNow ?
+                                            <>
+                                                {isRunout ?
+                                                    <>
+                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Run Out of Gas</div>
+                                                    </> :
+                                                    <>
+                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>On Staking</div>
+                                                    </>
+                                                }
+                                            </> :
+                                            <>
+                                                {!isStakeNow &&
+                                                    <>
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Available for stake</div>
+                                                    </>
+                                                }
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                        <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                        <><div>ADDRESS</div><div>-</div></>
+                                    }
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    TOTAL POWER PER SEC
+                                    <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    EE BALANCE
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
+                                        <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    EE PENDING
+                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="20" alt="$EE"/>
+                                        <div style={{marginLeft: "5px"}}>{Number(angbPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                    GAS
+                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                        <option value="II">$II</option>
+                                    </select>
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        {gasselected === "II" &&
+                                            <>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="20" alt="$II"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
+                                            </>
+                                        }
+                                        <div style={{marginLeft: "5px"}}>/{pfpLevel === 20 && '1 [UR4'}{pfpLevel === 19 && '4 [UR3'}{pfpLevel === 18 && '4 [UR2'}{pfpLevel === 17 && '4 [UR1'}{pfpLevel === 16 && '4 [SSR4'}{pfpLevel === 15 && '4 [SSR3'}{pfpLevel === 14 && '4 [SSR2'}{pfpLevel === 13 && '4 [SSR1'}{pfpLevel === 12 && '4 [SR4'}{pfpLevel === 11 && '4 [SR3'}{pfpLevel === 10 && '4 [SR2'}{pfpLevel === 9 && '4 [SR1'}{pfpLevel === 8 && '7 [R4'}{pfpLevel === 7 && '7 [R3'}{pfpLevel === 6 && '7 [R2'}{pfpLevel === 5 && '7 [R1'}{pfpLevel === 4 && '7 [N4'}{pfpLevel === 3 && '7 [N3'}{pfpLevel === 2 && '7 [N2'}{pfpLevel === 1 && '7 [N1'}{pfpLevel === 0 && '35 [Not The'} PFP Holder]</div> 
+                                    </div>
+                                </div>
+                                {isStakeNow ?
+                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunout}</div></div>
+                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                }
+                                {address !== null && intrasubModetext !== undefined ?
+                                    <>
+                                        {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                {isStakeNow ?
+                                                    <>
+                                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                        <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0)}>HARVEST & UNSTAKE</div>
+                                                    </> :
+                                                    <>
+                                                        {isStakeNow !== null && (gasselected === "II" && ((uiiBalance >= 1) || (pfpLevel === 20 && Number(iiBalance) >= 1) || (pfpLevel >= 9 && pfpLevel <= 19 && Number(iiBalance) >= 4) || (pfpLevel >= 1 && pfpLevel <= 8 && Number(iiBalance) >= 7) || (pfpLevel === 0 && Number(iiBalance) >= 35))) ?
+                                                            <>
+                                                                {allPower !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                            </> :
+                                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                        }
+                                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                    </>
+                                                }
+                                            </div> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </> :
+                                    <div style={{height: "41px"}}></div>
+                                }
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {helmetSlot !== null ?
+                                        <img src={helmetSlot} width="100px" alt="Can not load metadata." /> :
+                                        <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
+                                    }
+                                    {helmetSlotLevel !== null && <div className='slotlevel2' style={{position: "absolute", top: "85px", padding: "0 6px", fontSize: "25px"}}>+{helmetSlotLevel}</div>}
+                                    {armorSlot !== null ?
+                                        <img src={armorSlot} width="100px" alt="Can not load metadata." /> :
+                                        <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
+                                    }
+                                    {armorSlotLevel !== null && <div className='slotlevel2' style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{armorSlotLevel}</div>}
+                                    {bootsSlot !== null ?
+                                        <img src={bootsSlot} width="100px" alt="Can not load metadata." /> :
+                                        <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
+                                    }
+                                    {bootsSlotLevel !== null && <div className='slotlevel2' style={{position: "absolute", top: "385px", fontSize: "25px"}}>+{bootsSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {characterSlot !== null ?
+                                                <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray"}}></div>
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {characterSlotLevel !== null && <div style={{position: "absolute", top: "310px", right: "5px", fontSize: "25px"}}>Lv.{characterSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ringSlot !== null ?
+                                        <img src={ringSlot} width="100px" alt="Can not load metadata." /> :
+                                        <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
+                                    }
+                                    {ringSlotLevel !== null && <div className='slotlevel' style={{position: "absolute", top: "85px", fontSize: "25px"}}>+{ringSlotLevel}</div>}
+                                    {shieldSlot !== null ?
+                                        <img src={shieldSlot} width="100px" alt="Can not load metadata." /> :
+                                        <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
+                                    }
+                                    {shieldSlotLevel !== null && <div className='slotlevel' style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{shieldSlotLevel}</div>}
+                                    {swordSlot !== null ?
+                                        <img src={swordSlot} width="100px" alt="Can not load metadata." /> :
+                                        <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px"}}></div>
+                                    }
+                                    {swordSlotLevel !== null && <div className='slotlevel' style={{position: "absolute", top: "385px", fontSize: "25px"}}>+{swordSlotLevel}</div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {nft.length > 0 ?
+                        <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                            {nft[0] !== null ?
+                                <>
+                                    {nft.map((item, index) => (
+                                        <>
+                                            {item.Id / 100000000000 <= 8 &&
+                                                <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px"}} className="nftCard" key={index}>
+                                                    <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                        <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                    </div>
+                                                    <div className="emp bold">{item.Name}</div>
+                                                    <div className="bold">{item.RewardPerSec} power</div>
+                                                    <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                    {address !== null && intrasubModetext !== undefined ?
+                                                        <>
+                                                            {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                                <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                                                                    {item.isStaked ?
+                                                                        <>
+                                                                            <div style={{background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Id / 100000000000 | 0)}>UNEQUIP</div>
+                                                                        </> :
+                                                                        <>
+                                                                            {!isStakeNow &&
+                                                                                <div style={{alignSelf: "center"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id)}>EQUIP</div>
+                                                                            }
+                                                                            <div style={{alignSelf: "center", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                                        </>
+                                                                    }
+                                                                </div> :
+                                                                <div style={{height: "41px"}}></div>
+                                                            }
+                                                        </> :
+                                                        <div style={{height: "41px"}}></div>
+                                                    }
+                                                </div>
+                                            }
+                                        </>
+                                    ))}
+                                </> :
+                                <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                                    {address !== null ?
+                                        <>
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                        </> :
+                                        <>
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
+                                        </>
+                                    }
+                                </div>
+                            }
+                        </div> :
+                        <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                            <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </>
     )
 }
 

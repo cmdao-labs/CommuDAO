@@ -746,7 +746,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                     </div>
                 </div> :
                 <div style={{width: "90%", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", overflow: "scroll"}} className="noscroll">
-                    <div style={{textAlign: "left", marginTop: "50px", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                    <div style={{maxWidth: "100%", textAlign: "left", marginTop: "50px", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                         <div style={{width: "250px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Tokens</div>
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
