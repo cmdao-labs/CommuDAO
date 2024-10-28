@@ -15,6 +15,7 @@ const plat = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jasp = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const pluto = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
 const fbtc = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
+const x4 = '0x0DF9D160489440D630a247fBC830DA74779928b1'
 const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
@@ -102,6 +103,11 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
     const [fbtcCirculation, setFbtcCirculation] = React.useState(0)
     const [fbtcStat, setFbtcStat] = React.useState([0, 0])
 
+    const [x4Supply, setX4Supply] = React.useState(0)
+    const [x4Burn, setX4Burn] = React.useState(0)
+    const [x4Circulation, setX4Circulation] = React.useState(0)
+    const [x4Stat, setX4Stat] = React.useState([0, 0])
+
     const [osSupply, setOsSupply] = React.useState(0)
     const [osLocked, setOsLocked] = React.useState(0)
     const [osBurn, setOsBurn] = React.useState(0)
@@ -127,6 +133,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
         const jaspSC = new ethers.Contract(jasp, erc20Abi, providerJBC)
         const plutoSC = new ethers.Contract(pluto, erc20Abi, providerJBC)
         const fbtcSC = new ethers.Contract(fbtc, erc20Abi, providerJBC)
+        const x4SC = new ethers.Contract(x4, erc20Abi, providerJBC)
         const osSC = new ethers.Contract(os, erc20Abi, providerJBC)
         const jdaoSC = new ethers.Contract(jdao, erc20Abi, providerJBC)
               
@@ -272,6 +279,14 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             const fbtcEvent2 = await fbtcSC.queryFilter(fbtcFilter2, blockNumber - 7200, 'latest')
             const fbtcMap2 = await Promise.all(fbtcEvent2.map(async (obj) => {return Number(ethers.utils.formatUnits(obj.args.value, 'gwei'))}))
             const fbtcBurn = fbtcMap2.reduce((partialSum, a) => partialSum + a, 0)
+            const x4Filter = await x4SC.filters.Transfer(genesis, null, null)
+            const x4Event = await x4SC.queryFilter(x4Filter, blockNumber - 7200, 'latest')
+            const x4Map = await Promise.all(x4Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const x4Mint = x4Map.reduce((partialSum, a) => partialSum + a, 0)
+            const x4Filter2 = await x4SC.filters.Transfer(null, burn, null)
+            const x4Event2 = await x4SC.queryFilter(x4Filter2, blockNumber - 7200, 'latest')
+            const x4Map2 = await Promise.all(x4Event2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const x4Burn = x4Map2.reduce((partialSum, a) => partialSum + a, 0)
 
             const dataCMJ = await readContracts(config, {
                 contracts: [
@@ -678,6 +693,30 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                     },
                 ],
             })
+            const dataX4 = await readContracts(config, {
+                contracts: [
+                    {
+                        address: x4,
+                        abi: erc20Abi,
+                        functionName: 'totalSupply',
+                        chainId: 8899,
+                    },
+                    {
+                        address: x4,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [burn],
+                        chainId: 8899,
+                    },
+                    {
+                        address: x4,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
+                    },
+                ],
+            })
 
             const dataOS = await readContracts(config, {
                 contracts: [
@@ -771,7 +810,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             return [
                 dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
                 (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],
-                [plutoMint, plutoBurn], dataPLUTO, [fbtcMint, fbtcBurn], dataFBTC,
+                [plutoMint, plutoBurn], dataPLUTO, [fbtcMint, fbtcBurn], dataFBTC, [x4Mint, x4Burn], dataX4,
             ]
         }
 
@@ -870,6 +909,10 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             setFbtcSupply(String(result[31][0].result))
             setFbtcBurn(Number((result[31][1].result)) + Number(result[31][2].result))
             setFbtcCirculation(Number(result[31][0].result) - (Number(result[31][1].result) + Number(result[31][2].result)))
+            setX4Stat(result[32])
+            setX4Supply(ethers.utils.formatEther(String(result[33][0].result)))
+            setX4Burn(Number(ethers.utils.formatEther(String(result[33][1].result))) + Number(ethers.utils.formatEther(String(result[33][2].result))))
+            setX4Circulation(Number(ethers.utils.formatEther(String(result[33][0].result))) - (Number(ethers.utils.formatEther(String(result[33][1].result))) + Number(ethers.utils.formatEther(String(result[33][2].result)))))
         })
     }, [config, erc20Abi])
 
@@ -1448,6 +1491,42 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
                                 <div style={{color: "#fff"}}>{Number((((fbtcStat[0] - fbtcStat[1]) * 365)/fbtcCirculation)*100).toFixed(4)}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "15px", border: "1px solid rgb(54, 77, 94)", width: "400px", height: "300px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">$X4 Tracker</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(x4Supply).toLocaleString('en-US', {maximumFractionDigits:0})} (100%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(x4Burn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((x4Burn/x4Supply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
+                                <div>Circulating Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(x4Circulation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((x4Circulation/x4Supply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(x4Stat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(x4Stat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(x4Stat[0] - x4Stat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((x4Stat[0] - x4Stat[1])/x4Circulation)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((x4Stat[0] - x4Stat[1]) * 365)/x4Circulation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
