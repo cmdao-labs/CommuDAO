@@ -11,7 +11,7 @@ const platToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const plutoToken = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
 const fbtcToken = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
-//const x4Token = '0x0DF9D160489440D630a247fBC830DA74779928b1'
+const x4Token = '0x0DF9D160489440D630a247fBC830DA74779928b1'
 //const infpowToken = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 const osToken = '0xAc5299D92373E9352636559cca497d7683A47655'
 const cmjToken = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
@@ -24,6 +24,7 @@ const jazziJasp = '0xc19DE37d5e14b387BCda8e62aB4934591315901D'
 const jazziOS = '0x329889325A555b217C41A4c2EADD529a0CfA4231'
 const jazziPLUTO = '0xd3d493ac2c0dD08C814FbbFB5f8B4983a8a0921C'
 const jazziFBTC = '0x4EF48881EFf572bBD636bcE736877881B9Ea17D5'
+const jazziX4 = '0xA7e55e89d6B0E81cCDB034a04Eb65A7aF16b697C'
 
 const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, plutoBalance, fbtcBalance, x4Balance, infpowBalance, cmjBalance }) => {
     const { address } = useAccount()
@@ -100,6 +101,13 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     const [reserveFBTC, setReserveFBTC] = React.useState("")
     const [fbtcLpBalance, setFbtcLpBalance] = React.useState("0")
 
+    const [cmjBoughtX4, setCmjBoughtX4] = React.useState("0.000")
+    const [tokenBoughtX4, setTokenBoughtX4] = React.useState("0.000")
+    const [priceX4, setPriceX4] = React.useState("0.000")
+    const [reserveCmjX4, setReserveCmjX4] = React.useState("")
+    const [reserveX4, setReserveX4] = React.useState("")
+    const [x4LpBalance, setX4LpBalance] = React.useState("0")
+
     const handleSwapUni = async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
@@ -120,6 +128,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLUTO
         } else if (index === 9) {
             addr = jazziFBTC
+        } else if (index === 10) {
+            addr = jazziX4
         }
         setInputSwap(event.target.value)
         let _value = 0
@@ -170,6 +180,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             event.target.value !== "" ? setCmjBoughtPLUTO(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtPLUTO("0.000")
         } else if (index === 9) {
             event.target.value !== "" ? setCmjBoughtFBTC(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtFBTC("0.000")
+        } else if (index === 10) {
+            event.target.value !== "" ? setCmjBoughtX4(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtX4("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -192,6 +204,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLUTO
         } else if (index === 9) {
             addr = jazziFBTC
+        } else if (index === 10) {
+            addr = jazziX4
         }
         setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -235,6 +249,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             event.target.value !== "" ? setTokenBoughtPLUTO(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) : setTokenBoughtPLUTO("0.000")
         } else if (index === 9) {
             event.target.value !== "" ? setTokenBoughtFBTC(String(tokensBoughtcurrTOtoken)) : setTokenBoughtFBTC("0.000")
+        } else if (index === 10) {
+            event.target.value !== "" ? setTokenBoughtX4(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtX4("0.000")
         }
     }
 
@@ -289,6 +305,11 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             token = fbtcToken
             currBoughtToken = cmjBoughtFBTC
             tokenBoughtCurr = tokenBoughtFBTC
+        } else if (index === 10) {
+            lp = jazziX4
+            token = x4Token
+            currBoughtToken = cmjBoughtX4
+            tokenBoughtCurr = tokenBoughtX4
         }
         setisLoading(true)
         try {
@@ -422,6 +443,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLUTO
         } else if (index === 9) {
             addr = jazziFBTC
+        } else if (index === 10) {
+            addr = jazziX4
         }
         setisLoading(true)
         try {
@@ -461,6 +484,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLUTO
         } else if (index === 9) {
             addr = jazziFBTC
+        } else if (index === 10) {
+            addr = jazziX4
         }
         setTokenAdd(event.target.value)
         let _value = 0
@@ -506,6 +531,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             addr = jazziPLUTO
         } else if (index === 9) {
             addr = jazziFBTC
+        } else if (index === 10) {
+            addr = jazziX4
         }
         setCurrAdd(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
@@ -561,6 +588,9 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         } else if (index === 9) {
             lp = jazziFBTC
             token = fbtcToken
+        } else if (index === 10) {
+            lp = jazziX4
+            token = x4Token
         }
         setisLoading(true)
         try {
@@ -731,6 +761,16 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
+                    {
+                        address: jazziX4,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: jazziX4,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -752,6 +792,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const _reservePLUTO = data[15].result
             const _reserveCmjFBTC = data[16].result
             const _reserveFBTC = data[17].result
+            const _reserveCmjX4 = data[18].result
+            const _reserveX4 = data[19].result
 
             const data2 = await readContracts(config, {
                 contracts: [
@@ -809,6 +851,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         functionName: 'getAmountOfTokens',
                         args: ['1', String(_reserveFBTC), String(_reserveCmjFBTC)],
                     },
+                    {
+                        address: jazziX4,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getAmountOfTokens',
+                        args: [String(10**18), String(_reserveX4), String(_reserveCmjX4)],
+                    },
                 ],
             })
 
@@ -821,6 +869,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const tokensBoughtplatTOcmj = data2[6].result
             const tokensBoughtplutoTOcmj = data2[7].result
             const tokensBoughtfbtcTOcmj = data2[8].result
+            const tokensBoughtx4TOcmj = data2[9].result
 
             const data3 = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
@@ -878,8 +927,14 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         functionName: 'balanceOf',
                         args: [address],
                     },
+                    {
+                        address: jazziX4,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
 
             const jdaolpBal = data3[0].result
             const culpBal = data3[1].result
@@ -890,6 +945,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const platlpBal = data3[6].result
             const plutolpBal = data3[7].result
             const fbtclpBal = data3[8].result
+            const x4lpBal = data3[9].result
 
             return [
                 tokensBoughtbbqTOcmj, tokensBoughtcuTOcmj, tokensBoughtjaspTOcmj, 
@@ -903,6 +959,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                 _reserveCmjPLAT, _reservePLAT, tokensBoughtplatTOcmj, platlpBal,
                 _reserveCmjPLUTO, _reservePLUTO, tokensBoughtplutoTOcmj, plutolpBal,
                 _reserveCmjFBTC, _reserveFBTC, tokensBoughtfbtcTOcmj, fbtclpBal,
+                _reserveCmjX4, _reserveX4, tokensBoughtx4TOcmj, x4lpBal,
             ]
         }
 
@@ -970,6 +1027,11 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             result[34] !== null && setPriceFBTC(Number(ethers.utils.formatEther(result[34])).toFixed(3))
             const _fbtclpbalance = ethers.utils.formatEther(result[35])
             setFbtcLpBalance(Math.floor(_fbtclpbalance * 100000) / 100000)
+            setReserveCmjX4(ethers.utils.formatEther(result[36]))
+            setReserveX4(ethers.utils.formatEther(result[37]))
+            result[38] !== null && setPriceX4(Number(ethers.utils.formatEther(result[38])).toFixed(3))
+            const _x4lpbalance = ethers.utils.formatEther(result[39])
+            setX4LpBalance(Math.floor(_x4lpbalance * 100000) / 100000)
         })
     }, [config, address, erc20Abi, cmdaoAmmNpcABI])
 
@@ -997,6 +1059,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         <option value="JASP">JASP</option>
                                         <option value="PLUTO">PLUTO</option>
                                         <option value="F.BTC">F.BTC</option>
+                                        <option value="X4">X4</option>
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "1px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
@@ -1009,6 +1072,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         {gasselected === "PLAT" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/> &nbsp;=&nbsp; <div className="emp">{pricePLAT}</div></>}
                                         {gasselected === "PLUTO" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" width="22" alt="$PLUTO"/> &nbsp;=&nbsp; <div className="emp">{pricePLUTO}</div></>}
                                         {gasselected === "F.BTC" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" width="22" alt="$F.BTC"/> &nbsp;=&nbsp; <div className="emp">{priceFBTC}</div></>}
+                                        {gasselected === "X4" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" width="22" alt="$X4"/> &nbsp;=&nbsp; <div className="emp">{priceX4}</div></>}
                                         &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                     </div>
                                 </div>
@@ -1043,6 +1107,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleSwapUni(8, event)
                                     } else if (gasselected === "F.BTC") {
                                         handleSwapUni(9, event)
+                                    } else if (gasselected === "X4") {
+                                        handleSwapUni(10, event)
                                     }
                                 }}
                                 value={inputSwap}
@@ -1101,6 +1167,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                                 </div>
                             }
+                            {gasselected === "X4" && 
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: x4Balance}}; handleSwapUni(10, bal);}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" width="22" alt="$X4"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(x4Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                             {address !== null && address !== undefined ?
@@ -1124,6 +1196,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             swapTokenHandleUni(8, true)
                                         } else if (gasselected === "F.BTC") {
                                             swapTokenHandleUni(9, true)
+                                        } else if (gasselected === "X4") {
+                                            swapTokenHandleUni(10, true)
                                         }
                                     }
                                 }>SELL</div> :
@@ -1140,6 +1214,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "PLAT" && Number(cmjBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLUTO" && Number(cmjBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "F.BTC" && Number(cmjBoughtFBTC).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "X4" && Number(cmjBoughtX4).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 $CMJ (
                                     {gasselected === "JDAO" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjJdao) - ((Number(reserveCmjJdao) * Number(reserveJdao)) / (Number(reserveJdao) + Number(inputSwap))))) - (Number(reserveJdao/reserveCmjJdao))) / (Number(reserveJdao/reserveCmjJdao))) * 100).toFixed(2)}%</>}
@@ -1151,6 +1226,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "PLAT" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjPLAT) - ((Number(reserveCmjPLAT) * Number(reservePLAT)) / (Number(reservePLAT) + Number(inputSwap))))) - (Number(reservePLAT/reserveCmjPLAT))) / (Number(reservePLAT/reserveCmjPLAT))) * 100).toFixed(2)}%</>}
                                     {gasselected === "PLUTO" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap/10**9) / (Number(reserveCmjPLUTO) - ((Number(reserveCmjPLUTO) * Number(reservePLUTO)) / (Number(reservePLUTO) + Number(inputSwap/10**9))))) - (Number(reservePLUTO/reserveCmjPLUTO))) / (Number(reservePLUTO/reserveCmjPLUTO))) * 100).toFixed(2)}%</>}
                                     {gasselected === "F.BTC" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjFBTC) - ((Number(reserveCmjFBTC) * Number(reserveFBTC)) / (Number(reserveFBTC) + Number(inputSwap))))) - (Number(Number(reserveFBTC)/Number(reserveCmjFBTC)))) / (Number(Number(reserveFBTC)/Number(reserveCmjFBTC)))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "X4" && Number(inputSwap) !== 0 && <>{((((Number(inputSwap) / (Number(reserveCmjX4) - ((Number(reserveCmjX4) * Number(reserveX4)) / (Number(reserveX4) + Number(inputSwap))))) - (Number(reserveX4/reserveCmjX4))) / (Number(reserveX4/reserveCmjX4))) * 100).toFixed(2)}%</>}
                                     {Number(inputSwap) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -1183,6 +1259,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleSwapUni_2(8, event)
                                     } else if (gasselected === "F.BTC") {
                                         handleSwapUni_2(9, event)
+                                    } else if (gasselected === "X4") {
+                                        handleSwapUni_2(10, event)
                                     }
                                 }}
                                 value={inputSwap2}
@@ -1209,6 +1287,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleSwapUni_2(8, bal)
                                     } else if (gasselected === "F.BTC") {
                                         handleSwapUni_2(9, bal)
+                                    } else if (gasselected === "X4") {
+                                        handleSwapUni_2(10, bal)
                                     }
                                 }}
                             >
@@ -1238,6 +1318,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             swapTokenHandleUni(8, false)
                                         } else if (gasselected === "F.BTC") {
                                             swapTokenHandleUni(9, false)
+                                        } else if (gasselected === "X4") {
+                                            swapTokenHandleUni(10, false)
                                         }
                                     }
                                 }>BUY</div> :
@@ -1254,6 +1336,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "PLAT" && Number(tokenBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLUTO" && Number(tokenBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "F.BTC" && Number(tokenBoughtFBTC).toLocaleString('en-US', {maximumFractionDigits:0})}
+                                    {gasselected === "X4" && Number(tokenBoughtX4).toLocaleString('en-US', {maximumFractionDigits:0})}
                                 </div>
                                 ${gasselected} ( 
                                     {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100).toFixed(2)}%</>}
@@ -1265,6 +1348,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "PLAT" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reservePLAT) - ((Number(reservePLAT) * Number(reserveCmjPLAT)) / (Number(reserveCmjPLAT) + Number(inputSwap2))))) - (Number(reserveCmjPLAT/reservePLAT))) / (Number(reserveCmjPLAT/reservePLAT))) * 100).toFixed(2)}%</>}
                                     {gasselected === "PLUTO" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reservePLUTO) - ((Number(reservePLUTO) * Number(reserveCmjPLUTO)) / (Number(reserveCmjPLUTO) + Number(inputSwap2))))) - (Number(reserveCmjPLUTO/reservePLUTO))) / (Number(reserveCmjPLUTO/reservePLUTO)) * 100)).toFixed(2)}%</>}
                                     {gasselected === "F.BTC" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveFBTC) - ((Number(reserveFBTC) * Number(reserveCmjFBTC)) / (Number(reserveCmjFBTC) + Number(inputSwap2))))) - (Number(Number(reserveCmjFBTC)/Number(reserveFBTC)))) / (Number(Number(reserveCmjFBTC)/Number(reserveFBTC)))) * 100).toFixed(2)}%</>}
+                                    {gasselected === "X4" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveX4) - ((Number(reserveX4) * Number(reserveCmjX4)) / (Number(reserveCmjX4) + Number(inputSwap2))))) - (Number(reserveCmjX4/reserveX4))) / (Number(reserveCmjX4/reserveX4))) * 100).toFixed(2)}%</>}
                                     {Number(inputSwap2) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -1289,6 +1373,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         <option value="JASP">JASP</option>
                                         <option value="PLUTO">PLUTO</option>
                                         <option value="F.BTC">F.BTC</option>
+                                        <option value="X4">X4</option>
                                     </select>
                                     <div
                                         style={{fontSize: "14px", marginLeft: "5px", display: "flex", alignItems: "center", cursor: "pointer"}}
@@ -1313,6 +1398,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                                     setLpSell(String(plutoLpBalance))
                                                 } else if (gasselected === "F.BTC") {
                                                     setLpSell(String(fbtcLpBalance))
+                                                } else if (gasselected === "X4") {
+                                                    setLpSell(String(x4LpBalance))
                                                 }
                                             }
                                         }
@@ -1326,6 +1413,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         {gasselected === "PLAT" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(platLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "PLUTO" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(plutoLpBalance).toFixed(4)}</div></>}
                                         {gasselected === "F.BTC" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(fbtcLpBalance).toFixed(4)}</div></>}
+                                        {gasselected === "X4" && <>&nbsp;LP BALANCE:&nbsp; <div className="emp">{Number(x4LpBalance).toFixed(4)}</div></>}
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(1)}>SWAP NOW</div>
@@ -1357,6 +1445,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             removeLpUni(8)
                                         } else if (gasselected === "F.BTC") {
                                             removeLpUni(9)
+                                        } else if (gasselected === "X4") {
+                                            removeLpUni(10)
                                         }
                                     }
                                 }
@@ -1392,6 +1482,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleAddUni(8, event)
                                     } else if (gasselected === "F.BTC") {
                                         handleAddUni(9, event)
+                                    } else if (gasselected === "X4") {
+                                        handleAddUni(10, event)
                                     }
                                 }}
                                 value={tokenAdd}
@@ -1450,6 +1542,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                                 </div>
                             }
+                            {gasselected === "X4" &&
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(fbtcBalance)}}; handleAddUni(9, bal);}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" width="22" alt="$X4"/>
+                                    <div style={{marginLeft: "5px"}}>{Number(x4Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                </div>
+                            }
                         </div>
                         <div style={{width: "100%", margin: "5px", fontSize: "14px"}} className="fa fa-plus"></div>
                         <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
@@ -1479,6 +1577,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleAddUni_2(8, event)
                                     } else if (gasselected === "F.BTC") {
                                         handleAddUni_2(9, event)
+                                    } else if (gasselected === "X4") {
+                                        handleAddUni_2(10, event)
                                     }
                                 }}
                                 value={currAdd}
@@ -1506,6 +1606,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                             handleAddUni_2(8, bal)
                                         } else if (gasselected === "F.BTC") {
                                             handleAddUni_2(9, bal)
+                                        } else if (gasselected === "X4") {
+                                            handleAddUni_2(10, bal)
                                         }
                                     }
                                 }
@@ -1539,6 +1641,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                                 addLpHandleUni(8)
                                             } else if (gasselected === "F.BTC") {
                                                 addLpHandleUni(9)
+                                            } else if (gasselected === "X4") {
+                                                addLpHandleUni(10)
                                             }
                                         }
                                     }
